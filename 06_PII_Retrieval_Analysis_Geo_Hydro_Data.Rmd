@@ -1,0 +1,9 @@
+# (PART) Part II Applied Modeling {-} 
+
+# Retrieval & Analysis of Geospatial & Hydro-Climatological Data
+
+## Prerequisites {-}
+
+## Geospatial Data
+
+## Hydro-Climatological Data

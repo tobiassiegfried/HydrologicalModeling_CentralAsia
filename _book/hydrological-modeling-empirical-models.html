@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Hydrological Modeling: Empirical Models | Applied Modeling of Hydrological Systems in Central Asia</title>
+  <meta name="description" content="This is a course book on Central Asia hydrological systems and hydrological modeling." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Hydrological Modeling: Empirical Models | Applied Modeling of Hydrological Systems in Central Asia" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a course book on Central Asia hydrological systems and hydrological modeling." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Hydrological Modeling: Empirical Models | Applied Modeling of Hydrological Systems in Central Asia" />
+  
+  <meta name="twitter:description" content="This is a course book on Central Asia hydrological systems and hydrological modeling." />
+  
+
+<meta name="author" content="Tobias Siegfried" />
+
+
+<meta name="date" content="2020-06-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="hydrological-modeling-physically-based-models.html"/>
+<link rel="next" href="operationalization-of-models-opportunities-and-challenges.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Hydrological Systems in Central Asia</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="foreword.html"><a href="foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
+<li class="part"><span><b>I Part I Hydrological Systems</b></span></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="hydrological-systems-in-central-asia.html"><a href="hydrological-systems-in-central-asia.html"><i class="fa fa-check"></i><b>2</b> Hydrological Systems in Central Asia</a><ul>
+<li class="chapter" data-level="2.1" data-path="hydrological-systems-in-central-asia.html"><a href="hydrological-systems-in-central-asia.html#regional-hydro-climatological-features"><i class="fa fa-check"></i><b>2.1</b> Regional Hydro-Climatological Features</a></li>
+<li class="chapter" data-level="2.2" data-path="hydrological-systems-in-central-asia.html"><a href="hydrological-systems-in-central-asia.html#regional-water-balance"><i class="fa fa-check"></i><b>2.2</b> Regional Water Balance</a></li>
+<li class="chapter" data-level="2.3" data-path="hydrological-systems-in-central-asia.html"><a href="hydrological-systems-in-central-asia.html#runoff-formation"><i class="fa fa-check"></i><b>2.3</b> Runoff Formation</a></li>
+<li class="chapter" data-level="2.4" data-path="hydrological-systems-in-central-asia.html"><a href="hydrological-systems-in-central-asia.html#average-multi-year-runoff"><i class="fa fa-check"></i><b>2.4</b> Average Multi-Year Runoff</a></li>
+<li class="chapter" data-level="2.5" data-path="hydrological-systems-in-central-asia.html"><a href="hydrological-systems-in-central-asia.html#annual-runoff-fluctuations"><i class="fa fa-check"></i><b>2.5</b> Annual Runoff Fluctuations</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="irrigation-agriculture-in-central-asia.html"><a href="irrigation-agriculture-in-central-asia.html"><i class="fa fa-check"></i><b>3</b> Irrigation Agriculture in Central Asia</a><ul>
+<li class="chapter" data-level="3.1" data-path="irrigation-agriculture-in-central-asia.html"><a href="irrigation-agriculture-in-central-asia.html#historic-developments"><i class="fa fa-check"></i><b>3.1</b> Historic Developments</a></li>
+<li class="chapter" data-level="3.2" data-path="irrigation-agriculture-in-central-asia.html"><a href="irrigation-agriculture-in-central-asia.html#irrigation-and-socio-economic-activity-in-the-twentieth-century"><i class="fa fa-check"></i><b>3.2</b> Irrigation and Socio-Economic Activity in the Twentieth Century</a></li>
+<li class="chapter" data-level="3.3" data-path="irrigation-agriculture-in-central-asia.html"><a href="irrigation-agriculture-in-central-asia.html#post-transition-developments-in-the-irrigation-sectors"><i class="fa fa-check"></i><b>3.3</b> Post-Transition Developments in the Irrigation Sectors</a></li>
+</ul></li>
+<li class="part"><span><b>II Part II Applied Modeling</b></span></li>
+<li class="chapter" data-level="4" data-path="retrieval-analysis-of-geospatial-hydro-climatological-data.html"><a href="retrieval-analysis-of-geospatial-hydro-climatological-data.html"><i class="fa fa-check"></i><b>4</b> Retrieval &amp; Analysis of Geospatial &amp; Hydro-Climatological Data</a><ul>
+<li class="chapter" data-level="" data-path="retrieval-analysis-of-geospatial-hydro-climatological-data.html"><a href="retrieval-analysis-of-geospatial-hydro-climatological-data.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="4.1" data-path="retrieval-analysis-of-geospatial-hydro-climatological-data.html"><a href="retrieval-analysis-of-geospatial-hydro-climatological-data.html#geospatial-data"><i class="fa fa-check"></i><b>4.1</b> Geospatial Data</a></li>
+<li class="chapter" data-level="4.2" data-path="retrieval-analysis-of-geospatial-hydro-climatological-data.html"><a href="retrieval-analysis-of-geospatial-hydro-climatological-data.html#hydro-climatological-data"><i class="fa fa-check"></i><b>4.2</b> Hydro-Climatological Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="first-steps-the-manual-water-balance.html"><a href="first-steps-the-manual-water-balance.html"><i class="fa fa-check"></i><b>5</b> First Steps - The Manual Water Balance</a></li>
+<li class="chapter" data-level="6" data-path="hydrological-modeling-physically-based-models.html"><a href="hydrological-modeling-physically-based-models.html"><i class="fa fa-check"></i><b>6</b> Hydrological Modeling: Physically-Based Models</a></li>
+<li class="chapter" data-level="7" data-path="hydrological-modeling-empirical-models.html"><a href="hydrological-modeling-empirical-models.html"><i class="fa fa-check"></i><b>7</b> Hydrological Modeling: Empirical Models</a></li>
+<li class="chapter" data-level="8" data-path="operationalization-of-models-opportunities-and-challenges.html"><a href="operationalization-of-models-opportunities-and-challenges.html"><i class="fa fa-check"></i><b>8</b> Operationalization of Models - Opportunities and Challenges</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a><ul>
+<li class="chapter" data-level="A.1" data-path="appendix-a.html"><a href="appendix-a.html#open-source-software"><i class="fa fa-check"></i><b>A.1</b> Open-Source Software</a><ul>
+<li class="chapter" data-level="A.1.1" data-path="appendix-a.html"><a href="appendix-a.html#qgis"><i class="fa fa-check"></i><b>A.1.1</b> QGIS</a></li>
+<li class="chapter" data-level="A.1.2" data-path="appendix-a.html"><a href="appendix-a.html#r-and-rstudio"><i class="fa fa-check"></i><b>A.1.2</b> R and RStudio</a></li>
+<li class="chapter" data-level="A.1.3" data-path="appendix-a.html"><a href="appendix-a.html#rs-minerve"><i class="fa fa-check"></i><b>A.1.3</b> RS Minerve</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Modeling of Hydrological Systems in Central Asia</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="hydrological-modeling-empirical-models" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Hydrological Modeling: Empirical Models</h1>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="hydrological-modeling-physically-based-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="operationalization-of-models-opportunities-and-challenges.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/09_EmpiricalModels.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
