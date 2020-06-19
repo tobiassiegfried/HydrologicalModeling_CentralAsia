@@ -15,7 +15,12 @@ description: "This is a course book on Central Asia hydrological systems and hyd
 
 # Welcome {-}
 
-Welcome to the best book ever wirtten about Central Asia Hydrology and the modeling of the hydrological systems there. 
+```{r ZonesOfRunoffFormation, echo = FALSE}
+knitr::include_graphics('_bookdown_files/Title-Figures/naryn.jpeg')
+```
+
+Welcome to the best book ever written about Central Asian hydrology and the modeling of the hydrological systems there. Without doubt. 
+
 
 
 ```{r include=FALSE}
