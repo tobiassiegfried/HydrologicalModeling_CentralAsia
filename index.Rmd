@@ -24,9 +24,7 @@ knitr::include_graphics('_bookdown_files/Title-Figures/naryn.jpeg')
 ```
 
 
-
-
-```{r include=FALSE}
+```{r include=TRUE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown'
