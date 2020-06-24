@@ -6,7 +6,7 @@
 
 This Chapter requires the following R packages to be installed. If you are running R in RStudio and some of the packages are not yet installed on your computer, RStudio will warn you and ask, whether you want to have them installed. Here I change something.
 
-```{r codeLoad, echo=TRUE, eval = FALSE}
+```{r codeLoad, echo=TRUE, eval = TRUE}
 # Tidyverse 
 library(tidyverse)
 
