@@ -15,7 +15,7 @@ description: "This is a course book on Central Asia hydrological systems and hyd
 
 # Welcome {-}
 
-```{r ZonesOfRunoffFormation, echo = FALSE}
+```{r title, echo = FALSE}
 knitr::include_graphics('_bookdown_files/Title-Figures/naryn.jpeg')
 ```
 

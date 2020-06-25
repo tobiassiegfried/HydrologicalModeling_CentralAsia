@@ -1,2 +1,57 @@
 # The Manual Water Balance
+Although the general water balance equation is straight forward, setting up a water balance over a specific region and time period is more involved and generally requires an iterative approach. This Chapter will give you a very brief overview over the theory behind the water balance and guide you through an example to set up a regional water balance for an irrigated area in the Fergana valley. 
+
+## Site & problem description
+
+
+## Identification of the dominant flow processes 
+At the start of a water balance is a preliminary estimate of the individual components of the water flow processes. These will be iteratively refined as the water balance boundaries are verified. The first estimate can be made from the office, prior to the field visit, based on open-source data and literature values.  
+
+### Precipitation
+Do the ERA5 thingy
+### Evaporation
+### Transpiration
+
+
+### Canopy interception
+Neglect, literature
+
+### Snowmelt
+Neglect based on ERA5 temperature data
+
+### Runoff
+Rough estimate based on previous chapter?
+
+### Infiltration
+Rough estimates of irrigation water demand, irrigation norms, literature
+
+### Sub-surface flow
+No data, estimate with water balance
+
+### Sublimation
+Neglect, no snow
+
+### Percolation
+Neglect, shallow groundwater table
+
+## The general water balance equation
+In Chapter \@ref(chap:regionalWaterBalance), a long-term average water balance over Central Asian mountain area has been presented. In more general terms, the water balance equals the sum of all water sources in a system to the sum of all water sinks in a system plus the change of the water storage in the system over a defined time period (Eq. \@ref(eq:generalWB)). 
+
+\begin{equation}
+    (\#eq:generalWB)
+    \sum_i \text{Sources} = \sum_j \text{Sinks} + \frac{\Delta \text{Storage}}{\Delta t} \quad, \in \Omega 
+\end{equation}
+
+It is important to realize that a balance is always drawn over the well-defined boundaries of a system ($\Omega$) and over a specified time period ($\Delta t$).   
+  
+## Boundaries of the water balance  
+Whether a flow process constitutes a source of water for a system or a sink depends on the boundaries of the system. If we calculate the water balance of the air above Central Asia, precipitation constitutes a water loss. If, on the other hand, the boundaries of the water balance are around the soil surface, precipitation is a source of water.  
+
+In space and time, selection of appropriate level of abstraction  
+  
+## Data need for a water balance  
+
+ 
+## Setting up a conceptual model  
+  
 
