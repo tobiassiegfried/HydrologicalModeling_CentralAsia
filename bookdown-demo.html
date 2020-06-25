@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Applied Modeling of Hydrological Systems in Central Asia</title>
+  <meta name="description" content="This is a course book on Central Asia hydrological systems and hydrological modeling." />
+  <meta name="generator" content="bookdown #bookdown:version# and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Applied Modeling of Hydrological Systems in Central Asia" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a course book on Central Asia hydrological systems and hydrological modeling." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Applied Modeling of Hydrological Systems in Central Asia" />
+  
+  <meta name="twitter:description" content="This is a course book on Central Asia hydrological systems and hydrological modeling." />
+  
+
+<meta name="author" content="Tobias Siegfried" />
+
+
+<meta name="date" content="2020-06-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<!--bookdown:link_prev-->
+<!--bookdown:link_next-->
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+<!--bookdown:title:start-->
+<div id="header">
+<h1 class="title">Applied Modeling of Hydrological Systems in Central Asia</h1>
+<p class="author"><em>Tobias Siegfried</em></p>
+<p class="date"><em>2020-06-25</em></p>
+</div>
+<!--bookdown:title:end-->
+
+<!--bookdown:toc:start-->
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+<!--bookdown:toc2:start-->
+<ul>
+<li><a href="#welcome">Welcome</a></li>
+<li><a href="#preface">Preface</a></li>
+<li><a href="#foreword">Foreword</a></li>
+<li><a href="#part-part-i-hydrological-systems">(PART) Part I Hydrological Systems</a></li>
+<li><a href="#introduction"><span class="toc-section-number">1</span> Introduction</a></li>
+<li><a href="#hydrological-systems-in-central-asia"><span class="toc-section-number">2</span> Hydrological Systems in Central Asia</a><ul>
+<li><a href="#regional-hydro-climatological-features"><span class="toc-section-number">2.1</span> Regional Hydro-Climatological Features</a></li>
+<li><a href="#regional-water-balance"><span class="toc-section-number">2.2</span> Regional Water Balance</a></li>
+<li><a href="#runoff-formation"><span class="toc-section-number">2.3</span> Runoff Formation</a></li>
+<li><a href="#average-multi-year-runoff"><span class="toc-section-number">2.4</span> Average Multi-Year Runoff</a></li>
+<li><a href="#annual-runoff-fluctuations"><span class="toc-section-number">2.5</span> Annual Runoff Fluctuations</a></li>
+</ul></li>
+<li><a href="#irrigation-agriculture-in-central-asia"><span class="toc-section-number">3</span> Irrigation Agriculture in Central Asia</a><ul>
+<li><a href="#historic-developments"><span class="toc-section-number">3.1</span> Historic Developments</a></li>
+<li><a href="#irrigation-and-socio-economic-activity-in-the-twentieth-century"><span class="toc-section-number">3.2</span> Irrigation and Socio-Economic Activity in the Twentieth Century</a></li>
+<li><a href="#post-transition-developments-in-the-irrigation-sectors"><span class="toc-section-number">3.3</span> Post-Transition Developments in the Irrigation Sectors</a></li>
+</ul></li>
+<li><a href="#part-part-ii-applied-modeling">(PART) Part II Applied Modeling</a></li>
+<li><a href="#retrieval-analysis-of-data"><span class="toc-section-number">4</span> Retrieval &amp; Analysis of Data</a><ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#geospatial-data"><span class="toc-section-number">4.1</span> Geospatial Data</a></li>
+<li><a href="#climate-data"><span class="toc-section-number">4.2</span> Climate Data</a><ul>
+<li><a href="#access-select-and-download-era5-reanalysis-data"><span class="toc-section-number">4.2.1</span> Access, Select and Download ERA5 Reanalysis Data</a></li>
+</ul></li>
+<li><a href="#hydrological-data"><span class="toc-section-number">4.3</span> Hydrological Data</a></li>
+</ul></li>
+<li><a href="#the-manual-water-balance"><span class="toc-section-number">5</span> The Manual Water Balance</a></li>
+<li><a href="#hydrological-modeling-physically-based-models"><span class="toc-section-number">6</span> Hydrological Modeling: Physically-Based Models</a></li>
+<li><a href="#hydrological-modeling-empirical-models"><span class="toc-section-number">7</span> Hydrological Modeling: Empirical Models</a></li>
+<li><a href="#operationalization-of-models---opportunities-and-challenges"><span class="toc-section-number">8</span> Operationalization of Models - Opportunities and Challenges</a></li>
+<li><a href="#appendix-appendix">(APPENDIX) Appendix</a></li>
+<li><a href="#appendix-a"><span class="toc-section-number">9</span> Appendix A</a><ul>
+<li><a href="#open-source-software"><span class="toc-section-number">9.1</span> Open-Source Software</a><ul>
+<li><a href="#qgis"><span class="toc-section-number">9.1.1</span> QGIS</a></li>
+<li><a href="#r-and-rstudio"><span class="toc-section-number">9.1.2</span> R and RStudio</a></li>
+<li><a href="#rs-minerve"><span class="toc-section-number">9.1.3</span> RS Minerve</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#references">References</a></li>
+<li><a href="#hydrological-systems-in-central-asia"><span class="toc-section-number">10</span> Hydrological Systems in Central Asia</a><ul>
+<li><a href="#regional-hydro-climatological-features"><span class="toc-section-number">10.1</span> Regional Hydro-Climatological Features</a></li>
+</ul></li>
+</ul>
+<!--bookdown:toc2:end-->
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Modeling of Hydrological Systems in Central Asia</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:toc:end-->
+<!--bookdown:body:start-->
+<div id="welcome" class="section level1 unnumbered">
+<h1>Welcome</h1>
+<p>Welcome to the online course book on Central Asian hydrology and the mathematical modeling of the hydrological systems there. The book is dedicated to the young and aspiring water professionals of the region.</p>
+<p>The book adopts an open-source philosophy and promotes the use of open-source data and software. The online version is hosted at <a href="https://tobiassiegfried.github.io/Applied_Hydrological_Modeling_Bookdown/" class="uri">https://tobiassiegfried.github.io/Applied_Hydrological_Modeling_Bookdown/</a>, maintained via GitHub and currently work in progress.</p>
+<p><img src="_bookdown_files/Title-Figures/naryn.jpeg" width="1632" /></p>
+<!--chapter:end:index.Rmd-->
+</div>
+<div id="preface" class="section level1 unnumbered">
+<h1>Preface</h1>
+<p>This handbook is geared towards young aspiring water professionals in Central Asia. It consists of two main parts. Part I presents the hydrological systems of the region. This part fuses a selective synthesis Victor Shults’ famous Russian book “Rivers of Middle Asia”, published as second edition in 1965 with modern insights and knowledge from recent research <span class="citation">(Shults <a href="#ref-shults_RiversOfMiddleAsia">1965</a>)</span>. I hope that this combination provides an attractive, approachable and yet scientifically sound introduction to the many interesting hydrological features of this diverse region.</p>
+<p>Part II provides a learning manual to equip students with a hands-on guide on how to conceptualize, implement, calibrate, run and validate hydrological models. Physically-based and empirical models are both introduced and discussed. The philosophy of working by example is followed and all concepts and modeling approaches are discussed in the context of the sample catchment of the Chirchik River whose tributaries are shared by Uzbekistan and Kyrgyzstan. The emphasis is strictly on the use of open-source software.</p>
+<p>The author is grateful for the support by the Global Water Programme at the Swiss Agency for Development and Cooperation and especially to Stephanie Piers de Raveschroot and Andre Wehrli there. The author owes a lot to Andrey Yakovlev who provided invaluable guidance throughout his professional career.</p>
+<div style="text-align: right">
+Tobias Siegfried
+</div>
+<div style="text-align: right">
+Zurich, June 2020
+</div>
+<!--chapter:end:01_Preface.Rmd-->
+</div>
+<div id="foreword" class="section level1 unnumbered">
+<h1>Foreword</h1>
+<p>There is a profound riddle at the core of everything the engineer does in Central Asia (one might even want to call it the great paradox). Namely, Soviet planning organized space and resources so that the units under consideration (including human resources) could be “identified, observed, recorded, counted, aggregated and monitored” (C. Scott: Seeing like a State, Part 3: The Social Engineering of Rural Settlement and Production). All engineering in Central Asia was based on this, be it for irrigation projects, railway lines and hydropower dams that have become emblems of authoritarianism in Soviet Central Asia (Jonas van der Straeten: Borderlands of Industrial Modernity: Explorations into the History of Technology in Central Asia, 1850 - 2000). Should there thus not be an innate interest “built-in” to the Central Asia Water Stakeholders that takes its legacy from this organizational heritage and thus jump on any new technology that would help them to improve their planning skills, also e.g. in an objective way through the use of space-based information?</p>
+<p>What emerged over time was a “coexistence of the infrastructural and industrial legacies of its Soviet period, artisanal practices and material cultures (like the water management in canals that you mention and that resembled in many ways what is still practiced today in Wallis) that date back to the pre-Soviet time, and by the changes brought by the rapidly accelerating circulation of goods, tastes, and ideas in post-Soviet years. The coexistence of these different influences, however, is not always a harmonic one. It constantly leads to in-between situations, tensions, and paradoxes.” (Jonas van der Straten:…). Tsarist and Soviet occupation and colonialism, a great disrupting force of a fragmented place with historically highly fragmented administrative structures between the traditional oases that were regarded as backward and characterized as “medieval barbarity” by those very occupiers? Occupiers, that is, that, at least in private, often acknowledged that European irrigation technology was inferior to indigenous traditional methods?</p>
+<p>Some US Engineers were called in early on by the Soviets to help in the large scale landscape transformation as described in Teichmann in Chapter 7 and also for the introduction of the ‘American’ long-staple cotton varieties. It is instructive to quote one of them as Teichmann did: »In den Büros, auf Konferenzen und in der Presse geht es immer nur um Pläne, Programme und Fristen«, berichtete der amerikanische Ingenieur Willard Gorton nach seiner Rückkehr aus der Sowjetunion in die Vereinigten Staaten 1933. »Es wäre eine Art kommunistisches Sakrileg, etwas zu unternehmen, ohne vorher einen Plan, oder besser: ein halbes Dutzend Pläne, gemacht zu haben.« Gorton hatte zwei Jahre lang als Bewässerungsingenieur in Taschkent gearbeitet und wusste, wovon er sprach. Sowjetische Pläne und sowjetische Wirklichkeit standen, wie er immer wieder feststellen musste, in einem unauflösbaren Widerspruch. Die Planwirtschaft behindere das Erreichen der vorgesehenen Planziele, statt es sicherzustellen. »Das tatsächliche Ergebnis der Pläne«, meinte der Ingenieur, seien »Chaos« und »Unordnung«. »Vergleicht man die Leistungen, die die Roten von Tag zu Tag vollbringen, mit den Möglichkeiten, die sie von Tag zu Tag verschenken, scheint es, dass sie auf ganzer Linie scheitern werden.«1 Die Schwachpunkte der Planwirtschaft hatte Gorton schnell erfasst: Die sowjetischen Pläne beruhten auf »illusorischen Hoffnungen« und die Planer »verplemperten« ihre Zeit mit dem »Verfassen von Märchen«. Und immer gebe es mehrere, einander widersprechende Planszenarien, von denen keines ausgereift genug sei, um umgesetzt werden zu können. Obwohl »alles bis zum letzten Atemzug« durchgeplant sei, herrschten bei der Arbeit »Durcheinander, Unsicherheit und Verantwortungslosigkeit« und die Pläne erzeugten eine »kontinuierliche und überall verbreitete Unordnung, die an Chaos grenzt«. Das sowjetische Alltagsleben sei von »all den Ärgernissen und Unsicherheiten« geprägt, »die man in den kapitalistischen Ländern finden kann, und vielen anderen mehr, die man hier nicht finden kann«. Zudem erzeuge der verschwenderische Umgang mit Ressourcen Mangel und Not. »Du planst und arbeitetest und verhungerst dabei«, berichtete Gorton. Wenn man überhaupt davon sprechen könne, dass die Sowjetunion »nach einem Plan lebe«, sei dieser »sicherlich vom Teufel selbst erdacht«.</p>
+<p>Identification, observation, recording, counting, aggregating, and monitoring (all that also we have been talking about in Tashkent during our exchange) - all based on “dem Verfassen von Märchen” in Soviet Times? And, might it truly have been so that the centralized command and control economy was in reality directed “according to a system of preferences and not according to precise scientific planning” (Robert Davies quoted in Teichmann)?</p>
+<p>I believe that the Czarist invaders were driven by scientifically ‘enlightened’ engineering. The same applied to the Homo Sovieticus who now extended engineering also in the social practices. Yet, despite its overwhelming power and oversight, the empire was never able to control every aspect of life of the indigenous people. Was it maybe that this enlightened science had to adapt over time, adapt in the sense as described above, to comply to Stalin’s Planvorgaben and so became to rely on fairy tales? Additionally, was it that the ‘Western’ technology and science got adapted to the local colonized conditions and became a complex process of negotiation, contestation, cooptation, and resistance at work&quot; (Cited from Baber in Obertreichs Book)?</p>
+<!--chapter:end:02_Foreword.Rmd-->
+</div>
+<div id="part-part-i-hydrological-systems" class="section level1 unnumbered">
+<h1>(PART) Part I Hydrological Systems</h1>
+</div>
+<div id="introduction" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p>Text for the Introduction.</p>
+<!--chapter:end:03_PI_Introduction.Rmd-->
+</div>
+<div id="hydrological-systems-in-central-asia" class="section level1">
+<h1><span class="header-section-number">2</span> Hydrological Systems in Central Asia</h1>
+<div id="regional-hydro-climatological-features" class="section level2">
+<h2><span class="header-section-number">2.1</span> Regional Hydro-Climatological Features</h2>
+<p>The inhomogeneity of the relief structure causes Central Asia to be the territory of immense contrasts. Here, extreme aridity in the hot deserts of the plains and, only 100 km away, abundant humidity and snowfields in the mountains where precipitation levels can range between 1’000 mm up to 2’000 mm. The uneven distribution of water bodies is striking. The mountains of Central Asia are riddled with an extremely branched river network consisting of more than ten thousand watercourses. In the flat foothill areas surrounding the mountain ranges, another branching river network is found which consists of irrigation channels, which do not contribute to the runoff of the core rivers, but rather divert the water from the river network and diffuse it in the irrigated oases where much of it gets evapotranspirated.</p>
+<p>Central Asia is spreading over approximately 4 million km<sup>2</sup>, including the territories of Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan and Uzbekistan [@cia_worldfactbook]. In the vast plains that cover around 70% of the total territory, there are only very few rivers which have scarcely any tributaries from the point they leave the mountain areas all the way to their mouth. Abundant solar radiation, high temperatures, small amounts of precipitation, a lack of humidity, unstable snow cover, slight slopes, geological structures<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, etc., hinder the formation of surface flows in the plains of Central Asia, despite their big importance for the local agricultural production there. Only the largest rivers, such as Syr Darya, Amu Darya, and Ili are able to survive hundreds of kilometers of deserts and reach the most important landlocked reservoirs – the Aral Sea and Lake Balkhash <span class="citation">(Shults <a href="#ref-shults_RiversOfMiddleAsia">1965</a>)</span>. Figure @ref(fig:riversMap) shows an overview of the region.</p>
+<div class="figure">
+<img src="_bookdown_files/Chap2-Figures/fig_CentralAsiaRiversMap.png" alt="Map highlighting the Central Asian rivers network (rivers are shown in blue color). The dense river network in the mountainous areas starkly contrasts with the one in the plains. The main irrigation canals are shown in orange color. GIS Data from &lt;https://tools.geofabrik.de/osmi/&gt;." width="1000" />
+<p class="caption">
+(#fig:riversMap)Map highlighting the Central Asian rivers network (rivers are shown in blue color). The dense river network in the mountainous areas starkly contrasts with the one in the plains. The main irrigation canals are shown in orange color. GIS Data from <a href="https://tools.geofabrik.de/osmi/" class="uri">https://tools.geofabrik.de/osmi/</a>.
+</p>
+</div>
+<p>All Central Asian river basins are endorheic with no water draining out of the region but only evaporating back to the atmosphere. This emphasizes the importance of moisture transfer as an important mechanism in the region region since the formation of substantial watercourses in the mountains is followed by their complete dissipation in the plains, including in the irrigated oases and the terminal lakes, i.e. the Aral Sea and Lake Balkash.</p>
+<p>In the boreal summer, tropical air masses form in the plains of Central Asia. At that time, even cold air masses coming from the north heat quickly. There is no possibility for temperature differences between the lower and the middle troposphere to occur which explains the horizontal uniformity of high temperatures during summer.</p>
+<p>Contrary to this, the temperature differences in the region are highest in January during the peak of the boreal winter. As the territory of Central Asia is unprotected from the north, it is under the influence of dry, exceptionally cold air masses originating from the Arctic region and Siberia. These air masses can cause sharp frosts. The further the Siberian or Arctic air masses penetrate towards the west and the south, the more their temperature increase. This explains the big difference in air temperatures during winter between the north and the south of Central Asia. Cold air intrusions are often accompanied by the influx of warm air from the tropics. The cold waves taking turns with hot air masses cause unsteady frost in the plains and, together with generally low precipitation values, do not allow for the formation of a significant snow pack there <span class="citation">(Shults <a href="#ref-shults_RiversOfMiddleAsia">1965</a>)</span>.</p>
+<p>//TODO: properly reference Section here.
+As is discussed further below, the winter snow cover in the high mountain ranges plays an essential role in runoff formation in the spring and summer months and is thus of key relevant to irrigation agriculture in the downstream and for hydropower production (see Section~ below). Understanding the atmospheric mechanisms resulting in favorable conditions for winter precipitation is thus essential. With a warming climate and the associated increase of evapotranspiration in the downstream plains and the loss of glacier storage in the mountainous areas, a solid understanding of snow pack formation becomes even more pertinent.</p>
+<p><span class="citation">(Gerlitz et al. <a href="#ref-gerlitz_2018">2018</a>)</span> discusses how the position of the westerly jet stream is connected with the frontal trajectories and the westerly disturbances which are the main moisture sources if the region. The relative position of these planetary wave tracks and their associated westerly flows to the orographic mountain barriers plays thus a key role. The main precipitation events migrate over the winter season from south to north. The southern parts of central Asia, particularly the windward slopes of the Karakorum and Hindu Kush mountain ranges, receive high amounts of winter precipitation (December-January-February), which reaches up to 60% of the total annual precipitation. During spring the zone of maximum precipitation migrates northward, reaches the Pamir plateau in March, and continues to Tien Shan in April/May. The interaction of tropical air masses from the Arabian Golf with westerly flow in Central Asia is another important moisture source for the region.</p>
+<p>Using data of the ERA-Interim reanalysis, <span class="citation">(Gerlitz et al. <a href="#ref-gerlitz_2018">2018</a>)</span> classifies 8 weather types (WT) based on typical regional pressure field patterns over a domain covering 20- 60N and 50- 90E. Like this, large-scale features of winter circulation patterns in Central Asia can be captured. WT are analyzed with regard to the spatial anomalies of temperature and precipitation. Figures @ref(fig:tempWT) and @ref(fig:precipWT) show results. In these Figures, the individual plates WT 1 - 8 are labeled according to the main circulation feature over Central Asia, i.e. a Rossby ridge (R) or trough (T).</p>
+<p>Generally, it can be observed that configurations that are associated with a Rossby trough over Central Asia lead to an intensification of westerly moisture fluxes (WT 3, WT 7, and WT 8). If there is, however, a Rossby ridge type configuration as shown in WT 1, WT 2, and WT 4 panels of Figures @ref(fig:tempWT) and @ref(fig:precipWT), moisture fluxes are northward-shifted and precipitation suppressed <span class="citation">(Gerlitz et al. <a href="#ref-gerlitz_2018">2018</a>)</span>.</p>
+<div class="figure">
+<img src="_bookdown_files/Chap2-Figures/fig_WT_T_Anomalies.png" alt="Composite maps illustrating the averaged anomalies of ERA-Interim/Land 6-hourly temperature for each weather type (WT 1 - WT 8). Values are depicted in standard deviations for each grid cell, respectively. Arrows indicate anomalies of the 500-hPa ERA-Interim wind field [@gerlitz_2018]." width="1000" />
+<p class="caption">
+(#fig:tempWT)Composite maps illustrating the averaged anomalies of ERA-Interim/Land 6-hourly temperature for each weather type (WT 1 - WT 8). Values are depicted in standard deviations for each grid cell, respectively. Arrows indicate anomalies of the 500-hPa ERA-Interim wind field <span class="citation">(Gerlitz et al. <a href="#ref-gerlitz_2018">2018</a>)</span>.
+</p>
+</div>
+<div class="figure">
+<img src="_bookdown_files/Chap2-Figures/fig_WT_T_Anomalies.png" alt="Composite maps illustrating the averaged anomalies of ERA-Interim/Land 6-hourly precipitation sums for each weather type. Values are depicted relative to the seasonal mean 6-hourly precipitation sum ((100)^-1^) for each grid cell, respectively. Arrows indicate anomalies of vertically integrated moisture fluxes [@gerlitz_2018]." width="1000" />
+<p class="caption">
+(#fig:precipWT)Composite maps illustrating the averaged anomalies of ERA-Interim/Land 6-hourly precipitation sums for each weather type. Values are depicted relative to the seasonal mean 6-hourly precipitation sum ((100)<sup>-1</sup>) for each grid cell, respectively. Arrows indicate anomalies of vertically integrated moisture fluxes <span class="citation">(Gerlitz et al. <a href="#ref-gerlitz_2018">2018</a>)</span>.
+</p>
+</div>
+<p>Precipitation is extremely unevenly distributed in the region. 20% of the plain area receives less than 100 mm, while 91% of the territory receives less than 300 mm of precipitation a year with an overall average of 173 mm. The mountains are thus an important climatological and hydrological factor, since they are the places where the water condensates and where the rivers and groundwater originate. Although the range of precipitation levels is wide (60 mm - 2’500 mm), the mountains receive on average more than three times more precipitation than the plains, and the low temperatures favor its accumulation in the solid state <span class="citation">(Shults <a href="#ref-shults_RiversOfMiddleAsia">1965</a>)</span>.</p>
+<p>The influence of the relief is notable also when speaking of precipitation distribution during the year. The high ground areas in Central Asia are witnessing an almost even distribution of precipitation on monthly basis, whereas at the same time, in the inner parts of high mountain ridges there is more precipitation in summer. Such a distribution of precipitation in the inner parts of mountain ridges is a consequence of high condensation levels in summer due to intense evaporation taking place in snow melting areas or, less often, on water surfaces.</p>
+<p>A typical example showing the influence of the local water vapor emission on annual distribution of precipitation could be the Issyk Kul Lake Basin. There the percentage of precipitation received during summer and the second half of spring, so from May to August, is sometimes reaching even 80% of the total annual precipitation amount, all thanks to the evaporation of the water from the lake and the emergence of thermal convection and subsequent moisture recycling.</p>
+<p>The areas that are characterized by a predominant precipitation during summertime are the Central Tian Shan and Eastern Pamir, where the difference between the summer and the rest of the year is so big that during summer 60% of all annual precipitation is received.</p>
+<p>The predominance of the precipitation during summer in case of mountains with steep slopes (15° - 30°) causes fast and abundant snowmelt runoff which is directed to the lower areas and then turns into a river network. Thanks to a large amount of precipitation, relatively low evaporation levels and steep slopes, all rivers of Central Asia, including the largest ones such as Amu Daria, Syr Daria, Ili or Zeravshan, arise in the mountains. Arising in the high ground area, these rivers are mainly fed by snow, glaciers and snow patches melting, as well as by groundwater that, again, were all formed by the same sources.</p>
+<p>Due to the presence of the vertical thermal gradient, the start of the positive air temperature season, and consequently, the start of the ice and snow melting season does not take place at the same time uniformly. Rather, the snow melting process is of protracted nature and the higher the mountains are in a particular catchment, the later the snow-melt floods take place on rivers that are emerging there.</p>
+<p>The melting process starts last in the permanent snow and glaciers regions. Because of this, the rivers, which are fed by snowmelt in the upper parts of the catchment area, are of great importance for the irrigation of crop fields, since they are characterized by the most significant water runoff during July and August, at which point the irrigated plains experience severe drought and when irrigated crops have the highest water demand.</p>
+<p>The rivers having this kind of a runoff regime (nivo-glacial) are Pyandzh and Vakhsh Rivers, as well as the ones deriving from them, such as Amu Darya, Chu, Zeravshan, Talas and Ili Rivers with its numerous tributaries. These rivers all feature a small variability of annual runoff. This is partly a result of the regulating effect of the zone of eternal snows and ice and is very important from the perspective of agricultural production in the downstream. These rivers are thus particularly valuable, not only for irrigation but also as a source of hydroelectric power.</p>
+<p>Rivers originating from the low mountains but being fed mainly by the snowmelt (nival regime rivers), are characterized by the early floods (March-May) and a sharp variability of annual runoff, since the amount of water is almost entirely determined by the snow reserves in the mountains which were accumulated in the previous winter season.</p>
+<p>Finally, the watercourses originating from the lowest parts of mountains or from low mountains, (nivo-pluvial regime rivers), which in comparison to other regimes receive much more liquid precipitation, are characterized by large amounts of water, often saturated by sediment, passing during short periods of time. These are so-called mudflows. These watercourses often dry up during summer because of a decrease in supplies from groundwater.</p>
+<p>When entering the plains, the rivers of Central Asia form wide-spreading alluvial fans consisting of materials brought by them from the mountains. Here the rivers are usually divided into several channels, and a large part of water is filtered by these sediments. The large quantities of groundwater in these alluvial fans, which appear due to this process, mostly protrude from the earth surface at the edges these alluvial fans, causing the small rivers that are fed by groundwater, so-called Karasu rivers, to emerge, which are also used for irrigation.</p>
+<p>The relief thus has an extremely strong and many-sided impact on runoff formation processes. This influence is mediated through climatic factors, on which the recharge of the rivers, as well as the processes of thawing of snow and ice, etc., depend. In this regard, both the average water content, consistency of the annual runoff and its distribution over a year, as well as other characteristics of the river runoff cannot be considered independently from key relief factors, first and foremost altitude. All this demands a careful and comprehensive analysis of the impact of the relief on runoff processes.</p>
+</div>
+<div id="regional-water-balance" class="section level2">
+<h2><span class="header-section-number">2.2</span> Regional Water Balance</h2>
+<p>It is instructive to show the opposite hydrological functions of mountain versus flat areas of Central Asia by means of simple water balance considerations.</p>
+<p>The water balance equation for mountain area, broadly defined, can be written as follows:</p>
+<p><span class="math display">\[\begin{equation}
+    (\#eq:regWB)
+    p = e + q_{s} + q_{g}
+\end{equation}\]</span></p>
+<p>whereby <span class="math inline">\(p\)</span> represents the average long-term amount of precipitation and condensation of water vapor from the atmosphere, <span class="math inline">\(e\)</span> the average long-term evaporation, <span class="math inline">\(q_{s}\)</span> the average long-term surface outflow and <span class="math inline">\(q_{g}\)</span> the average outflow of groundwater. This equation shows that the mountain area receives moisture only from the atmosphere and rainfall which precipitates within its limits and evaporates only partially. The remainder part of it flows down in the form of surface and underground drainage. Sharp partition of a relief in the mountain area, and consequently, a deep natural drainage is the reason why groundwater is almost entirely connected to the river network already in the mountain area. The Meso-Cenozoic deposits, containing waterproof horizons, and the Paleozoic massifs on the border with the flat areas obstruct groundwater flows. Thus, the groundwater inflow to the flat areas makes no more than 10% - 15% of the surface one and therefore it can be neglected in the first equation.</p>
+<p>Then the water balance equation will have the following appearance:</p>
+<p><span class="math display">\[\begin{equation}
+    (\#eq:regWB2)
+    p = e + q_{s}
+\end{equation}\]</span></p>
+<p>Based on available data, the rate of surface outflow <span class="math inline">\(q_{s}\)</span> can be calculated quite precisely: 155 billion m<sup>3</sup> or 201 mm annually. River basin-specific surface runoff values are provided in Table. It is impossible to measure the amount of the accumulated water vapor in the mountains accurately just by observation, so we have to proceed from the rate of the runoff, for which we need to know the value of runoff coefficient. The last can be approximately considered as equal to 0.35 (see also next Section). Then, <span class="math inline">\(p\)</span> equals 575 mm and <span class="math inline">\(e\)</span>, as follows, 575 mm - 201 mm = 374 mm.</p>
+<table>
+<caption>(#tab:simple-WB-Rivers) Key water balance basin statistics of selected large basins in Central Asia.</caption>
+<colgroup>
+<col width="5%" />
+<col width="13%" />
+<col width="16%" />
+<col width="35%" />
+<col width="28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Basin Name</th>
+<th align="left">Area (km<sup>2</sup>)</th>
+<th align="left">Runoff (m<sup>3</sup>/s)</th>
+<th align="left">Runoff entering flatlands (m<sup>3</sup>/s)</th>
+<th align="left">Runoff Coeff. (l/ (s km<sup>2</sup>))</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Caspian Sea</td>
+<td align="left">29’700</td>
+<td align="left">22</td>
+<td align="left">12</td>
+<td align="left">0.74</td>
+</tr>
+<tr class="even">
+<td align="left">Endhoreic Basins of TUK and AFG</td>
+<td align="left">193’300</td>
+<td align="left">180</td>
+<td align="left">155</td>
+<td align="left">0.93</td>
+</tr>
+<tr class="odd">
+<td align="left">Amu Darya</td>
+<td align="left">227’300</td>
+<td align="left">2’500</td>
+<td align="left">2’500</td>
+<td align="left">11</td>
+</tr>
+<tr class="even">
+<td align="left">Syr Darya</td>
+<td align="left">150’100</td>
+<td align="left">1’200</td>
+<td align="left">1’200</td>
+<td align="left">8</td>
+</tr>
+<tr class="odd">
+<td align="left">Chu and Talas River Basin</td>
+<td align="left">37’540</td>
+<td align="left">190</td>
+<td align="left">190</td>
+<td align="left">5.1</td>
+</tr>
+<tr class="even">
+<td align="left">Lake Issyk Kul</td>
+<td align="left">12’600</td>
+<td align="left">115</td>
+<td align="left">-</td>
+<td align="left">9.1</td>
+</tr>
+<tr class="odd">
+<td align="left">Southern Balkash Lake</td>
+<td align="left">119’000</td>
+<td align="left">800</td>
+<td align="left">800</td>
+<td align="left">6.7</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="left">769’600</td>
+<td align="left">5’007</td>
+<td align="left">4’857</td>
+<td align="left">6.5</td>
+</tr>
+</tbody>
+</table>
+<p>It should be noted that the rate of surface water inflow to the flatlands is smaller than the runoff which is generated in the mountain areas as part of it is utilized in the mountain area for irrigation purposes (the rivers of Turkmenistan are in this regard an especially good example), or it evaporates from a surface like of the Lake Issyk Kul and other smaller lakes.</p>
+<p>If, from the mountain area, we exclude reservoirs of the river Atrek and the rivers of Turkmenistan and Afghanistan with no runoff which, occupying the big space (29% of all mountain area of Central Asia), excel in a minute quantity of rainfall and exclusively low water levels, separate elements of water balance will be expressed by the following sizes: <span class="math inline">\(p\)</span> = 675 mm , <span class="math inline">\(q_{s}\)</span> = 270 mm and <span class="math inline">\(e\)</span> = 405 mm. In this case, the water balance of mountain area shows its hydrological essence even more clearly.</p>
+<p>The equation of water balance for the flat area can be written in the form of</p>
+<p><span class="math display">\[\begin{equation}
+    p + q_{i} = e
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(q_{i}\)</span> represents the surface inflow of water.</p>
+<p>We neglect underground outflow in the flat area as, even when it takes place, it is absolutely insignificant. The average amount of rainfall calculated by planimetering of the isohyetal map is equal to 173 mm. The rate of inflow of water is equal to the outflow of water from mountain area, i. e. <span class="math inline">\(q_{s} = q_{i} = 155 \cdot 10^{9}\)</span> m<sup>3</sup>. After making its way down to the flat area, which includes the surface of the Aral Sea and Lake Balkhash, the surface inflow of the rivers reaches 124 mm, while the evaporation <span class="math inline">\(e = p + q_{i} =\)</span> 173 mm + 124 mm = 297 mm. It is noteworthy to mention that from the entire moisture appearing in the flat area, 58% nevertheless is from atmospheric precipitation, despite its rather insignificant absolute amount.</p>
+<p>Comparing the two water balance equations shows that the mountain areas receive 575 mm of moisture from the atmosphere of which 374 mm evaporates back to the atmosphere and 201 mm reach the downstream flat area in the form of a surface runoff. Conversely to this, the flat areas receive 297 mm of water from direct precipitation and from inflow of mountain runoff. All of this water evaporates back to the atmosphere.</p>
+<p>To summarize, it is clear that in the area of runoff formation, <span class="math inline">\(p &gt; e\)</span>, in the area of runoff losses <span class="math inline">\(p &lt; e\)</span>, and that in the area of runoff balance <span class="math inline">\(p \approx e\)</span>. In each area, where the runoff processes show the same orientation, its origin, distribution in time and space, and also the intensity of processes can however vary. In this sense, depending mainly on local topography (generally speaking, depending on the altitude, orientation and exposure of a reservoir to humid air masses), the specific runoff, the persistence of the annual runoff and its distribution over a year, as well as other characteristics of the river flow can sharply differ in different parts of the area of runoff formation, as it was already discussed above. On the other hand, the intensity of runoff losses, their distribution over a year, etc. within the area of runoff losses, considerably depend on the economic activities and features of climatic conditions.</p>
+</div>
+<div id="runoff-formation" class="section level2">
+<h2><span class="header-section-number">2.3</span> Runoff Formation</h2>
+<p>The process of runoff formation is critically determined by the generation of direct runoff from liquid precipitation and the melting of snow and ice over the course of a hydrological year. Considering carefully the individual components for basins under consideration is important in order to properly understand the runoff regimes of individual rivers and for conceptualizing key processes for mathematical modeling.</p>
+<div class="figure">
+<img src="_bookdown_files/Chap2-Figures/fig_AmuSyrDarya.png" alt="Map of the upper Syr Darya and Amu Darya catchments. The catchments are outlined. Colors encode topographic height. Basin outlets (red dots) are chosen to correspond to the confluence of the two main rivers for each catchment. Topographic data is from [@USGS_2020]." width="1000" />
+<p class="caption">
+(#fig:ZonesOfRunoffFormation)Map of the upper Syr Darya and Amu Darya catchments. The catchments are outlined. Colors encode topographic height. Basin outlets (red dots) are chosen to correspond to the confluence of the two main rivers for each catchment. Topographic data is from <span class="citation">(“SRTMGL1 N -Asa Srtm Version 3.0” <a href="#ref-USGS_2020">2020</a>)</span>.
+</p>
+</div>
+<p>First, we study the role of glacier melt. For this, it is instructive to start to look at the condition of discharge formation in the Amu Darya and Syr Darya basins (see Figure @ref(fig:ZonesOfRunoffFormation)). More specifically, we compare the two main subcatchments of the Vakhsh and Pyandzh Rivers in the Amu Darya and the Naryn and Kara Darya catchments in the Syr Darya<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. In the first two reservoirs, the mountains exceeding 5’000 m occupy 6.2% of their area, and the mountains higher than 4’000 m — 42%, in case of reservoirs of the second two rivers, the mountains exceeding 5’000 m occupy less than 1% of their area and the ones with altitudes over 4’000 m — only 4%. Figure @ref(fig:AmuSyrDaryaHypsography) shows the basins’ hypsographic curves.</p>
+<p>Even if we take into account that in the case of the basins of Pyandzh and Vakhsh the snow line is on average located at the height of 4’600 m — 4’500 m and in case of the basins of Naryn and Kara Darya at 4’000 m - 3’900 m, 19% — 22% of the reservoirs of Pyandzh and Vakhsh is located above the snow line, and in case of reservoirs of Naryn and Kara Darya it is only 4% — 5%. The role of glaciers in the annual distribution of runoff is thus more substantial in the case of the Amu Darya as compared to the Syr Darya. And to come to an informed conclusion, one has to take into account all land ice features, including their altitude.</p>
+<div class="figure">
+<img src="_bookdown_files/Chap2-Figures/fig_AmuSyrDarya_HypsographicCurves.png" alt="Hypsographic curves of the upper Syr Darya and Amu Darya catchments. The SRTM topographic model was used for the calculation of the curves [@USGS_2020]." width="1000" />
+<p class="caption">
+(#fig:AmuSyrDaryaHypsography)Hypsographic curves of the upper Syr Darya and Amu Darya catchments. The SRTM topographic model was used for the calculation of the curves <span class="citation">(“SRTMGL1 N -Asa Srtm Version 3.0” <a href="#ref-USGS_2020">2020</a>)</span>.
+</p>
+</div>
+<p>Data on land ice can be obtained from the Global Land Ice Measurements from Space glacier database GLIMS <span class="citation">(GLIMS and NSIDC, <a href="#ref-glims_global">n.d.</a>)</span>. The Global Land Ice Measurements from Space (GLIMS) project at NSIDC has implemented a database of glacier outlines from around the world and other information about glaciers that includes the metadata on how those outlines were derived. At &lt;www.glims.org&gt;, one can download outlines and metadata for glaciers in a choice of different formats, including KML (for viewing in Google Earth), ESRI shapefiles, GMT (Generic Mapping Tools), MapInfo, or GML (Geography Markup Language). Figure @ref(fig:AmuDaryaGlaciers) shows a sample visualisation of the GLIMS data for the zone of runoff formation of the Amu Darya.</p>
+<div class="figure">
+<img src="_bookdown_files/Chap2-Figures/fig_VakshPyandz_GLIMS.png" alt="Visualization of the GLIMS data glaciation in the Vaksh-Pyandzh basin. The light blue shaded polygons show land ice on top of the underlying digital elevation model." width="1000" />
+<p class="caption">
+(#fig:AmuDaryaGlaciers)Visualization of the GLIMS data glaciation in the Vaksh-Pyandzh basin. The light blue shaded polygons show land ice on top of the underlying digital elevation model.
+</p>
+</div>
+<p>Figure @ref(fig:elDistGlaciers) shows the distribution of mean glacier elevations of the Randolph Glacier Inventory 6.0 dataset in the GLIMS database. The center of mass for the Amu Darya is at 4’827 masl whereas it is at 4’110 masl for the Syr Darya.</p>
+<div class="figure">
+<img src="_bookdown_files/Chap2-Figures/fig_GlacierElevationDistribution.png" alt="Distribution of mean glacier elevations as extract from the GLIMS database. Only data from the Randolph Glacier Inventory 6.0 was used as subset of the complete GLIMS record. For the computation of the mean elevation, SRTM data was utilized." width="2550" />
+<p class="caption">
+(#fig:elDistGlaciers)Distribution of mean glacier elevations as extract from the GLIMS database. Only data from the Randolph Glacier Inventory 6.0 was used as subset of the complete GLIMS record. For the computation of the mean elevation, SRTM data was utilized.
+</p>
+</div>
+<p>Since the GLIMS database contains contains the shapes of glaciers as geometric features, we can calculate easily calculate areas that the individual glaciers cover and then utilize scaling relationships between surface area and volume to estimate total ice storage in the individual Central Asian catchments. <span class="citation">(Aizen, Aizen, and Kuzmichonok <a href="#ref-Aizen_2007">2007</a>)</span> reports such scaling relationship for the Central Asian region. As a function of glacier area, they are</p>
+<p><span class="math display">\[\begin{equation}
+    V = 0.03782 S^{1.23} \text{ for } S &lt; 0.1 \text{ km}^2
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+    V =  \frac{0.03332 S ^ {1.08} e^{0.1219 L}}{L^{0.08846}} \text{ for } 0.1 &lt; S &lt; 25 \text{ km}^2
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+    V = 0.01848 S + 0.021875 S^{1.3521} \text{ for } S &gt; 25 \text{ km}^2
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(S\)</span> is the area of a glacier, <span class="math inline">\(L\)</span> the length of the glacier and <span class="math inline">\(V\)</span> the computed volume from the scaling relationship. The length <span class="math inline">\(L\)</span> of the individual glaciers can be approximated by subtracting the minimum glacier elevation from the corresponding maximum elevation. Like this, we can compute land ice volumes of the Amu Darya and Syr Darya basins in an approximate yet scientific way.</p>
+<p>Alternatively, we can use the volume area scaling relationship by Yerashov.</p>
+</div>
+<div id="average-multi-year-runoff" class="section level2">
+<h2><span class="header-section-number">2.4</span> Average Multi-Year Runoff</h2>
+</div>
+<div id="annual-runoff-fluctuations" class="section level2">
+<h2><span class="header-section-number">2.5</span> Annual Runoff Fluctuations</h2>
+<p>Here, maybe also take a long-term view over the 20th century and even longer, by looking at e.g. Issy Kul Lake Level variations.</p>
+<!--chapter:end:04_Hydrological_Systems.Rmd-->
+</div>
+</div>
+<div id="irrigation-agriculture-in-central-asia" class="section level1">
+<h1><span class="header-section-number">3</span> Irrigation Agriculture in Central Asia</h1>
+<div id="historic-developments" class="section level2">
+<h2><span class="header-section-number">3.1</span> Historic Developments</h2>
+</div>
+<div id="irrigation-and-socio-economic-activity-in-the-twentieth-century" class="section level2">
+<h2><span class="header-section-number">3.2</span> Irrigation and Socio-Economic Activity in the Twentieth Century</h2>
+</div>
+<div id="post-transition-developments-in-the-irrigation-sectors" class="section level2">
+<h2><span class="header-section-number">3.3</span> Post-Transition Developments in the Irrigation Sectors</h2>
+<p>We have finished a nice book.</p>
+<!--chapter:end:05_Irrigation_CentralAsia.Rmd-->
+</div>
+</div>
+<div id="part-part-ii-applied-modeling" class="section level1 unnumbered">
+<h1>(PART) Part II Applied Modeling</h1>
+</div>
+<div id="retrieval-analysis-of-data" class="section level1">
+<h1><span class="header-section-number">4</span> Retrieval &amp; Analysis of Data</h1>
+<div id="prerequisites" class="section level2 unnumbered">
+<h2>Prerequisites</h2>
+<p>This Chapter requires the following R packages to be installed. If you are running R in RStudio and some of the packages are not yet installed on your computer, RStudio will warn you and ask, whether you want to have them installed. Here I change something.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Tidyverse </span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># File navigation</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">library</span>(here)</a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co"># Copernicus Climate Data Store</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw">library</span>(ecmwfr)</a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="kw">library</span>(keyring)</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co"># Handling netcdf files</span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="kw">library</span>(ncdf4)</a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="co"># Spatial data plotting &amp; plotting</span></a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">library</span>(rgdal)</a>
+<a class="sourceLine" id="cb1-16" data-line-number="16"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb1-17" data-line-number="17"><span class="kw">library</span>(rgeos)</a>
+<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="kw">library</span>(sp)</a>
+<a class="sourceLine" id="cb1-19" data-line-number="19"><span class="kw">library</span>(sf)</a>
+<a class="sourceLine" id="cb1-20" data-line-number="20"><span class="kw">library</span>(rasterVis)</a>
+<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="kw">library</span>(RColorBrewer)</a></code></pre></div>
+</div>
+<div id="geospatial-data" class="section level2">
+<h2><span class="header-section-number">4.1</span> Geospatial Data</h2>
+</div>
+<div id="climate-data" class="section level2">
+<h2><span class="header-section-number">4.2</span> Climate Data</h2>
+<div id="access-select-and-download-era5-reanalysis-data" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Access, Select and Download ERA5 Reanalysis Data</h3>
+<p>For the climate data to be used in the modeling approach, we use ERA5 data from the European Center for Medium-Range Weather Forecasts (ECMWF, &lt;www.ecmwf.int&gt;). ERA5, the successor to ERA-Interim, provides global, hourly estimates of atmospheric variables, at a horizontal resolution of 31 km and 137 vertical levels from the surface to 0.01 hPa <span class="citation">(Dee D. <a href="#ref-era5-desc">2020</a>)</span>. ERA5 presently extends back to 1979 but will ultimately be extended back to 1950<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
+<p>The ERA5 data is available via the Copernicus Climate Store at <a href="https://cds.climate.copernicus.eu" class="uri">https://cds.climate.copernicus.eu</a>. However, before we can access, select and download it there, each user has to register with a personal account in the store. For this purpose, the user should navigate to the website and register via the Login/Register/NewAccount Menu. You will receive an email once your account is ready.</p>
+<p>Log in to your account and go to your user profile where you find your user ID and API key. The relevant information should be copied and into the relevant places of the code chunk below and then be executed.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co">#Note: replace the UID and key strings below with the proper user&#39;s information in your Copernicus Climate Data Store account.</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">UID &lt;-<span class="st"> &#39;UID&#39;</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">API_key &lt;-<span class="st"> &#39;key&#39;</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#This function links your password and user id for later steps</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">wf_set_key</span>(UID, API_key, <span class="st">&#39;cds&#39;</span>)</a></code></pre></div>
+<p>//TODO: output still showing. How to deal with it?</p>
+<p>If all worked well, you will get the following confirmation in the console:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co">## User UID for cds service added successfully</span></a></code></pre></div>
+<p>On the Copernicus website, make sure that you are logged into your account and the navigate to Datasets. There, search for the Product ‘ERA5-Land monthly averaged data from 1981 to present’ and select it<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. You end up on the products homepage where you can get more information and download the data via a form where you select the product’s type, variables, the years, months and time of day, the geographical area and, finally, the download file format of interest. Please select the following:</p>
+<ul>
+<li>Product type: Monthly averaged reanalysis</li>
+<li>Variable:
+<ul>
+<li>Temperature: 2 m Temperature</li>
+<li>Lakes: NA</li>
+<li>Snow: NA</li>
+<li>Soil Water: NA</li>
+<li>Radiation and Heat: NA</li>
+<li>Evaporation and Runoff: Potential evaporation</li>
+<li>Wind, Pressure and Precipitation: Total precipitation</li>
+<li>Vegetation: NA</li>
+</ul></li>
+<li>Year: Select all</li>
+<li>Month: Select all</li>
+<li>Time: 00:00</li>
+<li>Geographical area: Sub-region extraction (West = 65, East = 80, South = 35, North = 45)</li>
+<li>Format: NetCDF (experimental)</li>
+</ul>
+<p>Accept the Terms of use and press the ‘Show API request button’. You should see the following Python request now as shown in Figure @ref(fig:Copernicus-API-Request).</p>
+<div class="figure">
+<img src="_bookdown_files/Chap4-Figures/fig_Copernicus_API_request" alt="Screenshot showing the Copernicus Data Store API request that can be copied and posted into RStudio for the convenient download of the data there."  />
+<p class="caption">
+(#fig:Copernicus-API-Request)Screenshot showing the Copernicus Data Store API request that can be copied and posted into RStudio for the convenient download of the data there.
+</p>
+</div>
+<p>The request should be copied and pasted into RStudio into your current .Rmd file there. Select the python request with the cursor and choose ‘ECMWFR/Python to List’ under the Addins Menu. The python request will then automatically be translated into a an r command. Please check that everything is ok by comparing it with a correct request as shown below. Also, please note that we have changed the target file name by specifying <code>target = reanalysis-era5-land-monthly-means_CentralAsia.nc</code>.</p>
+<p>In a final step, the user can then download the data with the <code>wf_request()</code> function.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># Here is is the resulting request in R language </span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">request &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;dataset_short_name&quot;</span> =<span class="st"> &quot;reanalysis-era5-land-monthly-means&quot;</span>,</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="dt">format =</span> <span class="st">&quot;netcdf&quot;</span>,</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="dt">product_type =</span> <span class="st">&quot;monthly_averaged_reanalysis&quot;</span>,</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">variable =</span> <span class="kw">c</span>(<span class="st">&#39;2m_temperature&#39;</span>, <span class="st">&#39;potential_evaporation&#39;</span>, <span class="st">&#39;total_precipitation&#39;</span>),</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">year =</span>  <span class="kw">c</span>(<span class="st">&#39;1981&#39;</span>, <span class="st">&#39;1982&#39;</span>, <span class="st">&#39;1983&#39;</span>,</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">            <span class="st">&#39;1984&#39;</span>, <span class="st">&#39;1985&#39;</span>, <span class="st">&#39;1986&#39;</span>,</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">            <span class="st">&#39;1987&#39;</span>, <span class="st">&#39;1988&#39;</span>, <span class="st">&#39;1989&#39;</span>,</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">            <span class="st">&#39;1990&#39;</span>, <span class="st">&#39;1991&#39;</span>, <span class="st">&#39;1992&#39;</span>,</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">            <span class="st">&#39;1993&#39;</span>, <span class="st">&#39;1994&#39;</span>, <span class="st">&#39;1995&#39;</span>,</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">            <span class="st">&#39;1996&#39;</span>, <span class="st">&#39;1997&#39;</span>, <span class="st">&#39;1998&#39;</span>,</a>
+<a class="sourceLine" id="cb4-12" data-line-number="12">            <span class="st">&#39;1999&#39;</span>, <span class="st">&#39;2000&#39;</span>, <span class="st">&#39;2001&#39;</span>,</a>
+<a class="sourceLine" id="cb4-13" data-line-number="13">            <span class="st">&#39;2002&#39;</span>, <span class="st">&#39;2003&#39;</span>, <span class="st">&#39;2004&#39;</span>,</a>
+<a class="sourceLine" id="cb4-14" data-line-number="14">            <span class="st">&#39;2005&#39;</span>, <span class="st">&#39;2006&#39;</span>, <span class="st">&#39;2007&#39;</span>,</a>
+<a class="sourceLine" id="cb4-15" data-line-number="15">            <span class="st">&#39;2008&#39;</span>, <span class="st">&#39;2009&#39;</span>, <span class="st">&#39;2010&#39;</span>,</a>
+<a class="sourceLine" id="cb4-16" data-line-number="16">            <span class="st">&#39;2011&#39;</span>, <span class="st">&#39;2012&#39;</span>, <span class="st">&#39;2013&#39;</span>,</a>
+<a class="sourceLine" id="cb4-17" data-line-number="17">            <span class="st">&#39;2014&#39;</span>, <span class="st">&#39;2015&#39;</span>, <span class="st">&#39;2016&#39;</span>,</a>
+<a class="sourceLine" id="cb4-18" data-line-number="18">            <span class="st">&#39;2017&#39;</span>, <span class="st">&#39;2018&#39;</span>, <span class="st">&#39;2019&#39;</span>,</a>
+<a class="sourceLine" id="cb4-19" data-line-number="19">            <span class="st">&#39;2020&#39;</span>),</a>
+<a class="sourceLine" id="cb4-20" data-line-number="20">  <span class="dt">month =</span> <span class="kw">c</span>(<span class="st">&quot;01&quot;</span>, <span class="st">&quot;02&quot;</span>, <span class="st">&quot;03&quot;</span>, <span class="st">&quot;04&quot;</span>, <span class="st">&quot;05&quot;</span>, <span class="st">&quot;06&quot;</span>, <span class="st">&quot;07&quot;</span>, <span class="st">&quot;08&quot;</span>, <span class="st">&quot;09&quot;</span>, <span class="st">&quot;10&quot;</span>, <span class="st">&quot;11&quot;</span>, <span class="st">&quot;12&quot;</span>),</a>
+<a class="sourceLine" id="cb4-21" data-line-number="21">  <span class="dt">time =</span> <span class="st">&quot;00:00&quot;</span>,</a>
+<a class="sourceLine" id="cb4-22" data-line-number="22">  <span class="dt">area =</span> <span class="st">&quot;45/65/35/80&quot;</span>,</a>
+<a class="sourceLine" id="cb4-23" data-line-number="23">  <span class="co">#dataset = &quot;reanalysis-era5-land-monthly-means&quot;,</span></a>
+<a class="sourceLine" id="cb4-24" data-line-number="24">  <span class="dt">target =</span> <span class="st">&quot;reanalysis-era5-land-monthly-means_CentralAsia.nc&quot;</span></a>
+<a class="sourceLine" id="cb4-25" data-line-number="25">)</a>
+<a class="sourceLine" id="cb4-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb4-27" data-line-number="27"><span class="co"># Download data as netcdf file and store it in the directory where you are running this script, this returns the path to the file </span></a>
+<a class="sourceLine" id="cb4-28" data-line-number="28">ncfilelink &lt;-<span class="st"> </span><span class="kw">wf_request</span>(<span class="dt">user =</span> UID,</a>
+<a class="sourceLine" id="cb4-29" data-line-number="29">                     <span class="dt">request =</span> request,</a>
+<a class="sourceLine" id="cb4-30" data-line-number="30">                     <span class="dt">transfer =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb4-31" data-line-number="31">                     <span class="dt">path =</span> <span class="kw">here</span>(),</a>
+<a class="sourceLine" id="cb4-32" data-line-number="32">                     <span class="dt">verbose =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;moved temporary file to -&gt; /.../reanalysis-era5-land-monthly-means_CentralAsia.nc&quot;</code></pre>
+<pre><code>## [1] &quot;request purged from queue!&quot;</code></pre>
+<p>Some Sources on NetCDF and raster files:
+Here are some good resources to get you started: <a href="https://pjbartlein.github.io/REarthSysSci/index.html" class="uri">https://pjbartlein.github.io/REarthSysSci/index.html</a> and
+<a href="https://cmerow.github.io/RDataScience/05_Raster.html" class="uri">https://cmerow.github.io/RDataScience/05_Raster.html</a>.</p>
+</div>
+</div>
+<div id="hydrological-data" class="section level2">
+<h2><span class="header-section-number">4.3</span> Hydrological Data</h2>
+<p>//TODO: Show added value from consulting data from altimetry <a href="https://dahiti.dgfi.tum.de/en/map/" class="uri">https://dahiti.dgfi.tum.de/en/map/</a></p>
+<!--chapter:end:06_PII_Retrieval_Analysis_Geo_Hydro_Data.Rmd-->
+</div>
+</div>
+<div id="the-manual-water-balance" class="section level1">
+<h1><span class="header-section-number">5</span> The Manual Water Balance</h1>
+<!--chapter:end:07_FirstSteps-ManualWaterBalance.Rmd-->
+</div>
+<div id="hydrological-modeling-physically-based-models" class="section level1">
+<h1><span class="header-section-number">6</span> Hydrological Modeling: Physically-Based Models</h1>
+<!--chapter:end:08_PhysicallyBased_Models.Rmd-->
+</div>
+<div id="hydrological-modeling-empirical-models" class="section level1">
+<h1><span class="header-section-number">7</span> Hydrological Modeling: Empirical Models</h1>
+<!--chapter:end:09_EmpiricalModels.Rmd-->
+</div>
+<div id="operationalization-of-models---opportunities-and-challenges" class="section level1">
+<h1><span class="header-section-number">8</span> Operationalization of Models - Opportunities and Challenges</h1>
+<!--chapter:end:10_Operationalization.Rmd-->
+</div>
+<div id="appendix-appendix" class="section level1 unnumbered">
+<h1>(APPENDIX) Appendix</h1>
+</div>
+<div id="appendix-a" class="section level1">
+<h1><span class="header-section-number">9</span> Appendix A</h1>
+<div id="open-source-software" class="section level2">
+<h2><span class="header-section-number">9.1</span> Open-Source Software</h2>
+<div id="qgis" class="section level3">
+<h3><span class="header-section-number">9.1.1</span> QGIS</h3>
+</div>
+<div id="r-and-rstudio" class="section level3">
+<h3><span class="header-section-number">9.1.2</span> R and RStudio</h3>
+</div>
+<div id="rs-minerve" class="section level3">
+<h3><span class="header-section-number">9.1.3</span> RS Minerve</h3>
+<!--chapter:end:11_Appendix_Software.Rmd-->
+</div>
+</div>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<!--chapter:end:12_references.Rmd-->
+</div>
+<div id="hydrological-systems-in-central-asia" class="section level1">
+<h1><span class="header-section-number">10</span> Hydrological Systems in Central Asia</h1>
+<div id="regional-hydro-climatological-features" class="section level2">
+<h2><span class="header-section-number">10.1</span> Regional Hydro-Climatological Features</h2>
+<ul>
+<li>TAKIR surface flow: Surface flow in the plains is most intense on so-called takirs. A takir is usually formed in a shallow depressed area with a heavy clay soil, which is submerged by water after seasonal rains. After the water evaporates, a dried crust with fissures forms on the surface. Runoff from the takirs and takir-like areas has ever since been used by the locals to cover their freshwater needs.</li>
+</ul>
+<p>The highly continental location, while being unprotected from the north by mountain ranges, causes an extremely dry continental climate with dry cloudless hot summers, followed by relatively humid winters, sometimes also with severe frost, particularly, in the north which is regularly influenced by Siberian high pressure.</p>
+<!--chapter:end:notebook.Rmd-->
+<div id="refs" class="references">
+<div id="ref-Aizen_2007">
+<p>Aizen, V B, E M Aizen, and V A Kuzmichonok. 2007. “Glaciers and Hydrological Changes in the Tien Shan: Simulation and Prediction.” <em>Environmental Research Letters</em> 2 (4). IOP Publishing: 045019. <a href="https://doi.org/10.1088/1748-9326/2/4/045019" class="uri">https://doi.org/10.1088/1748-9326/2/4/045019</a>.</p>
+</div>
+<div id="ref-era5-desc">
+<p>Dee D., National Center for Atmospheric Research Staff. 2020. “The Climate Data Guide: ERA5 Atmospheric Reanalysis.” <a href="https://climatedataguide.ucar.edu/climate-data/era5-atmospheric-reanalysis" class="uri">https://climatedataguide.ucar.edu/climate-data/era5-atmospheric-reanalysis</a>.</p>
+</div>
+<div id="ref-gerlitz_2018">
+<p>Gerlitz, Lars, Eva Steirou, Christoph Schneider, Vincent Moron, Sergiy Vorogushyn, and Bruno Merz. 2018. “Variability of the Cold Season Climate in Central Asia. Part I: Weather Types and Their Tropical and Extratropical Drivers.” <em>Journal of Climate</em> 31 (18): 7185–7207. <a href="https://doi.org/10.1175/jcli-d-17-0715.1" class="uri">https://doi.org/10.1175/jcli-d-17-0715.1</a>.</p>
+</div>
+<div id="ref-glims_global">
+<p>GLIMS, and NSIDC. n.d. <em>Global Land Ice Measurements from Space Glacier Database</em>. Compiled and made available by the international GLIMS community and the National Snow and Ice Data Center, Boulder CO, U.S.A. DOI:10.7265/N5V98602.</p>
+</div>
+<div id="ref-shults_RiversOfMiddleAsia">
+<p>Shults, Victor. 1965. <em>Rivers of Middle Asia</em>. 2nd Edition. Gidrometeoizdat, Leningrad.</p>
+</div>
+<div id="ref-USGS_2020">
+<p>“SRTMGL1 N -Asa Srtm Version 3.0.” 2020. <a href="https://earthdata.nasa.gov/learn/articles/nasa-shuttle-radar-topography-mission-srtm-version-3-0-global-1-arc-second-data-released-over-asia-and-australia" class="uri">https://earthdata.nasa.gov/learn/articles/nasa-shuttle-radar-topography-mission-srtm-version-3-0-global-1-arc-second-data-released-over-asia-and-australia</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>namely the distribution of sand and loess relief types, where the former are more permeable and the latter contain more moisture<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>The emerging river after the confluence of the Vakhsh and Pyandzh rivers is called Amu Darya whereas the Syr Darya emerges after the confluence of the Naryn and Kara Darya rivers.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>Although this is an extraordinary product, users still need to be aware of the limitations of reanalysis; two of the major ones are that non-physical trends and variability may be present in the record due to changes in the observing system, and that the climatologies of some variables, like surface energy fluxes, are not well represented.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>The direct link is <a href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land-monthly-means?tab=form" class="uri">https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land-monthly-means?tab=form</a>.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+<!--bookdown:body:end-->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<!--bookdown:link_prev-->
+<!--bookdown:link_next-->
+    </div>
+  </div>
+<!--bookdown:config-->
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
