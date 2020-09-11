@@ -1,0 +1,20 @@
+# (PART) Part II Applied Modeling {-#Part2_Applied_Modeling}  
+
+# Case Studies {#CaseStudies}
+
+## Chirchik River Basin {#CaseStudyChirchikRiver}
+
+The Chirchik is a river in the Tashkent region of Uzbekistan and the biggest right tributary of the Syr Darya. The river is formed by the confluence of the Chatkal and the Pskem rivers in the Charvak reservoir. They emerge at the western end of the Tien Shan mountains in the border region of Kyrgyzstan, Kazakhstan and Uzbekistan. Below the Charvak hydroelectric power station, the river receives no more water from other tributaries and the water gets diverted in numerous canals. As part of the Chirchik-Bozsuu cascade, several dams along the river serve hydropower production and irrigation purposes.
+
+## Sokh River Basin {#CaseStudySokhRiver}
+
+//TODO: Add here text about the Sokh River Catchment.
+
+
+Here, we have a sample <span style="color: blue;">Menu/Level1/Level2</span>
+
+
+
+
+
+ 

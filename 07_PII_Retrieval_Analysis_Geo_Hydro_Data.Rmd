@@ -1,0 +1,291 @@
+# Retrieval & Analysis of Data {#Retrieval-AnalysisHydroData}
+
+## Preliminary Remarks {-}
+
+We focus on the Chirchik River as our case study (see Section \@ref(CaseStudyChirchikRiver) for background information on the river basin). The steps for preparation and processing of the required input data for modeling however carry over any other basin.
+
+It will be shown how to prepare and process the geospatial information using the open-source Geographic Information System [QGIS](https://qgis.org/en/site/){target="_blank"}.  
+
+Second, we deal with climate data and show how to prepare existing temperature and precipitation data from local stations and also discuss how to access, download and process climate data from reanalysis products. Finally, we prepare the available hydrological data.
+
+For this course, we use the open source software [RS MINERVE](https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve.html) for physically-based modeling, i.e. for numerical rainfall-runoff modeling and river routing. Hence, the steps described here focus on the input requirements of this software. It should, however, be noted that other modeling packages exist with which hydrological-hydraulic modeling can be carried out in a similar manner. These include
+
+- [WEAP: Water Evaluation and Planning System](https://www.weap21.org){target="_blak"}, 
+- [SWAT: Soil & Water Assessment Tool](https://swat.tamu.edu){target="_blank"}, and
+- [Mike Hydro Basin](https://www.mikepoweredbydhi.com/products/mike-hydro-basin){target="_blank"}
+
+As some of these modeling packages are license-based, the advantage of using RS MINERVE is that it is completely freeware for any user and use scenario.
+
+In the Chapter \@ref(HydroModels_PhysicalModels) below, we are going to show how to then use the data retrieved and prepared in RS MINERVE for numerical water balance modeling, streamflow routing and forecasting.
+
+## Geospatial Data
+
+### Catchment Delineation
+
+Catchment delineation is the first step in geospatial analysis^[Here, we largely follow a blog post by Craig Dsouza where the process of catchment delineation is nicely described (see this [link](https://craigdsouza.github.io/blog/Watershed-Delineation-QGIS-1){target="_blank"} for more information)]. Through the proper definition of the geographic properties of the basin under consideration, we are getting prepared to use this information for linking with the climate boundary conditions and to translate everything into a rainfall-runoff and river routing model. This is a step-by-sep guide on how to setup, access, organize and analyze the relevant geo-spatial data for the Chirchik River basin. It is important to mention that this workflow can be utilized in any other catchment. 
+
+**STEP 1 Open Empty QGIS Project.** Open an empty QGIS Project and set Project Coordinate Reference System (CRS) to EPSG: 32642, WGS84 / UTM 42N (see Figure \@ref(fig:settingCRS)). Map projections try to portray the surface of the earth, or a portion of the earth, on a flat piece of paper or computer screen. In layman’s term, map projections try to transform the earth from its spherical shape (3D) to a planar shape (2D). A CRS then defines how the two-dimensional, projected map in your GIS relates to real places on the earth. Generally, the decision of which map projection and CRS to use depends on the regional extent of the area you want to work in, on the analysis you want to do, and often on the availability of data. 
+
+```{r settingCRS, echo = FALSE, fig.cap = 'Setting the CRS of the Project to EPSG: 32642, WGS84 / UTM 42N.'}
+knitr::include_graphics('_bookdown_files/Chap7-Figures/fig_SettingCRS.png')
+```
+
+For the Chirchik River basin case study, we use the CRS EPSG: 32642, WGS84 / UTM 42N. The UTM CRS, where UTM stands for Universal Transverse Mercator, has its origin on the equator at a specific longitude. The Y-values increase southwards and the X-values increase to the West. The UTM CRS is a global map projection and is generally used all over the world. For accuracy reasons, the world is divided into 60 equal zones that are all 6 degrees wide in longitude from East to West. The UTM zones are numbered 1 to 60, starting at the antimeridian (zone 1 at 180 degrees West longitude) and progressing East back to the antemeridian (zone 60 at 180 degrees East longitude). Figure \@ref(fig:settingCRS) shows a  global map of UTM zones.
+
+```{r UTMZones, echo = FALSE, fig.cap = 'Global map of UTM zones. See [QGIS online documentation](https://docs.qgis.org/3.10/en/docs/user_manual/){target="blank"} for more information.'}
+knitr::include_graphics('_bookdown_files/Chap7-Figures/fig_UTmZones.png')
+```
+
+To avoid too much distortion, the world is divided into 60 equal zones that are all 6 degrees wide in longitude from East to West. The UTM zones are numbered 1 to 60, starting at the antimeridian (zone 1 at 180 degrees West longitude) and progressing East back to the antemeridian (zone 60 at 180 degrees East longitude). 
+
+**STEP 2 Adding Groups for Project Structuring** It is important to keep your geospatial data properly organized. This can be achieved by using Groups in QGIS. You should follow this recommendation and now create the following groups in the Layers Panel: RIVERS, GAUGES, BASINS, DEM, POLITICAL and Temporary^[Of course, this grouping is just a suggestion and the user is free to organize spatial assets according to his/her own liking]. Once you start to generate a large number of raster and vector layers, these can be conveniently organized within these Groups which act in a similar way as electronic folders on your desktop (see Figure \@ref{fig:LayersGrouping} for an example). 
+
+```{r LayersGrouping, echo = FALSE, fig.cap = 'Background map showing the area of interest. Also note the Layers grouping in the panel on the left side. The contents in the folder show the geospatial assets that we will create here.'}
+knitr::include_graphics('_bookdown_files/Chap7-Figures/fig_LayersGrouping.png')
+```
+
+
+**STEP 3 Background Map via QuickMapServices** From the main menu, select Web/QuickMapServices/Google/Google Satellite or any other map of your choice. If the QuickMapServices are not available by default, you have to install the corresponding plugin. More information can be found [here](https://docs.qgis.org/3.10/en/docs/training_manual/qgis_plugins/plugin_examples.html){target="blank"}. If by default the Google Map Service is not available, you can install the plugin HCMGIS via the Manage and Install Plugins Menu and then access the Google base Maps via the newly appeared HCMGIS/BaseMap/Menu.
+
+Once the background map is visible as shown in Figure \@ref{fig:LayersGrouping}, you can zoom in on the area of interest, i.e., the mountain range north-east of Tashkent at the western end of the Tien Shan mountains, where the Chirchik River originates from.
+
+
+**STEP 4 Download the Digital Elevation Model (DEM) and country shapefiles** As a next step, select first the DEM Group in the Layers Panel on the left and then load the SRTM Downloader QGIS Plugin. While you have zoomed in on the region of interest, open the plugin and then select Set Canvas Extent. Like this, the coordinates of the AoI get automatically filled in. 
+
+If you press 'Download', all the relevant SRTM tiles get downloaded. But first, the plug-in requests you to enter your username and password of your Earthdata login^[If you do not have a login, you can create one at (https://urs.earthdata.nasa.gov//users/new){target="blank"}]. The download progress of the individual DEM tiles can be checked in the individual asset progress bars of the SRTM Downloader plugin. As these tiles are only temporary data, there is no need to specify an explicit Output-Path (unless you want to store them for later use in which case you should choose a dedicated output path).
+
+After the download, these individual raster tiles should be merged. Select them all in a first step and then merge them with the menu option <span style="color: blue;">*Raster / Miscellaneous / Merge*</span>. An important remark is that after merging, the individual tiles can be deleted to safe disk space. Use the <span style="color: blue;">*Mouse Right Click / Remove Layers*</span> option to do so.
+
+To check if all went well, the resulting DEM needs to be recolored. This can be achieved through right clicking on the merged DEM and selecting <span style="color: blue;">*Properties / Symbology*</span>. In the Layer Properties Dialogue Box, the Singleband Pseudocolor option should be selected and then a new Colormap created from the catalogue 'cpt-city'. You can then choose any colormap that is suitable for topography coloring.
+
+Finally, you have to reproject the DEM to the selected CRS EPSG:32642. 
+
+//FIXME: Find a good home for this.
+For the political shapefiles, we download the relevant country-level data from the [GADM database](https://gadm.org/download_country_v3.html){target="blank"}. GADM provides spatial data for all countries and their first- and second-level subdivisions in shapefile format
+
+**STEP 5 Cutting the Area of Interest (AoI), DEM Resampling and Filling Sinks** The downloaded DEM file is very likely much too big and it would be great to cut it to the rough shape that we are focussing on. We just have to ensure that all of our suspected catchment area is inside the cut out. For this purpose, we add a new shapefile Layer and make sure that its Geometry Type is correctly selected as 'Polygon'. Ensure also, that after the creation of the layer, it is in a Projected CRS (UTM 42N). We can then toggle editing and use the polygon creation and edit tool to roughly outline the basin (AoI) that we are focussing on. 
+
+In order to roughly cutout the AoI, select <span style="color: blue;">  *Extraction / Clip Raster by Mask Layer*</span> and select the corresponding layers in the user dialog box.
+
+```{r LayersCutting, echo = FALSE, fig.cap = 'After'}
+knitr::include_graphics('_bookdown_files/Chap7-Figures/fig_LayersGrouping.png')
+```
+
+Checking the resolution of the downloaded SRTM DEM, we see that cell sizes are roughly 25 meters [m] in horizontal and vertical direction. For larger catchments, it is advisable to resample the DEM to a coarser resolution. There are many ways to do this in QGIS. Here, it is proposed to use the `r.resample.stats` algorithm so as to decrease the resolution from 25 m to 100 m for later processing.
+
+Next, one has to ensure that sinks in the DEM are filled. First, use `r.fill.dir` to fill potential DEM gaps. The algorithm can be found in the Toolbox section once it is enabled in the dropdown menu Processing. Second, use `r.watershed` to generate the drainage direction and flow accumulation rasters. Here, it is important to specify a 'Minimum size of exterior watershed basin' (take 100'000) and also check the option 'Use positive flow accumulation even for likely underestimates'. 
+
+**STEP 6 Basin Delineation** Once we have produced these rasters as described in **STEP 5**, we load the gauging stations if they are available as shapefiles. For each gauging station, we make sure that the gauge lies at the correct location by overlaying it with the Flow Accumulation Raster Data. If this is not the case, we need to relocate individual gauges so that they are at the correct location. This step is important so as to properly delineate the upstream area of a particular gauge under consideration. 
+
+If gauges are not available as shapefiles, we can easily add a new shapefile layer and then define one or more gauges in that layer for which we want to delineate basin shapes.
+
+Finally, with the algorithm `r.water.outlet`, and by using the Drainage Direction Map, we map those basins and get individual basin raster maps.
+
+9. With the QGIS raster to vector option, we polygonize the basins. Check the validity of the polygon with Vector Geometry/Check Validity and correct, where necessary.
+
+### Computation of Elevation Bands
+
+With the reclassification algorithm, we create elevation band polygons based on the DEM layer. First, we smooth the DEM to simplify the elevation bands a bit. Then, we Reclassify by Table the DEM into the desired elevation bands. For the exercise here and given the specific topography of the basin(s) that we are interested in our Case Study, we enter manually altitude bands that are 500 meters apart (see Figure \@ref{fig:ReclassificationByTable}). As output, we get a raster map with the individual elevation classes.
+
+```{r ReclassificationByTable, echo = FALSE, fig.cap = 'Reclassifying a DEM to make elevation classes that cover a range of 500 meters.'}
+knitr::include_graphics('_bookdown_files/Chap7-Figures/fig_ReclassificationByTable.png')
+```
+
+Using the elevation band raster map, we use GDAL / Raster Conversion / Polygonize to create the elevation band polygons. 
+
+Polygon clipping with SAGA/Vector Polygon Tool/Polygon Clipping tool to arrive and subcatchment level basins with altitude bands.
+
+Now, we have derived the required shapefiles. For importing into the rainfall-runoff model in RS MINERVE, we have to now properly prepare their attribute tables. This is a somewhat lengthy and tedious process but will help later greatly in terms of automatic model creation in RS MINERVE.
+
+RS Minerve requires the following GIS layers for the automatic translation into a rainfall-runoff model, i.e. subbasins.shp, junctions.shp and rivers.shp (see [@rsminerve_um] for more details). 
+
+The individual feature attributes should be added either at the time of the layer creation or with the field calculator in QGIS.
+
+```{r RSMINERVE_GIS, echo = FALSE, fig.cap = 'Default Shapefile layers required in RS MINERVE to simplify the model topology building. See [@rsminerve_um] for more information.'}
+knitr::include_graphics('_bookdown_files/Chap7-Figures/fig_RSMINERVE_GIS_Files.png')
+```
+
+//FIXME: Check what to do with this!
+We note that for water supplies in the rainfall/runoff model, the focus is on the zone of runoff formation.
+
+
+
+## Climate Data
+
+This Section requires the following R packages to be installed. If you are running R in RStudio and some of the packages are not yet installed on your computer, RStudio will warn you and ask, whether you want to have them installed.
+
+//TODO: Suppress output below
+```{r codeLoad, echo=TRUE, eval = TRUE}
+# Tidyverse 
+library(tidyverse)
+
+# File navigation
+library(here)
+
+# Copernicus Climate Data Store
+library(ecmwfr)
+library(keyring)
+
+# Handling netcdf files
+library(ncdf4)
+
+# Spatial data plotting & plotting
+library(rgdal)
+library(raster)
+library(rgeos)
+library(sp)
+library(sf)
+library(rasterVis)
+library(RColorBrewer)
+```
+
+### Access, Select and Download ERA5 Reanalysis Data
+
+For the climate data to be used in the modeling approach, we use ERA5 data from the European Center for Medium-Range Weather Forecasts (ECMWF, <www.ecmwf.int>). ERA5, the successor to ERA-Interim,  provides global, hourly estimates of atmospheric variables, at a horizontal resolution of 31 km and 137 vertical levels from the surface to 0.01 hPa [@era5-desc]. ERA5 presently extends back to 1979 but will ultimately be extended back to 1950^[Although this is an extraordinary product, users still need to be aware of the limitations of reanalysis; two of the major ones are that non-physical trends and variability may be present in the record due to changes in the observing system, and that the climatologies of some variables, like surface energy fluxes, are not well represented.]. 
+
+The ERA5 data is available via the Copernicus Climate Store at <https://cds.climate.copernicus.eu>. However, before we can access, select and download it there, each user has to register with a personal account in the store. For this purpose, the user should navigate to the website and register via the Login/Register/NewAccount Menu. You will receive an email once your account is ready.
+
+Log in to your account and go to your user profile where you find your user ID and API key. The relevant information should be copied and into the relevant places of the code chunk below and then be executed. 
+
+```{r,eval=FALSE}
+#Note: replace the UID and key strings below with the proper user's information in your Copernicus Climate Data Store account.
+UID <- 'UID'
+API_key <- 'key'
+#This function links your password and user id for later steps
+wf_set_key(UID, API_key, 'cds')
+```
+
+//TODO: output still showing. How to deal with it?
+```{r ecmf_real_register, echo = FALSE, message = FALSE}
+#Note: replace these strings with the information in your Copernicus Climate Data Store account
+UID <- '11732'
+API_key <- '9b6f4531-b1f0-4005-82e5-afa48aabd3e2'
+#This function links your password and user id for later steps
+wf_set_key(UID, API_key, 'cds')
+```
+
+If all worked well, you will get the following confirmation in the console:
+```{r <chunk-label>, echo = TRUE,eval=FALSE}
+## User UID for cds service added successfully
+```
+
+On the Copernicus website, make sure that you are logged into your account and the navigate to Datasets. There, search for the Product 'ERA5-Land monthly averaged data from 1981 to present' and select it^[The direct link is <https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land-monthly-means?tab=form>.]. You end up on the products homepage where you can get more information and download the data via a form where you select the product's type, variables, the years, months and time of day, the geographical area and, finally, the download file format of interest. Please select the following:
+
+- Product type: Monthly averaged reanalysis
+- Variable:
+    - Temperature: 2 m Temperature
+    - Lakes: NA
+    - Snow: NA
+    - Soil Water: NA
+    - Radiation and Heat: NA
+    - Evaporation and Runoff: Potential evaporation
+    - Wind, Pressure and Precipitation: Total precipitation
+    - Vegetation: NA
+- Year: Select all
+- Month: Select all
+- Time: 00:00
+- Geographical area: Sub-region extraction  (West = 65, East = 80, South = 35, North = 45)
+- Format: NetCDF (experimental)
+
+Accept the Terms of use and press the 'Show API request button'. You should see the following Python request now as shown in Figure \@ref(fig:Copernicus-API-Request).
+
+```{r Copernicus-API-Request, echo = FALSE, fig.cap = 'Screenshot showing the Copernicus Data Store API request that can be copied and posted into RStudio for the convenient download of the data there.'}
+knitr::include_graphics('_bookdown_files/Chap4-Figures/fig_Copernicus_API_request')
+```
+
+The request should be copied and pasted into RStudio into your current .Rmd file there. Select the python request with the cursor and choose 'ECMWFR/Python to List' under the Addins Menu. The python request will then automatically be translated into a an r command. Please check that everything is ok by comparing it with a correct request as shown below. Also, please note that we have changed the target file name by specifying `target = reanalysis-era5-land-monthly-means_CentralAsia.nc`.
+
+In a final step, the user can then download the data with the `wf_request()` function. 
+
+
+```{r ERA5-request, echo = TRUE, eval = FALSE}
+# Here is is the resulting request in R language 
+request <- list("dataset_short_name" = "reanalysis-era5-land-monthly-means",
+  format = "netcdf",
+  product_type = "monthly_averaged_reanalysis",
+  variable = c('2m_temperature', 'potential_evaporation', 'total_precipitation'),
+  year =  c('1981', '1982', '1983',
+            '1984', '1985', '1986',
+            '1987', '1988', '1989',
+            '1990', '1991', '1992',
+            '1993', '1994', '1995',
+            '1996', '1997', '1998',
+            '1999', '2000', '2001',
+            '2002', '2003', '2004',
+            '2005', '2006', '2007',
+            '2008', '2009', '2010',
+            '2011', '2012', '2013',
+            '2014', '2015', '2016',
+            '2017', '2018', '2019',
+            '2020'),
+  month = c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"),
+  time = "00:00",
+  area = "45/65/35/80",
+  #dataset = "reanalysis-era5-land-monthly-means",
+  target = "reanalysis-era5-land-monthly-means_CentralAsia.nc"
+)
+
+# Download data as netcdf file and store it in the directory where you are running this script, this returns the path to the file 
+ncfilelink <- wf_request(user = UID,
+                     request = request,
+                     transfer = TRUE,
+                     path = here(),
+                     verbose = TRUE)
+```
+
+```{r, echo = FALSE, eval = TRUE, results = 'hide', warning = FALSE, message = FALSE}
+# Here is is the resulting request in R language 
+request <- list("dataset_short_name" = "reanalysis-era5-land-monthly-means",
+  format = "netcdf",
+  product_type = "monthly_averaged_reanalysis",
+  variable = c('2m_temperature', 'potential_evaporation', 'total_precipitation'),
+  year =  c('1981', '1982', '1983',
+            '1984', '1985', '1986',
+            '1987', '1988', '1989',
+            '1990', '1991', '1992',
+            '1993', '1994', '1995',
+            '1996', '1997', '1998',
+            '1999', '2000', '2001',
+            '2002', '2003', '2004',
+            '2005', '2006', '2007',
+            '2008', '2009', '2010',
+            '2011', '2012', '2013',
+            '2014', '2015', '2016',
+            '2017', '2018', '2019',
+            '2020'),
+  month = c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"),
+  time = "00:00",
+  area = "45/65/35/80",
+  #dataset = "reanalysis-era5-land-monthly-means",
+  target = "reanalysis-era5-land-monthly-means_CentralAsia.nc"
+)
+
+# Download data as netcdf file and store it in the directory where you are running this script, this returns the path to the file 
+ncfilelink <- wf_request(user = UID,
+                     request = request,
+                     transfer = TRUE,
+                     path = here(),
+                     verbose = TRUE)
+```
+
+```{r , eval = TRUE, echo=FALSE, results = 'show'}
+print('moved temporary file to -> /.../reanalysis-era5-land-monthly-means_CentralAsia.nc')
+print('request purged from queue!')
+```
+
+ 
+Some Sources on NetCDF and raster files:
+Here are some good resources to get you started: <https://pjbartlein.github.io/REarthSysSci/index.html> and
+<https://cmerow.github.io/RDataScience/05_Raster.html>. 
+
+
+
+
+
+
+## Hydrological Data
+
+//TODO: Show added value from consulting data from altimetry <https://dahiti.dgfi.tum.de/en/map/>
+
+Maybe show some analysis in KNMI CLimateExplorer?
+

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Applied Modeling of Hydrological Systems in Central Asia</title>
   <meta name="description" content="This is a course book on Central Asia hydrological systems and hydrological modeling." />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Applied Modeling of Hydrological Systems in Central Asia" />
   <meta property="og:type" content="book" />
@@ -24,11 +24,7 @@
 <meta name="author" content="Tobias Siegfried" />
 
 
-<<<<<<< HEAD
-<meta name="date" content="2020-06-24" />
-=======
-<meta name="date" content="2020-06-19" />
->>>>>>> develop_bea
+<meta name="date" content="2020-09-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -36,7 +32,7 @@
   
   
 
-<link rel="next" href="preface.html"/>
+<link rel="next" href="01_Preface.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -58,9 +54,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -69,14 +65,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -85,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -137,73 +135,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="foreword.html"><a href="foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
+<li class="chapter" data-level="" data-path="01_Preface.html"><a href="01_Preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="02_Foreword.html"><a href="02_Foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
 <li class="part"><span><b>I Part I Hydrological Systems</b></span></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="hydrological-systems-in-central-asia.html"><a href="hydrological-systems-in-central-asia.html"><i class="fa fa-check"></i><b>2</b> Hydrological Systems in Central Asia</a><ul>
-<li class="chapter" data-level="2.1" data-path="hydrological-systems-in-central-asia.html"><a href="hydrological-systems-in-central-asia.html#regional-hydro-climatological-features"><i class="fa fa-check"></i><b>2.1</b> Regional Hydro-Climatological Features</a></li>
-<li class="chapter" data-level="2.2" data-path="hydrological-systems-in-central-asia.html"><a href="hydrological-systems-in-central-asia.html#chap:regionalWaterBalance"><i class="fa fa-check"></i><b>2.2</b> Regional Water Balance</a></li>
-<li class="chapter" data-level="2.3" data-path="hydrological-systems-in-central-asia.html"><a href="hydrological-systems-in-central-asia.html#runoff-formation"><i class="fa fa-check"></i><b>2.3</b> Runoff Formation</a></li>
-<li class="chapter" data-level="2.4" data-path="hydrological-systems-in-central-asia.html"><a href="hydrological-systems-in-central-asia.html#average-multi-year-runoff"><i class="fa fa-check"></i><b>2.4</b> Average Multi-Year Runoff</a></li>
-<li class="chapter" data-level="2.5" data-path="hydrological-systems-in-central-asia.html"><a href="hydrological-systems-in-central-asia.html#annual-runoff-fluctuations"><i class="fa fa-check"></i><b>2.5</b> Annual Runoff Fluctuations</a></li>
+<li class="chapter" data-level="1" data-path="03_PI_Introduction.html"><a href="03_PI_Introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html"><i class="fa fa-check"></i><b>2</b> Hydrological Systems in Central Asia</a><ul>
+<li class="chapter" data-level="2.1" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html#regional-hydro-climatological-features"><i class="fa fa-check"></i><b>2.1</b> Regional Hydro-Climatological Features</a></li>
+<li class="chapter" data-level="2.2" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html#chap:regionalWaterBalance"><i class="fa fa-check"></i><b>2.2</b> Regional Water Balance</a></li>
+<li class="chapter" data-level="2.3" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html#runoff-formation"><i class="fa fa-check"></i><b>2.3</b> Runoff Formation</a></li>
+<li class="chapter" data-level="2.4" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html#average-multi-year-runoff"><i class="fa fa-check"></i><b>2.4</b> Average Multi-Year Runoff</a></li>
+<li class="chapter" data-level="2.5" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html#annual-runoff-fluctuations"><i class="fa fa-check"></i><b>2.5</b> Annual Runoff Fluctuations</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="irrigation-agriculture-in-central-asia.html"><a href="irrigation-agriculture-in-central-asia.html"><i class="fa fa-check"></i><b>3</b> Irrigation Agriculture in Central Asia</a><ul>
-<li class="chapter" data-level="3.1" data-path="irrigation-agriculture-in-central-asia.html"><a href="irrigation-agriculture-in-central-asia.html#historic-developments"><i class="fa fa-check"></i><b>3.1</b> Historic Developments</a></li>
-<li class="chapter" data-level="3.2" data-path="irrigation-agriculture-in-central-asia.html"><a href="irrigation-agriculture-in-central-asia.html#irrigation-and-socio-economic-activity-in-the-twentieth-century"><i class="fa fa-check"></i><b>3.2</b> Irrigation and Socio-Economic Activity in the Twentieth Century</a></li>
-<li class="chapter" data-level="3.3" data-path="irrigation-agriculture-in-central-asia.html"><a href="irrigation-agriculture-in-central-asia.html#post-transition-developments-in-the-irrigation-sectors"><i class="fa fa-check"></i><b>3.3</b> Post-Transition Developments in the Irrigation Sectors</a></li>
+<li class="chapter" data-level="3" data-path="05_Irrigation_CentralAsia.html"><a href="05_Irrigation_CentralAsia.html"><i class="fa fa-check"></i><b>3</b> Irrigation Agriculture in Central Asia</a><ul>
+<li class="chapter" data-level="3.1" data-path="05_Irrigation_CentralAsia.html"><a href="05_Irrigation_CentralAsia.html#historic-developments"><i class="fa fa-check"></i><b>3.1</b> Historic Developments</a></li>
+<li class="chapter" data-level="3.2" data-path="05_Irrigation_CentralAsia.html"><a href="05_Irrigation_CentralAsia.html#irrigation-and-socio-economic-activity-in-the-twentieth-century"><i class="fa fa-check"></i><b>3.2</b> Irrigation and Socio-Economic Activity in the Twentieth Century</a></li>
+<li class="chapter" data-level="3.3" data-path="05_Irrigation_CentralAsia.html"><a href="05_Irrigation_CentralAsia.html#post-transition-developments-in-the-irrigation-sectors"><i class="fa fa-check"></i><b>3.3</b> Post-Transition Developments in the Irrigation Sectors</a></li>
 </ul></li>
 <li class="part"><span><b>II Part II Applied Modeling</b></span></li>
-<<<<<<< HEAD
-<li class="chapter" data-level="4" data-path="retrieval-analysis-of-data.html"><a href="retrieval-analysis-of-data.html"><i class="fa fa-check"></i><b>4</b> Retrieval &amp; Analysis of Data</a><ul>
-<li class="chapter" data-level="" data-path="retrieval-analysis-of-data.html"><a href="retrieval-analysis-of-data.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="4.1" data-path="retrieval-analysis-of-data.html"><a href="retrieval-analysis-of-data.html#geospatial-data"><i class="fa fa-check"></i><b>4.1</b> Geospatial Data</a></li>
-<li class="chapter" data-level="4.2" data-path="retrieval-analysis-of-data.html"><a href="retrieval-analysis-of-data.html#climate-data"><i class="fa fa-check"></i><b>4.2</b> Climate Data</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="retrieval-analysis-of-data.html"><a href="retrieval-analysis-of-data.html#access-select-and-download-era5-reanalysis-data"><i class="fa fa-check"></i><b>4.2.1</b> Access, Select and Download ERA5 Reanalysis Data</a></li>
+<li class="chapter" data-level="4" data-path="06_CaseStudy_ChirchikRiver.html"><a href="06_CaseStudy_ChirchikRiver.html"><i class="fa fa-check"></i><b>4</b> Case Studies</a><ul>
+<li class="chapter" data-level="4.1" data-path="06_CaseStudy_ChirchikRiver.html"><a href="06_CaseStudy_ChirchikRiver.html#chirchik-river-basin"><i class="fa fa-check"></i><b>4.1</b> Chirchik River Basin</a></li>
+<li class="chapter" data-level="4.2" data-path="06_CaseStudy_ChirchikRiver.html"><a href="06_CaseStudy_ChirchikRiver.html#sokh-river-basin"><i class="fa fa-check"></i><b>4.2</b> Sokh River Basin</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="retrieval-analysis-of-data.html"><a href="retrieval-analysis-of-data.html#hydrological-data"><i class="fa fa-check"></i><b>4.3</b> Hydrological Data</a></li>
+<li class="chapter" data-level="5" data-path="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><i class="fa fa-check"></i><b>5</b> Retrieval &amp; Analysis of Data</a><ul>
+<li class="chapter" data-level="" data-path="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html#preliminary-remarks"><i class="fa fa-check"></i>Preliminary Remarks</a></li>
+<li class="chapter" data-level="5.1" data-path="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html#geospatial-data"><i class="fa fa-check"></i><b>5.1</b> Geospatial Data</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html#catchment-delineation"><i class="fa fa-check"></i><b>5.1.1</b> Catchment Delineation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html#computation-of-elevation-bands"><i class="fa fa-check"></i><b>5.1.2</b> Computation of Elevation Bands</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html"><i class="fa fa-check"></i><b>5</b> The Manual Water Balance</a></li>
-=======
-<li class="chapter" data-level="4" data-path="retrieval-analysis-of-geospatial-hydro-climatological-data.html"><a href="retrieval-analysis-of-geospatial-hydro-climatological-data.html"><i class="fa fa-check"></i><b>4</b> Retrieval &amp; Analysis of Geospatial &amp; Hydro-Climatological Data</a><ul>
-<li class="chapter" data-level="" data-path="retrieval-analysis-of-geospatial-hydro-climatological-data.html"><a href="retrieval-analysis-of-geospatial-hydro-climatological-data.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="4.1" data-path="retrieval-analysis-of-geospatial-hydro-climatological-data.html"><a href="retrieval-analysis-of-geospatial-hydro-climatological-data.html#geospatial-data"><i class="fa fa-check"></i><b>4.1</b> Geospatial Data</a></li>
-<li class="chapter" data-level="4.2" data-path="retrieval-analysis-of-geospatial-hydro-climatological-data.html"><a href="retrieval-analysis-of-geospatial-hydro-climatological-data.html#hydro-climatological-data"><i class="fa fa-check"></i><b>4.2</b> Hydro-Climatological Data</a></li>
-<li class="chapter" data-level="4.3" data-path="retrieval-analysis-of-geospatial-hydro-climatological-data.html"><a href="retrieval-analysis-of-geospatial-hydro-climatological-data.html#hydrological-data"><i class="fa fa-check"></i><b>4.3</b> Hydrological Data</a></li>
+<li class="chapter" data-level="5.2" data-path="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html#climate-data"><i class="fa fa-check"></i><b>5.2</b> Climate Data</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html#access-select-and-download-era5-reanalysis-data"><i class="fa fa-check"></i><b>5.2.1</b> Access, Select and Download ERA5 Reanalysis Data</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html"><i class="fa fa-check"></i><b>5</b> The Manual Water Balance</a><ul>
-<li class="chapter" data-level="5.1" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html#dominant-flow-processes-in-the-hydrological-cycle"><i class="fa fa-check"></i><b>5.1</b> Dominant flow processes in the hydrological cycle</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html#precipitation"><i class="fa fa-check"></i><b>5.1.1</b> Precipitation</a></li>
-<li class="chapter" data-level="5.1.2" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html#canopy-interception"><i class="fa fa-check"></i><b>5.1.2</b> Canopy interception</a></li>
-<li class="chapter" data-level="5.1.3" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html#snowmelt"><i class="fa fa-check"></i><b>5.1.3</b> Snowmelt</a></li>
-<li class="chapter" data-level="5.1.4" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html#runoff"><i class="fa fa-check"></i><b>5.1.4</b> Runoff</a></li>
-<li class="chapter" data-level="5.1.5" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html#infiltration"><i class="fa fa-check"></i><b>5.1.5</b> Infiltration</a></li>
-<li class="chapter" data-level="5.1.6" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html#sub-surface-flow"><i class="fa fa-check"></i><b>5.1.6</b> Sub-surface flow</a></li>
-<li class="chapter" data-level="5.1.7" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html#evaporation"><i class="fa fa-check"></i><b>5.1.7</b> Evaporation</a></li>
-<li class="chapter" data-level="5.1.8" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html#sublimation"><i class="fa fa-check"></i><b>5.1.8</b> Sublimation</a></li>
-<li class="chapter" data-level="5.1.9" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html#transpiration"><i class="fa fa-check"></i><b>5.1.9</b> Transpiration</a></li>
-<li class="chapter" data-level="5.1.10" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html#percolation"><i class="fa fa-check"></i><b>5.1.10</b> Percolation</a></li>
+<li class="chapter" data-level="5.3" data-path="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html#hydrological-data"><i class="fa fa-check"></i><b>5.3</b> Hydrological Data</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html#the-general-water-balance-equation"><i class="fa fa-check"></i><b>5.2</b> The general water balance equation</a></li>
-<li class="chapter" data-level="5.3" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html#boundaries-of-the-water-balance"><i class="fa fa-check"></i><b>5.3</b> Boundaries of the water balance</a></li>
-<li class="chapter" data-level="5.4" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html#data-need-for-a-water-balance"><i class="fa fa-check"></i><b>5.4</b> Data need for a water balance</a></li>
-<li class="chapter" data-level="5.5" data-path="the-manual-water-balance.html"><a href="the-manual-water-balance.html#setting-up-a-conceptual-model"><i class="fa fa-check"></i><b>5.5</b> Setting up a conceptual model</a></li>
+<li class="chapter" data-level="6" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html"><i class="fa fa-check"></i><b>6</b> The Manual Water Balance</a><ul>
+<li class="chapter" data-level="6.1" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#site-problem-description"><i class="fa fa-check"></i><b>6.1</b> Site &amp; problem description</a></li>
+<li class="chapter" data-level="6.2" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#identification-of-the-dominant-flow-processes"><i class="fa fa-check"></i><b>6.2</b> Identification of the dominant flow processes</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#precipitation"><i class="fa fa-check"></i><b>6.2.1</b> Precipitation</a></li>
+<li class="chapter" data-level="6.2.2" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#canopy-interception"><i class="fa fa-check"></i><b>6.2.2</b> Canopy interception</a></li>
+<li class="chapter" data-level="6.2.3" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#snowmelt"><i class="fa fa-check"></i><b>6.2.3</b> Snowmelt</a></li>
+<li class="chapter" data-level="6.2.4" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#runoff"><i class="fa fa-check"></i><b>6.2.4</b> Runoff</a></li>
+<li class="chapter" data-level="6.2.5" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#infiltration"><i class="fa fa-check"></i><b>6.2.5</b> Infiltration</a></li>
+<li class="chapter" data-level="6.2.6" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#sub-surface-flow"><i class="fa fa-check"></i><b>6.2.6</b> Sub-surface flow</a></li>
+<li class="chapter" data-level="6.2.7" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#sublimation"><i class="fa fa-check"></i><b>6.2.7</b> Sublimation</a></li>
+<li class="chapter" data-level="6.2.8" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#percolation"><i class="fa fa-check"></i><b>6.2.8</b> Percolation</a></li>
 </ul></li>
->>>>>>> develop_bea
-<li class="chapter" data-level="6" data-path="hydrological-modeling-physically-based-models.html"><a href="hydrological-modeling-physically-based-models.html"><i class="fa fa-check"></i><b>6</b> Hydrological Modeling: Physically-Based Models</a></li>
-<li class="chapter" data-level="7" data-path="hydrological-modeling-empirical-models.html"><a href="hydrological-modeling-empirical-models.html"><i class="fa fa-check"></i><b>7</b> Hydrological Modeling: Empirical Models</a></li>
-<li class="chapter" data-level="8" data-path="operationalization-of-models-opportunities-and-challenges.html"><a href="operationalization-of-models-opportunities-and-challenges.html"><i class="fa fa-check"></i><b>8</b> Operationalization of Models - Opportunities and Challenges</a></li>
-<li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a><ul>
-<li class="chapter" data-level="A.1" data-path="appendix-a.html"><a href="appendix-a.html#open-source-software"><i class="fa fa-check"></i><b>A.1</b> Open-Source Software</a><ul>
-<li class="chapter" data-level="A.1.1" data-path="appendix-a.html"><a href="appendix-a.html#qgis"><i class="fa fa-check"></i><b>A.1.1</b> QGIS</a></li>
-<li class="chapter" data-level="A.1.2" data-path="appendix-a.html"><a href="appendix-a.html#r-and-rstudio"><i class="fa fa-check"></i><b>A.1.2</b> R and RStudio</a></li>
-<li class="chapter" data-level="A.1.3" data-path="appendix-a.html"><a href="appendix-a.html#rs-minerve"><i class="fa fa-check"></i><b>A.1.3</b> RS Minerve</a></li>
+<li class="chapter" data-level="6.3" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#the-general-water-balance-equation"><i class="fa fa-check"></i><b>6.3</b> The general water balance equation</a></li>
+<li class="chapter" data-level="6.4" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#boundaries-of-the-water-balance"><i class="fa fa-check"></i><b>6.4</b> Boundaries of the water balance</a></li>
+<li class="chapter" data-level="6.5" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#data-need-for-a-water-balance"><i class="fa fa-check"></i><b>6.5</b> Data need for a water balance</a></li>
+<li class="chapter" data-level="6.6" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#setting-up-a-conceptual-model"><i class="fa fa-check"></i><b>6.6</b> Setting up a conceptual model</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="09_PhysicallyBased_Models.html"><a href="09_PhysicallyBased_Models.html"><i class="fa fa-check"></i><b>7</b> Hydrological Modeling: Physically-Based Models</a></li>
+<li class="chapter" data-level="8" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html"><i class="fa fa-check"></i><b>8</b> Hydrological Modeling: Empirical Models</a></li>
+<li class="chapter" data-level="9" data-path="11_Operationalization.html"><a href="11_Operationalization.html"><i class="fa fa-check"></i><b>9</b> Operationalization of Models - Opportunities and Challenges</a><ul>
+<li class="chapter" data-level="9.1" data-path="11_Operationalization.html"><a href="11_Operationalization.html#co-design-phase"><i class="fa fa-check"></i><b>9.1</b> Co-design Phase</a></li>
+<li class="chapter" data-level="9.2" data-path="11_Operationalization.html"><a href="11_Operationalization.html#modeling-phase"><i class="fa fa-check"></i><b>9.2</b> Modeling Phase</a></li>
+<li class="chapter" data-level="9.3" data-path="11_Operationalization.html"><a href="11_Operationalization.html#testing-phase"><i class="fa fa-check"></i><b>9.3</b> Testing Phase</a></li>
+<li class="chapter" data-level="9.4" data-path="11_Operationalization.html"><a href="11_Operationalization.html#operational-deployment"><i class="fa fa-check"></i><b>9.4</b> Operational Deployment</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="12_Appendix_Software.html"><a href="12_Appendix_Software.html"><i class="fa fa-check"></i><b>10</b> (APPENDIX) Appendix</a></li>
+<li class="chapter" data-level="11" data-path="12_Appendix_Software.html"><a href="12_Appendix_Software.html#appendix-a"><i class="fa fa-check"></i><b>11</b> Appendix A</a><ul>
+<li class="chapter" data-level="11.1" data-path="12_Appendix_Software.html"><a href="12_Appendix_Software.html#open-source-software"><i class="fa fa-check"></i><b>11.1</b> Open-Source Software</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="12_Appendix_Software.html"><a href="12_Appendix_Software.html#qgis"><i class="fa fa-check"></i><b>11.1.1</b> QGIS</a></li>
+<li class="chapter" data-level="11.1.2" data-path="12_Appendix_Software.html"><a href="12_Appendix_Software.html#r-and-rstudio"><i class="fa fa-check"></i><b>11.1.2</b> R and RStudio</a></li>
+<li class="chapter" data-level="11.1.3" data-path="12_Appendix_Software.html"><a href="12_Appendix_Software.html#rs-minerve"><i class="fa fa-check"></i><b>11.1.3</b> RS Minerve</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="chapter" data-level="B" data-path="hydrological-systems-in-central-asia-1.html"><a href="hydrological-systems-in-central-asia-1.html"><i class="fa fa-check"></i><b>B</b> Hydrological Systems in Central Asia</a><ul>
-<li class="chapter" data-level="B.1" data-path="hydrological-systems-in-central-asia-1.html"><a href="hydrological-systems-in-central-asia-1.html#regional-hydro-climatological-features-1"><i class="fa fa-check"></i><b>B.1</b> Regional Hydro-Climatological Features</a></li>
+<li class="chapter" data-level="12" data-path="13_references.html"><a href="13_references.html"><i class="fa fa-check"></i><b>12</b> References</a></li>
+<li class="chapter" data-level="13" data-path="notebook.html"><a href="notebook.html"><i class="fa fa-check"></i><b>13</b> Hydrological Systems in Central Asia</a><ul>
+<li class="chapter" data-level="13.1" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html#regional-hydro-climatological-features"><i class="fa fa-check"></i><b>13.1</b> Regional Hydro-Climatological Features</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -228,28 +227,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Applied Modeling of Hydrological Systems in Central Asia</h1>
 <p class="author"><em>Tobias Siegfried</em></p>
-<<<<<<< HEAD
-<p class="date"><em>2020-06-24</em></p>
+<p class="date"><em>2020-09-10</em></p>
 </div>
-<div id="welcome" class="section level1 unnumbered">
+<div id="Welcome" class="section level1 unnumbered">
 <h1>Welcome</h1>
 <p>Welcome to the online course book on Central Asian hydrology and the mathematical modeling of the hydrological systems there. The book is dedicated to the young and aspiring water professionals of the region.</p>
 <p>The book adopts an open-source philosophy and promotes the use of open-source data and software. The online version is hosted at <a href="https://tobiassiegfried.github.io/Applied_Hydrological_Modeling_Bookdown/" class="uri">https://tobiassiegfried.github.io/Applied_Hydrological_Modeling_Bookdown/</a>, maintained via GitHub and currently work in progress.</p>
 <p><img src="_bookdown_files/Title-Figures/naryn.jpeg" width="1632" /></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># automatically create a bib database for R packages</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">knitr<span class="op">::</span><span class="kw">write_bib</span>(<span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="kw">.packages</span>(), <span class="st">&#39;bookdown&#39;</span>, <span class="st">&#39;knitr&#39;</span>, <span class="st">&#39;rmarkdown&#39;</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">), <span class="st">&#39;packages.bib&#39;</span>)</a></code></pre></div>
-<pre><code>## Warning in citation(pkg, auto = if (pkg == &quot;base&quot;) NULL else TRUE): no date
-## field in DESCRIPTION file of package &#39;knitr&#39;</code></pre>
-=======
-<p class="date"><em>2020-06-19</em></p>
-</div>
-<div id="welcome" class="section level1 unnumbered">
-<h1>Welcome</h1>
-<p><img src="_bookdown_files/Title-Figures/naryn.jpeg" /><!-- --></p>
-<p>Welcome to the best book ever written about Central Asian hydrology and the modeling of the hydrological systems there. Without doubt.</p>
->>>>>>> develop_bea
 
 </div>
             </section>
@@ -258,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 
-<a href="preface.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="01_Preface.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

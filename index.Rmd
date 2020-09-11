@@ -3,7 +3,8 @@ title: "Applied Modeling of Hydrological Systems in Central Asia"
 author: "Tobias Siegfried"
 date: "`r Sys.Date()`"
 output:
-  bookdown::gitbook
+  bookdown::gitbook:
+    split_by: 'rmd'
 documentclass: krantz 
 monofont: "Source Code Pro"
 monofontoptions: "Scale=0.7"
@@ -13,7 +14,7 @@ link-citations: yes
 description: "This is a course book on Central Asia hydrological systems and hydrological modeling."
 ---
 
-# Welcome {-}
+# Welcome {-#Welcome}
 
 Welcome to the online course book on Central Asian hydrology and the mathematical modeling of the hydrological systems there. The book is dedicated to the young and aspiring water professionals of the region.
 

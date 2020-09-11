@@ -1,0 +1,9 @@
+# Hydrological Modeling: Empirical Models {#HydroModelsEmpiricalModels}
+
+## Background on Empirical Modeling
+
+Maybe a good reference to make a simple modeling exercise:
+
+https://www.business-science.io/code-tools/2020/09/09/five-minute-time-series-modeling-data.html
+
+See also related courses!
