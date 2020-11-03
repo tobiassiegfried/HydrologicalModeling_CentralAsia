@@ -1,4 +1,4 @@
-book_filename: "bookdown-demo"
+book_filename: "applied-hydrological-modeling-central-asia"
 output_dir: "docs"
 language:
   ui:

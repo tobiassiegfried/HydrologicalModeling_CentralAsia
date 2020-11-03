@@ -1,10 +1,15 @@
-# Preface {-#Preface}
+# Preface {#Preface .unnumbered}
 
-This handbook is geared towards young aspiring water professionals in Central Asia. It consists of two main parts. Part I presents the hydrological systems of the region. This part fuses a selective synthesis Victor Shults' famous Russian book "Rivers of Middle Asia", published as second edition in 1965 with modern insights and knowledge from recent research [@shults_RiversOfMiddleAsia]. I hope that this combination provides an attractive, approachable and yet scientifically sound introduction to the many interesting hydrological features of this diverse region.
+This handbook is geared towards young water professionals in Central Asia. It consists of two main parts. Part I presents the hydrological systems of the region. This part fuses a selective synthesis Victor Shults' famous Russian book "Rivers of Middle Asia", published as second edition in 1965 with modern insights and knowledge from recent research [@shults_RiversOfMiddleAsia]. I hope that this combination provides an attractive, approachable and yet scientifically sound introduction to the many interesting hydrological features of this diverse region.
 
-Part II provides a learning manual to equip students with a hands-on guide on how to conceptualize, implement, calibrate, run and validate hydrological models. Physically-based and empirical models are both introduced and discussed. The philosophy of working by example is followed and all concepts and modeling approaches are discussed in the context of the sample catchment of the Chirchik River whose tributaries are shared by Uzbekistan and Kyrgyzstan. The emphasis is strictly on the use of open-source software. 
+Part II provides a learning manual to equip students with a hands-on guide on how to conceptualize, implement, calibrate, run and validate hydrological models. Physically-based and empirical models are both introduced and discussed. The philosophy of working by example is followed and all concepts and modeling approaches are discussed in the context of the sample catchment of the Chirchik River whose tributaries are shared by Uzbekistan and Kyrgyzstan. The emphasis is strictly on the use of open-source software.
 
-The author is grateful for the support by the Global Water Programme at the Swiss Agency for Development and Cooperation and especially to Stephanie Piers de Raveschroot and Andre Wehrli there. The author owes a lot to Andrey Yakovlev who provided invaluable guidance throughout his professional career.  
+The author is grateful for the support by the Global Water Programme at the Swiss Agency for Development and Cooperation and especially to Stephanie Piers de Raveschroot and Andre Wehrli there. The author owes a lot to Andrey Yakovlev who provided invaluable guidance throughout his professional career.
 
-<div style="text-align: right"> Tobias Siegfried </div>
-<div style="text-align: right"> Zurich, June 2020 </div>
+::: {style="text-align: right"}
+Tobias Siegfried
+:::
+
+::: {style="text-align: right"}
+Zurich, June 2020
+:::

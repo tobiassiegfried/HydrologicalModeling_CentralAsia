@@ -1,20 +1,158 @@
-# (PART) Part II Applied Modeling {-#Part2_Applied_Modeling}  
+# (PART) Part II Applied Modeling {#Part2_Applied_Modeling .unnumbered}
 
-# Case Studies {#CaseStudies}
+# Case Study {#Case_Study}
 
-## Chirchik River Basin {#CaseStudyChirchikRiver}
+## Prerequisites {.unnumbered}
+
+This is the first 'practical' Chapter of the book and comes with software requirements. For the analysis of the available data we use R [@R-2013]. R is a computer language and environment for data analysis, statistical computation and data visualization. It can be downloaded at \<<https://www.r-project.org>\>. Together with R, we are using RStudio as the IDE [@RStudio-2020].
+
+Some R software packages used in this Chapter need to be installed so that the analyses can be done as shown there. The installation can be done in the following way:
+
+```{r,message=FALSE,eval=FALSE}
+# Core Libraries
+install.packages('tidyverse')    # Meta - dplyr, ggplot2, purrr, tidyr, stringr, forcats
+install.packages('lubridate')    # date and time
+install.packages('timetk')       # Time series data wrangling, visualization and preprocessing
+
+# Extras
+if (!require(devtools)) install.packages("devtools", repos = "http://cran.us.r-project.org")
+install_github("boxuancui/DataExplorer", ref="develop") # Simplifies and automates EDA process and reporting
+
+# Data
+devtools::install_github("hydrosolutions/riversCentralAsia")
+```
+
+The packages can then be loaded and made available in the following way:
+
+```{r,message=FALSE}
+library(devtools)
+library(tidyverse)
+library(lubridate)    
+library(timetk)       
+library(DataExplorer) 
+library(riversCentralAsia)
+```
+
+### Chirchik River Basin {#CaseStudyChirchikRiver}
 
 The Chirchik is a river in the Tashkent region of Uzbekistan and the biggest right tributary of the Syr Darya. The river is formed by the confluence of the Chatkal and the Pskem rivers in the Charvak reservoir. They emerge at the western end of the Tien Shan mountains in the border region of Kyrgyzstan, Kazakhstan and Uzbekistan. Below the Charvak hydroelectric power station, the river receives no more water from other tributaries and the water gets diverted in numerous canals. As part of the Chirchik-Bozsuu cascade, several dams along the river serve hydropower production and irrigation purposes.
 
-## Sokh River Basin {#CaseStudySokhRiver}
+```{r ChirchikRiverOverview, echo = FALSE, fig.cap = 'Overview over the Chirchik river basin with tributaries and the location of the main gauging stations in the zone of runoff formation and near the confluence with the Syr Darya.'}
+knitr::include_graphics('_bookdown_files/Chap6-Figures/ChirchikRiverBasin_Annotated_lr.jpg')
+```
 
-//TODO: Add here text about the Sokh River Catchment.
+Figure \@ref(ChirchikRiverOverview) shows a comprehensive overview of the Chirchik river basin and its tributaries as well as relevant modern gauging stations. Gauges are indicated with the semi-round shapes and the corresponding five digit official code as utilized by the Uzbek Hydrometeorological Service (HydroMet) indicated. The virtual gauge is not a real gauge in the sense that reservoir inflow is calculated from all contributing tributary flow components, i.e. Chatkal river, Pskem river, Nauvalisoy and Koksu Rivers.
 
+Koksu however, with a basin area of 392 km$^2$, is ungauged. So how does the HydroMet quantify its runoff contribution? 
 
-Here, we have a sample <span style="color: blue;">Menu/Level1/Level2</span>
+Before the closure of the Charvak dam and the subsequent filling of the reservoir in and after 1974, the HydroMet experts started a detailed 3-years measurement comparison campaign at Charvak gauge and at gauge 16279 in Khudaydod (see Figure \@ref(ChirchikRiverOverview)). Both are located on Chatkal river. Charvak gauge had to be decommissioned after the closure of the dam. 
 
+The confluence of Koksu river with Charvak river is just upstream of the former Charvak gauge. Using daily data from the measurement comparisons campaign, the HydroMet experts could then relate Charvak gauge discharge to Khudaydod discharge using a linear relationship. At the same time, they were now able to relate Koksu discharge to the discharge at Chatkal River in Khudaydod in the following manner
 
+$$
+Q_{Koksu} \propto Q_{Charvak} - Q_{16279}
+$$ 
 
+We show the procedure here. After loading the `riversCentralAsia` Package as shown above, the relevant daily data from 01/01/1965 - 31/12/1967 can be loaded.
 
+```{r}
+KoksuDischarge # load Data
+```
+The data is stored in long format, meaning that measurements in time and for the two gauging stations are just stacked on top of each other in one long table. For the purpose here, we prefer the wide format where we have one date column with unique dates and then the data listed for each station in corresponding columns.   
 
- 
+```{r}
+KoksuDischarge_wide <- KoksuDischarge %>% pivot_wider(id_cols = 'date',values_from = 'data',names_from = "code")
+KoksuDischarge_wide
+```
+The runoff contribution of Koksu can be calculated in a simple manner.
+
+```{r}
+# Adding Koksu discharge to the dataframe
+KoksuDischarge_wide <- KoksuDischarge_wide %>% mutate(Koksu = Charvak - `16279`)
+KoksuDischarge_wide
+```
+And not, on to visualizing the relationship
+```{r}
+# and visualize
+ggplot(KoksuDischarge_wide, aes(`16279`, Koksu)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+The coefficients of the linear regression can be obtained in the following way:
+```{r}
+lm <- lm(Koksu ~ 0 + `16279`,KoksuDischarge_wide)
+summary(lm)
+```
+Hence, the discharge of Koksu River can be estimated to be
+$$
+Q_{Koksu} = 0.145 * Q_{Khudaydod}
+$$
+
+The `riversCentralAsia` Package provides available data of the gauging and meteorological stations in the Chirchik River Basin. Once this package is loaded, we are ready to start with data analysis.
+
+```{r}
+ChirchikRiverBasin # load data
+?ChirchikRiverBasin
+```
+
+Notice that, as above, the data are stored in long format. There are 7 discharge stations where `type = Q`. These are all unique stations as can be identified by their stations codes (see above in Figure \@ref(fig:ChirchikRiverOverview) for the station locations.
+
+We can generate timeseries plots of the river discharge data only by setting the corresponding station filter via `filter(type=='Q')`.
+
+```{r,warning=FALSE}
+data <- ChirchikRiverBasin
+data %>% filter(type=='Q') %>% group_by(type,code,station,resolution) %>% plot_time_series(date,data,.facet_ncol = 2,.interactive = FALSE, .smooth = FALSE, .title = 'Available discharge data of Chirchik River Basin')
+```
+
+The characteristics of the timeseries feature the typical snowmelt-driven runoff pattern with pronounced seasonality and interannual variability. At Chinaz near the confluence of the Chirchik River with the Syr Darya, however, a changing discharge regime can easily be identified over time. The drastic decrease in discharge in the 1960ies is due to the extension of upstream irrigation and increases in interbasin water transfers. The non-stationarity in the discharge timeseries is thus explained by anthropogenic effects.
+
+Getting summary statistics of the gauged discharges allows us to quickly understand runoff contributions of the individual tributaries.
+
+```{r,results='asis'}
+data_stats <- data %>% filter(type == 'Q') %>% 
+  dplyr::select(date,data,code) %>% group_by(code) %>% 
+  summarise(mean = mean(data,na.rm=TRUE), 
+            min = min(data,na.rm=TRUE), 
+            max = max(data,na.rm=TRUE), 
+            sd = sd(data,na.rm=TRUE),.groups = 'keep')
+data_stats %>% ungroup()
+```
+
+The largest left tributary to Chirchik below the Charvak reservoir Aksak Ata. The gauging station on the river got dismantled a long time ago but an average long-term mean discharge of 2.35 m$^{3}$/s is a solid estimated of its contribution to the overall discharge of Chirchik. Thus, if we add up long-term average discharge at Gazalkent and the one from Aksak Ata we obtain an annual norm discharge of 231 m$^{3}$/s. With this, Chirchik river is the biggest right-tributary to the Syr Darya. Chatkal river contributes exactly half to it (115.7 m$^{3}$/s) and Pskem river approximately one third (34.4% or 79.4 m$^{3}$/s). Nauvalisoy is only a very small river with 1.6% runoff contribution (3.8 m$^{3}$/s). From the available data, the long-term average runoff contribution by the ungauged Koksu river can be estimated to be 6.4 m$^{3}$/s or 2.8%. Downstream of the reservoir, Ugam river contributes an additional 9.7% (22.4 m$^{3}$/s) to the total flow.
+
+Let us now turn our attention to the tributaries seasonality. We can easily investigate it using the `timetk` package function `plot_seasonal_diagnostics`. We exclude Chinaz gauge in our analysis for the above-mentioned reason that flow there is no longer representing a natural runoff regime. First, we plot the key gauged tributaries to the Charvak reservoir, i.e. Chatkal, Pskem and Nauvalisoy rivers.
+
+```{r,warning=FALSE}
+data %>% filter(type=='Q',code!='16275',code!='16294',code!='16300',code!='16262') %>% 
+  dplyr::select(date,data,code) %>% 
+  group_by(code) %>% 
+  plot_seasonal_diagnostics(.date_var = date,.value = data,.interactive = FALSE,.feature_set = c("week","month.lbl"))
+```
+
+The seasonality with the spring and summer runoff peaks is striking in all three rivers. Nauvalisoy discharge peaks, on average, during or around week 20. Chatkal river discharge peaks around week 23 and Pskem river around week 26. These differences can be explained with the different mean catchment elevations where Nauvalisoy is the lowest lying and Pskem catchment the highest catchment (see also Chapter \@ref(HydrologicalSystems) for more information).
+
+Discharge seasonality of the gauging stations downstream of Charvak reservoir is shown below. Note that we only have monthly values for these stations and are thus only showing the monthly seasonality panels.
+
+```{r,warning=FALSE}
+data %>% filter(type=='Q',code!='16279',code!='16298',code!='16290',code!='16294') %>% 
+  dplyr::select(date,data,code) %>% 
+  group_by(code) %>% 
+  plot_seasonal_diagnostics(.date_var = date,.value = data,.interactive = FALSE,.feature_set = c("month.lbl"))
+```
+
+==== We can also visualize the summary statistics. However, since the data span several order of magnitudes, we choose to display the `log()` of the discharge data.
+
+```{r,warning=FALSE}
+p <- data %>% 
+  filter(type == 'Q') %>% 
+  dplyr::select(data,code) %>% 
+  group_by(code)
+
+ggplot(p, aes(x = code, y = data %>% log())) + 
+    geom_boxplot() +
+    labs(x = 'Gauging Station', y = bquote('Discharge in'~m^3/s))
+```
+
+```{r}
+
+```
