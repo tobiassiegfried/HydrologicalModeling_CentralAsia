@@ -1,0 +1,13 @@
+# Operationalization of Models - Opportunities and Challenges {#Operationalization}
+
+## Co-design Phase
+
+
+## Modeling Phase
+
+
+## Testing Phase
+
+
+## Operational Deployment
+

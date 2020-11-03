@@ -1,9 +1,11 @@
---- 
+---
 title: "Applied Modeling of Hydrological Systems in Central Asia"
 author: "Tobias Siegfried"
 date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
 output:
-  bookdown::gitbook
+  bookdown::gitbook:
+    split_by: 'rmd'
 documentclass: krantz 
 monofont: "Source Code Pro"
 monofontoptions: "Scale=0.7"
@@ -13,16 +15,15 @@ link-citations: yes
 description: "This is a course book on Central Asia hydrological systems and hydrological modeling."
 ---
 
-# Welcome {-}
+# Welcome {#Welcome .unnumbered}
 
 Welcome to the online course book on Central Asian hydrology and the mathematical modeling of the hydrological systems there. The book is dedicated to the young and aspiring water professionals of the region.
 
-The book adopts an open-source philosophy and promotes the use of open-source data and software. The online version is hosted at <https://tobiassiegfried.github.io/Applied_Hydrological_Modeling_Bookdown/>, maintained via GitHub and currently work in progress. 
+The book adopts an open-source philosophy and promotes the use of open-source data and software. The online version is hosted at <https://tobiassiegfried.github.io/Applied_Hydrological_Modeling_Bookdown/>, maintained via GitHub and currently work in progress.
 
 ```{r titlePix, echo = FALSE}
 knitr::include_graphics('_bookdown_files/Title-Figures/naryn.jpeg')
 ```
-
 
 ```{r include=FALSE}
 # automatically create a bib database for R packages
