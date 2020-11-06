@@ -1,0 +1,32 @@
+---
+title: "_Server_Admin"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# R Bookdown Server Admin
+
+## Serve Book Locally
+
+```{r}
+options(knitr.duplicate.label = "allow")
+bookdown:::serve_book()
+```
+
+The serve_book function is:
+
+```{r,eval=FALSE}
+serve_book(dir = ".", output_dir = "_book",
+  preview = TRUE, in_session = TRUE, quiet = FALSE,
+  ...)
+```
+
+## Check Server and Stop
+
+```{r}
+servr::daemon_list()
+servr::daemon_stop(which = servr::daemon_list())
+```

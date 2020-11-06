@@ -92,7 +92,7 @@ The characteristics of the timeseries feature the typical snowmelt-driven runoff
 
 Getting summary statistics of the gauged discharges allows us to quickly understand runoff contributions of the individual tributaries.
 
-```{r,results='asis'}
+```{r}
 data %>% filter(type == 'Q') %>% 
   dplyr::select(date,data,code) %>% group_by(code) %>% 
   summarise(mean = mean(data,na.rm=TRUE), 
@@ -147,14 +147,3 @@ The summer peak discharge in the Chatkal River is, on average, 3 weeks earlier i
 
 ### Meteorological Data
 
-For meteorological data, we have precipitation `P` and temperature `T` data from two stations, i.e. Pskem Meteo Station, Chatkal Meteo Station. For the station at the Charvak Reservoir, we only have precipitation data.
-
-```{r,warning=FALSE}
-data %>% filter(type!='Q') %>% group_by(type,code,station,resolution) %>% plot_time_series(date,data,.facet_ncol = 1,.interactive = FALSE,.smooth = FALSE)
-```
-
-```{r}
-data %>% filter(type=='P',code==38462) %>% group_by(type,code,station,resolution) %>% plot_seasonal_diagnostics(date,data,.interactive = FALSE,.feature_set = c("week","month.lbl","year"))
-```
-
-## Gap Filling
