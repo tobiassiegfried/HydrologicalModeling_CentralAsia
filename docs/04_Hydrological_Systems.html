@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried" />
 
 
-<meta name="date" content="2020-11-03" />
+<meta name="date" content="2020-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="03_PI_Introduction.html"/>
-<link rel="next" href="05_Irrigation_CentralAsia.html"/>
+<link rel="next" href="05_CaseStudy_ChirchikRiver.html"/>
 <script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -53,6 +53,13 @@
 
 <link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -139,7 +146,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="01_Preface.html"><a href="01_Preface.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="" data-path="02_Foreword.html"><a href="02_Foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
 <li class="part"><span><b>I Part I Hydrological Systems</b></span></li>
-<li class="chapter" data-level="1" data-path="03_PI_Introduction.html"><a href="03_PI_Introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="03_PI_Introduction.html"><a href="03_PI_Introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="03_PI_Introduction.html"><a href="03_PI_Introduction.html#the-geography-of-central-asia"><i class="fa fa-check"></i><b>1.1</b> The Geography of Central Asia</a></li>
+<li class="chapter" data-level="1.2" data-path="03_PI_Introduction.html"><a href="03_PI_Introduction.html#the-taming-of-natural-hydrological-regimes-for-irrigation"><i class="fa fa-check"></i><b>1.2</b> The Taming of Natural Hydrological Regimes for Irrigation</a></li>
+<li class="chapter" data-level="1.3" data-path="03_PI_Introduction.html"><a href="03_PI_Introduction.html#post-transition-development-and-challenges"><i class="fa fa-check"></i><b>1.3</b> Post-Transition Development and Challenges</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html"><i class="fa fa-check"></i><b>2</b> Hydrological Systems in Central Asia</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html#regional-hydro-climatological-features"><i class="fa fa-check"></i><b>2.1</b> Regional Hydro-Climatological Features</a></li>
@@ -148,101 +160,109 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html#average-multi-year-runoff"><i class="fa fa-check"></i><b>2.4</b> Average Multi-Year Runoff</a></li>
 <li class="chapter" data-level="2.5" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html#annual-runoff-fluctuations"><i class="fa fa-check"></i><b>2.5</b> Annual Runoff Fluctuations</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="05_Irrigation_CentralAsia.html"><a href="05_Irrigation_CentralAsia.html"><i class="fa fa-check"></i><b>3</b> Irrigation Agriculture in Central Asia</a>
+<li class="chapter" data-level="3" data-path="05_CaseStudy_ChirchikRiver.html"><a href="05_CaseStudy_ChirchikRiver.html"><i class="fa fa-check"></i><b>3</b> Case Study - Chirchik River Basin</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="05_Irrigation_CentralAsia.html"><a href="05_Irrigation_CentralAsia.html#historic-developments"><i class="fa fa-check"></i><b>3.1</b> Historic Developments</a></li>
-<li class="chapter" data-level="3.2" data-path="05_Irrigation_CentralAsia.html"><a href="05_Irrigation_CentralAsia.html#irrigation-and-socio-economic-activity-in-the-twentieth-century"><i class="fa fa-check"></i><b>3.2</b> Irrigation and Socio-Economic Activity in the Twentieth Century</a></li>
-<li class="chapter" data-level="3.3" data-path="05_Irrigation_CentralAsia.html"><a href="05_Irrigation_CentralAsia.html#post-transition-developments-in-the-irrigation-sectors"><i class="fa fa-check"></i><b>3.3</b> Post-Transition Developments in the Irrigation Sectors</a></li>
+<li class="chapter" data-level="" data-path="05_CaseStudy_ChirchikRiver.html"><a href="05_CaseStudy_ChirchikRiver.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="3.1" data-path="05_CaseStudy_ChirchikRiver.html"><a href="05_CaseStudy_ChirchikRiver.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="05_CaseStudy_ChirchikRiver.html"><a href="05_CaseStudy_ChirchikRiver.html#discharge-estimation-in-ungauged-subcatchments"><i class="fa fa-check"></i><b>3.2</b> Discharge Estimation in Ungauged Subcatchments</a></li>
+<li class="chapter" data-level="3.3" data-path="05_CaseStudy_ChirchikRiver.html"><a href="05_CaseStudy_ChirchikRiver.html#analysis-of-available-data"><i class="fa fa-check"></i><b>3.3</b> Analysis of Available Data</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="05_CaseStudy_ChirchikRiver.html"><a href="05_CaseStudy_ChirchikRiver.html#ChirchikDischargeData"><i class="fa fa-check"></i><b>3.3.1</b> Discharge Data</a></li>
+<li class="chapter" data-level="3.3.2" data-path="05_CaseStudy_ChirchikRiver.html"><a href="05_CaseStudy_ChirchikRiver.html#meteorological-data"><i class="fa fa-check"></i><b>3.3.2</b> Meteorological Data</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>II Part II Applied Modeling</b></span></li>
-<li class="chapter" data-level="4" data-path="06_CaseStudy_ChirchikRiver.html"><a href="06_CaseStudy_ChirchikRiver.html"><i class="fa fa-check"></i><b>4</b> Case Study</a>
+<li class="chapter" data-level="4" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><i class="fa fa-check"></i><b>4</b> Retrieval &amp; Analysis of Data</a>
 <ul>
-<li class="chapter" data-level="" data-path="06_CaseStudy_ChirchikRiver.html"><a href="06_CaseStudy_ChirchikRiver.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a>
+<li class="chapter" data-level="" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#preliminary-remarks"><i class="fa fa-check"></i>Preliminary Remarks</a></li>
+<li class="chapter" data-level="4.1" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#GeospatialData"><i class="fa fa-check"></i><b>4.1</b> Geospatial Data</a>
 <ul>
-<li class="chapter" data-level="4.0.1" data-path="06_CaseStudy_ChirchikRiver.html"><a href="06_CaseStudy_ChirchikRiver.html#CaseStudyChirchikRiver"><i class="fa fa-check"></i><b>4.0.1</b> Chirchik River Basin</a></li>
+<li class="chapter" data-level="4.1.1" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#CatchmentDelineation"><i class="fa fa-check"></i><b>4.1.1</b> Catchment Delineation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#computation-of-elevation-bands"><i class="fa fa-check"></i><b>4.1.2</b> Computation of Elevation Bands</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#climate-data"><i class="fa fa-check"></i><b>4.2</b> Climate Data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#access-select-and-download-era5-reanalysis-data"><i class="fa fa-check"></i><b>4.2.1</b> Access, Select and Download ERA5 Reanalysis Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#hydrological-data"><i class="fa fa-check"></i><b>4.3</b> Hydrological Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html"><i class="fa fa-check"></i><b>5</b> The Manual Water Balance</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#site-problem-description"><i class="fa fa-check"></i><b>5.1</b> Site &amp; problem description</a></li>
+<li class="chapter" data-level="5.2" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#identification-of-the-dominant-flow-processes"><i class="fa fa-check"></i><b>5.2</b> Identification of the dominant flow processes</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#precipitation"><i class="fa fa-check"></i><b>5.2.1</b> Precipitation</a></li>
+<li class="chapter" data-level="5.2.2" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#canopy-interception"><i class="fa fa-check"></i><b>5.2.2</b> Canopy interception</a></li>
+<li class="chapter" data-level="5.2.3" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#snowmelt"><i class="fa fa-check"></i><b>5.2.3</b> Snowmelt</a></li>
+<li class="chapter" data-level="5.2.4" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#runoff"><i class="fa fa-check"></i><b>5.2.4</b> Runoff</a></li>
+<li class="chapter" data-level="5.2.5" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#infiltration"><i class="fa fa-check"></i><b>5.2.5</b> Infiltration</a></li>
+<li class="chapter" data-level="5.2.6" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#sub-surface-flow"><i class="fa fa-check"></i><b>5.2.6</b> Sub-surface flow</a></li>
+<li class="chapter" data-level="5.2.7" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#sublimation"><i class="fa fa-check"></i><b>5.2.7</b> Sublimation</a></li>
+<li class="chapter" data-level="5.2.8" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#percolation"><i class="fa fa-check"></i><b>5.2.8</b> Percolation</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#the-general-water-balance-equation"><i class="fa fa-check"></i><b>5.3</b> The general water balance equation</a></li>
+<li class="chapter" data-level="5.4" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#boundaries-of-the-water-balance"><i class="fa fa-check"></i><b>5.4</b> Boundaries of the water balance</a></li>
+<li class="chapter" data-level="5.5" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#data-need-for-a-water-balance"><i class="fa fa-check"></i><b>5.5</b> Data need for a water balance</a></li>
+<li class="chapter" data-level="5.6" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#setting-up-a-conceptual-model"><i class="fa fa-check"></i><b>5.6</b> Setting up a conceptual model</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="08_PhysicallyBased_Models.html"><a href="08_PhysicallyBased_Models.html"><i class="fa fa-check"></i><b>6</b> Hydrological Modeling: Physically-Based Models</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="08_PhysicallyBased_Models.html"><a href="08_PhysicallyBased_Models.html#background-on-physically-based-modeling"><i class="fa fa-check"></i><b>6.1</b> Background on Physically-Based Modeling</a></li>
+<li class="chapter" data-level="6.2" data-path="08_PhysicallyBased_Models.html"><a href="08_PhysicallyBased_Models.html#model-setup"><i class="fa fa-check"></i><b>6.2</b> Model Setup</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="08_PhysicallyBased_Models.html"><a href="08_PhysicallyBased_Models.html#zone-of-runoff-formation"><i class="fa fa-check"></i><b>6.2.1</b> Zone of Runoff Formation</a></li>
+<li class="chapter" data-level="6.2.2" data-path="08_PhysicallyBased_Models.html"><a href="08_PhysicallyBased_Models.html#zone-of-water-distribution-and-consumption"><i class="fa fa-check"></i><b>6.2.2</b> Zone of Water Distribution and Consumption</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="08_PhysicallyBased_Models.html"><a href="08_PhysicallyBased_Models.html#model-calibration-and-validation"><i class="fa fa-check"></i><b>6.3</b> Model Calibration and Validation</a></li>
+<li class="chapter" data-level="6.4" data-path="08_PhysicallyBased_Models.html"><a href="08_PhysicallyBased_Models.html#discussion"><i class="fa fa-check"></i><b>6.4</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html"><i class="fa fa-check"></i><b>7</b> Hydrological Modeling: Empirical Models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html#background-on-empirical-modeling"><i class="fa fa-check"></i><b>7.1</b> Background on Empirical Modeling</a></li>
+<li class="chapter" data-level="7.2" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html#key-forecasting-techniques"><i class="fa fa-check"></i><b>7.2</b> Key Forecasting Techniques</a></li>
+<li class="chapter" data-level="7.3" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html#getting-started"><i class="fa fa-check"></i><b>7.3</b> Getting Started</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html#loading-the-required-packages-and-data"><i class="fa fa-check"></i><b>7.3.1</b> Loading the Required Packages and Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html#exploratory-data-analysis-data-preparation"><i class="fa fa-check"></i><b>7.4</b> Exploratory Data Analysis &amp; Data Preparation</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html#discharge-data"><i class="fa fa-check"></i><b>7.4.1</b> Discharge Data</a></li>
+<li class="chapter" data-level="7.4.2" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html#meteorological-data-1"><i class="fa fa-check"></i><b>7.4.2</b> Meteorological Data</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="06_CaseStudy_ChirchikRiver.html"><a href="06_CaseStudy_ChirchikRiver.html#a-tibble-7-x-5"><i class="fa fa-check"></i><b>5</b> A tibble: 7 x 5</a></li>
-<li class="chapter" data-level="6" data-path="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><i class="fa fa-check"></i><b>6</b> Retrieval &amp; Analysis of Data</a>
+<li class="chapter" data-level="8" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html#HydroModelsEmpiricalModels"><i class="fa fa-check"></i><b>8</b> Hydrological Modeling: Empirical Models</a>
 <ul>
-<li class="chapter" data-level="" data-path="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html#preliminary-remarks"><i class="fa fa-check"></i>Preliminary Remarks</a></li>
-<li class="chapter" data-level="6.1" data-path="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html#GeospatialData"><i class="fa fa-check"></i><b>6.1</b> Geospatial Data</a>
+<li class="chapter" data-level="8.1" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html"><i class="fa fa-check"></i><b>8.1</b> Background on Empirical Modeling</a></li>
+<li class="chapter" data-level="8.2" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#key-forecasting-techniques-1"><i class="fa fa-check"></i><b>8.2</b> Key Forecasting Techniques</a></li>
+<li class="chapter" data-level="8.3" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#getting-started-1"><i class="fa fa-check"></i><b>8.3</b> Getting Started</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html#CatchmentDelineation"><i class="fa fa-check"></i><b>6.1.1</b> Catchment Delineation</a></li>
-<li class="chapter" data-level="6.1.2" data-path="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html#computation-of-elevation-bands"><i class="fa fa-check"></i><b>6.1.2</b> Computation of Elevation Bands</a></li>
+<li class="chapter" data-level="8.3.1" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#loading-the-required-packages-and-data-1"><i class="fa fa-check"></i><b>8.3.1</b> Loading the Required Packages and Data</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html#climate-data"><i class="fa fa-check"></i><b>6.2</b> Climate Data</a>
+<li class="chapter" data-level="8.4" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#exploratory-data-analysis-data-preparation-1"><i class="fa fa-check"></i><b>8.4</b> Exploratory Data Analysis &amp; Data Preparation</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html#access-select-and-download-era5-reanalysis-data"><i class="fa fa-check"></i><b>6.2.1</b> Access, Select and Download ERA5 Reanalysis Data</a></li>
+<li class="chapter" data-level="8.4.1" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#discharge-data-1"><i class="fa fa-check"></i><b>8.4.1</b> Discharge Data</a></li>
+<li class="chapter" data-level="8.4.2" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#meteorological-data-2"><i class="fa fa-check"></i><b>8.4.2</b> Meteorological Data</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="07_PII_Retrieval_Analysis_Geo_Hydro_Data.html#hydrological-data"><i class="fa fa-check"></i><b>6.3</b> Hydrological Data</a></li>
+<li class="chapter" data-level="8.5" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#gap-filling"><i class="fa fa-check"></i><b>8.5</b> Gap Filling</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html"><i class="fa fa-check"></i><b>7</b> The Manual Water Balance</a>
+<li class="chapter" data-level="9" data-path="10_Operationalization.html"><a href="10_Operationalization.html"><i class="fa fa-check"></i><b>9</b> Operationalization of Models - Opportunities and Challenges</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#site-problem-description"><i class="fa fa-check"></i><b>7.1</b> Site &amp; problem description</a></li>
-<li class="chapter" data-level="7.2" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#identification-of-the-dominant-flow-processes"><i class="fa fa-check"></i><b>7.2</b> Identification of the dominant flow processes</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#precipitation"><i class="fa fa-check"></i><b>7.2.1</b> Precipitation</a></li>
-<li class="chapter" data-level="7.2.2" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#canopy-interception"><i class="fa fa-check"></i><b>7.2.2</b> Canopy interception</a></li>
-<li class="chapter" data-level="7.2.3" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#snowmelt"><i class="fa fa-check"></i><b>7.2.3</b> Snowmelt</a></li>
-<li class="chapter" data-level="7.2.4" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#runoff"><i class="fa fa-check"></i><b>7.2.4</b> Runoff</a></li>
-<li class="chapter" data-level="7.2.5" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#infiltration"><i class="fa fa-check"></i><b>7.2.5</b> Infiltration</a></li>
-<li class="chapter" data-level="7.2.6" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#sub-surface-flow"><i class="fa fa-check"></i><b>7.2.6</b> Sub-surface flow</a></li>
-<li class="chapter" data-level="7.2.7" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#sublimation"><i class="fa fa-check"></i><b>7.2.7</b> Sublimation</a></li>
-<li class="chapter" data-level="7.2.8" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#percolation"><i class="fa fa-check"></i><b>7.2.8</b> Percolation</a></li>
+<li class="chapter" data-level="9.1" data-path="10_Operationalization.html"><a href="10_Operationalization.html#co-design-phase"><i class="fa fa-check"></i><b>9.1</b> Co-design Phase</a></li>
+<li class="chapter" data-level="9.2" data-path="10_Operationalization.html"><a href="10_Operationalization.html#modeling-phase"><i class="fa fa-check"></i><b>9.2</b> Modeling Phase</a></li>
+<li class="chapter" data-level="9.3" data-path="10_Operationalization.html"><a href="10_Operationalization.html#testing-phase"><i class="fa fa-check"></i><b>9.3</b> Testing Phase</a></li>
+<li class="chapter" data-level="9.4" data-path="10_Operationalization.html"><a href="10_Operationalization.html#operational-deployment"><i class="fa fa-check"></i><b>9.4</b> Operational Deployment</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#the-general-water-balance-equation"><i class="fa fa-check"></i><b>7.3</b> The general water balance equation</a></li>
-<li class="chapter" data-level="7.4" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#boundaries-of-the-water-balance"><i class="fa fa-check"></i><b>7.4</b> Boundaries of the water balance</a></li>
-<li class="chapter" data-level="7.5" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#data-need-for-a-water-balance"><i class="fa fa-check"></i><b>7.5</b> Data need for a water balance</a></li>
-<li class="chapter" data-level="7.6" data-path="08_FirstSteps-ManualWaterBalance.html"><a href="08_FirstSteps-ManualWaterBalance.html#setting-up-a-conceptual-model"><i class="fa fa-check"></i><b>7.6</b> Setting up a conceptual model</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="09_PhysicallyBased_Models.html"><a href="09_PhysicallyBased_Models.html"><i class="fa fa-check"></i><b>8</b> Hydrological Modeling: Physically-Based Models</a>
+<li class="chapter" data-level="10" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html"><i class="fa fa-check"></i><b>10</b> (APPENDIX) Appendix</a></li>
+<li class="chapter" data-level="11" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html#appendix-a"><i class="fa fa-check"></i><b>11</b> Appendix A</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="09_PhysicallyBased_Models.html"><a href="09_PhysicallyBased_Models.html#background-on-physically-based-modeling"><i class="fa fa-check"></i><b>8.1</b> Background on Physically-Based Modeling</a></li>
-<li class="chapter" data-level="8.2" data-path="09_PhysicallyBased_Models.html"><a href="09_PhysicallyBased_Models.html#model-setup"><i class="fa fa-check"></i><b>8.2</b> Model Setup</a>
+<li class="chapter" data-level="11.1" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html#open-source-software"><i class="fa fa-check"></i><b>11.1</b> Open-Source Software</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="09_PhysicallyBased_Models.html"><a href="09_PhysicallyBased_Models.html#zone-of-runoff-formation"><i class="fa fa-check"></i><b>8.2.1</b> Zone of Runoff Formation</a></li>
-<li class="chapter" data-level="8.2.2" data-path="09_PhysicallyBased_Models.html"><a href="09_PhysicallyBased_Models.html#zone-of-water-distribution-and-consumption"><i class="fa fa-check"></i><b>8.2.2</b> Zone of Water Distribution and Consumption</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="09_PhysicallyBased_Models.html"><a href="09_PhysicallyBased_Models.html#model-calibration-and-validation"><i class="fa fa-check"></i><b>8.3</b> Model Calibration and Validation</a></li>
-<li class="chapter" data-level="8.4" data-path="09_PhysicallyBased_Models.html"><a href="09_PhysicallyBased_Models.html#discussion"><i class="fa fa-check"></i><b>8.4</b> Discussion</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html"><i class="fa fa-check"></i><b>9</b> Hydrological Modeling: Empirical Models</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#background-on-empirical-modeling"><i class="fa fa-check"></i><b>9.1</b> Background on Empirical Modeling</a></li>
-<li class="chapter" data-level="9.2" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#key-forecasting-techniques"><i class="fa fa-check"></i><b>9.2</b> Key Forecasting Techniques</a></li>
-<li class="chapter" data-level="9.3" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#getting-started"><i class="fa fa-check"></i><b>9.3</b> Getting Started</a>
-<ul>
-<li class="chapter" data-level="9.3.1" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#loading-the-required-packages-and-data"><i class="fa fa-check"></i><b>9.3.1</b> Loading the Required Packages and Data</a></li>
-</ul></li>
-<li class="chapter" data-level="9.4" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#exploratory-data-analysis-data-preparation"><i class="fa fa-check"></i><b>9.4</b> Exploratory Data Analysis &amp; Data Preparation</a>
-<ul>
-<li class="chapter" data-level="9.4.1" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#discharge-data"><i class="fa fa-check"></i><b>9.4.1</b> Discharge Data</a></li>
+<li class="chapter" data-level="11.1.1" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html#qgis"><i class="fa fa-check"></i><b>11.1.1</b> QGIS</a></li>
+<li class="chapter" data-level="11.1.2" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html#r-and-rstudio"><i class="fa fa-check"></i><b>11.1.2</b> R and RStudio</a></li>
+<li class="chapter" data-level="11.1.3" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html#rs-minerve"><i class="fa fa-check"></i><b>11.1.3</b> RS Minerve</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#a-tibble-7-x-5-1"><i class="fa fa-check"></i><b>10</b> A tibble: 7 x 5</a>
-<ul>
-<li class="chapter" data-level="10.0.1" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#meteorological-data"><i class="fa fa-check"></i><b>10.0.1</b> Meteorological Data</a></li>
-<li class="chapter" data-level="10.1" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#gap-filling"><i class="fa fa-check"></i><b>10.1</b> Gap Filling</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="11_Operationalization.html"><a href="11_Operationalization.html"><i class="fa fa-check"></i><b>11</b> Operationalization of Models - Opportunities and Challenges</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="11_Operationalization.html"><a href="11_Operationalization.html#co-design-phase"><i class="fa fa-check"></i><b>11.1</b> Co-design Phase</a></li>
-<li class="chapter" data-level="11.2" data-path="11_Operationalization.html"><a href="11_Operationalization.html#modeling-phase"><i class="fa fa-check"></i><b>11.2</b> Modeling Phase</a></li>
-<li class="chapter" data-level="11.3" data-path="11_Operationalization.html"><a href="11_Operationalization.html#testing-phase"><i class="fa fa-check"></i><b>11.3</b> Testing Phase</a></li>
-<li class="chapter" data-level="11.4" data-path="11_Operationalization.html"><a href="11_Operationalization.html#operational-deployment"><i class="fa fa-check"></i><b>11.4</b> Operational Deployment</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="12_Appendix_Software.html"><a href="12_Appendix_Software.html"><i class="fa fa-check"></i><b>12</b> (APPENDIX) Appendix</a></li>
-<li class="chapter" data-level="13" data-path="12_Appendix_Software.html"><a href="12_Appendix_Software.html#appendix-a"><i class="fa fa-check"></i><b>13</b> Appendix A</a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="12_Appendix_Software.html"><a href="12_Appendix_Software.html#open-source-software"><i class="fa fa-check"></i><b>13.1</b> Open-Source Software</a>
-<ul>
-<li class="chapter" data-level="13.1.1" data-path="12_Appendix_Software.html"><a href="12_Appendix_Software.html#qgis"><i class="fa fa-check"></i><b>13.1.1</b> QGIS</a></li>
-<li class="chapter" data-level="13.1.2" data-path="12_Appendix_Software.html"><a href="12_Appendix_Software.html#r-and-rstudio"><i class="fa fa-check"></i><b>13.1.2</b> R and RStudio</a></li>
-<li class="chapter" data-level="13.1.3" data-path="12_Appendix_Software.html"><a href="12_Appendix_Software.html#rs-minerve"><i class="fa fa-check"></i><b>13.1.3</b> RS Minerve</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="14" data-path="13_references.html"><a href="13_references.html"><i class="fa fa-check"></i><b>14</b> References</a></li>
+<li class="chapter" data-level="12" data-path="12_references.html"><a href="12_references.html"><i class="fa fa-check"></i><b>12</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -268,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="regional-hydro-climatological-features" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Regional Hydro-Climatological Features</h2>
 <p>The inhomogeneity of the relief structure causes Central Asia to be the territory of immense contrasts. Here, extreme aridity in the hot deserts of the plains and, only 100 km away, abundant humidity and snowfields in the mountains where precipitation levels can range between 1’000 mm up to 2’000 mm. The uneven distribution of water bodies is striking. The mountains of Central Asia are riddled with an extremely branched river network consisting of more than ten thousand watercourses. In the flat foothill areas surrounding the mountain ranges, another branching river network is found which consists of irrigation channels, which do not contribute to the runoff of the core rivers, but rather divert the water from the river network and diffuse it in the irrigated oases where much of it gets evapotranspirated.</p>
-<p>Central Asia is spreading over approximately 4 million km<sup>2</sup>, including the territories of Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan and Uzbekistan <span class="citation">(<a href="13_references.html#ref-cia_worldfactbook" role="doc-biblioref">Central Intelligence Agency, n.d.</a>)</span>. In the vast plains that cover around 70% of the total territory, there are only very few rivers which have scarcely any tributaries from the point they leave the mountain areas all the way to their mouth. Abundant solar radiation, high temperatures, small amounts of precipitation, a lack of humidity, unstable snow cover, slight slopes, geological structures<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, etc., hinder the formation of surface flows in the plains of Central Asia, despite their big importance for the local agricultural production there. Only the largest rivers, such as Syr Darya, Amu Darya, and Ili are able to survive hundreds of kilometers of deserts and reach the most important landlocked reservoirs – the Aral Sea and Lake Balkhash <span class="citation">(<a href="13_references.html#ref-shults_RiversOfMiddleAsia" role="doc-biblioref">Shults 1965</a>)</span>. Figure <a href="04_Hydrological_Systems.html#fig:riversMap">2.1</a> shows an overview of the region.</p>
+<p>Central Asia is spreading over approximately 4 million km<sup>2</sup>, including the territories of Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan and Uzbekistan <span class="citation">(<a href="12_references.html#ref-cia_worldfactbook" role="doc-biblioref">Central Intelligence Agency, n.d.</a>)</span>. In the vast plains that cover around 70% of the total territory, there are only very few rivers which have scarcely any tributaries from the point they leave the mountain areas all the way to their mouth. Abundant solar radiation, high temperatures, small amounts of precipitation, a lack of humidity, unstable snow cover, slight slopes, geological structures<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, etc., hinder the formation of surface flows in the plains of Central Asia, despite their big importance for the local agricultural production there. Only the largest rivers, such as Syr Darya, Amu Darya, and Ili are able to survive hundreds of kilometers of deserts and reach the most important landlocked reservoirs – the Aral Sea and Lake Balkhash <span class="citation">(<a href="12_references.html#ref-shults_RiversOfMiddleAsia" role="doc-biblioref">Shults 1965</a>)</span>. Figure <a href="04_Hydrological_Systems.html#fig:riversMap">2.1</a> shows an overview of the region.</p>
 <div class="figure"><span id="fig:riversMap"></span>
 <img src="_bookdown_files/Chap2-Figures/fig_CentralAsiaRiversMap.png" alt="Map highlighting the Central Asian rivers network (rivers are shown in blue color). The dense river network in the mountainous areas starkly contrasts with the one in the plains. The main irrigation canals are shown in orange color. GIS Data from &lt;https://tools.geofabrik.de/osmi/&gt;." width="1000" />
 <p class="caption">
@@ -277,24 +297,24 @@ Figure 2.1: Map highlighting the Central Asian rivers network (rivers are shown 
 </div>
 <p>All Central Asian river basins are endorheic with no water draining out of the region but only evaporating back to the atmosphere. This emphasizes the importance of moisture transfer as an important mechanism in the region region since the formation of substantial watercourses in the mountains is followed by their complete dissipation in the plains, including in the irrigated oases and the terminal lakes, i.e. the Aral Sea and Lake Balkash.</p>
 <p>In the boreal summer, tropical air masses form in the plains of Central Asia. At that time, even cold air masses coming from the north heat quickly. There is no possibility for temperature differences between the lower and the middle troposphere to occur which explains the horizontal uniformity of high temperatures during summer.</p>
-<p>Contrary to this, the temperature differences in the region are highest in January during the peak of the boreal winter. As the territory of Central Asia is unprotected from the north, it is under the influence of dry, exceptionally cold air masses originating from the Arctic region and Siberia. These air masses can cause sharp frosts. The further the Siberian or Arctic air masses penetrate towards the west and the south, the more their temperature increase. This explains the big difference in air temperatures during winter between the north and the south of Central Asia. Cold air intrusions are often accompanied by the influx of warm air from the tropics. The cold waves taking turns with hot air masses cause unsteady frost in the plains and, together with generally low precipitation values, do not allow for the formation of a significant snow pack there <span class="citation">(<a href="13_references.html#ref-shults_RiversOfMiddleAsia" role="doc-biblioref">Shults 1965</a>)</span>.</p>
+<p>Contrary to this, the temperature differences in the region are highest in January during the peak of the boreal winter. As the territory of Central Asia is unprotected from the north, it is under the influence of dry, exceptionally cold air masses originating from the Arctic region and Siberia. These air masses can cause sharp frosts. The further the Siberian or Arctic air masses penetrate towards the west and the south, the more their temperature increase. This explains the big difference in air temperatures during winter between the north and the south of Central Asia. Cold air intrusions are often accompanied by the influx of warm air from the tropics. The cold waves taking turns with hot air masses cause unsteady frost in the plains and, together with generally low precipitation values, do not allow for the formation of a significant snow pack there <span class="citation">(<a href="12_references.html#ref-shults_RiversOfMiddleAsia" role="doc-biblioref">Shults 1965</a>)</span>.</p>
 <p>//TODO: properly reference Section here. As is discussed further below, the winter snow cover in the high mountain ranges plays an essential role in runoff formation in the spring and summer months and is thus of key relevant to irrigation agriculture in the downstream and for hydropower production (see Section~ below). Understanding the atmospheric mechanisms resulting in favorable conditions for winter precipitation is thus essential. With a warming climate and the associated increase of evapotranspiration in the downstream plains and the loss of glacier storage in the mountainous areas, a solid understanding of snow pack formation becomes even more pertinent.</p>
-<p><span class="citation">(<a href="13_references.html#ref-gerlitz_2018" role="doc-biblioref">Gerlitz et al. 2018</a>)</span> discusses how the position of the westerly jet stream is connected with the frontal trajectories and the westerly disturbances which are the main moisture sources if the region. The relative position of these planetary wave tracks and their associated westerly flows to the orographic mountain barriers plays thus a key role. The main precipitation events migrate over the winter season from south to north. The southern parts of central Asia, particularly the windward slopes of the Karakorum and Hindu Kush mountain ranges, receive high amounts of winter precipitation (December-January-February), which reaches up to 60% of the total annual precipitation. During spring the zone of maximum precipitation migrates northward, reaches the Pamir plateau in March, and continues to Tien Shan in April/May. The interaction of tropical air masses from the Arabian Golf with westerly flow in Central Asia is another important moisture source for the region.</p>
-<p>Using data of the ERA-Interim reanalysis, <span class="citation">(<a href="13_references.html#ref-gerlitz_2018" role="doc-biblioref">Gerlitz et al. 2018</a>)</span> classifies 8 weather types (WT) based on typical regional pressure field patterns over a domain covering 20- 60N and 50- 90E. Like this, large-scale features of winter circulation patterns in Central Asia can be captured. WT are analyzed with regard to the spatial anomalies of temperature and precipitation. Figures <a href="04_Hydrological_Systems.html#fig:tempWT">2.2</a> and <a href="04_Hydrological_Systems.html#fig:precipWT">2.3</a> show results. In these Figures, the individual plates WT 1 - 8 are labeled according to the main circulation feature over Central Asia, i.e. a Rossby ridge (R) or trough (T).</p>
-<p>Generally, it can be observed that configurations that are associated with a Rossby trough over Central Asia lead to an intensification of westerly moisture fluxes (WT 3, WT 7, and WT 8). If there is, however, a Rossby ridge type configuration as shown in WT 1, WT 2, and WT 4 panels of Figures <a href="04_Hydrological_Systems.html#fig:tempWT">2.2</a> and <a href="04_Hydrological_Systems.html#fig:precipWT">2.3</a>, moisture fluxes are northward-shifted and precipitation suppressed <span class="citation">(<a href="13_references.html#ref-gerlitz_2018" role="doc-biblioref">Gerlitz et al. 2018</a>)</span>.</p>
+<p><span class="citation">(<a href="12_references.html#ref-gerlitz_2018" role="doc-biblioref">Gerlitz et al. 2018</a>)</span> discusses how the position of the westerly jet stream is connected with the frontal trajectories and the westerly disturbances which are the main moisture sources if the region. The relative position of these planetary wave tracks and their associated westerly flows to the orographic mountain barriers plays thus a key role. The main precipitation events migrate over the winter season from south to north. The southern parts of central Asia, particularly the windward slopes of the Karakorum and Hindu Kush mountain ranges, receive high amounts of winter precipitation (December-January-February), which reaches up to 60% of the total annual precipitation. During spring the zone of maximum precipitation migrates northward, reaches the Pamir plateau in March, and continues to Tien Shan in April/May. The interaction of tropical air masses from the Arabian Golf with westerly flow in Central Asia is another important moisture source for the region.</p>
+<p>Using data of the ERA-Interim reanalysis, <span class="citation">(<a href="12_references.html#ref-gerlitz_2018" role="doc-biblioref">Gerlitz et al. 2018</a>)</span> classifies 8 weather types (WT) based on typical regional pressure field patterns over a domain covering 20- 60N and 50- 90E. Like this, large-scale features of winter circulation patterns in Central Asia can be captured. WT are analyzed with regard to the spatial anomalies of temperature and precipitation. Figures <a href="04_Hydrological_Systems.html#fig:tempWT">2.2</a> and <a href="04_Hydrological_Systems.html#fig:precipWT">2.3</a> show results. In these Figures, the individual plates WT 1 - 8 are labeled according to the main circulation feature over Central Asia, i.e. a Rossby ridge (R) or trough (T).</p>
+<p>Generally, it can be observed that configurations that are associated with a Rossby trough over Central Asia lead to an intensification of westerly moisture fluxes (WT 3, WT 7, and WT 8). If there is, however, a Rossby ridge type configuration as shown in WT 1, WT 2, and WT 4 panels of Figures <a href="04_Hydrological_Systems.html#fig:tempWT">2.2</a> and <a href="04_Hydrological_Systems.html#fig:precipWT">2.3</a>, moisture fluxes are northward-shifted and precipitation suppressed <span class="citation">(<a href="12_references.html#ref-gerlitz_2018" role="doc-biblioref">Gerlitz et al. 2018</a>)</span>.</p>
 <div class="figure"><span id="fig:tempWT"></span>
 <img src="_bookdown_files/Chap2-Figures/fig_WT_T_Anomalies.png" alt="Composite maps illustrating the averaged anomalies of ERA-Interim/Land 6-hourly temperature for each weather type (WT 1 - WT 8). Values are depicted in standard deviations for each grid cell, respectively. Arrows indicate anomalies of the 500-hPa ERA-Interim wind field [@gerlitz_2018]." width="1000" />
 <p class="caption">
-Figure 2.2: Composite maps illustrating the averaged anomalies of ERA-Interim/Land 6-hourly temperature for each weather type (WT 1 - WT 8). Values are depicted in standard deviations for each grid cell, respectively. Arrows indicate anomalies of the 500-hPa ERA-Interim wind field <span class="citation">(<a href="13_references.html#ref-gerlitz_2018" role="doc-biblioref">Gerlitz et al. 2018</a>)</span>.
+Figure 2.2: Composite maps illustrating the averaged anomalies of ERA-Interim/Land 6-hourly temperature for each weather type (WT 1 - WT 8). Values are depicted in standard deviations for each grid cell, respectively. Arrows indicate anomalies of the 500-hPa ERA-Interim wind field <span class="citation">(<a href="12_references.html#ref-gerlitz_2018" role="doc-biblioref">Gerlitz et al. 2018</a>)</span>.
 </p>
 </div>
 <div class="figure"><span id="fig:precipWT"></span>
 <img src="_bookdown_files/Chap2-Figures/fig_WT_T_Anomalies.png" alt="Composite maps illustrating the averaged anomalies of ERA-Interim/Land 6-hourly precipitation sums for each weather type. Values are depicted relative to the seasonal mean 6-hourly precipitation sum ((100)^-1^) for each grid cell, respectively. Arrows indicate anomalies of vertically integrated moisture fluxes [@gerlitz_2018]." width="1000" />
 <p class="caption">
-Figure 2.3: Composite maps illustrating the averaged anomalies of ERA-Interim/Land 6-hourly precipitation sums for each weather type. Values are depicted relative to the seasonal mean 6-hourly precipitation sum ((100)<sup>-1</sup>) for each grid cell, respectively. Arrows indicate anomalies of vertically integrated moisture fluxes <span class="citation">(<a href="13_references.html#ref-gerlitz_2018" role="doc-biblioref">Gerlitz et al. 2018</a>)</span>.
+Figure 2.3: Composite maps illustrating the averaged anomalies of ERA-Interim/Land 6-hourly precipitation sums for each weather type. Values are depicted relative to the seasonal mean 6-hourly precipitation sum ((100)<sup>-1</sup>) for each grid cell, respectively. Arrows indicate anomalies of vertically integrated moisture fluxes <span class="citation">(<a href="12_references.html#ref-gerlitz_2018" role="doc-biblioref">Gerlitz et al. 2018</a>)</span>.
 </p>
 </div>
-<p>Precipitation is extremely unevenly distributed in the region. 20% of the plain area receives less than 100 mm, while 91% of the territory receives less than 300 mm of precipitation a year with an overall average of 173 mm. The mountains are thus an important climatological and hydrological factor, since they are the places where the water condensates and where the rivers and groundwater originate. Although the range of precipitation levels is wide (60 mm - 2’500 mm), the mountains receive on average more than three times more precipitation than the plains, and the low temperatures favor its accumulation in the solid state <span class="citation">(<a href="13_references.html#ref-shults_RiversOfMiddleAsia" role="doc-biblioref">Shults 1965</a>)</span>.</p>
+<p>Precipitation is extremely unevenly distributed in the region. 20% of the plain area receives less than 100 mm, while 91% of the territory receives less than 300 mm of precipitation a year with an overall average of 173 mm. The mountains are thus an important climatological and hydrological factor, since they are the places where the water condensates and where the rivers and groundwater originate. Although the range of precipitation levels is wide (60 mm - 2’500 mm), the mountains receive on average more than three times more precipitation than the plains, and the low temperatures favor its accumulation in the solid state <span class="citation">(<a href="12_references.html#ref-shults_RiversOfMiddleAsia" role="doc-biblioref">Shults 1965</a>)</span>.</p>
 <p>The influence of the relief is notable also when speaking of precipitation distribution during the year. The high ground areas in Central Asia are witnessing an almost even distribution of precipitation on monthly basis, whereas at the same time, in the inner parts of high mountain ridges there is more precipitation in summer. Such a distribution of precipitation in the inner parts of mountain ridges is a consequence of high condensation levels in summer due to intense evaporation taking place in snow melting areas or, less often, on water surfaces.</p>
 <p>A typical example showing the influence of the local water vapor emission on annual distribution of precipitation could be the Issyk Kul Lake Basin. There the percentage of precipitation received during summer and the second half of spring, so from May to August, is sometimes reaching even 80% of the total annual precipitation amount, all thanks to the evaporation of the water from the lake and the emergence of thermal convection and subsequent moisture recycling.</p>
 <p>The areas that are characterized by a predominant precipitation during summertime are the Central Tian Shan and Eastern Pamir, where the difference between the summer and the rest of the year is so big that during summer 60% of all annual precipitation is received.</p>
@@ -417,7 +437,7 @@ p + q_{i} = e
 <div class="figure"><span id="fig:ZonesOfRunoffFormation"></span>
 <img src="_bookdown_files/Chap2-Figures/fig_AmuSyrDarya.png" alt="Map of the upper Syr Darya and Amu Darya catchments. The catchments are outlined. Colors encode topographic height. Basin outlets (red dots) are chosen to correspond to the confluence of the two main rivers for each catchment. Topographic data is from [@USGS_2020]." width="1000" />
 <p class="caption">
-Figure 2.4: Map of the upper Syr Darya and Amu Darya catchments. The catchments are outlined. Colors encode topographic height. Basin outlets (red dots) are chosen to correspond to the confluence of the two main rivers for each catchment. Topographic data is from <span class="citation">(<a href="13_references.html#ref-USGS_2020" role="doc-biblioref"><span>“Srtmgl1 n -ASA SRTM Version 3.0”</span> 2020</a>)</span>.
+Figure 2.4: Map of the upper Syr Darya and Amu Darya catchments. The catchments are outlined. Colors encode topographic height. Basin outlets (red dots) are chosen to correspond to the confluence of the two main rivers for each catchment. Topographic data is from <span class="citation">(<a href="12_references.html#ref-USGS_2020" role="doc-biblioref"><span>“Srtmgl1 n -ASA SRTM Version 3.0”</span> 2020</a>)</span>.
 </p>
 </div>
 <p>First, we study the role of glacier melt. For this, it is instructive to start to look at the condition of discharge formation in the Amu Darya and Syr Darya basins (see Figure <a href="04_Hydrological_Systems.html#fig:ZonesOfRunoffFormation">2.4</a>). More specifically, we compare the two main subcatchments of the Vakhsh and Pyandzh Rivers in the Amu Darya and the Naryn and Kara Darya catchments in the Syr Darya<a href="The%20emerging%20river%20after%20the%20confluence%20of%20the%20Vakhsh%20and%20Pyandzh%20rivers%20is%20called%20Amu%20Darya%20whereas%20the%20Syr%20Darya%20emerges%20after%20the%20confluence%20of%20the%20Naryn%20and%20Kara%20Darya%20rivers.">^2</a>. In the first two reservoirs, the mountains exceeding 5’000 m occupy 6.2% of their area, and the mountains higher than 4’000 m — 42%, in case of reservoirs of the second two rivers, the mountains exceeding 5’000 m occupy less than 1% of their area and the ones with altitudes over 4’000 m — only 4%. Figure <a href="04_Hydrological_Systems.html#fig:AmuSyrDaryaHypsography">2.5</a> shows the basins’ hypsographic curves.</p>
@@ -425,10 +445,10 @@ Figure 2.4: Map of the upper Syr Darya and Amu Darya catchments. The catchments 
 <div class="figure"><span id="fig:AmuSyrDaryaHypsography"></span>
 <img src="_bookdown_files/Chap2-Figures/fig_AmuSyrDarya_HypsographicCurves.png" alt="Hypsographic curves of the upper Syr Darya and Amu Darya catchments. The SRTM topographic model was used for the calculation of the curves [@USGS_2020]." width="1000" />
 <p class="caption">
-Figure 2.5: Hypsographic curves of the upper Syr Darya and Amu Darya catchments. The SRTM topographic model was used for the calculation of the curves <span class="citation">(<a href="13_references.html#ref-USGS_2020" role="doc-biblioref"><span>“Srtmgl1 n -ASA SRTM Version 3.0”</span> 2020</a>)</span>.
+Figure 2.5: Hypsographic curves of the upper Syr Darya and Amu Darya catchments. The SRTM topographic model was used for the calculation of the curves <span class="citation">(<a href="12_references.html#ref-USGS_2020" role="doc-biblioref"><span>“Srtmgl1 n -ASA SRTM Version 3.0”</span> 2020</a>)</span>.
 </p>
 </div>
-<p>Data on land ice can be obtained from the Global Land Ice Measurements from Space glacier database GLIMS <span class="citation">(<a href="13_references.html#ref-glims_global" role="doc-biblioref">GLIMS and NSIDC 2005, updated 2018</a>)</span>. The Global Land Ice Measurements from Space (GLIMS) project at NSIDC has implemented a database of glacier outlines from around the world and other information about glaciers that includes the metadata on how those outlines were derived. At &lt;www.glims.org&gt;, one can download outlines and metadata for glaciers in a choice of different formats, including KML (for viewing in Google Earth), ESRI shapefiles, GMT (Generic Mapping Tools), MapInfo, or GML (Geography Markup Language). Figure <a href="04_Hydrological_Systems.html#fig:AmuDaryaGlaciers">2.6</a> shows a sample visualization of the GLIMS data for the zone of runoff formation of the Amu Darya. The data will also be utilized in Chapter <span class="citation">(<a href="#ref-ref" role="doc-biblioref"><strong>ref?</strong></a>)</span>(#HydrologicalSystems) below to obtain good ideas of the subcatchments’ glaciation levels.</p>
+<p>Data on land ice can be obtained from the Global Land Ice Measurements from Space glacier database GLIMS <span class="citation">(<a href="12_references.html#ref-glims_global" role="doc-biblioref">GLIMS and NSIDC 2005, updated 2018</a>)</span>. The Global Land Ice Measurements from Space (GLIMS) project at NSIDC has implemented a database of glacier outlines from around the world and other information about glaciers that includes the metadata on how those outlines were derived. At &lt;www.glims.org&gt;, one can download outlines and metadata for glaciers in a choice of different formats, including KML (for viewing in Google Earth), ESRI shapefiles, GMT (Generic Mapping Tools), MapInfo, or GML (Geography Markup Language). Figure <a href="04_Hydrological_Systems.html#fig:AmuDaryaGlaciers">2.6</a> shows a sample visualization of the GLIMS data for the zone of runoff formation of the Amu Darya. The data will also be utilized in Chapter <span class="citation">(<a href="#ref-ref" role="doc-biblioref"><strong>ref?</strong></a>)</span>(#HydrologicalSystems) below to obtain good ideas of the subcatchments’ glaciation levels.</p>
 <div class="figure"><span id="fig:AmuDaryaGlaciers"></span>
 <img src="_bookdown_files/Chap2-Figures/fig_VakshPyandz_GLIMS.png" alt="Visualization of the GLIMS data glaciation in the Vaksh-Pyandzh basin. The light blue shaded polygons show land ice on top of the underlying digital elevation model." width="1000" />
 <p class="caption">
@@ -442,7 +462,7 @@ Figure 2.6: Visualization of the GLIMS data glaciation in the Vaksh-Pyandzh basi
 Figure 2.7: Distribution of mean glacier elevations as extract from the GLIMS database. Only data from the Randolph Glacier Inventory 6.0 was used as subset of the complete GLIMS record. For the computation of the mean elevation, SRTM data was utilized.
 </p>
 </div>
-<p>Since the GLIMS database contains contains the shapes of glaciers as geometric features, we can calculate easily calculate areas that the individual glaciers cover and then utilize scaling relationships between surface area and volume to estimate total ice storage in the individual Central Asian catchments. <span class="citation">(<a href="13_references.html#ref-Aizen_2007" role="doc-biblioref">Aizen, Aizen, and Kuzmichonok 2007</a>)</span> reports such scaling relationship for the Central Asian region. As a function of glacier area, they are</p>
+<p>Since the GLIMS database contains contains the shapes of glaciers as geometric features, we can calculate easily calculate areas that the individual glaciers cover and then utilize scaling relationships between surface area and volume to estimate total ice storage in the individual Central Asian catchments. <span class="citation">(<a href="12_references.html#ref-Aizen_2007" role="doc-biblioref">Aizen, Aizen, and Kuzmichonok 2007</a>)</span> reports such scaling relationship for the Central Asian region. As a function of glacier area, they are</p>
 <p><span class="math display">\[
 V = 0.03782 S^{1.23} \text{ for } S&lt; 0.1 \text{ km}^2 \\
 V = \frac{0.03332 S ^ {1.08} e^{0.1219 L}}{L^{0.08846}} \text{ for } 0.1 &lt; S &lt; 25 \text{ km}^2 \\
@@ -472,7 +492,7 @@ V = 0.01848 S + 0.021875 S^{1.3521} \text{ for } S &gt; 25 \text{ km}^2
         </div>
       </div>
 <a href="03_PI_Introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="05_Irrigation_CentralAsia.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="05_CaseStudy_ChirchikRiver.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Retrieval &amp; Analysis of Data | Applied Modeling of Hydrological Systems in Central Asia</title>
   <meta name="description" content="This is a course book on Central Asia hydrological systems and hydrological modeling." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Retrieval &amp; Analysis of Data | Applied Modeling of Hydrological Systems in Central Asia" />
   <meta property="og:type" content="book" />
@@ -24,15 +24,16 @@
 <meta name="author" content="Tobias Siegfried" />
 
 
-<meta name="date" content="2020-08-13" />
+<meta name="date" content="2020-11-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="05_Irrigation_CentralAsia.html"/>
+<link rel="prev" href="05_CaseStudy_ChirchikRiver.html"/>
 <link rel="next" href="07_FirstSteps-ManualWaterBalance.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,22 +51,29 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -85,7 +93,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -138,31 +146,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="01_Preface.html"><a href="01_Preface.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="" data-path="02_Foreword.html"><a href="02_Foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
 <li class="part"><span><b>I Part I Hydrological Systems</b></span></li>
-<li class="chapter" data-level="1" data-path="03_PI_Introduction.html"><a href="03_PI_Introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html"><i class="fa fa-check"></i><b>2</b> Hydrological Systems in Central Asia</a><ul>
+<li class="chapter" data-level="1" data-path="03_PI_Introduction.html"><a href="03_PI_Introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="03_PI_Introduction.html"><a href="03_PI_Introduction.html#the-geography-of-central-asia"><i class="fa fa-check"></i><b>1.1</b> The Geography of Central Asia</a></li>
+<li class="chapter" data-level="1.2" data-path="03_PI_Introduction.html"><a href="03_PI_Introduction.html#the-taming-of-natural-hydrological-regimes-for-irrigation"><i class="fa fa-check"></i><b>1.2</b> The Taming of Natural Hydrological Regimes for Irrigation</a></li>
+<li class="chapter" data-level="1.3" data-path="03_PI_Introduction.html"><a href="03_PI_Introduction.html#post-transition-development-and-challenges"><i class="fa fa-check"></i><b>1.3</b> Post-Transition Development and Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html"><i class="fa fa-check"></i><b>2</b> Hydrological Systems in Central Asia</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html#regional-hydro-climatological-features"><i class="fa fa-check"></i><b>2.1</b> Regional Hydro-Climatological Features</a></li>
 <li class="chapter" data-level="2.2" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html#chap:regionalWaterBalance"><i class="fa fa-check"></i><b>2.2</b> Regional Water Balance</a></li>
 <li class="chapter" data-level="2.3" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html#runoff-formation"><i class="fa fa-check"></i><b>2.3</b> Runoff Formation</a></li>
 <li class="chapter" data-level="2.4" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html#average-multi-year-runoff"><i class="fa fa-check"></i><b>2.4</b> Average Multi-Year Runoff</a></li>
 <li class="chapter" data-level="2.5" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html#annual-runoff-fluctuations"><i class="fa fa-check"></i><b>2.5</b> Annual Runoff Fluctuations</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="05_Irrigation_CentralAsia.html"><a href="05_Irrigation_CentralAsia.html"><i class="fa fa-check"></i><b>3</b> Irrigation Agriculture in Central Asia</a><ul>
-<li class="chapter" data-level="3.1" data-path="05_Irrigation_CentralAsia.html"><a href="05_Irrigation_CentralAsia.html#historic-developments"><i class="fa fa-check"></i><b>3.1</b> Historic Developments</a></li>
-<li class="chapter" data-level="3.2" data-path="05_Irrigation_CentralAsia.html"><a href="05_Irrigation_CentralAsia.html#irrigation-and-socio-economic-activity-in-the-twentieth-century"><i class="fa fa-check"></i><b>3.2</b> Irrigation and Socio-Economic Activity in the Twentieth Century</a></li>
-<li class="chapter" data-level="3.3" data-path="05_Irrigation_CentralAsia.html"><a href="05_Irrigation_CentralAsia.html#post-transition-developments-in-the-irrigation-sectors"><i class="fa fa-check"></i><b>3.3</b> Post-Transition Developments in the Irrigation Sectors</a></li>
+<li class="chapter" data-level="3" data-path="05_CaseStudy_ChirchikRiver.html"><a href="05_CaseStudy_ChirchikRiver.html"><i class="fa fa-check"></i><b>3</b> Case Study - Chirchik River Basin</a>
+<ul>
+<li class="chapter" data-level="" data-path="05_CaseStudy_ChirchikRiver.html"><a href="05_CaseStudy_ChirchikRiver.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="3.1" data-path="05_CaseStudy_ChirchikRiver.html"><a href="05_CaseStudy_ChirchikRiver.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="05_CaseStudy_ChirchikRiver.html"><a href="05_CaseStudy_ChirchikRiver.html#discharge-estimation-in-ungauged-subcatchments"><i class="fa fa-check"></i><b>3.2</b> Discharge Estimation in Ungauged Subcatchments</a></li>
+<li class="chapter" data-level="3.3" data-path="05_CaseStudy_ChirchikRiver.html"><a href="05_CaseStudy_ChirchikRiver.html#analysis-of-available-data"><i class="fa fa-check"></i><b>3.3</b> Analysis of Available Data</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="05_CaseStudy_ChirchikRiver.html"><a href="05_CaseStudy_ChirchikRiver.html#ChirchikDischargeData"><i class="fa fa-check"></i><b>3.3.1</b> Discharge Data</a></li>
+<li class="chapter" data-level="3.3.2" data-path="05_CaseStudy_ChirchikRiver.html"><a href="05_CaseStudy_ChirchikRiver.html#meteorological-data"><i class="fa fa-check"></i><b>3.3.2</b> Meteorological Data</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>II Part II Applied Modeling</b></span></li>
-<li class="chapter" data-level="4" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><i class="fa fa-check"></i><b>4</b> Retrieval &amp; Analysis of Data</a><ul>
-<li class="chapter" data-level="" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="4.1" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#geospatial-data"><i class="fa fa-check"></i><b>4.1</b> Geospatial Data</a></li>
-<li class="chapter" data-level="4.2" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#climate-data"><i class="fa fa-check"></i><b>4.2</b> Climate Data</a><ul>
+<li class="chapter" data-level="4" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><i class="fa fa-check"></i><b>4</b> Retrieval &amp; Analysis of Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#preliminary-remarks"><i class="fa fa-check"></i>Preliminary Remarks</a></li>
+<li class="chapter" data-level="4.1" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#GeospatialData"><i class="fa fa-check"></i><b>4.1</b> Geospatial Data</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#CatchmentDelineation"><i class="fa fa-check"></i><b>4.1.1</b> Catchment Delineation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#computation-of-elevation-bands"><i class="fa fa-check"></i><b>4.1.2</b> Computation of Elevation Bands</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#climate-data"><i class="fa fa-check"></i><b>4.2</b> Climate Data</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#access-select-and-download-era5-reanalysis-data"><i class="fa fa-check"></i><b>4.2.1</b> Access, Select and Download ERA5 Reanalysis Data</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#hydrological-data"><i class="fa fa-check"></i><b>4.3</b> Hydrological Data</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html"><i class="fa fa-check"></i><b>5</b> The Manual Water Balance</a><ul>
+<li class="chapter" data-level="5" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html"><i class="fa fa-check"></i><b>5</b> The Manual Water Balance</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#site-problem-description"><i class="fa fa-check"></i><b>5.1</b> Site &amp; problem description</a></li>
-<li class="chapter" data-level="5.2" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#identification-of-the-dominant-flow-processes"><i class="fa fa-check"></i><b>5.2</b> Identification of the dominant flow processes</a><ul>
+<li class="chapter" data-level="5.2" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#identification-of-the-dominant-flow-processes"><i class="fa fa-check"></i><b>5.2</b> Identification of the dominant flow processes</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#precipitation"><i class="fa fa-check"></i><b>5.2.1</b> Precipitation</a></li>
 <li class="chapter" data-level="5.2.2" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#canopy-interception"><i class="fa fa-check"></i><b>5.2.2</b> Canopy interception</a></li>
 <li class="chapter" data-level="5.2.3" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#snowmelt"><i class="fa fa-check"></i><b>5.2.3</b> Snowmelt</a></li>
@@ -177,21 +205,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.5" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#data-need-for-a-water-balance"><i class="fa fa-check"></i><b>5.5</b> Data need for a water balance</a></li>
 <li class="chapter" data-level="5.6" data-path="07_FirstSteps-ManualWaterBalance.html"><a href="07_FirstSteps-ManualWaterBalance.html#setting-up-a-conceptual-model"><i class="fa fa-check"></i><b>5.6</b> Setting up a conceptual model</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="08_PhysicallyBased_Models.html"><a href="08_PhysicallyBased_Models.html"><i class="fa fa-check"></i><b>6</b> Hydrological Modeling: Physically-Based Models</a></li>
-<li class="chapter" data-level="7" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html"><i class="fa fa-check"></i><b>7</b> Hydrological Modeling: Empirical Models</a></li>
-<li class="chapter" data-level="8" data-path="10_Operationalization.html"><a href="10_Operationalization.html"><i class="fa fa-check"></i><b>8</b> Operationalization of Models - Opportunities and Challenges</a></li>
-<li class="chapter" data-level="9" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html"><i class="fa fa-check"></i><b>9</b> (APPENDIX) Appendix</a></li>
-<li class="chapter" data-level="10" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html#appendix-a"><i class="fa fa-check"></i><b>10</b> Appendix A</a><ul>
-<li class="chapter" data-level="10.1" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html#open-source-software"><i class="fa fa-check"></i><b>10.1</b> Open-Source Software</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html#qgis"><i class="fa fa-check"></i><b>10.1.1</b> QGIS</a></li>
-<li class="chapter" data-level="10.1.2" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html#r-and-rstudio"><i class="fa fa-check"></i><b>10.1.2</b> R and RStudio</a></li>
-<li class="chapter" data-level="10.1.3" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html#rs-minerve"><i class="fa fa-check"></i><b>10.1.3</b> RS Minerve</a></li>
+<li class="chapter" data-level="6" data-path="08_PhysicallyBased_Models.html"><a href="08_PhysicallyBased_Models.html"><i class="fa fa-check"></i><b>6</b> Hydrological Modeling: Physically-Based Models</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="08_PhysicallyBased_Models.html"><a href="08_PhysicallyBased_Models.html#background-on-physically-based-modeling"><i class="fa fa-check"></i><b>6.1</b> Background on Physically-Based Modeling</a></li>
+<li class="chapter" data-level="6.2" data-path="08_PhysicallyBased_Models.html"><a href="08_PhysicallyBased_Models.html#model-setup"><i class="fa fa-check"></i><b>6.2</b> Model Setup</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="08_PhysicallyBased_Models.html"><a href="08_PhysicallyBased_Models.html#zone-of-runoff-formation"><i class="fa fa-check"></i><b>6.2.1</b> Zone of Runoff Formation</a></li>
+<li class="chapter" data-level="6.2.2" data-path="08_PhysicallyBased_Models.html"><a href="08_PhysicallyBased_Models.html#zone-of-water-distribution-and-consumption"><i class="fa fa-check"></i><b>6.2.2</b> Zone of Water Distribution and Consumption</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="08_PhysicallyBased_Models.html"><a href="08_PhysicallyBased_Models.html#model-calibration-and-validation"><i class="fa fa-check"></i><b>6.3</b> Model Calibration and Validation</a></li>
+<li class="chapter" data-level="6.4" data-path="08_PhysicallyBased_Models.html"><a href="08_PhysicallyBased_Models.html#discussion"><i class="fa fa-check"></i><b>6.4</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html"><i class="fa fa-check"></i><b>7</b> Hydrological Modeling: Empirical Models</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html#background-on-empirical-modeling"><i class="fa fa-check"></i><b>7.1</b> Background on Empirical Modeling</a></li>
+<li class="chapter" data-level="7.2" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html#key-forecasting-techniques"><i class="fa fa-check"></i><b>7.2</b> Key Forecasting Techniques</a></li>
+<li class="chapter" data-level="7.3" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html#getting-started"><i class="fa fa-check"></i><b>7.3</b> Getting Started</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html#loading-the-required-packages-and-data"><i class="fa fa-check"></i><b>7.3.1</b> Loading the Required Packages and Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html#exploratory-data-analysis-data-preparation"><i class="fa fa-check"></i><b>7.4</b> Exploratory Data Analysis &amp; Data Preparation</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html#discharge-data"><i class="fa fa-check"></i><b>7.4.1</b> Discharge Data</a></li>
+<li class="chapter" data-level="7.4.2" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html#meteorological-data-1"><i class="fa fa-check"></i><b>7.4.2</b> Meteorological Data</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="12_references.html"><a href="12_references.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
-<li class="chapter" data-level="12" data-path="notebook.html"><a href="notebook.html"><i class="fa fa-check"></i><b>12</b> Hydrological Systems in Central Asia</a><ul>
-<li class="chapter" data-level="12.1" data-path="04_Hydrological_Systems.html"><a href="04_Hydrological_Systems.html#regional-hydro-climatological-features"><i class="fa fa-check"></i><b>12.1</b> Regional Hydro-Climatological Features</a></li>
+<li class="chapter" data-level="8" data-path="09_EmpiricalModels.html"><a href="09_EmpiricalModels.html#HydroModelsEmpiricalModels"><i class="fa fa-check"></i><b>8</b> Hydrological Modeling: Empirical Models</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html"><i class="fa fa-check"></i><b>8.1</b> Background on Empirical Modeling</a></li>
+<li class="chapter" data-level="8.2" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#key-forecasting-techniques-1"><i class="fa fa-check"></i><b>8.2</b> Key Forecasting Techniques</a></li>
+<li class="chapter" data-level="8.3" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#getting-started-1"><i class="fa fa-check"></i><b>8.3</b> Getting Started</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#loading-the-required-packages-and-data-1"><i class="fa fa-check"></i><b>8.3.1</b> Loading the Required Packages and Data</a></li>
 </ul></li>
+<li class="chapter" data-level="8.4" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#exploratory-data-analysis-data-preparation-1"><i class="fa fa-check"></i><b>8.4</b> Exploratory Data Analysis &amp; Data Preparation</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#discharge-data-1"><i class="fa fa-check"></i><b>8.4.1</b> Discharge Data</a></li>
+<li class="chapter" data-level="8.4.2" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#meteorological-data-2"><i class="fa fa-check"></i><b>8.4.2</b> Meteorological Data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="10_EmpiricalModels.html"><a href="10_EmpiricalModels.html#gap-filling"><i class="fa fa-check"></i><b>8.5</b> Gap Filling</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="10_Operationalization.html"><a href="10_Operationalization.html"><i class="fa fa-check"></i><b>9</b> Operationalization of Models - Opportunities and Challenges</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="10_Operationalization.html"><a href="10_Operationalization.html#co-design-phase"><i class="fa fa-check"></i><b>9.1</b> Co-design Phase</a></li>
+<li class="chapter" data-level="9.2" data-path="10_Operationalization.html"><a href="10_Operationalization.html#modeling-phase"><i class="fa fa-check"></i><b>9.2</b> Modeling Phase</a></li>
+<li class="chapter" data-level="9.3" data-path="10_Operationalization.html"><a href="10_Operationalization.html#testing-phase"><i class="fa fa-check"></i><b>9.3</b> Testing Phase</a></li>
+<li class="chapter" data-level="9.4" data-path="10_Operationalization.html"><a href="10_Operationalization.html#operational-deployment"><i class="fa fa-check"></i><b>9.4</b> Operational Deployment</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html"><i class="fa fa-check"></i><b>10</b> (APPENDIX) Appendix</a></li>
+<li class="chapter" data-level="11" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html#appendix-a"><i class="fa fa-check"></i><b>11</b> Appendix A</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html#open-source-software"><i class="fa fa-check"></i><b>11.1</b> Open-Source Software</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html#qgis"><i class="fa fa-check"></i><b>11.1.1</b> QGIS</a></li>
+<li class="chapter" data-level="11.1.2" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html#r-and-rstudio"><i class="fa fa-check"></i><b>11.1.2</b> R and RStudio</a></li>
+<li class="chapter" data-level="11.1.3" data-path="11_Appendix_Software.html"><a href="11_Appendix_Software.html#rs-minerve"><i class="fa fa-check"></i><b>11.1.3</b> RS Minerve</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="12_references.html"><a href="12_references.html"><i class="fa fa-check"></i><b>12</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -212,48 +283,154 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="Retrieval-AnalysisHydroData" class="section level1">
+<div id="RetrievalAnalysisHydroData" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Retrieval &amp; Analysis of Data</h1>
-<div id="prerequisites" class="section level2 unnumbered">
-<h2>Prerequisites</h2>
-<p>This Chapter requires the following R packages to be installed. If you are running R in RStudio and some of the packages are not yet installed on your computer, RStudio will warn you and ask, whether you want to have them installed. Here I change something.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb1-1"></a><span class="co"># Tidyverse </span></span>
-<span id="cb1-2"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb1-2"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.3.2     ✔ purrr   0.3.4
-## ✔ tibble  3.0.1     ✔ dplyr   1.0.0
-## ✔ tidyr   1.1.0     ✔ stringr 1.4.0
-## ✔ readr   1.3.1     ✔ forcats 0.5.0</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb5-1"></a><span class="co"># File navigation</span></span>
-<span id="cb5-2"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb5-2"></a><span class="kw">library</span>(here)</span></code></pre></div>
-<pre><code>## here() starts at /Users/tobiassiegfried/Dropbox (hydrosolutions)/hydrosolutionsLocal/Projects_Active/SDC/DKU_WRM_COURSE_CA/Course Materials/Handbook/Applied_Hydrological_Modeling_Bookdown</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb7-1"></a><span class="co"># Copernicus Climate Data Store</span></span>
-<span id="cb7-2"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb7-2"></a><span class="kw">library</span>(ecmwfr)</span></code></pre></div>
+<div id="preliminary-remarks" class="section level2 unnumbered">
+<h2>Preliminary Remarks</h2>
+<p>We focus on the Chirchik River as our case study (see Section <a href="05_CaseStudy_ChirchikRiver.html#CaseStudyChirchikRiver">3</a> for background information on the river basin). The steps for preparation and processing of the required input data for modeling carry over to any other basin that you wish to focus on.</p>
+<p>First, we will discuss how to prepare and process the geospatial information of the catchment and its sub-units using the open-source Geographic Information System <a href="https://qgis.org/en/site/" target="_blank">QGIS</a>.</p>
+<p>Second, we deal with climate data and show how to prepare existing temperature and precipitation data from local stations and also discuss how to access, download and process climate data from reanalysis products. Finally, we prepare the available hydrological data. : Make sure this is corresponding to the section’s content.</p>
+<p>For this course, we use the open source software <a href="https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve.html">RS MINERVE</a> for physically-based modeling, i.e. for numerical rainfall-runoff modeling and river routing. We then use <a href="https://www.r-project.org" target="_blank">R</a> for empirical modeling. Hence, the steps described here focus on the input requirements of this software. It should be noted, however, that other modeling packages exist with which hydrological-hydraulic modeling can be carried out in a similar manner. These include</p>
+<ul>
+<li><a href="https://www.weap21.org" target="_blank">WEAP: Water Evaluation and Planning System</a>,</li>
+<li><a href="https://swat.tamu.edu" target="_blank">SWAT: Soil &amp; Water Assessment Tool</a>, and</li>
+<li><a href="https://www.mikepoweredbydhi.com/products/mike-hydro-basin" target="_blank">Mike Hydro Basin</a></li>
+</ul>
+<p>As some of these modeling packages are license-based, the advantage of using the combination of QGIS, R and RS MINERVE is that this is a completely free software suit for any user and use scenario.</p>
+<p>: Maybe revise… In the Chapter @ref(HydroModels_PhysicalModels) below, we are going to show how to then use the data retrieved and prepared in RS MINERVE for numerical water balance modeling, streamflow routing and forecasting.</p>
+<p>: Maybe a good idea would be not to spend too much time on all of this GIS work and provide the relevant GIS raster and shapefiles upfront to the students and then just walk them through how to do this. Otherwise, this ends up being a GIS course in itself.</p>
+</div>
+<div id="GeospatialData" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Geospatial Data</h2>
+<div id="CatchmentDelineation" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Catchment Delineation</h3>
+<p>Catchment delineation is the first step in geospatial analysis<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. This is a step-by-sep guide on how to setup, access, organize and analyze the relevant geo-spatial data for the Chirchik River basin. It is important to mention that this workflow can be utilized in any other catchment.</p>
+<p><strong>STEP 1 Open Empty QGIS Project</strong></p>
+<p>Open an empty QGIS Project and set Project Coordinate Reference System (CRS) to EPSG: 32642, WGS84 / UTM 42N (see Figure <a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#fig:settingCRS">4.1</a>). Map projections try to portray the surface of the earth, or a portion of the earth, on a flat piece of paper or computer screen. In layman’s term, map projections try to transform the earth from its spherical shape (three-dimensional or 3D) to a planar shape (two-dimensional or 2D). A CRS then defines how the 2D, projected map in your GIS relates to real places on the earth. Generally, the decision of which map projection and CRS to use depends on the regional extent of the area you want to work in, on the analysis you want to do, and often also on the availability of data.</p>
+<div class="figure"><span id="fig:settingCRS"></span>
+<img src="_bookdown_files/Chap7-Figures/fig_SettingCRS.png" alt="Setting the CRS of the Project to EPSG: 32642, WGS84 / UTM 42N." width="1746" />
+<p class="caption">
+Figure 4.1: Setting the CRS of the Project to EPSG: 32642, WGS84 / UTM 42N.
+</p>
+</div>
+<p>As mentioned above, for the Chirchik River basin case study, we use the CRS EPSG: 32642, WGS84 / UTM 42N. The UTM CRS, where UTM stands for Universal Transverse Mercator, has its origin on the equator at a specific longitude. The Y-values increase southwards and the X-values increase to the West. The UTM CRS is a global map projection and is generally used all over the world. For accuracy reasons and to avoid too much distortion, the world is divided into 60 equal zones that are all 6 degrees wide in longitude from East to West. The UTM zones are numbered 1 to 60, starting at the anti-meridian (zone 1 at 180 degrees West longitude) and progressing East back to the antemeridian (zone 60 at 180 degrees East longitude). Figure <a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#fig:settingCRS">4.1</a> shows a global map of UTM zones.</p>
+<div class="figure"><span id="fig:UTMZones"></span>
+<img src="_bookdown_files/Chap7-Figures/fig_UTMZones.png" alt="Global map of UTM zones. See [QGIS online documentation](https://docs.qgis.org/3.10/en/docs/user_manual/){target=&quot;blank&quot;} for more information." width="1583" />
+<p class="caption">
+Figure 4.2: Global map of UTM zones. See <a href="https://docs.qgis.org/3.10/en/docs/user_manual/" target="blank">QGIS online documentation</a> for more information.
+</p>
+</div>
+<p>When working on a particular catchment in any region on the planet, the corresponding UTM zone should be chosen.</p>
+<p><strong>STEP 2 Adding Groups for Project Structuring</strong></p>
+<p>It is important to keep your geospatial data properly organized. This can be achieved by using Groups in QGIS. You should follow this recommendation and now create the following groups in the Layers Panel: RIVERS, GAUGES, BASINS, DEM, POLITICAL and Temporary<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. Once you start to generate a large number of raster and vector layers, these can be conveniently organized within these Groups which act in a similar way as electronic folders on your desktop (see Figure <a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#fig:LayersGrouping">4.3</a> for an example).</p>
+<div class="figure"><span id="fig:LayersGrouping"></span>
+<img src="_bookdown_files/Chap7-Figures/fig_LayersGrouping.png" alt="Background map showing the area of interest. Note the Layers grouping in the panel on the left side. The contents in the folder show the geospatial assets that will be created as part of this tutorial." width="1750" />
+<p class="caption">
+Figure 4.3: Background map showing the area of interest. Note the Layers grouping in the panel on the left side. The contents in the folder show the geospatial assets that will be created as part of this tutorial.
+</p>
+</div>
+<p><strong>STEP 3 Background Map via QuickMapServices and Political Boundaries</strong></p>
+<p>From the main menu, select Web/QuickMapServices/Google/Google Satellite or any other suitable map of your choice. If the QuickMapServices are not available by default, you have to install the corresponding plugin. More information can be found <a href="https://docs.qgis.org/3.10/en/docs/training_manual/qgis_plugins/plugin_examples.html" target="_blank">here</a>. If by default the Google Map Service is not available, you can install the plugin HCMGIS via the <span style="color: blue;"><strong>Manage and Install Plugins</strong></span> Menu and then access the Google base Maps via the newly appeared <strong>HCMGIS/BaseMap/</strong> Menu.</p>
+<p>Once the background map is visible as shown in Figure <a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#fig:LayersGrouping">4.3</a>, you can zoom in on the area of interest, i.e., the mountain range north-east of Tashkent at the western end of the Tien Shan mountains, where the Chirchik River originates from its tributaries.</p>
+<p>For the political shapefiles, we download the relevant country-level data from the <a href="https://gadm.org/download_country_v3.html" target="_blank">GADM database</a>. GADM provides spatial data for all countries and their first- and second-level subdivisions in shapefile format. It is advisable to download all first-level administrative country border data for the Central Asian Republics. Finally, make sure that you import the correct shapefile data into the corresponding group, i.e. POLITICAL, in the QGIS Folder.</p>
+<p><strong>STEP 4 Download the Digital Elevation Model (DEM) and Administrative Country Shapefiles</strong></p>
+<p>As a next step, select first the DEM Group in the Layers Panel on the left and then load the SRTM Downloader QGIS Plugin. Zoom in on the region of interest including and up to the point where the Chirchik joins the Syr Darya towards the southwest. Open the plugin and then select Set Canvas Extent. Like this, the coordinates of the AoI get automatically filled in.</p>
+<p>If you press ‘Download,’ all the relevant SRTM tiles get downloaded. But first, the plug-in requests you to enter your username and password of your Earthdata login<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. The download progress of the individual DEM tiles can be checked in the individual asset progress bars of the SRTM Downloader plugin. As these tiles are only temporary data, there is no need to specify an explicit Output-Path (unless you want to store them for later use in which case you should choose a dedicated output path).</p>
+<p>After the download, these individual raster tiles should be merged. Select them all in a first step and then merge them with the menu option <span style="color: blue;"><strong>Raster / Miscellaneous / Merge</strong></span>. An important remark is that after merging, the individual tiles can be deleted to safe disk space. Use the <span style="color: blue;"><strong>Mouse Right Click / Remove Layers</strong></span> option to do so.</p>
+<p>To check if all went well, the resulting DEM needs to be recolored. This can be achieved through right clicking on the merged DEM and selecting <span style="color: blue;"><strong>Properties / Symbology</strong></span>. In the Layer Properties Dialogue Box, the Singleband Pseudocolor option should be selected and then a new Colormap created from the catalogue ‘cpt-city.’ You can then choose any colormap that is suitable for topography coloring. One good choice is for example <em>wiki-schwarzwald-cont</em>.</p>
+<p>Finally, you have to reproject the DEM to the selected CRS EPSG:32642.</p>
+<p><strong>STEP 5 Cutting the Area of Interest (AoI), DEM Resampling and Filling Sinks</strong></p>
+<p>The downloaded DEM file is very likely much too big and it would be great to cut it to the rough shape that we are focussing on. We just have to ensure that all of our suspected catchment area is inside the cut out. For this purpose, we add a new shapefile Layer and make sure that its Geometry Type is correctly selected as ‘Polygon.’ Ensure also, that after the creation of the layer, it again is in a Projected CRS (UTM 42N). We can then toggle editing and use the polygon creation and edit tool to roughly outline the basin (AoI) that we are focussing on.</p>
+<p>In order to roughly cutout the AoI, select <span style="color: blue;"><strong>Extraction / Clip Raster by Mask Layer</strong></span> and select the corresponding layers in the user dialog box.</p>
+<div class="figure"><span id="fig:LayersCutting"></span>
+<img src="_bookdown_files/Chap7-Figures/fig_LayersGrouping.png" alt="After" width="1750" />
+<p class="caption">
+Figure 4.4: After
+</p>
+</div>
+<p>Checking the resolution of the downloaded SRTM DEM, we see that cell sizes are roughly 25 meters [m] in horizontal and vertical direction. For larger catchments, it is advisable to resample the DEM to a coarser resolution. There are many ways to do this in QGIS. Here, it is proposed to use the <code>r.resample.stats</code> algorithm so as to decrease the resolution from 25 m to 100 m for later processing.</p>
+<p>Next, one has to ensure that sinks in the DEM are filled. First, use <code>r.fill.dir</code> to fill potential DEM gaps. The algorithm can be found in the Toolbox section once it is enabled in the dropdown menu Processing. Second, use <code>r.watershed</code> to generate the drainage direction and flow accumulation rasters. Note, it is important to specify a ‘Minimum size of exterior watershed basin’ (take 100’000) and also check the option ‘Use positive flow accumulation even for likely underestimates.’ As both, the drainage direction and flow accumulation rasters can be reused later, they should be permanently stored on disk, i.e. in the RIVERS group.</p>
+<p><strong>STEP 6 Basin Delineation</strong></p>
+<p>Once we have produced these rasters as described in <strong>STEP 5</strong>, we load the gauging stations if they are available as shapefiles. For each gauging station, we make sure that the gauge lies at the correct location by overlaying it with the Flow Accumulation Raster Data. If this is not the case, we need to relocate individual gauges so that they are at the correct location. This step is important so as to properly delineate the upstream area of a particular gauge under consideration.</p>
+<p>If gauges are not available as shapefiles, we can easily add a new shapefile layer and then define one or more gauges in that layer for which we want to delineate basin shapes. Ordered by their 5-digit code as administered by the Uzbek Hydrometeorological Service, the important gauges to consider are:</p>
+<ul>
+<li>id = 16275, name = Chinaz Gauge, river Chirchik River, lat = 4’528’236, lon = 479’463</li>
+<li>id = 16279, name = Khudaydod Gauge, river = Chatkal River, lat = 4’596’628, lon = 598’278</li>
+<li>id = 16290, name = Mullala Gauge, river = Pskem River, lat = 597’351, lon = 4’622’724</li>
+<li>id = 16294, name = Virtual Gauge, river = Inflow to Charvak Reservoir, lat = 584’616, lon = 4’609’108</li>
+<li>id = 16298, name = Sidhzak Gauge, river = Nauvalisoy River, lat = 4’618’690, lon = 589’674</li>
+<li>id = 16300, name = Khodizhkent Gauge, river = Ugam River, lat = 4’610’070, lon = 578’612</li>
+</ul>
+<p>Finally, with the algorithm <code>r.water.outlet</code>, and by using the Drainage Direction Map, we map those basins and get individual basin raster maps. To distinguish between the zone of runoff formation and the zone of water distribution and consumption in the larger catchment, we propose to use an artificial Gauge just below the Charvak Reservoir dam to delineate the upstream area and to then use the Geoprocessing Tool <code>Union</code> to merge these two polygons of upstream dam area and Ugam subcatchment into one zone of runoff formation.</p>
+<p>In principle, we are now ready to build a first rough model that does not rely on further reinfinement of the individual subcatchments.</p>
+<p><strong>STEP 7 RIVER DELINEATION (OPTIONAL)</strong></p>
+<p>This step is not strictly required but is simply used to define the topology of the rivers and tributaries properly. However and together with the other relevant layers, the resulting rivers shapefile can be used in the GIS Section of RS MINERVE for modeling. It can be generated easily by selecting the Flow Accumulation raster and the using the raster calculator to generate a binary 0/1 raster for the major stream segments only<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>. While you can experiment with arbitrary cutoff levels, a good value is 10’000. Hence, the raster calculator command to apply is <code>( @FlowAccumulation &gt; 10000 )</code> under the assumption that your flow accumulation layer is named accordingly. The resulting raster can finally be vectorized to arrive at the river network.</p>
+<p>It is advisable to perform a <code>Vector Geometry / Fix Geometries</code> correction on the resulting vector layer as there are likely self-intersections the processing of the layer. Once this is done, the layer can be clipped to the basin extent should this still be required.</p>
+<p><strong>STEP 8 POLYGONIZATION OF SUBCATCHMENTS</strong></p>
+<p>The rainfall-runoff model that we are using accounts for runoff generation processes in different contributing subcatchments. Depending on the average altitude of these, the timing and magnitude of snow- and glacier-melt contributions might highly vary throughout a hydrological year. The same is true within these individual contributing subcatchments where snow melt in lower elevations starts earlier than at higher elevations due to the negative temperature lapse rate. To account for these <em>phased in time</em> processes, the subcatchments can be discretized into elevation bands of a typical width. A sensible choice in the context of the Chirchik River Basin is to use elevation bands of 500 meters spacing and then model the relevant processes for each of these bands as if they were individual contributing smaller separate sub-subcatchments that dewater all to the same place.</p>
+<p>With the QGIS raster to vector option, we polygonize the basins. Check the validity of the polygon with Vector Geometry/Check Validity and correct, where necessary.</p>
+</div>
+<div id="computation-of-elevation-bands" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Computation of Elevation Bands</h3>
+<p>With the reclassification algorithm, we create elevation band polygons based on the DEM layer. First, we smooth the DEM to simplify the elevation bands a bit. Then, we Reclassify by Table the DEM into the desired elevation bands. For the exercise here and given the specific topography of the basin(s) that we are interested in our Case Study, we enter manually altitude bands that are 500 meters apart (see Figure @ref{fig:ReclassificationByTable}). As output, we get a raster map with the individual elevation classes. The prepared DEM elevation levels range from 0 masl to 4’176 masl over the whole catchment. From the</p>
+<div class="figure"><span id="fig:ReclassificationByTable"></span>
+<img src="_bookdown_files/Chap7-Figures/fig_ReclassificationByTable.png" alt="Reclassifying a DEM to make elevation classes that cover a range of 500 meters." width="2170" />
+<p class="caption">
+Figure 4.5: Reclassifying a DEM to make elevation classes that cover a range of 500 meters.
+</p>
+</div>
+<p>Using the elevation band raster map, we use GDAL / Raster Conversion / Polygonize to create the elevation band polygons.</p>
+<p>Polygon clipping with SAGA/Vector Polygon Tool/Polygon Clipping tool to arrive and subcatchment level basins with altitude bands.</p>
+<p>Now, we have derived the required shapefiles. For importing into the rainfall-runoff model in RS MINERVE, we have to now properly prepare their attribute tables. This is a somewhat lengthy and tedious process but will help later greatly in terms of automatic model creation in RS MINERVE.</p>
+<p>RS Minerve requires the following GIS layers for the automatic translation into a rainfall-runoff model, i.e. subbasins.shp, junctions.shp and rivers.shp (see <span class="citation">(<a href="12_references.html#ref-rsminerve_um" role="doc-biblioref">Foehn et al. 2020</a>)</span> for more details).</p>
+<p>The individual feature attributes should be added either at the time of the layer creation or with the field calculator in QGIS.</p>
+<div class="figure">
+<img src="_bookdown_files/Chap7-Figures/fig_RSMINERVE_GIS_Files.png" alt="Default Shapefile layers required in RS MINERVE to simplify the model topology building. See [@rsminerve_um] for more information." width="1911" />
+<p class="caption">
+(#fig:RSMINERVE_GIS)Default Shapefile layers required in RS MINERVE to simplify the model topology building. See <span class="citation">(<a href="12_references.html#ref-rsminerve_um" role="doc-biblioref">Foehn et al. 2020</a>)</span> for more information.
+</p>
+</div>
+<p>//FIXME: Check what to do with this! We note that for water supplies in the rainfall/runoff model, the focus is on the zone of runoff formation.</p>
+<p>//TODO: Add GLIMS global land ice data.</p>
+<p><strong>STEP 9 INTEGRATION OF GLACIER DATA</strong></p>
+<p>For the retrieval of data on land ice, we will utilize GLIMS data.</p>
+</div>
+</div>
+<div id="climate-data" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Climate Data</h2>
+<p>This Section requires the following R packages to be installed. If you are running R in RStudio and some of the packages are not yet installed on your computer, RStudio will warn you and ask, whether you want to have them installed.</p>
+<p>//TODO: Suppress output below</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidyverse </span></span>
+<span id="cb18-2"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb18-3"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># File navigation</span></span>
+<span id="cb18-5"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div>
+<pre><code>## here() starts at /Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Handbook/Applied_Hydrological_Modeling_Bookdown</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copernicus Climate Data Store</span></span>
+<span id="cb20-2"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ecmwfr)</span></code></pre></div>
 <pre><code>## 
-##      This is &#39;ecmwfr&#39; version  1.2.3 . Please respect the terms of use:
+##      This is &#39;ecmwfr&#39; version  1.3.0 . Please respect the terms of use:
 ##       - https://cds.climate.copernicus.eu/disclaimer-privacy
 ##       - https://www.ecmwf.int/en/terms-use</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb9-1"></a><span class="kw">library</span>(keyring)</span>
-<span id="cb9-2"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb9-2"></a></span>
-<span id="cb9-3"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb9-3"></a><span class="co"># Handling netcdf files</span></span>
-<span id="cb9-4"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb9-4"></a><span class="kw">library</span>(ncdf4)</span>
-<span id="cb9-5"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb9-5"></a></span>
-<span id="cb9-6"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb9-6"></a><span class="co"># Spatial data plotting &amp; plotting</span></span>
-<span id="cb9-7"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb9-7"></a><span class="kw">library</span>(rgdal)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(keyring)</span>
+<span id="cb22-2"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Handling netcdf files</span></span>
+<span id="cb22-4"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb22-5"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Spatial data plotting &amp; plotting</span></span>
+<span id="cb22-7"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgdal)</span></code></pre></div>
 <pre><code>## Loading required package: sp</code></pre>
-<pre><code>## rgdal: version: 1.5-12, (SVN revision 1018)
+<pre><code>## rgdal: version: 1.5-18, (SVN revision 1082)
 ## Geospatial Data Abstraction Library extensions to R successfully loaded
-## Loaded GDAL runtime: GDAL 2.4.2, released 2019/06/28
-## Path to GDAL shared files: /Users/tobiassiegfried/Library/Application Support/renv/cache/v5/R-4.0/x86_64-apple-darwin17.0/rgdal/1.5-12/016465080382049b80e24de145c62474/rgdal/gdal
-## GDAL binary built with GEOS: FALSE 
-## Loaded PROJ runtime: Rel. 5.2.0, September 15th, 2018, [PJ_VERSION: 520]
-## Path to PROJ shared files: /Users/tobiassiegfried/Library/Application Support/renv/cache/v5/R-4.0/x86_64-apple-darwin17.0/rgdal/1.5-12/016465080382049b80e24de145c62474/rgdal/proj
-## Linking to sp version:1.4-2
-## Overwritten PROJ_LIB was /Users/tobiassiegfried/Library/Application Support/renv/cache/v5/R-4.0/x86_64-apple-darwin17.0/rgdal/1.5-12/016465080382049b80e24de145c62474/rgdal/proj</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb12-1"></a><span class="kw">library</span>(raster)</span></code></pre></div>
+## Loaded GDAL runtime: GDAL 3.1.1, released 2020/06/22
+## Path to GDAL shared files: /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rgdal/gdal
+## GDAL binary built with GEOS: TRUE 
+## Loaded PROJ runtime: Rel. 6.3.1, February 10th, 2020, [PJ_VERSION: 631]
+## Path to PROJ shared files: /Library/Frameworks/R.framework/Versions/4.0/Resources/library/rgdal/proj
+## Linking to sp version:1.4-4
+## To mute warnings of possible GDAL/OSR exportToProj4() degradation,
+## use options(&quot;rgdal_show_exportToProj4_warnings&quot;=&quot;none&quot;) before loading rgdal.</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;raster&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:dplyr&#39;:
@@ -262,15 +439,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following object is masked from &#39;package:tidyr&#39;:
 ## 
 ##     extract</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb16-1"></a><span class="kw">library</span>(rgeos)</span></code></pre></div>
-<pre><code>## rgeos version: 0.5-3, (SVN revision 634)
-##  GEOS runtime version: 3.7.2-CAPI-1.11.2 
-##  Linking to sp version: 1.4-1 
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgeos)</span></code></pre></div>
+<pre><code>## rgeos version: 0.5-5, (SVN revision 640)
+##  GEOS runtime version: 3.8.1-CAPI-1.13.3 
+##  Linking to sp version: 1.4-2 
 ##  Polygon checking: TRUE</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb18-1"></a><span class="kw">library</span>(sp)</span>
-<span id="cb18-2"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb18-2"></a><span class="kw">library</span>(sf)</span></code></pre></div>
-<pre><code>## Linking to GEOS 3.7.2, GDAL 2.4.2, PROJ 5.2.0</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb20-1"></a><span class="kw">library</span>(rasterVis)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sp)</span>
+<span id="cb31-2"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
+<pre><code>## Linking to GEOS 3.8.1, GDAL 3.1.1, PROJ 6.3.1</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rasterVis)</span></code></pre></div>
 <pre><code>## Loading required package: lattice</code></pre>
 <pre><code>## Loading required package: latticeExtra</code></pre>
 <pre><code>## 
@@ -278,30 +455,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
 ## 
 ##     layer</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb25-1"></a><span class="kw">library</span>(RColorBrewer)</span></code></pre></div>
-</div>
-<div id="geospatial-data" class="section level2">
-<h2><span class="header-section-number">4.1</span> Geospatial Data</h2>
-</div>
-<div id="climate-data" class="section level2">
-<h2><span class="header-section-number">4.2</span> Climate Data</h2>
-<div id="access-select-and-download-era5-reanalysis-data" class="section level3">
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span></code></pre></div>
+<div id="access-select-and-download-era5-reanalysis-data" class="section level3" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Access, Select and Download ERA5 Reanalysis Data</h3>
-<p>For the climate data to be used in the modeling approach, we use ERA5 data from the European Center for Medium-Range Weather Forecasts (ECMWF, &lt;www.ecmwf.int&gt;). ERA5, the successor to ERA-Interim, provides global, hourly estimates of atmospheric variables, at a horizontal resolution of 31 km and 137 vertical levels from the surface to 0.01 hPa <span class="citation">(Dee D. <a href="#ref-era5-desc" role="doc-biblioref">2020</a>)</span>. ERA5 presently extends back to 1979 but will ultimately be extended back to 1950<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
+<p>For the climate data to be used in the modeling approach, we use ERA5 data from the European Center for Medium-Range Weather Forecasts (ECMWF, &lt;www.ecmwf.int&gt;). ERA5, the successor to ERA-Interim, provides global, hourly estimates of atmospheric variables, at a horizontal resolution of 31 km and 137 vertical levels from the surface to 0.01 hPa <span class="citation">(<a href="12_references.html#ref-era5-desc" role="doc-biblioref">Dee D. 2020</a>)</span>. ERA5 presently extends back to 1979 but will ultimately be extended back to 1950<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>.</p>
 <p>The ERA5 data is available via the Copernicus Climate Store at <a href="https://cds.climate.copernicus.eu" class="uri">https://cds.climate.copernicus.eu</a>. However, before we can access, select and download it there, each user has to register with a personal account in the store. For this purpose, the user should navigate to the website and register via the Login/Register/NewAccount Menu. You will receive an email once your account is ready.</p>
 <p>Log in to your account and go to your user profile where you find your user ID and API key. The relevant information should be copied and into the relevant places of the code chunk below and then be executed.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb26-1"></a><span class="co">#Note: replace the UID and key strings below with the proper user&#39;s information in your Copernicus Climate Data Store account.</span></span>
-<span id="cb26-2"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb26-2"></a>UID &lt;-<span class="st"> &#39;UID&#39;</span></span>
-<span id="cb26-3"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb26-3"></a>API_key &lt;-<span class="st"> &#39;key&#39;</span></span>
-<span id="cb26-4"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb26-4"></a><span class="co">#This function links your password and user id for later steps</span></span>
-<span id="cb26-5"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb26-5"></a><span class="kw">wf_set_key</span>(UID, API_key, <span class="st">&#39;cds&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note: replace the UID and key strings below with the proper user&#39;s information in your Copernicus Climate Data Store account.</span></span>
+<span id="cb39-2"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb39-2" aria-hidden="true" tabindex="-1"></a>UID <span class="ot">&lt;-</span> <span class="st">&#39;UID&#39;</span></span>
+<span id="cb39-3"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb39-3" aria-hidden="true" tabindex="-1"></a>API_key <span class="ot">&lt;-</span> <span class="st">&#39;key&#39;</span></span>
+<span id="cb39-4"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co">#This function links your password and user id for later steps</span></span>
+<span id="cb39-5"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wf_set_key</span>(UID, API_key, <span class="st">&#39;cds&#39;</span>)</span></code></pre></div>
 <p>//TODO: output still showing. How to deal with it?</p>
 <p>If all worked well, you will get the following confirmation in the console:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb27-1"></a><span class="co">## User UID for cds service added successfully</span></span></code></pre></div>
-<p>On the Copernicus website, make sure that you are logged into your account and the navigate to Datasets. There, search for the Product ‘ERA5-Land monthly averaged data from 1981 to present’ and select it<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. You end up on the products homepage where you can get more information and download the data via a form where you select the product’s type, variables, the years, months and time of day, the geographical area and, finally, the download file format of interest. Please select the following:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="do">## User UID for cds service added successfully</span></span></code></pre></div>
+<p>On the Copernicus website, make sure that you are logged into your account and the navigate to Datasets. There, search for the Product ‘ERA5-Land monthly averaged data from 1981 to present’ and select it<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>. You end up on the products homepage where you can get more information and download the data via a form where you select the product’s type, variables, the years, months and time of day, the geographical area and, finally, the download file format of interest. Please select the following:</p>
 <ul>
-<li>Product type: Monthly averaged reanalysis</li>
-<li>Variable:
+<li><p>Product type: Monthly averaged reanalysis</p></li>
+<li><p>Variable:</p>
 <ul>
 <li>Temperature: 2 m Temperature</li>
 <li>Lakes: NA</li>
@@ -312,77 +483,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Wind, Pressure and Precipitation: Total precipitation</li>
 <li>Vegetation: NA</li>
 </ul></li>
-<li>Year: Select all</li>
-<li>Month: Select all</li>
-<li>Time: 00:00</li>
-<li>Geographical area: Sub-region extraction (West = 65, East = 80, South = 35, North = 45)</li>
-<li>Format: NetCDF (experimental)</li>
+<li><p>Year: Select all</p></li>
+<li><p>Month: Select all</p></li>
+<li><p>Time: 00:00</p></li>
+<li><p>Geographical area: Sub-region extraction (West = 65, East = 80, South = 35, North = 45)</p></li>
+<li><p>Format: NetCDF (experimental)</p></li>
 </ul>
-<p>Accept the Terms of use and press the ‘Show API request button’. You should see the following Python request now as shown in Figure <a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#fig:Copernicus-API-Request">4.1</a>.</p>
+<p>Accept the Terms of use and press the ‘Show API request button.’ You should see the following Python request now as shown in Figure <a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#fig:Copernicus-API-Request">4.6</a>.</p>
 <div class="figure"><span id="fig:Copernicus-API-Request"></span>
 <img src="_bookdown_files/Chap4-Figures/fig_Copernicus_API_request" alt="Screenshot showing the Copernicus Data Store API request that can be copied and posted into RStudio for the convenient download of the data there."  />
 <p class="caption">
-Figure 4.1: Screenshot showing the Copernicus Data Store API request that can be copied and posted into RStudio for the convenient download of the data there.
+Figure 4.6: Screenshot showing the Copernicus Data Store API request that can be copied and posted into RStudio for the convenient download of the data there.
 </p>
 </div>
 <p>The request should be copied and pasted into RStudio into your current .Rmd file there. Select the python request with the cursor and choose ‘ECMWFR/Python to List’ under the Addins Menu. The python request will then automatically be translated into a an r command. Please check that everything is ok by comparing it with a correct request as shown below. Also, please note that we have changed the target file name by specifying <code>target = reanalysis-era5-land-monthly-means_CentralAsia.nc</code>.</p>
 <p>In a final step, the user can then download the data with the <code>wf_request()</code> function.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-1"></a><span class="co"># Here is is the resulting request in R language </span></span>
-<span id="cb28-2"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-2"></a>request &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;dataset_short_name&quot;</span> =<span class="st"> &quot;reanalysis-era5-land-monthly-means&quot;</span>,</span>
-<span id="cb28-3"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-3"></a>  <span class="dt">format =</span> <span class="st">&quot;netcdf&quot;</span>,</span>
-<span id="cb28-4"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-4"></a>  <span class="dt">product_type =</span> <span class="st">&quot;monthly_averaged_reanalysis&quot;</span>,</span>
-<span id="cb28-5"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-5"></a>  <span class="dt">variable =</span> <span class="kw">c</span>(<span class="st">&#39;2m_temperature&#39;</span>, <span class="st">&#39;potential_evaporation&#39;</span>, <span class="st">&#39;total_precipitation&#39;</span>),</span>
-<span id="cb28-6"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-6"></a>  <span class="dt">year =</span>  <span class="kw">c</span>(<span class="st">&#39;1981&#39;</span>, <span class="st">&#39;1982&#39;</span>, <span class="st">&#39;1983&#39;</span>,</span>
-<span id="cb28-7"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-7"></a>            <span class="st">&#39;1984&#39;</span>, <span class="st">&#39;1985&#39;</span>, <span class="st">&#39;1986&#39;</span>,</span>
-<span id="cb28-8"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-8"></a>            <span class="st">&#39;1987&#39;</span>, <span class="st">&#39;1988&#39;</span>, <span class="st">&#39;1989&#39;</span>,</span>
-<span id="cb28-9"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-9"></a>            <span class="st">&#39;1990&#39;</span>, <span class="st">&#39;1991&#39;</span>, <span class="st">&#39;1992&#39;</span>,</span>
-<span id="cb28-10"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-10"></a>            <span class="st">&#39;1993&#39;</span>, <span class="st">&#39;1994&#39;</span>, <span class="st">&#39;1995&#39;</span>,</span>
-<span id="cb28-11"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-11"></a>            <span class="st">&#39;1996&#39;</span>, <span class="st">&#39;1997&#39;</span>, <span class="st">&#39;1998&#39;</span>,</span>
-<span id="cb28-12"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-12"></a>            <span class="st">&#39;1999&#39;</span>, <span class="st">&#39;2000&#39;</span>, <span class="st">&#39;2001&#39;</span>,</span>
-<span id="cb28-13"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-13"></a>            <span class="st">&#39;2002&#39;</span>, <span class="st">&#39;2003&#39;</span>, <span class="st">&#39;2004&#39;</span>,</span>
-<span id="cb28-14"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-14"></a>            <span class="st">&#39;2005&#39;</span>, <span class="st">&#39;2006&#39;</span>, <span class="st">&#39;2007&#39;</span>,</span>
-<span id="cb28-15"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-15"></a>            <span class="st">&#39;2008&#39;</span>, <span class="st">&#39;2009&#39;</span>, <span class="st">&#39;2010&#39;</span>,</span>
-<span id="cb28-16"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-16"></a>            <span class="st">&#39;2011&#39;</span>, <span class="st">&#39;2012&#39;</span>, <span class="st">&#39;2013&#39;</span>,</span>
-<span id="cb28-17"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-17"></a>            <span class="st">&#39;2014&#39;</span>, <span class="st">&#39;2015&#39;</span>, <span class="st">&#39;2016&#39;</span>,</span>
-<span id="cb28-18"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-18"></a>            <span class="st">&#39;2017&#39;</span>, <span class="st">&#39;2018&#39;</span>, <span class="st">&#39;2019&#39;</span>,</span>
-<span id="cb28-19"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-19"></a>            <span class="st">&#39;2020&#39;</span>),</span>
-<span id="cb28-20"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-20"></a>  <span class="dt">month =</span> <span class="kw">c</span>(<span class="st">&quot;01&quot;</span>, <span class="st">&quot;02&quot;</span>, <span class="st">&quot;03&quot;</span>, <span class="st">&quot;04&quot;</span>, <span class="st">&quot;05&quot;</span>, <span class="st">&quot;06&quot;</span>, <span class="st">&quot;07&quot;</span>, <span class="st">&quot;08&quot;</span>, <span class="st">&quot;09&quot;</span>, <span class="st">&quot;10&quot;</span>, <span class="st">&quot;11&quot;</span>, <span class="st">&quot;12&quot;</span>),</span>
-<span id="cb28-21"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-21"></a>  <span class="dt">time =</span> <span class="st">&quot;00:00&quot;</span>,</span>
-<span id="cb28-22"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-22"></a>  <span class="dt">area =</span> <span class="st">&quot;45/65/35/80&quot;</span>,</span>
-<span id="cb28-23"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-23"></a>  <span class="co">#dataset = &quot;reanalysis-era5-land-monthly-means&quot;,</span></span>
-<span id="cb28-24"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-24"></a>  <span class="dt">target =</span> <span class="st">&quot;reanalysis-era5-land-monthly-means_CentralAsia.nc&quot;</span></span>
-<span id="cb28-25"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-25"></a>)</span>
-<span id="cb28-26"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-26"></a></span>
-<span id="cb28-27"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-27"></a><span class="co"># Download data as netcdf file and store it in the directory where you are running this script, this returns the path to the file </span></span>
-<span id="cb28-28"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-28"></a>ncfilelink &lt;-<span class="st"> </span><span class="kw">wf_request</span>(<span class="dt">user =</span> UID,</span>
-<span id="cb28-29"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-29"></a>                     <span class="dt">request =</span> request,</span>
-<span id="cb28-30"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-30"></a>                     <span class="dt">transfer =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb28-31"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-31"></a>                     <span class="dt">path =</span> <span class="kw">here</span>(),</span>
-<span id="cb28-32"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb28-32"></a>                     <span class="dt">verbose =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here is is the resulting request in R language </span></span>
+<span id="cb41-2"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-2" aria-hidden="true" tabindex="-1"></a>request <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;dataset_short_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;reanalysis-era5-land-monthly-means&quot;</span>,</span>
+<span id="cb41-3"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">format =</span> <span class="st">&quot;netcdf&quot;</span>,</span>
+<span id="cb41-4"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">product_type =</span> <span class="st">&quot;monthly_averaged_reanalysis&quot;</span>,</span>
+<span id="cb41-5"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable =</span> <span class="fu">c</span>(<span class="st">&#39;2m_temperature&#39;</span>, <span class="st">&#39;potential_evaporation&#39;</span>, <span class="st">&#39;total_precipitation&#39;</span>),</span>
+<span id="cb41-6"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span>  <span class="fu">c</span>(<span class="st">&#39;1981&#39;</span>, <span class="st">&#39;1982&#39;</span>, <span class="st">&#39;1983&#39;</span>,</span>
+<span id="cb41-7"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1984&#39;</span>, <span class="st">&#39;1985&#39;</span>, <span class="st">&#39;1986&#39;</span>,</span>
+<span id="cb41-8"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1987&#39;</span>, <span class="st">&#39;1988&#39;</span>, <span class="st">&#39;1989&#39;</span>,</span>
+<span id="cb41-9"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1990&#39;</span>, <span class="st">&#39;1991&#39;</span>, <span class="st">&#39;1992&#39;</span>,</span>
+<span id="cb41-10"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1993&#39;</span>, <span class="st">&#39;1994&#39;</span>, <span class="st">&#39;1995&#39;</span>,</span>
+<span id="cb41-11"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1996&#39;</span>, <span class="st">&#39;1997&#39;</span>, <span class="st">&#39;1998&#39;</span>,</span>
+<span id="cb41-12"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1999&#39;</span>, <span class="st">&#39;2000&#39;</span>, <span class="st">&#39;2001&#39;</span>,</span>
+<span id="cb41-13"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2002&#39;</span>, <span class="st">&#39;2003&#39;</span>, <span class="st">&#39;2004&#39;</span>,</span>
+<span id="cb41-14"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2005&#39;</span>, <span class="st">&#39;2006&#39;</span>, <span class="st">&#39;2007&#39;</span>,</span>
+<span id="cb41-15"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2008&#39;</span>, <span class="st">&#39;2009&#39;</span>, <span class="st">&#39;2010&#39;</span>,</span>
+<span id="cb41-16"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2011&#39;</span>, <span class="st">&#39;2012&#39;</span>, <span class="st">&#39;2013&#39;</span>,</span>
+<span id="cb41-17"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2014&#39;</span>, <span class="st">&#39;2015&#39;</span>, <span class="st">&#39;2016&#39;</span>,</span>
+<span id="cb41-18"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2017&#39;</span>, <span class="st">&#39;2018&#39;</span>, <span class="st">&#39;2019&#39;</span>,</span>
+<span id="cb41-19"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2020&#39;</span>),</span>
+<span id="cb41-20"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">month =</span> <span class="fu">c</span>(<span class="st">&quot;01&quot;</span>, <span class="st">&quot;02&quot;</span>, <span class="st">&quot;03&quot;</span>, <span class="st">&quot;04&quot;</span>, <span class="st">&quot;05&quot;</span>, <span class="st">&quot;06&quot;</span>, <span class="st">&quot;07&quot;</span>, <span class="st">&quot;08&quot;</span>, <span class="st">&quot;09&quot;</span>, <span class="st">&quot;10&quot;</span>, <span class="st">&quot;11&quot;</span>, <span class="st">&quot;12&quot;</span>),</span>
+<span id="cb41-21"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="st">&quot;00:00&quot;</span>,</span>
+<span id="cb41-22"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">area =</span> <span class="st">&quot;45/65/35/80&quot;</span>,</span>
+<span id="cb41-23"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">#dataset = &quot;reanalysis-era5-land-monthly-means&quot;,</span></span>
+<span id="cb41-24"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">target =</span> <span class="st">&quot;reanalysis-era5-land-monthly-means_CentralAsia.nc&quot;</span></span>
+<span id="cb41-25"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-26"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-27"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Download data as netcdf file and store it in the directory where you are running this script, this returns the path to the file </span></span>
+<span id="cb41-28"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-28" aria-hidden="true" tabindex="-1"></a>ncfilelink <span class="ot">&lt;-</span> <span class="fu">wf_request</span>(<span class="at">user =</span> UID,</span>
+<span id="cb41-29"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-29" aria-hidden="true" tabindex="-1"></a>                     <span class="at">request =</span> request,</span>
+<span id="cb41-30"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-30" aria-hidden="true" tabindex="-1"></a>                     <span class="at">transfer =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb41-31"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-31" aria-hidden="true" tabindex="-1"></a>                     <span class="at">path =</span> <span class="fu">here</span>(),</span>
+<span id="cb41-32"><a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#cb41-32" aria-hidden="true" tabindex="-1"></a>                     <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;moved temporary file to -&gt; /.../reanalysis-era5-land-monthly-means_CentralAsia.nc&quot;</code></pre>
 <pre><code>## [1] &quot;request purged from queue!&quot;</code></pre>
-<p>Some Sources on NetCDF and raster files:
-Here are some good resources to get you started: <a href="https://pjbartlein.github.io/REarthSysSci/index.html" class="uri">https://pjbartlein.github.io/REarthSysSci/index.html</a> and
-<a href="https://cmerow.github.io/RDataScience/05_Raster.html" class="uri">https://cmerow.github.io/RDataScience/05_Raster.html</a>.</p>
+<p>Some Sources on NetCDF and raster files: Here are some good resources to get you started: <a href="https://pjbartlein.github.io/REarthSysSci/index.html" class="uri">https://pjbartlein.github.io/REarthSysSci/index.html</a> and <a href="https://cmerow.github.io/RDataScience/05_Raster.html" class="uri">https://cmerow.github.io/RDataScience/05_Raster.html</a>.</p>
 </div>
 </div>
-<div id="hydrological-data" class="section level2">
+<div id="hydrological-data" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Hydrological Data</h2>
 <p>//TODO: Show added value from consulting data from altimetry <a href="https://dahiti.dgfi.tum.de/en/map/" class="uri">https://dahiti.dgfi.tum.de/en/map/</a></p>
+<p>Maybe show some analysis in KNMI CLimateExplorer?</p>
 
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-era5-desc">
-<p>Dee D., National Center for Atmospheric Research Staff. 2020. “The Climate Data Guide: ERA5 Atmospheric Reanalysis.” <a href="https://climatedataguide.ucar.edu/climate-data/era5-atmospheric-reanalysis">https://climatedataguide.ucar.edu/climate-data/era5-atmospheric-reanalysis</a>.</p>
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="3">
-<li id="fn3"><p>Although this is an extraordinary product, users still need to be aware of the limitations of reanalysis; two of the major ones are that non-physical trends and variability may be present in the record due to changes in the observing system, and that the climatologies of some variables, like surface energy fluxes, are not well represented.<a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="fn4"><p>The direct link is <a href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land-monthly-means?tab=form" class="uri">https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land-monthly-means?tab=form</a>.<a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<ol start="2">
+<li id="fn2"><p>Here, we largely follow a blog post by Craig Dsouza where the process of catchment delineation is nicely described (see this <a href="https://craigdsouza.github.io/blog/Watershed-Delineation-QGIS-1" target="_blank">link</a> for more information)<a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Of course, this grouping is just a suggestion and the user is free to organize spatial assets according to his/her own liking<a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>If you do not have a login, you can create one at (<a href="https://urs.earthdata.nasa.gov//users/new" class="uri">https://urs.earthdata.nasa.gov//users/new</a>){target=“_blank”}<a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Remember, the flow accumulation matrix entries correspond to the accumulated number of cells flowing into that particular cell (assuming equal weights for the calculation)<a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>Although this is an extraordinary product, users still need to be aware of the limitations of reanalysis; two of the major ones are that non-physical trends and variability may be present in the record due to changes in the observing system, and that the climatologies of some variables, like surface energy fluxes, are not well represented.<a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>The direct link is <a href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land-monthly-means?tab=form" class="uri">https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land-monthly-means?tab=form</a>.<a href="06_PII_Retrieval_Analysis_Geo_Hydro_Data.html#fnref7" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -390,7 +558,7 @@ Here are some good resources to get you started: <a href="https://pjbartlein.git
           </div>
         </div>
       </div>
-<a href="05_Irrigation_CentralAsia.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="05_CaseStudy_ChirchikRiver.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="07_FirstSteps-ManualWaterBalance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -433,7 +601,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"download": ["applied-hydrological-modeling-central-asia.pdf", "applied-hydrological-modeling-central-asia.epub"],
 "toc": {
 "collapse": "subsection"
 }

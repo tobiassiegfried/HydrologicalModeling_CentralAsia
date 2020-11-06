@@ -416,10 +416,3 @@ calibration_tbl %>%
   ) %>% 
   plot_modeltime_forecast()
 ```
-
-# Make Book
-
-```{r}
-options(knitr.duplicate.label = "allow")
-bookdown:::serve_book()
-```
