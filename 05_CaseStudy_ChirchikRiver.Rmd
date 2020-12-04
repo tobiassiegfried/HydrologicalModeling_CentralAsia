@@ -1,35 +1,14 @@
 # Case Study - Chirchik River Basin {#CaseStudyChirchikRiver}
 
-## Prerequisites {.unnumbered}
-
-This is the first 'practical' Chapter of the book and comes with software requirements. For the analysis of the available data we use R [@R-2013]. R is a computer language and environment for data analysis, statistical computation and data visualization. It can be downloaded at \<<https://www.r-project.org>\>. Together with R, we are using RStudio as the IDE [@RStudio-2020].
-
-Some R software packages used in this Chapter need to be installed so that the analyses can be done as shown there. The installation can be done in the following way:
-
-```{r,echo=FALSE,eval=FALSE}
-# Core Libraries
-install.packages('tidyverse')    # Meta - dplyr, ggplot2, purrr, tidyr, stringr, forcats
-install.packages('lubridate')    # date and time
-install.packages('timetk')       # Time series data wrangling, visualization and preprocessing
-
-# Extras
-if (!require(devtools)) install.packages("devtools", repos = "http://cran.us.r-project.org")
-install_github("boxuancui/DataExplorer", ref="develop") # Simplifies and automates EDA process and reporting
-
-# Data
-devtools::install_github("hydrosolutions/riversCentralAsia")
-```
-
-The packages can then be loaded and made available in your R session.
-
-```{r,message=FALSE}
+```{r,message=FALSE,echo=FALSE}
 library(devtools)
 library(tidyverse)
 library(lubridate)    
-library(timetk)       
-library(DataExplorer) 
+library(timetk)
+install_github("hydrosolutions/riversCentralAsia")
 library(riversCentralAsia)
 ```
+
 
 ## Overview
 
@@ -43,9 +22,9 @@ Below the Charvak hydroelectric power station, the river water gets diverted in 
 knitr::include_graphics('_bookdown_files/Chap6-Figures/ChirchikRiverBasin_Annotated_lr.jpg')
 ```
 
-Figure \@ref(fig:ChirchikRiverOverview) shows a comprehensive overview of the Chirchik river basin and its tributaries as well as relevant modern gauging stations. Gauges are indicated with the semi-round shapes and the corresponding five digit official code as utilized by the Uzbek Hydrometeorological Service (HydroMet) indicated. The virtual gauge is not a real gauge in the sense that reservoir inflow is calculated from all contributing tributary flow components, i.e. Chatkal river, Pskem river, Nauvalisoy and Koksu Rivers.
+Figure \@ref(fig:ChirchikRiverOverview) shows a comprehensive overview of the Chirchik river basin and its tributaries as well as relevant modern gauging stations. Gauges are indicated with the semi-round shapes and the corresponding five digit official code as utilized by the Uzbek Hydrometeorological Service (HMS) indicated. The virtual gauge is not a real gauge in the sense that reservoir inflow is calculated from all contributing tributary flow components, i.e. Chatkal river, Pskem river, Nauvalisoy and Koksu Rivers.
 
-Koksu however, with a basin area of 392 km$^2$, is ungauged. So how does the HydroMet quantify its runoff contribution?
+Koksu however, with a basin area of 392 km$^2$, is ungauged. So how does the Uzbek HMS quantify its runoff contribution?
 
 ## Discharge Estimation in Ungauged Subcatchments
 
@@ -60,13 +39,15 @@ $$
 We show the procedure here. After loading the `riversCentralAsia` Package as shown above, the relevant daily data from 01/01/1965 - 31/12/1967 can be loaded.
 
 ```{r}
-KoksuDischarge # load Data
+KoksuDischargeDerivation <- riversCentralAsia:::KoksuDischargeDerivation # load Data
 ```
+
+Please not that, unless otherwise mentioned, all data from discharge meteorological stations utilized in this book are from the Uzbek HMS.
 
 The data is stored in *long format*, meaning that measurements in time and for the two gauging stations are just stacked on top of each other in one long table. For the purpose here, we prefer the *wide format* where we have one date column with unique dates and then the data listed for each station in corresponding columns.
 
 ```{r}
-KoksuDischarge_wide <- KoksuDischarge %>% pivot_wider(id_cols = 'date',values_from = 'data',names_from = "code")
+KoksuDischarge_wide <- KoksuDischargeDerivation %>% pivot_wider(id_cols = 'date',values_from = 'data',names_from = "code")
 KoksuDischarge_wide
 ```
 
@@ -124,7 +105,7 @@ data %>% filter(type=='Q') %>% group_by(type,code,station,resolution) %>% plot_t
 
 The data available are near complete historic records with the discharge measurments at Gazalkent gauge starting already in 1900. The monthly record of the station is shown here in full. You can zoom into the time series and investigate it in detail.
 
-```{r}
+```{r,message=FALSE}
 data %>% filter(code=='16262') %>% plot_time_series(date,data,
                                                     .interactive = TRUE,
                                                     .smooth = FALSE,

@@ -1,0 +1,1008 @@
+---
+title: "_09_scratch"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Chapter 9 Scratch File
+
+## Libraries & Data
+
+```{r}
+# Libraries
+library(devtools)
+library(tidyverse)
+library(lubridate)
+library(timetk)
+library(DataExplorer)
+library(riversCentralAsia)
+
+# Hot Start Data Loading
+fLoc <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Handbook_Scratch_Data/'
+#load the data ...
+data_decs_wide_tbl <- readRDS(paste(fLoc,"data_decs_wide_tbl.Rds",sep=""))
+# and just create the corresponding long-form of it for later use.
+data_decs_long_tbl <- data_decs_wide_tbl %>% pivot_longer('Q16279':'dec')
+```
+
+
+
+## Preparatory Steps: Data Analysis & Manipulation
+
+Any type of modeling requires a thorough understanding of the system under consideration and the data at hand. This is the focus of the current Section.
+
+### Discharge Data
+
+In the following, we will work with decadal discharge data from the two main tributaries, i.e. the Chatkal and Pskem rivers. The goal will to make empirical models of the discharge of these rivers and predict discharge into the future and finally, to assess the prediction with common performance metrics.
+
+```{r}
+ChirchikRiverBasin # load data
+data <- ChirchikRiverBasin
+q_dec_tbl <- data %>% filter(code == '16279' | code == '16290') # Note for the new name of the object, we choose to add periodicity (_dec_) and data type (_tbl for tibble/dataframe) to the data name. This just helps to stay organized and is good practice in R programming.
+```
+
+We can get rid of all auxiliary information that is not needed at this stage. For the moment, we only keep the date tags, the data (obviously) and the long-term decadal discharge norm data. All these data are needed to fill gaps in the time series.
+
+```{r}
+q_dec_tbl <- q_dec_tbl %>% dplyr::select(date,data,norm,code,type)
+q_dec_tbl
+```
+
+It is advisable to check at this stage for missing data in time series and to fill gaps where present. In all of the following, we use the powerful data manipulation and visualization techniques for time series data as provided by the `timetk` package.
+
+A simple visualization of the two time series indeed reveals some missing data in the 1940ies.
+
+```{r,warning=FALSE}
+q_dec_tbl %>% plot_time_series(date,data,
+                               .facet_vars  = code,
+                               .smooth      = FALSE,
+                               .interactive = FALSE,
+                               .x_lab       = "year",
+                               .y_lab       = "m^3/s",
+                               .title       = "Chatkal and Pskem Rivers Raw Discharge Data"
+                               )
+```
+
+This is also confirmed by the warning that the function `timetk::plot_time_series()` throws (suppressed here). Statistics of the missing data can be easily obtained and we can do this analysis for each discharge station separately.
+
+```{r,message=FALSE}
+q_dec_tbl %>% group_by(code) %>% 
+  summarize(n.na = sum(is.na(data)), na.perc = n.na/n()*100)
+q_dec_tbl %>% plot_missing() # plot_missing is from the DataExplorer Package
+```
+
+Summarizing the number of observation with missing data reveals 15 data points for station 16279 (0.5 % of total record length) and 39 for station 16290 (1.3 % of total record length). As there are only very few gaps in the existing time series, we use a simple method to fill these. Wherever there is a gap, we fill in the corresponding decadal norm as stored in the *norm* column in the object `q_dec_tbl`. The visualization of the results confirms that our simple gap filling approach is satisfactory.
+
+```{r}
+q_dec_filled_tbl <- q_dec_tbl
+
+q_dec_filled_tbl$data[is.na(q_dec_filled_tbl$data)] = 
+  q_dec_filled_tbl$norm[is.na(q_dec_filled_tbl$data)] # Gap filling step
+
+q_dec_filled_tbl %>% plot_time_series(date, data, 
+                                      .facet_vars  = code, 
+                                      .smooth      = FALSE,
+                                      .interactive = FALSE,
+                                      .x_lab       = "year",
+                                      .y_lab       = "m^3/s",
+                                      .title       = "Gap filled discharge time series"
+                                      )
+```
+
+A note of caution here. Because this simple gap filling technique reduces variance in the time series, it should only be used when the percentage of missing data is low. As will be discussed in the next Section \@ref(Chap9_MetData) below, better techniques have to be utilized when there exist substantial gaps.
+
+Finally, we discard the norm data which we used for gap filling of the missing discharge data and convert the data to wide format to add to it meteorological data in the next Section.
+
+```{r}
+
+q_dec_filled_wide_tbl <- q_dec_filled_tbl %>% # again we use the name convention of objects as introduced above
+  mutate(code = paste0('Q',code %>% as.character())) %>% # Since we convert everything to long form, we want to keep information as compact as possible. Hence, we paste the type identifier (Q for discharge here) in from of the 5 digit station code.
+  select(date,data,code) %>% # ... and then ditch all the remainder information
+  pivot_wider(names_from = "code",values_from = "data") # in order to pivot to the long format, we need to make a small detour via the wide format.
+
+q_dec_filled_long_tbl <- q_dec_filled_wide_tbl %>% pivot_longer(c('Q16279','Q16290')) # and then pivot back
+q_dec_filled_wide_tbl
+```
+
+As a result, we now have a complete record of decadal discharge data for the two main tributaries to the Chirchik river from the beginning of 1932 until and including 2015, i.e. 84 years. The same type of preparatory analysis will now be carried out for the meteorological data.
+
+### Meteorological Data {#Chap9_MetData}
+
+Here, we use precipitation and temperature data from Pskem (38462), Chatkal (38471) and Charvak Reservoir (38464) Meteorological Stations (see \@ref(CaseStudyChirchikRiver) for more information on these stations). We also have data from Oygaing station (Station Code 38339) but the record only starts in 1962 and the time resolution is monthly. Therefore, we take this station into account here for the time being.
+
+We start with precipitation and plot the available data.
+
+```{r,warning=FALSE,message=FALSE}
+p_dec_tbl <- data %>% filter(type=="P" & code!="38339") 
+p_dec_tbl %>% plot_time_series(date,data,
+                               .facet_vars  = code,
+                               .interactive = TRUE,
+                               .smooth      = FALSE,
+                               .title       = "Raw Precipitation Data",
+                               .y_lab       = "mm/decade",
+                               .x_lab       = "year"
+                               )
+```
+
+The precipitation data from these 3 stations shows some significant data gaps. The Chatkal Meteorological Station that is located in Kyrgyzstan apparently did not work in the post-transition years and continuous measurements were only resumed there in 1998.
+
+Let us see what happens if we were to use the same simple gap filling technique that we introduced above.
+
+```{r,message=FALSE,warning=FALSE}
+p_dec_filled_tbl <- p_dec_tbl
+p_dec_filled_tbl$data[is.na(p_dec_filled_tbl$data)] = p_dec_filled_tbl$norm[is.na(p_dec_filled_tbl$data)]
+p_dec_filled_tbl %>% plot_time_series(date,data,
+                                      .facet_vars  = code,
+                                      .interactive = TRUE,
+                                      .smooth      = FALSE,
+                                      .title       = "Precipitation Data (gap filled with norms)",
+                                      .y_lab       = "mm/decade",
+                                      .x_lab       = "year"
+                                      )
+
+rm(p_dec_filled_tbl) # Since we are not satisfied with the result, we remove the object again!
+```
+
+The close inspection of the significant data gap in the 1990ies at Station 38741 (tip: play around and zoom into the time series) and comparing the resulting gap filled timeseries reveals that our technique of gap filling with long-term norms is not suitable for this type of data and the significant size of the gap. It is certainly not a technique that is suitable for these type of data.
+
+Hence, we resort to a more powerful gap filling technique that uses a (regression) model to impute the missing values from existing ones at the neighboring stations, i.e. Stations 38462 and 38464. To do so, we utilize an  R package that is tightly integrated in the `tidyverse`\^Please note that if you do not have the required package installed locally, you should install it prior to its use with the following command. `install.packages('simputation')`.\^.
+
+```{r,message=FALSE,warning=FALSE}
+library(simputation)
+# First, we bring the data into the suitable format. 
+p_dec_wide_tbl <- p_dec_tbl %>% 
+  mutate(code = paste0('P',code %>% as.character())) %>% 
+  select(date,data,code) %>% 
+  pivot_wider(names_from = "code",values_from = "data")
+
+# Second, we impute missing values.
+p_dec_filled_wide_tbl <- p_dec_wide_tbl  %>% 
+  impute_rlm(P38471 ~ P38462 + P38464) %>% # Imputing precipitation at station 38471 using a robust linear regression model
+  impute_rlm(P38462 ~ P38471 + P38464) %>% # Imputing precipitation at station 38462 using a robust linear regression model
+  impute_rlm(P38464 ~ P38462 + P38471) # Imputing precipitation at station 38464 using a robust linear regression model
+
+p_dec_filled_long_tbl <- p_dec_filled_wide_tbl %>% pivot_longer(c('P38462','P38464','P38471')) 
+
+p_dec_filled_long_tbl%>% plot_time_series(date,value,
+                                          .facet_vars  = name,
+                                          .interactive = FALSE,
+                                          .smooth      = FALSE,
+                                          .title       = 'Precipitation Data (gap filled with robust linear regression model)',
+                                          .y_lab       = "mm/decade",
+                                          .x_lab       = "year"
+                                          )
+```
+
+Through simple visual inspection, it becomes clear that this type of regression model for gap filling is better suited than the previous approach chosen. Let us check whether we could successfully fill all gaps with this robust linear regression approach.
+
+```{r,message=FALSE}
+p_dec_filled_long_tbl %>% group_by(name) %>% summarize(n.na = sum(is.na(value)), n.na.perc = n.na/n()*100)
+```
+
+It turns out that we still have very few gaps to deal with. We can see them by simply visualizing the wide tibble. The problem persisted at times when two or more values were missing across the available stations at the same time and where thus the linear regression could not be carried out.
+
+```{r}
+p_dec_filled_wide_tbl %>% head(10)
+```
+
+```{r}
+p_dec_filled_wide_tbl %>% tail()
+```
+
+We can solve the issues related to the missing values at the start of the observation record by using the same technique as above and by only regressing P38462 and P38464 on P38471.
+
+```{r}
+p_dec_filled_wide_tbl <- p_dec_filled_wide_tbl  %>% 
+  impute_rlm(P38462 ~ P38471) %>% # Imputing precipitation at station 38462 using a robust linear regression model
+  impute_rlm(P38464 ~ P38471) # Imputing precipitation at station 38464 using a robust linear regression model
+p_dec_filled_wide_tbl %>% head(10)
+```
+
+Converse to this, the complete set of observations is missing for December 2015. We will thus remove these non-observations from our tibble.
+
+```{r}
+p_dec_filled_wide_tbl <- p_dec_filled_wide_tbl %>% na.omit()
+```
+
+Inspecting the temperature data, we see similar data issues as in the precipitation data set.
+
+```{r,warning=FALSE}
+t_dec_tbl <- data %>% filter(type=="T") 
+t_dec_tbl %>% plot_time_series(date,data,
+                               .facet_vars  = code,
+                               .interactive = FALSE,
+                               .smooth      = FALSE,
+                               .title       = 'Raw Temperature Data',
+                               .y_lab       = "deg. Celsius",
+                               .x_lab       = "year"
+                               )
+```
+
+```{r,warning=FALSE,message=FALSE}
+# First, we bring the data into the suitable format. 
+t_dec_wide_tbl <- t_dec_tbl %>% 
+  mutate(code = paste0('T',code %>% as.character())) %>% 
+  select(date,data,code) %>% 
+  pivot_wider(names_from = "code",values_from = "data")
+
+# Second, we impute missing values.
+t_dec_filled_wide_tbl <- t_dec_wide_tbl  %>% 
+  impute_rlm(T38471 ~ T38462) %>% # Imputing precipitation at station 38471 using a robust linear regression model
+  impute_rlm(T38462 ~ T38471) # Imputing precipitation at station 38462 using a robust linear regression model
+
+t_dec_filled_long_tbl <- t_dec_filled_wide_tbl %>% 
+  pivot_longer(c('T38462','T38471')) 
+
+t_dec_filled_long_tbl%>% 
+  plot_time_series(date,value,
+                   .facet_vars  = name,
+                   .interactive = TRUE,
+                   .smooth      = FALSE,
+                   .title       = 'Temperature Data (gap filled with robust linear regression model)',
+                   .y_lab       = "deg. Celsius",
+                   .x_lab       = "year"
+                   )
+```
+
+There are some irregularities in the temperature time series of Chatkal Meteorological Station in the first decade of the 20th century (Tipp: zoom in to see these more clearly). Note that these were not introduced by the gap filling technique that we used but are most likely wrong temperature readings. We will return to these in the outlier analysis below.
+
+```{r}
+t_dec_filled_long_tbl %>% 
+  group_by(name) %>% 
+  summarize(n.na = sum(is.na(value)), n.na.perc = n.na/n()*100)
+```
+
+To see where the missing value are, we find them easily again by looking at the head and tail of the tibble.
+
+```{r}
+t_dec_filled_wide_tbl %>% head()
+```
+
+```{r}
+t_dec_filled_wide_tbl %>% tail()
+```
+
+Finally, we remove the non observations again as above with the function `na.omit`.
+
+```{r}
+t_dec_filled_wide_tbl <- t_dec_filled_wide_tbl %>% na.omit()
+```
+
+To deal with the missing values at the end of the observational record, we could also have used any other technique. Using the norm values however would have artificially reduced the variance in both cases as explained above. Furthermore and at least in the case of temperature, it is also questionable to what extent a norm calculated over the last 84 years is still representative given global warming. We will look in this important and interesting topic in the next section.
+
+### Putting it all together {#Chap9_FinalData}
+
+Finally, we are now in the position to assemble all data that we will use for empirical modeling. The data is stored in long and wide form and used accordingly where required. For example, in Section \@ref{TimeSeriesReg}, we are working with the wide data format to investigate model features in linear regression.
+
+```{r,message=FALSE}
+# Final concatenation
+data_wide_tbl <- right_join(q_dec_filled_wide_tbl,p_dec_filled_wide_tbl,by='date')
+data_wide_tbl <- right_join(data_wide_tbl,t_dec_filled_wide_tbl,by='date')
+# Creating long form
+data_long_tbl <- data_wide_tbl %>% 
+  pivot_longer(Q16279:T38471)
+# Cross checking completeness of record
+data_long_tbl %>% 
+  group_by(name) %>% 
+  summarize(n.na = sum(is.na(value)), n.na.perc = n.na/n()*100)
+
+## Temp storage of data (remove later)
+# fPath <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Handbook/Applied_Hydrological_Modeling_Bookdown/temp/'
+# saveRDS(data_wide_tbl,file=paste(fPath,'data_wide_tbl',sep=""))
+# saveRDS(data_long_tbl,file=paste(fPath,'data_long_tbl',sep=""))
+```
+
+A consistent data record from 1933 until and including November 2015 is now prepared\^Please note that by using `left_join` above, we have cut off discharge data from the year 1932 since we do not have meteorological data there.\^.
+
+## Time Series Visualization {#Chap9_TimeSeriesVis}
+
+In this Section, the goal is to explore and understand time series and relationships and to take the necessary steps towards feature engineering. Different techniques are demonstrated that allow us to get familiar with the data that we are using. While we are interested to model discharge of Chatkal and Pskem rivers, it should be emphasized that all the techniques utilized for forecasting easily carry over to other rivers and settings.
+
+### Basic Plotting {#Chap9_BasicPlotting}
+
+The most basic plots are simple time series plots. We can plot time series on top of each other with different colors.
+
+```{r}
+data_long_tbl %>% 
+  filter(name=='Q16279' | name=='Q16290') %>% 
+  plot_time_series(date, value, 
+                   .color_var   = name, 
+                   .smooth      = FALSE,
+                   .interactive = FALSE,
+                   .title       = "Discharge Data",
+                   .y_lab       = "m^3/s",
+                   .x_lab       = "year"
+                   )
+```
+
+Individual time series can also be plotted into different facets.
+
+```{r}
+data_long_tbl %>% 
+  filter(name=='Q16279' | name=='Q16290') %>% 
+  plot_time_series(date, value, 
+                   .facet_vars  = name, 
+                   .smooth      = FALSE,
+                   .interactive = FALSE,
+                   .title       = "Discharge Data",
+                   .y_lab       = "m^3/s",
+                   .x_lab       = "year"
+                   )
+```
+
+Alternatively, we can also use groups to plot all the available discharge data into facets.
+
+```{r}
+data_long_tbl %>% 
+  group_by(name) %>% 
+  plot_time_series(date, value,
+                   .smooth      = FALSE,
+                   .interactive = FALSE,
+                   .facet_ncol  = 2,
+                   .title       = "Complete Decadal Data Record for Chirchik River Basin"
+                   )
+```
+
+### Transformations {#Chap9_Transformations}
+
+Transformations are important with regard to visualization & modeling. This is also important in the context here when modeling discharge time series where orders of magnitude of differences exist between minimum and maximum flow regimes. Let us for example look at a very simple transformation, i.e. a `log()` transformation.
+
+```{r}
+data_long_tbl %>% 
+  filter(name=='Q16279' | name=='Q16290') %>% 
+  plot_time_series(date, log(value+1),
+                   .facet_vars  = name,
+                   .smooth      = FALSE,
+                   .interactive = FALSE,
+                   .title       = "log(Q+1) Plot",
+                   .y_lab       = "[-]",
+                   .x_lab       = "year"
+                   )
+```
+
+When compared with the previous Figure, it becomes immediately clear that this transformation greatly reduces variance and also helps to spot subtle patterns in the timeseries that did not become apparent when only looking at the raw data. Please note that we added 1 prior to the `log()` transformation simply to avoid cases where discharge was 0 and thus `log()` not defined.
+
+### Smoothing & Trends {#Chap9_SmoothingTrends}
+
+Lower frequency variability in time series, including trends, can be visualized by using the `.smooth = TRUE` option in the `plot_time_series()` function. To demonstrate this here, we have a closer look at the temperature data in our data record.
+
+```{r}
+data_long_tbl %>% 
+  filter(name == 'T38462' | name == 'T38471') %>% 
+  plot_time_series(date, value, 
+                   .smooth     = TRUE,
+                   .facet_vars = name,
+                   .title      = "Temperature time series and trends",
+                   .y_lab      = "deg. C.",
+                   .x_lab      = "year"
+                   )
+```
+
+In both time series, a slight upward trend is visible that picks up over the most recent decades. We can look at these trends in greater detail, for example at the monthly level.
+
+```{r,warning=FALSE,message=FALSE}
+data_long_tbl %>% 
+  filter(name == 'T38462') %>% summarise_by_time(.date_var = date, .by="month",value=mean(value)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Development of Monthly Mean Temperatures from 1933 - 2015 at Station 38462') +
+              xlab('month') +
+              ylab('Degrees Celsius')
+```
+
+In the Figure above, a significant winter warming over the course of the 20th century is confirmed.
+
+### Autocorrelations {#Chap9_Autocorrelations}
+
+A time series may have relationships to previous versions of itself - these are the 'lags'. The autocorrelation is a measure of the strength of this relationship to its lags. The autocorrelation function ACF looks at all possible correlations between observation at different times and how they emerge. Contrary to that, the partial autocorrelation function PACF only looks at the correlation between a particular past observation and the current one. So in other words, ACT includes direct and indirect effects whereas PACF only includes the direct effects. PACF is super powerful to identify lagged timeseries predictors in autoregressive models (AR Models).
+
+```{r}
+data_long_tbl %>% filter(name == 'Q16279') %>% 
+  plot_acf_diagnostics(date, value,
+                      .show_white_noise_bars = TRUE
+                      )
+```
+
+These plots can help us in the identification of relevant predictors and in feature engineering (more on this below).
+
+### Cross-Correlations {#Chap9_CrossCorrelations}
+
+We can look at cross-correlations between two different time series for this exercise, we cross-correlate discharge at Gauge 16279 (Chatkal river) to discharge at Gauge 16290 (Pskem River).
+
+```{r}
+data_wide_tbl %>% plot_acf_diagnostics(date,Q16279,
+                                       .ccf_vars = Q16290,
+                                       .show_ccf_vars_only = TRUE,
+                                       .show_white_noise_bars = TRUE,
+                                       .lags = 72
+                                       )
+```
+
+It is apparent that the two discharge regimes are in phase. We can do the same for different combinations of data, for example for Chatkal river discharge and precipitation 
+
+```{r}
+data_wide_tbl %>% plot_acf_diagnostics(date,Q16279,
+                                       .ccf_vars = T38471,
+                                       .show_ccf_vars_only = TRUE,
+                                       .show_white_noise_bars = TRUE
+                                       )
+```
+
+Here, we see the highest correlations being out of phase which is an indication of the lagged response of the hydrological system to changes in temerpatures.
+
+### Seasonality Plots {#Chap9_SeasonalityPlots}
+
+Useful for investigating and detecting time-based (calendar) features that have cyclic or trend effects.
+
+```{r}
+data_long_tbl %>% 
+  filter(name=="Q16279" | name=="Q16290") %>% 
+  plot_seasonal_diagnostics(date,
+                            log(value+1),
+                            .facet_vars = name, 
+                            .feature_set = c("week","month.lbl","year"),
+                            .interactive = FALSE,
+                            .title = "Seasonal Diagnostics of Discharge"
+                            )
+```
+
+```{r}
+data_long_tbl %>% 
+  filter(name=="P38462" | name=="P38464" | name=="P38471") %>% 
+  plot_seasonal_diagnostics(date,value,
+                            .facet_vars = name, 
+                            .feature_set = c("week","month.lbl","year"),
+                            .interactive = FALSE,
+                            .title = "Seasonal Diagnostics of Precipitation"
+                            )
+```
+
+```{r}
+data_long_tbl %>% 
+  filter(name=="T38462" | name=="T38471") %>% 
+  plot_seasonal_diagnostics(date,value,
+                            .facet_vars = name, 
+                            .feature_set = c("week","month.lbl","year"),
+                            .interactive = FALSE,
+                            .title = "Seasonal Diagnostics of Temperature",
+                            )
+```
+
+### Anomalies {#Chap9_Anomalies}
+
+```{r,message=FALSE}
+data_long_tbl %>% filter(name=="Q16279" | name=="Q16290") %>% 
+  plot_anomaly_diagnostics(date,log(value+1),
+                           .facet_vars  = name,
+                           .interactive = FALSE,
+                           .title = "Anomaly Diagnostics of Discharge Data")
+```
+
+```{r,message=FALSE}
+data_long_tbl %>% filter(name=="P38462" | name=="P38464" | name=="P38471") %>% 
+  plot_anomaly_diagnostics(date,value,
+                           .facet_vars  = name,
+                           .interactive = FALSE)
+```
+
+```{r,message=FALSE}
+data_long_tbl %>% filter(name=="T38462" | name=="T38471") %>% 
+  plot_anomaly_diagnostics(date,value,
+                           .facet_vars  = name,
+                           .interactive = FALSE)
+```
+
+There is apparently something funny going on with these timeseries during the first decade of observations. The outliers in the year 1969 are understandable (see station 16279) since that year is earmarked as the most extreme year for runoff over the observational record in the 20th century.
+
+### STL Decomposition Plots {#Chap9_STL_Decomp}
+
+```{r}
+data_long_tbl %>% filter(name=="T38462") %>% 
+  plot_stl_diagnostics(date,value,
+                       .facet_vars  = name,
+                       .interactive = FALSE
+                       )
+```
+
+Please note that the stl function is only setup for one seasonality in data. That would become a problem when we start to look at data collected with modern stations, i.e. data with a frequency of 10 minutes. Such a time series would feature diurnal and seasonal cycles and thus not be suitable for stl decomposition.
+
+### Time Series Regression Plot {#TimeSeriesReg}
+
+Since we have prepared all our data that we use for analysis by now, we can the first steps towards modeling. It always pays to keep things simple at the beginning. To demonstrate the effects of different explanatory variables on our modeling targets (Stations 16279 and 16290) through linear regression, the function `plot_time_series_regression` from the `timetk` package can be used.
+
+Before we do this, we want to make sure that also include a predictor for the seasonality. As we discussed above, we expect such a predictor to be highly significant given the regularity of the seasonal characteristics of the time series. Therefore, we add a decade identifier to the wide and long dataframes.
+
+```{r}
+# Generate the decades
+decs <- decadeMaker(data_wide_tbl$date %>% first(),data_wide_tbl$date %>% last(),'end')
+data_decs_wide_tbl <- full_join(data_wide_tbl,decs,by='date')
+```
+```{r}
+data_decs_wide_tbl %>% 
+  plot_time_series_regression(
+    .date_var = date,
+    log1p(Q16279) ~ as.numeric(date) + # trend
+      as.factor(dec),# + # seasonality
+      #P38471 + T38471, # interannual variability
+    .show_summary = TRUE
+    )
+```
+
+We can immediately see what a model picks up and what it would not pick up, just by utilizing the features.
+
+
+
+## Data Wrangling {#Chap9_DataWrangling}
+
+### Summarize by time
+
+ <!-- ```{r} -->
+ <!-- q_filled_dec_long_tbl %>% group_by(name) %>%  -->
+ <!--   summarize_by_time(date,value) -->
+ <!-- ``` -->
+
+### Pad by time
+
+```{r}
+data_decs_wide_tbl %>% pad_by_time(date,.end_date = "2015-12-31") %>% tail(40)
+```
+
+### Filter by time - saves good typing because of its efficient syntax
+
+### Offsetting by time %+time% (infix function)
+
+### Extrapolate the Mean, Median, Max, Min By Time by mutate_by_time
+Applying a function by timespan.
+```{r,warning=FALSE,message=FALSE}
+# just focus on one time series
+q16279 <- data_decs_wide_tbl %>% select(date,Q16279) %>% filter_by_time(.start_date = "1960",.end_date = "1969")
+# mutate_by_time
+q16279 %>% mutate_by_time(.by    = "month",
+                          maxM_Q = max(Q16279)) %>% 
+  pivot_longer((contains("Q"))) %>% 
+  plot_time_series(date,value,name,.smooth = FALSE)
+
+```
+
+### Joining by time (super impportant)
+left_join as a vital function
+
+```{r}
+library(DataExplorer)
+# interesting function to just get a quick overview
+data_decs_wide_tbl %>% plot_missing()
+# interesting summary diagnostics from timetk package
+data_decs_wide_tbl %>% tk_summary_diagnostics()
+
+```
+
+### Exploring relationships
+A good starting point is obviously our `data_long_tbl` dataframe and to just plot it. 
+
+```{r}
+data_decs_long_tbl %>% plot_time_series(date,value,name,.smooth=FALSE)
+```
+We immediately see that without transformation of individual variables, a meaningful comparison of the time series is almost impossible as well as the exploration of the underlying relationships. An idea would be to apply the log +1 transformation to data which is always greater than zero (i.e. precipitation and discharge) so as to see if we could compare the timeseries better.
+
+```{r}
+data_decs_wide_tbl %>% 
+  mutate(across(Q16279:P38471,.fns = log1p)) %>% 
+  pivot_longer(Q16279:dec) %>% 
+  plot_time_series(date,value,name,
+                   .smooth=FALSE,
+                   .interactive = FALSE)
+```
+Certainly not a very useful result either. Other, better suitable data transformation should definitely be explored like for example centering around the mean and dividing by variance which can be achieved in R via `standarize_vec`. Let us have a look.
+
+```{r}
+data_wide_tbl %>% 
+  mutate(across(Q16279:P38471,.fns = log1p)) %>% 
+  mutate(across(Q16279:P38471,.fns = standardize_vec)) %>% 
+  pivot_longer(Q16279:T38471) %>% 
+  plot_time_series(date,value,name,.smooth=FALSE)
+```
+
+We turn to cross correlations.
+
+```{r}
+data_decs_wide_tbl %>% 
+  mutate(across(Q16279:P38471,.fns = log1p)) %>% 
+  plot_acf_diagnostics(date, 
+                       Q16279,
+                       .ccf_vars = Q16290:dec,
+                       .show_ccf_vars_only = TRUE,
+                       .interactive = FALSE)
+```
+
+### Making your own timeseries
+
+Use ``tk_make_timeseries()` if you want to construct a timeseries from scratch.
+
+### Using holidays as features (not really necessary in our case)
+
+The command is `tk_make_holiday_sequence`.
+
+### Offsetting time series
+
+```{r}
+# Example
+"2011-01-01" %+time% "10 days"
+"2011-01-01" %-time% "10 days"
+tk_make_timeseries(2011) %+time% "2 years"
+```
+
+### Extend time stamps
+
+```{r}
+data_decs_wide_tbl %>% select(date) %>% filter(date>="2014-01-01") %>% 
+  tk_make_future_timeseries(length_out = 36)
+# does not work because maybe time series is not a regular one.
+tk_make_timeseries("2011",by="quarter") %>% 
+  tk_make_future_timeseries(length_out = "1 year")
+```
+### Future frame function
+
+```{r}
+data_decs_wide_tbl %>% 
+  future_frame(.length_out = "2 months")
+# but - this is not so critical as we can just use our decadeMaker function for this!
+```
+
+## Time Series Transformations
+Assuming Libraries are loaded and hot start executed.
+
+### Variance Reduction Transformations
+
+#### log-Transformation
+Variance reduction is important when modeling time series. This can be easily demonstrated by comparing the adjusted R-squared values of the model using raw data and the one using the log-transformed discharge data.
+
+```{r}
+# No transformation
+data_decs_wide_tbl %>% 
+  plot_time_series_regression(
+    .date_var = date,
+    .formula = Q16290 ~ as.numeric(date) + P38462 + T38462 + as.factor(dec),
+    .show_summary = TRUE
+  )
+```
+```{r}
+# log1p Transformation
+data_decs_wide_tbl %>% 
+  plot_time_series_regression(
+    .date_var = date,
+    .formula = log1p(Q16290) ~ as.numeric(date) + P38462 + T38462 + as.factor(dec),
+    .show_summary = TRUE
+  )
+  
+```
+Note that if you want to obtain untransformed modeled values, you can simply use the `expm1` function as is showcased here.
+
+```{r}
+# Linear model
+lm_Q16290 <- data_decs_wide_tbl %>% 
+  lm(formula = log1p(Q16290) ~ as.numeric(date) + P38462 + T38462 + as.factor(dec))
+# Get the summary of our already quite remarkable model
+lm_Q16290 %>% summary() # just checking that all is correct
+# Compare the untransformed (in sample) predictions to actual values
+lm_Q16290 %>% 
+  predict() %>% 
+  as.vector() %>% 
+  expm1() %>% 
+  bind_cols(date=data_decs_wide_tbl$date,fact=data_decs_wide_tbl$Q16290,prediction=.) %>% 
+  pivot_longer(fact:prediction) %>% 
+  plot_time_series(date,value,name,
+                   .smooth = FALSE,
+                   .interactive = TRUE)
+```
+
+By the way, one can very easily transform and invert time series on the fly by applying the transformation function to the value in the `plot_time_series` function. In our case, we subset the original data since temperature cannot be transformed with the `log1p` method due to the negative values in the time series.
+
+```{r}
+data_decs_long_tbl %>%
+  plot_time_series(date,value,name,.smooth = FALSE)
+```
+
+#### Box-Cox Transformation
+
+Now, lets turn to Box-Cox Transformations. Box-Cox transformations are designed for non-negative responses, but can be applied to data that have occassional zero or negative values by adding a constant to the response before applying the power transformation. We show this by adding an aribtrary value that is larger than the lowest negative temperature in the dataset, i.e. 30. Of course, we can do the same with the log-transformation at much less cost since we do not have to keep track of the lambda parameter there.
+
+```{r}
+data_decs_long_tbl %>%
+  plot_time_series(date,box_cox_vec(value+30,lambda = 'auto'),name,.smooth = FALSE)
+```
+
+#### Rolling & Smooting functions
+
+There are important transformations for noisy data, i.e. for the precipitation data in our case. Let us quickly get a glimpse of it by plotting it.
+
+```{r}
+data_decs_wide_tbl %>% 
+  select(date,P38462:P38471) %>% 
+  pivot_longer(P38462:P38471) %>% 
+  plot_time_series(date,value,name,.smooth = FALSE)
+  
+```
+
+`slidify_vec` is your friend here and can be used to smooth the noisy precipitation time series. Different smoothing periods and methods can be explored, including `mean`, `min`, `max`, `median`, etc.
+
+```{r}
+data_decs_wide_tbl %>% 
+  select(date,P38462:P38471) %>% 
+  pivot_longer(P38462:P38471) %>% 
+  group_by(name) %>% 
+  mutate(value_roll = slidify_vec(value,
+                                  .f = mean,
+                                  .period = 3,
+                                  .align = "center",
+                                  .partial = TRUE)) %>% 
+  plot_time_series(date,value_roll,name,.smooth = FALSE,.interactive = FALSE)
+```
+LOESS Smoothers have a few additional properties that make this method interesting for time series. We can compare the rolling mean smoother with the LOESS smoother and the original data in a straight-forward way.
+
+```{r}
+data_decs_wide_tbl %>% 
+  select(date,P38462) %>% 
+  pivot_longer(P38462) %>% 
+  group_by(name) %>% 
+  mutate(value_smooth = smooth_vec(value,period = 36)) %>%   
+  mutate(value_roll = slidify_vec(value,
+                                  .f = mean,
+                                  .period = 3,
+                                  .align = "center",
+                                  .partial = TRUE)) %>% 
+  pivot_longer(contains("value"),names_repair = "unique") %>% 
+  rename(station="name...2",series="name...3") %>% 
+  plot_time_series(date,value,series,
+                   .smooth = FALSE,
+                   .interactive = TRUE)
+```
+What we see here is that the LOESS smoother can generate negative, i.e. unphysical, values. This would of course not be an issue in the case of the rolling window transformation as presented above. But the smoother makes local regressions and accentuates seasonality nicely.
+
+#### Rolling Correlations
+
+Identification of changing relationships. For example, we can investigate the correlation and its changes between the two discharge time series of the two main tributaries of the Chirchik River.
+
+```{r}
+rolling_cor <- slidify(
+  .f = ~ cor(.x,.y, use = "pairwise.complete.obs"),
+  .period = 3,
+  .align = "center",
+  .partial = "TRUE"
+)
+
+data_decs_wide_tbl %>% 
+  #select(date,contains("Q")) %>% 
+  mutate(rolling_cor_rivers = rolling_cor('Q16279','Q16290'))
+# This throws an error for not obvious reasons...
+```
+### Range Reduction Transformations
+Here it gets interesting for us! Normalization and standardization are the two important terms here.
+Normalization just readjusts the time series range to the interval [0,1]. 
+
+```{r}
+data_decs_long_tbl %>% 
+  plot_time_series(date,normalize_vec(value),name, .smooth = F,.interactive = F)
+```
+It is immediately clear that we do not gain much in terms of better being able to compare time series dynamics in a convientn way. Standardization, as compared to normaliztion, readujust the mean of each time series to 0 and reduces the variance to 1. the next Figure shows the standarization result.
+
+```{r}
+data_decs_long_tbl %>% 
+  plot_time_series(date,standardize_vec(value),name, .smooth = F,.interactive = T)
+```
+
+Now is time to play around a bit to get a feeling for some essential questions. For example, does a LOESS-smoothed precipitation time series improve in-sample R-squared and could thus hint at an interesting feature? Let's try!
+
+```{r}
+# We focus on Pskem river and the associated meteo station 38462 there to look get a feeling.
+
+period = 36 # LOESS smoother period
+
+data_decs_wide_tbl_feat <-  data_decs_wide_tbl %>% # feature transformation
+  mutate(Q16290_log = log1p(Q16290) %>% normalize_vec(),
+         P38462_LOESS = smooth_vec(P38462,period = period) %>% normalize_vec(),
+         P38462_norm = P38462 %>% normalize_vec(),
+         T38462_norm = T38462 %>% normalize_vec(),
+         dec_norm = dec %>% normalize_vec())
+
+data_decs_wide_tbl_feat %>% select(date,Q16290_log,T38462_norm,P38462_LOESS,dec_norm) %>% 
+  pivot_longer(-date) %>% #group_by(name) %>% 
+  plot_time_series(date,value,.color_var = name, .smooth = F)
+
+```
+This is a dataset that is easy to explore and has been transformed in multiple ways.
+
+```{r}
+data_decs_wide_tbl_feat  %>% 
+  lm(formula = Q16290_log ~ as.numeric(date) + 
+       as.factor(dec) + 
+       T38462_norm + 
+       P38462_LOESS #+
+       #P38462_norm
+) %>% summary()
+
+```
+It turns out that standardizing the temperature data is not adding more predictive power to the model when measured in terms of adjusted r-squared. Als, standardizing the decades does not add anything because they are categorical variables anyhow.
+
+So, to summarize what we have learned:
+- transforming discharge with the `log1p` transformation is critical, and
+- smoothing the precipitation with a LOESS-transformation is adv advantageous.
+
+## Lags and Differencing
+### Lags
+
+```{r}
+data_decs_wide_tbl %>% 
+  plot_acf_diagnostics(date,log1p(Q16290))
+```
+
+While the ACF-function shows the highly seasonal characteristics, the PACF function demonstrates that lag 1 and 2 are really critical for direct effects after which the PACF tapers off very quickly. Let us see if we can imporve our most sumple and successful lm-model yet by incorporating these lags in the model. Hence, first we create a new feature table with the lags (we also remove the unncessary variable transformations that we have identified above, i.e. for temperature and for dec). As before, we focus our discussion on Pskem river.
+
+```{r}
+# generate tibble to work with
+data_decs_wide_tbl_feat <-  data_decs_wide_tbl %>% 
+  mutate(Q16290_log = log1p(Q16290) %>% normalize_vec(),
+         P38462_LOESS = smooth_vec(P38462,period = period) %>% normalize_vec(),
+         P38462_norm = P38462 %>% normalize_vec()
+  ) %>% 
+  select(date,Q16290_log,P38462_LOESS,P38462_norm,T38462,dec)
+data_decs_wide_tbl_feat
+
+# add lags
+data_decs_wide_tbl_feat %>% 
+  tk_augment_lags(.value = Q16290_log,.lags = c(1,2)) %>% 
+  drop_na() %>% 
+  plot_time_series_regression(date,
+                              .formula = Q16290_log ~ as.numeric(date) +
+                                                      as.factor(dec) +
+                                                      Q16290_log_lag1 +
+                                                      Q16290_log_lag2 +
+                                                      T38462 +
+                                                      P38462_LOESS,
+                              .show_summary = T
+                              )
+```
+By incorporating lags, we have already greatly improved our simple model beyond our wildest expectations. It might become even better if we include temperature and precipitation lags. We consider the above model as our benchmark model for the time being.
+
+### Differences
+We can also think of the change of a time series from one measurement point to the next and the acceleration of change as important information To do so, we can look at first- and second-order differences and investigate them.
+
+```{r}
+data_decs_wide_tbl_feat %>% 
+  mutate(across(Q16290_log:T38462,.fns = diff_vec)
+        ) %>% 
+  drop_na() %>% 
+  select(-dec) %>% 
+  pivot_longer(-date) %>% 
+    plot_time_series(date,value,name,.smooth = FALSE)
+```
+
+## Fourier Series
+This technique allows for adding sine and cosine waves at a specific seasonality to your set of predictors. Several seasonality patterns can be added like this. This might not be relevant in our case since we capture the seasonality with our dec factors. But of course,remains to be investigated!
+
+```{r}
+data_decs_wide_tbl_feat %>% select(date,Q16290_log,dec) %>% 
+  mutate(dec = as.factor(dec)) %>% 
+  tk_augment_fourier(date,.periods = c(30,90,182,365),.K = 2) %>% 
+  plot_time_series_regression(
+    date,
+    .formula = Q16290_log ~ as.numeric(date) + . - date,
+    .show_summary = TRUE
+  )
+```
+It shows that adding these features does a fairly decent job.
+
+## Constrained Interval Forecasting
+We could constrain our forecasting interval to withing some meaningful lower and upper limits. However, this makes only limited sense in our case as for example in the case of discharge, there is no 'real' upper limit to what discharge can be. Clearly, discharge can never be smaller than zero, but if anything, there is only a physical upper limit. 
+```{r}
+data_decs_wide_tbl %>% 
+  plot_time_series(date,log_interval_vec(Q16290,limit_lower = 0,offset = 1),.smooth = F)
+```
+
+## BENCHMARK MODEL FOR PSKEM
+
+Above, we had our benchmark model specified. By close inspection of the model specification, we see that forecasting discharge at time 't' would require us already know the temperature and precipitation time series. That is clearly not possible in operational setting to know precipitation and temperature for the decade(s) ahead that you are forcasting. So, realistically, we should actually only include lagged version of these time series where the lag corresponds to the length of forecasting that one tries to do.
+
+However, before we go there, we want to see how far our model actually depends on the presence of these P and T time series. Let us therefore make the most simple model possible with irrelevant features removed (such as e.e.g. Q_lag2).
+
+```{r}
+# generate tibble to work with
+data_decs_wide_tbl_feat <-  data_decs_wide_tbl %>% 
+  mutate(Q16290_log = log1p(Q16290),
+         P38462_LOESS = smooth_vec(P38462,period = period),
+  ) %>% 
+  select(date,Q16290_log,P38462,P38462_LOESS,T38462,dec) %>% 
+  tk_augment_lags(.value = Q16290_log,.lags = c(1,2)) %>% 
+  drop_na()
+# this is how our data looks
+data_decs_wide_tbl_feat
+
+model_formula <- as.formula(Q16290_log ~ as.numeric(date) +
+                                          as.factor(dec) +
+                                          Q16290_log_lag1
+                            )
+
+# and here comes the benchmark model
+data_decs_wide_tbl_feat %>% 
+  plot_time_series_regression(date,
+                              .formula = model_formula,
+                              .show_summary = T
+                              )
+
+# So now that we are happy with our benchmark model, we can just run the simple model
+model_fit_lm <- lm(formula = model_formula, data = data_decs_wide_tbl_feat)
+model_fit_lm %>% summary()
+
+```
+
+With this simplified, yet still powerful model, we are no longer at an impasse because we did not know our future temperature and precipitation values that were required for forecasting in the previous benchmark model. Let us try now to make the first 'real' forecast.
+
+For the first 'real forecast, we create a simple train and test set division. In other words, we split the `data_dec_wide_tbl_feat` into two sets. The first set, called `training_set` is just the data up to the last year of observations minus 1. This is the data we use for model training. Then we create the `test_set' for the 1 decade ahead forecasting and just remove the 'real' observed values in there which we assume to be unknown (for each time point where we want to forecast discharge during the next decade, we just assume that we know the discharge of the decade just passed, i.e. lag1 discharge values).
+
+```{r}
+# split observations into training and test sets
+training_tbl <- data_decs_wide_tbl_feat %>% filter(date < "2014-12-01") 
+test_tbl <- data_decs_wide_tbl_feat %>% filter(date > "2014-12-01") %>% rename(obs = Q16290_log)
+
+# calibrate model
+model_fit_lm <- lm(data = training_tbl,formula = model_formula)
+summary(model_fit_lm)
+# and forecast
+fcst <- predict(model_fit_lm,test_tbl) %>% as.vector()
+obs_fcst <- test_tbl %>% 
+  mutate(fcst = fcst) %>% 
+  select(date,obs,fcst) %>% 
+  pivot_longer(-date)
+
+obs_fcst %>% 
+  plot_time_series(date,value,name,.smooth = F)
+```
+
+With this very simple model, we can also add confidence intervals of our prediction very easily. The confidence interval finding strategy is that we assume that our errors are Gaussian and to fit a normal distribution that iw scaled to the mean model prediction and standard deviation of the model residuals.
+
+```{r}
+conf_interval <- 0.95
+alpha <- (1 - conf_interval) /2
+residuals <- model_fit_lm$residuals %>% as.vector()
+
+abs_margin_error <- (qnorm(alpha) * sd(residuals)) %>% abs()
+
+obs_fcst <- test_tbl %>% 
+  mutate(fcst = fcst) %>% 
+  select(date,obs,fcst) %>% 
+  mutate(conf_lo = fcst - abs_margin_error,
+         conf_hi = fcst + abs_margin_error) %>% 
+  pivot_longer(-date) 
+
+obs_fcst %>% 
+  plot_time_series(date,value,.color_var = name,.smooth = F,.title = "Forecast in transformed scale")
+
+```
+
+The above-shown forecast is still in transformed scale and what we need to do to provide a proper 1-step ahead forecast is to invert it to the original scale.
+
+```{r}
+# invert transformation
+obs_fcst %>% 
+  plot_time_series(date,value %>% expm1(),.color_var = name,.smooth = F,.title = "Forecast in original scale")
+```
+Excellent Congratulation to our first high-quality Pskem River 1-decade ahead forecast. Now, while our adjusted R-squared value is absolutely satisfactory, does the forecast quality satisfy local requirements as specified by the Central Asian Hydrometeorlogical Agencies? Let us make a deep dive here.
+
+## DEEP DIVE Forecasting quality
+
+Let us assess the forecasting quality as it is done in the responsible agencies by local stakeholders.
+
+```{r}
+# first, we need to compute per-decade variance of flows.
+# 1. reshape time series to tabular form
+data_decs_wide_tbl_feat %>% select(date,Q16290_log,dec) %>% 
+  mutate(date = year(date)) %>% 
+  pivot_wider(values_from = Q16290_log,names_from = dec,names_prefix = "d",names_sort = TRUE) #%>% 
+
+
+
+```
+

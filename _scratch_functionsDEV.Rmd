@@ -1,0 +1,12 @@
+---
+title: "_scratch_functionsDEV"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## New Functions in riversCentralAsia package
+
+This is to come in the future.

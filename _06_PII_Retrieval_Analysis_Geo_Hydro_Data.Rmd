@@ -58,9 +58,9 @@ knitr::include_graphics('_bookdown_files/Chap7-Figures/fig_LayersGrouping.png')
 
 **STEP 3 Background Map via QuickMapServices and Political Boundaries**
 
-From the main menu, select Web/QuickMapServices/Google/Google Satellite or any other suitable map of your choice. If the QuickMapServices are not available by default, you have to install the corresponding plugin. More information can be found [here](https://docs.qgis.org/3.10/en/docs/training_manual/qgis_plugins/plugin_examples.html){target="_blank"}. If by default the Google Map Service is not available, you can install the plugin HCMGIS via the [**Manage and Install Plugins**]{style="color: blue;"} Menu and then access the Google base Maps via the newly appeared **HCMGIS/BaseMap/** Menu.
+From the main menu, select Web/QuickMapServices/Google/Google Satellite or any other suitable map of your choice. If the QuickMapServices are not available by default, you have to install the corresponding plugin. More information can be found [here](https://docs.qgis.org/3.10/en/docs/training_manual/qgis_plugins/plugin_examples.html){target="_blank"}. If by default the Google Map Service is not available, you just navigate to the Settings of the QuickMapServices plugin via [**QuickMapServices/Settings**]{style="color: blue;"} and go there to the tag 'More Services' where you should click the Button called 'Get Contributed Pack'. These additional map services then become available to you in the corresponding QuickMapServices list.
 
-Once the background map is visible as shown in Figure \@ref(fig:LayersGrouping), you can zoom in on the area of interest, i.e., the mountain range north-east of Tashkent at the western end of the Tien Shan mountains, where the Chirchik River originates from its tributaries.
+Once the background map of your choice is visible as shown in Figure \@ref(fig:LayersGrouping), you can zoom in on the area of interest, i.e., the mountain range north-east of Tashkent at the western end of the Tien Shan mountains, where the Chirchik River originates from its tributaries.
 
 For the political shapefiles, we download the relevant country-level data from the [GADM database](https://gadm.org/download_country_v3.html){target="_blank"}. GADM provides spatial data for all countries and their first- and second-level subdivisions in shapefile format. It is advisable to download all first-level administrative country border data for the Central Asian Republics. Finally, make sure that you import the correct shapefile data into the corresponding group, i.e. POLITICAL, in the QGIS Folder.
 
@@ -80,23 +80,25 @@ Finally, you have to reproject the DEM to the selected CRS EPSG:32642.
 
 **STEP 5 Cutting the Area of Interest (AoI), DEM Resampling and Filling Sinks**
 
-The downloaded DEM file is very likely much too big and it would be great to cut it to the rough shape that we are focussing on. We just have to ensure that all of our suspected catchment area is inside the cut out. For this purpose, we add a new shapefile Layer and make sure that its Geometry Type is correctly selected as 'Polygon'. Ensure also, that after the creation of the layer, it again is in a Projected CRS (UTM 42N). We can then toggle editing and use the polygon creation and edit tool to roughly outline the basin (AoI) that we are focussing on.
+The downloaded DEM file is very likely much too big and it would be great to cut it to the rough shape that we are focussing on. We just have to ensure that all of our suspected catchment area is inside the cut out. For this purpose, we add a new shapefile Layer and make sure that its Geometry Type is correctly selected as 'Polygon'. Ensure also, that after the creation of the layer, it again is in a Projected CRS (UTM 42N). We can then toggle editing and use the polygon creation and edit tool to roughly outline the basin (AoI) that we are focusing on. In order to roughly cutout the AoI, select [**Extraction / Clip Raster by Mask Layer**]{style="color: blue;"} and select the corresponding layers in the user dialog box. 
 
-In order to roughly cutout the AoI, select [**Extraction / Clip Raster by Mask Layer**]{style="color: blue;"} and select the corresponding layers in the user dialog box.
+Alternatively, you can just use the menu [**Raster / Clip Raster by Extent**]{style="color: blue;"} to draw  or manually enter a rectangular clipping extent.
+
+
 
 ```{r LayersCutting, echo = FALSE, fig.cap = 'After'}
 knitr::include_graphics('_bookdown_files/Chap7-Figures/fig_LayersGrouping.png')
 ```
 
-Checking the resolution of the downloaded SRTM DEM, we see that cell sizes are roughly 25 meters [m] in horizontal and vertical direction. For larger catchments, it is advisable to resample the DEM to a coarser resolution. There are many ways to do this in QGIS. Here, it is proposed to use the `r.resample.stats` algorithm so as to decrease the resolution from 25 m to 100 m for later processing.
+Checking the resolution of the downloaded SRTM DEM, we see that cell sizes are roughly 25 meters [m] in horizontal and vertical direction. For larger catchments, it is advisable to resample the DEM to a coarser resolution. There are many ways to do this in QGIS. Here, it is proposed to use the `r.resample` algorithm so as to decrease the resolution from 25 m to 100 m for later processing.
 
-Next, one has to ensure that sinks in the DEM are filled. First, use `r.fill.dir` to fill potential DEM gaps. The algorithm can be found in the Toolbox section once it is enabled in the dropdown menu Processing. Second, use `r.watershed` to generate the drainage direction and flow accumulation rasters. Note, it is important to specify a 'Minimum size of exterior watershed basin' (take 100'000) and also check the option 'Use positive flow accumulation even for likely underestimates'. As both, the drainage direction and flow accumulation rasters can be reused later, they should be permanently stored on disk, i.e. in the RIVERS group.
+Next, one has to ensure that sinks in the DEM are filled so that water does not get stuck on its way to the watershed outlet. First, use `r.fill.dir` to fill potential DEM gaps. The algorithm can be found in the Toolbox section once it is enabled in the dropdown menu Processing. Second, use `r.watershed` to generate the drainage direction and flow accumulation rasters. Note, it is important to specify a 'Minimum size of exterior watershed basin' (take 100'000) and also check the option 'Use positive flow accumulation even for likely underestimates'. As both, the drainage direction and flow accumulation rasters can be reused later, they should be permanently stored on disk, i.e. in the RIVERS group.
 
 **STEP 6 Basin Delineation**
 
 Once we have produced these rasters as described in **STEP 5**, we load the gauging stations if they are available as shapefiles. For each gauging station, we make sure that the gauge lies at the correct location by overlaying it with the Flow Accumulation Raster Data. If this is not the case, we need to relocate individual gauges so that they are at the correct location. This step is important so as to properly delineate the upstream area of a particular gauge under consideration.
 
-If gauges are not available as shapefiles, we can easily add a new shapefile layer and then define one or more gauges in that layer for which we want to delineate basin shapes. Ordered by their 5-digit code as administered by the Uzbek Hydrometeorological Service, the important gauges to consider are:
+If gauges are not available as shapefiles, we can easily add a new shapefile layer and then define one or more gauges in that layer for which we want to delineate basin shapes. Ordered by their 5-digit code as administered by the Uzbek Hydrometeorological Service, the important gauges to consider in the Chirchik river basin are:
 
 -   id = 16275, name = Chinaz Gauge, river Chirchik River, lat = 4'528'236, lon = 479'463
 -   id = 16279, name = Khudaydod Gauge, river = Chatkal River, lat = 4'596'628, lon = 598'278
@@ -174,7 +176,7 @@ library(keyring)
 library(ncdf4)
 
 # Spatial data plotting & plotting
-library(rgdal)
+#library(rgdal)
 library(raster)
 library(rgeos)
 library(sp)

@@ -1,0 +1,169 @@
+---
+title: "_package_maintenance"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Package Data Maintenance
+
+Install Package from GitHUB
+```{r}
+install_github("tobiassiegfried/riversCentralAsia")
+```
+
+## Data Preparation for Data Accessible by users
+
+We make data available to the users in different basin-specific data files and call them accordingly
+
+-   ChirchikRiverBasin
+-   SyrDaryaBasin (to come)
+-   AmuDaryaBasin (to come)
+-   ChuRiverBasin (to come)
+-   TalasRiverBasin (to come)
+
+For this preparatory work here, we need the following libraries
+
+```{r}
+# Load Package
+library(devtools)
+library(tidyverse)
+library(lubridate)    
+library(timetk)       
+library(riversCentralAsia)
+```
+
+### Chirchik River Basin
+#### Discharge Data
+```{r}
+# Chirchik River
+fPath <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/ChirchikRiverBasin/'
+## Chatkal River, Khudaydod
+Q_16279 <- loadTabularData(fPath,'16279_decadal.csv',16279,'Khudaydod','Chatkal','Chirchik','Q','m3s')
+## Pskem River, Mullala
+Q_16290 <- loadTabularData(fPath,'16290_decadal.csv',16290,'Mullala', 'Pskem','Chirchik','Q','m3s')
+## Inflow Charvak
+Q_16924 <- loadTabularData(fPath,'16924_decadal.csv',16924,'Lake_Inflow','Chatkal','Chirchik','Q','m3s')
+## Nauvalisoy River, Sidzhak
+Q_16298 <- loadTabularData(fPath,'16298_decadal.csv',16298,'Sidzhak','Nauvalisoy','Chirchik','Q','m3s')
+## Chirchik River, Chinaz
+Q_16275 <- loadTabularData(fPath,'16275_monthly.csv',16275,'Chinaz','Chirchik','Chirchik','Q','m3s')
+## Ugam River, Khodizhikent
+Q_16300 <- loadTabularData(fPath,'16300_monthly.csv',16300,'Khodzhikent','Ugam','Chirchik','Q','m3s')
+## Chirchik, Gazalkent
+Q_16262 <- loadTabularData(fPath,'16262_monthly.csv',16262,'Gazalkent','Chirchik','Chirchik','Q','m3s')
+
+## Assemble Chirchik River Basin discharge data
+data.Q.ChirchikRiverBasin <- 
+  bind_rows(Q_16279,Q_16290,Q_16924,Q_16298,Q_16300,Q_16275,Q_16262)
+```
+
+#### Meteostation Data
+```{r}
+fPath <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/ChirchikRiverBasin/'
+
+## Pskem Meteo Station
+P_38462 <- loadTabularData(fPath,'38462_P_decadal.csv',38462,'Pskem Meteo Station','Pskem','Chirchik','P','mm')
+T_38462 <- loadTabularData(fPath,'38462_T_decadal.csv',38462,'Pskem Meteo Station','Pskem','Chirchik','T','degC')
+
+## Charvak Reservoir Meteo Station
+P_38464 <- loadTabularData(fPath,'38464_P_decadal.csv',38464,'Charvak Reservoir Meteo Station','Chirchik','Chirchik','P','mm')
+
+## Chatkal Meteo Station
+P_38471 <- loadTabularData(fPath,'38471_P_decadal.csv',38471,'Chatkal Meteo Station','Chatkal','Chirchik','P','mm')
+T_38471 <- loadTabularData(fPath,'38471_T_decadal.csv',38471,'Chatkal Meteo Station','Chatkal','Chirchik','T','degC')
+
+## Oygaing Meteo Station
+P_38339 <- loadTabularData(fPath,'38339_P_mon.csv',38339,'Oygaing Meteo Station','Pskem',
+                           'Chirchik','P','mm')
+
+# Assemble the data
+data.PT.ChirchikRiverBasin <- bind_rows(P_38462,T_38462,P_38464,P_38471,T_38471,P_38339)
+```
+
+Bind all data
+```{r}
+data.ChirchikRiverBasin <- bind_rows(data.Q.ChirchikRiverBasin,data.PT.ChirchikRiverBasin)
+```
+
+#### Chirchik River: Station information
+```{r}
+stationData <- data.ChirchikRiverBasin %>% select(code) %>% unique()
+
+stationData$lon_UTM42 <- c(
+                            598278, 
+                            597351, 
+                            584616, 
+                            589674, 
+                            578612, 
+                            479463,
+                            564916,
+                            613221.09, 
+                            586345.41, 
+                            684252.58,
+                            654406.23)
+
+stationData$lat_UTM42 <- c(
+                            4596628, 
+                            4622724,
+                            4609108, 
+                            4618690, 
+                            4610070, 
+                            4528236,
+                            4602785,
+                            4641209.20, 
+                            4607704.44,
+                            4636113.34,
+                            4669602.08)
+
+stationData$altitude_masl <- c(
+                            953, 
+                            911, 
+                            864, 
+                            941, 
+                            759, 
+                            254,
+                            681,
+                            1136, 
+                            970, 
+                            1185,
+                            2177)
+
+stationData$basinSize_sqkm <- c(
+                                  5677829056, 
+                                  2521388472, 
+                                  9999165900, 
+                                  98555481, 
+                                  864946131, 
+                                  13112062045,
+                                  11139775526,
+                                  NA,
+                                  NA,
+                                  NA,
+                                  NA)
+stationData$basinSize_sqkm <- stationData$basinSize_sqkm / 10^6
+stationData
+```
+
+Complete Chirchik River Basin
+```{r}
+data.ChirchikRiverBasin <- full_join(data.ChirchikRiverBasin,stationData,by='code')
+```
+
+#### Store Chirchik River Basin Data (see then _PackageDataMaintenance.RMD in Package Folder for package data deployment)
+```{r}
+ChirchikRiverBasin <- data.ChirchikRiverBasin
+fLoc <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Handbook/Applied_Hydrological_Modeling_Bookdown/data/ChirchikRiverBasin.rda'
+saveRDS(ChirchikRiverBasin,fLoc)
+```
+
+### Syr Darya Basin
+
+### Amu Darya Basin
+
+### Chu River Basin
+
+### Talas River Basin
+

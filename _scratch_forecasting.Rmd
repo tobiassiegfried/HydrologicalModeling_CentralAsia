@@ -1,0 +1,159 @@
+---
+title: "scratch"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Required Packages
+
+```{r,message=FALSE}
+# navigation
+library(here)
+
+# data wrangling
+library(tidyverse)
+
+# timeseries bliss
+library(timetk)
+library(zoo)
+library(lubridate)
+library(pracma)
+
+# missing data
+library(naniar)
+library(visdat)
+library(simputation)
+
+# modeling
+library(modeltime)
+library(modeltime.ensemble)
+library(randomForest)
+library(tidymodels)
+```
+
+```{r}
+#devtools::install_github("hydrosolutions/riversCentralAsia",force = TRUE)
+library(riversCentralAsia)
+```
+
+# Forecasting
+
+## Train/Test Sets Splitting
+
+```{r}
+evaluation_tbl <- zorf %>% select(date, data)
+splits <- evaluation_tbl %>% time_series_split(date_var = date,
+                                             assess = "10 years",
+                                             cumulative = TRUE)
+splits
+splits_plan <- splits %>% tk_time_series_cv_plan() 
+splits_plan %>% plot_time_series_cv_plan(date,data,)
+```
+
+Red set is testing, black set is training set.
+
+## Forecasting with Prophet using Modeltime/Parsnip Packages
+
+```{r}
+?prophet_reg
+model_prophet_fit <- prophet_reg() %>% 
+  set_engine("prophet") %>% 
+  fit(data ~ date, data = training(splits))
+model_prophet_fit
+```
+
+### Modeltime Process = Forecasting Workflow
+
+```{r}
+# Setup modeltime Table
+model_tbl <- modeltime_table(
+  model_prophet_fit
+)
+
+#Calibrate (validate?) on hold out dataset
+calibration_tbl <- model_tbl %>% 
+  modeltime_calibrate(
+    new_data = testing(splits)
+  )
+
+# Forecast
+calibration_tbl %>% modeltime_forecast(actual_data = evaluation_tbl) %>% 
+  plot_modeltime_forecast()
+```
+
+### Accuracy
+
+```{r}
+calibration_tbl %>% modeltime_accuracy()
+```
+
+## Forecasting with Feature Engineering
+
+### Identifying Possible Features
+
+We are using the common log transformation for timeseries to visualize 'possible' features better.
+
+```{r}
+evaluation_tbl %>% plot_seasonal_diagnostics(date,data %>% log(),.feature_set = c('week','month.lbl','year'))
+```
+
+Week and month definitely seem to be interesting features. Let us keep that in mind.
+
+### Setup Preprocessing Pipeline (Recipes)
+
+```{r}
+#training(splits)
+
+recipe_spec <- recipe(data ~ ., training(splits)) %>% 
+  step_timeseries_signature(date) %>% 
+  # Cleaning up required since some features are not needed here when dealing with a decadal dataset.
+  step_rm(
+    ends_with(".iso"),ends_with(".xts"), contains("hour"),
+      contains("minute"),contains("second"),contains("am.pm")
+    ) %>%
+  step_normalize(
+      ends_with("index.num"),ends_with("_year")
+    ) %>% 
+  step_dummy(all_nominal())
+
+recipe_spec %>% prep() %>% juice() %>% glimpse()
+```
+
+### Machine Learning Specs
+
+```{r}
+model_spec <- linear_reg() %>% 
+  set_engine("lm")
+
+# Now, we create workflow object
+workflow_fit_lm <- workflow() %>% 
+  add_model(model_spec) %>% 
+  add_recipe(recipe_spec) %>% 
+  fit(training(splits))
+
+workflow_fit_lm
+```
+
+### Compare Models
+
+```{r}
+calibration_tbl <- modeltime_table(
+  model_prophet_fit,
+  workflow_fit_lm
+) %>% 
+  modeltime_calibrate(testing(splits))
+
+calibration_tbl
+
+calibration_tbl %>% modeltime_accuracy()
+
+calibration_tbl %>% 
+  modeltime_forecast(
+    new_data = testing(splits), actual_data = evaluation_tbl
+  ) %>% 
+  plot_modeltime_forecast()
+```
+

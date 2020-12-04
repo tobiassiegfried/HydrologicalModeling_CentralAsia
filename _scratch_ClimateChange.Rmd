@@ -1,0 +1,1079 @@
+---
+title: "_scratch_ClimateChange"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Load Required Libraries
+```{r,echo=FALSE}
+library(devtools)
+library(tidyverse)
+library(lubridate)    
+library(timetk)       
+library(riversCentralAsia)
+```
+
+
+# Investigating a Changing Climate in Central Asia
+Load data
+```{r}
+fPath <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Handbook/Applied_Hydrological_Modeling_Bookdown/temp/'
+data_wide_tbl <- readRDS(paste(fPath,'data_wide_tbl',sep=""))
+data_long_tbl <- readRDS(paste(fPath,'data_long_tbl',sep=""))
+```
+
+## Chirchik River
+
+### Pskem 
+#### 16290 - Q
+##### Monthly
+```{r,message=FALSE,warning=FALSE}
+pl <- data_long_tbl %>% filter(name=='Q16290') %>% 
+  summarise_by_time(.date_var = date, .by="month",value=mean(value)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. discharge (Station 16290, 1933 - 2015)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/ChirchikRiverBasin/'
+ggsave(paste(fPath,'16290_Pskem_Q_SubSeriesPlot.pdf',sep=""),
+       device ="pdf",
+       width  = 6,
+       height = 2.5)
+```
+##### Quarter
+```{r,message=FALSE,warning=FALSE}
+pl <- data_long_tbl %>% filter(name=='Q16290') %>% 
+  summarise_by_time(.date_var = date, .by="quarter",value=mean(value)) %>% 
+  tk_ts(frequency = 4) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. discharge (Station 16290, 1933 - 2015)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+pl
+
+# 
+# fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/ChirchikRiverBasin/'
+# ggsave(paste(fPath,'16290_Pskem_Q_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+```
+
+Get long term average Pskem River discharge
+```{r}
+data_long_tbl %>% filter(name=='Q16290') %>% summarise(Average=mean(value,na.rm=TRUE))
+```
+
+#### 38462 - T
+T: Pskem Meteorological Station (38462)
+##### Monthly T
+```{r,message=FALSE,warning=FALSE}
+pl <- data_long_tbl %>% filter(name=='T38462') %>% 
+  summarise_by_time(.date_var = date, .by="month",value=mean(value)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mon. mean temperature (Station 38462, 1933 - 2015)') +
+              xlab('month') +
+              ylab('deg. C.')
+
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/ChirchikRiverBasin/'
+ggsave(paste(fPath,'38462_Pskem_T_SubSeriesPlot.pdf',sep=""),
+       device ="pdf",
+       width  = 6,
+       height = 2.5)
+```
+
+##### Quarterly T
+```{r,message=FALSE,warning=FALSE}
+pl <- data_long_tbl %>% filter(name=='T38462') %>% 
+  summarise_by_time(.date_var = date, .by="quarter",value=mean(value)) %>% 
+  tk_ts(frequency = 4) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Decadal mean temperature (Station 38462, 1933 - 2015)') +
+              xlab('month') +
+              ylab('deg. C.')
+
+pl
+
+first_dec_T <- data_long_tbl %>% filter(name=='T38462') %>% summarise_by_time(.by = "quarter",meanT=mean(value)) %>% tk_ts(frequency = 4) %>% as.numeric() %>% head(40) %>% 
+  pracma::Reshape(.,10,4) %>% colMeans()
+
+last_dec_T <- data_long_tbl %>% filter(name=='T38462') %>% summarise_by_time(.by = "quarter",meanT=mean(value)) %>% tk_ts(frequency = 4) %>% as.numeric() %>% tail(40) %>% 
+  pracma::Reshape(.,10,4) %>% colMeans()
+
+delta_T <- last_dec_T - first_dec_T
+
+delta_T_perc <- round(delta_T / first_dec_T * 100 ,digits = 0)
+delta_T_perc
+
+# fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/ChirchikRiverBasin/'
+# ggsave(paste(fPath,'38462_Pskem_T_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+```
+
+#### 38462 - P
+P: Pskem Meteorological Station (38462)
+##### Monthly
+```{r,message=FALSE,warning=FALSE}
+pl <- data_long_tbl %>% filter(name=='P38462') %>% 
+  summarise_by_time(.date_var = date, .by="month",value=sum(value)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mon. precipitation (Station 38462, 1933 - 2015)') +
+              xlab('month') +
+              ylab('mm')
+
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/ChirchikRiverBasin/'
+ggsave(paste(fPath,'38462_Pskem_P_SubSeriesPlot.pdf',sep=""),
+       device ="pdf",
+       width  = 6,
+       height = 2.5)
+```
+
+##### Quarter
+```{r,message=FALSE,warning=FALSE}
+pl <- data_long_tbl %>% filter(name=='P38462') %>% 
+  summarise_by_time(.date_var = date, .by="quarter",value=sum(value)) %>% 
+  tk_ts(frequency = 4) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mon. precipitation (Station 38462, 1933 - 2015)') +
+              xlab('month') +
+              ylab('mm')
+
+pl
+
+
+data_long_tbl %>% filter(name=='P38462') %>% summarise_by_time(.by = "quarter",totP=sum(value)) %>% tk_ts(frequency = 4)
+
+# fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/ChirchikRiverBasin/'
+# ggsave(paste(fPath,'38462_Pskem_P_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+```
+
+
+
+
+<!-- ### Oygaing Met Station (38339) -->
+
+<!-- ```{r,message=FALSE,warning=FALSE} -->
+<!-- data %>% filter(code=='38339') %>% summarise_by_time(.date_var = date, .by="month",data=sum(data)) %>% -->
+<!--     tk_ts(frequency = 12) %>% -->
+<!--   forecast::ggsubseriesplot(year.labels = FALSE) + -->
+<!--               geom_smooth(method = "lm",color="red") + -->
+<!--               ggtitle('Mon. precipitation (Station 38339, 1962 - 2015)') + -->
+<!--               xlab('month') + -->
+<!--               ylab('mm') -->
+
+<!-- ``` -->
+
+
+### Chatkal River
+#### 16279 - Q
+##### Monthly
+```{r,message=FALSE,warning=FALSE}
+pl <- data_long_tbl %>% filter(name=='Q16279') %>% 
+  summarise_by_time(.date_var = date, .by="month",value=mean(value)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. discharge (Station 16279, 1933 - 2015)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/ChirchikRiverBasin/'
+ggsave(paste(fPath,'16279_Chatkal_Q_SubSeriesPlot.pdf',sep=""),
+       device ="pdf",
+       width  = 6,
+       height = 2.5)
+
+```
+##### Quarter
+```{r,message=FALSE,warning=FALSE}
+pl <- data_long_tbl %>% filter(name=='Q16279') %>% 
+  summarise_by_time(.date_var = date, .by="quarter",value=mean(value)) %>% 
+  tk_ts(frequency = 4) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. discharge (Station 16279, 1933 - 2015)') +
+              xlab('month') +
+              ylab('mm')
+
+pl
+
+# fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/ChirchikRiverBasin/'
+# ggsave(paste(fPath,'16279_Chatkal_Q_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+
+```
+
+Get long term average Chatkal River discharge
+```{r}
+data_long_tbl %>% filter(name=='Q16279') %>% summarise(Average=mean(value,na.rm=TRUE))
+```
+#### 38471 - T
+T: Chatkal Meteorological Station (38471)
+##### Month
+```{r,message=FALSE,warning=FALSE}
+pl <- data_long_tbl %>% filter(name=='T38471') %>% 
+  summarise_by_time(.date_var = date, .by="month",value=mean(value)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mon. mean temperature (Station 38471, 1933 - 2015)') +
+              xlab('month') +
+              ylab('deg. C.')
+
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/ChirchikRiverBasin/'
+ggsave(paste(fPath,'38471_Chatkal_T_SubSeriesPlot.pdf',sep=""),
+       device ="pdf",
+       width  = 6,
+       height = 2.5)
+```
+##### Quarter
+```{r,message=FALSE,warning=FALSE}
+pl <- data_long_tbl %>% filter(name=='T38471') %>% 
+  summarise_by_time(.date_var = date, .by="quarter",value=mean(value)) %>% 
+  tk_ts(frequency = 4) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mon. mean temperature (Station 38471, 1933 - 2015)') +
+              xlab('month') +
+              ylab('deg. C.')
+
+pl
+
+data_long_tbl %>% filter(name=='T38471') %>% summarise_by_time(.by = "quarter",meanT=mean(value)) %>% tk_ts(frequency = 4)
+
+# fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/ChirchikRiverBasin/'
+# ggsave(paste(fPath,'38471_Chatkal_T_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+```
+
+
+#### 38471 - P
+P: Chatkal Meteorological Station (38471)
+##### Monthly
+```{r,message=FALSE,warning=FALSE}
+pl <- data_long_tbl %>% filter(name=='P38471') %>% 
+  summarise_by_time(.date_var = date, .by="month",value=sum(value)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mon. precipitation (Station 38471, 1933 - 2015)') +
+              xlab('month') +
+              ylab('mm')
+
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/ChirchikRiverBasin/'
+ggsave(paste(fPath,'38471_Chatkal_P_SubSeriesPlot.pdf',sep=""),
+       device ="pdf",
+       width  = 6,
+       height = 2.5)
+```
+
+##### Quarter
+```{r,message=FALSE,warning=FALSE}
+pl <- data_long_tbl %>% filter(name=='P38471') %>% 
+  summarise_by_time(.date_var = date, .by="quarter",value=sum(value)) %>% 
+  tk_ts(frequency = 4) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mon. precipitation (Station 38471, 1933 - 2015)') +
+              xlab('month') +
+              ylab('mm')
+
+pl
+
+data_long_tbl %>% filter(name=='P38471') %>% summarise_by_time(.by = "quarter",totP=sum(value)) %>% tk_ts(frequency = 4)
+
+# fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/ChirchikRiverBasin/'
+# ggsave(paste(fPath,'38471_Chatkal_P_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+```
+
+#### Ugam
+##### 16300 - Q
+```{r,message=FALSE,warning=FALSE}
+data <- ChirchikRiverBasin
+ugam <- data %>% filter(code=='16300')
+pl <- ugam %>% 
+  summarise_by_time(.date_var = date, .by="month",value=mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Monthly mean discharge (Station 16300, 1932 - 2011)') +
+              xlab('month') +
+              ylab('deg. C.')
+
+ugam %>% plot_time_series(date,data,.smooth = FALSE)
+
+pl
+```
+
+#### Nauvalisoy
+##### 16298 - Q
+```{r,message=FALSE,warning=FALSE}
+data <- ChirchikRiverBasin
+nauvalisoy <- data %>% filter(code=='16298')
+pl <- nauvalisoy %>% 
+  summarise_by_time(.date_var = date, .by="month",value=mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Monthly mean discharge (Station 16298, 1963 - 2015)') +
+              xlab('month') +
+              ylab('deg. C.')
+
+nauvalisoy %>% plot_time_series(date,data,.smooth = FALSE)
+
+
+pl
+```
+
+
+## Syr Darya
+
+### Kara Darya
+
+#### 16938 - Q
+##### Monthly
+```{r,message=FALSE,warning=FALSE}
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/SyrDarya/'
+fName <-  '16938_decadal.csv'
+Q16938 <- loadTabularData(fPath,fName,'16938','KaraDarya','KaraDarya','SyrDarya','Q','mm') 
+
+Q16938 %>% 
+  summarise_by_time(.date_var = date, .by="month",data=mean(data)) %>% plot_time_series(date,data)
+
+pl <- Q16938  %>% summarise_by_time(.date_var = date, .by="month",data=mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. discharge (Station 16938, 1926 - 2017)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+ggsave(paste(fPath,'16938_KaraDara_SubSeriesPlot.pdf',sep=""),
+       device ="pdf",
+       width  = 6,
+       height = 2.5)
+```
+
+##### Quarter
+```{r,message=FALSE,warning=FALSE}
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/SyrDarya/'
+fName <-  '16938_decadal.csv'
+Q16938 <- loadTabularData(fPath,fName,'16938','KaraDarya','KaraDarya','SyrDarya','Q','mm') 
+
+Q16938 %>% 
+  summarise_by_time(.date_var = date, .by="month",data=mean(data)) %>% plot_time_series(date,data)
+
+pl <- Q16938  %>% summarise_by_time(.date_var = date, .by="quarter",data=mean(data)) %>% 
+  tk_ts(frequency = 4) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. discharge (Station 16938, 1926 - 2017)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+pl
+
+# ggsave(paste(fPath,'16938_KaraDara_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+```
+
+
+#### 38476 - P 
+P: Ak Terek Gava 38476
+##### Monthly
+```{r,message=FALSE,warning=FALSE}
+detach("package:riversCentralAsia", unload=TRUE)
+library(riversCentralAsia)
+
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/SyrDarya/'
+fName <-  '38476_P_decadal.csv'
+P38476 = loadTabularData(fPath,fName,'38476','Ak-TerekGava','KaraDarya','SyDarya','P','mm')
+
+pl <- P38476 %>% summarise_by_time(.date_var = date, .by="month",data=sum(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Total Monthly Precipitation (1940 - 2016), Ak-Terek Gava, KaraDarya') +
+              xlab('month') +
+              ylab('mm')
+
+ggsave(paste(fPath,'38476_AkTerekGava_P_SubSeriesPlot.pdf',sep=""),
+       device="pdf",
+       width = 6,
+       height= 2.5)
+```
+
+##### Quarterly
+```{r,message=FALSE,warning=FALSE}
+detach("package:riversCentralAsia", unload=TRUE)
+library(riversCentralAsia)
+
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/SyrDarya/'
+fName <-  '38476_P_decadal.csv'
+P38476 = loadTabularData(fPath,fName,'38476','Ak-TerekGava','KaraDarya','SyDarya','P','mm')
+
+P38476 %>% summarise_by_time(.by = "quarter",sumP=sum(data)) %>% tk_ts(frequency = 4)
+
+
+pl <- P38476 %>% summarise_by_time(.date_var = date, .by="quarter",data=sum(data)) %>% 
+  tk_ts(frequency = 4) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Total Monthly Precipitation (1940 - 2016), Ak-Terek Gava, KaraDarya') +
+              xlab('month') +
+              ylab('mm')
+
+pl
+
+# ggsave(paste(fPath,'38476_AkTerekGava_P_SubSeriesPlot.pdf',sep=""),
+#        device="pdf",
+#        width = 6,
+#        height= 2.5)
+```
+
+
+#### 38476 - T
+##### Monthly
+```{r,message=FALSE,warning=FALSE}
+detach("package:riversCentralAsia", unload=TRUE)
+library(riversCentralAsia)
+
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/SyrDarya/'
+fName <-  '38476_T_decadal.csv'
+T38476 = loadTabularData(fPath,fName,'38476','Ak-TerekGava','KaraDarya','SyDarya','T','degC')
+
+pl <- T38476 %>% summarise_by_time(.date_var = date, .by="month",data=mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean Monthly Temperature (1940 - 2016), Ak-Terek Gava, KaraDarya') +
+              xlab('month') +
+              ylab('deg. C.')
+
+ggsave(paste(fPath,'38476_AkTerekGava_T_SubSeriesPlot.pdf',sep=""),
+       device="pdf",
+       width = 6,
+       height = 2.5)
+```
+
+##### Quarterly
+```{r,message=FALSE,warning=FALSE}
+detach("package:riversCentralAsia", unload=TRUE)
+library(riversCentralAsia)
+
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/SyrDarya/'
+fName <-  '38476_T_decadal.csv'
+T38476 = loadTabularData(fPath,fName,'38476','Ak-TerekGava','KaraDarya','SyDarya','T','degC')
+
+pl <- T38476 %>% summarise_by_time(.date_var = date, .by="quarter",data=mean(data)) %>% 
+  tk_ts(frequency = 4) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean Monthly Temperature (1940 - 2016), Ak-Terek Gava, KaraDarya') +
+              xlab('month') +
+              ylab('deg. C.')
+
+pl
+
+T38476 %>% summarise_by_time(.by = "quarter",meanT=mean(data)) %>% tk_ts(frequency = 4)
+
+# ggsave(paste(fPath,'38476_AkTerekGava_T_SubSeriesPlot.pdf',sep=""),
+#        device="pdf",
+#        width = 6,
+#        height = 2.5)
+```
+
+
+### Sokh River
+
+#### 16198 - Q
+##### Monthly
+```{r,message=FALSE,warning=FALSE}
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/SyrDarya/'
+fName <-  '16198_decadal.csv'
+Q16198 <- loadTabularData(fPath,fName,'16198','Sarykanda','Sokh','SyrDarya','Q','mm') 
+
+pl <- Q16198  %>% summarise_by_time(.date_var = date, .by="month",data=mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. discharge (Station 16198, 1926 - 2017)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+ggsave(paste(fPath,'16198_Sokh_Q_SubSeriesPlot.pdf',sep=""),
+       device ="pdf",
+       width  = 6,
+       height = 2.5)
+
+```
+
+##### Quarter
+```{r,message=FALSE,warning=FALSE}
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/SyrDarya/'
+fName <-  '16198_decadal.csv'
+Q16198 <- loadTabularData(fPath,fName,'16198','Sarykanda','Sokh','SyrDarya','Q','mm') 
+
+pl <- Q16198  %>% summarise_by_time(.date_var = date, .by="quarter",data=mean(data)) %>% 
+  tk_ts(frequency = 4) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. discharge (Station 16198, 1926 - 2017)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+pl
+# 
+# ggsave(paste(fPath,'16198_Sokh_Q_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+
+```
+
+
+Get long term average Sokh River discharge
+```{r}
+Q16198 %>% summarise(Average=mean(data,na.rm=TRUE))
+```
+#### Abramov Met Station - T
+##### Monthly
+For Amu Darya, we have the complete climate record of the old Abramov Glacier Station that was destroyed in 1999 by Islamist Extremists.
+```{r,message=FALSE,warning=FALSE}
+fPath <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/AmuDarya/AmbramovStationData.csv'
+abramovMet <- read_csv(fPath,col_names = TRUE) %>% tk_tbl()
+
+abramovMet_Tav_mon <- abramovMet %>% 
+  summarise_by_time(.date_var = Date,.by="month",Avg_Air_temp=mean(Avg_Air_temp)) %>% 
+  filter(Date > as.Date('1967-12-01'))
+abramovMet_Tav_mon %>% plot_time_series(Date,Avg_Air_temp,.smooth = FALSE,.interactive = FALSE)
+pl <- abramovMet_Tav_mon %>%   tk_ts(frequency = 12) %>% na.omit %>% 
+  forecast::ggsubseriesplot(year.labels = TRUE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mon. mean temperature (Station Abramov, 1967 - 1999)') +
+              xlab('month') +
+              ylab('deg. C.')
+
+ggsave(paste(fPath,'Abramov_T_SubSeriesPlot.pdf',sep=""),
+       device ="pdf",
+       width  = 6,
+       height = 2.5)
+```
+
+##### Quarterly
+For Amu Darya, we have the complete climate record of the old Abramov Glacier Station that was destroyed in 1999 by Islamist Extremists.
+```{r,message=FALSE,warning=FALSE}
+fPath <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/AmuDarya/AmbramovStationData.csv'
+abramovMet <- read_csv(fPath,col_names = TRUE) %>% tk_tbl()
+
+abramovMet_Tav_mon <- abramovMet %>% 
+  summarise_by_time(.date_var = Date,.by="quarter",Avg_Air_temp=mean(Avg_Air_temp)) %>% 
+  filter(Date > as.Date('1967-12-01'))
+# abramovMet_Tav_mon %>% plot_time_series(Date,Avg_Air_temp,.smooth = FALSE,.interactive = FALSE)
+pl <- abramovMet_Tav_mon %>%   tk_ts(frequency = 4) %>% na.omit %>% 
+  forecast::ggsubseriesplot(year.labels = TRUE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mon. mean temperature (Station Abramov, 1967 - 1999)') +
+              xlab('month') +
+              ylab('deg. C.')
+
+pl
+
+abramovMet %>% summarise_by_time(.date_var = Date,.by="quarter",Avg_Air_temp=mean(Avg_Air_temp)) %>%  filter(Date > as.Date('1967-12-01')) %>%   tk_ts(frequency = 4)
+
+# ggsave(paste(fPath,'Abramov_T_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+```
+
+#### Abramov Met Station - P
+##### Monthly
+```{r,message=FALSE,warning=FALSE}
+fPath <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/AmuDarya/AmbramovStationData.csv'
+abramovMet <- read_csv(fPath,col_names = TRUE) %>% tk_tbl()
+
+abramovMet_Psum_mon <- abramovMet %>% 
+  summarise_by_time(.date_var = Date,.by="month",Precipitation=sum(Precipitation,na.rm = TRUE)) %>% 
+  filter(Date > as.Date('1967-12-01'))
+abramovMet_Psum_mon %>% plot_time_series(Date,Precipitation,.smooth = FALSE,.interactive = FALSE)
+pl <- abramovMet_Psum_mon %>%   tk_ts(frequency = 12) %>% na.omit %>% 
+  forecast::ggsubseriesplot(year.labels = TRUE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mon. precipitation (Station Abramov, 1967 - 1999)') +
+              xlab('month') +
+              ylab('mm')
+
+ggsave(paste(fPath,'Abramov_P_SubSeriesPlot.pdf',sep=""),
+       device ="pdf",
+       width  = 6,
+       height = 2.5)
+```
+
+##### Quarterly
+```{r,message=FALSE,warning=FALSE}
+fPath <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/AmuDarya/AmbramovStationData.csv'
+abramovMet <- read_csv(fPath,col_names = TRUE) %>% tk_tbl()
+
+abramovMet_Psum_mon <- abramovMet %>% 
+  summarise_by_time(.date_var = Date,.by="quarter",Precipitation=sum(Precipitation,na.rm = TRUE)) %>% 
+  filter(Date > as.Date('1967-12-01'))
+# abramovMet_Psum_mon %>% plot_time_series(Date,Precipitation,.smooth = FALSE,.interactive = FALSE)
+pl <- abramovMet_Psum_mon %>%   tk_ts(frequency = 4) %>% na.omit %>% 
+  forecast::ggsubseriesplot(year.labels = TRUE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mon. precipitation (Station Abramov, 1967 - 1999)') +
+              xlab('month') +
+              ylab('mm')
+
+pl
+
+abramovMet %>% 
+  summarise_by_time(.date_var = Date,.by="quarter",Precipitation=sum(Precipitation,na.rm = TRUE)) %>% 
+  filter(Date > as.Date('1967-12-01')) %>% tk_ts(frequency = 4)
+
+# ggsave(paste(fPath,'Abramov_P_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+```
+
+
+## Chu River
+
+### Ala Archa
+
+#### 15194 - Q
+##### Monthly
+```{r,message=FALSE,warning=FALSE}
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/ChuRiver/'
+fName <-  'AlaArcha.csv'
+AlaArcha_Q = loadTabularData(fPath,fName,'15194','AlaArcha','AlaArcha','ChuRiver','Q','mm')
+
+pl <- AlaArcha_Q  %>% summarise_by_time(.date_var = date, .by="month",data=mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. discharge (Station 15194, 1936 - 2014)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+ggsave(paste(fPath,'15194_AlaArcha_Q_SubSeriesPlot.pdf',sep=""),
+       device ="pdf",
+       width  = 6,
+       height = 2.5)
+
+```
+##### Quarter
+```{r,message=FALSE,warning=FALSE}
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/ChuRiver/'
+fName <-  'AlaArcha.csv'
+AlaArcha_Q = loadTabularData(fPath,fName,'15194','AlaArcha','AlaArcha','ChuRiver','Q','mm')
+
+pl <- AlaArcha_Q  %>% summarise_by_time(.date_var = date, .by="quarter",data=mean(data)) %>% 
+  tk_ts(frequency = 4) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. discharge (Station 15194, 1936 - 2014)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+pl
+
+# 
+# ggsave(paste(fPath,'15194_AlaArcha_Q_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+
+```
+
+
+Get long term average Ala Archa River discharge
+```{r}
+AlaArcha_Q %>% summarise(Average=mean(data,na.rm=TRUE))
+```
+
+#### Baytik - P
+##### Monthly P
+```{r,message=FALSE}
+detach("package:riversCentralAsia", unload=TRUE)
+library(riversCentralAsia)
+
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/ChuRiver/'
+fName <-  'Baytik-P_clean.csv'
+baytik_P = loadTabularData(fPath,fName,'11111','Baytik','Ala-Archa','ChuRiver','P','degC')
+
+pl <- baytik_P %>% na.omit() %>% summarise_by_time(.date_var = date, .by="month",data=sum(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mon. precipitation (Station Baytik, 1926 - 2019)') +
+              xlab('month') +
+              ylab('mm')
+
+ggsave(paste(fPath,'Baytik_AlaArcha_P_SubSeriesPlot.pdf',sep=""),
+       device ="pdf",
+       width  = 6,
+       height = 2.5)
+
+```
+
+##### Quarterly P
+```{r,message=FALSE}
+detach("package:riversCentralAsia", unload=TRUE)
+library(riversCentralAsia)
+
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/ChuRiver/'
+fName <-  'Baytik-P_clean.csv'
+baytik_P = loadTabularData(fPath,fName,'11111','Baytik','Ala-Archa','ChuRiver','P','degC')
+
+pl <- baytik_P %>% na.omit() %>% summarise_by_time(.date_var = date, .by="quarter",data=sum(data)) %>% 
+  tk_ts(frequency = 4) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mon. precipitation (Station Baytik, 1926 - 2019)') +
+              xlab('month') +
+              ylab('mm')
+
+pl
+
+baytik_P %>% summarise_by_time(.by = "quarter",totP=sum(data)) %>% tk_ts(frequency = 4)
+
+# ggsave(paste(fPath,'Baytik_AlaArcha_P_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+
+```
+
+#### Baytik - T
+##### Monthly T
+```{r,message=FALSE,warning=FALSE}
+detach("package:riversCentralAsia", unload=TRUE)
+library(riversCentralAsia)
+
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/ChuRiver/'
+fName <-  'Baytik-T_clean.csv'
+baytik_T = loadTabularData(fPath,fName,'11111','Baytik','Ala-Archa','ChuRiver','T','degC')
+
+pl <- baytik_T %>% na.omit() %>% summarise_by_time(.date_var = date, .by="month",data=mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mon. mean temperature (Station Baytik, 1926 - 2019)') +
+              xlab('month') +
+              ylab('deg. C.')
+
+ggsave(paste(fPath,'Baytik_AlaArcha_T_SubSeriesPlot.pdf',sep=""),
+       device ="pdf",
+       width  = 6,
+       height = 2.5)
+```
+
+##### Quarterly T
+```{r,message=FALSE,warning=FALSE}
+detach("package:riversCentralAsia", unload=TRUE)
+library(riversCentralAsia)
+
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/ChuRiver/'
+fName <-  'Baytik-T_clean.csv'
+baytik_T = loadTabularData(fPath,fName,'11111','Baytik','Ala-Archa','ChuRiver','T','degC')
+
+pl <- baytik_T %>% na.omit() %>% summarise_by_time(.date_var = date, .by="quarter",data=mean(data)) %>% 
+  tk_ts(frequency = 4) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mon. mean temperature (Station Baytik, 1926 - 2019)') +
+              xlab('month') +
+              ylab('deg. C.')
+
+pl
+
+baytik_T %>% summarise_by_time(.by = "quarter",meanT=mean(data)) %>% tk_ts(frequency = 4)
+
+
+# ggsave(paste(fPath,'Baytik_AlaArcha_T_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+```
+
+#### Alamedin - Q
+##### Monthly
+```{r,message=FALSE,warning=FALSE}
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/ChuRiver/'
+fName <-  'Alamedin.csv'
+Alamedin_Q = loadTabularData(fPath,fName,'15189','Alamedin','Alamedin','ChuRiver','Q','mm')
+
+pl <- Alamedin_Q  %>% summarise_by_time(.date_var = date, .by="month",data=mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. discharge (Station 15189 (Alamedin), 1911 - 2014)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+pl
+
+
+# ggsave(paste(fPath,'15194_AlaArcha_Q_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+
+```
+
+#### KaraBalta - Q
+##### Monthly
+```{r,message=FALSE,warning=FALSE}
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/ChuRiver/'
+fName <-  'KaraBalta.csv'
+KaraBalta_Q = loadTabularData(fPath,fName,'15215','KaraBalta','KaraBalta','ChuRiver','Q','mm')
+
+pl <- KaraBalta_Q  %>% summarise_by_time(.date_var = date, .by="month",data=mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. discharge (Station 15215 (KaraBalta), 1925 - 2014)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+pl
+
+
+# ggsave(paste(fPath,'15194_AlaArcha_Q_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+
+```
+
+#### Kegety - Q
+##### Monthly
+```{r,message=FALSE,warning=FALSE}
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/ChuRiver/'
+fName <-  'Kegety.csv'
+Kegety_Q = loadTabularData(fPath,fName,'15171','Kegety','Kegety','ChuRiver','Q','mm')
+
+pl <- Kegety_Q  %>% summarise_by_time(.date_var = date, .by="month",data=mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. discharge (Station 15171 (Kegety), 1925 - 2014)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+pl
+
+
+# ggsave(paste(fPath,'15194_AlaArcha_Q_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+
+```
+
+#### Chon Kemin - Q
+##### Monthly
+```{r,message=FALSE,warning=FALSE}
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/ChuRiver/'
+fName <-  'ChonKemin_2005.csv'
+ChonKemin_Q = loadTabularData(fPath,fName,'15149','ChonKemin','ChonKemin','ChuRiver','Q','mm')
+
+pl <- ChonKemin_Q  %>% summarise_by_time(.date_var = date, .by="month",data=mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. discharge (Station 15149 (ChonKemin), 1936 - 2014)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+pl
+
+
+# ggsave(paste(fPath,'15194_AlaArcha_Q_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+
+```
+
+
+## Amu Darya
+
+### Gund River
+
+#### 17050 - Q
+##### Monthly
+```{r,message=FALSE,warning=FALSE}
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/AmuDarya/'
+fName <-  '17050_Gund_Khorog_mon.csv'
+Q17050 <- loadTabularData(fPath,fName,'17050','Khorog','Gunt','AmuDarya','Q','m^3/s')
+
+pl <- Q17050%>% summarise_by_time(.date_var = date, .by="month",data=mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. discharge (Station 17050, 1940 - 2016)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+ggsave(paste(fPath,'17050_Gund_P_SubSeriesPlot.pdf',sep=""),
+       device ="pdf",
+       width  = 6,
+       height = 2.5)
+
+```
+
+##### Quarter
+```{r,message=FALSE,warning=FALSE}
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/Q/AmuDarya/'
+fName <-  '17050_Gund_Khorog_mon.csv'
+Q17050 <- loadTabularData(fPath,fName,'17050','Khorog','Gunt','AmuDarya','Q','m^3/s')
+
+pl <- Q17050%>% summarise_by_time(.date_var = date, .by="quarter",data=mean(data)) %>% 
+  tk_ts(frequency = 4) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. discharge (Station 17050, 1940 - 2016)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+pl
+
+# ggsave(paste(fPath,'17050_Gund_P_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+
+```
+
+
+#### 38954 - P
+##### Monthly
+```{r}
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/AmuDarya/'
+fName <-  '38954_Khorog_P.csv'
+P38954 <- loadTabularData(fPath,fName,'38954','Khorog','Gunt','AmuDarya','P','mm')
+
+pl <- P38954 %>% summarise_by_time(.date_var = date, .by="month",data=sum(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. precipitation (Station 38954, 1900 - 2018)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+ggsave(paste(fPath,'38954_Khorog_P_SubSeriesPlot.pdf',sep=""),
+       device ="pdf",
+       width  = 6,
+       height = 2.5)
+```
+
+##### Quarter
+```{r}
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/AmuDarya/'
+fName <-  '38954_Khorog_P.csv'
+P38954 <- loadTabularData(fPath,fName,'38954','Khorog','Gunt','AmuDarya','P','mm')
+
+pl <- P38954 %>% summarise_by_time(.date_var = date, .by="quarter",data=sum(data)) %>% 
+  tk_ts(frequency = 4) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mean mon. precipitation (Station 38954, 1900 - 2018)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+pl
+
+P38954 %>% summarise_by_time(.date_var = date, .by="quarter",data=sum(data)) %>% 
+  tk_ts(frequency = 4)
+
+# ggsave(paste(fPath,'38954_Khorog_P_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+```
+
+#### 38954 - T
+##### Monthly
+```{r}
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/AmuDarya/'
+fName <-  '38954_Khorog_T.csv'
+
+#dataMat <- read_csv(paste(fPath,fName,sep=""), col_names = FALSE, col_types = cols())
+
+T38954 <- loadTabularData(fPath,fName,'38954','Khorog','Gunt','AmuDarya','T','mm')
+
+pl <- T38954 %>% summarise_by_time(.date_var = date, .by="month",data=mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Mon. mean temperature (Station 38954, 1899 - 2018)') +
+              xlab('month') +
+              ylab('m^3/s')
+
+ggsave(paste(fPath,'38954_Khorog_T_SubSeriesPlot.pdf',sep=""),
+       device ="pdf",
+       width  = 6,
+       height = 2.5)
+```
+
+##### Quarterly
+```{r}
+fPath <-  '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Data/METEO/AmuDarya/'
+fName <-  '38954_Khorog_T.csv'
+
+#dataMat <- read_csv(paste(fPath,fName,sep=""), col_names = FALSE, col_types = cols())
+
+T38954 <- loadTabularData(fPath,fName,'38954','Khorog','Gunt','AmuDarya','T','mm')
+
+pl <- T38954 %>% summarise_by_time(.date_var = date, .by="quarter",data=mean(data)) %>% 
+  tk_ts(frequency = 4) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              ggtitle('Quarterly mean temperature (Station 38954, 1899 - 2018)') +
+              xlab('month') +
+              ylab('deg. C.')
+
+pl
+
+T38954 %>% summarise_by_time(.date_var = date, .by="quarter",data=mean(data)) %>% 
+  tk_ts(frequency = 4)
+
+# ggsave(paste(fPath,'38954_Khorog_T_SubSeriesPlot.pdf',sep=""),
+#        device ="pdf",
+#        width  = 6,
+#        height = 2.5)
+```
+
+
