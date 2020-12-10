@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
-    split_by: 'rmd'
+    split_by: 'section'
 documentclass: krantz 
 monofont: "Source Code Pro"
 monofontoptions: "Scale=0.7"

@@ -1,5 +1,9 @@
 # Discharge Forecasting with Predictive Inference {#HydroModelsEmpiricalModels}
 
+<!-- ```{r geographyCentralAsia, echo = FALSE, fig.cap = "Upstream Naryn, Kyrgyzstan. Source: Tobias Siegfried"} -->
+<!-- knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/NarynRiver.jpeg') -->
+<!-- ``` -->
+
 ## Prerequisites {.unnumbered}
 
 This is the first 'practical' Chapter of the book and comes with software requirements. For the analysis of the available data we use R [@R-2013]. R is a computer language and environment for data analysis, statistical computation and data visualization. It can be downloaded at \<<https://www.r-project.org>\>. Together with R, we are using RStudio as the IDE [@RStudio-2020].

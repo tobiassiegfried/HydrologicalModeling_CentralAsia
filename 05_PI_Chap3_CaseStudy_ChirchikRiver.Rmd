@@ -11,6 +11,10 @@ library(riversCentralAsia)
 
 **Caution! - Work in progress.**
 
+```{r geographyCentralAsia, echo = FALSE, fig.cap = "Charvak reservoir dam, looking downstream. Source: Tobias Siegfried"}
+knitr::include_graphics('_bookdown_files/Chap3-ChirchikRB-Figures/CharvakReservoir_lr.jpeg')
+```
+
 ## Overview
 
 The Chirchik is a river in the Tashkent region of Uzbekistan. Its natural basin covers 13'112 km^2^, not accounting for the modern-time interbasin water transfers to the neighboring Akhangaran basin in the south (the outline of the basin is shown in Figure \@ref(fig:ChirchikRiverOverview)) and to the north. In terms of total runoff contribution, it is the biggest right tributary of the Syr Darya (see also further below in Section \@ref(ChirchikHydroCharacteristics)).

@@ -2,6 +2,10 @@
 
 **Caution! - Work in progress.**
 
+```{r geographyCentralAsia, echo = FALSE, fig.cap = "Upstream Naryn, Kyrgyzstan. Source: Tobias Siegfried"}
+knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/NarynRiver.jpeg')
+```
+
 ## Regional Hydro-Climatological Features
 
 The inhomogeneity of the relief structure causes Central Asia to be the territory of immense contrasts. Here, extreme aridity in the hot deserts of the plains and, only 100 km away, abundant humidity and snowfields in the mountains where precipitation levels can range between 1'000 mm up to 2'000 mm. The uneven distribution of water bodies is striking. The mountains of Central Asia are riddled with an extremely branched river network consisting of more than ten thousand watercourses. In the flat foothill areas surrounding the mountain ranges, another branching river network is found which consists of irrigation channels, which do not contribute to the runoff of the core rivers, but rather divert the water from the river network and diffuse it in the irrigated oases where much of it gets evapotranspirated.
@@ -11,7 +15,7 @@ Central Asia is spreading over approximately 4 million km^2^, including the terr
 [^hydrological_systems-1]: namely the distribution of sand and loess relief types, where the former are more permeable and the latter contain more moisture
 
 ```{r riversMap, echo = FALSE, fig.cap = 'Map highlighting the Central Asian rivers network (rivers are shown in blue color). The dense river network in the mountainous areas starkly contrasts with the sparse one in the plains. Source: Zoï Environment Network.'}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/riversCentralAsiaZoi.jpg')
+knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/waterFormationUseCentralAsiaZoi.jpg')
 ```
 
 All Central Asian river basins are endorheic with no water draining out of the region but only evaporating back to the atmosphere. This emphasizes the importance of moisture transfer as an important mechanism in the region region since the formation of substantial watercourses in the mountains is followed by their complete dissipation in the plains, including in the irrigated oases and the terminal lakes, i.e. the Aral Sea and Lake Balkash.
@@ -164,6 +168,12 @@ $$
 where $S$ is the area of a glacier, $L$ the length of the glacier and $V$ the computed volume from the scaling relationship. The length $L$ of the individual glaciers can be approximated by subtracting the minimum glacier elevation from the corresponding maximum elevation. Like this, we can compute land ice volumes of the Amu Darya and Syr Darya basins in an approximate yet scientific way.
 
 Alternatively, we can use the volume area scaling relationship by Yerashov.
+
+<!-- Andrey Yakovlev, [10 Dec 2020 at 15:53:54]: -->
+<!-- Erasov. V=O.027*F^1.5 -->
+
+<!-- Where F - area of glacier, km^2, V - volume of glacier, km^3 -->
+<!-- Erasov N.V. Method for determining of volume of mountain glaciers. MGI, M, 1968, issue 14, 307-308 pp -->
 
 ## Average Multi-Year Runoff
 

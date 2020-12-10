@@ -1,7 +1,11 @@
 # (PART) Part I Hydrological Systems {#Part1_Hydrological_Systems .unnumbered}
 
-
 **Caution! - Work in progress.** 
+
+```{r geographyCentralAsia, echo = FALSE, fig.cap = "Naryn catchment, near Song Kul, Kyrgyzstan. SOurce: Tobias Siegfried"}
+knitr::include_graphics('_bookdown_files/Chap1-Introduction-Figures/nearSongKul_lr.jpeg')
+```
+
 
 # Introduction {#Introduction}
 
