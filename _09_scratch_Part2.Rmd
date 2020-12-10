@@ -9,3 +9,339 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## Libraries
+```{r,message=FALSE}
+library(devtools)
+library(tidyverse)
+library(lubridate)
+library(timetk)
+library(DataExplorer)
+library(riversCentralAsia)
+```
+
+## LOAD & PREP DATA 
+```{r}
+fPath <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Handbook/Applied_Hydrological_Modeling_Bookdown/temp/'
+data_wide_tbl <- readRDS(file=paste0(fPath,'data_wide_tbl'))
+data_wide_tbl
+s <- data_wide_tbl$date %>% first()
+e <- data_wide_tbl$date %>% last()
+dec <- decadeMaker(s,e,'end') %>% rename(per=dec)
+data_wide_tbl <- left_join(data_wide_tbl,dec,by='date')
+data_wide_tbl
+
+# Generate reference model_data
+# Part 1
+model_data <- data_wide_tbl %>% 
+  select(date,Q16290,T38462,P38462,per) %>% 
+  mutate(date.num = as.numeric(date)) %>% 
+  mutate(per = as.factor(per)) %>% 
+  rename(Q = Q16290,T = T38462) %>% 
+  mutate(Q = log1p(Q)) %>% 
+  mutate(Q_lag1 = lag(Q,1)) %>% 
+  mutate(P_scaled = log1p(P38462)) %>% # store a scaled version of the precipitation
+  mutate(T_scaled = log(T+100)) %>% # store a scaled version of the temperature
+  mutate(TP = T_scaled * P_scaled) %>% # store the scaled interaction term
+  mutate(P_LOESS = smooth_vec(P_scaled,period = 36)) %>% # compute a smoothed version of P
+  mutate(T_scaled_P_LOESS = T_scaled * P_LOESS) %>% # store a scaled interaction with P_LOESS
+  select(-P38462)
+# Part 2
+model_data <- model_data %>% 
+  mutate(Q_lag2 = lag(Q,2)) %>% 
+  mutate(Q_change = Q_lag1 -Q_lag2) %>% # that is the speed of change in discharge
+  mutate(Q_change_lag1 = lag(Q_change,1)) %>% 
+  mutate(Q_acc = Q_change - Q_change_lag1) %>% # and that is the acceleration of discharge
+  na.omit() %>% 
+  select(-Q_lag2,-Q_change_lag1)
+model_data
+```
+
+## BENCHMARK MODEL
+Here is the benchmark model.
+
+```{r}
+# Specification of the model formula
+model_formula <- as.formula(Q ~ date.num + per + Q_lag1 + Q_change + Q_acc)
+model_data %>% na.omit() %>% 
+  plot_time_series_regression(
+  .date_var = date,
+  .formula = model_formula,
+  .show_summary = TRUE, # We do show the summary since we have plotted the summary output already above.
+  .title = ""
+)
+
+lm_benchmark_model <- model_data %>% lm(formula=model_formula)
+lm_benchmark_model %>% summary()
+
+# Generate the tibble to check model quality
+fc_best_lm_model <- predict(lm_benchmark_model) %>% as.numeric()
+fc_qual_assessment_tbl <- model_data %>% 
+  add_column(pred=fc_best_lm_model) %>% 
+  rename(obs=Q) %>% 
+  select(date,obs,pred,per) %>% 
+  mutate(obs=expm1(obs),pred=expm1(pred))
+# Check tibble
+fc_qual_assessment_tbl
+# Check quality
+fc_qual <- assess_fc_qual(fc_qual_assessment_tbl,TRUE)
+fc_qual[[3]]
+```
+
+## AUGMENTING TIME SERIES with tk_augment_timeseries_signature
+
+```{r}
+model_data_aug <- model_data %>% tk_augment_timeseries_signature(date) 
+model_data_aug %>% glimpse
+```
+Actually, the `..$diff` feature is the number of seconds between observation dates. So that could be used to compute correctly annual (or monthly) flows. Check later!
+
+Removel of some unnecessary features.
+```{r}
+model_data_aug <- model_data_aug %>% 
+  select(-diff,
+         -contains(".iso"),
+         -month,-contains(".xts"),
+         -hour,
+         -minute,
+         -second,
+         -hour12,
+         -am.pm,
+         -wday)
+model_data_aug %>% glimpse
+```
+Now, test model with augmented data
+
+```{r}
+model_formula <- as.formula(
+  Q ~ . - T - P_scaled - TP - P_LOESS - date # this just means we take all predictors (.) and remove the ones that we are not interested in. This notation is faster instead of having to list every predictor from the large number of them included in the augmented tibble
+)
+
+lm_model_aug_time <- model_data_aug %>% lm(formula = model_formula)
+lm_model_aug_time %>% summary()
+```
+When viewed from the perspective of the adjusted R-squared, we do not seem to gain more as compared to our benchmark model. Let us check the local quality criterion.
+
+```{r}
+# Generate the tibble to check model quality
+fc_best_lm_model <- predict(lm_model_aug_time) %>% as.numeric()
+fc_qual_assessment_tbl <- model_data %>% 
+  add_column(pred=fc_best_lm_model) %>% 
+  rename(obs=Q) %>% 
+  select(date,obs,pred,per) %>% 
+  mutate(obs=expm1(obs),pred=expm1(pred))
+# Check tibble
+fc_qual_assessment_tbl
+# Check quality
+fc_qual <- assess_fc_qual(fc_qual_assessment_tbl,TRUE)
+fc_qual[[3]]
+```
+Nope, no gain but slight loss as compared to our benchmark model. Hence, we do not consider any timeseries augmentation anymore.
+
+
+## T & P EXTERNAL REGRESSORS & INTERACTIONS
+
+It is now time to consider the 'external' climate regressors. FOr the sake of demonstration, we consider here the available precipitation and temperature data at Station 38462. For the reason explained in the context of discharge, we prepare the raw climate data to rescale and, in the case of precipitation, also smooth the data prior to testing their value added through inclusion in the model. 
+
+```{r dataExternalRegressors, fig.cap = "The forecast target Q together with scaled version of the external climate regressors, including an interaction term between T and P, are shown. "}
+model_data %>% 
+  select(date,Q,P_LOESS,T_scaled,T_scaled_P_LOESS) %>% 
+  pivot_longer(-date) %>% 
+  plot_time_series(date,value,name,.smooth = F)
+```
+
+Now is time to examine the cross-corelation between Q and T. Since discharge is temperature driven, we can expect to obtain some good lead-in-time forecast from that time series.
+
+```{r Q_T_scaled_CrossCor, fig.cap = "Cross-correlation between Q and T_scaled."}
+model_data %>% 
+  plot_acf_diagnostics(.date_var              = date,
+                       .value                 = Q,
+                       .ccf_vars              = T_scaled,
+                       .show_ccf_vars_only    = TRUE,
+                       .lags                  = 72,
+                       .show_white_noise_bars = TRUE)
+```
+It appears that the inclusion of let us say lag 1 to 3 of the scaled temperature might help us to improve our prediction. Note that we cannot use `lag(0)`, i.e. temperature at time t since that is not known (yet) for the very same period we try to predict. 
+
+```{r Q_P_LOESS_CrossCor, fig.cap = "Cross-correlation between Q and P_LOESS"}
+model_data %>% 
+  plot_acf_diagnostics(.date_var              = date,
+                       .value                 = Q,
+                       .ccf_vars              = P_LOESS,
+                       .show_ccf_vars_only    = TRUE,
+                       .lags                  = 72,
+                       .show_white_noise_bars = TRUE)
+```
+The cross-correlation between discharge and smoothed precipitation is shown in Figure \@ref(Q_P_LOESS_CrossCor). We expect predictive power for the out-of-phase highly cross-correlated lags 13, 14 and 15.
+
+```{r Q_TP_InteractionTerms_CC, fig.cap = "Cross-correlation between Q and the interaction term P*T."}
+model_data %>% 
+  plot_acf_diagnostics(.date_var              = date,
+                       .value                 = Q,
+                       .ccf_vars              = T_scaled_P_LOESS,
+                       .show_ccf_vars_only    = TRUE,
+                       .lags                  = 144,
+                       .show_white_noise_bars = TRUE)
+```
+For the interaction term, we even see higher lagged cross-correlation around the lags 13, 14 and 15 and will certainly also want to study the effect from the inclusion of these predictors in our model.
+
+```{r}
+# Add laggs of interaction terms to tibble
+model_data_XRegs <- model_data %>% 
+  tk_augment_lags(.value = T_scaled,.lags = 1:3) %>% 
+  tk_augment_lags(.value = P_LOESS, .lags = 14) %>% 
+  tk_augment_lags(.value = T_scaled_P_LOESS, .lags = 14) %>% 
+  na.omit()
+
+# Glimpse at the lag-augmented data
+model_data_XRegs %>% glimpse()
+
+# Specification of the model formula
+model_formula <- as.formula(Q ~ . -date-T-P_scaled-T_scaled-TP-P_LOESS-T_scaled_P_LOESS)
+
+lm_XReg_model <- model_data_XRegs %>% lm(formula=model_formula)
+lm_XReg_model %>% summary()
+
+# Generate the tibble to check model quality
+fc_lm_XRegs_model <- predict(lm_XReg_model) %>% as.numeric()
+fc_qual_assessment_tbl <- model_data_XRegs %>% 
+  add_column(pred=fc_lm_XRegs_model) %>% 
+  rename(obs=Q) %>% 
+  select(date,obs,pred,per) %>% 
+  mutate(obs=expm1(obs),pred=expm1(pred))
+# Check tibble
+fc_qual_assessment_tbl
+# Check quality
+fc_qual <- assess_fc_qual(fc_qual_assessment_tbl,TRUE)
+fc_qual[[3]]
+```
+Somewhat surprisingly is the adjusted R-square value better but the performance of the forecasts when measured with the local criteria fails to improve. Let us try one last thing at this stage, to add a rolling mean of Q_lag1 ...
+
+## SLIDIFY / ROLLING MEANS
+
+In some global competitions on time series forecasting, adding rolling means of lagged variables greatly improved forecasts. We will test the added benefit of including rolling means of lagged variables here.
+
+```{r}
+# Augment Data
+model_data_rollMean <- model_data %>% 
+  tk_augment_slidify(
+    .value = Q_lag1,
+    .f = mean,
+    .period = c(3,6),
+    .align = "center",
+    .partial = TRUE
+  ) %>% 
+    tk_augment_slidify(
+    .value = Q_acc,
+    .f = mean,
+    .period = c(3,6),
+    .align = "center",
+    .partial = TRUE
+  )
+
+# model_data_rollMean %>% 
+#   select(date,Q,Q_lag1,Q_lag1_roll_3,Q_lag1_roll_6) %>% 
+#   pivot_longer(-date) %>% 
+#   plot_time_series(date,value,name,.smooth=FALSE)
+
+# Specification of the model formula
+model_formula <- as.formula(Q ~ date.num + per + Q_lag1 + 
+                              Q_lag1_roll_3 + Q_lag1_roll_6 + 
+                              Q_acc + Q_acc_roll_3 + Q_acc_roll_6)
+#model_formula <- as.formula(Q ~ date.num + per + Q_lag1 + Q_change + Q_acc + Q_lag1_roll_3)
+
+lm_RollMean_model <- model_data_rollMean %>% lm(formula=model_formula)
+lm_RollMean_model %>% summary()
+
+# Generate the tibble to check model quality
+fc_lm_RollMean_model <- predict(lm_RollMean_model) %>% as.numeric()
+fc_qual_assessment_tbl <- model_data_rollMean %>% 
+  add_column(pred=fc_lm_RollMean_model) %>% 
+  rename(obs=Q) %>% 
+  select(date,obs,pred,per) %>% 
+  mutate(obs=expm1(obs),pred=expm1(pred))
+# Check tibble
+fc_qual_assessment_tbl %>% select(-per) %>% 
+  pivot_longer(-date) %>% 
+  plot_time_series(date,value,name,.smooth=F)
+# Check quality
+fc_qual <- assess_fc_qual(fc_qual_assessment_tbl,TRUE)
+fc_qual[[3]]
+```
+Wow - this truly beats even our wildest expectations. So this rolling mean of lagged variables seems to be a monst interesting idea to be combined with the acceleration of the change in discharge. This is 24 % increase in performance, quite an achievement!
+
+We have now developed an important inital understanding of the functioning of our hydrological system and what they key elements of a good quality forecast are. As we saw, these inital steps point to a lot of manual and somewhat repetitive work. This includes
+
+- the preparation of new features that we want to explore in the model,
+- the setup of the model via the model formula and the model calibration, and finally,
+- the assessment of the model quality with the common metrics
+
+Further below, we also want to test different models, not just linear regression. So, in short, it pays to invest some time to setup proper workflows that can be easily configured, used and reused for different types of data and different types of models to minimize the programming overhead and the necessity for manual copy-paste etc.
+
+Luckily, there are wonderful R-packages which allow to exactly do this, i.e. to specify and automatize machine learning workflows for empirical modeling in a highly efficient manner. We will capitalize on them by using `modeltime`, `recipies` and `rsample` for our work^More information on the individual packages can also be found online^.
+
+So, in the next Section, we start to work with these standardized machine learning workflows that will help us to effectively test different modeling strategies in a straight forward manner.
+
+<!-- ## MODEL ARTIFACTS -->
+<!-- It is good practice to store good models intermittently in the corresponding location -->
+
+<!-- ```{r} -->
+<!-- fPath <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Handbook/Applied_Hydrological_Modeling_Bookdown/models/' -->
+<!-- fName <- 'best_lm_model.Rds' -->
+<!-- write_rds(lm_RollMean_model, path = paste0(fPath,fName)) -->
+<!-- ``` -->
+
+## Machine Learning Workflows 
+
+### Generating the Full Dataset
+
+#### Data and Forecast Data
+
+### Generating Training and Test Dataset
+
+Data are normally split up in training and test sets where the former is used to calibrate a model and the later is used to assess model quality.
+
+```{r}
+# For the moment, we remove the XRegs from the benchmar model data.
+# model_data_rollMean_slim <-  model_data_rollMean %>% 
+#   select(-T, -P_scaled, -T_scaled, -TP, -P_LOESS, -T_scaled_P_LOESS)
+# model_data_rollMean_slim
+
+# Generate Train/Test sets
+splits <- model_data_rollMean %>% 
+  time_series_split(assess = 360,cumulative = TRUE)
+# Verification that splits worked properly
+splits %>% tk_time_series_cv_plan() %>% 
+  plot_time_series_cv_plan(date,Q,
+                           .smooth = F,
+                           .title = "")
+```
+
+### Feature Engineering Pipeline
+Creating preprocessing and feature engineering pipelines.
+
+```{r}
+# Pull in best linear regression model
+fPath <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Handbook/Applied_Hydrological_Modeling_Bookdown/models/'
+fName <- 'best_lm_model.Rds'
+best_lm_model <- read_rds(paste0(fPath,fName))
+best_lm_model %>% summary()
+```
+
+```{r}
+library(recipes)
+library(modeltime)
+library(rsample)
+# This is the formula that was used to create that best linear model.
+best_lm_model$terms %>% formula()
+
+# now we create a recipe
+recipe_spec_base <- recipe(Q ~ ., data = training(splits))
+
+recipe_spec_base
+
+recipe_spec_base %>% prep() %>% juice()
+```
+
+### The Benchmark lm-Model
+
+

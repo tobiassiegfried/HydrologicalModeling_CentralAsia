@@ -1,5 +1,7 @@
 # Preface {#Preface .unnumbered}
 
+**Caution! - Work in progress.**
+
 This handbook is geared towards young water professionals in Central Asia. It consists of two main parts. Part I presents the hydrological systems of the region. This part fuses a selective synthesis Victor Shults' famous Russian book "Rivers of Middle Asia", published as second edition in 1965 with modern insights and knowledge from recent research [@shults_RiversOfMiddleAsia]. I hope that this combination provides an attractive, approachable and yet scientifically sound introduction to the many interesting hydrological features of this diverse region.
 
 Part II provides a learning manual to equip students with a hands-on guide on how to conceptualize, implement, calibrate, run and validate hydrological models. Physically-based and empirical models are both introduced and discussed. The philosophy of working by example is followed and all concepts and modeling approaches are discussed in the context of the sample catchment of the Chirchik River whose tributaries are shared by Uzbekistan and Kyrgyzstan. The emphasis is strictly on the use of open-source software.
@@ -11,5 +13,5 @@ Tobias Siegfried
 :::
 
 ::: {style="text-align: right"}
-Zurich, June 2020
+Zurich, December 2020
 :::
