@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6.2 Climate Data | Applied Modeling of Hydrological Systems in Central Asia</title>
+  <meta name="description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6.2 Climate Data | Applied Modeling of Hydrological Systems in Central Asia" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6.2 Climate Data | Applied Modeling of Hydrological Systems in Central Asia" />
+  
+  <meta name="twitter:description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
+  
+
+<meta name="author" content="Tobias Siegfried" />
+
+
+<meta name="date" content="2020-12-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="GeospatialData.html"/>
+<link rel="next" href="hydrological-data.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied Hydrological Modeling</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="Preface.html"><a href="Preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="Foreword.html"><a href="Foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
+<li class="part"><span><b>I Part I Hydrological Systems</b></span></li>
+<li class="chapter" data-level="1" data-path="Introduction.html"><a href="Introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="INTROTamingHydroSystems.html"><a href="INTROTamingHydroSystems.html"><i class="fa fa-check"></i><b>1.1</b> The Taming of the Central Asian Rivers</a></li>
+<li class="chapter" data-level="1.2" data-path="INTROPostTransitionChallenges.html"><a href="INTROPostTransitionChallenges.html"><i class="fa fa-check"></i><b>1.2</b> Post-Transition Development and Challenges</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="INTROPostTransitionChallenges.html"><a href="INTROPostTransitionChallenges.html#INTRONewReality"><i class="fa fa-check"></i><b>1.2.1</b> Political Changes: Waking up to a new Reality</a></li>
+<li class="chapter" data-level="1.2.2" data-path="INTROPostTransitionChallenges.html"><a href="INTROPostTransitionChallenges.html#INTROAdverseDevelopments"><i class="fa fa-check"></i><b>1.2.2</b> Adverse Developments</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="HydrologicalSystems.html"><a href="HydrologicalSystems.html"><i class="fa fa-check"></i><b>2</b> Hydrological Systems in Central Asia</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="regional-hydro-climatological-features.html"><a href="regional-hydro-climatological-features.html"><i class="fa fa-check"></i><b>2.1</b> Regional Hydro-Climatological Features</a></li>
+<li class="chapter" data-level="2.2" data-path="chap-regionalWaterBalance.html"><a href="chap-regionalWaterBalance.html"><i class="fa fa-check"></i><b>2.2</b> Regional Water Balance</a></li>
+<li class="chapter" data-level="2.3" data-path="runoff-formation.html"><a href="runoff-formation.html"><i class="fa fa-check"></i><b>2.3</b> Runoff Formation</a></li>
+<li class="chapter" data-level="2.4" data-path="average-multi-year-runoff.html"><a href="average-multi-year-runoff.html"><i class="fa fa-check"></i><b>2.4</b> Average Multi-Year Runoff</a></li>
+<li class="chapter" data-level="2.5" data-path="annual-runoff-fluctuations.html"><a href="annual-runoff-fluctuations.html"><i class="fa fa-check"></i><b>2.5</b> Annual Runoff Fluctuations</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="CaseStudyChirchikRiver.html"><a href="CaseStudyChirchikRiver.html"><i class="fa fa-check"></i><b>3</b> Case Study - The Chirchik River Basin</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="BasinCharacteristics.html"><a href="BasinCharacteristics.html"><i class="fa fa-check"></i><b>3.2</b> Key Basin Characteristics</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="BasinCharacteristics.html"><a href="BasinCharacteristics.html#ChirchikHydroCharacteristics"><i class="fa fa-check"></i><b>3.2.1</b> Hydrological Characterization</a></li>
+<li class="chapter" data-level="3.2.2" data-path="BasinCharacteristics.html"><a href="BasinCharacteristics.html#ChirchikClimateCharacteristics"><i class="fa fa-check"></i><b>3.2.2</b> Climatological Characterization</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="CRBKoskuDischargeContribution.html"><a href="CRBKoskuDischargeContribution.html"><i class="fa fa-check"></i><b>3.3</b> The Estimation of Discharge Contributions by the Ungauged Kosku Tributary</a></li>
+</ul></li>
+<li class="part"><span><b>II Part II Applied Modeling</b></span></li>
+<li class="chapter" data-level="4" data-path="ManualWaterBalance.html"><a href="ManualWaterBalance.html"><i class="fa fa-check"></i><b>4</b> The Manual Water Balance</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="site-problem-description.html"><a href="site-problem-description.html"><i class="fa fa-check"></i><b>4.1</b> Site &amp; problem description</a></li>
+<li class="chapter" data-level="4.2" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html"><i class="fa fa-check"></i><b>4.2</b> Identification of the dominant flow processes</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html#precipitation"><i class="fa fa-check"></i><b>4.2.1</b> Precipitation</a></li>
+<li class="chapter" data-level="4.2.2" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html#canopy-interception"><i class="fa fa-check"></i><b>4.2.2</b> Canopy interception</a></li>
+<li class="chapter" data-level="4.2.3" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html#snowmelt"><i class="fa fa-check"></i><b>4.2.3</b> Snowmelt</a></li>
+<li class="chapter" data-level="4.2.4" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html#runoff"><i class="fa fa-check"></i><b>4.2.4</b> Runoff</a></li>
+<li class="chapter" data-level="4.2.5" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html#infiltration"><i class="fa fa-check"></i><b>4.2.5</b> Infiltration</a></li>
+<li class="chapter" data-level="4.2.6" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html#sub-surface-flow"><i class="fa fa-check"></i><b>4.2.6</b> Sub-surface flow</a></li>
+<li class="chapter" data-level="4.2.7" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html#sublimation"><i class="fa fa-check"></i><b>4.2.7</b> Sublimation</a></li>
+<li class="chapter" data-level="4.2.8" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html#percolation"><i class="fa fa-check"></i><b>4.2.8</b> Percolation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="the-general-water-balance-equation.html"><a href="the-general-water-balance-equation.html"><i class="fa fa-check"></i><b>4.3</b> The general water balance equation</a></li>
+<li class="chapter" data-level="4.4" data-path="boundaries-of-the-water-balance.html"><a href="boundaries-of-the-water-balance.html"><i class="fa fa-check"></i><b>4.4</b> Boundaries of the water balance</a></li>
+<li class="chapter" data-level="4.5" data-path="data-need-for-a-water-balance.html"><a href="data-need-for-a-water-balance.html"><i class="fa fa-check"></i><b>4.5</b> Data need for a water balance</a></li>
+<li class="chapter" data-level="4.6" data-path="setting-up-a-conceptual-model.html"><a href="setting-up-a-conceptual-model.html"><i class="fa fa-check"></i><b>4.6</b> Setting up a conceptual model</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="HydroModelsEmpiricalModels.html"><a href="HydroModelsEmpiricalModels.html"><i class="fa fa-check"></i><b>5</b> Discharge Forecasting with Predictive Inference</a>
+<ul>
+<li class="chapter" data-level="" data-path="prerequisites.html"><a href="prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="5.1" data-path="Chap9PredictiveInference.html"><a href="Chap9PredictiveInference.html"><i class="fa fa-check"></i><b>5.1</b> Forecasting Using Predictive Inference</a></li>
+<li class="chapter" data-level="5.2" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html"><i class="fa fa-check"></i><b>5.2</b> Forecasting in the Central Asian Hydromets</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html#background"><i class="fa fa-check"></i><b>5.2.1</b> Background</a></li>
+<li class="chapter" data-level="5.2.2" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html#forecasting-for-what-and-whom"><i class="fa fa-check"></i><b>5.2.2</b> Forecasting for What and Whom?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html"><i class="fa fa-check"></i><b>5.3</b> Data and Preparation</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9AvailableData"><i class="fa fa-check"></i><b>5.3.1</b> Available Data</a></li>
+<li class="chapter" data-level="5.3.2" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9DataPreparationQ"><i class="fa fa-check"></i><b>5.3.2</b> Gap Filling Discharge Data</a></li>
+<li class="chapter" data-level="5.3.3" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9DataPreparationPT"><i class="fa fa-check"></i><b>5.3.3</b> Gap Filling Meteorological Data</a></li>
+<li class="chapter" data-level="5.3.4" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9AnomaliesOutliers"><i class="fa fa-check"></i><b>5.3.4</b> Anomalies and Outliers</a></li>
+<li class="chapter" data-level="5.3.5" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9_FinalData"><i class="fa fa-check"></i><b>5.3.5</b> Putting it all together</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html"><i class="fa fa-check"></i><b>5.4</b> Data Analysis</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap_9_DataTransformation"><i class="fa fa-check"></i><b>5.4.1</b> Data Transformation</a></li>
+<li class="chapter" data-level="5.4.2" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_Trends"><i class="fa fa-check"></i><b>5.4.2</b> Detecting Trends</a></li>
+<li class="chapter" data-level="5.4.3" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_Autocorrelations"><i class="fa fa-check"></i><b>5.4.3</b> Auto- and Crosscorrelations</a></li>
+<li class="chapter" data-level="5.4.4" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_SeasonalityAnalysis"><i class="fa fa-check"></i><b>5.4.4</b> Time Series Seasonality</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html"><i class="fa fa-check"></i><b>5.5</b> Investigating and Engineering Predictors</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_CurrentPractice"><i class="fa fa-check"></i><b>5.5.1</b> Benchmark: Current Operational Forecasting Models in the Hydrometeorological Agencies</a></li>
+<li class="chapter" data-level="5.5.2" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_TSR"><i class="fa fa-check"></i><b>5.5.2</b> Time Series Regression Models</a></li>
+<li class="chapter" data-level="5.5.3" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_ForecastQuality"><i class="fa fa-check"></i><b>5.5.3</b> Assessing the Quality of Forecasts</a></li>
+<li class="chapter" data-level="5.5.4" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#generating-and-assessing-out-of-sample-forecasts"><i class="fa fa-check"></i><b>5.5.4</b> Generating and Assessing Out-of-Sample Forecasts</a></li>
+<li class="chapter" data-level="5.5.5" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_MLM"><i class="fa fa-check"></i><b>5.5.5</b> Machine Learning Models</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="save-data-for-hot-start.html"><a href="save-data-for-hot-start.html"><i class="fa fa-check"></i><b>5.6</b> Save Data for Hot Start</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="RetrievalAnalysisHydroData.html"><a href="RetrievalAnalysisHydroData.html"><i class="fa fa-check"></i><b>6</b> Retrieval &amp; Analysis of Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="preliminary-remarks.html"><a href="preliminary-remarks.html"><i class="fa fa-check"></i>Preliminary Remarks</a></li>
+<li class="chapter" data-level="6.1" data-path="GeospatialData.html"><a href="GeospatialData.html"><i class="fa fa-check"></i><b>6.1</b> Geospatial Data</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="GeospatialData.html"><a href="GeospatialData.html#CatchmentDelineation"><i class="fa fa-check"></i><b>6.1.1</b> Catchment Delineation</a></li>
+<li class="chapter" data-level="6.1.2" data-path="GeospatialData.html"><a href="GeospatialData.html#computation-of-elevation-bands"><i class="fa fa-check"></i><b>6.1.2</b> Computation of Elevation Bands</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="climate-data.html"><a href="climate-data.html"><i class="fa fa-check"></i><b>6.2</b> Climate Data</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="climate-data.html"><a href="climate-data.html#access-select-and-download-era5-reanalysis-data"><i class="fa fa-check"></i><b>6.2.1</b> Access, Select and Download ERA5 Reanalysis Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="hydrological-data.html"><a href="hydrological-data.html"><i class="fa fa-check"></i><b>6.3</b> Hydrological Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="HydroModelsPhysicalModels.html"><a href="HydroModelsPhysicalModels.html"><i class="fa fa-check"></i><b>7</b> Hydrologic-Hydraulic Modeling</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="background-on-physically-based-modeling.html"><a href="background-on-physically-based-modeling.html"><i class="fa fa-check"></i><b>7.1</b> Background on Physically-Based Modeling</a></li>
+<li class="chapter" data-level="7.2" data-path="model-setup.html"><a href="model-setup.html"><i class="fa fa-check"></i><b>7.2</b> Model Setup</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="model-setup.html"><a href="model-setup.html#zone-of-runoff-formation"><i class="fa fa-check"></i><b>7.2.1</b> Zone of Runoff Formation</a></li>
+<li class="chapter" data-level="7.2.2" data-path="model-setup.html"><a href="model-setup.html#zone-of-water-distribution-and-consumption"><i class="fa fa-check"></i><b>7.2.2</b> Zone of Water Distribution and Consumption</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="model-calibration-and-validation.html"><a href="model-calibration-and-validation.html"><i class="fa fa-check"></i><b>7.3</b> Model Calibration and Validation</a></li>
+<li class="chapter" data-level="7.4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>7.4</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="Operationalization.html"><a href="Operationalization.html"><i class="fa fa-check"></i><b>8</b> Operationalization of Models - Opportunities and Challenges</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="co-design-phase.html"><a href="co-design-phase.html"><i class="fa fa-check"></i><b>8.1</b> Co-design Phase</a></li>
+<li class="chapter" data-level="8.2" data-path="modeling-phase.html"><a href="modeling-phase.html"><i class="fa fa-check"></i><b>8.2</b> Modeling Phase</a></li>
+<li class="chapter" data-level="8.3" data-path="testing-phase.html"><a href="testing-phase.html"><i class="fa fa-check"></i><b>8.3</b> Testing Phase</a></li>
+<li class="chapter" data-level="8.4" data-path="operational-deployment.html"><a href="operational-deployment.html"><i class="fa fa-check"></i><b>8.4</b> Operational Deployment</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="Appendix.html"><a href="Appendix.html"><i class="fa fa-check"></i><b>9</b> (APPENDIX) Appendix</a></li>
+<li class="chapter" data-level="10" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>10</b> Appendix A</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="open-source-software.html"><a href="open-source-software.html"><i class="fa fa-check"></i><b>10.1</b> Open-Source Software</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="open-source-software.html"><a href="open-source-software.html#qgis"><i class="fa fa-check"></i><b>10.1.1</b> QGIS</a></li>
+<li class="chapter" data-level="10.1.2" data-path="open-source-software.html"><a href="open-source-software.html#r-and-rstudio"><i class="fa fa-check"></i><b>10.1.2</b> R and RStudio</a></li>
+<li class="chapter" data-level="10.1.3" data-path="open-source-software.html"><a href="open-source-software.html#rs-minerve"><i class="fa fa-check"></i><b>10.1.3</b> RS Minerve</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Modeling of Hydrological Systems in Central Asia</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="climate-data" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Climate Data</h2>
+<p>This Section requires the following R packages to be installed. If you are running R in RStudio and some of the packages are not yet installed on your computer, RStudio will warn you and ask, whether you want to have them installed.</p>
+<p>//TODO: Suppress output below</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="climate-data.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidyverse </span></span>
+<span id="cb79-2"><a href="climate-data.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb79-3"><a href="climate-data.html#cb79-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-4"><a href="climate-data.html#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="co"># File navigation</span></span>
+<span id="cb79-5"><a href="climate-data.html#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div>
+<pre><code>## here() starts at /Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/Course Materials/Handbook/Applied_Hydrological_Modeling_Bookdown</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="climate-data.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copernicus Climate Data Store</span></span>
+<span id="cb81-2"><a href="climate-data.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ecmwfr)</span></code></pre></div>
+<pre><code>## 
+##      This is &#39;ecmwfr&#39; version  1.3.0 . Please respect the terms of use:
+##       - https://cds.climate.copernicus.eu/disclaimer-privacy
+##       - https://www.ecmwf.int/en/terms-use</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="climate-data.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(keyring)</span>
+<span id="cb83-2"><a href="climate-data.html#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-3"><a href="climate-data.html#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Handling netcdf files</span></span>
+<span id="cb83-4"><a href="climate-data.html#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb83-5"><a href="climate-data.html#cb83-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-6"><a href="climate-data.html#cb83-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Spatial data plotting &amp; plotting</span></span>
+<span id="cb83-7"><a href="climate-data.html#cb83-7" aria-hidden="true" tabindex="-1"></a><span class="co">#library(rgdal)</span></span>
+<span id="cb83-8"><a href="climate-data.html#cb83-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span></code></pre></div>
+<pre><code>## Loading required package: sp</code></pre>
+<pre><code>## 
+## Attaching package: &#39;raster&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     extract</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="climate-data.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgeos)</span></code></pre></div>
+<pre><code>## rgeos version: 0.5-5, (SVN revision 640)
+##  GEOS runtime version: 3.8.1-CAPI-1.13.3 
+##  Linking to sp version: 1.4-2 
+##  Polygon checking: TRUE</code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="climate-data.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sp)</span>
+<span id="cb90-2"><a href="climate-data.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
+<pre><code>## Linking to GEOS 3.8.1, GDAL 3.1.1, PROJ 6.3.1</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="climate-data.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rasterVis)</span></code></pre></div>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## Loading required package: latticeExtra</code></pre>
+<pre><code>## 
+## Attaching package: &#39;latticeExtra&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     layer</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="climate-data.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span></code></pre></div>
+<div id="access-select-and-download-era5-reanalysis-data" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Access, Select and Download ERA5 Reanalysis Data</h3>
+<p>For the climate data to be used in the modeling approach, we use ERA5 data from the European Center for Medium-Range Weather Forecasts (ECMWF, &lt;www.ecmwf.int&gt;). ERA5, the successor to ERA-Interim, provides global, hourly estimates of atmospheric variables, at a horizontal resolution of 31 km and 137 vertical levels from the surface to 0.01 hPa <span class="citation">(<a href="References.html#ref-era5-desc" role="doc-biblioref">Dee D. 2020</a>)</span>. ERA5 presently extends back to 1979 but will ultimately be extended back to 1950<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>.</p>
+<p>The ERA5 data is available via the Copernicus Climate Store at <a href="https://cds.climate.copernicus.eu" class="uri">https://cds.climate.copernicus.eu</a>. However, before we can access, select and download it there, each user has to register with a personal account in the store. For this purpose, the user should navigate to the website and register via the Login/Register/NewAccount Menu. You will receive an email once your account is ready.</p>
+<p>Log in to your account and go to your user profile where you find your user ID and API key. The relevant information should be copied and into the relevant places of the code chunk below and then be executed.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="climate-data.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note: replace the UID and key strings below with the proper user&#39;s information in your Copernicus Climate Data Store account.</span></span>
+<span id="cb98-2"><a href="climate-data.html#cb98-2" aria-hidden="true" tabindex="-1"></a>UID <span class="ot">&lt;-</span> <span class="st">&#39;UID&#39;</span></span>
+<span id="cb98-3"><a href="climate-data.html#cb98-3" aria-hidden="true" tabindex="-1"></a>API_key <span class="ot">&lt;-</span> <span class="st">&#39;key&#39;</span></span>
+<span id="cb98-4"><a href="climate-data.html#cb98-4" aria-hidden="true" tabindex="-1"></a><span class="co">#This function links your password and user id for later steps</span></span>
+<span id="cb98-5"><a href="climate-data.html#cb98-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wf_set_key</span>(UID, API_key, <span class="st">&#39;cds&#39;</span>)</span></code></pre></div>
+<p>//TODO: output still showing. How to deal with it?</p>
+<p>If all worked well, you will get the following confirmation in the console:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="climate-data.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="do">## User UID for cds service added successfully</span></span></code></pre></div>
+<p>On the Copernicus website, make sure that you are logged into your account and the navigate to Datasets. There, search for the Product ‘ERA5-Land monthly averaged data from 1981 to present’ and select it<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>. You end up on the products homepage where you can get more information and download the data via a form where you select the product’s type, variables, the years, months and time of day, the geographical area and, finally, the download file format of interest. Please select the following:</p>
+<ul>
+<li><p>Product type: Monthly averaged reanalysis</p></li>
+<li><p>Variable:</p>
+<ul>
+<li>Temperature: 2 m Temperature</li>
+<li>Lakes: NA</li>
+<li>Snow: NA</li>
+<li>Soil Water: NA</li>
+<li>Radiation and Heat: NA</li>
+<li>Evaporation and Runoff: Potential evaporation</li>
+<li>Wind, Pressure and Precipitation: Total precipitation</li>
+<li>Vegetation: NA</li>
+</ul></li>
+<li><p>Year: Select all</p></li>
+<li><p>Month: Select all</p></li>
+<li><p>Time: 00:00</p></li>
+<li><p>Geographical area: Sub-region extraction (West = 65, East = 80, South = 35, North = 45)</p></li>
+<li><p>Format: NetCDF (experimental)</p></li>
+</ul>
+<p>Accept the Terms of use and press the ‘Show API request button.’ You should see the following Python request now as shown in Figure <a href="climate-data.html#fig:Copernicus-API-Request">6.6</a>.</p>
+<div class="figure"><span id="fig:Copernicus-API-Request"></span>
+<img src="_bookdown_files/Chap6-GeoHydroData-Figures/fig_Copernicus_API_request" alt="Screenshot showing the Copernicus Data Store API request that can be copied and posted into RStudio for the convenient download of the data there."  />
+<p class="caption">
+Figure 6.6: Screenshot showing the Copernicus Data Store API request that can be copied and posted into RStudio for the convenient download of the data there.
+</p>
+</div>
+<p>The request should be copied and pasted into RStudio into your current .Rmd file there. Select the python request with the cursor and choose ‘ECMWFR/Python to List’ under the Addins Menu. The python request will then automatically be translated into a an r command. Please check that everything is ok by comparing it with a correct request as shown below. Also, please note that we have changed the target file name by specifying <code>target = reanalysis-era5-land-monthly-means_CentralAsia.nc</code>.</p>
+<p>In a final step, the user can then download the data with the <code>wf_request()</code> function.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="climate-data.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here is is the resulting request in R language </span></span>
+<span id="cb100-2"><a href="climate-data.html#cb100-2" aria-hidden="true" tabindex="-1"></a>request <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;dataset_short_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;reanalysis-era5-land-monthly-means&quot;</span>,</span>
+<span id="cb100-3"><a href="climate-data.html#cb100-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">format =</span> <span class="st">&quot;netcdf&quot;</span>,</span>
+<span id="cb100-4"><a href="climate-data.html#cb100-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">product_type =</span> <span class="st">&quot;monthly_averaged_reanalysis&quot;</span>,</span>
+<span id="cb100-5"><a href="climate-data.html#cb100-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable =</span> <span class="fu">c</span>(<span class="st">&#39;2m_temperature&#39;</span>, <span class="st">&#39;potential_evaporation&#39;</span>, <span class="st">&#39;total_precipitation&#39;</span>),</span>
+<span id="cb100-6"><a href="climate-data.html#cb100-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span>  <span class="fu">c</span>(<span class="st">&#39;1981&#39;</span>, <span class="st">&#39;1982&#39;</span>, <span class="st">&#39;1983&#39;</span>,</span>
+<span id="cb100-7"><a href="climate-data.html#cb100-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1984&#39;</span>, <span class="st">&#39;1985&#39;</span>, <span class="st">&#39;1986&#39;</span>,</span>
+<span id="cb100-8"><a href="climate-data.html#cb100-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1987&#39;</span>, <span class="st">&#39;1988&#39;</span>, <span class="st">&#39;1989&#39;</span>,</span>
+<span id="cb100-9"><a href="climate-data.html#cb100-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1990&#39;</span>, <span class="st">&#39;1991&#39;</span>, <span class="st">&#39;1992&#39;</span>,</span>
+<span id="cb100-10"><a href="climate-data.html#cb100-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1993&#39;</span>, <span class="st">&#39;1994&#39;</span>, <span class="st">&#39;1995&#39;</span>,</span>
+<span id="cb100-11"><a href="climate-data.html#cb100-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1996&#39;</span>, <span class="st">&#39;1997&#39;</span>, <span class="st">&#39;1998&#39;</span>,</span>
+<span id="cb100-12"><a href="climate-data.html#cb100-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1999&#39;</span>, <span class="st">&#39;2000&#39;</span>, <span class="st">&#39;2001&#39;</span>,</span>
+<span id="cb100-13"><a href="climate-data.html#cb100-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2002&#39;</span>, <span class="st">&#39;2003&#39;</span>, <span class="st">&#39;2004&#39;</span>,</span>
+<span id="cb100-14"><a href="climate-data.html#cb100-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2005&#39;</span>, <span class="st">&#39;2006&#39;</span>, <span class="st">&#39;2007&#39;</span>,</span>
+<span id="cb100-15"><a href="climate-data.html#cb100-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2008&#39;</span>, <span class="st">&#39;2009&#39;</span>, <span class="st">&#39;2010&#39;</span>,</span>
+<span id="cb100-16"><a href="climate-data.html#cb100-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2011&#39;</span>, <span class="st">&#39;2012&#39;</span>, <span class="st">&#39;2013&#39;</span>,</span>
+<span id="cb100-17"><a href="climate-data.html#cb100-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2014&#39;</span>, <span class="st">&#39;2015&#39;</span>, <span class="st">&#39;2016&#39;</span>,</span>
+<span id="cb100-18"><a href="climate-data.html#cb100-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2017&#39;</span>, <span class="st">&#39;2018&#39;</span>, <span class="st">&#39;2019&#39;</span>,</span>
+<span id="cb100-19"><a href="climate-data.html#cb100-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2020&#39;</span>),</span>
+<span id="cb100-20"><a href="climate-data.html#cb100-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">month =</span> <span class="fu">c</span>(<span class="st">&quot;01&quot;</span>, <span class="st">&quot;02&quot;</span>, <span class="st">&quot;03&quot;</span>, <span class="st">&quot;04&quot;</span>, <span class="st">&quot;05&quot;</span>, <span class="st">&quot;06&quot;</span>, <span class="st">&quot;07&quot;</span>, <span class="st">&quot;08&quot;</span>, <span class="st">&quot;09&quot;</span>, <span class="st">&quot;10&quot;</span>, <span class="st">&quot;11&quot;</span>, <span class="st">&quot;12&quot;</span>),</span>
+<span id="cb100-21"><a href="climate-data.html#cb100-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="st">&quot;00:00&quot;</span>,</span>
+<span id="cb100-22"><a href="climate-data.html#cb100-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">area =</span> <span class="st">&quot;45/65/35/80&quot;</span>,</span>
+<span id="cb100-23"><a href="climate-data.html#cb100-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">#dataset = &quot;reanalysis-era5-land-monthly-means&quot;,</span></span>
+<span id="cb100-24"><a href="climate-data.html#cb100-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">target =</span> <span class="st">&quot;reanalysis-era5-land-monthly-means_CentralAsia.nc&quot;</span></span>
+<span id="cb100-25"><a href="climate-data.html#cb100-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb100-26"><a href="climate-data.html#cb100-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-27"><a href="climate-data.html#cb100-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Download data as netcdf file and store it in the directory where you are running this script, this returns the path to the file </span></span>
+<span id="cb100-28"><a href="climate-data.html#cb100-28" aria-hidden="true" tabindex="-1"></a>ncfilelink <span class="ot">&lt;-</span> <span class="fu">wf_request</span>(<span class="at">user =</span> UID,</span>
+<span id="cb100-29"><a href="climate-data.html#cb100-29" aria-hidden="true" tabindex="-1"></a>                     <span class="at">request =</span> request,</span>
+<span id="cb100-30"><a href="climate-data.html#cb100-30" aria-hidden="true" tabindex="-1"></a>                     <span class="at">transfer =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb100-31"><a href="climate-data.html#cb100-31" aria-hidden="true" tabindex="-1"></a>                     <span class="at">path =</span> <span class="fu">here</span>(),</span>
+<span id="cb100-32"><a href="climate-data.html#cb100-32" aria-hidden="true" tabindex="-1"></a>                     <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;moved temporary file to -&gt; /.../reanalysis-era5-land-monthly-means_CentralAsia.nc&quot;</code></pre>
+<pre><code>## [1] &quot;request purged from queue!&quot;</code></pre>
+<p>Some Sources on NetCDF and raster files: Here are some good resources to get you started: <a href="https://pjbartlein.github.io/REarthSysSci/index.html" class="uri">https://pjbartlein.github.io/REarthSysSci/index.html</a> and <a href="https://cmerow.github.io/RDataScience/05_Raster.html" class="uri">https://cmerow.github.io/RDataScience/05_Raster.html</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="9">
+<li id="fn9"><p>Although this is an extraordinary product, users still need to be aware of the limitations of reanalysis; two of the major ones are that non-physical trends and variability may be present in the record due to changes in the observing system, and that the climatologies of some variables, like surface energy fluxes, are not well represented.<a href="climate-data.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>The direct link is <a href="https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land-monthly-means?tab=form" class="uri">https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-land-monthly-means?tab=form</a>.<a href="climate-data.html#fnref10" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="GeospatialData.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hydrological-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/08_PII_Chap6_Retrieval_Analysis_Geo_Hydro_Data.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["applied-hydrological-modeling-central-asia.pdf", "applied-hydrological-modeling-central-asia.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

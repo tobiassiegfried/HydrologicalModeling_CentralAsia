@@ -1,5 +1,6 @@
 fig:geographyCentralAsia
 fig:waterFormationUse
+fig:waterFormationUse-3
 fig:riversMap
 fig:tempWT
 fig:precipWT
@@ -15,7 +16,7 @@ fig:completeDischargeData
 fig:qGazalkent
 fig:qChinaz
 fig:qAnnualGazalkentChinaz
-tab:unnamed-chunk-4
+tab:unnamed-chunk-5
 fig:seasonalityLargeTribs
 fig:seasonalitySmallTribs
 fig:ChirchikRiverHypsometricCurves
@@ -27,7 +28,7 @@ fig:monthlyTChangesPskem38462
 fig:monthlyTChangesChatkal38471
 fig:quarterlyMeanMinMaxT
 fig:ChirchikMeteoStanzaP
-fig:quarterlyMeanMinMaxT-5
+fig:quarterlyMeanMinMaxT-6
 eq:generalWB
 fig:dischargeData
 fig:gapFilledPskemChatkal
@@ -127,7 +128,3 @@ qgis
 r-and-rstudio
 rs-minerve
 References
-evaporation
-transpiration
-fig:waterFormationUse-1
-fig:waterFormationUse-3

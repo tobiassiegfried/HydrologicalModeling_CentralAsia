@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6.1 Geospatial Data | Applied Modeling of Hydrological Systems in Central Asia</title>
+  <meta name="description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6.1 Geospatial Data | Applied Modeling of Hydrological Systems in Central Asia" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6.1 Geospatial Data | Applied Modeling of Hydrological Systems in Central Asia" />
+  
+  <meta name="twitter:description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
+  
+
+<meta name="author" content="Tobias Siegfried" />
+
+
+<meta name="date" content="2020-12-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="preliminary-remarks.html"/>
+<link rel="next" href="climate-data.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.2/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied Hydrological Modeling</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="Preface.html"><a href="Preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="Foreword.html"><a href="Foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
+<li class="part"><span><b>I Part I Hydrological Systems</b></span></li>
+<li class="chapter" data-level="1" data-path="Introduction.html"><a href="Introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="INTROTamingHydroSystems.html"><a href="INTROTamingHydroSystems.html"><i class="fa fa-check"></i><b>1.1</b> The Taming of the Central Asian Rivers</a></li>
+<li class="chapter" data-level="1.2" data-path="INTROPostTransitionChallenges.html"><a href="INTROPostTransitionChallenges.html"><i class="fa fa-check"></i><b>1.2</b> Post-Transition Development and Challenges</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="INTROPostTransitionChallenges.html"><a href="INTROPostTransitionChallenges.html#INTRONewReality"><i class="fa fa-check"></i><b>1.2.1</b> Political Changes: Waking up to a new Reality</a></li>
+<li class="chapter" data-level="1.2.2" data-path="INTROPostTransitionChallenges.html"><a href="INTROPostTransitionChallenges.html#INTROAdverseDevelopments"><i class="fa fa-check"></i><b>1.2.2</b> Adverse Developments</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="HydrologicalSystems.html"><a href="HydrologicalSystems.html"><i class="fa fa-check"></i><b>2</b> Hydrological Systems in Central Asia</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="regional-hydro-climatological-features.html"><a href="regional-hydro-climatological-features.html"><i class="fa fa-check"></i><b>2.1</b> Regional Hydro-Climatological Features</a></li>
+<li class="chapter" data-level="2.2" data-path="chap-regionalWaterBalance.html"><a href="chap-regionalWaterBalance.html"><i class="fa fa-check"></i><b>2.2</b> Regional Water Balance</a></li>
+<li class="chapter" data-level="2.3" data-path="runoff-formation.html"><a href="runoff-formation.html"><i class="fa fa-check"></i><b>2.3</b> Runoff Formation</a></li>
+<li class="chapter" data-level="2.4" data-path="average-multi-year-runoff.html"><a href="average-multi-year-runoff.html"><i class="fa fa-check"></i><b>2.4</b> Average Multi-Year Runoff</a></li>
+<li class="chapter" data-level="2.5" data-path="annual-runoff-fluctuations.html"><a href="annual-runoff-fluctuations.html"><i class="fa fa-check"></i><b>2.5</b> Annual Runoff Fluctuations</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="CaseStudyChirchikRiver.html"><a href="CaseStudyChirchikRiver.html"><i class="fa fa-check"></i><b>3</b> Case Study - The Chirchik River Basin</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="overview.html"><a href="overview.html"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="BasinCharacteristics.html"><a href="BasinCharacteristics.html"><i class="fa fa-check"></i><b>3.2</b> Key Basin Characteristics</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="BasinCharacteristics.html"><a href="BasinCharacteristics.html#ChirchikHydroCharacteristics"><i class="fa fa-check"></i><b>3.2.1</b> Hydrological Characterization</a></li>
+<li class="chapter" data-level="3.2.2" data-path="BasinCharacteristics.html"><a href="BasinCharacteristics.html#ChirchikClimateCharacteristics"><i class="fa fa-check"></i><b>3.2.2</b> Climatological Characterization</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="CRBKoskuDischargeContribution.html"><a href="CRBKoskuDischargeContribution.html"><i class="fa fa-check"></i><b>3.3</b> The Estimation of Discharge Contributions by the Ungauged Kosku Tributary</a></li>
+</ul></li>
+<li class="part"><span><b>II Part II Applied Modeling</b></span></li>
+<li class="chapter" data-level="4" data-path="ManualWaterBalance.html"><a href="ManualWaterBalance.html"><i class="fa fa-check"></i><b>4</b> The Manual Water Balance</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="site-problem-description.html"><a href="site-problem-description.html"><i class="fa fa-check"></i><b>4.1</b> Site &amp; problem description</a></li>
+<li class="chapter" data-level="4.2" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html"><i class="fa fa-check"></i><b>4.2</b> Identification of the dominant flow processes</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html#precipitation"><i class="fa fa-check"></i><b>4.2.1</b> Precipitation</a></li>
+<li class="chapter" data-level="4.2.2" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html#canopy-interception"><i class="fa fa-check"></i><b>4.2.2</b> Canopy interception</a></li>
+<li class="chapter" data-level="4.2.3" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html#snowmelt"><i class="fa fa-check"></i><b>4.2.3</b> Snowmelt</a></li>
+<li class="chapter" data-level="4.2.4" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html#runoff"><i class="fa fa-check"></i><b>4.2.4</b> Runoff</a></li>
+<li class="chapter" data-level="4.2.5" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html#infiltration"><i class="fa fa-check"></i><b>4.2.5</b> Infiltration</a></li>
+<li class="chapter" data-level="4.2.6" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html#sub-surface-flow"><i class="fa fa-check"></i><b>4.2.6</b> Sub-surface flow</a></li>
+<li class="chapter" data-level="4.2.7" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html#sublimation"><i class="fa fa-check"></i><b>4.2.7</b> Sublimation</a></li>
+<li class="chapter" data-level="4.2.8" data-path="identification-of-the-dominant-flow-processes.html"><a href="identification-of-the-dominant-flow-processes.html#percolation"><i class="fa fa-check"></i><b>4.2.8</b> Percolation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="the-general-water-balance-equation.html"><a href="the-general-water-balance-equation.html"><i class="fa fa-check"></i><b>4.3</b> The general water balance equation</a></li>
+<li class="chapter" data-level="4.4" data-path="boundaries-of-the-water-balance.html"><a href="boundaries-of-the-water-balance.html"><i class="fa fa-check"></i><b>4.4</b> Boundaries of the water balance</a></li>
+<li class="chapter" data-level="4.5" data-path="data-need-for-a-water-balance.html"><a href="data-need-for-a-water-balance.html"><i class="fa fa-check"></i><b>4.5</b> Data need for a water balance</a></li>
+<li class="chapter" data-level="4.6" data-path="setting-up-a-conceptual-model.html"><a href="setting-up-a-conceptual-model.html"><i class="fa fa-check"></i><b>4.6</b> Setting up a conceptual model</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="HydroModelsEmpiricalModels.html"><a href="HydroModelsEmpiricalModels.html"><i class="fa fa-check"></i><b>5</b> Discharge Forecasting with Predictive Inference</a>
+<ul>
+<li class="chapter" data-level="" data-path="prerequisites.html"><a href="prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="5.1" data-path="Chap9PredictiveInference.html"><a href="Chap9PredictiveInference.html"><i class="fa fa-check"></i><b>5.1</b> Forecasting Using Predictive Inference</a></li>
+<li class="chapter" data-level="5.2" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html"><i class="fa fa-check"></i><b>5.2</b> Forecasting in the Central Asian Hydromets</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html#background"><i class="fa fa-check"></i><b>5.2.1</b> Background</a></li>
+<li class="chapter" data-level="5.2.2" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html#forecasting-for-what-and-whom"><i class="fa fa-check"></i><b>5.2.2</b> Forecasting for What and Whom?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html"><i class="fa fa-check"></i><b>5.3</b> Data and Preparation</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9AvailableData"><i class="fa fa-check"></i><b>5.3.1</b> Available Data</a></li>
+<li class="chapter" data-level="5.3.2" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9DataPreparationQ"><i class="fa fa-check"></i><b>5.3.2</b> Gap Filling Discharge Data</a></li>
+<li class="chapter" data-level="5.3.3" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9DataPreparationPT"><i class="fa fa-check"></i><b>5.3.3</b> Gap Filling Meteorological Data</a></li>
+<li class="chapter" data-level="5.3.4" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9AnomaliesOutliers"><i class="fa fa-check"></i><b>5.3.4</b> Anomalies and Outliers</a></li>
+<li class="chapter" data-level="5.3.5" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9_FinalData"><i class="fa fa-check"></i><b>5.3.5</b> Putting it all together</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html"><i class="fa fa-check"></i><b>5.4</b> Data Analysis</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap_9_DataTransformation"><i class="fa fa-check"></i><b>5.4.1</b> Data Transformation</a></li>
+<li class="chapter" data-level="5.4.2" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_Trends"><i class="fa fa-check"></i><b>5.4.2</b> Detecting Trends</a></li>
+<li class="chapter" data-level="5.4.3" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_Autocorrelations"><i class="fa fa-check"></i><b>5.4.3</b> Auto- and Crosscorrelations</a></li>
+<li class="chapter" data-level="5.4.4" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_SeasonalityAnalysis"><i class="fa fa-check"></i><b>5.4.4</b> Time Series Seasonality</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html"><i class="fa fa-check"></i><b>5.5</b> Investigating and Engineering Predictors</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_CurrentPractice"><i class="fa fa-check"></i><b>5.5.1</b> Benchmark: Current Operational Forecasting Models in the Hydrometeorological Agencies</a></li>
+<li class="chapter" data-level="5.5.2" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_TSR"><i class="fa fa-check"></i><b>5.5.2</b> Time Series Regression Models</a></li>
+<li class="chapter" data-level="5.5.3" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_ForecastQuality"><i class="fa fa-check"></i><b>5.5.3</b> Assessing the Quality of Forecasts</a></li>
+<li class="chapter" data-level="5.5.4" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#generating-and-assessing-out-of-sample-forecasts"><i class="fa fa-check"></i><b>5.5.4</b> Generating and Assessing Out-of-Sample Forecasts</a></li>
+<li class="chapter" data-level="5.5.5" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_MLM"><i class="fa fa-check"></i><b>5.5.5</b> Machine Learning Models</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="save-data-for-hot-start.html"><a href="save-data-for-hot-start.html"><i class="fa fa-check"></i><b>5.6</b> Save Data for Hot Start</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="RetrievalAnalysisHydroData.html"><a href="RetrievalAnalysisHydroData.html"><i class="fa fa-check"></i><b>6</b> Retrieval &amp; Analysis of Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="preliminary-remarks.html"><a href="preliminary-remarks.html"><i class="fa fa-check"></i>Preliminary Remarks</a></li>
+<li class="chapter" data-level="6.1" data-path="GeospatialData.html"><a href="GeospatialData.html"><i class="fa fa-check"></i><b>6.1</b> Geospatial Data</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="GeospatialData.html"><a href="GeospatialData.html#CatchmentDelineation"><i class="fa fa-check"></i><b>6.1.1</b> Catchment Delineation</a></li>
+<li class="chapter" data-level="6.1.2" data-path="GeospatialData.html"><a href="GeospatialData.html#computation-of-elevation-bands"><i class="fa fa-check"></i><b>6.1.2</b> Computation of Elevation Bands</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="climate-data.html"><a href="climate-data.html"><i class="fa fa-check"></i><b>6.2</b> Climate Data</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="climate-data.html"><a href="climate-data.html#access-select-and-download-era5-reanalysis-data"><i class="fa fa-check"></i><b>6.2.1</b> Access, Select and Download ERA5 Reanalysis Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="hydrological-data.html"><a href="hydrological-data.html"><i class="fa fa-check"></i><b>6.3</b> Hydrological Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="HydroModelsPhysicalModels.html"><a href="HydroModelsPhysicalModels.html"><i class="fa fa-check"></i><b>7</b> Hydrologic-Hydraulic Modeling</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="background-on-physically-based-modeling.html"><a href="background-on-physically-based-modeling.html"><i class="fa fa-check"></i><b>7.1</b> Background on Physically-Based Modeling</a></li>
+<li class="chapter" data-level="7.2" data-path="model-setup.html"><a href="model-setup.html"><i class="fa fa-check"></i><b>7.2</b> Model Setup</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="model-setup.html"><a href="model-setup.html#zone-of-runoff-formation"><i class="fa fa-check"></i><b>7.2.1</b> Zone of Runoff Formation</a></li>
+<li class="chapter" data-level="7.2.2" data-path="model-setup.html"><a href="model-setup.html#zone-of-water-distribution-and-consumption"><i class="fa fa-check"></i><b>7.2.2</b> Zone of Water Distribution and Consumption</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="model-calibration-and-validation.html"><a href="model-calibration-and-validation.html"><i class="fa fa-check"></i><b>7.3</b> Model Calibration and Validation</a></li>
+<li class="chapter" data-level="7.4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>7.4</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="Operationalization.html"><a href="Operationalization.html"><i class="fa fa-check"></i><b>8</b> Operationalization of Models - Opportunities and Challenges</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="co-design-phase.html"><a href="co-design-phase.html"><i class="fa fa-check"></i><b>8.1</b> Co-design Phase</a></li>
+<li class="chapter" data-level="8.2" data-path="modeling-phase.html"><a href="modeling-phase.html"><i class="fa fa-check"></i><b>8.2</b> Modeling Phase</a></li>
+<li class="chapter" data-level="8.3" data-path="testing-phase.html"><a href="testing-phase.html"><i class="fa fa-check"></i><b>8.3</b> Testing Phase</a></li>
+<li class="chapter" data-level="8.4" data-path="operational-deployment.html"><a href="operational-deployment.html"><i class="fa fa-check"></i><b>8.4</b> Operational Deployment</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="Appendix.html"><a href="Appendix.html"><i class="fa fa-check"></i><b>9</b> (APPENDIX) Appendix</a></li>
+<li class="chapter" data-level="10" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>10</b> Appendix A</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="open-source-software.html"><a href="open-source-software.html"><i class="fa fa-check"></i><b>10.1</b> Open-Source Software</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="open-source-software.html"><a href="open-source-software.html#qgis"><i class="fa fa-check"></i><b>10.1.1</b> QGIS</a></li>
+<li class="chapter" data-level="10.1.2" data-path="open-source-software.html"><a href="open-source-software.html#r-and-rstudio"><i class="fa fa-check"></i><b>10.1.2</b> R and RStudio</a></li>
+<li class="chapter" data-level="10.1.3" data-path="open-source-software.html"><a href="open-source-software.html#rs-minerve"><i class="fa fa-check"></i><b>10.1.3</b> RS Minerve</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Modeling of Hydrological Systems in Central Asia</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="GeospatialData" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Geospatial Data</h2>
+<div id="CatchmentDelineation" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Catchment Delineation</h3>
+<p>Catchment delineation is the first step in geospatial analysis<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>. This is a step-by-sep guide on how to setup, access, organize and analyze the relevant geo-spatial data for the Chirchik River basin. It is important to mention that this workflow can be utilized in any other catchment.</p>
+<p><strong>STEP 1 Open Empty QGIS Project</strong></p>
+<p>Open an empty QGIS Project and set Project Coordinate Reference System (CRS) to EPSG: 32642, WGS84 / UTM 42N (see Figure <a href="GeospatialData.html#fig:settingCRS">6.1</a>). Map projections try to portray the surface of the earth, or a portion of the earth, on a flat piece of paper or computer screen. In layman’s term, map projections try to transform the earth from its spherical shape (three-dimensional or 3D) to a planar shape (two-dimensional or 2D). A CRS then defines how the 2D, projected map in your GIS relates to real places on the earth. Generally, the decision of which map projection and CRS to use depends on the regional extent of the area you want to work in, on the analysis you want to do, and often also on the availability of data.</p>
+<div class="figure"><span id="fig:settingCRS"></span>
+<img src="_bookdown_files/Chap6-GeoHydroData-Figures/fig_SettingCRS.png" alt="Setting the CRS of the Project to EPSG: 32642, WGS84 / UTM 42N." width="1746" />
+<p class="caption">
+Figure 6.1: Setting the CRS of the Project to EPSG: 32642, WGS84 / UTM 42N.
+</p>
+</div>
+<p>As mentioned above, for the Chirchik River basin case study, we use the CRS EPSG: 32642, WGS84 / UTM 42N. The UTM CRS, where UTM stands for Universal Transverse Mercator, has its origin on the equator at a specific longitude. The Y-values increase southwards and the X-values increase to the West. The UTM CRS is a global map projection and is generally used all over the world. For accuracy reasons and to avoid too much distortion, the world is divided into 60 equal zones that are all 6 degrees wide in longitude from East to West. The UTM zones are numbered 1 to 60, starting at the anti-meridian (zone 1 at 180 degrees West longitude) and progressing East back to the antemeridian (zone 60 at 180 degrees East longitude). Figure <a href="GeospatialData.html#fig:settingCRS">6.1</a> shows a global map of UTM zones.</p>
+<div class="figure"><span id="fig:UTMZones"></span>
+<img src="_bookdown_files/Chap6-GeoHydroData-Figures/fig_UTMZones.png" alt="Global map of UTM zones. See [QGIS online documentation](https://docs.qgis.org/3.10/en/docs/user_manual/){target=&quot;blank&quot;} for more information." width="1583" />
+<p class="caption">
+Figure 6.2: Global map of UTM zones. See <a href="https://docs.qgis.org/3.10/en/docs/user_manual/" target="blank">QGIS online documentation</a> for more information.
+</p>
+</div>
+<p>When working on a particular catchment in any region on the planet, the corresponding UTM zone should be chosen.</p>
+<p><strong>STEP 2 Adding Groups for Project Structuring</strong></p>
+<p>It is important to keep your geospatial data properly organized. This can be achieved by using Groups in QGIS. You should follow this recommendation and now create the following groups in the Layers Panel: RIVERS, GAUGES, BASINS, DEM, POLITICAL and Temporary<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>. Once you start to generate a large number of raster and vector layers, these can be conveniently organized within these Groups which act in a similar way as electronic folders on your desktop (see Figure <a href="GeospatialData.html#fig:LayersGrouping">6.3</a> for an example).</p>
+<div class="figure"><span id="fig:LayersGrouping"></span>
+<img src="_bookdown_files/Chap6-GeoHydroData-Figures/fig_LayersGrouping.png" alt="Background map showing the area of interest. Note the Layers grouping in the panel on the left side. The contents in the folder show the geospatial assets that will be created as part of this tutorial." width="1750" />
+<p class="caption">
+Figure 6.3: Background map showing the area of interest. Note the Layers grouping in the panel on the left side. The contents in the folder show the geospatial assets that will be created as part of this tutorial.
+</p>
+</div>
+<p><strong>STEP 3 Background Map via QuickMapServices and Political Boundaries</strong></p>
+<p>From the main menu, select Web/QuickMapServices/Google/Google Satellite or any other suitable map of your choice. If the QuickMapServices are not available by default, you have to install the corresponding plugin. More information can be found <a href="https://docs.qgis.org/3.10/en/docs/training_manual/qgis_plugins/plugin_examples.html" target="_blank">here</a>. If by default the Google Map Service is not available, you just navigate to the Settings of the QuickMapServices plugin via <span style="color: blue;"><strong>QuickMapServices/Settings</strong></span> and go there to the tag ‘More Services’ where you should click the Button called ‘Get Contributed Pack.’ These additional map services then become available to you in the corresponding QuickMapServices list.</p>
+<p>Once the background map of your choice is visible as shown in Figure <a href="GeospatialData.html#fig:LayersGrouping">6.3</a>, you can zoom in on the area of interest, i.e., the mountain range north-east of Tashkent at the western end of the Tien Shan mountains, where the Chirchik River originates from its tributaries.</p>
+<p>For the political shapefiles, we download the relevant country-level data from the <a href="https://gadm.org/download_country_v3.html" target="_blank">GADM database</a>. GADM provides spatial data for all countries and their first- and second-level subdivisions in shapefile format. It is advisable to download all first-level administrative country border data for the Central Asian Republics. Finally, make sure that you import the correct shapefile data into the corresponding group, i.e. POLITICAL, in the QGIS Folder.</p>
+<p><strong>STEP 4 Download the Digital Elevation Model (DEM) and Administrative Country Shapefiles</strong></p>
+<p>As a next step, select first the DEM Group in the Layers Panel on the left and then load the SRTM Downloader QGIS Plugin. Zoom in on the region of interest including and up to the point where the Chirchik joins the Syr Darya towards the southwest. Open the plugin and then select Set Canvas Extent. Like this, the coordinates of the AoI get automatically filled in.</p>
+<p>If you press ‘Download,’ all the relevant SRTM tiles get downloaded. But first, the plug-in requests you to enter your username and password of your Earthdata login<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>. The download progress of the individual DEM tiles can be checked in the individual asset progress bars of the SRTM Downloader plugin. As these tiles are only temporary data, there is no need to specify an explicit Output-Path (unless you want to store them for later use in which case you should choose a dedicated output path).</p>
+<p>After the download, these individual raster tiles should be merged. Select them all in a first step and then merge them with the menu option <span style="color: blue;"><strong>Raster / Miscellaneous / Merge</strong></span>. An important remark is that after merging, the individual tiles can be deleted to safe disk space. Use the <span style="color: blue;"><strong>Mouse Right Click / Remove Layers</strong></span> option to do so.</p>
+<p>To check if all went well, the resulting DEM needs to be recolored. This can be achieved through right clicking on the merged DEM and selecting <span style="color: blue;"><strong>Properties / Symbology</strong></span>. In the Layer Properties Dialogue Box, the Singleband Pseudocolor option should be selected and then a new Colormap created from the catalogue ‘cpt-city.’ You can then choose any colormap that is suitable for topography coloring. One good choice is for example <em>wiki-schwarzwald-cont</em>.</p>
+<p>Finally, you have to reproject the DEM to the selected CRS EPSG:32642.</p>
+<p><strong>STEP 5 Cutting the Area of Interest (AoI), DEM Resampling and Filling Sinks</strong></p>
+<p>The downloaded DEM file is very likely much too big and it would be great to cut it to the rough shape that we are focussing on. We just have to ensure that all of our suspected catchment area is inside the cut out. For this purpose, we add a new shapefile Layer and make sure that its Geometry Type is correctly selected as ‘Polygon.’ Ensure also, that after the creation of the layer, it again is in a Projected CRS (UTM 42N). We can then toggle editing and use the polygon creation and edit tool to roughly outline the basin (AoI) that we are focusing on. In order to roughly cutout the AoI, select <span style="color: blue;"><strong>Extraction / Clip Raster by Mask Layer</strong></span> and select the corresponding layers in the user dialog box.</p>
+<p>Alternatively, you can just use the menu <span style="color: blue;"><strong>Raster / Clip Raster by Extent</strong></span> to draw or manually enter a rectangular clipping extent.</p>
+<div class="figure"><span id="fig:LayersCutting"></span>
+<img src="_bookdown_files/Chap6-GeoHydroData-Figures/fig_LayersGrouping.png" alt="After" width="1750" />
+<p class="caption">
+Figure 6.4: After
+</p>
+</div>
+<p>Checking the resolution of the downloaded SRTM DEM, we see that cell sizes are roughly 25 meters [m] in horizontal and vertical direction. For larger catchments, it is advisable to resample the DEM to a coarser resolution. There are many ways to do this in QGIS. Here, it is proposed to use the <code>r.resample</code> algorithm so as to decrease the resolution from 25 m to 100 m for later processing.</p>
+<p>Next, one has to ensure that sinks in the DEM are filled so that water does not get stuck on its way to the watershed outlet. First, use <code>r.fill.dir</code> to fill potential DEM gaps. The algorithm can be found in the Toolbox section once it is enabled in the dropdown menu Processing. Second, use <code>r.watershed</code> to generate the drainage direction and flow accumulation rasters. Note, it is important to specify a ‘Minimum size of exterior watershed basin’ (take 100’000) and also check the option ‘Use positive flow accumulation even for likely underestimates.’ As both, the drainage direction and flow accumulation rasters can be reused later, they should be permanently stored on disk, i.e. in the RIVERS group.</p>
+<p><strong>STEP 6 Basin Delineation</strong></p>
+<p>Once we have produced these rasters as described in <strong>STEP 5</strong>, we load the gauging stations if they are available as shapefiles. For each gauging station, we make sure that the gauge lies at the correct location by overlaying it with the Flow Accumulation Raster Data. If this is not the case, we need to relocate individual gauges so that they are at the correct location. This step is important so as to properly delineate the upstream area of a particular gauge under consideration.</p>
+<p>If gauges are not available as shapefiles, we can easily add a new shapefile layer and then define one or more gauges in that layer for which we want to delineate basin shapes. Ordered by their 5-digit code as administered by the Uzbek Hydrometeorological Service, the important gauges to consider in the Chirchik river basin are:</p>
+<ul>
+<li>id = 16275, name = Chinaz Gauge, river Chirchik River, lat = 4’528’236, lon = 479’463</li>
+<li>id = 16279, name = Khudaydod Gauge, river = Chatkal River, lat = 4’596’628, lon = 598’278</li>
+<li>id = 16290, name = Mullala Gauge, river = Pskem River, lat = 597’351, lon = 4’622’724</li>
+<li>id = 16294, name = Virtual Gauge, river = Inflow to Charvak Reservoir, lat = 584’616, lon = 4’609’108</li>
+<li>id = 16298, name = Sidhzak Gauge, river = Nauvalisoy River, lat = 4’618’690, lon = 589’674</li>
+<li>id = 16300, name = Khodizhkent Gauge, river = Ugam River, lat = 4’610’070, lon = 578’612</li>
+</ul>
+<p>Finally, with the algorithm <code>r.water.outlet</code>, and by using the Drainage Direction Map, we map those basins and get individual basin raster maps. To distinguish between the zone of runoff formation and the zone of water distribution and consumption in the larger catchment, we propose to use an artificial Gauge just below the Charvak Reservoir dam to delineate the upstream area and to then use the Geoprocessing Tool <code>Union</code> to merge these two polygons of upstream dam area and Ugam subcatchment into one zone of runoff formation.</p>
+<p>In principle, we are now ready to build a first rough model that does not rely on further reinfinement of the individual subcatchments.</p>
+<p><strong>STEP 7 RIVER DELINEATION (OPTIONAL)</strong></p>
+<p>This step is not strictly required but is simply used to define the topology of the rivers and tributaries properly. However and together with the other relevant layers, the resulting rivers shapefile can be used in the GIS Section of RS MINERVE for modeling. It can be generated easily by selecting the Flow Accumulation raster and the using the raster calculator to generate a binary 0/1 raster for the major stream segments only<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>. While you can experiment with arbitrary cutoff levels, a good value is 10’000. Hence, the raster calculator command to apply is <code>( @FlowAccumulation &gt; 10000 )</code> under the assumption that your flow accumulation layer is named accordingly. The resulting raster can finally be vectorized to arrive at the river network.</p>
+<p>It is advisable to perform a <code>Vector Geometry / Fix Geometries</code> correction on the resulting vector layer as there are likely self-intersections the processing of the layer. Once this is done, the layer can be clipped to the basin extent should this still be required.</p>
+<p><strong>STEP 8 POLYGONIZATION OF SUBCATCHMENTS</strong></p>
+<p>The rainfall-runoff model that we are using accounts for runoff generation processes in different contributing subcatchments. Depending on the average altitude of these, the timing and magnitude of snow- and glacier-melt contributions might highly vary throughout a hydrological year. The same is true within these individual contributing subcatchments where snow melt in lower elevations starts earlier than at higher elevations due to the negative temperature lapse rate. To account for these <em>phased in time</em> processes, the subcatchments can be discretized into elevation bands of a typical width. A sensible choice in the context of the Chirchik River Basin is to use elevation bands of 500 meters spacing and then model the relevant processes for each of these bands as if they were individual contributing smaller separate sub-subcatchments that dewater all to the same place.</p>
+<p>With the QGIS raster to vector option, we polygonize the basins. Check the validity of the polygon with Vector Geometry/Check Validity and correct, where necessary.</p>
+</div>
+<div id="computation-of-elevation-bands" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Computation of Elevation Bands</h3>
+<p>With the reclassification algorithm, we create elevation band polygons based on the DEM layer. First, we smooth the DEM to simplify the elevation bands a bit. Then, we Reclassify by Table the DEM into the desired elevation bands. For the exercise here and given the specific topography of the basin(s) that we are interested in our Case Study, we enter manually altitude bands that are 500 meters apart (see Figure @ref{fig:ReclassificationByTable}). As output, we get a raster map with the individual elevation classes. The prepared DEM elevation levels range from 0 masl to 4’176 masl over the whole catchment. From the</p>
+<div class="figure"><span id="fig:ReclassificationByTable"></span>
+<img src="_bookdown_files/Chap6-GeoHydroData-Figures/fig_ReclassificationByTable.png" alt="Reclassifying a DEM to make elevation classes that cover a range of 500 meters." width="2170" />
+<p class="caption">
+Figure 6.5: Reclassifying a DEM to make elevation classes that cover a range of 500 meters.
+</p>
+</div>
+<p>Using the elevation band raster map, we use GDAL / Raster Conversion / Polygonize to create the elevation band polygons.</p>
+<p>Polygon clipping with SAGA/Vector Polygon Tool/Polygon Clipping tool to arrive and subcatchment level basins with altitude bands.</p>
+<p>Now, we have derived the required shapefiles. For importing into the rainfall-runoff model in RS MINERVE, we have to now properly prepare their attribute tables. This is a somewhat lengthy and tedious process but will help later greatly in terms of automatic model creation in RS MINERVE.</p>
+<p>RS Minerve requires the following GIS layers for the automatic translation into a rainfall-runoff model, i.e. subbasins.shp, junctions.shp and rivers.shp (see <span class="citation">(<a href="References.html#ref-rsminerve_um" role="doc-biblioref">Foehn et al. 2020</a>)</span> for more details).</p>
+<p>The individual feature attributes should be added either at the time of the layer creation or with the field calculator in QGIS.</p>
+<div class="figure">
+<img src="_bookdown_files/Chap6-GeoHydroData-Figures/fig_RSMINERVE_GIS_Files.png" alt="Default Shapefile layers required in RS MINERVE to simplify the model topology building. See [@rsminerve_um] for more information." width="1911" />
+<p class="caption">
+(#fig:RSMINERVE_GIS)Default Shapefile layers required in RS MINERVE to simplify the model topology building. See <span class="citation">(<a href="References.html#ref-rsminerve_um" role="doc-biblioref">Foehn et al. 2020</a>)</span> for more information.
+</p>
+</div>
+<p>//FIXME: Check what to do with this! We note that for water supplies in the rainfall/runoff model, the focus is on the zone of runoff formation.</p>
+<p>//TODO: Add GLIMS global land ice data.</p>
+<p><strong>STEP 9 INTEGRATION OF GLACIER DATA</strong></p>
+<p>For the retrieval of data on land ice, we will utilize GLIMS data.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="5">
+<li id="fn5"><p>Here, we largely follow a blog post by Craig Dsouza where the process of catchment delineation is nicely described (see this <a href="https://craigdsouza.github.io/blog/Watershed-Delineation-QGIS-1" target="_blank">link</a> for more information)<a href="GeospatialData.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>Of course, this grouping is just a suggestion and the user is free to organize spatial assets according to his/her own liking<a href="GeospatialData.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>If you do not have a login, you can create one at (<a href="https://urs.earthdata.nasa.gov//users/new" class="uri">https://urs.earthdata.nasa.gov//users/new</a>){target=“_blank”}<a href="GeospatialData.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>Remember, the flow accumulation matrix entries correspond to the accumulated number of cells flowing into that particular cell (assuming equal weights for the calculation)<a href="GeospatialData.html#fnref8" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="preliminary-remarks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="climate-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/08_PII_Chap6_Retrieval_Analysis_Geo_Hydro_Data.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["applied-hydrological-modeling-central-asia.pdf", "applied-hydrological-modeling-central-asia.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -33,3 +33,7 @@ serve_book(dir = ".", output_dir = "_book",
 servr::daemon_list()
 servr::daemon_stop(which = servr::daemon_list())
 ```
+
+A note on HTML Output: 
+
+To change the way the HTML pages are split, the split_by argument can be specified. This defaults to split_by: chapter, but readers may prefer to use split_by: section if there are many sections within chapters, in which case a chapter page may be too long.
