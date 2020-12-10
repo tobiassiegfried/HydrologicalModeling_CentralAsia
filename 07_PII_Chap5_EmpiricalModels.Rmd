@@ -1,4 +1,4 @@
-# Discharge Forcasting with Predictive Inference {#HydroModelsEmpiricalModels}
+# Discharge Forecasting with Predictive Inference {#HydroModelsEmpiricalModels}
 
 ## Prerequisites {.unnumbered}
 

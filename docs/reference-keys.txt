@@ -1,3 +1,5 @@
+fig:geographyCentralAsia
+fig:waterFormationUse
 fig:riversMap
 fig:tempWT
 fig:precipWT
@@ -125,3 +127,7 @@ qgis
 r-and-rstudio
 rs-minerve
 References
+evaporation
+transpiration
+fig:waterFormationUse-1
+fig:waterFormationUse-3

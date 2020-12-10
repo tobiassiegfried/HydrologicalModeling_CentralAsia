@@ -10,8 +10,8 @@ Central Asia is spreading over approximately 4 million km^2^, including the terr
 
 [^hydrological_systems-1]: namely the distribution of sand and loess relief types, where the former are more permeable and the latter contain more moisture
 
-```{r riversMap, echo = FALSE, fig.cap = 'Map highlighting the Central Asian rivers network (rivers are shown in blue color). The dense river network in the mountainous areas starkly contrasts with the one in the plains. The main irrigation canals are shown in orange color. GIS Data from <https://tools.geofabrik.de/osmi/>.'}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/fig_CentralAsiaRiversMap.png')
+```{r riversMap, echo = FALSE, fig.cap = 'Map highlighting the Central Asian rivers network (rivers are shown in blue color). The dense river network in the mountainous areas starkly contrasts with the sparse one in the plains. Source: Zoï Environment Network.'}
+knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/riversCentralAsiaZoi.jpg')
 ```
 
 All Central Asian river basins are endorheic with no water draining out of the region but only evaporating back to the atmosphere. This emphasizes the importance of moisture transfer as an important mechanism in the region region since the formation of substantial watercourses in the mountains is followed by their complete dissipation in the plains, including in the irrigated oases and the terminal lakes, i.e. the Aral Sea and Lake Balkash.
