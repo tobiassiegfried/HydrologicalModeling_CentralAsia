@@ -1,5 +1,7 @@
 # Foreword {#Foreword .unnumbered}
 
+**Caution! - Work in progress.**
+
 The conquest of nature, as per the thinking of the Russian government in the late 19^th^ century, was an essential precondition of successful colonial policy. It enabled the economic appropriation of new territories and facilitated the development of administration and the integration of local authorities into the colonial system [@pravilova_2009].
 
 There is a profound riddle at the core of everything the engineer does in Central Asia (one might even want to call it the great paradox). Namely, Soviet planning organized space and resources so that the units under consideration (including human resources) could be "identified, observed, recorded, counted, aggregated and monitored" (C. Scott: Seeing like a State, Part 3: The Social Engineering of Rural Settlement and Production). All engineering in Central Asia was based on this, be it for irrigation projects, railway lines and hydropower dams that have become emblems of authoritarianism in Soviet Central Asia (Jonas van der Straeten: Borderlands of Industrial Modernity: Explorations into the History of Technology in Central Asia, 1850 - 2000). Should there thus not be an innate interest "built-in" to the Central Asia Water Stakeholders that takes its legacy from this organizational heritage and thus jump on any new technology that would help them to improve their planning skills, also e.g. in an objective way through the use of space-based information?

@@ -1,7 +1,7 @@
 Package: placeholder
 Type: Book
-Title: Applied Hydrological Modeling in Central Asia
-Version: 0.0.1
+Title: Applied Modeling of Hydrological Systems in Central Asia
+Version: 0.2.5
 Imports: bookdown
 Remotes: rstudio/bookdown
 Depends: 
