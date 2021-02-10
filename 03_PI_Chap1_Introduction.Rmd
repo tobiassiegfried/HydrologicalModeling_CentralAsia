@@ -2,7 +2,7 @@
 
 **Caution! - Work in progress.** 
 
-```{r geographyCentralAsia, echo = FALSE, fig.cap = "Naryn catchment, near Song Kul, Kyrgyzstan. SOurce: Tobias Siegfried"}
+```{r Front_Figure_Introduction, echo = FALSE, fig.cap = "Naryn catchment, near Song Kul, Kyrgyzstan. SOurce: Tobias Siegfried"}
 knitr::include_graphics('_bookdown_files/Chap1-Introduction-Figures/nearSongKul_lr.jpeg')
 ```
 
@@ -15,7 +15,7 @@ knitr::include_graphics('_bookdown_files/Chap1-Introduction-Figures/nearSongKul_
 knitr::include_graphics('_bookdown_files/Chap1-Introduction-Figures/geography_CentralAsia.jpg')
 ```
 
-```{r waterFormationUse, echo = FALSE, fig.cap = "Still from a propoganda film documenting the construction of the Big Fergana Canal. The canal was constructed in 1939 constructed over a period of 45 days and a length of approx. 280 km through the use of 180’000 forced labor. Still source: https://youtu.be/kz_zDRi9Vl8."}
+```{r construction_BFC, echo = FALSE, fig.cap = "Still from a propoganda film documenting the construction of the Big Fergana Canal. The canal was constructed in 1939 constructed over a period of 45 days and a length of approx. 280 km through the use of 180’000 forced labor. Still source: https://youtu.be/kz_zDRi9Vl8."}
 knitr::include_graphics('_bookdown_files/Chap1-Introduction-Figures/still_BFC_Construction.jpg')
 ```
 
