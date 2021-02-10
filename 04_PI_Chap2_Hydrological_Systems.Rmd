@@ -2,7 +2,7 @@
 
 **Caution! - Work in progress.**
 
-```{r geographyCentralAsia, echo = FALSE, fig.cap = "Upstream Naryn, Kyrgyzstan. Source: Tobias Siegfried"}
+```{r Front_Figure_HydroSystems, echo = FALSE, fig.cap = "Upstream Naryn, Kyrgyzstan. Source: Tobias Siegfried"}
 knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/NarynRiver.jpeg')
 ```
 

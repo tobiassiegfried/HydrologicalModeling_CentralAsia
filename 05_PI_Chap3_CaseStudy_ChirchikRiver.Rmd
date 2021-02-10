@@ -11,7 +11,7 @@ library(riversCentralAsia)
 
 **Caution! - Work in progress.**
 
-```{r geographyCentralAsia, echo = FALSE, fig.cap = "Charvak reservoir dam, looking downstream. Source: Tobias Siegfried"}
+```{r Front_Figure_Chirchick, echo = FALSE, fig.cap = "Charvak reservoir dam, looking downstream. Source: Tobias Siegfried"}
 knitr::include_graphics('_bookdown_files/Chap3-ChirchikRB-Figures/CharvakReservoir_lr.jpeg')
 ```
 
@@ -281,9 +281,9 @@ data %>% filter(type == "T" & code=="38471") %>%
               ylab('deg. C.')
 ```
 
-Similarily to the analysis carried out above for the development of quarterly flows, we can analyze the development of quarterly temperature statistics. Figure \ref(fig:quarterlyMeanMinMaxT) shows the result.
+Similarily to the analysis carried out above for the development of quarterly flows, we can analyze the development of quarterly temperature statistics. Figure \ref(fig:quarterlyMeanMinMaxT_38462) shows the result.
 
-```{r quarterlyMeanMinMaxT,echo=FALSE,message=FALSE,warning=FALSE,fig.cap="Development of mean, minimum and maximum quarterly temperatures for Q1 at Station 38462"}
+```{r quarterlyMeanMinMaxT_38462,echo=FALSE,message=FALSE,warning=FALSE,fig.cap="Development of mean, minimum and maximum quarterly temperatures for Q1 at Station 38462"}
 
 quarterT_mean <- data %>% filter(type == "T" & code=="38471") %>% 
   dplyr::select(date,data,code,river)  %>% 
