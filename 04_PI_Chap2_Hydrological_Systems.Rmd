@@ -2,17 +2,18 @@
 
 **Caution! - Work in progress.**
 
-```{r Front_Figure_HydroSystems, echo = FALSE, fig.cap = "Upstream Naryn, Kyrgyzstan. Source: Tobias Siegfried"}
+```{r Front_Figure_HydroSystems, echo = FALSE}
 knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/NarynRiver.jpeg')
 ```
+**Upstream Naryn, Kyrgyzstan. Source: Tobias Siegfried.**
 
 ## Regional Hydro-Climatological Features
 
 The inhomogeneity of the relief structure causes Central Asia to be the territory of immense contrasts. Here, extreme aridity in the hot deserts of the plains and, only 100 km away, abundant humidity and snowfields in the mountains where precipitation levels can range between 1'000 mm up to 2'000 mm. The uneven distribution of water bodies is striking. The mountains of Central Asia are riddled with an extremely branched river network consisting of more than ten thousand watercourses. In the flat foothill areas surrounding the mountain ranges, another branching river network is found which consists of irrigation channels, which do not contribute to the runoff of the core rivers, but rather divert the water from the river network and diffuse it in the irrigated oases where much of it gets evapotranspirated.
 
-Central Asia is spreading over approximately 4 million km^2^, including the territories of Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan and Uzbekistan [@cia_worldfactbook]. In the vast plains that cover around 70% of the total territory, there are only very few rivers which have scarcely any tributaries from the point they leave the mountain areas all the way to their mouth. Abundant solar radiation, high temperatures, small amounts of precipitation, a lack of humidity, unstable snow cover, slight slopes, geological structures[^hydrological_systems-1], etc., hinder the formation of surface flows in the plains of Central Asia, despite their big importance for the local agricultural production there. Only the largest rivers, such as Syr Darya, Amu Darya, and Ili are able to survive hundreds of kilometers of deserts and reach the most important landlocked reservoirs -- the Aral Sea and Lake Balkhash [@shults_RiversOfMiddleAsia]. Figure \@ref(fig:riversMap) shows an overview of the region.
+Central Asia is spreading over approximately 4 million km^2^, including the territories of Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan and Uzbekistan [@cia_worldfactbook]. In the vast plains that cover around 70% of the total territory, there are only very few rivers which have scarcely any tributaries from the point they leave the mountain areas all the way to their mouth. Abundant solar radiation, high temperatures, small amounts of precipitation, a lack of humidity, unstable snow cover, slight slopes, geological structures[^pi_chap2_hydrological_systems-1], etc., hinder the formation of surface flows in the plains of Central Asia, despite their big importance for the local agricultural production there. Only the largest rivers, such as Syr Darya, Amu Darya, and Ili are able to survive hundreds of kilometers of deserts and reach the most important landlocked reservoirs -- the Aral Sea and Lake Balkhash [@shults_RiversOfMiddleAsia]. Figure \@ref(fig:riversMap) shows an overview of the region.
 
-[^hydrological_systems-1]: namely the distribution of sand and loess relief types, where the former are more permeable and the latter contain more moisture
+[^pi_chap2_hydrological_systems-1]: namely the distribution of sand and loess relief types, where the former are more permeable and the latter contain more moisture
 
 ```{r riversMap, echo = FALSE, fig.cap = 'Map highlighting the Central Asian rivers network (rivers are shown in blue color). The dense river network in the mountainous areas starkly contrasts with the sparse one in the plains. Source: Zoï Environment Network.'}
 knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/waterFormationUseCentralAsiaZoi.jpg')
@@ -137,7 +138,9 @@ The process of runoff formation is critically determined by the generation of di
 knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/fig_AmuSyrDarya.png')
 ```
 
-First, we study the role of glacier melt. For this, it is instructive to start to look at the condition of discharge formation in the Amu Darya and Syr Darya basins (see Figure \@ref(fig:ZonesOfRunoffFormation)). More specifically, we compare the two main subcatchments of the Vakhsh and Pyandzh Rivers in the Amu Darya and the Naryn and Kara Darya catchments in the Syr Darya^[(The emerging river after the confluence of the Vakhsh and Pyandzh rivers is called Amu Darya whereas the Syr Darya emerges after the confluence of the Naryn and Kara Darya rivers.)]. In the first two reservoirs, the mountains exceeding 5'000 m occupy 6.2% of their area, and the mountains higher than 4'000 m --- 42%, in case of reservoirs of the second two rivers, the mountains exceeding 5'000 m occupy less than 1% of their area and the ones with altitudes over 4'000 m --- only 4%. Figure \@ref(fig:AmuSyrDaryaHypsography) shows the basins' hypsographic curves.
+First, we study the role of glacier melt. For this, it is instructive to start to look at the condition of discharge formation in the Amu Darya and Syr Darya basins (see Figure \@ref(fig:ZonesOfRunoffFormation)). More specifically, we compare the two main subcatchments of the Vakhsh and Pyandzh Rivers in the Amu Darya and the Naryn and Kara Darya catchments in the Syr Darya[^pi_chap2_hydrological_systems-2]. In the first two reservoirs, the mountains exceeding 5'000 m occupy 6.2% of their area, and the mountains higher than 4'000 m --- 42%, in case of reservoirs of the second two rivers, the mountains exceeding 5'000 m occupy less than 1% of their area and the ones with altitudes over 4'000 m --- only 4%. Figure \@ref(fig:AmuSyrDaryaHypsography) shows the basins' hypsographic curves.
+
+[^pi_chap2_hydrological_systems-2]: (The emerging river after the confluence of the Vakhsh and Pyandzh rivers is called Amu Darya whereas the Syr Darya emerges after the confluence of the Naryn and Kara Darya rivers.)
 
 Even if we take into account that in the case of the basins of Pyandzh and Vakhsh the snow line is on average located at the height of 4'600 m --- 4'500 m and in case of the basins of Naryn and Kara Darya at 4'000 m - 3'900 m, 19% --- 22% of the reservoirs of Pyandzh and Vakhsh is located above the snow line, and in case of reservoirs of Naryn and Kara Darya it is only 4% --- 5%. The role of glaciers in the annual distribution of runoff is thus more substantial in the case of the Amu Darya as compared to the Syr Darya. And to come to an informed conclusion, one has to take into account all land ice features, including their altitude.
 
@@ -163,16 +166,18 @@ $$
 V = 0.03782 S^{1.23} \text{ for } S< 0.1 \text{ km}^2 \\
 V = \frac{0.03332 S ^ {1.08} e^{0.1219 L}}{L^{0.08846}} \text{ for } 0.1 < S < 25 \text{ km}^2 \\
 V = 0.01848 S + 0.021875 S^{1.3521} \text{ for } S > 25 \text{ km}^2
-$$ 
+$$
 
 where $S$ is the area of a glacier, $L$ the length of the glacier and $V$ the computed volume from the scaling relationship. The length $L$ of the individual glaciers can be approximated by subtracting the minimum glacier elevation from the corresponding maximum elevation. Like this, we can compute land ice volumes of the Amu Darya and Syr Darya basins in an approximate yet scientific way.
 
 Alternatively, we can use the volume area scaling relationship by Yerashov.
 
 <!-- Andrey Yakovlev, [10 Dec 2020 at 15:53:54]: -->
+
 <!-- Erasov. V=O.027*F^1.5 -->
 
 <!-- Where F - area of glacier, km^2, V - volume of glacier, km^3 -->
+
 <!-- Erasov N.V. Method for determining of volume of mountain glaciers. MGI, M, 1968, issue 14, 307-308 pp -->
 
 ## Average Multi-Year Runoff

@@ -9,11 +9,12 @@ install_github("hydrosolutions/riversCentralAsia")
 library(riversCentralAsia)
 ```
 
-**Caution! - Work in progress.**
-
-```{r Front_Figure_Chirchick, echo = FALSE, fig.cap = "Charvak reservoir dam, looking downstream. Source: Tobias Siegfried"}
+```{r Front_Figure_Chirchick, echo = FALSE}
 knitr::include_graphics('_bookdown_files/Chap3-ChirchikRB-Figures/CharvakReservoir_lr.jpeg')
 ```
+**Charvak reservoir dam, looking downstream. Source: Tobias Siegfried**
+
+In this Chapter, two Central Asian river basins are presented and extensively discussed. The purpose is to familiarize the reader with key hydrological processes but also to demonstrate ways of hydro-meteorological time series analyses with R [@R-2013].
 
 ## Overview
 
