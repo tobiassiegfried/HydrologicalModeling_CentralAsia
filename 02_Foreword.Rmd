@@ -1,4 +1,4 @@
-# Foreword {#Foreword .unnumbered}
+# Foreword {#foreword .unnumbered}
 
 ```{r frontFigureForeword, echo = FALSE}
 knitr::include_graphics('_bookdown_files/Preface-Figures/NearSamarkandOasis.jpeg')
