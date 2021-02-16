@@ -15,16 +15,16 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Serve Book Locally
 
 ```{r}
+library(bookdown)
 options(knitr.duplicate.label = "allow")
 bookdown:::serve_book()
 ```
 
 The serve_book function is:
 
-```{r,eval=FALSE}
-serve_book(dir = ".", output_dir = "_book",
-  preview = TRUE, in_session = TRUE, quiet = FALSE,
-  ...)
+```{r,echo=FALSE,message=FALSE}
+serve_book(dir = ".", output_dir = "docs",
+  preview = TRUE, in_session = FALSE, quiet = FALSE)
 ```
 
 ## Check Server and Stop
@@ -34,6 +34,6 @@ servr::daemon_list()
 servr::daemon_stop(which = servr::daemon_list())
 ```
 
-A note on HTML Output: 
+# Type of HTML Output 
 
 To change the way the HTML pages are split, the split_by argument can be specified. This defaults to split_by: chapter, but readers may prefer to use split_by: section if there are many sections within chapters, in which case a chapter page may be too long.
