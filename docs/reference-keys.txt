@@ -1,5 +1,3 @@
-fig:geographyCentralAsia
-fig:waterFormationUse
 fig:riversMap
 fig:tempWT
 fig:precipWT
@@ -45,11 +43,9 @@ fig:LayersGrouping
 fig:LayersCutting
 fig:ReclassificationByTable
 fig:Copernicus-API-Request
-Introduction
-INTROTamingHydroSystems
-INTROPostTransitionChallenges
-INTRONewReality
-INTROAdverseDevelopments
+ShortHistory
+TamingHydrologicalSystems
+PostTransitionDevelopmentsChallenges
 HydrologicalSystems
 regional-hydro-climatological-features
 chap:regionalWaterBalance
