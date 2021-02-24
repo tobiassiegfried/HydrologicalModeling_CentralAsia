@@ -1,15 +1,52 @@
-# Hydrologic-Hydraulic Modeling {#HydroModelsPhysicalModels}
+# Hydrological-Hydraulic Modeling {#HydroModelsPhysicalModels}
 
-**Caution! - Work in progress.**
+Hydrological-hydraulic models are used for different purposes, including for the design of basin plans while taking into consideration different development options, for the study of effective water resources management schemes while taking into consideration the different types of sectoral users and uses of water in a basin (ideally also including minimal environmental flows), and for the detailed study of basin-scale climate impacts and their repercussions.
 
-## Background on Physically-Based Modeling
+This Chapter introduces combined hydrologic and hydraulic modeling using the freely available graphical modeling environment RSMinerve [@rsminerve_um; @rsminerve_tm] \^[The reader is advised to consult the user manual and familiarizes himself or herself with the walk through examples that are discussed and presented there. They give a solid first hands-on introduction about the basic functionalities of the modeling environment]. Departing from catchment GIS data, RSMinerve allows to quickly develop, test and calibrate different types of lumped conceptual precipitation runoff models while taking into account the evolution of water balances in glacier, snow, surface and subsurface compartments over time and in different sections in the catchment under consideration. This is demonstrated here.
+
+## Data Preparation
+
+### GIS Data
+
+As demonstrated in the Examples of the user manual, RSMinerve does not necessarily require GIS input files for setting up models. These can also be setup and wired by hand. However, individual subbasins that contribute to flow in a larger catchment have different characteristics that need to be derived from spatial data, i.e. GIS files. For example, subbasin areas, river stretch lengths, terrain slopes, etc., are all required data in an RSMinerve model. These data could either be typed in by hand for each subbasin or automatically inserted via the GIS Import option. The latter method is much more convenient and is demonstrated here for the Gunt river basin in the Pamir mountains.
+
+We assume that the basic steps of GIS basin delineation have been carried out as described in Chapter \@ref(Chapter-RetrievalAnalysisHydroData) and the Section \@ref(GeospatialData) there. We thus depart here assuming that the basin outlet (i.e. the location of the discharge gauge), the basin shape file as well as the digital elevation model are available.
+
+#### Requirements
+
+As described in the RSMinerve User Manual in Chapter 5, 3 shapefiles need to be prepared for later loading into RSMinerve, i.e. subbasins.dhp, junctions.shp and rivers.shp. The minimum required set of fields of the shapefiles is shown in Figure \@ref(fig:requiredGISInputFiles).
+
+```{r requiredGISInputFiles,echo = FALSE, fig.cap = 'Required GIS input files for RSMinerve. See corresponding user manual for more information.'}
+knitr::include_graphics('_bookdown_files/Chap7-PhysicalModels-Figures/required_GIS_Input_Files.png')
+```
+
+For the subbasins.shp file, it is also advisable to add the feature `Z` which contains the mean elevation of the corresponding elevation band.
+
+#### Directory Preparations
+
+For the modeling, it pays to stay organized with a proper structure of local directories. For this, create the following folders on your local computer:
+
+-   GuntRiverBasin
+    -   RSMinerveModel
+        -   GIS_Data
+        -   PT_Q_Data
+        -   Models
+
+In the folder *GIS_Data*, all relevat Shapefiles should be stored. They can be downloaded via this link
+
+
+the PT_Q_Data folder
+
+#### Loading and Processing GIS Files
+
+The GIS files of the Gunt River Catchment can be
+
+### Climate Data
 
 ## Model Setup
 
-### Zone of Runoff Formation
-
-### Zone of Water Distribution and Consumption 
-
 ## Model Calibration and Validation
+
+## Application: Investigating Climate Change Impacts
 
 ## Discussion

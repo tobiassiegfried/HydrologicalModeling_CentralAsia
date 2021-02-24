@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried" />
 
 
-<meta name="date" content="2021-02-16" />
+<meta name="date" content="2021-02-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="ShortHistory.html"/>
 <link rel="next" href="PostTransitionDevelopmentsChallenges.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -222,7 +222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="save-data-for-hot-start.html"><a href="save-data-for-hot-start.html"><i class="fa fa-check"></i><b>5.6</b> Save Data for Hot Start</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="RetrievalAnalysisHydroData.html"><a href="RetrievalAnalysisHydroData.html"><i class="fa fa-check"></i><b>6</b> Retrieval &amp; Analysis of Data</a>
+<li class="chapter" data-level="6" data-path="Chapter-RetrievalAnalysisHydroData.html"><a href="Chapter-RetrievalAnalysisHydroData.html"><i class="fa fa-check"></i><b>6</b> Retrieval &amp; Analysis of Data</a>
 <ul>
 <li class="chapter" data-level="" data-path="preliminary-remarks.html"><a href="preliminary-remarks.html"><i class="fa fa-check"></i>Preliminary Remarks</a></li>
 <li class="chapter" data-level="6.1" data-path="GeospatialData.html"><a href="GeospatialData.html"><i class="fa fa-check"></i><b>6.1</b> Geospatial Data</a>
@@ -236,16 +236,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="hydrological-data.html"><a href="hydrological-data.html"><i class="fa fa-check"></i><b>6.3</b> Hydrological Data</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="HydroModelsPhysicalModels.html"><a href="HydroModelsPhysicalModels.html"><i class="fa fa-check"></i><b>7</b> Hydrologic-Hydraulic Modeling</a>
+<li class="chapter" data-level="7" data-path="HydroModelsPhysicalModels.html"><a href="HydroModelsPhysicalModels.html"><i class="fa fa-check"></i><b>7</b> Hydrological-Hydraulic Modeling</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="background-on-physically-based-modeling.html"><a href="background-on-physically-based-modeling.html"><i class="fa fa-check"></i><b>7.1</b> Background on Physically-Based Modeling</a></li>
-<li class="chapter" data-level="7.2" data-path="model-setup.html"><a href="model-setup.html"><i class="fa fa-check"></i><b>7.2</b> Model Setup</a>
+<li class="chapter" data-level="7.1" data-path="data-preparation.html"><a href="data-preparation.html"><i class="fa fa-check"></i><b>7.1</b> Data Preparation</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="model-setup.html"><a href="model-setup.html#zone-of-runoff-formation"><i class="fa fa-check"></i><b>7.2.1</b> Zone of Runoff Formation</a></li>
-<li class="chapter" data-level="7.2.2" data-path="model-setup.html"><a href="model-setup.html#zone-of-water-distribution-and-consumption"><i class="fa fa-check"></i><b>7.2.2</b> Zone of Water Distribution and Consumption</a></li>
+<li class="chapter" data-level="7.1.1" data-path="data-preparation.html"><a href="data-preparation.html#gis-data"><i class="fa fa-check"></i><b>7.1.1</b> GIS Data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="data-preparation.html"><a href="data-preparation.html#climate-data-1"><i class="fa fa-check"></i><b>7.1.2</b> Climate Data</a></li>
 </ul></li>
+<li class="chapter" data-level="7.2" data-path="model-setup.html"><a href="model-setup.html"><i class="fa fa-check"></i><b>7.2</b> Model Setup</a></li>
 <li class="chapter" data-level="7.3" data-path="model-calibration-and-validation.html"><a href="model-calibration-and-validation.html"><i class="fa fa-check"></i><b>7.3</b> Model Calibration and Validation</a></li>
-<li class="chapter" data-level="7.4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>7.4</b> Discussion</a></li>
+<li class="chapter" data-level="7.4" data-path="application-investigating-climate-change-impacts.html"><a href="application-investigating-climate-change-impacts.html"><i class="fa fa-check"></i><b>7.4</b> Application: Investigating Climate Change Impacts</a></li>
+<li class="chapter" data-level="7.5" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>7.5</b> Discussion</a></li>
 </ul></li>
 <li class="part"><span><b>III Part III Model Operationalization</b></span></li>
 <li class="chapter" data-level="8" data-path="Operationalization.html"><a href="Operationalization.html"><i class="fa fa-check"></i><b>8</b> Operationalization of Models - Opportunities and Challenges</a>
@@ -288,18 +289,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="TamingHydrologicalSystems" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> The Taming of the Central Asian Rivers</h2>
-<p>The conquest of nature, as per the thinking of the Russian government in the late 19<sup>th</sup> century, was an essential precondition of successful colonial policy. It enabled the economic appropriation of new territories and facilitated the development of administration and the integration of local authorities into the colonial system <span class="citation">(<a href="References.html#ref-pravilova_2009" role="doc-biblioref">Pravilova 2009</a>)</span>.</p>
+<p>The conquest of nature, as per the thinking of the tsarist Russian government in the late 19<sup>th</sup> century, was an essential precondition of successful colonial policy. It enabled the economic appropriation of new territories and facilitated the development of administration and the integration of local authorities into the colonial system <span class="citation">(<a href="References.html#ref-pravilova_2009" role="doc-biblioref">Pravilova 2009</a>)</span>.</p>
 <!-- There is a profound riddle at the core of everything the engineer does in Central Asia (one might even want to call it the great paradox). Namely, Soviet planning organized space and resources so that the units under consideration (including human resources) could be "identified, observed, recorded, counted, aggregated and monitored" (C. Scott: Seeing like a State, Part 3: The Social Engineering of Rural Settlement and Production). All engineering in Central Asia was based on this, be it for irrigation projects, railway lines and hydropower dams that have become emblems of authoritarianism in Soviet Central Asia (Jonas van der Straeten: Borderlands of Industrial Modernity: Explorations into the History of Technology in Central Asia, 1850 - 2000). Should there thus not be an innate interest "built-in" to the Central Asia Water Stakeholders that takes its legacy from this organizational heritage and thus jump on any new technology that would help them to improve their planning skills, also e.g. in an objective way through the use of space-based information? -->
 <!-- What emerged over time was a "coexistence of the infrastructural and industrial legacies of its Soviet period, artisanal practices and material cultures that date back to the pre-Soviet time, and by the changes brought by the rapidly accelerating circulation of goods, tastes, and ideas in post-Soviet years. The coexistence of these different influences, however, is not always a harmonic one. It constantly leads to in-between situations, tensions, and paradoxes." (Jonas van der Straten:...). Tsarist and Soviet occupation and colonialism, a great disrupting force of a fragmented place with historically highly fragmented administrative structures between the traditional oases that were regarded as backward and characterized as "medieval barbarity" by those very occupiers? Occupiers, that is, that, at least in private, often acknowledged that European irrigation technology was inferior to indigenous traditional methods? -->
 <!-- Some US Engineers were called in early on by the Soviets to help in the large scale landscape transformation as described in Teichmann in Chapter 7 and also for the introduction of the 'American' long-staple cotton varieties. It is instructive to quote one of them as Teichmann did: »In den Büros, auf Konferenzen und in der Presse geht es immer nur um Pläne, Programme und Fristen«, berichtete der amerikanische Ingenieur Willard Gorton nach seiner Rückkehr aus der Sowjetunion in die Vereinigten Staaten 1933. »Es wäre eine Art kommunistisches Sakrileg, etwas zu unternehmen, ohne vorher einen Plan, oder besser: ein halbes Dutzend Pläne, gemacht zu haben.« Gorton hatte zwei Jahre lang als Bewässerungsingenieur in Taschkent gearbeitet und wusste, wovon er sprach. Sowjetische Pläne und sowjetische Wirklichkeit standen, wie er immer wieder feststellen musste, in einem unauflösbaren Widerspruch. Die Planwirtschaft behindere das Erreichen der vorgesehenen Planziele, statt es sicherzustellen. »Das tatsächliche Ergebnis der Pläne«, meinte der Ingenieur, seien »Chaos« und »Unordnung«. »Vergleicht man die Leistungen, die die Roten von Tag zu Tag vollbringen, mit den Möglichkeiten, die sie von Tag zu Tag verschenken, scheint es, dass sie auf ganzer Linie scheitern werden.«1 Die Schwachpunkte der Planwirtschaft hatte Gorton schnell erfasst: Die sowjetischen Pläne beruhten auf »illusorischen Hoffnungen« und die Planer »verplemperten« ihre Zeit mit dem »Verfassen von Märchen«. Und immer gebe es mehrere, einander widersprechende Planszenarien, von denen keines ausgereift genug sei, um umgesetzt werden zu können. Obwohl »alles bis zum letzten Atemzug« durchgeplant sei, herrschten bei der Arbeit »Durcheinander, Unsicherheit und Verantwortungslosigkeit« und die Pläne erzeugten eine »kontinuierliche und überall verbreitete Unordnung, die an Chaos grenzt«. Das sowjetische Alltagsleben sei von »all den Ärgernissen und Unsicherheiten« geprägt, »die man in den kapitalistischen Ländern finden kann, und vielen anderen mehr, die man hier nicht finden kann«. Zudem erzeuge der verschwenderische Umgang mit Ressourcen Mangel und Not. »Du planst und arbeitest und verhungerst dabei«, berichtete Gorton. Wenn man überhaupt davon sprechen könne, dass die Sowjetunion »nach einem Plan lebe«, sei dieser »sicherlich vom Teufel selbst erdacht«. -->
 <!-- Identification, observation, recording, counting, aggregating, and monitoring - all based on "dem Verfassen von Märchen" in Soviet Times? And, might it truly have been so that the centralized command and control economy was in reality directed "according to a system of preferences and not according to precise scientific planning" (Robert Davies quoted in Teichmann)? -->
 <!-- I believe that the Czarist invaders were driven by scientifically 'enlightened' engineering. The same applied to the Homo Sovieticus who now extended engineering also in the social practices. Yet, despite its overwhelming power and oversight, the empire was never able to control every aspect of life of the indigenous people. Was it maybe that this enlightened science had to adapt over time, adapt in the sense as described above, to comply to Stalin's Planvorgaben and so became to rely on fairy tales? Additionally, was it that the 'Western' technology and science got adapted to the local colonized conditions and became a complex process of negotiation, contestation, cooptation, and resistance at work" (Cited from Baber in Obertreichs Book)? -->
-<!-- ```{r geographyCentralAsia, echo = FALSE, fig.cap = "Geography of the Central Asia Region. Source: Zoï Environment Network."} -->
-<!-- knitr::include_graphics('_bookdown_files/Chap1-Introduction-Figures/geography_CentralAsia.jpg') -->
-<!-- ``` -->
-<!-- ```{r waterFormationUse, echo = FALSE, fig.cap = "Water resources formation and use. The infographics river width is proportional to average discharge at the particular locations. The red arrows indicate water diversion from rivers into irrigation canals. The gray bands around the rivers in the downstream indicate their natural unaltered runoff. Also note the reuse of drainage water in the Syr Darya. Source: Zoï Environment Network."} -->
-<!-- knitr::include_graphics('_bookdown_files/Chap1-Introduction-Figures/WaterResourcesFormation&Use.jpg') -->
-<!-- ``` -->
+<div class="figure"><span id="fig:geographyCentralAsia"></span>
+<img src="_bookdown_files/Chap1-Introduction-Figures/geography_CentralAsia.jpg" alt="Geography of the Central Asia Region. Source: Zoï Environment Network." width="997" />
+<p class="caption">
+Figure 1.1: Geography of the Central Asia Region. Source: Zoï Environment Network.
+</p>
+</div>
+<div class="figure"><span id="fig:waterFormationUse"></span>
+<img src="_bookdown_files/Chap1-Introduction-Figures/WaterResourcesFormation&Use.jpg" alt="Water resources formation and use. The infographics river width is proportional to average discharge at the particular locations. The red arrows indicate water diversion from rivers into irrigation canals. The gray bands around the rivers in the downstream indicate their natural unaltered runoff. Also note the reuse of drainage water in the Syr Darya. Source: Zoï Environment Network." width="1468" />
+<p class="caption">
+Figure 1.2: Water resources formation and use. The infographics river width is proportional to average discharge at the particular locations. The red arrows indicate water diversion from rivers into irrigation canals. The gray bands around the rivers in the downstream indicate their natural unaltered runoff. Also note the reuse of drainage water in the Syr Darya. Source: Zoï Environment Network.
+</p>
+</div>
 </div>
             </section>
 
