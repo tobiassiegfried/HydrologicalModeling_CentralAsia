@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried" />
 
 
-<meta name="date" content="2021-02-16" />
+<meta name="date" content="2021-02-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="GeospatialData.html"/>
 <link rel="next" href="hydrological-data.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -222,7 +222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="save-data-for-hot-start.html"><a href="save-data-for-hot-start.html"><i class="fa fa-check"></i><b>5.6</b> Save Data for Hot Start</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="RetrievalAnalysisHydroData.html"><a href="RetrievalAnalysisHydroData.html"><i class="fa fa-check"></i><b>6</b> Retrieval &amp; Analysis of Data</a>
+<li class="chapter" data-level="6" data-path="Chapter-RetrievalAnalysisHydroData.html"><a href="Chapter-RetrievalAnalysisHydroData.html"><i class="fa fa-check"></i><b>6</b> Retrieval &amp; Analysis of Data</a>
 <ul>
 <li class="chapter" data-level="" data-path="preliminary-remarks.html"><a href="preliminary-remarks.html"><i class="fa fa-check"></i>Preliminary Remarks</a></li>
 <li class="chapter" data-level="6.1" data-path="GeospatialData.html"><a href="GeospatialData.html"><i class="fa fa-check"></i><b>6.1</b> Geospatial Data</a>
@@ -236,16 +236,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="hydrological-data.html"><a href="hydrological-data.html"><i class="fa fa-check"></i><b>6.3</b> Hydrological Data</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="HydroModelsPhysicalModels.html"><a href="HydroModelsPhysicalModels.html"><i class="fa fa-check"></i><b>7</b> Hydrologic-Hydraulic Modeling</a>
+<li class="chapter" data-level="7" data-path="HydroModelsPhysicalModels.html"><a href="HydroModelsPhysicalModels.html"><i class="fa fa-check"></i><b>7</b> Hydrological-Hydraulic Modeling</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="background-on-physically-based-modeling.html"><a href="background-on-physically-based-modeling.html"><i class="fa fa-check"></i><b>7.1</b> Background on Physically-Based Modeling</a></li>
-<li class="chapter" data-level="7.2" data-path="model-setup.html"><a href="model-setup.html"><i class="fa fa-check"></i><b>7.2</b> Model Setup</a>
+<li class="chapter" data-level="7.1" data-path="data-preparation.html"><a href="data-preparation.html"><i class="fa fa-check"></i><b>7.1</b> Data Preparation</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="model-setup.html"><a href="model-setup.html#zone-of-runoff-formation"><i class="fa fa-check"></i><b>7.2.1</b> Zone of Runoff Formation</a></li>
-<li class="chapter" data-level="7.2.2" data-path="model-setup.html"><a href="model-setup.html#zone-of-water-distribution-and-consumption"><i class="fa fa-check"></i><b>7.2.2</b> Zone of Water Distribution and Consumption</a></li>
+<li class="chapter" data-level="7.1.1" data-path="data-preparation.html"><a href="data-preparation.html#gis-data"><i class="fa fa-check"></i><b>7.1.1</b> GIS Data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="data-preparation.html"><a href="data-preparation.html#climate-data-1"><i class="fa fa-check"></i><b>7.1.2</b> Climate Data</a></li>
 </ul></li>
+<li class="chapter" data-level="7.2" data-path="model-setup.html"><a href="model-setup.html"><i class="fa fa-check"></i><b>7.2</b> Model Setup</a></li>
 <li class="chapter" data-level="7.3" data-path="model-calibration-and-validation.html"><a href="model-calibration-and-validation.html"><i class="fa fa-check"></i><b>7.3</b> Model Calibration and Validation</a></li>
-<li class="chapter" data-level="7.4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>7.4</b> Discussion</a></li>
+<li class="chapter" data-level="7.4" data-path="application-investigating-climate-change-impacts.html"><a href="application-investigating-climate-change-impacts.html"><i class="fa fa-check"></i><b>7.4</b> Application: Investigating Climate Change Impacts</a></li>
+<li class="chapter" data-level="7.5" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>7.5</b> Discussion</a></li>
 </ul></li>
 <li class="part"><span><b>III Part III Model Operationalization</b></span></li>
 <li class="chapter" data-level="8" data-path="Operationalization.html"><a href="Operationalization.html"><i class="fa fa-check"></i><b>8</b> Operationalization of Models - Opportunities and Challenges</a>
@@ -290,22 +291,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.2</span> Climate Data</h2>
 <p>This Section requires the following R packages to be installed. If you are running R in RStudio and some of the packages are not yet installed on your computer, RStudio will warn you and ask, whether you want to have them installed.</p>
 <p>//TODO: Suppress output below</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="climate-data.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidyverse </span></span>
-<span id="cb99-2"><a href="climate-data.html#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb99-3"><a href="climate-data.html#cb99-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-4"><a href="climate-data.html#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="co"># File navigation</span></span>
-<span id="cb99-5"><a href="climate-data.html#cb99-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="climate-data.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidyverse </span></span>
+<span id="cb79-2"><a href="climate-data.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb79-3"><a href="climate-data.html#cb79-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-4"><a href="climate-data.html#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="co"># File navigation</span></span>
+<span id="cb79-5"><a href="climate-data.html#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div>
 <pre><code>## here() starts at /Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/CourseMaterials/Handbook/Applied_Hydrological_Modeling_Bookdown</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="climate-data.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copernicus Climate Data Store</span></span>
-<span id="cb101-2"><a href="climate-data.html#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ecmwfr)</span>
-<span id="cb101-3"><a href="climate-data.html#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(keyring)</span>
-<span id="cb101-4"><a href="climate-data.html#cb101-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-5"><a href="climate-data.html#cb101-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Handling netcdf files</span></span>
-<span id="cb101-6"><a href="climate-data.html#cb101-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
-<span id="cb101-7"><a href="climate-data.html#cb101-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-8"><a href="climate-data.html#cb101-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Spatial data plotting &amp; plotting</span></span>
-<span id="cb101-9"><a href="climate-data.html#cb101-9" aria-hidden="true" tabindex="-1"></a><span class="co">#library(rgdal)</span></span>
-<span id="cb101-10"><a href="climate-data.html#cb101-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="climate-data.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copernicus Climate Data Store</span></span>
+<span id="cb81-2"><a href="climate-data.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ecmwfr)</span></code></pre></div>
+<pre><code>## 
+##      This is &#39;ecmwfr&#39; version  1.3.0 . Please respect the terms of use:
+##       - https://cds.climate.copernicus.eu/disclaimer-privacy
+##       - https://www.ecmwf.int/en/terms-use</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="climate-data.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(keyring)</span>
+<span id="cb83-2"><a href="climate-data.html#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-3"><a href="climate-data.html#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Handling netcdf files</span></span>
+<span id="cb83-4"><a href="climate-data.html#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ncdf4)</span>
+<span id="cb83-5"><a href="climate-data.html#cb83-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-6"><a href="climate-data.html#cb83-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Spatial data plotting &amp; plotting</span></span>
+<span id="cb83-7"><a href="climate-data.html#cb83-7" aria-hidden="true" tabindex="-1"></a><span class="co">#library(rgdal)</span></span>
+<span id="cb83-8"><a href="climate-data.html#cb83-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span></code></pre></div>
 <pre><code>## Loading required package: sp</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;raster&#39;</code></pre>
@@ -315,15 +320,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following object is masked from &#39;package:tidyr&#39;:
 ## 
 ##     extract</code></pre>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="climate-data.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgeos)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="climate-data.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgeos)</span></code></pre></div>
 <pre><code>## rgeos version: 0.5-5, (SVN revision 640)
 ##  GEOS runtime version: 3.8.1-CAPI-1.13.3 
 ##  Linking to sp version: 1.4-2 
 ##  Polygon checking: TRUE</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="climate-data.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sp)</span>
-<span id="cb108-2"><a href="climate-data.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="climate-data.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sp)</span>
+<span id="cb90-2"><a href="climate-data.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
 <pre><code>## Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.3.1</code></pre>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="climate-data.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rasterVis)</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="climate-data.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rasterVis)</span></code></pre></div>
 <pre><code>## Loading required package: lattice</code></pre>
 <pre><code>## Loading required package: latticeExtra</code></pre>
 <pre><code>## 
@@ -331,20 +336,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
 ## 
 ##     layer</code></pre>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="climate-data.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="climate-data.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span></code></pre></div>
 <div id="access-select-and-download-era5-reanalysis-data" class="section level3" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Access, Select and Download ERA5 Reanalysis Data</h3>
 <p>For the climate data to be used in the modeling approach, we use ERA5 data from the European Center for Medium-Range Weather Forecasts (ECMWF, &lt;www.ecmwf.int&gt;). ERA5, the successor to ERA-Interim, provides global, hourly estimates of atmospheric variables, at a horizontal resolution of 31 km and 137 vertical levels from the surface to 0.01 hPa <span class="citation">(<a href="References.html#ref-era5-desc" role="doc-biblioref">Dee D. 2020</a>)</span>. ERA5 presently extends back to 1979 but will ultimately be extended back to 1950<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>.</p>
 <p>The ERA5 data is available via the Copernicus Climate Store at <a href="https://cds.climate.copernicus.eu" class="uri">https://cds.climate.copernicus.eu</a>. However, before we can access, select and download it there, each user has to register with a personal account in the store. For this purpose, the user should navigate to the website and register via the Login/Register/NewAccount Menu. You will receive an email once your account is ready.</p>
 <p>Log in to your account and go to your user profile where you find your user ID and API key. The relevant information should be copied and into the relevant places of the code chunk below and then be executed.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="climate-data.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note: replace the UID and key strings below with the proper user&#39;s information in your Copernicus Climate Data Store account.</span></span>
-<span id="cb116-2"><a href="climate-data.html#cb116-2" aria-hidden="true" tabindex="-1"></a>UID <span class="ot">&lt;-</span> <span class="st">&#39;UID&#39;</span></span>
-<span id="cb116-3"><a href="climate-data.html#cb116-3" aria-hidden="true" tabindex="-1"></a>API_key <span class="ot">&lt;-</span> <span class="st">&#39;key&#39;</span></span>
-<span id="cb116-4"><a href="climate-data.html#cb116-4" aria-hidden="true" tabindex="-1"></a><span class="co">#This function links your password and user id for later steps</span></span>
-<span id="cb116-5"><a href="climate-data.html#cb116-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wf_set_key</span>(UID, API_key, <span class="st">&#39;cds&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="climate-data.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note: replace the UID and key strings below with the proper user&#39;s information in your Copernicus Climate Data Store account.</span></span>
+<span id="cb98-2"><a href="climate-data.html#cb98-2" aria-hidden="true" tabindex="-1"></a>UID <span class="ot">&lt;-</span> <span class="st">&#39;UID&#39;</span></span>
+<span id="cb98-3"><a href="climate-data.html#cb98-3" aria-hidden="true" tabindex="-1"></a>API_key <span class="ot">&lt;-</span> <span class="st">&#39;key&#39;</span></span>
+<span id="cb98-4"><a href="climate-data.html#cb98-4" aria-hidden="true" tabindex="-1"></a><span class="co">#This function links your password and user id for later steps</span></span>
+<span id="cb98-5"><a href="climate-data.html#cb98-5" aria-hidden="true" tabindex="-1"></a><span class="fu">wf_set_key</span>(UID, API_key, <span class="st">&#39;cds&#39;</span>)</span></code></pre></div>
 <p>//TODO: output still showing. How to deal with it?</p>
 <p>If all worked well, you will get the following confirmation in the console:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="climate-data.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="do">## User UID for cds service added successfully</span></span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="climate-data.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="do">## User UID for cds service added successfully</span></span></code></pre></div>
 <p>On the Copernicus website, make sure that you are logged into your account and the navigate to Datasets. There, search for the Product ‘ERA5-Land monthly averaged data from 1981 to present’ and select it<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>. You end up on the products homepage where you can get more information and download the data via a form where you select the product’s type, variables, the years, months and time of day, the geographical area and, finally, the download file format of interest. Please select the following:</p>
 <ul>
 <li><p>Product type: Monthly averaged reanalysis</p></li>
@@ -374,38 +379,38 @@ Figure 6.6: Screenshot showing the Copernicus Data Store API request that can be
 </div>
 <p>The request should be copied and pasted into RStudio into your current .Rmd file there. Select the python request with the cursor and choose ‘ECMWFR/Python to List’ under the Addins Menu. The python request will then automatically be translated into a an r command. Please check that everything is ok by comparing it with a correct request as shown below. Also, please note that we have changed the target file name by specifying <code>target = reanalysis-era5-land-monthly-means_CentralAsia.nc</code>.</p>
 <p>In a final step, the user can then download the data with the <code>wf_request()</code> function.</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="climate-data.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here is is the resulting request in R language </span></span>
-<span id="cb118-2"><a href="climate-data.html#cb118-2" aria-hidden="true" tabindex="-1"></a>request <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;dataset_short_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;reanalysis-era5-land-monthly-means&quot;</span>,</span>
-<span id="cb118-3"><a href="climate-data.html#cb118-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">format =</span> <span class="st">&quot;netcdf&quot;</span>,</span>
-<span id="cb118-4"><a href="climate-data.html#cb118-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">product_type =</span> <span class="st">&quot;monthly_averaged_reanalysis&quot;</span>,</span>
-<span id="cb118-5"><a href="climate-data.html#cb118-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable =</span> <span class="fu">c</span>(<span class="st">&#39;2m_temperature&#39;</span>, <span class="st">&#39;potential_evaporation&#39;</span>, <span class="st">&#39;total_precipitation&#39;</span>),</span>
-<span id="cb118-6"><a href="climate-data.html#cb118-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span>  <span class="fu">c</span>(<span class="st">&#39;1981&#39;</span>, <span class="st">&#39;1982&#39;</span>, <span class="st">&#39;1983&#39;</span>,</span>
-<span id="cb118-7"><a href="climate-data.html#cb118-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1984&#39;</span>, <span class="st">&#39;1985&#39;</span>, <span class="st">&#39;1986&#39;</span>,</span>
-<span id="cb118-8"><a href="climate-data.html#cb118-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1987&#39;</span>, <span class="st">&#39;1988&#39;</span>, <span class="st">&#39;1989&#39;</span>,</span>
-<span id="cb118-9"><a href="climate-data.html#cb118-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1990&#39;</span>, <span class="st">&#39;1991&#39;</span>, <span class="st">&#39;1992&#39;</span>,</span>
-<span id="cb118-10"><a href="climate-data.html#cb118-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1993&#39;</span>, <span class="st">&#39;1994&#39;</span>, <span class="st">&#39;1995&#39;</span>,</span>
-<span id="cb118-11"><a href="climate-data.html#cb118-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1996&#39;</span>, <span class="st">&#39;1997&#39;</span>, <span class="st">&#39;1998&#39;</span>,</span>
-<span id="cb118-12"><a href="climate-data.html#cb118-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1999&#39;</span>, <span class="st">&#39;2000&#39;</span>, <span class="st">&#39;2001&#39;</span>,</span>
-<span id="cb118-13"><a href="climate-data.html#cb118-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2002&#39;</span>, <span class="st">&#39;2003&#39;</span>, <span class="st">&#39;2004&#39;</span>,</span>
-<span id="cb118-14"><a href="climate-data.html#cb118-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2005&#39;</span>, <span class="st">&#39;2006&#39;</span>, <span class="st">&#39;2007&#39;</span>,</span>
-<span id="cb118-15"><a href="climate-data.html#cb118-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2008&#39;</span>, <span class="st">&#39;2009&#39;</span>, <span class="st">&#39;2010&#39;</span>,</span>
-<span id="cb118-16"><a href="climate-data.html#cb118-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2011&#39;</span>, <span class="st">&#39;2012&#39;</span>, <span class="st">&#39;2013&#39;</span>,</span>
-<span id="cb118-17"><a href="climate-data.html#cb118-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2014&#39;</span>, <span class="st">&#39;2015&#39;</span>, <span class="st">&#39;2016&#39;</span>,</span>
-<span id="cb118-18"><a href="climate-data.html#cb118-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2017&#39;</span>, <span class="st">&#39;2018&#39;</span>, <span class="st">&#39;2019&#39;</span>,</span>
-<span id="cb118-19"><a href="climate-data.html#cb118-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2020&#39;</span>),</span>
-<span id="cb118-20"><a href="climate-data.html#cb118-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">month =</span> <span class="fu">c</span>(<span class="st">&quot;01&quot;</span>, <span class="st">&quot;02&quot;</span>, <span class="st">&quot;03&quot;</span>, <span class="st">&quot;04&quot;</span>, <span class="st">&quot;05&quot;</span>, <span class="st">&quot;06&quot;</span>, <span class="st">&quot;07&quot;</span>, <span class="st">&quot;08&quot;</span>, <span class="st">&quot;09&quot;</span>, <span class="st">&quot;10&quot;</span>, <span class="st">&quot;11&quot;</span>, <span class="st">&quot;12&quot;</span>),</span>
-<span id="cb118-21"><a href="climate-data.html#cb118-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="st">&quot;00:00&quot;</span>,</span>
-<span id="cb118-22"><a href="climate-data.html#cb118-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">area =</span> <span class="st">&quot;45/65/35/80&quot;</span>,</span>
-<span id="cb118-23"><a href="climate-data.html#cb118-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">#dataset = &quot;reanalysis-era5-land-monthly-means&quot;,</span></span>
-<span id="cb118-24"><a href="climate-data.html#cb118-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">target =</span> <span class="st">&quot;reanalysis-era5-land-monthly-means_CentralAsia.nc&quot;</span></span>
-<span id="cb118-25"><a href="climate-data.html#cb118-25" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb118-26"><a href="climate-data.html#cb118-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb118-27"><a href="climate-data.html#cb118-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Download data as netcdf file and store it in the directory where you are running this script, this returns the path to the file </span></span>
-<span id="cb118-28"><a href="climate-data.html#cb118-28" aria-hidden="true" tabindex="-1"></a>ncfilelink <span class="ot">&lt;-</span> <span class="fu">wf_request</span>(<span class="at">user =</span> UID,</span>
-<span id="cb118-29"><a href="climate-data.html#cb118-29" aria-hidden="true" tabindex="-1"></a>                     <span class="at">request =</span> request,</span>
-<span id="cb118-30"><a href="climate-data.html#cb118-30" aria-hidden="true" tabindex="-1"></a>                     <span class="at">transfer =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb118-31"><a href="climate-data.html#cb118-31" aria-hidden="true" tabindex="-1"></a>                     <span class="at">path =</span> <span class="fu">here</span>(),</span>
-<span id="cb118-32"><a href="climate-data.html#cb118-32" aria-hidden="true" tabindex="-1"></a>                     <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="climate-data.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here is is the resulting request in R language </span></span>
+<span id="cb100-2"><a href="climate-data.html#cb100-2" aria-hidden="true" tabindex="-1"></a>request <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">&quot;dataset_short_name&quot;</span> <span class="ot">=</span> <span class="st">&quot;reanalysis-era5-land-monthly-means&quot;</span>,</span>
+<span id="cb100-3"><a href="climate-data.html#cb100-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">format =</span> <span class="st">&quot;netcdf&quot;</span>,</span>
+<span id="cb100-4"><a href="climate-data.html#cb100-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">product_type =</span> <span class="st">&quot;monthly_averaged_reanalysis&quot;</span>,</span>
+<span id="cb100-5"><a href="climate-data.html#cb100-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable =</span> <span class="fu">c</span>(<span class="st">&#39;2m_temperature&#39;</span>, <span class="st">&#39;potential_evaporation&#39;</span>, <span class="st">&#39;total_precipitation&#39;</span>),</span>
+<span id="cb100-6"><a href="climate-data.html#cb100-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span>  <span class="fu">c</span>(<span class="st">&#39;1981&#39;</span>, <span class="st">&#39;1982&#39;</span>, <span class="st">&#39;1983&#39;</span>,</span>
+<span id="cb100-7"><a href="climate-data.html#cb100-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1984&#39;</span>, <span class="st">&#39;1985&#39;</span>, <span class="st">&#39;1986&#39;</span>,</span>
+<span id="cb100-8"><a href="climate-data.html#cb100-8" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1987&#39;</span>, <span class="st">&#39;1988&#39;</span>, <span class="st">&#39;1989&#39;</span>,</span>
+<span id="cb100-9"><a href="climate-data.html#cb100-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1990&#39;</span>, <span class="st">&#39;1991&#39;</span>, <span class="st">&#39;1992&#39;</span>,</span>
+<span id="cb100-10"><a href="climate-data.html#cb100-10" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1993&#39;</span>, <span class="st">&#39;1994&#39;</span>, <span class="st">&#39;1995&#39;</span>,</span>
+<span id="cb100-11"><a href="climate-data.html#cb100-11" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1996&#39;</span>, <span class="st">&#39;1997&#39;</span>, <span class="st">&#39;1998&#39;</span>,</span>
+<span id="cb100-12"><a href="climate-data.html#cb100-12" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;1999&#39;</span>, <span class="st">&#39;2000&#39;</span>, <span class="st">&#39;2001&#39;</span>,</span>
+<span id="cb100-13"><a href="climate-data.html#cb100-13" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2002&#39;</span>, <span class="st">&#39;2003&#39;</span>, <span class="st">&#39;2004&#39;</span>,</span>
+<span id="cb100-14"><a href="climate-data.html#cb100-14" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2005&#39;</span>, <span class="st">&#39;2006&#39;</span>, <span class="st">&#39;2007&#39;</span>,</span>
+<span id="cb100-15"><a href="climate-data.html#cb100-15" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2008&#39;</span>, <span class="st">&#39;2009&#39;</span>, <span class="st">&#39;2010&#39;</span>,</span>
+<span id="cb100-16"><a href="climate-data.html#cb100-16" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2011&#39;</span>, <span class="st">&#39;2012&#39;</span>, <span class="st">&#39;2013&#39;</span>,</span>
+<span id="cb100-17"><a href="climate-data.html#cb100-17" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2014&#39;</span>, <span class="st">&#39;2015&#39;</span>, <span class="st">&#39;2016&#39;</span>,</span>
+<span id="cb100-18"><a href="climate-data.html#cb100-18" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2017&#39;</span>, <span class="st">&#39;2018&#39;</span>, <span class="st">&#39;2019&#39;</span>,</span>
+<span id="cb100-19"><a href="climate-data.html#cb100-19" aria-hidden="true" tabindex="-1"></a>            <span class="st">&#39;2020&#39;</span>),</span>
+<span id="cb100-20"><a href="climate-data.html#cb100-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">month =</span> <span class="fu">c</span>(<span class="st">&quot;01&quot;</span>, <span class="st">&quot;02&quot;</span>, <span class="st">&quot;03&quot;</span>, <span class="st">&quot;04&quot;</span>, <span class="st">&quot;05&quot;</span>, <span class="st">&quot;06&quot;</span>, <span class="st">&quot;07&quot;</span>, <span class="st">&quot;08&quot;</span>, <span class="st">&quot;09&quot;</span>, <span class="st">&quot;10&quot;</span>, <span class="st">&quot;11&quot;</span>, <span class="st">&quot;12&quot;</span>),</span>
+<span id="cb100-21"><a href="climate-data.html#cb100-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">time =</span> <span class="st">&quot;00:00&quot;</span>,</span>
+<span id="cb100-22"><a href="climate-data.html#cb100-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">area =</span> <span class="st">&quot;45/65/35/80&quot;</span>,</span>
+<span id="cb100-23"><a href="climate-data.html#cb100-23" aria-hidden="true" tabindex="-1"></a>  <span class="co">#dataset = &quot;reanalysis-era5-land-monthly-means&quot;,</span></span>
+<span id="cb100-24"><a href="climate-data.html#cb100-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">target =</span> <span class="st">&quot;reanalysis-era5-land-monthly-means_CentralAsia.nc&quot;</span></span>
+<span id="cb100-25"><a href="climate-data.html#cb100-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb100-26"><a href="climate-data.html#cb100-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-27"><a href="climate-data.html#cb100-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Download data as netcdf file and store it in the directory where you are running this script, this returns the path to the file </span></span>
+<span id="cb100-28"><a href="climate-data.html#cb100-28" aria-hidden="true" tabindex="-1"></a>ncfilelink <span class="ot">&lt;-</span> <span class="fu">wf_request</span>(<span class="at">user =</span> UID,</span>
+<span id="cb100-29"><a href="climate-data.html#cb100-29" aria-hidden="true" tabindex="-1"></a>                     <span class="at">request =</span> request,</span>
+<span id="cb100-30"><a href="climate-data.html#cb100-30" aria-hidden="true" tabindex="-1"></a>                     <span class="at">transfer =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb100-31"><a href="climate-data.html#cb100-31" aria-hidden="true" tabindex="-1"></a>                     <span class="at">path =</span> <span class="fu">here</span>(),</span>
+<span id="cb100-32"><a href="climate-data.html#cb100-32" aria-hidden="true" tabindex="-1"></a>                     <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;moved temporary file to -&gt; /.../reanalysis-era5-land-monthly-means_CentralAsia.nc&quot;</code></pre>
 <pre><code>## [1] &quot;request purged from queue!&quot;</code></pre>
 <p>Some Sources on NetCDF and raster files: Here are some good resources to get you started: <a href="https://pjbartlein.github.io/REarthSysSci/index.html" class="uri">https://pjbartlein.github.io/REarthSysSci/index.html</a> and <a href="https://cmerow.github.io/RDataScience/05_Raster.html" class="uri">https://cmerow.github.io/RDataScience/05_Raster.html</a>.</p>

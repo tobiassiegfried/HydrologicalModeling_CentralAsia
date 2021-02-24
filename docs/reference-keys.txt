@@ -1,3 +1,5 @@
+fig:geographyCentralAsia
+fig:waterFormationUse
 fig:riversMap
 fig:tempWT
 fig:precipWT
@@ -13,7 +15,7 @@ fig:completeDischargeData
 fig:qGazalkent
 fig:qChinaz
 fig:qAnnualGazalkentChinaz
-tab:unnamed-chunk-3
+tab:unnamed-chunk-4
 fig:seasonalityLargeTribs
 fig:seasonalitySmallTribs
 fig:ChirchikRiverHypsometricCurves
@@ -43,6 +45,7 @@ fig:LayersGrouping
 fig:LayersCutting
 fig:ReclassificationByTable
 fig:Copernicus-API-Request
+fig:requiredGISInputFiles
 ShortHistory
 TamingHydrologicalSystems
 PostTransitionDevelopmentsChallenges
@@ -96,7 +99,7 @@ Chap9_ForecastQuality
 generating-and-assessing-out-of-sample-forecasts
 Chap9_MLM
 save-data-for-hot-start
-RetrievalAnalysisHydroData
+Chapter-RetrievalAnalysisHydroData
 GeospatialData
 CatchmentDelineation
 computation-of-elevation-bands
@@ -104,11 +107,15 @@ climate-data
 access-select-and-download-era5-reanalysis-data
 hydrological-data
 HydroModelsPhysicalModels
-background-on-physically-based-modeling
+data-preparation
+gis-data
+requirements
+directory-preparations
+loading-and-processing-gis-files
+climate-data-1
 model-setup
-zone-of-runoff-formation
-zone-of-water-distribution-and-consumption
 model-calibration-and-validation
+application-investigating-climate-change-impacts
 discussion
 Operationalization
 co-design-phase

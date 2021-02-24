@@ -6,13 +6,13 @@
 knitr::include_graphics('_bookdown_files/Chap1-Introduction-Figures/still_BFC_Construction.jpg')
 ```
 
-**Still from a propaganda film documenting the construction of the Big Fergana Canal. The canal was constructed in 1939 constructed over a period of 45 days and a length of approx. 280 km through the use of 180'000 forced labor.**
+**Still from a propaganda film documenting the construction of the Big Fergana Canal. The canal was constructed in 1939 constructed over a period of 45 days and a length of approx. 280 kilometers.**
 
 This Chapter provides a short introduction to the region of how man has tamed and allocated the Central Asian water resources. It draws on texts from an emerging field of the study of colonial times in the region and how the Zarist and Russian conquests effectuated dramatic changes in the use and allocation of water resources. These changes, however, as is becoming more and more clear thanks to recent research, were built on top of a system of traditions, some of which were developed over the course of centuries, and neither able to complete replace them nor root them out. The clash of tradition with modernity continues to this day and is the cause of renewed attention of governments and the international community alike as environmental degradation directly linked to the ineffective and unustainable use of water grows in extent. 
 
 ## The Taming of the Central Asian Rivers {#TamingHydrologicalSystems}
 
-The conquest of nature, as per the thinking of the Russian government in the late 19^th^ century, was an essential precondition of successful colonial policy. It enabled the economic appropriation of new territories and facilitated the development of administration and the integration of local authorities into the colonial system [@pravilova_2009].
+The conquest of nature, as per the thinking of the tsarist Russian government in the late 19^th^ century, was an essential precondition of successful colonial policy. It enabled the economic appropriation of new territories and facilitated the development of administration and the integration of local authorities into the colonial system [@pravilova_2009].
 
 <!-- There is a profound riddle at the core of everything the engineer does in Central Asia (one might even want to call it the great paradox). Namely, Soviet planning organized space and resources so that the units under consideration (including human resources) could be "identified, observed, recorded, counted, aggregated and monitored" (C. Scott: Seeing like a State, Part 3: The Social Engineering of Rural Settlement and Production). All engineering in Central Asia was based on this, be it for irrigation projects, railway lines and hydropower dams that have become emblems of authoritarianism in Soviet Central Asia (Jonas van der Straeten: Borderlands of Industrial Modernity: Explorations into the History of Technology in Central Asia, 1850 - 2000). Should there thus not be an innate interest "built-in" to the Central Asia Water Stakeholders that takes its legacy from this organizational heritage and thus jump on any new technology that would help them to improve their planning skills, also e.g. in an objective way through the use of space-based information? -->
 
@@ -24,13 +24,13 @@ The conquest of nature, as per the thinking of the Russian government in the lat
 
 <!-- I believe that the Czarist invaders were driven by scientifically 'enlightened' engineering. The same applied to the Homo Sovieticus who now extended engineering also in the social practices. Yet, despite its overwhelming power and oversight, the empire was never able to control every aspect of life of the indigenous people. Was it maybe that this enlightened science had to adapt over time, adapt in the sense as described above, to comply to Stalin's Planvorgaben and so became to rely on fairy tales? Additionally, was it that the 'Western' technology and science got adapted to the local colonized conditions and became a complex process of negotiation, contestation, cooptation, and resistance at work" (Cited from Baber in Obertreichs Book)? -->
 
-<!-- ```{r geographyCentralAsia, echo = FALSE, fig.cap = "Geography of the Central Asia Region. Source: Zoï Environment Network."} -->
-<!-- knitr::include_graphics('_bookdown_files/Chap1-Introduction-Figures/geography_CentralAsia.jpg') -->
-<!-- ``` -->
+```{r geographyCentralAsia, echo = FALSE, fig.cap = "Geography of the Central Asia Region. Source: Zoï Environment Network."}
+knitr::include_graphics('_bookdown_files/Chap1-Introduction-Figures/geography_CentralAsia.jpg')
+```
 
-<!-- ```{r waterFormationUse, echo = FALSE, fig.cap = "Water resources formation and use. The infographics river width is proportional to average discharge at the particular locations. The red arrows indicate water diversion from rivers into irrigation canals. The gray bands around the rivers in the downstream indicate their natural unaltered runoff. Also note the reuse of drainage water in the Syr Darya. Source: Zoï Environment Network."} -->
-<!-- knitr::include_graphics('_bookdown_files/Chap1-Introduction-Figures/WaterResourcesFormation&Use.jpg') -->
-<!-- ``` -->
+```{r waterFormationUse, echo = FALSE, fig.cap = "Water resources formation and use. The infographics river width is proportional to average discharge at the particular locations. The red arrows indicate water diversion from rivers into irrigation canals. The gray bands around the rivers in the downstream indicate their natural unaltered runoff. Also note the reuse of drainage water in the Syr Darya. Source: Zoï Environment Network."}
+knitr::include_graphics('_bookdown_files/Chap1-Introduction-Figures/WaterResourcesFormation&Use.jpg')
+```
 
 ## Post-Transition Development and Challenges {#PostTransitionDevelopmentsChallenges}
 

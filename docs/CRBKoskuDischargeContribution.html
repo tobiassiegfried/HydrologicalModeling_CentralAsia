@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried" />
 
 
-<meta name="date" content="2021-02-16" />
+<meta name="date" content="2021-02-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="BasinCharacteristics.html"/>
 <link rel="next" href="ManualWaterBalance.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -222,7 +222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="save-data-for-hot-start.html"><a href="save-data-for-hot-start.html"><i class="fa fa-check"></i><b>5.6</b> Save Data for Hot Start</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="RetrievalAnalysisHydroData.html"><a href="RetrievalAnalysisHydroData.html"><i class="fa fa-check"></i><b>6</b> Retrieval &amp; Analysis of Data</a>
+<li class="chapter" data-level="6" data-path="Chapter-RetrievalAnalysisHydroData.html"><a href="Chapter-RetrievalAnalysisHydroData.html"><i class="fa fa-check"></i><b>6</b> Retrieval &amp; Analysis of Data</a>
 <ul>
 <li class="chapter" data-level="" data-path="preliminary-remarks.html"><a href="preliminary-remarks.html"><i class="fa fa-check"></i>Preliminary Remarks</a></li>
 <li class="chapter" data-level="6.1" data-path="GeospatialData.html"><a href="GeospatialData.html"><i class="fa fa-check"></i><b>6.1</b> Geospatial Data</a>
@@ -236,16 +236,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="hydrological-data.html"><a href="hydrological-data.html"><i class="fa fa-check"></i><b>6.3</b> Hydrological Data</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="HydroModelsPhysicalModels.html"><a href="HydroModelsPhysicalModels.html"><i class="fa fa-check"></i><b>7</b> Hydrologic-Hydraulic Modeling</a>
+<li class="chapter" data-level="7" data-path="HydroModelsPhysicalModels.html"><a href="HydroModelsPhysicalModels.html"><i class="fa fa-check"></i><b>7</b> Hydrological-Hydraulic Modeling</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="background-on-physically-based-modeling.html"><a href="background-on-physically-based-modeling.html"><i class="fa fa-check"></i><b>7.1</b> Background on Physically-Based Modeling</a></li>
-<li class="chapter" data-level="7.2" data-path="model-setup.html"><a href="model-setup.html"><i class="fa fa-check"></i><b>7.2</b> Model Setup</a>
+<li class="chapter" data-level="7.1" data-path="data-preparation.html"><a href="data-preparation.html"><i class="fa fa-check"></i><b>7.1</b> Data Preparation</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="model-setup.html"><a href="model-setup.html#zone-of-runoff-formation"><i class="fa fa-check"></i><b>7.2.1</b> Zone of Runoff Formation</a></li>
-<li class="chapter" data-level="7.2.2" data-path="model-setup.html"><a href="model-setup.html#zone-of-water-distribution-and-consumption"><i class="fa fa-check"></i><b>7.2.2</b> Zone of Water Distribution and Consumption</a></li>
+<li class="chapter" data-level="7.1.1" data-path="data-preparation.html"><a href="data-preparation.html#gis-data"><i class="fa fa-check"></i><b>7.1.1</b> GIS Data</a></li>
+<li class="chapter" data-level="7.1.2" data-path="data-preparation.html"><a href="data-preparation.html#climate-data-1"><i class="fa fa-check"></i><b>7.1.2</b> Climate Data</a></li>
 </ul></li>
+<li class="chapter" data-level="7.2" data-path="model-setup.html"><a href="model-setup.html"><i class="fa fa-check"></i><b>7.2</b> Model Setup</a></li>
 <li class="chapter" data-level="7.3" data-path="model-calibration-and-validation.html"><a href="model-calibration-and-validation.html"><i class="fa fa-check"></i><b>7.3</b> Model Calibration and Validation</a></li>
-<li class="chapter" data-level="7.4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>7.4</b> Discussion</a></li>
+<li class="chapter" data-level="7.4" data-path="application-investigating-climate-change-impacts.html"><a href="application-investigating-climate-change-impacts.html"><i class="fa fa-check"></i><b>7.4</b> Application: Investigating Climate Change Impacts</a></li>
+<li class="chapter" data-level="7.5" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>7.5</b> Discussion</a></li>
 </ul></li>
 <li class="part"><span><b>III Part III Model Operationalization</b></span></li>
 <li class="chapter" data-level="8" data-path="Operationalization.html"><a href="Operationalization.html"><i class="fa fa-check"></i><b>8</b> Operationalization of Models - Opportunities and Challenges</a>
@@ -299,48 +300,20 @@ Q_{Koksu} \propto Q_{Charvak} - Q_{16279}
 <p>The data is stored in <em>long format</em>, meaning that measurements in time and for the two gauging stations are just stacked on top of each other in one long table. For the purpose here, we prefer the <em>wide format</em> where we have one date column with unique dates and then the data listed for each station in corresponding columns.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="CRBKoskuDischargeContribution.html#cb7-1" aria-hidden="true" tabindex="-1"></a>KoksuDischarge_wide <span class="ot">&lt;-</span> KoksuDischargeDerivation <span class="sc">%&gt;%</span> <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="st">&#39;date&#39;</span>,<span class="at">values_from =</span> <span class="st">&#39;data&#39;</span>,<span class="at">names_from =</span> <span class="st">&quot;code&quot;</span>)</span>
 <span id="cb7-2"><a href="CRBKoskuDischargeContribution.html#cb7-2" aria-hidden="true" tabindex="-1"></a>KoksuDischarge_wide</span></code></pre></div>
-<pre><code>## # A tibble: 988 x 3
-##    date       Charvak `16279`
-##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;
-##  1 1965-01-01    35.6    33.4
-##  2 1965-01-02    35.6    32.4
-##  3 1965-01-03    33      30.4
-##  4 1965-01-04    33      29.4
-##  5 1965-01-05    33      30.4
-##  6 1965-01-06    33      30.4
-##  7 1965-01-07    34.3    31.4
-##  8 1965-01-08    35.6    32.4
-##  9 1965-01-09    38.4    34.4
-## 10 1965-01-10    35.6    32.4
-## # … with 978 more rows</code></pre>
 <p>The runoff contribution of Koksu can be calculated in a simple manner.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="CRBKoskuDischargeContribution.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding Koksu discharge to the dataframe</span></span>
-<span id="cb9-2"><a href="CRBKoskuDischargeContribution.html#cb9-2" aria-hidden="true" tabindex="-1"></a>KoksuDischarge_wide <span class="ot">&lt;-</span> KoksuDischarge_wide <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Koksu =</span> Charvak <span class="sc">-</span> <span class="st">`</span><span class="at">16279</span><span class="st">`</span>)</span>
-<span id="cb9-3"><a href="CRBKoskuDischargeContribution.html#cb9-3" aria-hidden="true" tabindex="-1"></a>KoksuDischarge_wide</span></code></pre></div>
-<pre><code>## # A tibble: 988 x 4
-##    date       Charvak `16279` Koksu
-##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
-##  1 1965-01-01    35.6    33.4  2.2 
-##  2 1965-01-02    35.6    32.4  3.2 
-##  3 1965-01-03    33      30.4  2.6 
-##  4 1965-01-04    33      29.4  3.6 
-##  5 1965-01-05    33      30.4  2.6 
-##  6 1965-01-06    33      30.4  2.6 
-##  7 1965-01-07    34.3    31.4  2.90
-##  8 1965-01-08    35.6    32.4  3.2 
-##  9 1965-01-09    38.4    34.4  4   
-## 10 1965-01-10    35.6    32.4  3.2 
-## # … with 978 more rows</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="CRBKoskuDischargeContribution.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding Koksu discharge to the dataframe</span></span>
+<span id="cb8-2"><a href="CRBKoskuDischargeContribution.html#cb8-2" aria-hidden="true" tabindex="-1"></a>KoksuDischarge_wide <span class="ot">&lt;-</span> KoksuDischarge_wide <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Koksu =</span> Charvak <span class="sc">-</span> <span class="st">`</span><span class="at">16279</span><span class="st">`</span>)</span>
+<span id="cb8-3"><a href="CRBKoskuDischargeContribution.html#cb8-3" aria-hidden="true" tabindex="-1"></a>KoksuDischarge_wide</span></code></pre></div>
 <p>The relationship can now be visualized.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="CRBKoskuDischargeContribution.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and visualize</span></span>
-<span id="cb11-2"><a href="CRBKoskuDischargeContribution.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(KoksuDischarge_wide, <span class="fu">aes</span>(<span class="st">`</span><span class="at">16279</span><span class="st">`</span>, Koksu)) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="CRBKoskuDischargeContribution.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb11-4"><a href="CRBKoskuDischargeContribution.html#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">bquote</span>(<span class="st">&#39;Discharge at Gauge 16279 Khudaydod in&#39;</span><span class="sc">~</span>m<span class="sc">^</span><span class="dv">3</span><span class="sc">/</span>s)) <span class="sc">+</span></span>
-<span id="cb11-5"><a href="CRBKoskuDischargeContribution.html#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span> (<span class="fu">bquote</span>(<span class="st">&#39;Koksu river discharge in&#39;</span><span class="sc">~</span>m<span class="sc">^</span><span class="dv">3</span><span class="sc">/</span>s))</span></code></pre></div>
-<p><img src="applied-hydrological-modeling-central-asia_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="CRBKoskuDischargeContribution.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># and visualize</span></span>
+<span id="cb9-2"><a href="CRBKoskuDischargeContribution.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(KoksuDischarge_wide, <span class="fu">aes</span>(<span class="st">`</span><span class="at">16279</span><span class="st">`</span>, Koksu)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="CRBKoskuDischargeContribution.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="CRBKoskuDischargeContribution.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="fu">bquote</span>(<span class="st">&#39;Discharge at Gauge 16279 Khudaydod in&#39;</span><span class="sc">~</span>m<span class="sc">^</span><span class="dv">3</span><span class="sc">/</span>s)) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="CRBKoskuDischargeContribution.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span> (<span class="fu">bquote</span>(<span class="st">&#39;Koksu river discharge in&#39;</span><span class="sc">~</span>m<span class="sc">^</span><span class="dv">3</span><span class="sc">/</span>s))</span></code></pre></div>
+<p><img src="applied-hydrological-modeling-central-asia_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>We can perform a linear regression to related discharge at Khudaydod to the one at Koksu. The coefficients of the linear regression can be obtained in the following way:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="CRBKoskuDischargeContribution.html#cb12-1" aria-hidden="true" tabindex="-1"></a>lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Koksu <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> <span class="st">`</span><span class="at">16279</span><span class="st">`</span>,KoksuDischarge_wide)</span>
-<span id="cb12-2"><a href="CRBKoskuDischargeContribution.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="CRBKoskuDischargeContribution.html#cb10-1" aria-hidden="true" tabindex="-1"></a>lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Koksu <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> <span class="st">`</span><span class="at">16279</span><span class="st">`</span>,KoksuDischarge_wide)</span>
+<span id="cb10-2"><a href="CRBKoskuDischargeContribution.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Koksu ~ 0 + `16279`, data = KoksuDischarge_wide)

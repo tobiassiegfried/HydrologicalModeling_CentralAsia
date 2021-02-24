@@ -7,9 +7,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
-
-
 # R Bookdown Server Admin
 
 ## Serve Book Locally
@@ -29,7 +26,7 @@ serve_book(dir = ".", output_dir = "docs",
 
 ## Check Server and Stop
 
-```{r}
+```{r,echo=FALSE,message=FALSE}
 servr::daemon_list()
 servr::daemon_stop(which = servr::daemon_list())
 ```
