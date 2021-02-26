@@ -31,6 +31,15 @@ servr::daemon_list()
 servr::daemon_stop(which = servr::daemon_list())
 ```
 
-# Type of HTML Output 
+# Type of HTML Output
 
 To change the way the HTML pages are split, the split_by argument can be specified. This defaults to split_by: chapter, but readers may prefer to use split_by: section if there are many sections within chapters, in which case a chapter page may be too long.
+
+# Large File Storage and Management
+
+We are using git lfs for storing and tracking large files, including all GIS, climate, discharge, et.c files
+
+```{r}
+# Using Git-LFS trying to access a file
+
+```
