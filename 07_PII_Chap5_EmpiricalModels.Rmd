@@ -89,9 +89,9 @@ The particular type of model they use depends on the available hydrological and 
 -   monthly forecasts, i.e. $\Delta t = 1 \text{ month}$, and
 -   seasonal forecasts, i.e. $\Delta t = 6 \text{ months}$.
 
-To this date, these types of forecasts are performed at regular intervals by the operational hydrologists. Normally, this requires normally a lot of manual work. Recently, selected Hydrometeorological Agencies use automated software to automatize this type of work[^empiricalmodels-1].
+To this date, these types of forecasts are performed at regular intervals by the operational hydrologists. Normally, this requires normally a lot of manual work. Recently, selected Hydrometeorological Agencies use automated software to automatize this type of work[^pii_chap5_empiricalmodels-1].
 
-[^empiricalmodels-1]: The software used is called *iEasyHydro* and currently operationalized in the Kyrgyz Hydromet. Other Hydromets are testing the software (as of 2020). More information about iEasyHydro can be obtained by contacting the author.
+[^pii_chap5_empiricalmodels-1]: The software used is called *iEasyHydro* and currently operationalized in the Kyrgyz Hydromet. Other Hydromets are testing the software (as of 2020). More information about iEasyHydro can be obtained by contacting the author.
 
 In Uzbekistan, for example, the following list of forecast objects exists in the Hydromet.
 
@@ -226,7 +226,7 @@ Finally, we discard the norm data which we used for gap filling of the missing d
 ```{r}
 q_dec_filled_wide_tbl <- q_dec_filled_tbl %>% # again we use the name convention of objects as introduced above
   mutate(code = paste0('Q',code %>% as.character())) %>% # Since we convert everything to long form, we want to keep information as compact as possible. Hence, we paste the type identifier (Q for discharge here) in from of the 5 digit station code.
-  select(date,data,code) %>% # ... and then ditch all the remainder information
+  dplyr::select(date,data,code) %>% # ... and then ditch all the remainder information
   pivot_wider(names_from = "code",values_from = "data") # in order to pivot to the long format, we need to make a small detour via the wide format.
 
 q_dec_filled_long_tbl <- q_dec_filled_wide_tbl %>% pivot_longer(-date) # and then pivot back
@@ -272,14 +272,16 @@ p_dec_filled_tbl %>% plot_time_series(date,data,
 
 Closely inspect the significant data gap in the 1990ies at Station 38741 (tip: play around and zoom into the time series in the 1990ies in Figure \@ref(fig:rawDataP) and comparing it with the resulting gap-filled timeseries in Figure \@ref(fig:rawDataPnormfill). We see that our technique of gap filling with long-term norms is not suitable for this type of data and the significant gap size. The effect of variance reduction is also clearly visible.
 
-Hence, we resort to a more powerful gap filling technique that uses a (regression) model to impute the missing values from existing ones at the neighboring stations, i.e. Stations 38462 and 38464. To do so, we utilize an R package that is tightly integrated in the `tidyverse`^[Please note that if you do not have the required package installed locally, you should install it prior to its use with the following command `install.packages('simputation')`].
+Hence, we resort to a more powerful gap filling technique that uses a (regression) model to impute the missing values from existing ones at the neighboring stations, i.e. Stations 38462 and 38464. To do so, we utilize an R package that is tightly integrated in the `tidyverse`[^pii_chap5_empiricalmodels-2].
+
+[^pii_chap5_empiricalmodels-2]: Please note that if you do not have the required package installed locally, you should install it prior to its use with the following command `install.packages('simputation')`
 
 ```{r rawData_P_rlm,message=FALSE,warning=FALSE,fig.cap="Precipitation Data gap filled with a robust linear regression modeling approach"}
 library(simputation)
 # First, we bring the data into the suitable format. 
 p_dec_wide_tbl <- p_dec_tbl %>% 
   mutate(code = paste0('P',code %>% as.character())) %>% 
-  select(date,data,code) %>% 
+  dplyr::select(date,data,code) %>% 
   pivot_wider(names_from = "code",values_from = "data")
 
 # Second, we impute missing values.
@@ -354,7 +356,7 @@ t_dec_tbl %>% plot_time_series(date,data,
 # First, we bring the data into the suitable format. 
 t_dec_wide_tbl <- t_dec_tbl %>% 
   mutate(code = paste0('T',code %>% as.character())) %>% 
-  select(date,data,code) %>% 
+  dplyr::select(date,data,code) %>% 
   pivot_wider(names_from = "code",values_from = "data")
 
 # Second, we impute missing values.
@@ -409,8 +411,7 @@ We use the function `timetk::plot_anomaly_diagnostics` to investigate anomalies 
 
 $$
 \hat{q}(t) = log(q(t) + 1) 
-$$
-where $\hat{q}(t)$ denotes the transformed discharge. Prior to the log transformation, 1 is added so as to avoid cases where discharge would be 0 and the logarithmic transform thus undefined. The transformation can easily be done with the `log1p()` function in R. Backtransformation via the function `expm1()` simply involves taking the exponent and subtracting 1 from the result. Figure \@ref(anomaliesQ) shows the result. 
+$$ where $\hat{q}(t)$ denotes the transformed discharge. Prior to the log transformation, 1 is added so as to avoid cases where discharge would be 0 and the logarithmic transform thus undefined. The transformation can easily be done with the `log1p()` function in R. Backtransformation via the function `expm1()` simply involves taking the exponent and subtracting 1 from the result. Figure \@ref(anomaliesQ) shows the result.
 
 The exceptionally wet year 19169 shows up as anomalous in the Chatkal River Basin and at the downstream Charvak Reservoir inflow gauge.
 
@@ -426,7 +427,7 @@ q_dec_filled_long_tbl %>%
                            .title = "")
 ```
 
-The investigation of precipitation anomalies shows a succession of regular anomalous wet events over time. It is interesting to see that the winter 1968/69 regularly anomalous at all three stations (Figure \@ref(fig:anomaliesP), zoom in to investigate).  
+The investigation of precipitation anomalies shows a succession of regular anomalous wet events over time. It is interesting to see that the winter 1968/69 regularly anomalous at all three stations (Figure \@ref(fig:anomaliesP), zoom in to investigate).
 
 ```{r anomaliesP,message=FALSE,fig.cap="Anomaly diagnostics of precipitation data."}
 p_dec_filled_long_tbl %>% 
@@ -590,7 +591,7 @@ data_long_tbl %>% filter(name == 'Q16279') %>%
 But is there also autocorrelation of the annual time series? Let us test.
 
 ```{r annualAutoCorr, fig.cap="Testing autocorrelation at annual scales for discharge at station 16279."}
-Q16279_annual <- data_long_tbl %>% filter(name == 'Q16279') %>% select(-name) %>% 
+Q16279_annual <- data_long_tbl %>% filter(name == 'Q16279') %>% dplyr::select(-name) %>% 
   summarize_by_time(.date_var = date,
                     .by="year",
                     sum=sum(value)*3600*24*10/10^9) 
@@ -730,7 +731,7 @@ model_formula <- as.formula(log1p(Q16290) ~
                               as.numeric(date)
                             )
 
-model_data <- data_wide_tbl %>% select(date,Q16290)
+model_data <- data_wide_tbl %>% dplyr::select(date,Q16290)
 
 model_data %>% 
   plot_time_series_regression(
@@ -804,17 +805,23 @@ lm_quarterlyModel %>% confint() %>% expm1()
 
 The same reasoning holds true for the model with decadal observations to which we return now again. First, we add decades as factors to our `data_wide_tbl`.
 
-
 <!-- ```{r} -->
-<!-- s <- data_wide_tbl$date %>% first() -->
-<!-- e <- data_wide_tbl$date %>% last() -->
-<!-- decs <- decadeMaker(s,e,'end') %>%  -->
-<!--   mutate(per = as.factor(dec)) %>%  -->
-<!--   select(-dec) -->
-<!-- data_wide_tbl<-   left_join(data_wide_tbl,decs,by='date') -->
-<!-- data_wide_tbl -->
-<!-- ``` -->
 
+<!-- s <- data_wide_tbl$date %>% first() -->
+
+<!-- e <- data_wide_tbl$date %>% last() -->
+
+<!-- decs <- decadeMaker(s,e,'end') %>%  -->
+
+<!--   mutate(per = as.factor(dec)) %>%  -->
+
+<!--   select(-dec) -->
+
+<!-- data_wide_tbl<-   left_join(data_wide_tbl,decs,by='date') -->
+
+<!-- data_wide_tbl -->
+
+<!-- ``` -->
 
 Now, we can specify and calculate the new model.
 
@@ -824,7 +831,7 @@ model_formula <- as.formula(log1p(Q16290) ~
                               per # seasonality (as.factor)
                             )
 
-model_data <- data_wide_tbl %>% select(date,Q16290,per)
+model_data <- data_wide_tbl %>% dplyr::select(date,Q16290,per)
 
 model_data %>% 
   plot_time_series_regression(
@@ -871,7 +878,7 @@ where the $\delta_t^{j}$ correspondingly are the 35 indicator variables as discu
 
 ```{r}
 model_data <- data_wide_tbl %>% 
-  select(date,Q16290,per) %>% 
+  dplyr::select(date,Q16290,per) %>% 
   rename(Q=Q16290) %>% 
   mutate(Q = log1p(Q)) %>% 
   mutate(Q_lag1 = lag(Q,1))
@@ -937,7 +944,7 @@ model %>% summary()
 model_fc_wide_tbl <- model_data %>% 
   mutate(pred = predict(model)) %>% 
   mutate(obs = expm1(Q), pred = expm1(pred)) %>% 
-  select(date,obs,pred,per)
+  dplyr::select(date,obs,pred,per)
 model_fc_wide_tbl
 
 ```
@@ -946,7 +953,7 @@ Another, albeit small improvement in the forecast of predicting discharge 1-step
 
 ```{r benchmarkModel_obs_pred_comparison, fig.cap=""}
 model_fc_wide_tbl %>% 
-  select(-per) %>% 
+  dplyr::select(-per) %>% 
   pivot_longer(-date) %>% 
   plot_time_series(date,
                    value,
