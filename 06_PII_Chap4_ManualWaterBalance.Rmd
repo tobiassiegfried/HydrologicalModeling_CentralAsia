@@ -1,65 +1,110 @@
 # (PART) Part II Applied Modeling {#Part2-Applied-Modeling .unnumbered}
 
-# The Manual Water Balance {#ManualWaterBalance}
+# Budyko-Type Long-term Water Balance Modeling {#ManualWaterBalance}
 
-Although the general water balance equation is straight forward, setting up a water balance over a specific region and time period is more involved and generally requires an iterative approach. This Chapter will give you a very brief overview over the theory behind the water balance and guide you through an example to set up a regional water balance for an irrigated area in the Fergana valley.
+In this Chapter, we are looking at watersheds from a long-term perspective and want to understand the key processes that lead to a partitioning of precipitation into evaporation and runoff.
 
-## Site & problem description
-
-## Identification of the dominant flow processes
-
-At the start of a water balance is a preliminary estimate of the individual components of the water flow processes. These will be iteratively refined as the water balance boundaries are verified. The first estimate can be made from the office, prior to the field visit, based on open-source data and literature values.
-
-### Precipitation
-
-Do the ERA5 thingy \#\#\# Evaporation \#\#\# Transpiration
-
-### Canopy interception
-
-Neglect, literature
-
-### Snowmelt
-
-Neglect based on ERA5 temperature data
-
-### Runoff
-
-Rough estimate based on previous chapter?
-
-### Infiltration
-
-Rough estimates of irrigation water demand, irrigation norms, literature
-
-### Sub-surface flow
-
-No data, estimate with water balance
-
-### Sublimation
-
-Neglect, no snow
-
-### Percolation
-
-Neglect, shallow groundwater table
-
-## The general water balance equation
-
-In Chapter \@ref(chap:regionalWaterBalance), a long-term average water balance over Central Asian mountain area has been presented. In more general terms, the water balance equals the sum of all water sources in a system to the sum of all water sinks in a system plus the change of the water storage in the system over a defined time period (Eq. \@ref(eq:generalWB)).
-
-```{=tex}
-\begin{equation}
-    (\#eq:generalWB)
-    \sum_i \text{Sources} = \sum_j \text{Sinks} + \frac{\Delta \text{Storage}}{\Delta t} \quad, \in \Omega 
-\end{equation}
+```{r genericRiverBasin,fig.cap="The generic river basin. Not yet final Figure, needs to be improved since E is missing.",echo = FALSE}
+knitr::include_graphics('_bookdown_files/Chap4-ManualWaterBalance-Figures/GenericRiverBasin_lr.jpg')
 ```
-It is important to realize that a balance is always drawn over the well-defined boundaries of a system ($\Omega$) and over a specified time period ($\Delta t$).
 
-## Boundaries of the water balance
+## Derivation of the Budyko Relationship
 
-Whether a flow process constitutes a source of water for a system or a sink depends on the boundaries of the system. If we calculate the water balance of the air above Central Asia, precipitation constitutes a water loss. If, on the other hand, the boundaries of the water balance are around the soil surface, precipitation is a source of water.
+The general water balance for a catchment can be written as
 
-In space and time, selection of appropriate level of abstraction
+$$
+Q = P - E + \Delta S 
+(\#eq:WB1)
+$$
 
-## Data need for a water balance
+where $P$ is precipitation in mm, $E$ is evapotranspiration in mm, $\Delta S$ is net storage and $Q$ is specific discharge in mm. Over hydrological years and longer time scales, we expect $\Delta S$ to be 0. Hence, the above Equation \@ref(eq:WB1) can be rewritten as
 
-## Setting up a conceptual model
+$$
+Q = P - E 
+(\#eq:WB2)
+$$
+
+Dividing by $P$, we get
+
+$$
+\frac{Q}{P} = 1 - \frac{E}{P} 
+(\#eq:WB3)
+$$
+
+where $Q/P$ can be called the runoff index and $E/P$ is the evaporation index or evaporative fraction. Note that this equation does not take into account long-term storage effects from snow and land ice in a basin. We discuss more on this in the next Section below.
+
+In the following derivation of the relationship between a catchment's aridity index and the evaporation fraction, we follow [@ARORA2002164].
+
+The surface energy balance can be written as
+
+$$
+R_{N} = H_{S} + H_{L} + \Delta H_{G} 
+(\#eq:EB1)
+$$
+
+where $R_{N}$ is the net radiation [in W/m^2^ = kg/s^3^], $H_{S}$ is the upward sensible heat flux, $H_{L}$ is the latent heat flux and $\Delta H_{G}$ the net ground heat flux. It should be noted that $H_{L} = L \cdot E$ where $L = 2.5 \cdot 10^{6}$ J/kg [= m^2^/s^2^] is the latent heat of vaporization and $E$ is the actual evaporation in [m/s]. As in the case of the water balance, at the annual or longer time scales, we can neglect the storage effect and get
+
+$$
+R_{N} = H_{S} + L \cdot E
+(\#eq:ltEB)
+$$
+
+With the Bowen ratio defined as the fraction of the sensible heat flux divided by the latent heat flux, i.e.
+
+$$
+\gamma = \frac{H_{S}}{H_{L}} = \frac{H_{S}}{L \cdot E }
+(\#eq:bowenRatio)
+$$
+
+and by rearranging the terms, the long-term energy balance in Equation \@ref(eq:ltEB) can simply be rewritten as
+
+$$
+R_{n} = (1 + \gamma)L E
+(\#eq:EB2)
+$$
+
+Using the fact that $R_{n} = L E_{pot}$, where $E_{pot}$ is the potential evaporation, and dividing by precipitation, we can rewrite the above Equation \@ref(eq:EB2) as
+
+$$
+\frac{E_{pot}}{P} = (1 + \gamma) \frac{E}{P}
+(\#eq:aridityIndex)
+$$
+
+where the left-hand side is called the aridity index, i.e. $\phi = E_{pot}/P$ and $E/P$ is called the evaporative fraction or evaporation index. With this, Equation \@ref(eq:WB3) from above can be written as a function of the Bowen ratio and the aridity index, i.e.
+
+$$
+\frac{E}{P} = 1 - \frac{Q}{P} = \frac{\phi}{(1 + \gamma)}
+(\#eq:WBEB1)
+$$
+
+$Q/P$ is again the runoff index. Since the Bowen ratio is also water and energy limited, it too is a function of the aridity index and we can thus rewrite Equation \@ref(eq:WBEB1) to
+
+$$
+\frac{E}{P} = 1 - \frac{Q}{P} = F[\phi]
+(\#eq:Budyko1)
+$$
+
+Following the groundbreaking work by Budyko and others, many expressions have been developed for $F[\phi]$ to describe the long-term catchment water balance (citations...). Here, we use the Choudhury equation which relates the aridity index $\phi$ to the evaporative fraction $E/P$ in the following way
+
+$$
+\frac{E}{P} = [ 1 + (\frac{E_{pot}}{P})^{-n}]^{-1/n}
+(\#eq:Choudhury1)
+$$
+
+where $n$ is a catchment-specific parameter which accounts for factors such as vegetation type and coverage, soil type and topography, etc. (see e.g. [@Zhang2015] for more information).
+
+## Effects of Snow Ratio on Annual Runoff within the Budyko Framework
+
+Source article: [@Zhang2015]
+
+## Hydrological Response to a Changing Climate
+
+Source articles: @Ning2018, [@Zhou2016].
+
+## Application to Central Asian River Basins
+
+### Data
+
+### Model
+
+### Conclusions
