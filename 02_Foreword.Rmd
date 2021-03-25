@@ -4,7 +4,7 @@
 knitr::include_graphics('_bookdown_files/Preface-Figures/NearSamarkandOasis.jpeg')
 ```
 
-**Oasis between Samarkand and Buchara. Source: Tobias Siegfried.**
+**Oasis between Samarkand and Buchara. Source: Tobias Siegfried, hydrosolutions GmbH.**
 
 This is a online book about applied hydrological modeling. It is geared towards students and young professionals in Central Asia who are interested in learning modern modeling approaches. The book teaches by examples and uses two catchments from the Syr Darya and Amu Darya river basins as case studies. While the presented case studies are exclusively from Central Asia, the methods demonstrated can be applied elsewhere.
 
@@ -16,4 +16,6 @@ Second, a more detailed modeling approach using semi-distributed, lumped, concep
 
 Third and finally, empirical modeling will be introduced for forecasting. These types of models are currently utilized in the Hydrometeorological Agencies of the region for forecasting discharge at different lead times, ranging from one day ahead up to seasonal forecasts. These models use long term time series to learn relationships between past, observed quantities and future system responses.
 
-With everything that is presented, the focus is on the use of open source and free software. For data preparation and analysis as well as for water balance and empirical modeling, R and RStudio are utilized [@R-2013; @RStudio-2020]. For the processing of geographic data, workflows in QGIS are demonstrated [@QGIS_software]. For hydrological-hydraulic modeling, the free RSMinerve is utilized which is a environment for the modeling of free surface runoff flow formation and propagation [@rsminerve_um; @rsminerve_tm].
+With everything that is presented, the focus is on the use of open source and free software. For data preparation and analysis as well as for water balance and empirical modeling, [R](https://www.r-project.org) and [RStudio](https://rstudio.com) are utilized [@R-2013; @RStudio-2020]. For the processing of geographic data, workflows in [QGIS](https://www.qgis.org/en/site/) are demonstrated [@QGIS_software]. For hydrological-hydraulic modeling, the free [RS MINERVE](https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve.html) is utilized which is a environment for the modeling of free surface runoff flow formation and propagation [@rsminerve_um; @rsminerve_tm]. The reader is expected to have a basic understanding about R and QGIS and how to use these software for data analysis and processing.
+
+The R code to produce figures, conduct analyses as well carry out empirical modeling is deliberately provided throughout the text and embedded there. While this makes the text heavier than necessary, it gives the local target group to reuse code and directly reproduce results while working on their own problems. An attempt has been made to make everything as reproducible as possible.

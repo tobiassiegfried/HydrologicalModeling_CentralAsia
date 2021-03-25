@@ -1,0 +1,871 @@
+# Case Studies {#CaseStudies}
+
+```{r,message=FALSE,echo=FALSE}
+# Tidy data wrangling
+library(tidyverse)
+library(here)
+library(timetk)
+library(tidymodels)
+library(lubridate)
+library(timetk)
+
+# ggplot add-on
+devtools::install_github("eliocamp/ggnewscale")
+library(ggnewscale)
+library(ggpubr)
+
+# Our own package for load and processing local data
+library('riversCentralAsia')
+
+# Spatial data processing
+library(ncdf4)
+library(raster)
+library(rgdal)
+library(sf)
+library(smoothr)
+library(units)
+```
+
+```{r Front_Figure_Chirchick, echo = FALSE}
+knitr::include_graphics('_bookdown_files/Chap3-ChirchikRB-Figures/CharvakReservoir_lr.jpeg')
+```
+
+**Charvak reservoir in the Chirchik river basin.. Source: Tobias Siegfried, hydrosolutions GmbH.**
+
+In this Chapter, two Central Asian river basins are presented and extensively discussed. The purpose is to familiarize the reader with key hydrological processes but also to demonstrate ways of hydro-meteorological time series analyses with R [@R-2013]. First, the Gunt river basin in the upper Pandzh is presented. It is representative of a high mountain catchment in an arid to hyper-arid part of Central Asia, i.e. the Pamirs. Mostly because of its elevation, the catchment is largely untouched by human activity. In recent years, hydropower was developed in the of the basin in the lower reaches of the river, shortly before its confluence with the Pyandzh river.
+
+Second the Chirchik river basin is presented in detail. The Chirchik river is the largest right tributary to the Syr Darya and the vital source for freshwater supply of the Tashkent Oasis and its surrounding. The bulk of the water is utilized there in irrigation and some of it even diverted to neighboring catchments. After the confluence of its main tributaries, the river is heavily regulated for hydropower production and the supply of irrigation water in the downstream oases.
+
+## Gunt River Basin {#GuntRB}
+
+### Basin Characterization {#GuntRBOverview}
+
+The Gunt river basin is located in the Pamir mountain in
+
+```{r}
+## MeteoStation locations and elevation
+meteoStations <- # just put everything in a regular dataframe
+  tibble(StationName=c("Bulunkul","Khorog","Khorog","Javshangoz","Navobod"),
+         StationCode = c(38953, 38954, 17050, 38956, 38950),
+         lat   = c(37.70416667,37.50361111,37.50361111,37.39083333,37.59416667),
+         lon   = c(72.94583333,71.515,71.515,72.29583333,71.86555556),
+         utm.x = NA,
+         utm.y = NA,
+         masl  = c(3746, 2075, 2075,3438, 2566),
+         type = c("Meteo", "Meteo","Discharge Gauge","Meteo","Meteo"))
+## convert lat / lon coordinates to UTM
+cord.dec = SpatialPoints(cbind(meteoStations$lon, meteoStations$lat), proj4string=CRS("+proj=longlat"))
+cord.UTM <- spTransform(cord.dec, CRS("+init=epsg:32642"))
+cord.UTM.tbl <- cord.UTM %>% as_tibble()
+meteoStations$utm.x <- cord.UTM.tbl$coords.x1
+meteoStations$utm.y <- cord.UTM.tbl$coords.x2
+meteoStations
+```
+
+A map of the Gunt river is shown in Figure \@ref(fig:mapGuntRiver).
+
+```{r mapGuntRiver, message=FALSE,warning=FALSE,fig.cap='Map of the Gunt river basin. The subcatchments are named with white labels and the meteorological stations indicated with red diamonds. The discharge station 17050 at Gunt is located at the meteostation 38954. The naming convention we apply is not entirely corresponding to reality since the Alsihur changes its name to Gunt after the outflow of Yashilkul lake some kilometers upstream of the confluence with Tokusbulak. The reason for our simnplified naming is that it facilitates the rainfall-runoff modeling which will be demonstrated in Chapter 7.'}
+# convert to sf object
+meteoStations_sf <- st_as_sf(meteoStations %>% dplyr::select(StationName,lat,lon),
+                            coords = c("lon","lat"),
+                            remove = FALSE,
+                            crs = "epsg:32642", 
+                            agr = "constant") 
+
+# Load catchment shp
+gunt_Shapefile <- st_read('./data/AmuDarya/Gunt/GeospatialData/Gunt_Basin_poly.shp',quiet = TRUE)
+gunt_Shapefile <- gunt_Shapefile %>% subset(fid==2)
+gunt_Shapefile_LatLon <- st_transform(gunt_Shapefile,crs = st_crs(4326))
+areaGunt <- gunt_Shapefile %>% st_area() %>% as.numeric()
+# Load subbasins
+gunt_subbasins_shp <- st_read('./data/AmuDarya/Gunt/GeospatialData/Gunt_Subbasins_RSMinerve.shp',quiet = TRUE)
+
+# Areas of Interest
+aoi_CentralAsia_LatLon <- extent(c(65,80.05,35.95,44.05)) # in lat/lon
+aoi_Basin_LatLon <- gunt_Shapefile_LatLon %>% extent() # GUNT
+aoi_Basin_UTM <- gunt_Shapefile %>% extent() # GUNT, in UTM
+
+# Load DEM
+Gunt_DEM <- raster('./data/AmuDarya/Gunt/GeospatialData/17050_Gund_Basin_DEM.tif', )
+Gunt_DEM_lr <- raster::aggregate(Gunt_DEM,fact=10) # this is in UTM 42N
+Gunt_DEM_lr_LatLon <- raster::projectRaster(Gunt_DEM_lr, crs = "+init=epsg:4326")
+
+# Load simplified river network with first order tributaries only
+gunt_river_shape <- st_read('./data/AmuDarya/Gunt/GeospatialData/Gunt_Rivers_RSMinerve.shp',quiet = TRUE)
+
+# Create slope and hillshade
+slope = terrain(Gunt_DEM_lr_LatLon, opt='slope')
+aspect = terrain(Gunt_DEM_lr_LatLon, opt='aspect')
+hillshade_Gunt = hillShade(slope, aspect, 40, 270)
+
+# Subbasins naming
+subbasins <- # just put everything in a regular dataframe
+  tibble(basin=c("Shakhdara","Gunt","Tokusbulak","Alishur"),
+         lat   = c(37.2,37.75,37.6,37.61),
+         lon   = c(72.0,71.8,72.6,73.25))
+subbasins_coord_latlon = SpatialPoints(cbind(subbasins$lon, subbasins$lat), proj4string=CRS("+proj=longlat"))
+subbasins_coord_UTM <- spTransform(subbasins_coord_latlon, CRS("+init=epsg:32642")) %>% 
+  coordinates() %>% as_tibble() %>% 
+  rename(x=coords.x1,y=coords.x2)
+subbasins <- bind_cols(subbasins,subbasins_coord_UTM)
+
+# Convert to dataframe for ggplotting
+Gunt_DEM_spdf <- as(Gunt_DEM_lr_LatLon, "SpatialPixelsDataFrame")
+Gunt_DEM_df <- as.data.frame(Gunt_DEM_spdf)
+colnames(Gunt_DEM_df) <- c("value", "x", "y")
+hillshade_Gunt_spdf <- as(hillshade_Gunt, "SpatialPixelsDataFrame")
+hillshade_Gunt_df <- as.data.frame(hillshade_Gunt_spdf)
+colnames(hillshade_Gunt_df) <- c("value", "x", "y")
+
+# plot
+ggplot() +
+  geom_tile(data = hillshade_Gunt_df, aes(x = x, y = y, fill = value)) + 
+  scale_fill_gradient(low = "black", high = "white") + 
+  new_scale_fill() +
+  geom_tile(data=Gunt_DEM_df, aes(x=x, y=y, fill=value), alpha=0.8)+
+  geom_sf(data=gunt_Shapefile_LatLon,color="black",fill=NA) +
+  geom_sf(data=gunt_subbasins_shp,color="black",fill=NA,linetype="11",size=0.25) +
+  geom_sf(data=gunt_river_shape,color="blue",fill=NA) + 
+   geom_point(data = meteoStations, 
+                aes(x = lon, y = lat), 
+                size = 2, shape = 23, 
+                fill = "darkred") +
+   geom_text(data = meteoStations,
+               aes(x = lon, y = lat, label = StationName),
+               vjust = -.3,
+               hjust = -.2) +
+  scale_fill_gradientn(colours = terrain.colors(100)) + 
+  xlab("Longitude") + ylab("Latitude") + 
+  guides(fill=guide_legend(title="Alt. [masl]")) + 
+  # ggtitle("Gunt Catchment with Main Subbasins") +
+  coord_sf(xlim = c(71.4, 74.2), ylim = c(36.9, 38.2), expand = FALSE)  + 
+  geom_label(data = subbasins,aes(x = lon, y = lat, label = basin),vjust = 0,hjust = 0)
+```
+
+```{r,echo=FALSE}
+# Calulations for Table => To delete after!
+## Annual specific discharge
+3.28/13693*10^6
+239/349*100 -100
+```
+
+| Attribute                                           | Value        |
+|-----------------------------------------------------|--------------|
+| Basin Area (calculated after basin GIS delineation) | 13'693 km^2^ |
+| Norm hydrological year discharge                    | 103.8 m^3^/s |
+| Norm cold season discharge (Oct. - Mar., Q4/Q1)     | 19.8 m^3^/s  |
+| Norm warm season discharge (Apr. - Sept., Q2/Q3)    | 84.2 m^3^/s  |
+| Annual discharge volume                             | 3.28 km^3^   |
+| Annual specific discharge                           | 239 mm       |
+| Mean basin precipitation $P$ [@beck2020]            | 349 mm       |
+| Potential Evaporation $E_{pot}$ [@Trabucco2019]     | 929 mm       |
+| Aridity Index $\phi = E_{pot} / P$                  | 2.7          |
+
+: Key relevant basin statistics for Gunt river basin. All values are derived from data provided by the Tajik Hydrometeorological Agency. Mean basin precipitation is from the CHELSA v.1.2.1 dataset [@chelsaData_Beck].
+
+With the values provided in the table above, the discharge index $Q/P$ is 68.5 % and the evaporative index $E/P$ is 31.5 %. In other words, the long-term water balance shows that 3 precipitation units gets partitioned into 2 discharge units and 1 evaporation unit, approximately. At the same time, the aridity index $\phi$ as calculated in the Table above confirms the pronounced arid characteristics of the catchment.
+
+### Hydrology {#GuntHyrology}
+
+For the analysis of the key hydro-climatological characteristics, we first load the available decadal and monthly station data[^pi_chap3_casestudy_chirchikriver-1]. The data used in this Chapter can be accessed on the public GitHub repository [Applied Modeling of Hydrological Systems in Central Asia](https://github.com/tobiassiegfried/Applied_Hydrological_Modeling_Bookdown) and the ./data/AmuDarya/Gunt/ folder in there.
+
+[^pi_chap3_casestudy_chirchikriver-1]: The data was kindly provided by the Tajik Hydrometeorological Agency.
+
+First, we load the available data into `R`.
+
+```{r}
+# Load data records
+fPath = fPath <- './data/AmuDarya/Gunt/StationData/'
+fName = 'gunt_data_cleaned.Rds'
+data <- read_rds(paste0(fPath,fName))
+data
+```
+
+This dataframe contains all available data hydro-meteorological data from the basin. All available hydro-meteorological stations in the basin are listed in the following dataframe. The Khorog meteorological station is at the same site as the gauging stations, hence their locations coincide (lat and lon are latitude and longitude, utm.x and utm.y are station locations in Universal Transverse Mercator (UTM) coordinate reference system for Zone 42N, masl denotes the approximate station location).
+
+```{r}
+## MeteoStation locations and elevation
+meteoStations <- # just put everything in a regular dataframe
+  tibble(StationName=c("Bulunkul","Khorog","Khorog","Javshangoz","Navobod"),
+         StationCode = c(38953, 38954, 17050, 38956, 38950),
+         lat   = c(37.70416667,37.50361111,37.50361111,37.39083333,37.59416667),
+         lon   = c(72.94583333,71.515,71.515,72.29583333,71.86555556),
+         utm.x = NA,
+         utm.y = NA,
+         masl  = c(3746, 2075, 2075,3438, 2566),
+         type = c("Meteo", "Meteo","Discharge Gauge","Meteo","Meteo"))
+## convert lat / lon coordinates to UTM
+cord.dec = SpatialPoints(cbind(meteoStations$lon, meteoStations$lat), proj4string=CRS("+proj=longlat"))
+cord.UTM <- spTransform(cord.dec, CRS("+init=epsg:32642"))
+cord.UTM.tbl <- cord.UTM %>% as_tibble()
+meteoStations$utm.x <- cord.UTM.tbl$coords.x1
+meteoStations$utm.y <- cord.UTM.tbl$coords.x2
+meteoStations
+```
+
+Data are available at monthly time scales. The discharge data from Gauge 17050 can be accessed and extracted from the Gunt dataset in the following way.
+
+```{r}
+q_17050_mon <- data %>% filter(type == "Q" & code == '17050' & resolution == 'mon')
+q_17050_mon
+```
+
+When we plot the data, we see that we have a near complete monthly record from 1940 onward (Figure \@ref(fig:GuntMonthlyQ)). The data gap in the 1990ies was during the Tajik civil war.
+
+```{r GuntMonthlyQ, fig.cap="Monthly Discharge Data at Gunt Gauging Station (17050)"}
+q_17050_mon %>% plot_time_series(date,
+                                 data,
+                                 .smooth        = FALSE,
+                                 .interactive   = TRUE,
+                                 .title         = "",    
+                                 .x_lab         = 'Year',
+                                 .y_lab         = 'Mean monthly Q [m3/s]',
+                                 .plotly_slider = TRUE)
+```
+
+Please also note the visible changes in the low flow regime from 2007 onward.
+
+> Todo: Ask TAJ HM for clarification on this observation and its probably causes.
+
+The seasonal diagnostics of the monthly discharge time series is shown in Figure \@ref(fig:guntSeasonalDiagnostics). The peak discharge of this very high elevation basin is in July unlike in the lower lying Chirchik tributaries as shown in Figure \@ref(fig:ChirchikSeasonalityLargeTribs) above.
+
+```{r guntSeasonalDiagnostics,message=FALSE,warning=FALSE,fig.cap="Seasonal diagnostics of the monthly discharge time series at the Gunt-Khorog gauging station (17050)"}
+q_17050_mon %>% 
+  plot_seasonal_diagnostics(.date_var      = date,
+                            .value         = data,
+                            .title         = "",
+                            .feature_set   = c("month.lbl"),
+                            .interactive   = FALSE,
+                            .x_lab         = "Year",
+                            .y_lab         = "Mean monthly Q [m3/s]") +
+  scale_x_discrete(breaks=c("January", "February", "March", "April", "May", 
+                            "June", "July", "August", "September", "October", 
+                            "November", "December", "1", "2", "3", "4"),
+                   labels=c("J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D","1", "2", "3", "4"))
+```
+
+Below in Figure \@ref(fig:guntMonthlyFlowChanges), we are plotting changes to monthly flows over time by binning all available data in the corresponding monthly slots. The red lines are linear regression lines that indicate trends for the individual months. Over the observational record of approx. 80 years, changes in monthly discharge regimes are clearly visible. On the one hand, summer discharge of Gunt river during the third quarter (Q3) is decreasing whereas the cold season discharge in Q1 and Q4 is increasing. This is a clear indication that the basin hydrology is already reacting to a changing climate. This observation motivates us to further investigate future changes with hydrological modeling (see Chapter \@ref(HydroModelsPhysicalModels) for more details).
+
+```{r guntMonthlyFlowChanges,message=FALSE,warning=FALSE}
+q_17050_mon %>% 
+  summarise_by_time(.date_var = date, 
+                    .by       = "month",
+                    value     = mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              xlab('Month') +
+              ylab('Mean monthly Q [m3/s]')
+```
+
+Whenever we analyze annual data and changes therein, we should work with data as observed during the hydrological year. The hydrological year in Central Asia is defined as:
+
+-   monHY(Oct) = 1
+
+-   monHY(Nov) = 2
+
+-   ...
+
+-   monHY(Sep) = 12
+
+This also holds for meteorological data. Using this definition, we can further define cold and warm seasons easily where the cold season lasts from October through end of March (Q4 to Q1 the following year) and the warm season from April through end of September (Q2 and Q3). With this in mind, we can define the hydrological year discharge.
+
+The function `convert2HYY()` as part of the `riversCentralAsia` package provides a convenient way to compute hydrological year mean discharge, including for cold and warm seasons. For monthly mean temperatures mean(T), it computes hydrological year mean temperatures, including for cold and warm seasons. Finally, for precipitation, the function computes the hydrological year sum, including also for cold and warm season months. Figure \@ref(fig:guntHYYDischarge) shows the discharge time series analysis for the Khorog gauging station.
+
+```{r guntHYYDischarge,message=FALSE,warning=FALSE,fig.cap="Hydrological year discharge timeseries, incl. cold and warm season values. If data are not complete for all 12 months, the hydrological year statistics are not computed. data: entire year discharge, data_cs: cold season Q1/Q4 discharge and data_ws: warm season Q2/Q3 discharge."}
+# Computation of hydrological year discharge and plotting
+qHYY <- data %>% convert2HYY(.,'17050','Q')
+qHYY %>%   pivot_longer(-hyYear) %>% 
+  plot_time_series(hyYear,value,name,
+                   .title = '',
+                   .x_lab = 'Year',
+                   .y_lab = 'Mean monthly Q [m3/s]',
+                   .interactive = FALSE,
+                   .smooth=FALSE)
+```
+
+Figure \@ref(fig:guntHYYDischarge) confirms the findings from the seasonal analysis. However, it also shows that the first two decades of the 21st century show a marked decline in total discharge as compared to the period between 1960 to 2000.
+
+A common way to plot changes over time in hydrometeorological time series is to plot annual deviations from corresponding long-term norms (long-term mean values). For this, we can use the `plotNormDevHYY()` function. Given the three hydrological year annual time series, it computes long-term norms over the entire data set and subtracts actual annual values from the norm value. Like this, temporal changes and trends become even better visible. Figure \@ref(fig:guntNormDeviations) shows the results for the hydrological year data shown in Figure \@ref(fig:guntHYYDischarge).
+
+```{r guntNormDeviations,warning=FALSE,message=FALSE, fig.cap="Deviations from the corresponding long-term norms for the discharge time series at gauging station 17050. It should be noted that the values shown are deviations from the corresponding norms which are shown in the subtitles above the figure plates."}
+plotNormDevHYY(qHYY,'Q','Khorog-Gunt 17050')
+```
+
+Figure \@ref(fig:guntNormDeviations) shows that in absolute terms, the discharge in the high-flow season is undergoing a much greater reduction than an increase in the low-flow season. Hence, we cannot simply explain the decline of discharge in one season with the increase in the other. In other words, the early melting of the winter snow pack cannot alone explain the summer decline in water availability. Some other mechanism much be at work which we still need to better understand. One hypothesis could be that an increase in summer temperatures leads to higher evaporation over the basin thus leading to reduced discharge (see also Section \@ref(GuntRBClimatology) below).
+
+In order to gauge whether there is a robust trend in discharge over the observed time period, we compute decadal (10 year means) and plot the results.
+
+```{r gunt10YMeanQ,message=FALSE,warning=FALSE,fig.cap="10-year mean hydrological year discharge of Gunt River, including the cold and warm season components. The decadal mean values are related in time to the beginning of the corresponding decade in the Figure. The strongly declining trend in warm season discharge causes the overall observed decline in hydrological year discharge."}
+mean10yearQ <- qHYY %>% filter(hyYear < '2020-01-01') %>% 
+  pivot_longer(-hyYear) %>% group_by(name) %>% summarise_by_time(hyYear,value,.by="10 year",mean10yearQ = mean(value,na.rm=TRUE)) %>% dplyr::select(-value) %>% distinct() %>% ungroup()
+mean10yearQ %>% pivot_wider(names_from = name,values_from = mean10yearQ)
+mean10yearQ %>%  plot_time_series(hyYear,mean10yearQ,name,
+                                  .smooth = FALSE,
+                                  .x_lab  = "Year",
+                                  .y_lab  = "Q [m^3/s]",
+                                  .title  = "")
+```
+
+This is informative. From the 1990ies onwards, a strong reduction in mean hydrological year warm season discharge is observed of about - 16% relative to mean 1940 - 1989 values. At the same time, 10-year mean hydrological year cold season discharge remained almost stable. These findings are the a key motivation to study climate impacts in the Gunt River basin in greater details.
+
+#### Climatology {#GuntClimatology}
+
+A significant amount of meteorological data available. This is an invitation to explore these data. We start with the Gunt-Khorog station 38954. Lets get some data ready to be analyzed later. Note, to remain consistent with the discharge data, we only use data from 1940 onward. While we mostly concentrate on mean monthly data for temperature, we should note that the available data record also contains data on absolute and mean minimum and maximum temperatures.
+
+```{r guntMeanMonthlyT,warning=FALSE,message=FALSE,fig.cap="Mean Monthly Temperature Climatology in the Gunt River Basin from 1940 - 2020. While first observations are available from the very beginning of the 20th century, data are only shown from 1940 onwards wich marks the start of a coherent record."}
+# Extracting mean station data from the four stations.
+Tmean_38954 <- data %>% filter(code=="38954" & type =='mean(T)') %>% filter(date>='1939-01-01') %>% dplyr::select(date,data) %>% rename(Tmean_38954=data)
+Tmean_38950 <- data %>% filter(code=="38950" & type =='mean(T)') %>% filter(date>='1939-01-01') %>% dplyr::select(date,data) %>% rename(Tmean_38950=data)
+Tmean_38953 <- data %>% filter(code=="38953" & type =='mean(T)') %>% filter(date>='1939-01-01') %>% dplyr::select(date,data) %>% rename(Tmean_38953=data)
+Tmean_38956 <- data %>% filter(code=="38956" & type =='mean(T)') %>% filter(date>='1939-01-01') %>% dplyr::select(date,data) %>% rename(Tmean_38956=data)
+# Assembling the data. 
+T <- full_join(Tmean_38950,Tmean_38953,by="date")
+T <- full_join(T,Tmean_38954,by="date")
+T <- full_join(T,Tmean_38956,by="date")
+# Plotting the dataframe
+T %>% pivot_longer(-date) %>% 
+  filter(date>='1940-01-01') %>% 
+  plot_time_series(date,
+                   value,
+                   name,
+                   .smooth = FALSE,
+                   .x_lab = 'Year',
+                   .y_lab = 'Mean monthly T [deg. C]',
+                   .title = "",
+                   .interactive = TRUE)
+# add a month identifier
+T <- T %>% mutate(mon = month(date))
+```
+
+Because of the high quality and the consistency of the long-term record of the data at Khorog station 39854, we focus the further climatological analysis there. Figure \@ref(fig:guntKhorogDeviationsFromNorm) shows deviations from norm mean temperatures over the last 120 years. The recent two decades stand out because of the pronounced warming observed at the station, especially during the cold season where norm deviations on average range between 1 - 2 degrees Celsius.
+
+```{r guntKhorogDeviationsFromNorm,message=FALSE,warning=FALSE,fig.cap="Annual devations from the norm of the mean temperature for the Khorog station 38954 record are shown for the entire hydrological year and for the corresponding cold and warm seasons. Note that the entire data record is taken into account here from the start of the 20th century."}
+# Station Khorog 38954
+meanTHYY_38954 <- data %>% convert2HYY(38954,'mean(T)') %>% filter(hyYear >= "1900-10-01")
+meanTHYY_38954 %>% plotNormDevHYY(.,'mean(T)','Khorog 38954')
+```
+
+## Chirchik River Basin {#CRB}
+
+### Basin Characterization {#CRBOverview}
+
+The Chirchik is a river in the Tashkent region of Uzbekistan. Its natural basin covers 13'112 km^2^, not accounting for the modern-time interbasin water transfers to the neighboring Akhangaran basin in the south (the outline of the basin is shown in Figure \@ref(fig:ChirchikRiverOverview)) and to the north. In terms of total runoff contribution, it is the biggest right tributary of the Syr Darya (see also further below in Section \@ref(ChirchikHydroCharacteristics)).
+
+The river is formed by the confluence of the Chatkal and the Pskem rivers. They emerge at the south-western end of the Tien Shan mountains, i.e. the Talas Alatau, in the border region of Kyrgyzstan, Kazakhstan and Uzbekistan. The main tributaries are in clock-wise direction starting from north: Ugam, Pskem, Kosku and Chatkal. The Charvak reservoir receives water from these rivers. Ugam is the largest right tributary downstream of the reservoir and Aksak Ata the largest left-side tributary.
+
+Below the Charvak hydroelectric power station, the river water gets diverted in numerous canals for irrigation in and around the Tashkent oasis and for interbasin water transfer to the Akhangaran basin in the south. As part of the Chirchik-Bozsuu cascade, several smaller dams along the river serve hydropower production and irrigation purposes.
+
+```{r ChirchikRiverOverview, echo = FALSE, fig.cap = 'Overview over the Chirchik river basin with tributaries and the location of the main gauging stations in the zone of runoff formation and near the confluence with the Syr Darya.'}
+knitr::include_graphics('_bookdown_files/Chap3-ChirchikRB-Figures/ChirchikRiverBasin_Annotated_lr.jpg')
+```
+
+Figure \@ref(fig:ChirchikRiverOverview) shows a comprehensive overview of the Chirchik river basin and its tributaries as well as relevant modern gauging stations. Gauges are indicated with the semi-round shapes and the corresponding five digit official code as utilized by the Uzbek Hydrometeorological Service (HMS) indicated. The virtual gauge is not a real gauge in the sense that reservoir inflow is calculated from all contributing tributary flow components, i.e. Chatkal river, Pskem river, Nauvalisoy and Koksu Rivers.
+
+Koksu however, with a basin area of 392 km$^2$, is ungauged. Its discharge contribution is calculated using an established empirical relationship between discharge in Chatkal River and discharge in Koksu. The empirical relationship is derived further below in Section \@ref(CRBKoskuDischargeContribution). First, we now turn our attention to the description of key hydrological basin features.
+
+### Hydrology {#CRBBasinCharacteristics}
+
+This Section uses a number of available data that are available to characterize the Chirchik River Basin from the hydro-climatological perspective. Data access and modeling is further described in Chapter \@ref{HydroModelsEmpiricalModels} in Part II of this Book.
+
+The available discharge data is shown in Figure \@ref(fig:completeDischargeData). These are near complete historic records. See above Figure \@ref(fig:ChirchikRiverOverview) for the station locations.
+
+```{r completeDischargeData, warning=FALSE,echo=FALSE, fig.cap="Available discharge data of Chirchik River Basin"}
+data <- ChirchikRiverBasin
+data %>% 
+  filter(type=='Q') %>% 
+  group_by(type,code,station,resolution) %>% 
+  plot_time_series(date,
+                   data,
+                   .facet_ncol      = 2,
+                   .interactive     = FALSE, 
+                   .smooth          = FALSE,
+                   .title           = '')
+```
+
+The discharge measurements at Gazalkent gauge started already in 1900 and is one of the longest records available in Central Asia. The monthly record of the station is shown in Figure \@ref(fig:qGazalkent). You can zoom into the time series and investigate it in detail.
+
+```{r qGazalkent,message=FALSE,echo=FALSE,fig.cap = "Monthly discharge at Gauge 16262, Gazalkent. "}
+data %>% filter(code=='16262') %>% plot_time_series(date,data,
+                                                    .interactive = TRUE,
+                                                    .smooth = FALSE,
+                                                    .title = "",
+                                                    .x_lab = 'date',
+                                                    .y_lab = 'Discharge in cubic meters per second',
+                                                    .plotly_slider = TRUE)
+```
+
+As is easily visible, the June 1969 discharge was the historic monthly mean maximum with 1'220 m^3^/s. The characteristics of the timeseries feature the typical snowmelt-driven runoff pattern with pronounced seasonality and interannual variability.
+
+At Chinaz near the confluence of the Chirchik River with the Syr Darya (Gauge 16275), however, a changing discharge regime can be identified over time (Figure \@ref(fig:qChinaz)). The drastic decrease in discharge there is due to two effects. First, water diversions and interbasin water transfers for irrigation purposes have greatly increased over the course of the 20th century. Second, the closure of the Charvak dam in 1974 and the subsequent filling of the dam decreased discharge during the filling period. Furthermore, the interannual variability of flows decreased from there onwards due to the now regulated flow regime. This latter effect is also visible at the Gazalkent gauge. The non-stationarity in the discharge timeseries at these stations is thus explained by anthropogenic effects.
+
+```{r qChinaz,message=FALSE,echo=FALSE,fig.cap = "Monthly discharge at Gauge 16275, Chinaz "}
+data %>% filter(code=='16275') %>% plot_time_series(date,data,
+                                                    .interactive = TRUE,
+                                                    .smooth = FALSE,
+                                                    .title = "",
+                                                    .x_lab = 'date',
+                                                    .y_lab = 'Discharge in cubic meters per second',
+                                                    .plotly_slider = TRUE)
+```
+
+The effect of water diversion becomes even more apparent when the annual discharge at Gazalkent gauging station upstream of any major water diversion and at Chinaz gauge, which is in the very downstream of Chirchik River right before its confluence with the Syr Darya, are compared. The corresponding annual timeseries are shown in Figure \@ref(fig:qAnnualGazalkentChinaz) together with the difference of the two time series.
+
+```{r qAnnualGazalkentChinaz, echo=FALSE, warning=FALSE,fig.cap="Annual discharge at Gauge 16262, Gazalkent and Gauge 16275, Chinaz and the difference of the two timeseries. The difference of the two time series is from the allocation of water for human purposes, mostly for irrigation."}
+q16262 <- data %>% filter(code=='16262') %>% dplyr::select(date,data) %>% rename(Q16262 = data) # Gazalkent
+q16275 <- data %>% filter(code=='16275') %>% dplyr::select(date,data) %>% rename(Q16275 = data) # Chinaz
+q_wide <- left_join(q16262,q16275,by = 'date') %>% 
+  mutate(diffUD = Q16262 - Q16275)
+q_wide_annual <- q_wide %>% 
+  summarize_by_time(.date_var = date,
+                    .by="year",
+                    Q16262 = sum(Q16262)*3600*24*10/10^9,
+                    Q16275 = sum(Q16275)*3600*24*10/10^9,
+                    flowDifference = sum(diffUD)*3600*24*10/10^9) 
+
+q_long <- q_wide_annual %>% pivot_longer(-date) 
+
+p1 <- q_long %>% plot_time_series(date,
+                            value,
+                            .color_var = name,
+                            .interactive = FALSE,
+                            .title = "",
+                            .x_lab = 'date',
+                            .y_lab = 'Discharge in cubic kilometers per year',
+                            .smooth = FALSE) 
+
+p1 + theme(legend.position = c(0.1, 0.15))
+```
+
+Figure \@ref(fig:qAnnualGazalkentChinaz) shows the growing water allocation in the catchment from the 1930ies up to the end of the 20th century. Allocation grew almost 3-fold over this period. Interestingly, in the first decade of the 21st century, trends in allocation completely revered and in 2009, roughly one third of the total flow at Gazalkent was allocated consumptively. The trend reversal might be due to a change in irrigation policy, problems with intake infrastructure or both.
+
+```{r, message=FALSE,echo=FALSE}
+data_stats <- data %>% filter(type == 'Q') %>% 
+  dplyr::select(date,data,code,station) %>% group_by(code) %>% 
+  summarise(mean = mean(data,na.rm=TRUE) %>% round(digits = 1), 
+            min = min(data,na.rm=TRUE) %>% round(digits = 1), 
+            max = max(data,na.rm=TRUE) %>% round(digits = 1), 
+            sd = sd(data,na.rm=TRUE) %>% round(digits = 1),.groups = 'keep')
+data_stats %>% dplyr::select(-code) 
+# Nice tables - try kable()
+knitr::kable(data_stats, caption = "Key statistics of Chirchik basin rivers.")
+```
+
+The largest left tributary to Chirchik below the Charvak reservoir Aksak Ata. The gauging station on the river got dismantled a long time ago. An average long-term mean discharge of 2.35 m$^{3}$/s is a solid estimated of its contribution to the overall discharge of Chirchik. Thus, if we add up long-term average discharge at Gazalkent and the one from Aksak Ata we obtain an annual norm discharge of 231 m$^{3}$/s.
+
+Chirchik river is thus the biggest right-tributary to the Syr Darya. Chatkal river contributes exactly half to it (115.7 m$^{3}$/s) and Pskem river approximately one third (34.4% or 79.4 m$^{3}$/s). Nauvalisoy is only a very small river with 1.6 % runoff contribution (3.8 m$^{3}$/s). From the available data, the long-term average runoff contribution by the ungauged Koksu river can be estimated to be 6.4 m$^{3}$/s or 2.8 %. Downstream of the reservoir, Ugam river contributes an additional 9.7 % (22.4 m$^{3}$/s) to the total flow.
+
+Let us now turn our attention to the seasonality of the tributaries. We exclude both, the Chinaz Gauge and Gazalkent Gauge data in our analysis for the above-mentioned reason that flow there is no longer representing a natural runoff regimes there. We thus plot seasonalities of the key gauged and unregulated tributaries , i.e. Chatkal, Pskem, Nauvalisoy and Ugam rivers in Figures \@ref(fig:seasonalityLargeTribs) and \@ref(fig:ChirchikseasonalitySmallTribs) below.
+
+```{r ChirchikSeasonalityLargeTribs, warning=FALSE, echo=FALSE,fig.cap="Seasonality diagnostics of the two large tributaries, i.e. the Chatkal and Pskem rivers."}
+data %>% filter(type=='Q', code!="16275",code!="16262",code!="16924",code!="16298",code!="16300") %>% 
+  dplyr::select(date,data,code,river) %>% 
+  group_by(code, river) %>% 
+  plot_seasonal_diagnostics(.date_var = date,
+                            .value = data,
+                            .interactive = FALSE,
+                            .feature_set = c("week","month.lbl"),
+                            .title = "")
+```
+
+Discharge seasonality of the gauging stations downstream of Charvak reservoir is shown below. Note that we only have monthly values for Ugam station which explains the appearance of the weekly plot in the upper right panel of Figure \@ref(fig:seasonalitySmallTribs).
+
+```{r seasonalitySmallTribs, warning=FALSE, echo=FALSE, fig.cap="Seasonality diagnostics of the two minor tributaries taht are gauged."}
+data %>% filter(type=='Q', code!="16275",code!="16262",code!="16924",code!="16279",code!="16290") %>% 
+  dplyr::select(date,data,code,river) %>% 
+  group_by(code, river) %>% 
+  plot_seasonal_diagnostics(.date_var = date,
+                            .value = data,
+                            .interactive = FALSE,
+                            .feature_set = c("week","month.lbl"),
+                            .title = "")
+```
+
+The seasonality with the spring and summer runoff peaks is striking in all the rivers. Nauvalisoy discharge peaks, on average, during or around week 20. Chatkal river discharge peaks around week 23 and Pskem river around week 26. These differences can be explained with the difference in mean catchment elevations which are as follows:
+
+-   Nauvalisoy catchment: 2'160 masl,
+-   Ugam catchment: 803 masl,
+-   Chatkal catchment: 2'692 masl, and
+-   Pskem Catchment: 2'795 masl
+
+where Ugam is the lowest lying and Pskem catchment the highest catchment (see also Chapter \@ref(HydrologicalSystems) for more information). Figure \@ref(fig:ChirchikRiverHypsometricCurves) shows the hypsometric curves of the main tributaries to the Chirchik River.
+
+```{r ChirchikRiverHypsometricCurves, echo = FALSE, fig.cap = 'Hypsometric Curves of the tributaries to the Chirchik River Basin.'}
+knitr::include_graphics('_bookdown_files/Chap3-ChirchikRB-Figures/hypsometric_Curves.jpg')
+```
+
+Using a LOESS smoother, we can remove discharge time series seasonality and catch a glimpse of the underlying longterm trends. This is shown for gauging station 16294, i.e. the inflow to the Charvak Reservoir, in Figure \@ref(fig:lttCharvakReservoir16924). If anything, a slightly increasing trend in mean discharge can be observed over the last 40 years. We will further discuss this finding also in the context of the analysis of the meteorological data record in the next Section.
+
+```{r lttCharvakReservoir16924, warning=FALSE, message=FALSE, echo=FALSE,fig.cap="Changes in mean monthly discharges are plotted with black lines over the entire observational record for Charvak Reservoir gauge (16924).The blue line shows a smoothed trend using a LOESS-smoother."}
+data %>% filter(code=="16924") %>% 
+  dplyr::select(date,data,code,river)  %>% 
+  summarise_by_time(.date_var = date, .by="month",value=mean(data)) %>% 
+  plot_time_series(date,value)
+```
+
+But what about changes for particular seasons and months? To understand these changes, we plot monthly average data grouped together individually for all months. Figure \@ref(fig:monthlyQChangesCharvakReservoir16924) shows the resulting graphs together with their best fit regression lines for each month. Several interesting observations can be done.
+
+```{r monthlyQChangesCharvakReservoir16924, warning=FALSE, message=FALSE, echo=FALSE,fig.cap="Changes in mean monthly discharges are plotted with black lines over the entire observational record for Charvak Reservoir gauge (16924).The red lines are the per month best fit regression lines."}
+data %>% filter(code=="16924") %>% 
+  dplyr::select(date,data,code,river)  %>% 
+  summarise_by_time(.date_var = date, .by="month",value=mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              xlab('month') +
+              ylab('m^3/month')
+```
+
+First, cold season discharge in quarter 1 (Q1) and Q4 have a slightly increasing trend. Converse to this, the warm season quarterly trends are not uniform where Q2 trends are strongly increasing and Q3 trends are markedly decreasing. This is in line with what one would expect from a warming climate, i.e. that the snow-melt driven hydrograph peak flows shift in their timing towards earlier towards spring. At the same time, Q3 warm season discharge diminishes because of the earlier snowmelt, assuming no changes in the precipitated water. We will investigate the available climate and precipitation record in the following section.
+
+```{r minMaxMeanQuarterlyDischarge, message=FALSE,warning=FALSE,echo=FALSE,fig.cap="The plates show mean, minimum and maximum quarterly discharges for Q1 (upper left plate), Q2 (upper right plate), Q3 (lower left plate) and Q4 (lower right plate). All values are in mean quarterly discharge per second"}
+quarterQ_mean <- data %>% filter(type == "Q" & code=="16924") %>% 
+  dplyr::select(date,data,code,river)  %>% 
+  summarise_by_time(.date_var = date,.by = "quarter",value = mean(data,na.rm = TRUE)) %>% 
+  rename(mean = value) #%>% na.omit()
+
+quarterQ_max <- data %>% filter(type == "Q" & code=="16924") %>% 
+  dplyr::select(date,data,code,river)  %>% 
+  summarise_by_time(.date_var = date, .by = "quarter", value = max(data,na.rm = TRUE)) %>% 
+  rename(max = value) #%>% na.omit()
+
+quarterQ_min <- data %>% filter(type == "Q" & code=="16924") %>% 
+  dplyr::select(date,data,code,river)  %>% 
+  summarise_by_time(.date_var = date, .by = "quarter", value = min(data,na.rm = TRUE)) %>% 
+  rename(min = value) #%>% na.omit()
+
+quarterQ <- left_join(quarterQ_mean,quarterQ_max,by='date')
+quarterQ <- left_join(quarterQ,quarterQ_min,by='date')
+
+quarterQ <- bind_cols(quarterQ,quarterQ$date %>% tsibble::yearquarter()) %>% rename(quarter='...5')
+quarterQ$quarter <- quarterQ$quarter %>% format(.,format = "Q%q")
+
+q1Q <- quarterQ %>% filter(quarter=='Q1') %>% dplyr::select(-quarter) %>% na.omit() %>%pivot_longer(-date)
+q2Q <- quarterQ %>% filter(quarter=='Q2') %>% dplyr::select(-quarter) %>% na.omit() %>%pivot_longer(-date)
+q3Q <- quarterQ %>% filter(quarter=='Q3') %>% dplyr::select(-quarter) %>% na.omit() %>%pivot_longer(-date)
+q4Q <- quarterQ %>% filter(quarter=='Q4') %>% dplyr::select(-quarter) %>% na.omit() %>%pivot_longer(-date)
+
+pQ1 <- q1Q  %>% na.omit() %>% #group_by(name) %>% 
+  plot_time_series(date,value,name,
+      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
+      .title = "", .interactive = F, .facet_ncol = 1,
+      .x_lab = "year", .y_lab = "Q", .legend_show = T
+      ) + theme(legend.position = c(0.1, 0.8))
+pQ2 <- q2Q  %>% na.omit() %>%#group_by(name) %>% 
+  plot_time_series(date,value,name,
+      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
+      .title = "", .interactive = F, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "Q", .legend_show = F
+      ) #+ theme(legend.position = c(0.1, 0.8))
+pQ3 <- q3Q  %>% na.omit() %>%#group_by(name) %>% 
+plot_time_series(date,value,name,
+      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
+      .title = "", .interactive = F, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "Q",.legend_show = F
+      ) #+ theme(legend.position = c(0.1, 0.8))
+pQ4 <- q4Q  %>% na.omit() %>% #group_by(name) %>% 
+plot_time_series(date,value,name,
+      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
+      .title = "", .interactive = F, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "Q",.legend_show = F
+      ) #+ theme(legend.position = c(0.1, 0.8))
+
+plotM <- list(pQ1,pQ2,pQ3,pQ4)
+cowplot::plot_grid(plotlist = plotM, nrow = 1, ncol = 4)
+```
+
+The development of the quarterly minimum, maximum and mean discharge Q over the years for Gauge 16924 (Charvak reservoir inflow) is shown in Figure \@ref(fig:minMaxMeanQuarterlyDischarge). The increasing trends in cold season discharge (Q1 and Q4) is confirmed. In these quarters, minimum, mean and maximum discharges appear to increase with a probably link to temperature increases during these quarters (see Section \@ref(ChirchikClimateCharacteristics) for a discussion). In Q2, minimum and mean discharges have an increasing trend. In Q3, maximum discharge appears to decrease over time.
+
+#### Climatology {#CRB_Climatology}
+
+Long-term climate data from three different stations located in the vicinity and upstream of Charvak Reservoir is available. The stations are meteostation 38642 and 38339, both in Pskem River Basin, Meteostation 38471, Chatkal River Basin and Meteostation 38464 in the vicinity of the Charvak Reservoir (see also Figure \@ref(fig:ChirchikRiverOverview) above for their locations.
+
+The raw temperature data is shown in Figure \@ref(fig:ChirchikMeteoStanzaT) whereas the per month temperature trends are shown in Figures \@ref(fig:monthlyTChangesPskem38462) and \@ref(fig:monthlyTChangesChatkal38471). At both stations, a significant cold season warning trend is visible.
+
+```{r ChirchikMeteoStanzaT, message=FALSE, warning=FALSE, echo=FALSE, fig.cap="Available decadal temperature records at Pskem and Chatkal meteorological stations. The record at the Kyrgyz Chatkal Meteo Station shows a large data gap in the post-transition years. The blue trend lines (LOESS smoother) indicate an increasing temperature trend at both mountain stations."}
+data %>% 
+  filter(type=='T') %>% 
+  group_by(type,code,station,resolution) %>% 
+  plot_time_series(date,
+                   data,
+                   .facet_ncol      = 1,
+                   .interactive     = FALSE, 
+                   .smooth          = TRUE,
+                   .title           = '')
+```
+
+```{r monthlyTChangesPskem38462, warning=FALSE, message=FALSE, echo=FALSE,fig.cap="Changes in mean monthly temperatures are plotted with black lines over the entire observational record for Pskem meteorological station.The red lines are the per month best fit regression lines."}
+data %>% filter(type == "T" & code=="38462") %>% 
+  dplyr::select(date,data,code,river)  %>% 
+  summarise_by_time(.date_var = date, .by="month",value=mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              xlab('month') +
+              ylab('deg. C.')
+```
+
+```{r monthlyTChangesChatkal38471, warning=FALSE, message=FALSE, echo=FALSE,fig.cap="Changes in mean monthly temperatures are plotted with black lines over the entire observational record for Pskem meteorological station. The red lines are the per month best fit regression lines. The peak in the month of September is an outlier."}
+data %>% filter(type == "T" & code=="38471") %>% 
+  dplyr::select(date,data,code,river)  %>% 
+  summarise_by_time(.date_var = date, .by="month",value=mean(data)) %>% 
+  tk_ts(frequency = 12) %>% 
+  forecast::ggsubseriesplot(year.labels = FALSE) + 
+              geom_smooth(method = "lm",color="red") +
+              xlab('month') +
+              ylab('deg. C.')
+```
+
+Similarily to the analysis carried out above for the development of quarterly flows, we can analyze the development of quarterly temperature statistics. Figure \ref(fig:quarterlyMeanMinMaxT_38462) shows the result.
+
+```{r quarterlyMeanMinMaxT_38462,echo=FALSE,message=FALSE,warning=FALSE,fig.cap="Development of mean, minimum and maximum quarterly temperatures for Q1 at Station 38462"}
+
+quarterT_mean <- data %>% filter(type == "T" & code=="38471") %>% 
+  dplyr::select(date,data,code,river)  %>% 
+  summarise_by_time(.date_var = date, .by = "quarter",value = mean(data,na.rm = TRUE)) %>% 
+  rename(mean = value) %>% na.omit()
+
+quarterT_max <- data %>% filter(type == "T" & code=="38471") %>% 
+  dplyr::select(date,data,code,river)  %>% 
+  summarise_by_time(.date_var = date, .by = "quarter",value = max(data,na.rm = TRUE)) %>% 
+  rename(max = value) %>% na.omit()
+
+quarterT_min <- data %>% filter(type == "T" & code=="38471") %>% 
+  dplyr::select(date,data,code,river)  %>% 
+  summarise_by_time(.date_var = date,.by = "quarter",value = min(data,na.rm = TRUE)) %>% 
+  rename(min = value) %>% na.omit()
+
+quarterT <- left_join(quarterT_mean,quarterT_max,by='date')
+quarterT <- left_join(quarterT,quarterT_min,by='date')
+
+quarterT <- 
+  bind_cols(quarterT,quarterT$date %>% tsibble::yearquarter()) %>% rename(quarter='...5')
+quarterT$quarter <- quarterT$quarter %>% format(.,format = "Q%q")
+
+q1T <- quarterT %>% filter(quarter=='Q1') %>% dplyr::select(-quarter) %>% pivot_longer(-date)
+q2T <- quarterT %>% filter(quarter=='Q2') %>% dplyr::select(-quarter) %>% pivot_longer(-date)
+q3T <- quarterT %>% filter(quarter=='Q3') %>% dplyr::select(-quarter) %>% pivot_longer(-date)
+q4T <- quarterT %>% filter(quarter=='Q4') %>% dplyr::select(-quarter) %>% pivot_longer(-date)
+
+pQ1 <- q1T  %>% #group_by(name) %>% 
+  plot_time_series(date,value,name,
+      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
+      .title = "", .interactive = F, .facet_ncol = 1,
+      .x_lab = "year", .y_lab = "deg. C.",.legend_show = T
+      ) + theme(legend.position = c(0.1, 0.8))
+pQ2 <- q2T  %>% #group_by(name) %>% 
+  plot_time_series(date,value,name,
+      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
+      .title = "", .interactive = F, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "deg. C.",.legend_show = F
+      )
+pQ3 <- q3T  %>% #group_by(name) %>% 
+plot_time_series(date,value,name,
+      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
+      .title = "", .interactive = F, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "deg. C.", .legend_show = F
+      )
+pQ4 <- q4T  %>% na.omit() %>% #group_by(name) %>% 
+plot_time_series(date,value,name,
+      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
+      .title = "", .interactive = F, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "deg. C.",.legend_show = F
+      )
+
+plotM <- list(pQ1,pQ2,pQ3,pQ4)
+cowplot::plot_grid(plotlist = plotM,nrow = 1,ncol = 4)
+```
+
+```{r ChirchikMeteoStanzaP, message=FALSE, warning=FALSE, echo=FALSE, fig.cap="Available decadal and monthly data records from different meteorological stations that are located in the zone of runoff formation. As in the case of temperature, the precipitation record at the Kyrgyz Chatkal Meteo Station shows a large data gap in the post-transition years."}
+data %>% 
+  filter(type=='P') %>% 
+  group_by(type,code,station,resolution) %>% 
+  plot_time_series(date,
+                   data,
+                   .facet_ncol      = 1,
+                   .interactive     = FALSE, 
+                   .smooth          = FALSE,
+                   .title           = '')
+```
+
+```{r quarterlyMeanMinMaxT,echo=FALSE,message=FALSE,warning=FALSE,fig.cap="Development of mean, minimum and maximum quarterly temperatures for Q1 at Station 38462"}
+
+quarterP_mean <- data %>% filter(type == "P" & code=="38464") %>% 
+  dplyr::select(date,data,code,river)  %>% 
+  summarise_by_time(.date_var = date, .by = "quarter",value = mean(data,na.rm = TRUE)) %>% 
+  rename(mean = value) %>% na.omit()
+
+quarterP_max <- data %>% filter(type == "P" & code=="38464") %>% 
+  dplyr::select(date,data,code,river)  %>% 
+  summarise_by_time(.date_var = date, .by = "quarter",value = max(data,na.rm = TRUE)) %>% 
+  rename(max = value) %>% na.omit()
+
+quarterP_min <- data %>% filter(type == "P" & code=="38464") %>% 
+  dplyr::select(date,data,code,river)  %>% 
+  summarise_by_time(.date_var = date,.by = "quarter",value = min(data,na.rm = TRUE)) %>% 
+  rename(min = value) %>% na.omit()
+
+quarterP <- left_join(quarterP_mean,quarterP_max,by='date')
+quarterP <- left_join(quarterP,quarterP_min,by='date')
+
+quarterP <- 
+  bind_cols(quarterP,quarterP$date %>% tsibble::yearquarter()) %>% rename(quarter='...5')
+quarterP$quarter <- quarterP$quarter %>% format(.,format = "Q%q")
+
+q1P <- quarterP %>% filter(quarter=='Q1') %>% dplyr::select(-quarter) %>% pivot_longer(-date)
+q2P <- quarterP %>% filter(quarter=='Q2') %>% dplyr::select(-quarter) %>% pivot_longer(-date)
+q3P <- quarterP %>% filter(quarter=='Q3') %>% dplyr::select(-quarter) %>% pivot_longer(-date)
+q4P <- quarterP %>% filter(quarter=='Q4') %>% dplyr::select(-quarter) %>% pivot_longer(-date)
+
+pQ1 <- q1P  %>% #group_by(name) %>% 
+  plot_time_series(date,value,name,
+      .smooth = T, .smooth_degree = 1, .smooth_period = 'auto',
+      .title = "", .interactive = F, .facet_ncol = 1,
+      .x_lab = "year", .y_lab = "deg. C.",.legend_show = T
+      ) + theme(legend.position = c(0.1, 0.8))
+pQ2 <- q2P  %>% #group_by(name) %>% 
+  plot_time_series(date,value,name,
+      .smooth = T, .smooth_degree = 1, .smooth_period = 'auto',
+      .title = "", .interactive = F, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "mm / 10 days",.legend_show = F
+      )
+pQ3 <- q3P  %>% #group_by(name) %>% 
+plot_time_series(date,value,name,
+      .smooth = T, .smooth_degree = 1, .smooth_period = 'auto',
+      .title = "", .interactive = F, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "mm / 10 days", .legend_show = F
+      )
+pQ4 <- q4P  %>% na.omit() %>% #group_by(name) %>% 
+plot_time_series(date,value,name,
+      .smooth = T, .smooth_degree = 1, .smooth_period = 'auto',
+      .title = "", .interactive = F, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "mm / 10 days",.legend_show = F
+      )
+
+plotM <- list(pQ1,pQ2,pQ3,pQ4)
+cowplot::plot_grid(plotlist = plotM,nrow = 1,ncol = 4)
+```
+
+Investigate temperature precipitation link
+
+```{r}
+q1TP <- left_join(q1T ,q1P ,by=c('date','name')) %>% rename(T=value.x,P=value.y)
+p1 <- q1TP %>% na.omit() %>% ggplot(aes(x=T,y=P)) + geom_point() + geom_smooth(formula = y ~ x,method = "lm")
+q2TP <- left_join(q2T ,q2P ,by=c('date','name')) %>% rename(T=value.x,P=value.y)
+p2 <- q2TP %>% na.omit() %>% ggplot(aes(x=T,y=P)) + geom_point() + geom_smooth(formula = y ~ x,method = "lm")
+q3TP <- left_join(q3T ,q3P ,by=c('date','name')) %>% rename(T=value.x,P=value.y)
+p3 <- q3TP %>% na.omit() %>% ggplot(aes(x=T,y=P)) + geom_point() + geom_smooth(formula = y ~ x,method = "lm")
+q4TP <- left_join(q4T ,q4P ,by=c('date','name')) %>% rename(T=value.x,P=value.y)
+p4 <- q4TP %>% na.omit() %>% ggplot(aes(x=T,y=P)) + geom_point() + geom_smooth(formula = y ~ x,method = "lm")
+
+p <- list(p1,p4)
+cowplot::plot_grid(plotlist = p,nrow = 1,ncol = 2)
+
+```
+
+Investigate temperature discharge link
+
+```{r}
+q1TQ <- left_join(q1T ,q1Q ,by=c('date','name')) %>% rename(T=value.x,Q=value.y)
+p1 <- q1TQ %>% na.omit() %>% ggplot(aes(x=T,y=Q)) + geom_point() + geom_smooth(formula = y ~ x,method = "lm")
+q2TQ <- left_join(q2T ,q2Q ,by=c('date','name')) %>% rename(T=value.x,Q=value.y)
+p2 <- q2TQ %>% na.omit() %>% ggplot(aes(x=T,y=Q)) + geom_point() + geom_smooth(formula = y ~ x,method = "lm")
+q3TQ <- left_join(q3T ,q3Q ,by=c('date','name')) %>% rename(T=value.x,Q=value.y)
+p3 <- q3TQ %>% na.omit() %>% ggplot(aes(x=T,y=Q)) + geom_point() + geom_smooth(formula = y ~ x,method = "lm")
+q4TQ <- left_join(q4T ,q4Q ,by=c('date','name')) %>% rename(T=value.x,Q=value.y)
+p4 <- q4TQ %>% na.omit() %>% ggplot(aes(x=T,y=Q)) + geom_point() + geom_smooth(formula = y ~ x,method = "lm")
+
+p <- list(p1,p4)
+cowplot::plot_grid(plotlist = p,nrow = 1,ncol = 2)
+
+```
+
+Precipitation - Discharge Link
+
+```{r}
+q1PQ <- left_join(q1P,q1Q ,by=c('date','name')) %>% rename(P=value.x,Q=value.y)
+p1 <- q1PQ %>% na.omit() %>% ggplot(aes(x=P,y=Q)) + geom_point() + geom_smooth(formula = y ~ x,method = "lm")
+q2PQ <- left_join(q2P,q2Q ,by=c('date','name')) %>% rename(P=value.x,Q=value.y)
+p2 <- q2PQ %>% na.omit() %>% ggplot(aes(x=P,y=Q)) + geom_point() + geom_smooth(formula = y ~ x,method = "lm")
+q3PQ <- left_join(q3P,q3Q ,by=c('date','name')) %>% rename(P=value.x,Q=value.y)
+p3 <- q3PQ %>% na.omit() %>% ggplot(aes(x=P,y=Q)) + geom_point() + geom_smooth(formula = y ~ x,method = "lm")
+q4PQ <- left_join(q4P,q4Q ,by=c('date','name')) %>% rename(P=value.x,Q=value.y)
+p4 <- q4PQ %>% na.omit() %>% ggplot(aes(x=P,y=Q)) + geom_point() + geom_smooth(formula = y ~ x,method = "lm")
+
+p <- list(p1,p2,p3,p4)
+cowplot::plot_grid(plotlist = p,nrow = 1,ncol = 4)
+
+```
+
+Q1 versus Q2
+
+```{r}
+q1QQ <- q1Q %>% add_column(Q2=q2Q$value) %>%  rename(Q1=value)
+p1 <- q1QQ %>% na.omit() %>% ggplot(aes(x=Q1,y=Q2)) + geom_point() + geom_smooth(formula = y ~ x,method = "loess")
+
+q2QQ <- q2Q %>% add_column(Q3=q3Q$value) %>%  rename(Q2=value)
+p2 <- q2QQ %>% na.omit() %>% ggplot(aes(x=Q2,y=Q3)) + geom_point() + geom_smooth(formula = y ~ x,method = "loess")
+
+# q3QQ <- q3Q %>% add_column(Q4=q4Q$value) %>%  rename(Q3=value)
+# p3 <- q3QQ %>% na.omit() %>% ggplot(aes(x=Q3,y=Q4)) + geom_point() + geom_smooth(formula = y ~ x,method = "loess")
+
+
+p <- list(p1,p2)
+cowplot::plot_grid(plotlist = p,nrow = 1,ncol = 2)
+```
+
+### Discharge Estimation from the Ungauged Kosku Tributary {#CRB_KoskuDischargeContribution}
+
+Before the closure of the Charvak dam and the subsequent filling of the reservoir in and after 1974, the HydroMet experts started a detailed 3-years measurement comparison campaign at Charvak gauge and at gauge 16279 in Khudaydod (see Figure \@ref(fig:ChirchikRiverOverview)). Both are located on Chatkal river. Charvak gauge had to be decommissioned after the closure of the dam because it got flooded.
+
+The confluence of Koksu river with Charvak river is just upstream of the former Charvak gauge. Using daily data from the measurement comparisons campaign, the HydroMet experts could then relate Charvak gauge discharge to Khudaydod discharge using a linear relationship. At the same time, they were now able to relate Koksu discharge to the discharge at Chatkal River in Khudaydod in the following manner
+
+$$
+Q_{Koksu} \propto Q_{Charvak} - Q_{16279}
+$$
+
+We show the procedure here. After loading the `riversCentralAsia` Package as shown above, the relevant daily data from 01/01/1965 - 31/12/1967 can be loaded.
+
+```{r}
+KoksuDischargeDerivation <- riversCentralAsia:::KoksuDischargeDerivation # load Data
+```
+
+Please not that, unless otherwise mentioned, all data from discharge meteorological stations utilized in this book are from the Uzbek HMS.
+
+The data is stored in *long format*, meaning that measurements in time and for the two gauging stations are just stacked on top of each other in one long table. For the purpose here, we prefer the *wide format* where we have one date column with unique dates and then the data listed for each station in corresponding columns.
+
+```{r}
+KoksuDischarge_wide <- KoksuDischargeDerivation %>% pivot_wider(id_cols = 'date',values_from = 'data',names_from = "code")
+KoksuDischarge_wide
+```
+
+The runoff contribution of Koksu can be calculated in a simple manner.
+
+```{r}
+# Adding Koksu discharge to the dataframe
+KoksuDischarge_wide <- KoksuDischarge_wide %>% mutate(Koksu = Charvak - `16279`)
+KoksuDischarge_wide
+```
+
+The relationship can now be visualized.
+
+```{r}
+# and visualize
+ggplot(KoksuDischarge_wide, aes(`16279`, Koksu)) +
+  geom_point() + 
+  xlab(bquote('Discharge at Gauge 16279 Khudaydod in'~m^3/s)) +
+  ylab (bquote('Koksu river discharge in'~m^3/s))
+```
+
+We can perform a linear regression to related discharge at Khudaydod to the one at Koksu. The coefficients of the linear regression can be obtained in the following way:
+
+```{r}
+lm <- lm(Koksu ~ 0 + `16279`,KoksuDischarge_wide)
+summary(lm)
+```
+
+Please note, in the specification of the linear model we add the 0 term to force the regression through the origin. Hence, the discharge of Koksu River can be estimated to be
+
+$$
+Q_{Koksu} = 0.145 * Q_{Khudaydod}
+$$
