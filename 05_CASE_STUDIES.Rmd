@@ -167,9 +167,9 @@ With the values provided in the table above, the discharge index $Q/P$ is 68.5 %
 
 ### Hydrology {#GuntHyrology}
 
-For the analysis of the key hydro-climatological characteristics, we first load the available decadal and monthly station data[^pi_chap3_casestudy_chirchikriver-1]. The data used in this Chapter can be accessed on the public GitHub repository [Applied Modeling of Hydrological Systems in Central Asia](https://github.com/tobiassiegfried/Applied_Hydrological_Modeling_Bookdown) and the ./data/AmuDarya/Gunt/ folder in there.
+For the analysis of the key hydro-climatological characteristics, we first load the available decadal and monthly station data[^case_studies-1]. The data used in this Chapter can be accessed on the public GitHub repository [Applied Modeling of Hydrological Systems in Central Asia](https://github.com/tobiassiegfried/Applied_Hydrological_Modeling_Bookdown) and the ./data/AmuDarya/Gunt/ folder in there.
 
-[^pi_chap3_casestudy_chirchikriver-1]: The data was kindly provided by the Tajik Hydrometeorological Agency.
+[^case_studies-1]: The data was kindly provided by the Tajik Hydrometeorological Agency.
 
 First, we load the available data into `R`.
 
