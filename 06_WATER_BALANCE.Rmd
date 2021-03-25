@@ -1,0 +1,111 @@
+# (PART) Part II Applied Modeling {#Part2-Applied-Modeling .unnumbered}
+
+# Budyko-Type Long-term Water Balance Modeling {#ManualWaterBalance}
+
+In this Chapter, we are looking at watersheds from a long-term perspective and want to understand the key processes that lead to a partitioning of precipitation into evaporation and runoff.
+
+```{r genericRiverBasin,fig.cap="The generic river basin. Not yet final Figure, needs to be improved since E is missing.",echo = FALSE}
+knitr::include_graphics('_bookdown_files/Chap4-ManualWaterBalance-Figures/GenericRiverBasin_lr.jpg')
+```
+
+## Derivation of the Budyko Relationship {#BudykoDerivation}
+
+The general water balance for a catchment can be written as
+
+$$
+Q = P - E + \Delta S 
+(\#eq:WB1)
+$$
+
+where $P$ is precipitation in mm, $E$ is evapotranspiration in mm, $\Delta S$ is net storage and $Q$ is specific discharge in mm. Over hydrological years and longer time scales, we expect $\Delta S$ to be 0. Hence, the above Equation \@ref(eq:WB1) can be rewritten as
+
+$$
+Q = P - E 
+(\#eq:WB2)
+$$
+
+Dividing by $P$, we get
+
+$$
+\frac{Q}{P} = 1 - \frac{E}{P} 
+(\#eq:WB3)
+$$
+
+where $Q/P$ can be called the runoff index and $E/P$ is the evaporation index or evaporative fraction. Note that this equation does not distinguish between solid (smow) and liquid (rain) precipitation. How to adapt this equation to high mountain catchments where a substantial fraction of precipitation falls as snow is discussed in the next Section \@ref(BudykoSnowEffects) below.
+
+In the following derivation of the relationship between a catchment's aridity index and the evaporation fraction, we follow [@ARORA2002164].
+
+The surface energy balance can be written as
+
+$$
+R_{N} = H_{S} + H_{L} + \Delta H_{G} 
+(\#eq:EB1)
+$$
+
+where $R_{N}$ is the net radiation [in W/m^2^ = kg/s^3^], $H_{S}$ is the upward sensible heat flux, $H_{L}$ is the latent heat flux and $\Delta H_{G}$ the net ground heat flux. It should be noted that $H_{L} = L \cdot E$ where $L = 2.5 \cdot 10^{6}$ J/kg [= m^2^/s^2^] is the latent heat of vaporization and $E$ is the actual evaporation in [m/s]. As in the case of the water balance, at the annual or longer time scales, we can neglect the storage effect and get
+
+$$
+R_{N} = H_{S} + L \cdot E
+(\#eq:ltEB)
+$$
+
+With the Bowen ratio defined as the fraction of the sensible heat flux divided by the latent heat flux, i.e.
+
+$$
+\gamma = \frac{H_{S}}{H_{L}} = \frac{H_{S}}{L \cdot E }
+(\#eq:bowenRatio)
+$$
+
+and by rearranging the terms, the long-term energy balance in Equation \@ref(eq:ltEB) can simply be rewritten as
+
+$$
+R_{n} = (1 + \gamma)L E
+(\#eq:EB2)
+$$
+
+Using the fact that $R_{n} = L E_{pot}$, where $E_{pot}$ is the potential evaporation, and dividing by precipitation, we can rewrite the above Equation \@ref(eq:EB2) as
+
+$$
+\frac{E_{pot}}{P} = (1 + \gamma) \frac{E}{P}
+(\#eq:aridityIndex)
+$$
+
+where the left-hand side is called the aridity index, i.e. $\phi = E_{pot}/P$ and $E/P$ is called the evaporative fraction or evaporation index. With this, Equation \@ref(eq:WB3) from above can be written as a function of the Bowen ratio and the aridity index, i.e.
+
+$$
+\frac{E}{P} = 1 - \frac{Q}{P} = \frac{\phi}{(1 + \gamma)}
+(\#eq:WBEB1)
+$$
+
+$Q/P$ is again the runoff index. Since the Bowen ratio is also water and energy limited, it too is a function of the aridity index and we can thus rewrite Equation \@ref(eq:WBEB1) to
+
+$$
+\frac{E}{P} = 1 - \frac{Q}{P} = F[\phi]
+(\#eq:Budyko1)
+$$
+
+Following the groundbreaking work by Budyko and others, many expressions have been developed for $F[\phi]$ to describe the long-term catchment water balance (citations...). Here, we use the Choudhury equation which relates the aridity index $\phi$ to the evaporative fraction $E/P$ in the following way
+
+```{=tex}
+\begin{equation}
+  \frac{E}{P} = \left[ 1 + \left( \frac{E_{pot}}{P} \right) ^{-n} \right]^{1/n}
+  (\#eq:Choudhury1)
+\end{equation}
+```
+where $n$ is a catchment-specific parameter which accounts for factors such as vegetation type and coverage, soil type and topography, etc. (see e.g. [@Zhang2015] for more information).
+
+## Effects of Snow Ratio on Annual Runoff within the Budyko Framework {#BudykoSnowEffects}
+
+Source article: [@Zhang2015]
+
+## Hydrological Response to a Changing Climate {#BudykoClimateChangeResponseModel}
+
+Source articles: @Ning2018, [@Zhou2016].
+
+## Application to Central Asian River Basins {#BudykoClimateChangeModelCentralAsia}
+
+### Data
+
+### Model
+
+### Conclusions
