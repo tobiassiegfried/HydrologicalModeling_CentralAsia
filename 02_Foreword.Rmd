@@ -1,7 +1,7 @@
 # Foreword {#foreword .unnumbered}
 
 ```{r frontFigureForeword, echo = FALSE}
-knitr::include_graphics('_bookdown_files/Preface-Figures/NearSamarkandOasis.jpeg')
+knitr::include_graphics('_bookdown_files/FIG_PREFACE/NearSamarkandOasis.jpeg')
 ```
 
 **Oasis between Samarkand and Buchara. Source: Tobias Siegfried, hydrosolutions GmbH.**

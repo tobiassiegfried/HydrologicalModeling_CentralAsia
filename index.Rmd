@@ -22,7 +22,7 @@ Welcome to the online course book on Central Asian hydrology and the mathematica
 The book adopts an open-source philosophy and promotes the use of open-source data and software. The online version is hosted at <https://tobiassiegfried.github.io/Applied_Hydrological_Modeling_Bookdown/>, maintained via GitHub and **currently work in progress**.
 
 ```{r titlePix, echo = FALSE}
-knitr::include_graphics('_bookdown_files/Title-Figures/naryn.jpeg')
+knitr::include_graphics('_bookdown_files/FIG_TITLE/naryn.jpeg')
 ```
 
 ```{r include=FALSE}

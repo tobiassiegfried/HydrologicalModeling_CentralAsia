@@ -5,7 +5,7 @@
 In this Chapter, we are looking at watersheds from a long-term perspective and want to understand the key processes that lead to a partitioning of precipitation into evaporation and runoff.
 
 ```{r genericRiverBasin,fig.cap="The generic river basin. Not yet final Figure, needs to be improved since E is missing.",echo = FALSE}
-knitr::include_graphics('_bookdown_files/Chap4-ManualWaterBalance-Figures/GenericRiverBasin_lr.jpg')
+knitr::include_graphics('_bookdown_files/FIG_WATER_BALANCE/GenericRiverBasin_lr.jpg')
 ```
 
 ## Derivation of the Budyko Relationship {#BudykoDerivation}

@@ -1,7 +1,7 @@
 # Hydrological Systems in Central Asia {#HydrologicalSystems}
 
 ```{r Front_Figure_HydroSystems, echo = FALSE}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/NarynRiver.jpeg')
+knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/NarynRiver.jpeg')
 ```
 
 **Upstream Naryn, Kyrgyzstan. Source: Tobias Siegfried, hydrosolutions GmbH.**
@@ -15,7 +15,7 @@ Central Asia is spreading over approximately 4 million km^2^, including the terr
 [^pi_chap2_hydrological_systems-1]: namely the distribution of sand and loess relief types, where the former are more permeable and the latter contain more moisture
 
 ```{r riversMap, echo = FALSE, fig.cap = 'Map highlighting the Central Asian rivers network (rivers are shown in blue color). The dense river network in the mountainous areas starkly contrasts with the sparse one in the plains. Source: Zoï Environment Network.'}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/waterFormationUseCentralAsiaZoi.jpg')
+knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/waterFormationUseCentralAsiaZoi.jpg')
 ```
 
 All Central Asian river basins are endorheic with no water draining out of the region but only evaporating back to the atmosphere. This emphasizes the importance of moisture transfer as an important mechanism in the region region since the formation of substantial watercourses in the mountains is followed by their complete dissipation in the plains, including in the irrigated oases and the terminal lakes, i.e. the Aral Sea and Lake Balkash.
@@ -33,11 +33,11 @@ Using data of the ERA-Interim reanalysis, [@gerlitz_2018] classifies 8 weather t
 Generally, it can be observed that configurations that are associated with a Rossby trough over Central Asia lead to an intensification of westerly moisture fluxes (WT 3, WT 7, and WT 8). If there is, however, a Rossby ridge type configuration as shown in WT 1, WT 2, and WT 4 panels of Figures \@ref(fig:tempWT) and \@ref(fig:precipWT), moisture fluxes are northward-shifted and precipitation suppressed [@gerlitz_2018].
 
 ```{r tempWT, echo = FALSE, fig.cap = 'Composite maps illustrating the averaged anomalies of ERA-Interim/Land 6-hourly temperature for each weather type (WT 1 - WT 8). Values are depicted in standard deviations for each grid cell, respectively. Arrows indicate anomalies of the 500-hPa ERA-Interim wind field [@gerlitz_2018].'}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/fig_WT_T_Anomalies.png')
+knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/fig_WT_T_Anomalies.png')
 ```
 
 ```{r precipWT, echo = FALSE, fig.cap = 'Composite maps illustrating the averaged anomalies of ERA-Interim/Land 6-hourly precipitation sums for each weather type. Values are depicted relative to the seasonal mean 6-hourly precipitation sum ((100)^-1^) for each grid cell, respectively. Arrows indicate anomalies of vertically integrated moisture fluxes [@gerlitz_2018].'}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/fig_WT_T_Anomalies.png')
+knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/fig_WT_T_Anomalies.png')
 ```
 
 Precipitation is extremely unevenly distributed in the region. 20% of the plain area receives less than 100 mm, while 91% of the territory receives less than 300 mm of precipitation a year with an overall average of 173 mm. The mountains are thus an important climatological and hydrological factor, since they are the places where the water condensates and where the rivers and groundwater originate. Although the range of precipitation levels is wide (60 mm - 2'500 mm), the mountains receive on average more than three times more precipitation than the plains, and the low temperatures favor its accumulation in the solid state [@shults_RiversOfMiddleAsia].
@@ -134,7 +134,7 @@ To summarize, it is clear that in the area of runoff formation, $p>e$, in the ar
 The process of runoff formation is critically determined by the generation of direct runoff from liquid precipitation and the melting of snow and ice over the course of a hydrological year. Considering carefully the individual components for basins under consideration is important in order to properly understand the runoff regimes of individual rivers and for conceptualizing key processes for mathematical modeling.
 
 ```{r ZonesOfRunoffFormation, echo = FALSE, fig.cap = 'Map of the upper Syr Darya and Amu Darya catchments. The catchments are outlined. Colors encode topographic height. Basin outlets (red dots) are chosen to correspond to the confluence of the two main rivers for each catchment. Topographic data is from [@USGS_2020].'}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/fig_AmuSyrDarya.png')
+knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/fig_AmuSyrDarya.png')
 ```
 
 First, we study the role of glacier melt. For this, it is instructive to start to look at the condition of discharge formation in the Amu Darya and Syr Darya basins (see Figure \@ref(fig:ZonesOfRunoffFormation)). More specifically, we compare the two main subcatchments of the Vakhsh and Pyandzh Rivers in the Amu Darya and the Naryn and Kara Darya catchments in the Syr Darya[^pi_chap2_hydrological_systems-2]. In the first two reservoirs, the mountains exceeding 5'000 m occupy 6.2% of their area, and the mountains higher than 4'000 m --- 42%, in case of reservoirs of the second two rivers, the mountains exceeding 5'000 m occupy less than 1% of their area and the ones with altitudes over 4'000 m --- only 4%. Figure \@ref(fig:AmuSyrDaryaHypsography) shows the basins' hypsographic curves.
@@ -144,19 +144,19 @@ First, we study the role of glacier melt. For this, it is instructive to start t
 Even if we take into account that in the case of the basins of Pyandzh and Vakhsh the snow line is on average located at the height of 4'600 m --- 4'500 m and in case of the basins of Naryn and Kara Darya at 4'000 m - 3'900 m, 19% --- 22% of the reservoirs of Pyandzh and Vakhsh is located above the snow line, and in case of reservoirs of Naryn and Kara Darya it is only 4% --- 5%. The role of glaciers in the annual distribution of runoff is thus more substantial in the case of the Amu Darya as compared to the Syr Darya. And to come to an informed conclusion, one has to take into account all land ice features, including their altitude.
 
 ```{r AmuSyrDaryaHypsography, echo = FALSE, fig.cap = 'Hypsographic curves of the upper Syr Darya and Amu Darya catchments. The SRTM topographic model was used for the calculation of the curves [@USGS_2020].'}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/fig_AmuSyrDarya_HypsographicCurves.png')
+knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/fig_AmuSyrDarya_HypsographicCurves.png')
 ```
 
 Data on land ice can be obtained from the Global Land Ice Measurements from Space glacier database GLIMS [@glims_global]. The Global Land Ice Measurements from Space (GLIMS) project at NSIDC has implemented a database of glacier outlines from around the world and other information about glaciers that includes the metadata on how those outlines were derived. At \<www.glims.org\>, one can download outlines and metadata for glaciers in a choice of different formats, including KML (for viewing in Google Earth), ESRI shapefiles, GMT (Generic Mapping Tools), MapInfo, or GML (Geography Markup Language). Figure \@ref(fig:AmuDaryaGlaciers) shows a sample visualization of the GLIMS data for the zone of runoff formation of the Amu Darya. The data will also be utilized in Chapter @ref(\#HydrologicalSystems) below to obtain good ideas of the subcatchments' glaciation levels.
 
 ```{r AmuDaryaGlaciers, echo = FALSE, fig.cap = 'Visualization of the GLIMS data glaciation in the Vaksh-Pyandzh basin. The light blue shaded polygons show land ice on top of the underlying digital elevation model.'}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/fig_VakshPyandz_GLIMS.png')
+knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/fig_VakshPyandz_GLIMS.png')
 ```
 
 Figure \@ref(fig:elDistGlaciers) shows the distribution of mean glacier elevations of the Randolph Glacier Inventory 6.0 dataset in the GLIMS database. The center of mass for the Amu Darya is at 4'827 masl whereas it is at 4'110 masl for the Syr Darya.
 
 ```{r elDistGlaciers, echo=FALSE, fig.cap='Distribution of mean glacier elevations as extract from the GLIMS database. Only data from the Randolph Glacier Inventory 6.0 was used as subset of the complete GLIMS record. For the computation of the mean elevation, SRTM data was utilized.'}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/fig_GlacierElevationDistribution.png')
+knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/fig_GlacierElevationDistribution.png')
 ```
 
 Since the GLIMS database contains contains the shapes of glaciers as geometric features, we can calculate easily calculate areas that the individual glaciers cover and then utilize scaling relationships between surface area and volume to estimate total ice storage in the individual Central Asian catchments. [@Aizen_2007] reports such scaling relationship for the Central Asian region. As a function of glacier area, they are

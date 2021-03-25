@@ -27,7 +27,7 @@ library(units)
 ```
 
 ```{r Front_Figure_Chirchick, echo = FALSE}
-knitr::include_graphics('_bookdown_files/Chap3-ChirchikRB-Figures/CharvakReservoir_lr.jpeg')
+knitr::include_graphics('_bookdown_files/FIG_CASE_STUDIES/CharvakReservoir_lr.jpeg')
 ```
 
 **Charvak reservoir in the Chirchik river basin.. Source: Tobias Siegfried, hydrosolutions GmbH.**
@@ -357,7 +357,7 @@ The river is formed by the confluence of the Chatkal and the Pskem rivers. They 
 Below the Charvak hydroelectric power station, the river water gets diverted in numerous canals for irrigation in and around the Tashkent oasis and for interbasin water transfer to the Akhangaran basin in the south. As part of the Chirchik-Bozsuu cascade, several smaller dams along the river serve hydropower production and irrigation purposes.
 
 ```{r ChirchikRiverOverview, echo = FALSE, fig.cap = 'Overview over the Chirchik river basin with tributaries and the location of the main gauging stations in the zone of runoff formation and near the confluence with the Syr Darya.'}
-knitr::include_graphics('_bookdown_files/Chap3-ChirchikRB-Figures/ChirchikRiverBasin_Annotated_lr.jpg')
+knitr::include_graphics('_bookdown_files/FIG_CASE_STUDIES/ChirchikRiverBasin_Annotated_lr.jpg')
 ```
 
 Figure \@ref(fig:ChirchikRiverOverview) shows a comprehensive overview of the Chirchik river basin and its tributaries as well as relevant modern gauging stations. Gauges are indicated with the semi-round shapes and the corresponding five digit official code as utilized by the Uzbek Hydrometeorological Service (HMS) indicated. The virtual gauge is not a real gauge in the sense that reservoir inflow is calculated from all contributing tributary flow components, i.e. Chatkal river, Pskem river, Nauvalisoy and Koksu Rivers.
@@ -491,7 +491,7 @@ The seasonality with the spring and summer runoff peaks is striking in all the r
 where Ugam is the lowest lying and Pskem catchment the highest catchment (see also Chapter \@ref(HydrologicalSystems) for more information). Figure \@ref(fig:ChirchikRiverHypsometricCurves) shows the hypsometric curves of the main tributaries to the Chirchik River.
 
 ```{r ChirchikRiverHypsometricCurves, echo = FALSE, fig.cap = 'Hypsometric Curves of the tributaries to the Chirchik River Basin.'}
-knitr::include_graphics('_bookdown_files/Chap3-ChirchikRB-Figures/hypsometric_Curves.jpg')
+knitr::include_graphics('_bookdown_files/FIG_CASE_STUDIES/hypsometric_Curves.jpg')
 ```
 
 Using a LOESS smoother, we can remove discharge time series seasonality and catch a glimpse of the underlying longterm trends. This is shown for gauging station 16294, i.e. the inflow to the Charvak Reservoir, in Figure \@ref(fig:lttCharvakReservoir16924). If anything, a slightly increasing trend in mean discharge can be observed over the last 40 years. We will further discuss this finding also in the context of the analysis of the meteorological data record in the next Section.
