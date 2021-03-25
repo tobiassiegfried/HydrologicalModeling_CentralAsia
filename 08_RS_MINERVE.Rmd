@@ -1,4 +1,4 @@
-# Hydrological-Hydraulic Modeling {#HydroModelsPhysicalModels}
+# Hydrological-Hydraulic Modeling {#RSMinerveMODELS}
 
 Hydrological-hydraulic models are used for different purposes, including for the design of basin plans while taking into consideration different development options, for the study of effective water resources management schemes while taking into consideration the different types of sectoral users and uses of water in a basin (ideally also including minimal environmental flows), and for the detailed study of basin-scale climate impacts and their repercussions.
 
