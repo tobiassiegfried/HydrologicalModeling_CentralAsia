@@ -780,7 +780,7 @@ $$
 y_{t} = \beta_{0} + \beta_{1} \delta_{t}^{Qtr2} + \beta_{2} \delta_{t}^{Qtr3} + \beta_{3} \delta_{t}^{Qtr4} + \epsilon_{t}
 $$
 
-Using 'one hot encoding', we include only N-1 (here, 3) variables out of the N (here,4) in the regression because we can safely assume that if we are in Quarter 4, all the other indicator variables are simply 0. If we are in quarter 1 (Qtr1), the model would just be
+Using 'one hot encoding', we include only N-1 (here, 3) variables out of the N (here,4) in the regression because we can safely assume that if we are in Quarter 4, all the other indicator variables are simply 0. If we are in quarter 1 (Qtr1), the model would just be 
 
 $$
 y_{t} = \beta_{0} + \epsilon_{t}
