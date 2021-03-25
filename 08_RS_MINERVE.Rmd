@@ -7,7 +7,7 @@ This Chapter introduces combined hydrologic and hydraulic modeling using the fre
 [^rs_minerve-1]: The reader is advised to consult the user manual and familiarizes himself or herself with the walk through examples that are discussed and presented there. They give a solid first hands-on introduction about the basic functionalities of the modeling environment.
 
 ```{r rsminerveModelPreview,echo = FALSE, fig.cap = 'Screenshot of an RSMinerve model setup for Gunt river basin.'}
-knitr::include_graphics('_bookdown_files/Chap7-PhysicalModels-Figures/rsminerveModelPreview_lr.png')
+knitr::include_graphics('_bookdown_files/FIG_RS_MINERVE/rsminerveModelPreview_lr.png')
 ```
 
 It should be noted that other modeling packages exist for hydrological-hydraulic modeling. Among others, these include
@@ -104,7 +104,7 @@ Figure \@ref(fig:GuntGISRSMinerve) shows the four subbasins. After the confluenc
 As described in the RSMinerve User Manual in Chapter 5 [@rsminerve_um], the following three shapefiles need to be prepared for later loading into RSMinerve: subbasins.shp, junctions.shp and rivers.shp (see Figure \@ref(fig:requiredGISInputFiles)).
 
 ```{r requiredGISInputFiles,echo = FALSE, fig.cap = 'Required GIS input files for RSMinerve. See corresponding user manual for more information.'}
-knitr::include_graphics('_bookdown_files/Chap7-PhysicalModels-Figures/required_GIS_Input_Files.png')
+knitr::include_graphics('_bookdown_files/FIG_RS_MINERVE/required_GIS_Input_Files.png')
 ```
 
 The shapefile attributes that you downloaded of the required data can easily be displayed. First, we analyze the subbasins \`gunt_elBands_shp_utm\` file. The file contains the following attributes as per the requirements specified in Figure \@ref(fig:requiredGISInputFiles): name and junct_down. The attributes Z, ModelGuid and *geometry* are additional fields. The field *Z* that contains information of the mean elevation of the subbasin. Note that the shapefile is does not only contain the shape of the four subbasins Alishu, Tokusbulak, Gunt and Shakdara but also the elevation bands of each subbasin.
@@ -162,7 +162,7 @@ gunt_rivers_shp_utm
 As described in the RSMinerve user manual in Chapter 5 there, these three shapefiles can then be loaded into RSMinerve and automatically translated into an RSMinerve model via the `Creation` option [@rsminerve_um]. In Figure \@ref(fig:RSMinerveGuntModelCreation), a screen shot is shown where in a somewhat arbitrary manner, all subbasins got assigned individual HBV models. Note the highlighted `Creation` button.
 
 ```{r RSMinerveGuntModelCreation,echo = FALSE,fig.cap = 'Using the `Creation` Menu, the information from the shapefiles gets translated into a number of interlinked subcatchment and elevation band-specific models.'}
-knitr::include_graphics('_bookdown_files/Chap7-PhysicalModels-Figures/rsminerveGuntModelCreation')
+knitr::include_graphics('_bookdown_files/FIG_RS_MINERVE/rsminerveGuntModelCreation')
 ```
 
 Since the shapefile containing the elevation bands for each subbasin also contains mean subbasin elevation, we can extract the Altitude (Z) from the corresponding feature. Similarly, the area of the subbasins and the length of the rivers can all be computed from the shapefiles. The corresponding boxes should be ticked.
@@ -170,7 +170,7 @@ Since the shapefile containing the elevation bands for each subbasin also contai
 After these steps, the student can click the `Create Model` button in the lower left corner of the window and then switch to the `Model New` tab to examine the resulting model. A screen shot showing the results is shown in Figure \@ref(fig:RSMinerveGuntModelCreationResult).
 
 ```{r RSMinerveGuntModelCreationResult,echo = FALSE,fig.cap = 'The result of the GIS-based creation of the Gunt river basin model in RSMinerve. Note that even without proper arrangement of the individual model elements, the subbasins and their models are already visible.'}
-knitr::include_graphics('_bookdown_files/Chap7-PhysicalModels-Figures/rsminerveGuntModelCreationResult')
+knitr::include_graphics('_bookdown_files/FIG_RS_MINERVE/rsminerveGuntModelCreationResult')
 ```
 
 After rearranging the individual model elements and loading a background .jpeg-image (see Figure \@ref(fig:rsminerveModelPreview), the setup step has been completed.

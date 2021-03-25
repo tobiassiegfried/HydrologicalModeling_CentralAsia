@@ -22,7 +22,7 @@ Welcome to the online course book on Central Asian hydrology and the mathematica
 The book adopts an open-source philosophy and promotes the use of open-source data and software. The online version is hosted at <https://tobiassiegfried.github.io/Applied_Hydrological_Modeling_Bookdown/>, maintained via GitHub and **currently work in progress**.
 
 ```{r titlePix, echo = FALSE}
-knitr::include_graphics('_bookdown_files/Title-Figures/naryn.jpeg')
+knitr::include_graphics('_bookdown_files/FIG_TITLE/naryn.jpeg')
 ```
 
 ```{r include=FALSE}
@@ -55,7 +55,7 @@ Zurich, February 2021
 # Foreword {#foreword .unnumbered}
 
 ```{r frontFigureForeword, echo = FALSE}
-knitr::include_graphics('_bookdown_files/Preface-Figures/NearSamarkandOasis.jpeg')
+knitr::include_graphics('_bookdown_files/FIG_PREFACE/NearSamarkandOasis.jpeg')
 ```
 
 **Oasis between Samarkand and Buchara. Source: Tobias Siegfried, hydrosolutions GmbH.**
@@ -81,7 +81,7 @@ The R code to produce figures, conduct analyses as well carry out empirical mode
 # Short History of Water in Central Asia {#ShortHistory}
 
 ```{r construction_BFC, echo = FALSE}
-knitr::include_graphics('_bookdown_files/Chap1-Introduction-Figures/still_BFC_Construction.jpg')
+knitr::include_graphics('_bookdown_files/FIG_INTRODUCTION/still_BFC_Construction.jpg')
 ```
 
 **Still from a propaganda film documenting the construction of the Big Fergana Canal. The canal was constructed in 1939 constructed over a period of 45 days and a length of approx. 280 kilometers. Source: Youtube**
@@ -103,11 +103,11 @@ The conquest of nature, as per the thinking of the tsarist Russian government in
 <!-- I believe that the Czarist invaders were driven by scientifically 'enlightened' engineering. The same applied to the Homo Sovieticus who now extended engineering also in the social practices. Yet, despite its overwhelming power and oversight, the empire was never able to control every aspect of life of the indigenous people. Was it maybe that this enlightened science had to adapt over time, adapt in the sense as described above, to comply to Stalin's Planvorgaben and so became to rely on fairy tales? Additionally, was it that the 'Western' technology and science got adapted to the local colonized conditions and became a complex process of negotiation, contestation, cooptation, and resistance at work" (Cited from Baber in Obertreichs Book)? -->
 
 ```{r geographyCentralAsia, echo = FALSE, fig.cap = "Geography of the Central Asia Region. Source: Zoï Environment Network."}
-knitr::include_graphics('_bookdown_files/Chap1-Introduction-Figures/geography_CentralAsia.jpg')
+knitr::include_graphics('_bookdown_files/FIG_INTRODUCTION/geography_CentralAsia.jpg')
 ```
 
 ```{r waterFormationUse, echo = FALSE, fig.cap = "Water resources formation and use. The infographics river width is proportional to average discharge at the particular locations. The red arrows indicate water diversion from rivers into irrigation canals. The gray bands around the rivers in the downstream indicate their natural unaltered runoff. Also note the reuse of drainage water in the Syr Darya. Source: Zoï Environment Network."}
-knitr::include_graphics('_bookdown_files/Chap1-Introduction-Figures/WaterResourcesFormation&Use.jpg')
+knitr::include_graphics('_bookdown_files/FIG_INTRODUCTION/WaterResourcesFormation&Use.jpg')
 ```
 
 ## Post-Transition Development and Challenges {#PostTransitionDevelopmentsChallenges}
@@ -119,7 +119,7 @@ Political Changes: Waking up to a new Reality and Adverse Developments
 # Hydrological Systems in Central Asia {#HydrologicalSystems}
 
 ```{r Front_Figure_HydroSystems, echo = FALSE}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/NarynRiver.jpeg')
+knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/NarynRiver.jpeg')
 ```
 
 **Upstream Naryn, Kyrgyzstan. Source: Tobias Siegfried, hydrosolutions GmbH.**
@@ -133,7 +133,7 @@ Central Asia is spreading over approximately 4 million km^2^, including the terr
 [^pi_chap2_hydrological_systems-1]: namely the distribution of sand and loess relief types, where the former are more permeable and the latter contain more moisture
 
 ```{r riversMap, echo = FALSE, fig.cap = 'Map highlighting the Central Asian rivers network (rivers are shown in blue color). The dense river network in the mountainous areas starkly contrasts with the sparse one in the plains. Source: Zoï Environment Network.'}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/waterFormationUseCentralAsiaZoi.jpg')
+knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/waterFormationUseCentralAsiaZoi.jpg')
 ```
 
 All Central Asian river basins are endorheic with no water draining out of the region but only evaporating back to the atmosphere. This emphasizes the importance of moisture transfer as an important mechanism in the region region since the formation of substantial watercourses in the mountains is followed by their complete dissipation in the plains, including in the irrigated oases and the terminal lakes, i.e. the Aral Sea and Lake Balkash.
@@ -151,11 +151,11 @@ Using data of the ERA-Interim reanalysis, [@gerlitz_2018] classifies 8 weather t
 Generally, it can be observed that configurations that are associated with a Rossby trough over Central Asia lead to an intensification of westerly moisture fluxes (WT 3, WT 7, and WT 8). If there is, however, a Rossby ridge type configuration as shown in WT 1, WT 2, and WT 4 panels of Figures \@ref(fig:tempWT) and \@ref(fig:precipWT), moisture fluxes are northward-shifted and precipitation suppressed [@gerlitz_2018].
 
 ```{r tempWT, echo = FALSE, fig.cap = 'Composite maps illustrating the averaged anomalies of ERA-Interim/Land 6-hourly temperature for each weather type (WT 1 - WT 8). Values are depicted in standard deviations for each grid cell, respectively. Arrows indicate anomalies of the 500-hPa ERA-Interim wind field [@gerlitz_2018].'}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/fig_WT_T_Anomalies.png')
+knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/fig_WT_T_Anomalies.png')
 ```
 
 ```{r precipWT, echo = FALSE, fig.cap = 'Composite maps illustrating the averaged anomalies of ERA-Interim/Land 6-hourly precipitation sums for each weather type. Values are depicted relative to the seasonal mean 6-hourly precipitation sum ((100)^-1^) for each grid cell, respectively. Arrows indicate anomalies of vertically integrated moisture fluxes [@gerlitz_2018].'}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/fig_WT_T_Anomalies.png')
+knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/fig_WT_T_Anomalies.png')
 ```
 
 Precipitation is extremely unevenly distributed in the region. 20% of the plain area receives less than 100 mm, while 91% of the territory receives less than 300 mm of precipitation a year with an overall average of 173 mm. The mountains are thus an important climatological and hydrological factor, since they are the places where the water condensates and where the rivers and groundwater originate. Although the range of precipitation levels is wide (60 mm - 2'500 mm), the mountains receive on average more than three times more precipitation than the plains, and the low temperatures favor its accumulation in the solid state [@shults_RiversOfMiddleAsia].
@@ -252,7 +252,7 @@ To summarize, it is clear that in the area of runoff formation, $p>e$, in the ar
 The process of runoff formation is critically determined by the generation of direct runoff from liquid precipitation and the melting of snow and ice over the course of a hydrological year. Considering carefully the individual components for basins under consideration is important in order to properly understand the runoff regimes of individual rivers and for conceptualizing key processes for mathematical modeling.
 
 ```{r ZonesOfRunoffFormation, echo = FALSE, fig.cap = 'Map of the upper Syr Darya and Amu Darya catchments. The catchments are outlined. Colors encode topographic height. Basin outlets (red dots) are chosen to correspond to the confluence of the two main rivers for each catchment. Topographic data is from [@USGS_2020].'}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/fig_AmuSyrDarya.png')
+knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/fig_AmuSyrDarya.png')
 ```
 
 First, we study the role of glacier melt. For this, it is instructive to start to look at the condition of discharge formation in the Amu Darya and Syr Darya basins (see Figure \@ref(fig:ZonesOfRunoffFormation)). More specifically, we compare the two main subcatchments of the Vakhsh and Pyandzh Rivers in the Amu Darya and the Naryn and Kara Darya catchments in the Syr Darya[^pi_chap2_hydrological_systems-2]. In the first two reservoirs, the mountains exceeding 5'000 m occupy 6.2% of their area, and the mountains higher than 4'000 m --- 42%, in case of reservoirs of the second two rivers, the mountains exceeding 5'000 m occupy less than 1% of their area and the ones with altitudes over 4'000 m --- only 4%. Figure \@ref(fig:AmuSyrDaryaHypsography) shows the basins' hypsographic curves.
@@ -262,19 +262,19 @@ First, we study the role of glacier melt. For this, it is instructive to start t
 Even if we take into account that in the case of the basins of Pyandzh and Vakhsh the snow line is on average located at the height of 4'600 m --- 4'500 m and in case of the basins of Naryn and Kara Darya at 4'000 m - 3'900 m, 19% --- 22% of the reservoirs of Pyandzh and Vakhsh is located above the snow line, and in case of reservoirs of Naryn and Kara Darya it is only 4% --- 5%. The role of glaciers in the annual distribution of runoff is thus more substantial in the case of the Amu Darya as compared to the Syr Darya. And to come to an informed conclusion, one has to take into account all land ice features, including their altitude.
 
 ```{r AmuSyrDaryaHypsography, echo = FALSE, fig.cap = 'Hypsographic curves of the upper Syr Darya and Amu Darya catchments. The SRTM topographic model was used for the calculation of the curves [@USGS_2020].'}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/fig_AmuSyrDarya_HypsographicCurves.png')
+knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/fig_AmuSyrDarya_HypsographicCurves.png')
 ```
 
 Data on land ice can be obtained from the Global Land Ice Measurements from Space glacier database GLIMS [@glims_global]. The Global Land Ice Measurements from Space (GLIMS) project at NSIDC has implemented a database of glacier outlines from around the world and other information about glaciers that includes the metadata on how those outlines were derived. At \<www.glims.org\>, one can download outlines and metadata for glaciers in a choice of different formats, including KML (for viewing in Google Earth), ESRI shapefiles, GMT (Generic Mapping Tools), MapInfo, or GML (Geography Markup Language). Figure \@ref(fig:AmuDaryaGlaciers) shows a sample visualization of the GLIMS data for the zone of runoff formation of the Amu Darya. The data will also be utilized in Chapter @ref(\#HydrologicalSystems) below to obtain good ideas of the subcatchments' glaciation levels.
 
 ```{r AmuDaryaGlaciers, echo = FALSE, fig.cap = 'Visualization of the GLIMS data glaciation in the Vaksh-Pyandzh basin. The light blue shaded polygons show land ice on top of the underlying digital elevation model.'}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/fig_VakshPyandz_GLIMS.png')
+knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/fig_VakshPyandz_GLIMS.png')
 ```
 
 Figure \@ref(fig:elDistGlaciers) shows the distribution of mean glacier elevations of the Randolph Glacier Inventory 6.0 dataset in the GLIMS database. The center of mass for the Amu Darya is at 4'827 masl whereas it is at 4'110 masl for the Syr Darya.
 
 ```{r elDistGlaciers, echo=FALSE, fig.cap='Distribution of mean glacier elevations as extract from the GLIMS database. Only data from the Randolph Glacier Inventory 6.0 was used as subset of the complete GLIMS record. For the computation of the mean elevation, SRTM data was utilized.'}
-knitr::include_graphics('_bookdown_files/Chap2-HydrologicalSystems-Figures/fig_GlacierElevationDistribution.png')
+knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/fig_GlacierElevationDistribution.png')
 ```
 
 Since the GLIMS database contains contains the shapes of glaciers as geometric features, we can calculate easily calculate areas that the individual glaciers cover and then utilize scaling relationships between surface area and volume to estimate total ice storage in the individual Central Asian catchments. [@Aizen_2007] reports such scaling relationship for the Central Asian region. As a function of glacier area, they are
@@ -334,7 +334,7 @@ library(units)
 ```
 
 ```{r Front_Figure_Chirchick, echo = FALSE}
-knitr::include_graphics('_bookdown_files/Chap3-ChirchikRB-Figures/CharvakReservoir_lr.jpeg')
+knitr::include_graphics('_bookdown_files/FIG_CASE_STUDIES/CharvakReservoir_lr.jpeg')
 ```
 
 **Charvak reservoir in the Chirchik river basin.. Source: Tobias Siegfried, hydrosolutions GmbH.**
@@ -664,7 +664,7 @@ The river is formed by the confluence of the Chatkal and the Pskem rivers. They 
 Below the Charvak hydroelectric power station, the river water gets diverted in numerous canals for irrigation in and around the Tashkent oasis and for interbasin water transfer to the Akhangaran basin in the south. As part of the Chirchik-Bozsuu cascade, several smaller dams along the river serve hydropower production and irrigation purposes.
 
 ```{r ChirchikRiverOverview, echo = FALSE, fig.cap = 'Overview over the Chirchik river basin with tributaries and the location of the main gauging stations in the zone of runoff formation and near the confluence with the Syr Darya.'}
-knitr::include_graphics('_bookdown_files/Chap3-ChirchikRB-Figures/ChirchikRiverBasin_Annotated_lr.jpg')
+knitr::include_graphics('_bookdown_files/FIG_CASE_STUDIES/ChirchikRiverBasin_Annotated_lr.jpg')
 ```
 
 Figure \@ref(fig:ChirchikRiverOverview) shows a comprehensive overview of the Chirchik river basin and its tributaries as well as relevant modern gauging stations. Gauges are indicated with the semi-round shapes and the corresponding five digit official code as utilized by the Uzbek Hydrometeorological Service (HMS) indicated. The virtual gauge is not a real gauge in the sense that reservoir inflow is calculated from all contributing tributary flow components, i.e. Chatkal river, Pskem river, Nauvalisoy and Koksu Rivers.
@@ -798,7 +798,7 @@ The seasonality with the spring and summer runoff peaks is striking in all the r
 where Ugam is the lowest lying and Pskem catchment the highest catchment (see also Chapter \@ref(HydrologicalSystems) for more information). Figure \@ref(fig:ChirchikRiverHypsometricCurves) shows the hypsometric curves of the main tributaries to the Chirchik River.
 
 ```{r ChirchikRiverHypsometricCurves, echo = FALSE, fig.cap = 'Hypsometric Curves of the tributaries to the Chirchik River Basin.'}
-knitr::include_graphics('_bookdown_files/Chap3-ChirchikRB-Figures/hypsometric_Curves.jpg')
+knitr::include_graphics('_bookdown_files/FIG_CASE_STUDIES/hypsometric_Curves.jpg')
 ```
 
 Using a LOESS smoother, we can remove discharge time series seasonality and catch a glimpse of the underlying longterm trends. This is shown for gauging station 16294, i.e. the inflow to the Charvak Reservoir, in Figure \@ref(fig:lttCharvakReservoir16924). If anything, a slightly increasing trend in mean discharge can be observed over the last 40 years. We will further discuss this finding also in the context of the analysis of the meteorological data record in the next Section.
@@ -1186,7 +1186,7 @@ $$
 In this Chapter, we are looking at watersheds from a long-term perspective and want to understand the key processes that lead to a partitioning of precipitation into evaporation and runoff.
 
 ```{r genericRiverBasin,fig.cap="The generic river basin. Not yet final Figure, needs to be improved since E is missing.",echo = FALSE}
-knitr::include_graphics('_bookdown_files/Chap4-ManualWaterBalance-Figures/GenericRiverBasin_lr.jpg')
+knitr::include_graphics('_bookdown_files/FIG_WATER_BALANCE/GenericRiverBasin_lr.jpg')
 ```
 
 ## Derivation of the Budyko Relationship {#BudykoDerivation}
@@ -1330,7 +1330,7 @@ This Chapter introduces combined hydrologic and hydraulic modeling using the fre
 [^rs_minerve-1]: The reader is advised to consult the user manual and familiarizes himself or herself with the walk through examples that are discussed and presented there. They give a solid first hands-on introduction about the basic functionalities of the modeling environment.
 
 ```{r rsminerveModelPreview,echo = FALSE, fig.cap = 'Screenshot of an RSMinerve model setup for Gunt river basin.'}
-knitr::include_graphics('_bookdown_files/Chap7-PhysicalModels-Figures/rsminerveModelPreview_lr.png')
+knitr::include_graphics('_bookdown_files/FIG_RS_MINERVE/rsminerveModelPreview_lr.png')
 ```
 
 It should be noted that other modeling packages exist for hydrological-hydraulic modeling. Among others, these include
@@ -1427,7 +1427,7 @@ Figure \@ref(fig:GuntGISRSMinerve) shows the four subbasins. After the confluenc
 As described in the RSMinerve User Manual in Chapter 5 [@rsminerve_um], the following three shapefiles need to be prepared for later loading into RSMinerve: subbasins.shp, junctions.shp and rivers.shp (see Figure \@ref(fig:requiredGISInputFiles)).
 
 ```{r requiredGISInputFiles,echo = FALSE, fig.cap = 'Required GIS input files for RSMinerve. See corresponding user manual for more information.'}
-knitr::include_graphics('_bookdown_files/Chap7-PhysicalModels-Figures/required_GIS_Input_Files.png')
+knitr::include_graphics('_bookdown_files/FIG_RS_MINERVE/required_GIS_Input_Files.png')
 ```
 
 The shapefile attributes that you downloaded of the required data can easily be displayed. First, we analyze the subbasins \`gunt_elBands_shp_utm\` file. The file contains the following attributes as per the requirements specified in Figure \@ref(fig:requiredGISInputFiles): name and junct_down. The attributes Z, ModelGuid and *geometry* are additional fields. The field *Z* that contains information of the mean elevation of the subbasin. Note that the shapefile is does not only contain the shape of the four subbasins Alishu, Tokusbulak, Gunt and Shakdara but also the elevation bands of each subbasin.
@@ -1485,7 +1485,7 @@ gunt_rivers_shp_utm
 As described in the RSMinerve user manual in Chapter 5 there, these three shapefiles can then be loaded into RSMinerve and automatically translated into an RSMinerve model via the `Creation` option [@rsminerve_um]. In Figure \@ref(fig:RSMinerveGuntModelCreation), a screen shot is shown where in a somewhat arbitrary manner, all subbasins got assigned individual HBV models. Note the highlighted `Creation` button.
 
 ```{r RSMinerveGuntModelCreation,echo = FALSE,fig.cap = 'Using the `Creation` Menu, the information from the shapefiles gets translated into a number of interlinked subcatchment and elevation band-specific models.'}
-knitr::include_graphics('_bookdown_files/Chap7-PhysicalModels-Figures/rsminerveGuntModelCreation')
+knitr::include_graphics('_bookdown_files/FIG_RS_MINERVE/rsminerveGuntModelCreation')
 ```
 
 Since the shapefile containing the elevation bands for each subbasin also contains mean subbasin elevation, we can extract the Altitude (Z) from the corresponding feature. Similarly, the area of the subbasins and the length of the rivers can all be computed from the shapefiles. The corresponding boxes should be ticked.
@@ -1493,7 +1493,7 @@ Since the shapefile containing the elevation bands for each subbasin also contai
 After these steps, the student can click the `Create Model` button in the lower left corner of the window and then switch to the `Model New` tab to examine the resulting model. A screen shot showing the results is shown in Figure \@ref(fig:RSMinerveGuntModelCreationResult).
 
 ```{r RSMinerveGuntModelCreationResult,echo = FALSE,fig.cap = 'The result of the GIS-based creation of the Gunt river basin model in RSMinerve. Note that even without proper arrangement of the individual model elements, the subbasins and their models are already visible.'}
-knitr::include_graphics('_bookdown_files/Chap7-PhysicalModels-Figures/rsminerveGuntModelCreationResult')
+knitr::include_graphics('_bookdown_files/FIG_RS_MINERVE/rsminerveGuntModelCreationResult')
 ```
 
 After rearranging the individual model elements and loading a background .jpeg-image (see Figure \@ref(fig:rsminerveModelPreview), the setup step has been completed.
