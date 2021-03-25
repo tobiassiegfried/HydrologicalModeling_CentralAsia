@@ -2,9 +2,9 @@
 
 Hydrological-hydraulic models are used for different purposes, including for the design of basin plans while taking into consideration different development options, for the study of effective water resources management schemes while taking into consideration the different types of sectoral users and uses of water in a basin (ideally also including minimal environmental flows), and for the detailed study of basin-scale climate impacts and their repercussions.
 
-This Chapter introduces combined hydrologic and hydraulic modeling using the freely available graphical modeling environment RS MINERVE [@rsminerve_um; @rsminerve_tm][^pii_chap7_physicallybased_models-1]. Figure \@ref(fig:rsminerveModelPreview) shows a screen shot of a model of the Gunt river basin setup in RSMinerve as a teaser.
+This Chapter introduces combined hydrologic and hydraulic modeling using the freely available graphical modeling environment RS MINERVE [@rsminerve_um; @rsminerve_tm][^rs_minerve-1]. Figure \@ref(fig:rsminerveModelPreview) shows a screen shot of a model of the Gunt river basin setup in RSMinerve as a teaser.
 
-[^pii_chap7_physicallybased_models-1]: The reader is advised to consult the user manual and familiarizes himself or herself with the walk through examples that are discussed and presented there. They give a solid first hands-on introduction about the basic functionalities of the modeling environment.
+[^rs_minerve-1]: The reader is advised to consult the user manual and familiarizes himself or herself with the walk through examples that are discussed and presented there. They give a solid first hands-on introduction about the basic functionalities of the modeling environment.
 
 ```{r rsminerveModelPreview,echo = FALSE, fig.cap = 'Screenshot of an RSMinerve model setup for Gunt river basin.'}
 knitr::include_graphics('_bookdown_files/Chap7-PhysicalModels-Figures/rsminerveModelPreview_lr.png')
@@ -28,9 +28,9 @@ The data used in this Chapter can be accessed on the public GitHub repository [A
 
 ### Examining and Understanding the GIS Data
 
-As demonstrated in the Examples of the User Manual, RSMinerve does not necessarily require GIS input files for setting up models. These can also be setup and wired by hand. However, individual subbasins that contribute to flow in a larger catchment have different characteristics that need to be derived from spatial data, i.e. GIS files. For example, subbasin areas, river stretch lengths, terrain slopes, etc., are all required data in an RSMinerve model. These data could either be typed in by hand for each subbasin or automatically inserted via the GIS Import option. The latter method is much more convenient and is demonstrated here[^pii_chap7_physicallybased_models-2].
+As demonstrated in the Examples of the User Manual, RSMinerve does not necessarily require GIS input files for setting up models. These can also be setup and wired by hand. However, individual subbasins that contribute to flow in a larger catchment have different characteristics that need to be derived from spatial data, i.e. GIS files. For example, subbasin areas, river stretch lengths, terrain slopes, etc., are all required data in an RSMinerve model. These data could either be typed in by hand for each subbasin or automatically inserted via the GIS Import option. The latter method is much more convenient and is demonstrated here[^rs_minerve-2].
 
-[^pii_chap7_physicallybased_models-2]: We assume that the basic steps of GIS basin delineation have been carried out as described in Chapter \@ref(Chapter-RetrievalAnalysisHydroData) and the Section \@ref(GeospatialData) there. We thus depart here assuming that the basin outlet (i.e. the location of the discharge gauge), the basin shape file as well as the digital elevation model are available.
+[^rs_minerve-2]: We assume that the basic steps of GIS basin delineation have been carried out as described in Chapter \@ref(Chapter-RetrievalAnalysisHydroData) and the Section \@ref(GeospatialData) there. We thus depart here assuming that the basin outlet (i.e. the location of the discharge gauge), the basin shape file as well as the digital elevation model are available.
 
 First, we load the required packages in `R`.
 
