@@ -548,26 +548,26 @@ q4Q <- quarterQ %>% filter(quarter=='Q4') %>% dplyr::select(-quarter) %>% na.omi
 pQ1 <- q1Q  %>% na.omit() %>% #group_by(name) %>% 
   plot_time_series(date,value,name,
       .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
-      .title = "", .interactive = F, .facet_ncol = 1,
-      .x_lab = "year", .y_lab = "Q", .legend_show = T
+      .title = "", .interactive = FALSE, .facet_ncol = 1,
+      .x_lab = "year", .y_lab = "Q", .legend_show = TRUE
       ) + theme(legend.position = c(0.1, 0.8))
 pQ2 <- q2Q  %>% na.omit() %>%#group_by(name) %>% 
   plot_time_series(date,value,name,
       .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
-      .title = "", .interactive = F, .facet_ncol = 1,
-      .x_lab = "year",.y_lab = "Q", .legend_show = F
+      .title = "", .interactive = FALSE, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "Q", .legend_show = FALSE
       ) #+ theme(legend.position = c(0.1, 0.8))
 pQ3 <- q3Q  %>% na.omit() %>%#group_by(name) %>% 
 plot_time_series(date,value,name,
       .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
-      .title = "", .interactive = F, .facet_ncol = 1,
-      .x_lab = "year",.y_lab = "Q",.legend_show = F
+      .title = "", .interactive = FALSE, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "Q",.legend_show = FALSE
       ) #+ theme(legend.position = c(0.1, 0.8))
 pQ4 <- q4Q  %>% na.omit() %>% #group_by(name) %>% 
 plot_time_series(date,value,name,
       .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
-      .title = "", .interactive = F, .facet_ncol = 1,
-      .x_lab = "year",.y_lab = "Q",.legend_show = F
+      .title = "", .interactive = FALSE, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "Q",.legend_show = FALSE
       ) #+ theme(legend.position = c(0.1, 0.8))
 
 plotM <- list(pQ1,pQ2,pQ3,pQ4)
@@ -648,29 +648,21 @@ q3T <- quarterT %>% filter(quarter=='Q3') %>% dplyr::select(-quarter) %>% pivot_
 q4T <- quarterT %>% filter(quarter=='Q4') %>% dplyr::select(-quarter) %>% pivot_longer(-date)
 
 pQ1 <- q1T  %>% #group_by(name) %>% 
-  plot_time_series(date,value,name,
-      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
-      .title = "", .interactive = F, .facet_ncol = 1,
-      .x_lab = "year", .y_lab = "deg. C.",.legend_show = T
-      ) + theme(legend.position = c(0.1, 0.8))
+  plot_time_series(.date_var = date,.value = value,.color_var = name,
+      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',.title = "", .interactive = FALSE, .facet_ncol = 1,
+      .x_lab = "year", .y_lab = "deg. C.",.legend_show = TRUE) #+ theme(legend.position = c(0.1, 0.8))
 pQ2 <- q2T  %>% #group_by(name) %>% 
   plot_time_series(date,value,name,
-      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
-      .title = "", .interactive = F, .facet_ncol = 1,
-      .x_lab = "year",.y_lab = "deg. C.",.legend_show = F
-      )
+      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',.title = "", .interactive = FALSE, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "deg. C.",.legend_show = FALSE)
 pQ3 <- q3T  %>% #group_by(name) %>% 
 plot_time_series(date,value,name,
-      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
-      .title = "", .interactive = F, .facet_ncol = 1,
-      .x_lab = "year",.y_lab = "deg. C.", .legend_show = F
-      )
+      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',.title = "", .interactive = FALSE, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "deg. C.", .legend_show = FALSE)
 pQ4 <- q4T  %>% na.omit() %>% #group_by(name) %>% 
 plot_time_series(date,value,name,
-      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
-      .title = "", .interactive = F, .facet_ncol = 1,
-      .x_lab = "year",.y_lab = "deg. C.",.legend_show = F
-      )
+      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',.title = "", .interactive = FALSE, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "deg. C.",.legend_show = FALSE)
 
 plotM <- list(pQ1,pQ2,pQ3,pQ4)
 cowplot::plot_grid(plotlist = plotM,nrow = 1,ncol = 4)
@@ -719,27 +711,27 @@ q4P <- quarterP %>% filter(quarter=='Q4') %>% dplyr::select(-quarter) %>% pivot_
 
 pQ1 <- q1P  %>% #group_by(name) %>% 
   plot_time_series(date,value,name,
-      .smooth = T, .smooth_degree = 1, .smooth_period = 'auto',
-      .title = "", .interactive = F, .facet_ncol = 1,
-      .x_lab = "year", .y_lab = "deg. C.",.legend_show = T
+      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
+      .title = "", .interactive = FALSE, .facet_ncol = 1,
+      .x_lab = "year", .y_lab = "deg. C.",.legend_show = TRUE
       ) + theme(legend.position = c(0.1, 0.8))
 pQ2 <- q2P  %>% #group_by(name) %>% 
   plot_time_series(date,value,name,
-      .smooth = T, .smooth_degree = 1, .smooth_period = 'auto',
-      .title = "", .interactive = F, .facet_ncol = 1,
-      .x_lab = "year",.y_lab = "mm / 10 days",.legend_show = F
+      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
+      .title = "", .interactive = FALSE, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "mm / 10 days",.legend_show = FALSE
       )
 pQ3 <- q3P  %>% #group_by(name) %>% 
 plot_time_series(date,value,name,
-      .smooth = T, .smooth_degree = 1, .smooth_period = 'auto',
-      .title = "", .interactive = F, .facet_ncol = 1,
-      .x_lab = "year",.y_lab = "mm / 10 days", .legend_show = F
+      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
+      .title = "", .interactive = FALSE, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "mm / 10 days", .legend_show = FALSE
       )
 pQ4 <- q4P  %>% na.omit() %>% #group_by(name) %>% 
 plot_time_series(date,value,name,
-      .smooth = T, .smooth_degree = 1, .smooth_period = 'auto',
-      .title = "", .interactive = F, .facet_ncol = 1,
-      .x_lab = "year",.y_lab = "mm / 10 days",.legend_show = F
+      .smooth = TRUE, .smooth_degree = 1, .smooth_period = 'auto',
+      .title = "", .interactive = FALSE, .facet_ncol = 1,
+      .x_lab = "year",.y_lab = "mm / 10 days",.legend_show = FALSE
       )
 
 plotM <- list(pQ1,pQ2,pQ3,pQ4)

@@ -423,7 +423,7 @@ q_dec_filled_long_tbl %>%
                            value %>% log1p(),
                            .facet_vars  = name,
                            .frequency = 36,
-                           .interactive = T,
+                           .interactive = TRUE,
                            .title = "")
 ```
 
