@@ -581,7 +581,48 @@ We use ERA5 global reanalysis data to obtain temperature at 2 meters above groun
 
 The analysis present here is for the Gunt river catchment. The approach and methods we have developed are universally applicable for other catchments.
 
-### 
+### Original V1.2.1 Data and PBCORR CHELSA Data 
+
+The CHELSA V1.2.1 data covers the period 1981-01-01 until 2013-12-31. Mean monthly temperature and total monthly precipitation over this time frame can be accessed and downloaded for the Central Asia domain from the Github Repository in the [`/data/CentralAsiaDomain/`](https://github.com/tobiassiegfried/HydrologicalModeling_CentralAsia/tree/master/data/CentralAsiaDomain) folder.
+
+Note that the Central Asia domain is defined as
+
+```{r}
+aoi_CentralAsia_LatLon <- extent(c(65,80.05,35.95,44.05)) # this is a raster::extent() object. For more information, type ?extent into the console.
+```
+
+The CHELSA data are downscaled ERA-INTERIM model outputs for temperature and precipitation with a resolution of 30 arc seconds [@Karger_2017]. Temperature fields are statistically downscaled ERA-INTERIM temperatures whereas for precipitation downscaling, several orographic predictors are taken into account, including for example wind fields, valley exposition, height of the atmospheric boundary layer, etc.
+
+Because of its highly resolved climatologies, the CHELSA data has been shown to be particularly useful for studies in regions with complex topography. However, it has also been shown that the original CHELSA precipitation data is underestimating high mountain precipitation. This can be explained by the phenomenon of snow undercatch which explains measured precipitation deficits by sublimation and blowing snow transport at high altitude meteorological stations.
+
+An example of this is shown in Figure \@ref(fig:snowUndercatchExampleSpain) for high elevation gauges in Spain. In a recent intercomparison project carried out in Spain, it has been shown that undercatch poses significant problems in accurately measuring solid precipitation [@Buis_n_2017] in mountainous regions. Both, ERA-INTERIM and CHELSA themselves assimilate station data in their models and hence are affected by these *wrong* measurements.
+
+```{r snowUndercatchExampleSpain, echo = FALSE, fig.cap="Measured snow undercatch values in high-mountain stations in Spain. The values were determined within the World Meteorological Organization Solid Precipitation Intercomparison Experiment (WMO-SPICE). See text for more information and reference."}
+knitr::include_graphics('_bookdown_files/FIG_DATA/snowUndercatch_Spain.jpg')
+
+```
+
+@beck2020 has recognized this and released monthly correction factors for the CHELSA data (see Figure \@ref(fig:CHELSABiasCorrectionFactors)).
+
+```{r CHELSABiasCorrectionFactors, echo=FALSE, fig.cap="Figure from [@beck2020], Supplementary Material. Plate d): Best estimate of global bias correction factors. Plate e): Lower bound estimate of global bias correction factors. Plate f): Upper bound of global bias correction factors. As is clearly visible, bias correction factors in high-mountain Asia, including the parts of Central Asia are significant."}
+knitr::include_graphics('_bookdown_files/FIG_DATA/Beck_BiasCorrectionFactors.jpg')
+```
+
+We can easily compute and plot monthly norm climatologies for the Central Asia domain using these data.
+
+```{r}
+fDir <- './data/CentralAsiaDomain/CHELSA_V1.2.1/'
+# First, we process and display mean monthly 2 meters temperatures.
+varDir <- 't2m/'
+t2m_files <- list.files(paste0(fDir,varDir))
+months <- month.abb
+# Get monthly fields and average over all data for resulting climatology
+#for idx (1:12:)
+```
+
+### ERA5 Data Resampling with PBCORR CHELSA
+
+ERA5 data will not be uploaded on GitHUB because they are simply too big to handle (30 GB t2m and 30 GB tp). Due to the LFS storage and data traffic restrictions, this is not a vidable model here. We leave them on Dropbox
 
 ## Climate Projections
 
