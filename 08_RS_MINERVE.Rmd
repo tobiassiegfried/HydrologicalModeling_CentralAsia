@@ -2,7 +2,7 @@
 
 Hydrological-hydraulic models are used for different purposes, including for the design of basin plans while taking into consideration different development options, for the study of effective water resources management schemes while taking into consideration the different types of sectoral users and uses of water in a basin (ideally also including minimal environmental flows), and for the detailed study of basin-scale climate impacts and their repercussions.
 
-This Chapter introduces combined hydrologic and hydraulic modeling using the freely available graphical modeling environment RS MINERVE [@rsminerve_um; @rsminerve_tm][^rs_minerve-1]. Figure \@ref(fig:rsminerveModelPreview) shows a screen shot of a model of the Gunt river basin setup in RSMinerve as a teaser.
+This Chapter introduces combined hydrologic and hydraulic modeling using the freely available graphical modeling environment RSMinerve [@rsminerve_um; @rsminerve_tm][^rs_minerve-1]. Figure \@ref(fig:rsminerveModelPreview) shows a screen shot of a model of the Gunt river basin setup in RSMinerve as a teaser.
 
 [^rs_minerve-1]: The reader is advised to consult the user manual and familiarizes himself or herself with the walk through examples that are discussed and presented there. They give a solid first hands-on introduction about the basic functionalities of the modeling environment.
 
@@ -16,19 +16,32 @@ It should be noted that other modeling packages exist for hydrological-hydraulic
 -   [SWAT: Soil & Water Assessment Tool](https://swat.tamu.edu){target="_blank"}, and
 -   [Mike Hydro Basin](https://www.mikepoweredbydhi.com/products/mike-hydro-basin){target="_blank"}
 
-As some if not most of these modeling packages are license-based, the advantage of using the combination of [QGIS](https://www.qgis.org/en/site/), [R](https://www.r-project.org) and [RS MINERVE](https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve.html) is that this is a completely free software suit for any user and use scenario.
+As some if not most of these modeling packages are license-based, the advantage of using the combination of [QGIS](https://www.qgis.org/en/site/), [R](https://www.r-project.org) and [RSMinerve](https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve.html) is that this is a completely free software suit for any user and use scenario.
 
-Departing from catchment GIS data, RSMinerve allows to quickly develop, test and calibrate different types of lumped conceptual precipitation runoff models while taking into account the evolution of water balances in glacier, snow, surface and subsurface compartments over time and in different sections in the catchment under consideration. This is demonstrated here for the Gunt River Basin in the Pamirs (see Chapter \@ref(GuntRB) for more information).
+Departing from catchment GIS data, RS Minerve allows to quickly develop, test and calibrate different types of lumped conceptual precipitation runoff models while taking into account the evolution of water balances in glacier, snow, surface and subsurface compartments over time and in different sections in the catchment under consideration. This is demonstrated here for the Gunt River Basin in the Pamirs (see Chapter \@ref(GuntRB) for more information).
 
 The main goal in this Chapter is to familiarize the student on how to setup such model, calibrate and validate it for past and current climate conditions and then to **study climate change impacts in the basin**.
 
+### Prerequisites {#section-rsminerve-prerequisites}
+Before delving into this section of the course material, you should have at least:   
+
+* RS Minerve installed [How to install RS Minerve](#section-quickguides-how-to-download-and-install-rsminerve). This tutorial was written using RS Minerve 2.9.1.0. 
+* Read chapters 1 and 2 from the RS Minerve user manual (the manual can be downloaded from the CREALP website, see Section [How to install RS Minerve](#section-quickguides-how-to-download-and-install-rsminerve)).    
+* Familiarize yourself with RS Minerve by following Example 1 in the RS Minerve user manual.  
+* Read the HBV model description in the RS Minerve technical manual.   
+
+You may have to dig deeper into the user manual and the technical manual within the frame of the course but the above points are the minimum requirement to get started.   
+If you fulfill the prerequisites, you should be able to do the tutorial with the minimal description in the modeling section. However, detailed step-by-step descriptions are linked for each task. 
+
+
+
 ## Data Preparation and Setup
 
-The data used in this Chapter can be accessed on the public GitHub repository [Applied Modeling of Hydrological Systems in Central Asia](https://github.com/tobiassiegfried/Applied_Hydrological_Modeling_Bookdown) and the ./data/AmuDarya/Gunt/ folder in there. It is advisable that the user downloads the data and sets up a similar data directory structure on their local machines.
+The data used in this Chapter can be accessed on the public GitHub repository [Applied Modeling of Hydrological Systems in Central Asia](https://github.com/tobiassiegfried/HydrologicalModeling_CentralAsia) and the ./data/AmuDarya/Gunt/ folder in there. It is advisable that the user downloads the data and sets up a similar data directory structure on their local machines.
 
 ### Examining and Understanding the GIS Data
 
-As demonstrated in the Examples of the User Manual, RSMinerve does not necessarily require GIS input files for setting up models. These can also be setup and wired by hand. However, individual subbasins that contribute to flow in a larger catchment have different characteristics that need to be derived from spatial data, i.e. GIS files. For example, subbasin areas, river stretch lengths, terrain slopes, etc., are all required data in an RSMinerve model. These data could either be typed in by hand for each subbasin or automatically inserted via the GIS Import option. The latter method is much more convenient and is demonstrated here[^rs_minerve-2].
+As demonstrated in the Examples of the User Manual, RS Minerve does not necessarily require GIS input files for setting up models. These can also be setup and wired by hand. However, individual subbasins that contribute to flow in a larger catchment have different characteristics that need to be derived from spatial data, i.e. GIS files. For example, subbasin areas, river stretch lengths, terrain slopes, etc., are all required data in an RS Minerve model. These data could either be typed in by hand for each subbasin or automatically inserted via the GIS Import option. The latter method is much more convenient and is demonstrated here[^rs_minerve-2].
 
 [^rs_minerve-2]: We assume that the basic steps of GIS basin delineation have been carried out as described in Chapter \@ref(Chapter-RetrievalAnalysisHydroData) and the Section \@ref(GeospatialData) there. We thus depart here assuming that the basin outlet (i.e. the location of the discharge gauge), the basin shape file as well as the digital elevation model are available.
 
@@ -50,7 +63,7 @@ library(raster)
 library(sf)
 ```
 
-Now, we can visualize the GIS files that are required in RSMinerve in the following Figure \@ref(fig:GuntGISRSMinerve).
+Now, we can visualize the GIS files that are required in RS Minerve in the following Figure \@ref(fig:GuntGISRSMinerve).
 
 ```{r GuntGISRSMinerve, fig.cap = "Gunt river basin overview, showing the digital elevation model, the 4 subcatchments, the elevation bands with 1'000 meters intervals, the main tributary rivers and the corresponding junctions.", message=FALSE, warning=FALSE}
 # Load data
@@ -101,9 +114,9 @@ ggplot() +
 
 Figure \@ref(fig:GuntGISRSMinerve) shows the four subbasins. After the confluence with Tokusbulak river, Alishur river becomes Gunt river in Junction 1 (called junct_1 in the corresponding shapefile below). The confluence is noted by the corresponding red dot. Further downstream, approximately 5 km before the Gunt-Khorog gauging station (Hydromet Code 17050), indicated by the leftmost outlet point (red dot, called junct_2 in the junct_down attribute field of the shapefile), Shakhdara river feeds into Gunt. The subbasin-specific elevation bands are indicated by dotted lines.
 
-As described in the RSMinerve User Manual in Chapter 5 [@rsminerve_um], the following three shapefiles need to be prepared for later loading into RSMinerve: subbasins.shp, junctions.shp and rivers.shp (see Figure \@ref(fig:requiredGISInputFiles)).
+As described in the RS Minerve User Manual in Chapter 5 [@rsminerve_um], the following three shapefiles need to be prepared for later loading into RS Minerve: subbasins.shp, junctions.shp and rivers.shp (see Figure \@ref(fig:requiredGISInputFiles)).
 
-```{r requiredGISInputFiles,echo = FALSE, fig.cap = 'Required GIS input files for RSMinerve. See corresponding user manual for more information.'}
+```{r requiredGISInputFiles,echo = FALSE, fig.cap = 'Required GIS input files for RS Minerve. See corresponding user manual for more information.'}
 knitr::include_graphics('_bookdown_files/FIG_RS_MINERVE/required_GIS_Input_Files.png')
 ```
 
@@ -115,7 +128,7 @@ gunt_elBands_shp_utm <- sf::st_read(paste0(fPath,'/GeospatialData/Gunt_Elevation
 gunt_elBands_shp_utm
 ```
 
-This is because in RSMinerve, we will model each elevation zone of each subbasin with a separate rainfall-runoff model. These are then linked to each other via the topological ordering that is given by the rivers and junctions. The naming of the subbasins is somewhat arbitrary and tailored to the particular catchment under consideration. The prefix 'basin\_' is everywhere the same. The basic idea is to identify a main river stem (denoted with mX) where the X is a number that increases from 1 towards the downstream after each confluence with a right or left tributary. In our case, Alishur river is denoted with m1. Gunt river, which emerges after the confluence with Tokusbulak (see Figure \@ref(fig:GuntGISRSMinerve)), is denoted with m2. Finally, Gunt river after the confluence with Shakhdara is m3. Each left tributary is denoted with lX and each right tributary with rX, where X is again a number starting from 1 and gradually increasing. In our case, Tokusbulak thus is l1 (the first left tributary joining the main river). Finally, Shakhdara is l2. Note, in the Gunt river basin, we do not have major right tributaries.
+This is because in RS Minerve, we will model each elevation zone of each subbasin with a separate rainfall-runoff model. These are then linked to each other via the topological ordering that is given by the rivers and junctions. The naming of the subbasins is somewhat arbitrary and tailored to the particular catchment under consideration. The prefix 'basin\_' is everywhere the same. The basic idea is to identify a main river stem (denoted with mX) where the X is a number that increases from 1 towards the downstream after each confluence with a right or left tributary. In our case, Alishur river is denoted with m1. Gunt river, which emerges after the confluence with Tokusbulak (see Figure \@ref(fig:GuntGISRSMinerve)), is denoted with m2. Finally, Gunt river after the confluence with Shakhdara is m3. Each left tributary is denoted with lX and each right tributary with rX, where X is again a number starting from 1 and gradually increasing. In our case, Tokusbulak thus is l1 (the first left tributary joining the main river). Finally, Shakhdara is l2. Note, in the Gunt river basin, we do not have major right tributaries.
 
 'm1_b2' the refers to the main upstream river, Alishur in this case, and its elevation band 2. m1_b3 would then be the third elevation band accordingly and so on. Why is there no m1_b1 feature? This is simple to understand. Since the entire basin is subdivided into n equally spaced elevation zones, the higher lying subbasins might no longer contain all elevation bands. For both, Alishur (main m1) and Tokusbulak (l1) this is the case where band b1 is simply not represented because of the high elevations of the subbasins.
 
