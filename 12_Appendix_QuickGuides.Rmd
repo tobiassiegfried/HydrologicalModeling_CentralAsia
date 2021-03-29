@@ -1,0 +1,25 @@
+# (APPENDIX) Appendix {#Appendix} 
+
+# Appendix B
+
+## Quick guides {#section-quick-guides}
+
+### QGIS
+
+### RS Minerve
+## How to download and install RS Minerve {#section-quickguides-how-to-download-and-install-rsminerve}
+Go to the software download page of CREALP's website  [https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve/telechargement-rsm.html](https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve/telechargement-rsm.html) (last accessed March 18, 2021) and click on *Version actuelle* to download the latest installer for Windows (see Figure \@ref(fig:fig-download-rsminerve)). This will start the download process for the installer RSMinerve-install.exe. 
+
+```{r fig-download-rsminerve, echo=FALSE, out.width="95%", fig.align="center", fig.cap="Download RS Minerve from the CREALP website [https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve/telechargement-rsm.html](https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve/telechargement-rsm.html) (last accessed March 18, 2021)."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig_downloadSiteRSMinerve.png")
+```
+
+You should also download the user manual (*RS MINERVE user manual*, written in English) and the example files used for the tutorials in the user manual (*Exemple de fichiers*, a zip file with data) as well as the technical manual (*RS MINERVE technical manual*, written in English).   
+  
+Once the installer is downloaded, install RS Minerve with a double-click on the installer and follow the Setup guide. Open RS Minerve once you have it installed. 
+
+[Back to Prerequisites](#section-rsminerve-prerequisites)
+
+
+
+
