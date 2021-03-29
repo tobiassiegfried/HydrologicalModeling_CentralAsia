@@ -1,6 +1,6 @@
 # (PART) Part II Applied Modeling {#Part2-Applied-Modeling .unnumbered}
 
-# Budyko-Type Long-term Water Balance Modeling {#ManualWaterBalance}
+## Budyko-Type Long-term Water Balance Modeling {#LongTermWaterBalance}
 
 In this Chapter, we are looking at watersheds from a long-term perspective and want to understand the key processes that lead to a partitioning of precipitation into evaporation and runoff.
 
@@ -8,7 +8,7 @@ In this Chapter, we are looking at watersheds from a long-term perspective and w
 knitr::include_graphics('_bookdown_files/FIG_WATER_BALANCE/GenericRiverBasin_lr.jpg')
 ```
 
-## Derivation of the Budyko Relationship {#BudykoDerivation}
+### Derivation of the Budyko Relationship
 
 The general water balance for a catchment can be written as
 
@@ -94,15 +94,15 @@ Following the groundbreaking work by Budyko and others, many expressions have be
 ```
 where $n$ is a catchment-specific parameter which accounts for factors such as vegetation type and coverage, soil type and topography, etc. (see e.g. [@Zhang2015] for more information).
 
-## Effects of Snow Ratio on Annual Runoff within the Budyko Framework {#BudykoSnowEffects}
+## Effects of Snow Ratio on Annual Runoff within the Budyko Framework
 
 Source article: [@Zhang2015]
 
-## Hydrological Response to a Changing Climate {#BudykoClimateChangeResponseModel}
+## Hydrological Response to a Changing Climate
 
 Source articles: @Ning2018, [@Zhou2016].
 
-## Application to Central Asian River Basins {#BudykoClimateChangeModelCentralAsia}
+## Application to Central Asian River Basins
 
 ### Data
 

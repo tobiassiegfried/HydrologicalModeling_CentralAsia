@@ -1,11 +1,150 @@
-# (APPENDIX) Appendix {#Appendix} 
+# (APPENDIX) Appendix {#Appendix}
 
-# Appendix A
+## Appendix A: Open-source Software
 
-## Open-Source Software
+### Open-Source Software
 
-### QGIS
+#### QGIS
 
-### R and RStudio
+#### R and RStudio
 
-### RS Minerve
+#### RS Minerve
+
+## Appendix B: Quick Guides
+
+## Appendix C: Processing Climate Data
+
+### Cutting CHELSA v.1.2.1 to CA Domain
+
+The CHELSA v1.2.1 data is a global dataset. The data can be cut to the Central Asia domain in the following way.
+
+```{r,eval=FALSE}
+dir_CHELSA <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/CourseMaterials/Data/CLIMATE/CHELSA_V1_2_1/'
+
+# First, we process precipitation data (prec).
+prec_CHELSA_files <- list.files(paste0(dir_CHELSA,'tp/'))
+for (idx in 1:length(prec_CHELSA_files)){
+  str2Print <- paste0('Processing PREC: ', idx, ' out of ', length(prec_CHELSA_files) )
+  print(str2Print)
+  fName <- prec_CHELSA_files[idx]
+  global_CHELSA_raster <- raster(paste0(dir_CHELSA,'prec/',fName))
+  centralAsia_CHELSA_raster <- raster::crop(global_CHELSA_raster,aoi_CentralAsia_LatLon)
+  # Save the centralAsia_CHELSA_raster
+  fName2Save <- paste0(substr(fName,1,19),'_CA',substr(fName,20,30))
+  raster::writeRaster(centralAsia_CHELSA_raster,
+                      paste0(dir_CHELSA,'prec/',fName2Save),
+                      'GTiff',
+                      overwrite = TRUE)
+}
+
+# Second, we process mean temperature data (tmean).
+tmean_CHELSA_files <- list.files(paste0(dir_CHELSA,'t2m/'))
+for (idx in 1:length(tmean_CHELSA_files)){
+  str2Print <- paste0('Processing TMEAN: ', idx, ' out of ', length(tmean_CHELSA_files) )
+  print(str2Print)
+  fName <- tmean_CHELSA_files[idx]
+  global_CHELSA_raster <- raster(paste0(dir_CHELSA,'tmean/',fName))
+  centralAsia_CHELSA_raster <- raster::crop(global_CHELSA_raster,aoi_CentralAsia_LatLon)
+  # Save the centralAsia_CHELSA_raster
+  fName2Save <- paste0(substr(fName,1,20),'_CA',substr(fName,21,35))
+  raster::writeRaster(centralAsia_CHELSA_raster,
+                      paste0(dir_CHELSA,'tmean/',fName2Save),
+                      'GTiff',
+                      overwrite = TRUE)
+}
+
+(raster(paste0(dir_CHELSA,'tmean/',fName2Save))/10 - 273.15) %>% plot()
+```
+
+### Bias Correcting CHELSA v1.2.1 Precipitation Data for Snow Undercatch
+
+```{r,eval=FALSE}
+## general info - function arguments
+basinName <- 'Gunt'
+dataType_ERA5 <- 'tp'
+#basinShape <- 'to be passed in'
+targetCRS <- "+init=epsg:32642"
+## Directories of relevant climate files  - function arguments
+dir_CHELSA <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/CourseMaterials/Data/CLIMATE/CHELSA_V1_2_1/'
+# Basin AOI - function arguments, but check if all can be derived from the basinShape that is anyhow to be passed in!
+aoi_Basin_LatLon <- gunt_Shapefile_LatLon %>% extent # GUNT
+# ===
+fileCorrFact <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/CourseMaterials/Data/CLIMATE/PBCOR_V1/CHELSA_V12.nc'
+# Get CHELSA file list - Note, we already have cut to the CA domain!
+fileList <- list.files(paste0(dir_CHELSA,dataType_ERA5))
+# beginning and end
+startY <- 1981
+endY <- 2013
+# Monthly correction factors (Beck et al., 2020)
+#pbcorr_monthly <- nc_open(dir_CorrFact)
+pbcorr_monthly <- brick(fileCorrFact, varname="corr_fac_monthly")
+pbcorr_monthly_basin_longlat <- raster::crop(pbcorr_monthly,aoi_CentralAsia_LatLon)
+# start to loop through years and months for bias correcting the monthly values.
+for (yr in startY:endY){
+  for (mon in 1:12){
+    # Load corresponding tmean CHELSA Central Asia File
+    if (mon<10){
+      chelsa_data_orig <- 
+        raster(paste0(dir_CHELSA,dataType_ERA5,'/CHELSA_prec_',yr,'_0',mon,'_CA_V1.2.1.tif'))
+      numbPrefix <- '_0'
+    } else {
+      chelsa_data_orig <- 
+        raster(paste0(dir_CHELSA,dataType_ERA5,'/CHELSA_prec_',yr,'_',mon,'_CA_V1.2.1.tif'))
+      numbPrefix <- '_'
+    }
+    chelsa_data_orig_resamp <- raster::resample(chelsa_data_orig,pbcorr_monthly_basin_longlat)
+    chelsa_data_bcorr_resamp <- overlay(chelsa_data_orig_resamp,subset(pbcorr_monthly_basin_longlat,mon),
+                                        fun=function(x,y){return(x*y)})
+   # write bias corrected CHELSA back to the disk.
+    raster::writeRaster(chelsa_data_bcorr_resamp,
+                        paste0(dir_CHELSA,dataType_ERA5,'/CHELSA_tp_bcorr_',yr,numbPrefix,mon,'_CA_V1.2.1.tif'),
+                        'GTiff',
+                        varname   = dataType_ERA5,
+                        overwrite = TRUE)
+    #chelsa_data_bcorr_resamp %>% plot()
+  }
+}
+```
+
+### Computing Mean Monthly Temperature Climatology from CHELSA v1.2.1 data
+
+The following code take CHELSA_V1.2.1 mean monthly temperature raster data and computes long-term mean monthly temperatures over the Central Asia domain. The resulting file can optionally be stored on the disk.
+
+```{r, eval=FALSE}
+fDir <- '../HydrologicalModeling_CentralAsia_Data/CentralAsiaDomain/CHELSA_V1.2.1/'
+# First, we process and display mean monthly 2 meters temperatures.
+varDir <- 't2m/'
+t2m_files <- list.files(paste0(fDir,varDir))
+# Get monthly fields and average over all data for resulting climatology
+idxSeq <- seq(1,409,12)
+for (idx in (1:12)){
+  print(months[idx])
+  t2m_files_sel <- t2m_files[idxSeq]
+  for (idxRaster in (1:length(t2m_files_sel))){
+    if (idxRaster == 1){
+      raster_res <- raster::raster(paste0(fDir,varDir,'/',t2m_files_sel[1]))
+    } else {
+      raster_n <- raster::raster(paste0(fDir,varDir,'/',t2m_files_sel[idxRaster]))
+      raster_res <- raster::addLayer(raster_n,raster_res)
+    }
+    raster_res_mean <- calc(raster_res, fun = mean)
+  }
+  if (idx ==1){
+    raster_res_mean_stack <- raster_res_mean
+  } else {
+    raster_res_mean_stack <- raster::addLayer(raster_res_mean_stack,raster_res_mean)
+  }
+  idxSeq  <- idxSeq + 1
+}
+
+names(raster_res_mean_stack) <- month.abb
+
+# raster::writeRaster(raster_res_mean_stack,
+#                         paste0(fDir,'t2m_climatology/t2m_climatology_CA.tiff'),
+#                         options="INTERLEAVE=BAND",
+#                         'GTiff',
+#                         varname   = 't2m',
+#                         overwrite = TRUE)
+```
+
+### ERA5
