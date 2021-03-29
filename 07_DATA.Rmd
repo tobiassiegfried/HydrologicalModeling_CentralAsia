@@ -632,7 +632,7 @@ The bias corrected CHELSA precipitation (pr) raster data is available via [`./Hy
 
 ```{r meanMonthlyTemperatureClimatology, warning=FALSE, fig.cap="CHELSA v1.2.1 mean monthly temperature climatology is shown."}
 t2m_meanMonthlyClimate_CHELSA <- 
-  raster::brick('../HydrologicalModeling_CentralAsia_Data/CentralAsiaDomain/CHELSA_V1.2.1/t2m_climatology/t2m_climatology_CA.tif/')
+  raster::brick('./data/CentralAsiaDomain/CHELSA_V1.2.1/t2m_climatology/t2m_climatology_CA.tif')
 
 names(t2m_meanMonthlyClimate_CHELSA) <- month.abb
 t2m_meanMonthlyClimate_CHELSA <- t2m_meanMonthlyClimate_CHELSA / 10 - 273.15 # now, the CHELSA data is in deg. C
@@ -650,15 +650,14 @@ gplot(t2m_meanMonthlyClimate_CHELSA) +
 In a similar way, the bias corrected precipitation climatology can be plotted. Figure \@ref(fig:meanMonthlyPrecipitationClimatology) nicely shows the main precipitation months of the key mountain ranges in the region. The Figure shows that March and April are normally the main precipitation months.
 
 ```{r meanMonthlyPrecipitationClimatology, warning=FALSE, fig.cap="CHELSA v1.2.1 mean monthly precipitation climatology is shown."}
+# Load file
 pbcorr_pr_meanMonthlyClimate_CHELSA <- 
-  raster::brick('../HydrologicalModeling_CentralAsia_Data/CentralAsiaDomain/CHELSA_V1.2.1/pbcorr_tp_climatology/CHELSA_V12.nc', varname = "corr_P_monthly")
-
-pbcorr_pr_meanMonthlyClimate_CHELSA <- raster::crop(pbcorr_pr_meanMonthlyClimate_CHELSA,aoi_CentralAsia_LatLon)
-
+  raster::brick('./data/CentralAsiaDomain/CHELSA_V1.2.1/pr_climatology/pr_climatology_CA.nc')
+# Layer names
 names(pbcorr_pr_meanMonthlyClimate_CHELSA) <- month.abb
-
+# Color palette
 precipitation_colors <- brewer.pal(9, "YlGnBu") %>% colorRampPalette()
-
+# Plot
 gplot(pbcorr_pr_meanMonthlyClimate_CHELSA) + 
   geom_tile(aes(fill = value)) +
   facet_wrap(~ variable) +
@@ -810,10 +809,13 @@ As per the ECMWF description, "ERA5-Land is a reanalysis dataset providing a con
 
 The variables t2m and tp which you can access via this [link](https://www.dropbox.com/sh/5ce1kuque45njav/AABz97dPaA12qamuXQIdjSFEa?dl=0) are described described in greater detail on the site. For reference, these data specifications are copied in the Table below.
 
++--------------------------+-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Name                     | Units | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-|--------------------------|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
++==========================+=======+============================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================+
 | 2m temperature (t2m)     | K     | Temperature of air at 2m above the surface of land, sea or in-land waters. 2m temperature is calculated by interpolating between the lowest model level and the Earth's surface, taking account of the atmospheric conditions. Temperature measured in kelvin can be converted to degrees Celsius (°C) by subtracting 273.15.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
++--------------------------+-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Total precipitation (tp) | m     | Accumulated liquid and frozen water, including rain and snow, that falls to the Earth's surface. It is the sum of large-scale precipitation (that precipitation which is generated by large-scale weather patterns, such as troughs and cold fronts) and convective precipitation (generated by convection which occurs when air at lower levels in the atmosphere is warmer and less dense than the air above, so it rises). Precipitation variables do not include fog, dew or the precipitation that evaporates in the atmosphere before it lands at the surface of the Earth. This variable is accumulated from the beginning of the forecast time to the end of the forecast step. The units of precipitation are depth in meters. It is the depth the water would have if it were spread evenly over the grid box. Care should be taken when comparing model variables with observations, because observations are often local to a particular point in space and time, rather than representing averages over a model grid box and model time step. |
++--------------------------+-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 : ERA5-Land t2m and pr variables descriptions.
 
@@ -1073,6 +1075,50 @@ knitr::include_graphics("_bookdown_files/FIG_DATA/gunt_RSMINERVE_CSV.jpg")
 
 From rows 9 onward, the actual data are stored where a time stamp in the first column corresponds to the corresponding observation data and time.
 
-## Climate Projections
+## Data on Climate Projections
+
+In order to look into the future with a hydrological model for exploring climate scenarios, it needs to be fed with those scenarios. The production of these scenarios in a way resembles the steps described for the reanalysis data but also differs in some marked way. Let us outline them first before diving into the details.
+
+First, the period of interest for the investigation of climate impacts needs to be defined. Future climate scenarios need then need to be identified that cover the area and period of interest. The future climate scenarios are outputs from global climate models (GCMs). These GCMs normally generate monthly data as a function of representative concentration pathways (called RCPs). They describe possible futures as a function of different atmospheric CO~2~-concentration scenarios. We focus the discussion here on the RCP 4.5 and RCP 8.5 concentration scenarios. According to the IPCC, RCP 4.5 is an intermediate scenario where CO~2~ emissions peak around 2040, then decline. Compared to this RCP 8.5 is generally considered to be a worst case climate change scenario. Very detailed information regarding these scenarios, their underlying assumptions and assumptions can be found on the dedicated website served by the Intergovernmental Panel for Climate Change (IPCC). See the link [here](https://ar5-syr.ipcc.ch/topic_futurechanges.php).
+
+```{r rcpGGConcetrationLevels, fig.cap='The development of greenhouse gas concentrations during the 21st century as a function of the corresponding scenario. We focus here on RCP4.5 and RCP8.5. Source: [@van_Vuuren_2011]'}
+knitr::include_graphics("_bookdown_files/FIG_DATA/greenhouseGasConcetrations_RCP.jpg")
+```
+
+#### High Resolution Monthly Climate Time Series for 2006 - 2100
+
+The recently released high-resolution climate scenario datasets described by [@Karger_2020] are utilized here to study climate impacts in river basins in the Central Asia region. The authors of the aforementioned paper present GCMs output for monthly precipitation, mean minimum as well as maximum monthly temperatures that has been downscaled using the CHELSA algorithm. The data can be found here <https://www.envidat.ch/#/metadata/chelsa_cmip5_ts>.
+
+We download data from 3 out of the 4 available downscaled GCM runs for further analysis and processing. These are outputs from the Coupled Model Intercomparison Project phase 5 ([CMIP5](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip5)) and are gridded monthly time series from the years 2006 through 2100 with a spatial resolution of 0.049 degrees (see again [@Karger_2020] for all the details). The three models from which data were taken are: CMCC-CM run by the Centro Euro-Mediterraneo per I Cambiamenti Climatici (CMCC); MIROC5 run by the University of Tokyo; and ACCESS1-3 run by the Commonwealth Scientific and Industrial Research Organization (CSIRO) and Bureau of Meteorology (BOM), Australia [@Karger_2020].
+
+First, the data is downloaded and stored locally for RCP 4.5 and RCP 8.5. Then, as in the case of the original CHELSA data, the monthly gridded precipitation timeseries are bias corrected using the monthly correction factors as report by [@beck2020c] and finally, mean monthly temperature fields are generated from the minimum and maximum monthly temperatures. The resulting data available for the Central Asia domain are available for download via this [link](https://www.dropbox.com/sh/xs870upjjvg9ovv/AABkniqG4f6XFzDkwZqhurcta?dl=0)[^data-7].
+
+[^data-7]: If you download these data, it is advisable to maintain the directory structure as given via the Dropbox link. Please note that the entire directory is 4.79 GB of data.
+
+As in the case of the ERA5 data, these GCM data need to be made available for all the elevation bands. By providing a proper shapefile that contains sub-basin specific elevation bands of a catchment, the function `riversCentralAsia::downscale_ClimPred_monthly_BasinElBands()` can be used to compute this. This function processes the climate projection raster bricks with precipitation_flux and air_temperature (tasmin, tasmean and tasmax) and computes elevation band statistics.
+
+As discussed, these GCM data are high resolution monthly future climate fields. All good. But how do we arrive at climate fields that have a high hourly temporal resolution at the same time so that we can drive the RS MINERVE hydrological model with the required input data? The solution is shown in the next section.
+
+#### Using a Weather Generator to Simulate Daily Future Climate
+
+Stochastic weather generators are probabilistic models that are used to simulate weather data at a specific site or region by analyzing historical weather data and then generating a time-series of weather variables with statistical properties identical to the historical data [@BIRT20101252]. We demonstrate the use of RMAWGEN, a stochastic weather generator available for the `R` environment. Further information on RMAWGEN can be found here <https://github.com/ecor/RMAWGEN> and under the links provided via this GitHub link. While the weather generator is relatively poorly documented, a useful albeit very technical presentation of the tool is available [here](https://docs.google.com/file/d/0B66otCUk3Bv6V3RPbm1mUG4zVHc/edit).
+
+RMAWGEN allows for the generation of daily temperature and precipitation scenarios that are conditioned on monthly totals as given by the GCM model outputs. This is the key idea. In order to arrive at the final hourly data, we then simply distribute the daily data evenly over the hours of that particular day.
+
+Using again the example of the Gunt river basin, the following code block shows how to use the function `prepare_RMAWGEN_input_data()` for the preparation of the relevant RMAWGEN input data files.
+
+```{r}
+# Load and process RS MINERVE csv database file
+filePath <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/CourseMaterials/Data/RSMinerve/AmuDarya/GuntYashikul/GIS/'
+fileName <- 'Gunt_Yashikul_1981_2013_db.csv'
+era5_gunt <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
+
+# Delete unused catchments in the Gunt RRM
+idx2del <- (era5_gunt[1,]=='Gunt_DS_1')|(era5_gunt[1,]=='Gunt_DS_2')|(era5_gunt[1,]=='Gunt_DS_3')
+era5_gunt <- era5_gunt %>% dplyr::select(which(!idx2del))
+
+rmawgen_input_files <- prepare_RMAWGEN_input_data(era5_gunt)
+rmawgen_input_files %>% list2env(.,envir = .GlobalEnv) # Send list variables to global environment.
+```
 
 ## Snow Cover Data (optional)
