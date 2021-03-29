@@ -179,9 +179,9 @@ q_dec_tbl
 
 You can get more information about the available data by typing `?ChirchikRiverBasin`.
 
-It is advisable to check at this stage for missing data in time series and to fill gaps where present. As can be seen in Figure \@ref(fig:dischargeData) , close inspection of the time series indeed reveals some missing data in the 1940ies.
+It is advisable to check at this stage for missing data in time series and to fill gaps where present. As can be seen in Figure \@ref(fig:EMdischargeData) , close inspection of the time series indeed reveals some missing data in the 1940ies.
 
-```{r dischargeData,warning=FALSE, fig.cap='Discharge data of selected gauges in the upstream zone of runoff formation in the Chirchik River Basin. Data Source: Uzbek Hydrometeorological Service.'}
+```{r EMdischargeData,warning=FALSE, fig.cap='Discharge data of selected gauges in the upstream zone of runoff formation in the Chirchik River Basin. Data Source: Uzbek Hydrometeorological Service.'}
 q_dec_tbl %>% plot_time_series(date,data,
                                .facet_vars  = code,
                                .smooth      = FALSE,
@@ -192,7 +192,7 @@ q_dec_tbl %>% plot_time_series(date,data,
                                )
 ```
 
-Figure \@ref(fig:dischargeData) and the following Figures are interactive, so you can zoom in to regions of interest.
+Figure \@ref(fig:EMdischargeData) and the following Figures are interactive, so you can zoom in to regions of interest.
 
 Missing data are also confirmed by the warning that the function `timetk::plot_time_series()` throws (suppressed here). Statistics of the missing data can be easily obtained. As the Table below shows, we can do this analysis for each discharge station separately.
 
@@ -201,9 +201,9 @@ q_dec_tbl %>% group_by(code) %>%
   summarize(n.na = sum(is.na(data)), na.perc = n.na/n()*100)
 ```
 
-Summarizing the number of observation with missing data reveals 15 data points for station 16279 (0.5 % of total record length) and 39 for station 16290 (1.3 % of total record length). As there are only very few gaps in the existing time series, we use a simple method to fill these. Wherever there is a gap, we fill in the corresponding decadal norm as stored in the *norm* column in the object `q_dec_tbl`. The visualization of the results confirms that our simple gap filling approach is indeed satisfactory (Figure \@ref(fig:gapFilledPskemChatkal)).
+Summarizing the number of observation with missing data reveals 15 data points for station 16279 (0.5 % of total record length) and 39 for station 16290 (1.3 % of total record length). As there are only very few gaps in the existing time series, we use a simple method to fill these. Wherever there is a gap, we fill in the corresponding decadal norm as stored in the *norm* column in the object `q_dec_tbl`. The visualization of the results confirms that our simple gap filling approach is indeed satisfactory (Figure \@ref(fig:EMgapFilledPskemChatkal)).
 
-```{r gapFilledPskemChatkal, fig.cap="Gap filled Pskem and Chatkal river discharges."}
+```{r EMgapFilledPskemChatkal, fig.cap="Gap filled Pskem and Chatkal river discharges."}
 q_dec_filled_tbl <- q_dec_tbl
 
 q_dec_filled_tbl$data[is.na(q_dec_filled_tbl$data)] = 
@@ -241,7 +241,7 @@ Here, we use precipitation and temperature data from Pskem (38462), Chatkal (384
 
 We start with precipitation and plot the available data.
 
-```{r rawDataP, fig.cap = "Raw decadal precipitation data from Pskem (38462), Charvak Reservoir (38471) and Chatkal Meteo Station (38471)."}
+```{r EMrawDataP, fig.cap = "Raw decadal precipitation data from Pskem (38462), Charvak Reservoir (38471) and Chatkal Meteo Station (38471)."}
 p_dec_tbl <- data %>% filter(type=="P" & code!="38339") 
 p_dec_tbl %>% plot_time_series(date,data,
                                .facet_vars  = code,
@@ -257,7 +257,7 @@ The precipitation data from these 3 stations shows some significant data gaps. T
 
 Let us see what happens if we were to use the same simple gap filling technique that we introduced above for discharge.
 
-```{r rawDataPnormFill, fig.cap="Precipitation Data gap-filled with norms. The filled values from 1990 - 2000 in the case of the Station 38471 indicate that the norm-filling technique is not good."}
+```{r EMrawDataPnormFill, fig.cap="Precipitation Data gap-filled with norms. The filled values from 1990 - 2000 in the case of the Station 38471 indicate that the norm-filling technique is not good."}
 p_dec_filled_tbl <- p_dec_tbl
 p_dec_filled_tbl$data[is.na(p_dec_filled_tbl$data)] = p_dec_filled_tbl$norm[is.na(p_dec_filled_tbl$data)]
 p_dec_filled_tbl %>% plot_time_series(date,data,
@@ -270,13 +270,13 @@ p_dec_filled_tbl %>% plot_time_series(date,data,
                                       )
 ```
 
-Closely inspect the significant data gap in the 1990ies at Station 38741 (tip: play around and zoom into the time series in the 1990ies in Figure \@ref(fig:rawDataP) and comparing it with the resulting gap-filled timeseries in Figure \@ref(fig:rawDataPnormfill). We see that our technique of gap filling with long-term norms is not suitable for this type of data and the significant gap size. The effect of variance reduction is also clearly visible.
+Closely inspect the significant data gap in the 1990ies at Station 38741 (tip: play around and zoom into the time series in the 1990ies in Figure \@ref(fig:EMrawDataP) and comparing it with the resulting gap-filled timeseries in Figure \@ref(fig:EMrawDataPnormfill). We see that our technique of gap filling with long-term norms is not suitable for this type of data and the significant gap size. The effect of variance reduction is also clearly visible.
 
 Hence, we resort to a more powerful gap filling technique that uses a (regression) model to impute the missing values from existing ones at the neighboring stations, i.e. Stations 38462 and 38464. To do so, we utilize an R package that is tightly integrated in the `tidyverse`[^pii_chap5_empiricalmodels-2].
 
 [^pii_chap5_empiricalmodels-2]: Please note that if you do not have the required package installed locally, you should install it prior to its use with the following command `install.packages('simputation')`
 
-```{r rawData_P_rlm,message=FALSE,warning=FALSE,fig.cap="Precipitation Data gap filled with a robust linear regression modeling approach"}
+```{r EMrawData_P_rlm,message=FALSE,warning=FALSE,fig.cap="Precipitation Data gap filled with a robust linear regression modeling approach"}
 library(simputation)
 # First, we bring the data into the suitable format. 
 p_dec_wide_tbl <- p_dec_tbl %>% 
@@ -340,7 +340,7 @@ p_dec_filled_long_tbl <-  p_dec_filled_wide_tbl %>% pivot_longer(-date)
 
 Inspecting the temperature data, we see similar data issues as in the precipitation data set.
 
-```{r rawData_T,warning=FALSE,fig.cap="Raw temperature data from the meteorological stations Pskem (38462) and Chatkal (38471)"}
+```{r EMrawData_T,warning=FALSE,fig.cap="Raw temperature data from the meteorological stations Pskem (38462) and Chatkal (38471)"}
 t_dec_tbl <- data %>% filter(type=="T") 
 t_dec_tbl %>% plot_time_series(date,data,
                                .facet_vars  = code,
@@ -352,7 +352,7 @@ t_dec_tbl %>% plot_time_series(date,data,
                                )
 ```
 
-```{r rawData_T_rlm,warning=FALSE,message=FALSE,fig.cap="Temperature data gap filled with robust linear regression modeling."}
+```{r EMrawData_T_rlm,warning=FALSE,message=FALSE,fig.cap="Temperature data gap filled with robust linear regression modeling."}
 # First, we bring the data into the suitable format. 
 t_dec_wide_tbl <- t_dec_tbl %>% 
   mutate(code = paste0('T',code %>% as.character())) %>% 
@@ -411,13 +411,15 @@ We use the function `timetk::plot_anomaly_diagnostics` to investigate anomalies 
 
 $$
 \hat{q}(t) = log(q(t) + 1) 
-$$ where $\hat{q}(t)$ denotes the transformed discharge. Prior to the log transformation, 1 is added so as to avoid cases where discharge would be 0 and the logarithmic transform thus undefined. The transformation can easily be done with the `log1p()` function in R. Backtransformation via the function `expm1()` simply involves taking the exponent and subtracting 1 from the result. Figure \@ref(anomaliesQ) shows the result.
+$$ 
+
+where $\hat{q}(t)$ denotes the transformed discharge. Prior to the log transformation, 1 is added so as to avoid cases where discharge would be 0 and the logarithmic transform thus undefined. The transformation can easily be done with the `log1p()` function in R. Backtransformation via the function `expm1()` simply involves taking the exponent and subtracting 1 from the result. Figure \@ref(anomaliesQ) shows the result.
 
 The exceptionally wet year 19169 shows up as anomalous in the Chatkal River Basin and at the downstream Charvak Reservoir inflow gauge.
 
-, \@ref(anomaliesP) and \@ref(anomaliesT) show anomalies diagnostics of the available data.
+, \@ref(EManomaliesP) and \@ref(EManomaliesT) show anomalies diagnostics of the available data.
 
-```{r anomaliesQ,message=FALSE, fig.cap="Anomaly diagnostics of discharge data. The transparent grey band shows the width of the normal range. The highly anomalous wet year of 1969 is clearly visible in the discharge record of the Chatkal river basin (Station 16279)."}
+```{r EManomaliesQ,message=FALSE, fig.cap="Anomaly diagnostics of discharge data. The transparent grey band shows the width of the normal range. The highly anomalous wet year of 1969 is clearly visible in the discharge record of the Chatkal river basin (Station 16279)."}
 q_dec_filled_long_tbl %>% 
   plot_anomaly_diagnostics(date,
                            value %>% log1p(),
@@ -427,9 +429,9 @@ q_dec_filled_long_tbl %>%
                            .title = "")
 ```
 
-The investigation of precipitation anomalies shows a succession of regular anomalous wet events over time. It is interesting to see that the winter 1968/69 regularly anomalous at all three stations (Figure \@ref(fig:anomaliesP), zoom in to investigate).
+The investigation of precipitation anomalies shows a succession of regular anomalous wet events over time. It is interesting to see that the winter 1968/69 regularly anomalous at all three stations (Figure \@ref(fig:EManomaliesP), zoom in to investigate).
 
-```{r anomaliesP,message=FALSE,fig.cap="Anomaly diagnostics of precipitation data."}
+```{r EManomaliesP,message=FALSE,fig.cap="Anomaly diagnostics of precipitation data."}
 p_dec_filled_long_tbl %>% 
   plot_anomaly_diagnostics(date,
                            value,
@@ -438,9 +440,9 @@ p_dec_filled_long_tbl %>%
                            .title = "")
 ```
 
-While intuitively, we would have expected an eceptionally mild winter in 1968/69 due to the precipitation excess, the corresponding anomaly does not show up in the temperature record (Figure \@ref(fig:anomaliesT)).
+While intuitively, we would have expected an eceptionally mild winter in 1968/69 due to the precipitation excess, the corresponding anomaly does not show up in the temperature record (Figure \@ref(fig:EManomaliesT)).
 
-```{r anomaliesT, message=FALSE, fig.cap="Anomaly diagnostics of temperature data."}
+```{r EManomaliesT, message=FALSE, fig.cap="Anomaly diagnostics of temperature data."}
 t_dec_filled_long_tbl %>%  
   plot_anomaly_diagnostics(date,value,
                            .facet_vars  = name,
@@ -488,7 +490,7 @@ Different techniques are demonstrated that allow us to get familiar with the dat
 
 Let us start with a visualisation of the complete data record. Using `timetk::plot_time_series` and groups, we can plot all data into separate, individual facets as shown in Figure \@ref(fig:completeDataRecord).
 
-```{r completeDataRecord, fig.cap="Complete Data hydro-meteorological record for the zone of runoff formation in the Chirchik river basin."}
+```{r EMcompleteDataRecord, fig.cap="Complete Data hydro-meteorological record for the zone of runoff formation in the Chirchik river basin."}
 data_long_tbl %>% 
   group_by(name) %>% 
   plot_time_series(date, value,
