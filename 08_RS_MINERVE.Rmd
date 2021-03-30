@@ -22,6 +22,8 @@ Departing from catchment GIS data, RS Minerve allows to quickly develop, test an
 
 The main goal in this Chapter is to familiarize the student on how to setup such model, calibrate and validate it for past and current climate conditions and then to **study climate change impacts in the basin**.
 
+
+
 ## Prerequisites {#section-rsminerve-prerequisites}
 Before delving into this section of the course material, you should have at least:   
 
@@ -32,6 +34,7 @@ Before delving into this section of the course material, you should have at leas
 
 You may have to dig deeper into the user manual and the technical manual within the frame of the course but the above points are the minimum requirement to get started.   
 If you fulfill the prerequisites, you should be able to do the tutorial with the minimal description in the modeling section. However, detailed step-by-step descriptions are linked for each task. 
+
 
 
 ## Recap: Hydrological response {#section-rsminerve-why-model-introduction}
@@ -111,7 +114,7 @@ Which describes the receding limb of the hydrograph ([What is a hydrograph](#sec
 Understanding the linear reservoir model is a prerequisite for hydrological modeling. That is why we propose the following exercise for you to do at home as a preparation for class.   
 
 
-:::: {.blackbox exercise-rsminerve-linres-1=""}
+:::: {.exercisebox exercise-rsminerve-linres-1=""}
 ::: {.center exercise-rsminerve-linres-1=""}
 **Task 1: Exerimental setup**
 :::
@@ -122,9 +125,26 @@ To understand the flow of water through a reservoir, you will build a bucket mod
 * How can you measure it?   
 * What materials you will need to set up the experiment?   
 * Where will you get the water from and can you re-use it after the experiment?    
+
+[Solution to task 1](#solution-task1-experimental-setup)
+
+::: {.center exercise-rsminerve-linres-2=""}
+**Task 2: Perform the experiment**
+:::
+Set up the experiment and pour water into your improvised reservoir. Take care to pour with a continuous speed over a short time period. You may have to repeat the experiment a few times (see also notes on measurement accuracy in the [Solutions of task 1](#solution-task1-experimental-setup)). The outcome of the experiment is a time series of discharge measurements.   
+You can watch a video of the experiment [here](#solution-task2-perform-experiment) if you cannot perform the experiment yourself.  
+
+::: {.center exercise-rsminerve-linres-3=""}
+**Task 3: Simulate the experiment**
+:::
+The figure below shows the measured discharge from the experimental data shown in the table above. We have implemented a discretized version of a linear reservoir model for you which shows the simulated discharge (grey bars) of a recharge event (blue bars). Play with the storage parameter by moving the slider and see how the simulated discharge changes based on the storage parameter of the simulated catchment. Can you reproduce the measured discharge? If you cannot find a perfect match between measurements and simulation results: What could be the reasons?  
+```{r, echo=FALSE}
+knitr::include_app("http://34.251.168.23:3838/linearReservoirExampleApp/", 
+                   height = "1000px")
+```
+
+[Solution to task 3](#solution-task3-simulate)
 ::::
-
-
 
 
 

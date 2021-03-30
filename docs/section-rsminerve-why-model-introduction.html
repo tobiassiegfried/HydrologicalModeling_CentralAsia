@@ -294,6 +294,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#computing-mean-monthly-temperature-climatology-from-chelsa-v1.2.1-data"><i class="fa fa-check"></i><b>8.3.3</b> Computing Mean Monthly Temperature Climatology from CHELSA v1.2.1 data</a></li>
 <li class="chapter" data-level="8.3.4" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#era5"><i class="fa fa-check"></i><b>8.3.4</b> ERA5</a></li>
 </ul></li>
+<li class="chapter" data-level="8.4" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html"><i class="fa fa-check"></i><b>8.4</b> Appendix D: Solutions to exercises</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-exercise1"><i class="fa fa-check"></i><b>8.4.1</b> Exercise on Linear Reservoir modelling</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
@@ -350,7 +354,7 @@ Substitute the linear reservoir equation into the water balance:</p>
 <p><span class="math inline">\(Q(t) = Q^* \cdot e^{-\tau/k}\)</span></p>
 <p>Which describes the receding limb of the hydrograph (<a href="#section-quickguides-what-is-a-hydrograph">What is a hydrograph</a>) with <span class="math inline">\(\tau\)</span> being the time since the recharge stopped.</p>
 <p>Understanding the linear reservoir model is a prerequisite for hydrological modeling. That is why we propose the following exercise for you to do at home as a preparation for class.</p>
-<div class="blackbox" exercise-rsminerve-linres-1="">
+<div class="exercisebox" exercise-rsminerve-linres-1="">
 <div class="center" exercise-rsminerve-linres-1="">
 <p><strong>Task 1: Exerimental setup</strong></p>
 </div>
@@ -364,9 +368,20 @@ Substitute the linear reservoir equation into the water balance:</p>
 </li>
 <li>What materials you will need to set up the experiment?<br />
 </li>
-<li>Where will you get the water from and can you re-use it after the experiment?<br />
-</li>
+<li>Where will you get the water from and can you re-use it after the experiment?</li>
 </ul>
+<p><a href="sectin-appendix-solutions.html#solution-task1-experimental-setup">Solution to task 1</a></p>
+<div class="center" exercise-rsminerve-linres-2="">
+<p><strong>Task 2: Perform the experiment</strong></p>
+</div>
+<p>Set up the experiment and pour water into your improvised reservoir. Take care to pour with a continuous speed over a short time period. You may have to repeat the experiment a few times (see also notes on measurement accuracy in the <a href="sectin-appendix-solutions.html#solution-task1-experimental-setup">Solutions of task 1</a>). The outcome of the experiment is a time series of discharge measurements.<br />
+You can watch a video of the experiment <a href="sectin-appendix-solutions.html#solution-task2-perform-experiment">here</a> if you cannot perform the experiment yourself.</p>
+<div class="center" exercise-rsminerve-linres-3="">
+<p><strong>Task 3: Simulate the experiment</strong></p>
+</div>
+<p>The figure below shows the measured discharge from the experimental data shown in the table above. We have implemented a discretized version of a linear reservoir model for you which shows the simulated discharge (grey bars) of a recharge event (blue bars). Play with the storage parameter by moving the slider and see how the simulated discharge changes based on the storage parameter of the simulated catchment. Can you reproduce the measured discharge? If you cannot find a perfect match between measurements and simulation results: What could be the reasons?<br />
+<iframe src="http://34.251.168.23:3838/linearReservoirExampleApp/?showcase=0" width="672" height="1000px"></iframe></p>
+<p><a href="sectin-appendix-solutions.html#solution-task3-simulate">Solution to task 3</a></p>
 </div>
 </div>
             </section>
