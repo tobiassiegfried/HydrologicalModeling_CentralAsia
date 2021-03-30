@@ -626,7 +626,7 @@ knitr::include_graphics('_bookdown_files/FIG_DATA/snowUndercatch_Spain.jpg')
 knitr::include_graphics('_bookdown_files/FIG_DATA/Beck_BiasCorrectionFactors.jpg')
 ```
 
-The bias corrected CHELSA precipitation (pr) raster data is available via [`./HydrologicalModeling_CentralAsia/CentralAsiaDomain/CHELSA_V1.2.1/pbcorr_tp`](https://www.dropbox.com/sh/l20s3089ok1orlr/AAALvIdEc43R3zW3enmvq3ZHa?dl=0) . Using these temperature as well bias-corrected precipitation data, we can easily compute and display the monthly norm climatology fields over the Central Asia domain[^data-4]. Here, we just load them and visualize the mean monthly patterns for a consistency check.
+The bias corrected CHELSA precipitation (tp) raster data is available via this Dropbox [link](https://www.dropbox.com/s/zysif93xbbay2tp/CHELSA_V12.nc?dl=0). Using these temperature as well bias-corrected precipitation data, we can easily compute and display the monthly norm climatology fields over the Central Asia domain[^data-4]. Here, we just load them and visualize the mean monthly patterns for a consistency check.
 
 [^data-4]: The code for the computation of the CHELSA long-term monthly mean temperature and precipitation climatologies is provided in the Appendix C in the corresponding Sect.
 
@@ -686,13 +686,8 @@ aoi_CentralAsia_LatLon <- extent(c(65,80.05,35.95,44.05)) # in lat/lon
 aoi_Basin_LatLon <- gunt_Shapefile_LatLon %>% extent() # GUNT
 aoi_Basin_UTM <- gunt_Shapefile %>% extent() # GUNT, in UTM
 
-# Load the monthly norm precipitation climate
-fLoc <- '../HydrologicalModeling_CentralAsia_Data/CentralAsiaDomain/CHELSA_V1.2.1/pbcorr_tp_climatology/CHELSA_V12.nc'
-chelsaP_corr_raster <- brick(fLoc, varname="corr_P_annual")
-chelsaP_GUNT_corr_raster <- riversCentralAsia::cutRaster2Basin(chelsaP_corr_raster,
-                                            aoi_CentralAsia_LatLon,
-                                            aoi_Basin_UTM,
-                                            "+init=epsg:32642")
+fLoc <- './data/AmuDarya/Gunt/ReanalysisData/tp_bcorr_NORM_CHELSA_Gunt.nc'
+chelsaP_GUNT_corr_raster <- brick(fLoc, varname="corr_P_annual")
 
 chelsaP_GUNT_corr__spdf <- as(chelsaP_GUNT_corr_raster, "SpatialPixelsDataFrame")
 chelsaP_GUNT_corr__df <- as.data.frame(chelsaP_GUNT_corr__spdf)
@@ -724,14 +719,9 @@ What about the seasonality of the CHELSA product? Can it adequately reproduce th
 First, we load and prepare all the required station precipitation and geospatial data. Then, we compute the monthly norms of these data for the period 1981-01-01 through 2013-12-31.
 
 ```{r precipitationNorms, fig.cap="Monthly precipitation norms of the bias corrected CHELSA v1.2.1 dataset and the mean monthly precipitation averaged over the four meteorological stations in the Gunt river basin."}
-# Get data (this time, we access the monthly norm data through the spacification of the variable name, that we want to load, i.e. varname="corr_P_monthly") 
-chelsaP_monthly_corr_raster <- brick(fLoc, varname="corr_P_monthly")
-
-# Crop monthly data to basin domain and reporject to UTM.
-chelsaP_GUNT_monthly_corr_raster_proj <- cutRaster2Basin(chelsaP_monthly_corr_raster,
-                                            aoi_CentralAsia_LatLon,
-                                            aoi_Basin_UTM,
-                                            "+init=epsg:32642")
+# Get data (this time, we access the monthly norm data through the specification of the variable name, that we want to load, i.e. varname="corr_P_monthly") 
+fLoc <- './data/AmuDarya/Gunt/ReanalysisData/tp_bcorr_monthly_CHELSA_Gunt.nc'
+chelsaP_GUNT_monthly_corr_raster_proj <- brick(fLoc, varname="corr_P_monthly")
 
 # Extract Gunt river basin cells and compute monthly totals
 chelsa_monthly_norm_P <- extract(chelsaP_GUNT_monthly_corr_raster_proj,gunt_Shapefile)[[1]] * rasterCellArea / 1000
@@ -739,7 +729,7 @@ chelsa_monthly_norm_P <- (chelsa_monthly_norm_P %>% colSums() / areaGunt * 1000)
 chelsa_monthly_norm_P <- chelsa_monthly_norm_P %>% as_tibble() %>% rename(CHELSA_norm_P=value)
 
 # Load Gunt Station Data record
-fPath = '../HydrologicalModeling_CentralAsia_Data/AmuDarya/Gunt/StationData/gunt_data_cleaned.Rds'
+fPath = './data/AmuDarya/Gunt/StationData/gunt_data_cleaned.Rds'
 data <- read_rds(fPath)
 
 # Prepare the station data precipitation record
@@ -753,7 +743,8 @@ P <- full_join(P,P_38954,by="date")
 P <- full_join(P,P_38956,by="date")
 
 # add a month identifier
-P <- P %>% filter(date>=as.Date("1981-01-01") & date<=as.Date("2013-12-31")) %>% mutate(mon = month(date)) %>% dplyr::select(-date)
+P <- P %>% filter(date>=as.Date("1981-01-01") & date<=as.Date("2013-12-31")) %>% mutate(mon = month(date)) %>% 
+  dplyr::select(-date)
 P <- P %>% pivot_longer(-mon) %>% group_by(mon)
 
 # Now, make a nice plot which compares with the monthly means average over all stations in the catchment.
@@ -1085,7 +1076,7 @@ First, the period of interest for the investigation of climate impacts needs to 
 knitr::include_graphics("_bookdown_files/FIG_DATA/greenhouseGasConcetrations_RCP.jpg")
 ```
 
-#### High Resolution Monthly Climate Time Series for 2006 - 2100
+### High Resolution Monthly Climate Time Series for 2006 - 2100
 
 The recently released high-resolution climate scenario datasets described by [@Karger_2020] are utilized here to study climate impacts in river basins in the Central Asia region. The authors of the aforementioned paper present GCMs output for monthly precipitation, mean minimum as well as maximum monthly temperatures that has been downscaled using the CHELSA algorithm. The data can be found here <https://www.envidat.ch/#/metadata/chelsa_cmip5_ts>.
 
@@ -1099,26 +1090,179 @@ As in the case of the ERA5 data, these GCM data need to be made available for al
 
 As discussed, these GCM data are high resolution monthly future climate fields. All good. But how do we arrive at climate fields that have a high hourly temporal resolution at the same time so that we can drive the RS MINERVE hydrological model with the required input data? The solution is shown in the next section.
 
-#### Using a Weather Generator to Simulate Daily Future Climate
+### Using a Weather Generator to Simulate Daily Future Climate
+
+#### Background and Input File Generation
 
 Stochastic weather generators are probabilistic models that are used to simulate weather data at a specific site or region by analyzing historical weather data and then generating a time-series of weather variables with statistical properties identical to the historical data [@BIRT20101252]. We demonstrate the use of RMAWGEN, a stochastic weather generator available for the `R` environment. Further information on RMAWGEN can be found here <https://github.com/ecor/RMAWGEN> and under the links provided via this GitHub link. While the weather generator is relatively poorly documented, a useful albeit very technical presentation of the tool is available [here](https://docs.google.com/file/d/0B66otCUk3Bv6V3RPbm1mUG4zVHc/edit).
 
 RMAWGEN allows for the generation of daily temperature and precipitation scenarios that are conditioned on monthly totals as given by the GCM model outputs. This is the key idea. In order to arrive at the final hourly data, we then simply distribute the daily data evenly over the hours of that particular day.
 
-Using again the example of the Gunt river basin, the following code block shows how to use the function `prepare_RMAWGEN_input_data()` for the preparation of the relevant RMAWGEN input data files.
+Using again an example of the Gunt river basin, the following code block shows how to use the function `prepare_RMAWGEN_input_data()` for the preparation of the relevant RMAWGEN input data files.
 
-```{r}
+```{r,eval=FALSE}
 # Load and process RS MINERVE csv database file
-filePath <- '/Users/tobiassiegfried/Dropbox (hydrosolutions)/1_HSOL_PROJECTS/PROJECTS/SDC/DKU_WRM_COURSE_CA/CourseMaterials/Data/RSMinerve/AmuDarya/GuntYashikul/GIS/'
-fileName <- 'Gunt_Yashikul_1981_2013_db.csv'
+filePath <- './data/AmuDarya/Gunt/RSMinerve/'
+fileName <- 'Gunt_1981_2013.csv'
 era5_gunt <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
 
-# Delete unused catchments in the Gunt RRM
-idx2del <- (era5_gunt[1,]=='Gunt_DS_1')|(era5_gunt[1,]=='Gunt_DS_2')|(era5_gunt[1,]=='Gunt_DS_3')
-era5_gunt <- era5_gunt %>% dplyr::select(which(!idx2del))
-
 rmawgen_input_files <- prepare_RMAWGEN_input_data(era5_gunt)
-rmawgen_input_files %>% list2env(.,envir = .GlobalEnv) # Send list variables to global environment.
+rmawgen_input_files %>% list2env(.,envir = .GlobalEnv) # Send list variables to global environment (it is a type of unlist).
 ```
 
-## Snow Cover Data (optional)
+The function returns a list `rmawgen_input_files` with all key information that can be unlisted using `rmawgen_input_files %>% list2env(.,envir = .GlobalEnv)`. This includes:
+
+-   STATION_NAMES: Character vector of station names (effectively, these are just the subbasin names extracted from the RS MINERVE input file).
+
+-   ELEVATION: Mean elevation of the stations
+
+-   STATION_LATLON: Matrix with station names, latitude and longitude
+
+-   LOCATION: Same as the station name, used above.
+
+-   PRECIPITATION: Tibble containing daily precipitation for each station
+
+-   TEMPERATURE_MIN: Minimum daily temperature (calculated from the ERA5 hourly data stored in the RS MINERVE csv file)
+
+-   TEMPERATURE_MAX: Maximum daily temperature (ditto)
+
+A weather generator is a type of model that uses input data to simulate output variables. Exactly like for example a hydrological runoff model, it depends on input parameters and different input parameter configuration lead to different model performance / outcomes. Hence, before generating future climate scenarios for which we do not have a validation set available to assess the performance of different parameter configurations of the weather generator, we assess model performance by using ERA5 data for calibration and model validation. The simple question to be answered here is whether or not the model is able to reproduce the statistical characteristics of the ERA5 dataset in the region of interest. If yes, we can safely assume that the weather generator can in a more or less realistic manner generate stochastic future climate scenarios that are conditioned on monthly GCM temperature and precipitation fields.
+
+A typical parameter set of RMAWGEN for testing different models can be specified in the following way.
+
+```{r,eval=FALSE}
+Housekeeping
+set.seed(123456) # Random generator seed is set to make results reproducible.
+
+# Monthly climate is calculated if it is set to NULL.
+PREC_CLIMATE <- NULL
+
+# Calibration Period
+year_min <- 1981
+year_max <- 2013
+origin <- origin <- "1981-1-1" # This is the starting date for which we have data available.
+
+# n GPCA iterations for variable and VAR residuals
+n_GPCA_iter <- 5
+n_GPCA_iteration_residuals <- 5
+
+# Autoregression orders (p) and exogenous vars
+p_test <- 1
+p_prec <- 3
+exogen <- NULL
+exogen_sim <- exogen
+
+# number of weather realizations
+nscenario <- 1
+
+# Simulation period
+year_min_sim <-  year_min # we are not yet simulating future climate but use the available data for model assessment, hence year_min_sim = year_min
+year_max_sim <-  year_max # we are not yet simulating future climate but use the available data for model assessment, hence year_max_sim = year_max
+
+# Minimum Precipitation value below which no precip is considered
+valmin <- 1.0
+```
+
+#### Model Calibration and Validation
+
+Different parameter combinations can now be tested and the model performance assessed as a function of these configurations. Detailed information about the core functions of RMAWGEN can be obtained by consulting their help, i.e. by for example typing `?ComprehensivePrecipitationGenerator`.
+
+```{r,eval=FALSE}
+# P03GPCA_prec
+generationP03GPCA_prec <- ComprehensivePrecipitationGenerator(
+  station = STATION_NAMES,
+  prec_all = PRECIPITATION,
+  year_min = year_min,
+  year_max = year_max,
+  p = p_prec,
+  n_GPCA_iteration = n_GPCA_iter,
+  n_GPCA_iteration_residuals = n_GPCA_iteration_residuals, 
+  exogen = exogen,
+  exogen_sim = exogen_sim, 
+  sample = "monthly",
+  mean_climate_prec = PREC_CLIMATE,
+  no_spline = FALSE,
+  year_max_sim = year_max_sim,
+  year_min_sim = year_min_sim
+  )
+
+model1 <- generationP03GPCA_prec
+
+# P01GPCA
+generationP01GPCA_prec <- ComprehensivePrecipitationGenerator(
+  station = STATION_NAMES,
+  prec_all = PRECIPITATION,
+  year_min = year_min,
+  year_max = year_max,
+  p = p_test,
+  n_GPCA_iteration = n_GPCA_iter,
+  n_GPCA_iteration_residuals = n_GPCA_iteration_residuals, 
+  exogen = exogen,
+  exogen_sim = exogen_sim, 
+  sample = "monthly",
+  mean_climate_prec = PREC_CLIMATE,
+  no_spline = FALSE,
+  year_max_sim = year_max_sim,
+  year_min_sim = year_min_sim
+  )
+
+model2 <- generationP01GPCA_prec
+
+# P03
+generationP03_prec <- ComprehensivePrecipitationGenerator(
+  station = STATION_NAMES,
+  prec_all = PRECIPITATION,
+  year_min = year_min,
+  year_max = year_max,
+  p = p_prec,
+  n_GPCA_iteration = 0,
+  n_GPCA_iteration_residuals = 0, 
+  exogen = exogen,
+  exogen_sim = exogen_sim, 
+  sample = "monthly",
+  mean_climate_prec = PREC_CLIMATE,
+  no_spline = FALSE,
+  year_max_sim = year_max_sim,
+  year_min_sim = year_min_sim
+  )
+
+model3 <- generationP03_prec
+
+# P01
+generationP01_prec <- ComprehensivePrecipitationGenerator(
+  station = STATION_NAMES,
+  prec_all = PRECIPITATION,
+  year_min = year_min,
+  year_max = year_max,
+  p = p_test,
+  n_GPCA_iteration = 0,
+  n_GPCA_iteration_residuals = 0, 
+  exogen = exogen,
+  exogen_sim = exogen_sim, 
+  sample = "monthly",
+  mean_climate_prec = PREC_CLIMATE,
+  no_spline = FALSE,
+  year_max_sim = year_max_sim,
+  year_min_sim = year_min_sim
+  )
+
+model4 <- generationP01_prec 
+```
+
+The performance of the 4 models can be assessed with statistical tests and graphically, with qq-plots and through the comparison of simulated versus observed monthly precipitation totals. Results are shown in the Figures below.
+
+```{r rmawgenMonthlyTotals, fig.cap="The comparison of the 4 stochastic weather generator models in terms of their abilities to reproduce monthly precipitation totals is shown for one station (elevation band) in the Gunt river basin. Results indicate that precipitation totals from the models 1 and 2 are overestimated. In comparison, models 3 and 4 are more balanced and not biased."}
+knitr::include_graphics("./_bookdown_files/FIG_DATA/RMAWGEN_Models_monthlyTotalsComparison.jpg")
+```
+
+```{r rmawgenQQPlot, fig.cap="Q-Plots of the four model results. If data plots along the diagonal line, it is an indication that the probability distribution of the simluated precipptation (y-axis) is the same as the probability distribution of the observed ERA5 precipitation (x-axis). QQ-plots of models 1 and 2 show a heavy bias whereas model 4 shows an overal satisfactory fit and thus performance. "}
+knitr::include_graphics("./_bookdown_files/FIG_DATA/RMAWGEN_Models_qqplot.jpg")
+```
+
+Figure \@ref(fig:rmawgenMonthlyTotals) and Figure \@ref(fig:rmawgenQQPlot) show that the Model 4 provides an overall well-balanced performance. We will thus us this models to generate the future climate fields.
+
+#### Simulating Future Daily Climate
+
+We will use the `model4` configuration to produce simulated future climate runs.
+
+## Snow Cover Data

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.4 Data on Climate Projections | Applied Modeling of Hydrological Systems in Central Asia</title>
+  <meta name="description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.4 Data on Climate Projections | Applied Modeling of Hydrological Systems in Central Asia" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.4 Data on Climate Projections | Applied Modeling of Hydrological Systems in Central Asia" />
+  
+  <meta name="twitter:description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
+  
+
+<meta name="author" content="Tobias Siegfried" />
+
+
+<meta name="date" content="2021-03-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="Data-ClimateReanalysisData.html"/>
+<link rel="next" href="snow-cover-data.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied Hydrological Modeling</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="foreword.html"><a href="foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
+<li class="part"><span><b>I Part I Hydrological Systems</b></span></li>
+<li class="chapter" data-level="1" data-path="ShortHistory.html"><a href="ShortHistory.html"><i class="fa fa-check"></i><b>1</b> Short History of Water in Central Asia</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="TamingHydrologicalSystems.html"><a href="TamingHydrologicalSystems.html"><i class="fa fa-check"></i><b>1.1</b> The Taming of the Central Asian Rivers</a></li>
+<li class="chapter" data-level="1.2" data-path="PostTransitionDevelopmentsChallenges.html"><a href="PostTransitionDevelopmentsChallenges.html"><i class="fa fa-check"></i><b>1.2</b> Post-Transition Development and Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="HydrologicalSystems.html"><a href="HydrologicalSystems.html"><i class="fa fa-check"></i><b>2</b> Hydrological Systems in Central Asia</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="regional-hydro-climatological-features.html"><a href="regional-hydro-climatological-features.html"><i class="fa fa-check"></i><b>2.1</b> Regional Hydro-Climatological Features</a></li>
+<li class="chapter" data-level="2.2" data-path="chap-regionalWaterBalance.html"><a href="chap-regionalWaterBalance.html"><i class="fa fa-check"></i><b>2.2</b> Regional Water Balance</a></li>
+<li class="chapter" data-level="2.3" data-path="runoff-formation.html"><a href="runoff-formation.html"><i class="fa fa-check"></i><b>2.3</b> Runoff Formation</a></li>
+<li class="chapter" data-level="2.4" data-path="average-multi-year-runoff.html"><a href="average-multi-year-runoff.html"><i class="fa fa-check"></i><b>2.4</b> Average Multi-Year Runoff</a></li>
+<li class="chapter" data-level="2.5" data-path="annual-runoff-fluctuations.html"><a href="annual-runoff-fluctuations.html"><i class="fa fa-check"></i><b>2.5</b> Annual Runoff Fluctuations</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="CaseStudies.html"><a href="CaseStudies.html"><i class="fa fa-check"></i><b>3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="GuntRB.html"><a href="GuntRB.html"><i class="fa fa-check"></i><b>3.1</b> Gunt River Basin</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="GuntRB.html"><a href="GuntRB.html#GuntRBOverview"><i class="fa fa-check"></i><b>3.1.1</b> Basin Characterization</a></li>
+<li class="chapter" data-level="3.1.2" data-path="GuntRB.html"><a href="GuntRB.html#GuntHyrology"><i class="fa fa-check"></i><b>3.1.2</b> Hydrology</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="CRB.html"><a href="CRB.html"><i class="fa fa-check"></i><b>3.2</b> Chirchik River Basin</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="CRB.html"><a href="CRB.html#CRBOverview"><i class="fa fa-check"></i><b>3.2.1</b> Basin Characterization</a></li>
+<li class="chapter" data-level="3.2.2" data-path="CRB.html"><a href="CRB.html#CRBBasinCharacteristics"><i class="fa fa-check"></i><b>3.2.2</b> Hydrology</a></li>
+<li class="chapter" data-level="3.2.3" data-path="CRB.html"><a href="CRB.html#CRB_KoskuDischargeContribution"><i class="fa fa-check"></i><b>3.2.3</b> Discharge Estimation from the Ungauged Kosku Tributary</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="Part2-Applied-Modeling.html"><a href="Part2-Applied-Modeling.html"><i class="fa fa-check"></i>(PART) Part II Applied Modeling</a>
+<ul>
+<li class="chapter" data-level="3.3" data-path="LongTermWaterBalance.html"><a href="LongTermWaterBalance.html"><i class="fa fa-check"></i><b>3.3</b> Budyko-Type Long-term Water Balance Modeling</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="LongTermWaterBalance.html"><a href="LongTermWaterBalance.html#derivation-of-the-budyko-relationship"><i class="fa fa-check"></i><b>3.3.1</b> Derivation of the Budyko Relationship</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="effects-of-snow-ratio-on-annual-runoff-within-the-budyko-framework.html"><a href="effects-of-snow-ratio-on-annual-runoff-within-the-budyko-framework.html"><i class="fa fa-check"></i><b>3.4</b> Effects of Snow Ratio on Annual Runoff within the Budyko Framework</a></li>
+<li class="chapter" data-level="3.5" data-path="hydrological-response-to-a-changing-climate.html"><a href="hydrological-response-to-a-changing-climate.html"><i class="fa fa-check"></i><b>3.5</b> Hydrological Response to a Changing Climate</a></li>
+<li class="chapter" data-level="3.6" data-path="application-to-central-asian-river-basins.html"><a href="application-to-central-asian-river-basins.html"><i class="fa fa-check"></i><b>3.6</b> Application to Central Asian River Basins</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="application-to-central-asian-river-basins.html"><a href="application-to-central-asian-river-basins.html#data"><i class="fa fa-check"></i><b>3.6.1</b> Data</a></li>
+<li class="chapter" data-level="3.6.2" data-path="application-to-central-asian-river-basins.html"><a href="application-to-central-asian-river-basins.html#model"><i class="fa fa-check"></i><b>3.6.2</b> Model</a></li>
+<li class="chapter" data-level="3.6.3" data-path="application-to-central-asian-river-basins.html"><a href="application-to-central-asian-river-basins.html#conclusions"><i class="fa fa-check"></i><b>3.6.3</b> Conclusions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="Chapter-DATA.html"><a href="Chapter-DATA.html"><i class="fa fa-check"></i><b>4</b> Data Retrieval, Preparation &amp; Analysis</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="Data-StationData.html"><a href="Data-StationData.html"><i class="fa fa-check"></i><b>4.1</b> Station Data</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="Data-StationData.html"><a href="Data-StationData.html#Chap9AvailableData"><i class="fa fa-check"></i><b>4.1.1</b> Available Data</a></li>
+<li class="chapter" data-level="4.1.2" data-path="Data-StationData.html"><a href="Data-StationData.html#StationData::GapFilling"><i class="fa fa-check"></i><b>4.1.2</b> Gap Filling Discharge Data</a></li>
+<li class="chapter" data-level="4.1.3" data-path="Data-StationData.html"><a href="Data-StationData.html#Chap9DataPreparationPT"><i class="fa fa-check"></i><b>4.1.3</b> Gap Filling Meteorological Data</a></li>
+<li class="chapter" data-level="4.1.4" data-path="Data-StationData.html"><a href="Data-StationData.html#Chap9AnomaliesOutliers"><i class="fa fa-check"></i><b>4.1.4</b> Anomalies and Outliers</a></li>
+<li class="chapter" data-level="4.1.5" data-path="Data-StationData.html"><a href="Data-StationData.html#Chap9_FinalData"><i class="fa fa-check"></i><b>4.1.5</b> Putting it all together</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html"><i class="fa fa-check"></i><b>4.2</b> Geospatial Data</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-steps-setting-up"><i class="fa fa-check"></i><b>4.2.1</b> Setting up QGIS</a></li>
+<li class="chapter" data-level="4.2.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#load-dem"><i class="fa fa-check"></i><b>4.2.2</b> Load DEM</a></li>
+<li class="chapter" data-level="4.2.3" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-steps-derive-catchment-boundaries"><i class="fa fa-check"></i><b>4.2.3</b> Derive the boundaries of your catchment</a></li>
+<li class="chapter" data-level="4.2.4" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#run-through-the-process-model"><i class="fa fa-check"></i><b>4.2.4</b> Run through the process model</a></li>
+<li class="chapter" data-level="4.2.5" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#manually-edit-the-gis-layers-for-import-to-rs-minerve"><i class="fa fa-check"></i><b>4.2.5</b> Manually edit the GIS Layers for import to RS Minerve</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="Data-ClimateReanalysisData.html"><a href="Data-ClimateReanalysisData.html"><i class="fa fa-check"></i><b>4.3</b> Climate Reanalysis Data</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="Data-ClimateReanalysisData.html"><a href="Data-ClimateReanalysisData.html#Data::CHELSA"><i class="fa fa-check"></i><b>4.3.1</b> CHELSA V1.2.1 Data and Bias Correction</a></li>
+<li class="chapter" data-level="4.3.2" data-path="Data-ClimateReanalysisData.html"><a href="Data-ClimateReanalysisData.html#Data::ERA5"><i class="fa fa-check"></i><b>4.3.2</b> ERA5 Download and Data Resampling with PBCORR CHELSA</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="data-on-climate-projections.html"><a href="data-on-climate-projections.html"><i class="fa fa-check"></i><b>4.4</b> Data on Climate Projections</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="data-on-climate-projections.html"><a href="data-on-climate-projections.html#high-resolution-monthly-climate-time-series-for-2006---2100"><i class="fa fa-check"></i><b>4.4.1</b> High Resolution Monthly Climate Time Series for 2006 - 2100</a></li>
+<li class="chapter" data-level="4.4.2" data-path="data-on-climate-projections.html"><a href="data-on-climate-projections.html#using-a-weather-generator-to-simulate-daily-future-climate"><i class="fa fa-check"></i><b>4.4.2</b> Using a Weather Generator to Simulate Daily Future Climate</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="snow-cover-data.html"><a href="snow-cover-data.html"><i class="fa fa-check"></i><b>4.5</b> Snow Cover Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="RSMinerveMODELS.html"><a href="RSMinerveMODELS.html"><i class="fa fa-check"></i><b>5</b> Hydrological-Hydraulic Modeling</a>
+<ul>
+<li class="chapter" data-level="5.0.1" data-path="RSMinerveMODELS.html"><a href="RSMinerveMODELS.html#section-rsminerve-prerequisites"><i class="fa fa-check"></i><b>5.0.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="5.1" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html"><i class="fa fa-check"></i><b>5.1</b> Data Preparation and Setup</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html#examining-and-understanding-the-gis-data"><i class="fa fa-check"></i><b>5.1.1</b> Examining and Understanding the GIS Data</a></li>
+<li class="chapter" data-level="5.1.2" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html#loading-gis-data-and-model-creation"><i class="fa fa-check"></i><b>5.1.2</b> Loading GIS Data and Model Creation</a></li>
+<li class="chapter" data-level="5.1.3" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html#climate-data"><i class="fa fa-check"></i><b>5.1.3</b> Climate Data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="model-calibration-and-validation-1.html"><a href="model-calibration-and-validation-1.html"><i class="fa fa-check"></i><b>5.2</b> Model Calibration and Validation</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="model-calibration-and-validation-1.html"><a href="model-calibration-and-validation-1.html#basic-principles"><i class="fa fa-check"></i><b>5.2.1</b> Basic Principles</a></li>
+<li class="chapter" data-level="5.2.2" data-path="model-calibration-and-validation-1.html"><a href="model-calibration-and-validation-1.html#practical-steps"><i class="fa fa-check"></i><b>5.2.2</b> Practical Steps</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="application-investigating-climate-change-impacts.html"><a href="application-investigating-climate-change-impacts.html"><i class="fa fa-check"></i><b>5.3</b> Application: Investigating Climate Change Impacts</a></li>
+<li class="chapter" data-level="5.4" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>5.4</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="HydroModelsEmpiricalModels.html"><a href="HydroModelsEmpiricalModels.html"><i class="fa fa-check"></i><b>6</b> Discharge Forecasting with Predictive Inference</a>
+<ul>
+<li class="chapter" data-level="" data-path="prerequisites.html"><a href="prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="6.1" data-path="Chap9PredictiveInference.html"><a href="Chap9PredictiveInference.html"><i class="fa fa-check"></i><b>6.1</b> Forecasting Using Predictive Inference</a></li>
+<li class="chapter" data-level="6.2" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html"><i class="fa fa-check"></i><b>6.2</b> Forecasting in the Central Asian Hydromets</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html#background"><i class="fa fa-check"></i><b>6.2.1</b> Background</a></li>
+<li class="chapter" data-level="6.2.2" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html#forecasting-for-what-and-whom"><i class="fa fa-check"></i><b>6.2.2</b> Forecasting for What and Whom?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html"><i class="fa fa-check"></i><b>6.3</b> Data and Preparation</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="Data-StationData.html"><a href="Data-StationData.html#Chap9AvailableData"><i class="fa fa-check"></i><b>6.3.1</b> Available Data</a></li>
+<li class="chapter" data-level="6.3.2" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9DataPreparationQ"><i class="fa fa-check"></i><b>6.3.2</b> Gap Filling Discharge Data</a></li>
+<li class="chapter" data-level="6.3.3" data-path="Data-StationData.html"><a href="Data-StationData.html#Chap9DataPreparationPT"><i class="fa fa-check"></i><b>6.3.3</b> Gap Filling Meteorological Data</a></li>
+<li class="chapter" data-level="6.3.4" data-path="Data-StationData.html"><a href="Data-StationData.html#Chap9AnomaliesOutliers"><i class="fa fa-check"></i><b>6.3.4</b> Anomalies and Outliers</a></li>
+<li class="chapter" data-level="6.3.5" data-path="Data-StationData.html"><a href="Data-StationData.html#Chap9_FinalData"><i class="fa fa-check"></i><b>6.3.5</b> Putting it all together</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html"><i class="fa fa-check"></i><b>6.4</b> Data Analysis</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap_9_DataTransformation"><i class="fa fa-check"></i><b>6.4.1</b> Data Transformation</a></li>
+<li class="chapter" data-level="6.4.2" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_Trends"><i class="fa fa-check"></i><b>6.4.2</b> Detecting Trends</a></li>
+<li class="chapter" data-level="6.4.3" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_Autocorrelations"><i class="fa fa-check"></i><b>6.4.3</b> Auto- and Crosscorrelations</a></li>
+<li class="chapter" data-level="6.4.4" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_SeasonalityAnalysis"><i class="fa fa-check"></i><b>6.4.4</b> Time Series Seasonality</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html"><i class="fa fa-check"></i><b>6.5</b> Investigating and Engineering Predictors</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_CurrentPractice"><i class="fa fa-check"></i><b>6.5.1</b> Benchmark: Current Operational Forecasting Models in the Hydrometeorological Agencies</a></li>
+<li class="chapter" data-level="6.5.2" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_TSR"><i class="fa fa-check"></i><b>6.5.2</b> Time Series Regression Models</a></li>
+<li class="chapter" data-level="6.5.3" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_ForecastQuality"><i class="fa fa-check"></i><b>6.5.3</b> Assessing the Quality of Forecasts</a></li>
+<li class="chapter" data-level="6.5.4" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#generating-and-assessing-out-of-sample-forecasts"><i class="fa fa-check"></i><b>6.5.4</b> Generating and Assessing Out-of-Sample Forecasts</a></li>
+<li class="chapter" data-level="6.5.5" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_MLM"><i class="fa fa-check"></i><b>6.5.5</b> Machine Learning Models</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="save-data-for-hot-start.html"><a href="save-data-for-hot-start.html"><i class="fa fa-check"></i><b>6.6</b> Save Data for Hot Start</a></li>
+</ul></li>
+<li class="part"><span><b>II Part III Model Operationalization</b></span></li>
+<li class="chapter" data-level="7" data-path="Operationalization.html"><a href="Operationalization.html"><i class="fa fa-check"></i><b>7</b> Operationalization of Models - Opportunities and Challenges</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="co-design-phase.html"><a href="co-design-phase.html"><i class="fa fa-check"></i><b>7.1</b> Co-design Phase</a></li>
+<li class="chapter" data-level="7.2" data-path="modeling-phase.html"><a href="modeling-phase.html"><i class="fa fa-check"></i><b>7.2</b> Modeling Phase</a></li>
+<li class="chapter" data-level="7.3" data-path="testing-phase.html"><a href="testing-phase.html"><i class="fa fa-check"></i><b>7.3</b> Testing Phase</a></li>
+<li class="chapter" data-level="7.4" data-path="operational-deployment.html"><a href="operational-deployment.html"><i class="fa fa-check"></i><b>7.4</b> Operational Deployment</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ChapterAppendix.html"><a href="ChapterAppendix.html"><i class="fa fa-check"></i><b>8</b> (APPENDIX) Appendix</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="appendix-a-open-source-software.html"><a href="appendix-a-open-source-software.html"><i class="fa fa-check"></i><b>8.1</b> Appendix A: Open-source Software</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="appendix-a-open-source-software.html"><a href="appendix-a-open-source-software.html#open-source-software"><i class="fa fa-check"></i><b>8.1.1</b> Open-Source Software</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html"><i class="fa fa-check"></i><b>8.2</b> Appendix B: Quick Guides</a></li>
+<li class="chapter" data-level="8.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html"><i class="fa fa-check"></i><b>8.3</b> Appendix C: Processing Climate Data</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#cutting-chelsa-v.1.2.1-to-ca-domain"><i class="fa fa-check"></i><b>8.3.1</b> Cutting CHELSA v.1.2.1 to CA Domain</a></li>
+<li class="chapter" data-level="8.3.2" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#bias-correcting-chelsa-v1.2.1-precipitation-data-for-snow-undercatch"><i class="fa fa-check"></i><b>8.3.2</b> Bias Correcting CHELSA v1.2.1 Precipitation Data for Snow Undercatch</a></li>
+<li class="chapter" data-level="8.3.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#computing-mean-monthly-temperature-climatology-from-chelsa-v1.2.1-data"><i class="fa fa-check"></i><b>8.3.3</b> Computing Mean Monthly Temperature Climatology from CHELSA v1.2.1 data</a></li>
+<li class="chapter" data-level="8.3.4" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#era5"><i class="fa fa-check"></i><b>8.3.4</b> ERA5</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="Appendix.html"><a href="Appendix.html"><i class="fa fa-check"></i><b>9</b> (APPENDIX) Appendix</a></li>
+<li class="chapter" data-level="10" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>10</b> Appendix B</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="section-quick-guides.html"><a href="section-quick-guides.html"><i class="fa fa-check"></i><b>10.1</b> Quick guides</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="section-quick-guides.html"><a href="section-quick-guides.html#qgis-1"><i class="fa fa-check"></i><b>10.1.1</b> QGIS</a></li>
+<li class="chapter" data-level="10.1.2" data-path="section-quick-guides.html"><a href="section-quick-guides.html#rs-minerve-1"><i class="fa fa-check"></i><b>10.1.2</b> RS Minerve</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="section-quickguides-how-to-download-and-install-rsminerve.html"><a href="section-quickguides-how-to-download-and-install-rsminerve.html"><i class="fa fa-check"></i><b>10.2</b> How to download and install RS Minerve</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>11</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Modeling of Hydrological Systems in Central Asia</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-on-climate-projections" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Data on Climate Projections</h2>
+<p>In order to look into the future with a hydrological model for exploring climate scenarios, it needs to be fed with those scenarios. The production of these scenarios in a way resembles the steps described for the reanalysis data but also differs in some marked way. Let us outline them first before diving into the details.</p>
+<p>First, the period of interest for the investigation of climate impacts needs to be defined. Future climate scenarios need then need to be identified that cover the area and period of interest. The future climate scenarios are outputs from global climate models (GCMs). These GCMs normally generate monthly data as a function of representative concentration pathways (called RCPs). They describe possible futures as a function of different atmospheric CO<sub>2</sub>-concentration scenarios. We focus the discussion here on the RCP 4.5 and RCP 8.5 concentration scenarios. According to the IPCC, RCP 4.5 is an intermediate scenario where CO<sub>2</sub> emissions peak around 2040, then decline. Compared to this RCP 8.5 is generally considered to be a worst case climate change scenario. Very detailed information regarding these scenarios, their underlying assumptions and assumptions can be found on the dedicated website served by the Intergovernmental Panel for Climate Change (IPCC). See the link <a href="https://ar5-syr.ipcc.ch/topic_futurechanges.php">here</a>.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="data-on-climate-projections.html#cb95-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;_bookdown_files/FIG_DATA/greenhouseGasConcetrations_RCP.jpg&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:rcpGGConcetrationLevels"></span>
+<img src="_bookdown_files/FIG_DATA/greenhouseGasConcetrations_RCP.jpg" alt="The development of greenhouse gas concentrations during the 21st century as a function of the corresponding scenario. We focus here on RCP4.5 and RCP8.5. Source: [@van_Vuuren_2011]" width="1180" />
+<p class="caption">
+Figure 4.48: The development of greenhouse gas concentrations during the 21st century as a function of the corresponding scenario. We focus here on RCP4.5 and RCP8.5. Source: <span class="citation">(<a href="References.html#ref-van_Vuuren_2011" role="doc-biblioref">Vuuren et al. 2011</a>)</span>
+</p>
+</div>
+<div id="high-resolution-monthly-climate-time-series-for-2006---2100" class="section level3" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> High Resolution Monthly Climate Time Series for 2006 - 2100</h3>
+<p>The recently released high-resolution climate scenario datasets described by <span class="citation">(<a href="References.html#ref-Karger_2020" role="doc-biblioref">Karger et al. 2020</a>)</span> are utilized here to study climate impacts in river basins in the Central Asia region. The authors of the aforementioned paper present GCMs output for monthly precipitation, mean minimum as well as maximum monthly temperatures that has been downscaled using the CHELSA algorithm. The data can be found here <a href="https://www.envidat.ch/#/metadata/chelsa_cmip5_ts" class="uri">https://www.envidat.ch/#/metadata/chelsa_cmip5_ts</a>.</p>
+<p>We download data from 3 out of the 4 available downscaled GCM runs for further analysis and processing. These are outputs from the Coupled Model Intercomparison Project phase 5 (<a href="https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip5">CMIP5</a>) and are gridded monthly time series from the years 2006 through 2100 with a spatial resolution of 0.049 degrees (see again <span class="citation">(<a href="References.html#ref-Karger_2020" role="doc-biblioref">Karger et al. 2020</a>)</span> for all the details). The three models from which data were taken are: CMCC-CM run by the Centro Euro-Mediterraneo per I Cambiamenti Climatici (CMCC); MIROC5 run by the University of Tokyo; and ACCESS1-3 run by the Commonwealth Scientific and Industrial Research Organization (CSIRO) and Bureau of Meteorology (BOM), Australia <span class="citation">(<a href="References.html#ref-Karger_2020" role="doc-biblioref">Karger et al. 2020</a>)</span>.</p>
+<p>First, the data is downloaded and stored locally for RCP 4.5 and RCP 8.5. Then, as in the case of the original CHELSA data, the monthly gridded precipitation timeseries are bias corrected using the monthly correction factors as report by <span class="citation">(<a href="References.html#ref-beck2020c" role="doc-biblioref">Beck et al. 2020d</a>)</span> and finally, mean monthly temperature fields are generated from the minimum and maximum monthly temperatures. The resulting data available for the Central Asia domain are available for download via this <a href="https://www.dropbox.com/sh/xs870upjjvg9ovv/AABkniqG4f6XFzDkwZqhurcta?dl=0">link</a><a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>.</p>
+<p>As in the case of the ERA5 data, these GCM data need to be made available for all the elevation bands. By providing a proper shapefile that contains sub-basin specific elevation bands of a catchment, the function <code>riversCentralAsia::downscale_ClimPred_monthly_BasinElBands()</code> can be used to compute this. This function processes the climate projection raster bricks with precipitation_flux and air_temperature (tasmin, tasmean and tasmax) and computes elevation band statistics.</p>
+<p>As discussed, these GCM data are high resolution monthly future climate fields. All good. But how do we arrive at climate fields that have a high hourly temporal resolution at the same time so that we can drive the RS MINERVE hydrological model with the required input data? The solution is shown in the next section.</p>
+</div>
+<div id="using-a-weather-generator-to-simulate-daily-future-climate" class="section level3" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Using a Weather Generator to Simulate Daily Future Climate</h3>
+<div id="background-and-input-file-generation" class="section level4" number="4.4.2.1">
+<h4><span class="header-section-number">4.4.2.1</span> Background and Input File Generation</h4>
+<p>Stochastic weather generators are probabilistic models that are used to simulate weather data at a specific site or region by analyzing historical weather data and then generating a time-series of weather variables with statistical properties identical to the historical data <span class="citation">(<a href="References.html#ref-BIRT20101252" role="doc-biblioref">Birt et al. 2010</a>)</span>. We demonstrate the use of RMAWGEN, a stochastic weather generator available for the <code>R</code> environment. Further information on RMAWGEN can be found here <a href="https://github.com/ecor/RMAWGEN" class="uri">https://github.com/ecor/RMAWGEN</a> and under the links provided via this GitHub link. While the weather generator is relatively poorly documented, a useful albeit very technical presentation of the tool is available <a href="https://docs.google.com/file/d/0B66otCUk3Bv6V3RPbm1mUG4zVHc/edit">here</a>.</p>
+<p>RMAWGEN allows for the generation of daily temperature and precipitation scenarios that are conditioned on monthly totals as given by the GCM model outputs. This is the key idea. In order to arrive at the final hourly data, we then simply distribute the daily data evenly over the hours of that particular day.</p>
+<p>Using again an example of the Gunt river basin, the following code block shows how to use the function <code>prepare_RMAWGEN_input_data()</code> for the preparation of the relevant RMAWGEN input data files.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="data-on-climate-projections.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load and process RS MINERVE csv database file</span></span>
+<span id="cb96-2"><a href="data-on-climate-projections.html#cb96-2" aria-hidden="true" tabindex="-1"></a>filePath <span class="ot">&lt;-</span> <span class="st">&#39;./data/AmuDarya/Gunt/RSMinerve/&#39;</span></span>
+<span id="cb96-3"><a href="data-on-climate-projections.html#cb96-3" aria-hidden="true" tabindex="-1"></a>fileName <span class="ot">&lt;-</span> <span class="st">&#39;Gunt_1981_2013.csv&#39;</span></span>
+<span id="cb96-4"><a href="data-on-climate-projections.html#cb96-4" aria-hidden="true" tabindex="-1"></a>era5_gunt <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="fu">paste0</span>(filePath,fileName),<span class="at">sep=</span><span class="st">&#39;,&#39;</span>) <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>()</span>
+<span id="cb96-5"><a href="data-on-climate-projections.html#cb96-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-6"><a href="data-on-climate-projections.html#cb96-6" aria-hidden="true" tabindex="-1"></a>rmawgen_input_files <span class="ot">&lt;-</span> <span class="fu">prepare_RMAWGEN_input_data</span>(era5_gunt)</span>
+<span id="cb96-7"><a href="data-on-climate-projections.html#cb96-7" aria-hidden="true" tabindex="-1"></a>rmawgen_input_files <span class="sc">%&gt;%</span> <span class="fu">list2env</span>(.,<span class="at">envir =</span> .GlobalEnv) <span class="co"># Send list variables to global environment (it is a type of unlist).</span></span></code></pre></div>
+<p>The function returns a list <code>rmawgen_input_files</code> with all key information that can be unlisted using <code>rmawgen_input_files %&gt;% list2env(.,envir = .GlobalEnv)</code>. This includes:</p>
+<ul>
+<li><p>STATION_NAMES: Character vector of station names (effectively, these are just the subbasin names extracted from the RS MINERVE input file).</p></li>
+<li><p>ELEVATION: Mean elevation of the stations</p></li>
+<li><p>STATION_LATLON: Matrix with station names, latitude and longitude</p></li>
+<li><p>LOCATION: Same as the station name, used above.</p></li>
+<li><p>PRECIPITATION: Tibble containing daily precipitation for each station</p></li>
+<li><p>TEMPERATURE_MIN: Minimum daily temperature (calculated from the ERA5 hourly data stored in the RS MINERVE csv file)</p></li>
+<li><p>TEMPERATURE_MAX: Maximum daily temperature (ditto)</p></li>
+</ul>
+<p>A weather generator is a type of model that uses input data to simulate output variables. Exactly like for example a hydrological runoff model, it depends on input parameters and different input parameter configuration lead to different model performance / outcomes. Hence, before generating future climate scenarios for which we do not have a validation set available to assess the performance of different parameter configurations of the weather generator, we assess model performance by using ERA5 data for calibration and model validation. The simple question to be answered here is whether or not the model is able to reproduce the statistical characteristics of the ERA5 dataset in the region of interest. If yes, we can safely assume that the weather generator can in a more or less realistic manner generate stochastic future climate scenarios that are conditioned on monthly GCM temperature and precipitation fields.</p>
+<p>A typical parameter set of RMAWGEN for testing different models can be specified in the following way.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="data-on-climate-projections.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Parameters of Generator</span></span>
+<span id="cb97-2"><a href="data-on-climate-projections.html#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123456</span>) <span class="co"># Random generator seed</span></span>
+<span id="cb97-3"><a href="data-on-climate-projections.html#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Monthly climate is calculated if it is set to NULL</span></span>
+<span id="cb97-4"><a href="data-on-climate-projections.html#cb97-4" aria-hidden="true" tabindex="-1"></a>PREC_CLIMATE <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb97-5"><a href="data-on-climate-projections.html#cb97-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-6"><a href="data-on-climate-projections.html#cb97-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calibration Period</span></span>
+<span id="cb97-7"><a href="data-on-climate-projections.html#cb97-7" aria-hidden="true" tabindex="-1"></a>year_min <span class="ot">&lt;-</span> <span class="dv">1981</span></span>
+<span id="cb97-8"><a href="data-on-climate-projections.html#cb97-8" aria-hidden="true" tabindex="-1"></a>year_max <span class="ot">&lt;-</span> <span class="dv">2013</span></span>
+<span id="cb97-9"><a href="data-on-climate-projections.html#cb97-9" aria-hidden="true" tabindex="-1"></a>origin <span class="ot">&lt;-</span> origin <span class="ot">&lt;-</span> <span class="st">&quot;1981-1-1&quot;</span> <span class="co"># This is the starting date for which we have data available.</span></span>
+<span id="cb97-10"><a href="data-on-climate-projections.html#cb97-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-11"><a href="data-on-climate-projections.html#cb97-11" aria-hidden="true" tabindex="-1"></a><span class="co"># n GPCA iterations for variable and VAR residuals</span></span>
+<span id="cb97-12"><a href="data-on-climate-projections.html#cb97-12" aria-hidden="true" tabindex="-1"></a>n_GPCA_iter <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb97-13"><a href="data-on-climate-projections.html#cb97-13" aria-hidden="true" tabindex="-1"></a>n_GPCA_iteration_residuals <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb97-14"><a href="data-on-climate-projections.html#cb97-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-15"><a href="data-on-climate-projections.html#cb97-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Autoregression orders (p) and exogenous vars</span></span>
+<span id="cb97-16"><a href="data-on-climate-projections.html#cb97-16" aria-hidden="true" tabindex="-1"></a>p_test <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb97-17"><a href="data-on-climate-projections.html#cb97-17" aria-hidden="true" tabindex="-1"></a>p_prec <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb97-18"><a href="data-on-climate-projections.html#cb97-18" aria-hidden="true" tabindex="-1"></a>exogen <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb97-19"><a href="data-on-climate-projections.html#cb97-19" aria-hidden="true" tabindex="-1"></a>exogen_sim <span class="ot">&lt;-</span> exogen</span>
+<span id="cb97-20"><a href="data-on-climate-projections.html#cb97-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-21"><a href="data-on-climate-projections.html#cb97-21" aria-hidden="true" tabindex="-1"></a><span class="co"># number of weather realizations</span></span>
+<span id="cb97-22"><a href="data-on-climate-projections.html#cb97-22" aria-hidden="true" tabindex="-1"></a>nscenario <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb97-23"><a href="data-on-climate-projections.html#cb97-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-24"><a href="data-on-climate-projections.html#cb97-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation period</span></span>
+<span id="cb97-25"><a href="data-on-climate-projections.html#cb97-25" aria-hidden="true" tabindex="-1"></a>year_min_sim <span class="ot">&lt;-</span>  year_min <span class="co"># we are not yet simulating future climate but use the available data for model assessment, hence year_min_sim = year_min</span></span>
+<span id="cb97-26"><a href="data-on-climate-projections.html#cb97-26" aria-hidden="true" tabindex="-1"></a>year_max_sim <span class="ot">&lt;-</span>  year_max <span class="co"># we are not yet simulating future climate but use the available data for model assessment, hence year_max_sim = year_max</span></span>
+<span id="cb97-27"><a href="data-on-climate-projections.html#cb97-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-28"><a href="data-on-climate-projections.html#cb97-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimum Precipitation value below which no precip is considered</span></span>
+<span id="cb97-29"><a href="data-on-climate-projections.html#cb97-29" aria-hidden="true" tabindex="-1"></a>valmin <span class="ot">&lt;-</span> <span class="fl">1.0</span></span></code></pre></div>
+</div>
+<div id="model-calibration-and-validation" class="section level4" number="4.4.2.2">
+<h4><span class="header-section-number">4.4.2.2</span> Model Calibration and Validation</h4>
+<p>Different parameter combinations can now be tested and the model performance assessed as a function of these configurations. Detailed information about the core functions of RMAWGEN can be obtained by consulting their help, i.e. by for example typing <code>?ComprehensivePrecipitationGenerator</code>.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="data-on-climate-projections.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># P03GPCA_prec</span></span>
+<span id="cb98-2"><a href="data-on-climate-projections.html#cb98-2" aria-hidden="true" tabindex="-1"></a>generationP03GPCA_prec <span class="ot">&lt;-</span> <span class="fu">ComprehensivePrecipitationGenerator</span>(</span>
+<span id="cb98-3"><a href="data-on-climate-projections.html#cb98-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">station =</span> STATION_NAMES,</span>
+<span id="cb98-4"><a href="data-on-climate-projections.html#cb98-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">prec_all =</span> PRECIPITATION,</span>
+<span id="cb98-5"><a href="data-on-climate-projections.html#cb98-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_min =</span> year_min,</span>
+<span id="cb98-6"><a href="data-on-climate-projections.html#cb98-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_max =</span> year_max,</span>
+<span id="cb98-7"><a href="data-on-climate-projections.html#cb98-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> p_prec,</span>
+<span id="cb98-8"><a href="data-on-climate-projections.html#cb98-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_GPCA_iteration =</span> n_GPCA_iter,</span>
+<span id="cb98-9"><a href="data-on-climate-projections.html#cb98-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_GPCA_iteration_residuals =</span> n_GPCA_iteration_residuals, </span>
+<span id="cb98-10"><a href="data-on-climate-projections.html#cb98-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">exogen =</span> exogen,</span>
+<span id="cb98-11"><a href="data-on-climate-projections.html#cb98-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">exogen_sim =</span> exogen_sim, </span>
+<span id="cb98-12"><a href="data-on-climate-projections.html#cb98-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample =</span> <span class="st">&quot;monthly&quot;</span>,</span>
+<span id="cb98-13"><a href="data-on-climate-projections.html#cb98-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_climate_prec =</span> PREC_CLIMATE,</span>
+<span id="cb98-14"><a href="data-on-climate-projections.html#cb98-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">no_spline =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb98-15"><a href="data-on-climate-projections.html#cb98-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_max_sim =</span> year_max_sim,</span>
+<span id="cb98-16"><a href="data-on-climate-projections.html#cb98-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_min_sim =</span> year_min_sim</span>
+<span id="cb98-17"><a href="data-on-climate-projections.html#cb98-17" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb98-18"><a href="data-on-climate-projections.html#cb98-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-19"><a href="data-on-climate-projections.html#cb98-19" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> generationP03GPCA_prec</span>
+<span id="cb98-20"><a href="data-on-climate-projections.html#cb98-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-21"><a href="data-on-climate-projections.html#cb98-21" aria-hidden="true" tabindex="-1"></a><span class="co"># P01GPCA</span></span>
+<span id="cb98-22"><a href="data-on-climate-projections.html#cb98-22" aria-hidden="true" tabindex="-1"></a>generationP01GPCA_prec <span class="ot">&lt;-</span> <span class="fu">ComprehensivePrecipitationGenerator</span>(</span>
+<span id="cb98-23"><a href="data-on-climate-projections.html#cb98-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">station =</span> STATION_NAMES,</span>
+<span id="cb98-24"><a href="data-on-climate-projections.html#cb98-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">prec_all =</span> PRECIPITATION,</span>
+<span id="cb98-25"><a href="data-on-climate-projections.html#cb98-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_min =</span> year_min,</span>
+<span id="cb98-26"><a href="data-on-climate-projections.html#cb98-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_max =</span> year_max,</span>
+<span id="cb98-27"><a href="data-on-climate-projections.html#cb98-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> p_test,</span>
+<span id="cb98-28"><a href="data-on-climate-projections.html#cb98-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_GPCA_iteration =</span> n_GPCA_iter,</span>
+<span id="cb98-29"><a href="data-on-climate-projections.html#cb98-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_GPCA_iteration_residuals =</span> n_GPCA_iteration_residuals, </span>
+<span id="cb98-30"><a href="data-on-climate-projections.html#cb98-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">exogen =</span> exogen,</span>
+<span id="cb98-31"><a href="data-on-climate-projections.html#cb98-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">exogen_sim =</span> exogen_sim, </span>
+<span id="cb98-32"><a href="data-on-climate-projections.html#cb98-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample =</span> <span class="st">&quot;monthly&quot;</span>,</span>
+<span id="cb98-33"><a href="data-on-climate-projections.html#cb98-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_climate_prec =</span> PREC_CLIMATE,</span>
+<span id="cb98-34"><a href="data-on-climate-projections.html#cb98-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">no_spline =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb98-35"><a href="data-on-climate-projections.html#cb98-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_max_sim =</span> year_max_sim,</span>
+<span id="cb98-36"><a href="data-on-climate-projections.html#cb98-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_min_sim =</span> year_min_sim</span>
+<span id="cb98-37"><a href="data-on-climate-projections.html#cb98-37" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb98-38"><a href="data-on-climate-projections.html#cb98-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-39"><a href="data-on-climate-projections.html#cb98-39" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> generationP01GPCA_prec</span>
+<span id="cb98-40"><a href="data-on-climate-projections.html#cb98-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-41"><a href="data-on-climate-projections.html#cb98-41" aria-hidden="true" tabindex="-1"></a><span class="co"># P03</span></span>
+<span id="cb98-42"><a href="data-on-climate-projections.html#cb98-42" aria-hidden="true" tabindex="-1"></a>generationP03_prec <span class="ot">&lt;-</span> <span class="fu">ComprehensivePrecipitationGenerator</span>(</span>
+<span id="cb98-43"><a href="data-on-climate-projections.html#cb98-43" aria-hidden="true" tabindex="-1"></a>  <span class="at">station =</span> STATION_NAMES,</span>
+<span id="cb98-44"><a href="data-on-climate-projections.html#cb98-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">prec_all =</span> PRECIPITATION,</span>
+<span id="cb98-45"><a href="data-on-climate-projections.html#cb98-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_min =</span> year_min,</span>
+<span id="cb98-46"><a href="data-on-climate-projections.html#cb98-46" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_max =</span> year_max,</span>
+<span id="cb98-47"><a href="data-on-climate-projections.html#cb98-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> p_prec,</span>
+<span id="cb98-48"><a href="data-on-climate-projections.html#cb98-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_GPCA_iteration =</span> <span class="dv">0</span>,</span>
+<span id="cb98-49"><a href="data-on-climate-projections.html#cb98-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_GPCA_iteration_residuals =</span> <span class="dv">0</span>, </span>
+<span id="cb98-50"><a href="data-on-climate-projections.html#cb98-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">exogen =</span> exogen,</span>
+<span id="cb98-51"><a href="data-on-climate-projections.html#cb98-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">exogen_sim =</span> exogen_sim, </span>
+<span id="cb98-52"><a href="data-on-climate-projections.html#cb98-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample =</span> <span class="st">&quot;monthly&quot;</span>,</span>
+<span id="cb98-53"><a href="data-on-climate-projections.html#cb98-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_climate_prec =</span> PREC_CLIMATE,</span>
+<span id="cb98-54"><a href="data-on-climate-projections.html#cb98-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">no_spline =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb98-55"><a href="data-on-climate-projections.html#cb98-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_max_sim =</span> year_max_sim,</span>
+<span id="cb98-56"><a href="data-on-climate-projections.html#cb98-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_min_sim =</span> year_min_sim</span>
+<span id="cb98-57"><a href="data-on-climate-projections.html#cb98-57" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb98-58"><a href="data-on-climate-projections.html#cb98-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-59"><a href="data-on-climate-projections.html#cb98-59" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> generationP03_prec</span>
+<span id="cb98-60"><a href="data-on-climate-projections.html#cb98-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-61"><a href="data-on-climate-projections.html#cb98-61" aria-hidden="true" tabindex="-1"></a><span class="co"># P01</span></span>
+<span id="cb98-62"><a href="data-on-climate-projections.html#cb98-62" aria-hidden="true" tabindex="-1"></a>generationP01_prec <span class="ot">&lt;-</span> <span class="fu">ComprehensivePrecipitationGenerator</span>(</span>
+<span id="cb98-63"><a href="data-on-climate-projections.html#cb98-63" aria-hidden="true" tabindex="-1"></a>  <span class="at">station =</span> STATION_NAMES,</span>
+<span id="cb98-64"><a href="data-on-climate-projections.html#cb98-64" aria-hidden="true" tabindex="-1"></a>  <span class="at">prec_all =</span> PRECIPITATION,</span>
+<span id="cb98-65"><a href="data-on-climate-projections.html#cb98-65" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_min =</span> year_min,</span>
+<span id="cb98-66"><a href="data-on-climate-projections.html#cb98-66" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_max =</span> year_max,</span>
+<span id="cb98-67"><a href="data-on-climate-projections.html#cb98-67" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> p_test,</span>
+<span id="cb98-68"><a href="data-on-climate-projections.html#cb98-68" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_GPCA_iteration =</span> <span class="dv">0</span>,</span>
+<span id="cb98-69"><a href="data-on-climate-projections.html#cb98-69" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_GPCA_iteration_residuals =</span> <span class="dv">0</span>, </span>
+<span id="cb98-70"><a href="data-on-climate-projections.html#cb98-70" aria-hidden="true" tabindex="-1"></a>  <span class="at">exogen =</span> exogen,</span>
+<span id="cb98-71"><a href="data-on-climate-projections.html#cb98-71" aria-hidden="true" tabindex="-1"></a>  <span class="at">exogen_sim =</span> exogen_sim, </span>
+<span id="cb98-72"><a href="data-on-climate-projections.html#cb98-72" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample =</span> <span class="st">&quot;monthly&quot;</span>,</span>
+<span id="cb98-73"><a href="data-on-climate-projections.html#cb98-73" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean_climate_prec =</span> PREC_CLIMATE,</span>
+<span id="cb98-74"><a href="data-on-climate-projections.html#cb98-74" aria-hidden="true" tabindex="-1"></a>  <span class="at">no_spline =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb98-75"><a href="data-on-climate-projections.html#cb98-75" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_max_sim =</span> year_max_sim,</span>
+<span id="cb98-76"><a href="data-on-climate-projections.html#cb98-76" aria-hidden="true" tabindex="-1"></a>  <span class="at">year_min_sim =</span> year_min_sim</span>
+<span id="cb98-77"><a href="data-on-climate-projections.html#cb98-77" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb98-78"><a href="data-on-climate-projections.html#cb98-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb98-79"><a href="data-on-climate-projections.html#cb98-79" aria-hidden="true" tabindex="-1"></a>model4 <span class="ot">&lt;-</span> generationP01_prec </span></code></pre></div>
+<p>The performance of the 4 models can be assessed with statistical tests and graphically, with qq-plots and through the comparison of simulated versus observed monthly precipitation totals. Results are shown in the Figures below.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="data-on-climate-projections.html#cb99-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;./_bookdown_files/FIG_DATA/RMAWGEN_Models_monthlyTotalsComparison.jpg&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:rmawgenMonthlyTotals"></span>
+<img src="_bookdown_files/FIG_DATA/RMAWGEN_Models_monthlyTotalsComparison.jpg" alt="The comparison of the 4 stochastic weather generator models in terms of their abilities to reproduce monthly precipitation totals is shown for one station (elevation band) in the Gunt river basin. Results indicate that precipitation totals from the models 1 and 2 are overestimated. In comparison, models 3 and 4 are more balanced and not biased." width="910" />
+<p class="caption">
+Figure 4.49: The comparison of the 4 stochastic weather generator models in terms of their abilities to reproduce monthly precipitation totals is shown for one station (elevation band) in the Gunt river basin. Results indicate that precipitation totals from the models 1 and 2 are overestimated. In comparison, models 3 and 4 are more balanced and not biased.
+</p>
+</div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="data-on-climate-projections.html#cb100-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;./_bookdown_files/FIG_DATA/RMAWGEN_Models_qqplot.jpg&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:rmawgenQQPlot"></span>
+<img src="_bookdown_files/FIG_DATA/RMAWGEN_Models_qqplot.jpg" alt="Q-Plots of the four model results. If data plots along the diagonal line, it is an indication that the probability distribution of the simluated precipptation (y-axis) is the same as the probability distribution of the observed ERA5 precipitation (x-axis). QQ-plots of models 1 and 2 show a heavy bias whereas model 4 shows an overal satisfactory fit and thus performance. " width="1467" />
+<p class="caption">
+Figure 4.50: Q-Plots of the four model results. If data plots along the diagonal line, it is an indication that the probability distribution of the simluated precipptation (y-axis) is the same as the probability distribution of the observed ERA5 precipitation (x-axis). QQ-plots of models 1 and 2 show a heavy bias whereas model 4 shows an overal satisfactory fit and thus performance.
+</p>
+</div>
+<p>Figure <a href="data-on-climate-projections.html#fig:rmawgenMonthlyTotals">4.49</a> and Figure <a href="data-on-climate-projections.html#fig:rmawgenQQPlot">4.50</a> show that the Model 4 provides an overall well-balanced performance. We will thus us this models to generate the future climate fields.</p>
+</div>
+<div id="simulating-future-daily-climate" class="section level4" number="4.4.2.3">
+<h4><span class="header-section-number">4.4.2.3</span> Simulating Future Daily Climate</h4>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="10">
+<li id="fn10"><p>If you download these data, it is advisable to maintain the directory structure as given via the Dropbox link. Please note that the entire directory is 4.79 GB of data.<a href="data-on-climate-projections.html#fnref10" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="Data-ClimateReanalysisData.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="snow-cover-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/07_DATA.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["applied-hydrological-modeling-central-asia.pdf", "applied-hydrological-modeling-central-asia.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -23,17 +23,16 @@ Departing from catchment GIS data, RS Minerve allows to quickly develop, test an
 The main goal in this Chapter is to familiarize the student on how to setup such model, calibrate and validate it for past and current climate conditions and then to **study climate change impacts in the basin**.
 
 ### Prerequisites {#section-rsminerve-prerequisites}
-Before delving into this section of the course material, you should have at least:   
 
-* RS Minerve installed [How to install RS Minerve](#section-quickguides-how-to-download-and-install-rsminerve). This tutorial was written using RS Minerve 2.9.1.0. 
-* Read chapters 1 and 2 from the RS Minerve user manual (the manual can be downloaded from the CREALP website, see Section [How to install RS Minerve](#section-quickguides-how-to-download-and-install-rsminerve)).    
-* Familiarize yourself with RS Minerve by following Example 1 in the RS Minerve user manual.  
-* Read the HBV model description in the RS Minerve technical manual.   
+Before delving into this section of the course material, you should have at least:
 
-You may have to dig deeper into the user manual and the technical manual within the frame of the course but the above points are the minimum requirement to get started.   
-If you fulfill the prerequisites, you should be able to do the tutorial with the minimal description in the modeling section. However, detailed step-by-step descriptions are linked for each task. 
+-   RS Minerve installed [How to install RS Minerve](#section-quickguides-how-to-download-and-install-rsminerve). This tutorial was written using RS Minerve 2.9.1.0.
+-   Read chapters 1 and 2 from the RS Minerve user manual (the manual can be downloaded from the CREALP website, see Section [How to install RS Minerve](#section-quickguides-how-to-download-and-install-rsminerve)).\
+-   Familiarize yourself with RS Minerve by following Example 1 in the RS Minerve user manual.\
+-   Read the HBV model description in the RS Minerve technical manual.
 
-
+You may have to dig deeper into the user manual and the technical manual within the frame of the course but the above points are the minimum requirement to get started.\
+If you fulfill the prerequisites, you should be able to do the tutorial with the minimal description in the modeling section. However, detailed step-by-step descriptions are linked for each task.
 
 ## Data Preparation and Setup
 
