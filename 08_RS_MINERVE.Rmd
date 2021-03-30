@@ -2,7 +2,7 @@
 
 Hydrological-hydraulic models are used for different purposes, including for the design of basin plans while taking into consideration different development options, for the study of effective water resources management schemes while taking into consideration the different types of sectoral users and uses of water in a basin (ideally also including minimal environmental flows), and for the detailed study of basin-scale climate impacts and their repercussions.
 
-This Chapter introduces combined hydrologic and hydraulic modeling using the freely available graphical modeling environment RSMinerve [@rsminerve_um; @rsminerve_tm][^rs_minerve-1]. Figure \@ref(fig:rsminerveModelPreview) shows a screen shot of a model of the Gunt river basin setup in RSMinerve as a teaser.
+This Chapter introduces combined hydrologic and hydraulic modeling using the freely available graphical modeling environment RSMinerve [@rsminerve_software; @rsminerve_um; @rsminerve_tm][^rs_minerve-1]. Figure \@ref(fig:rsminerveModelPreview) shows a screen shot of a model of the Gunt river basin setup in RSMinerve as a teaser.
 
 [^rs_minerve-1]: The reader is advised to consult the user manual and familiarizes himself or herself with the walk through examples that are discussed and presented there. They give a solid first hands-on introduction about the basic functionalities of the modeling environment.
 
@@ -22,17 +22,118 @@ Departing from catchment GIS data, RS Minerve allows to quickly develop, test an
 
 The main goal in this Chapter is to familiarize the student on how to setup such model, calibrate and validate it for past and current climate conditions and then to **study climate change impacts in the basin**.
 
-### Prerequisites {#section-rsminerve-prerequisites}
+## Prerequisites {#section-rsminerve-prerequisites}
+Before delving into this section of the course material, you should have at least:   
 
-Before delving into this section of the course material, you should have at least:
+* RS Minerve installed [How to install RS Minerve](#section-quickguides-how-to-download-and-install-rsminerve). This tutorial was written using RS Minerve 2.9.1.0. 
+* Read chapters 1 and 2 from the RS Minerve user manual [@rsminerve_um] (the manual can be downloaded from the CREALP website, see Section [How to install RS Minerve](#section-quickguides-how-to-download-and-install-rsminerve)).    
+* Familiarize yourself with RS Minerve by following Example 1 in the RS Minerve user manual.  
+* Read the HBV model description in the RS Minerve technical manual (Chapter 2.7) [@rsminerve_tm].   
 
--   RS Minerve installed [How to install RS Minerve](#section-quickguides-how-to-download-and-install-rsminerve). This tutorial was written using RS Minerve 2.9.1.0.
--   Read chapters 1 and 2 from the RS Minerve user manual (the manual can be downloaded from the CREALP website, see Section [How to install RS Minerve](#section-quickguides-how-to-download-and-install-rsminerve)).\
--   Familiarize yourself with RS Minerve by following Example 1 in the RS Minerve user manual.\
--   Read the HBV model description in the RS Minerve technical manual.
+You may have to dig deeper into the user manual and the technical manual within the frame of the course but the above points are the minimum requirement to get started.   
+If you fulfill the prerequisites, you should be able to do the tutorial with the minimal description in the modeling section. However, detailed step-by-step descriptions are linked for each task. 
 
-You may have to dig deeper into the user manual and the technical manual within the frame of the course but the above points are the minimum requirement to get started.\
-If you fulfill the prerequisites, you should be able to do the tutorial with the minimal description in the modeling section. However, detailed step-by-step descriptions are linked for each task.
+
+## Recap: Hydrological response {#section-rsminerve-why-model-introduction}
+Why do we do hydrological modeling? Typically we want to know how much river flow we can expect at a given time in the future so we can plan our water consumption ahead, harness against floods or implement measures against droughts. So how can we forecast river discharge? For example, one could use the long term seasonal average discharge as the likely future discharge. However, in some years we have high discharge and in some years we have low discharge (Figure \@ref(fig:fig-discharge-nauvalisoy)). How to tell when you have which discharge?
+
+```{r fig-discharge-nauvalisoy, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE, fig.cap="Discharge of the Nauvalisoy river."}
+library(tidyverse)
+library(lubridate)
+library(tsibble)
+library(riversCentralAsia)
+seasonal_discharge <- ChirchikRiverBasin %>%
+  dplyr::filter(code == "16298", 
+                year(date) > 1984, 
+                year(date) < 1993) %>%
+  mutate(yearmonth = yearmonth(date)) %>%
+  group_by(yearmonth) %>%
+  summarize(`Q [m3/s]` = mean(data))
+ggplot(seasonal_discharge) + 
+  geom_line(aes(yearmonth, `Q [m3/s]`)) + 
+  labs(x = "") + 
+  theme_bw()
+```
+
+Let's go back to the water balance: Where does the water in the river come from? Precipitation. When we compare precipitation and discharge time series we see that the two are related (Figure \@ref(fig:fig-precipitation-nauvalisoy)).    
+```{r fig-precipitation-nauvalisoy, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE, fig.cap="Discharge (red) and precipitation (grey) in the Nauvalisoy catchment."}
+#climate <- load_minerve_input_csv("./data/SyrDarya/Chirchiq/RSMinerve/ERA5_Nauvalisoy_1981_2013.csv")
+#seasonal_precipitation <- mutate(climate, yearmonth = yearmonth(date)) %>%
+#  dplyr::filter(type == "P") %>%
+#  group_by(yearmonth) %>%
+#  summarize(`P [mm]` = sum(value)) %>%
+#  dplyr::filter(year(yearmonth) > 1984, 
+#                year(yearmonth) < 1993)
+#ggplot(seasonal_precipitation) + 
+#  geom_col(aes(yearmonth, `P [mm]`)) + 
+#  geom_line(data = seasonal_discharge, 
+#            aes(yearmonth, `Q [m3/s]` * 60*60*24*365*10^(-6)), 
+#            colour = "red") +   
+#  labs(x = "", y = "P [mm], Q [10^6 m3/a]") + 
+#  theme_bw()
+```
+
+Higher precipitation in the catchment is positively correlated with higher discharge in the river with a delay. Or in other words: The discharge is the catchments hydrological response to precipitation. The relationship can be described as follows: 
+
+$$
+Q \propto P \cdot K
+$$    
+
+In words this reads: Discharge (Q) is proportional to precipitation (P) times a transfer function (K) that defines the delay of the signal. The transfer function K describes how precipitation becomes river discharge and depends on the catchment characteristics, importantly on the storage capacity of the catchment. In reality, the transformation of precipitation to discharge is quite complex but we can simplify the reality and come up with a basic conceptual model of our river catchment: a large bath tube with the area of the catchment and an outlet at the bottom called the *linear reservoir model* (Figure \@ref(fig:fig-from-catchment-to-bucket)).  
+
+```{r fig-from-catchment-to-bucket, echo=FALSE, fig.show = "hold", out.width="90%", fig.align="center", fig.cap="From the real-life system (left) to a linear reservoir (right)."}
+knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_fromCatchmentToBucket.png")
+```
+
+The linear reservoir model describes the discharge from the reservoir as linearly proportional to the storage in the reservoir:   
+
+$Q(t) = 1/k \cdot S(t)$
+
+Where Q is discharge, S is the storage and k is a constant called storage coefficient depending on the storage capacity of the reservoir. If k is small, the stored water will run out quickly, if k is large, the stored water will run out slowly. (t) indicate time dependent variables, i.e. variables that change over time.   
+Substitute the linear reservoir equation into the water balance:  
+
+$P = Q + dS/dt \Leftrightarrow P = Q + k \cdot dQ/dt$
+
+Where P is the *excess* precipitation, i.e. the precipitation that is not intercepted by plants or ponds but contributes to discharge. The above is a differential equation and can be re-arranged:  
+
+$(P-Q) \cdot dt = k \cdot dQ$
+
+and integrated and soved for Q(t) (dig out your mathematics!). We assume that at the beginning of our experiment, we don't have a discharge as the bucket is empty.   
+
+$Q(t) = P(t) \cdot (1-e^{(-t/k)})$
+
+This is the equation for the rising discharge curve. Once you turn off the recharge of the reservoir (once you stop pouring water into the bucket), the discharge from the bucket can be described as:  
+
+$Q(t) = Q^* \cdot e^{-\tau/k}$
+
+Which describes the receding limb of the hydrograph ([What is a hydrograph](#section-quickguides-what-is-a-hydrograph)) with $\tau$ being the time since the recharge stopped. 
+
+Understanding the linear reservoir model is a prerequisite for hydrological modeling. That is why we propose the following exercise for you to do at home as a preparation for class.   
+
+
+:::: {.blackbox exercise-rsminerve-linres-1=""}
+::: {.center exercise-rsminerve-linres-1=""}
+**Task 1: Exerimental setup**
+:::
+To understand the flow of water through a reservoir, you will build a bucket model yourself at home from materials that you have at hand and measure recharge as well as discharge from the bucket. You will then make a numerical model of your real bucket model and simulate discharge. Think through the experiment and answer the following questions:   
+
+* What will determine the flow through your bucket?  
+* What do you need to measure?   
+* How can you measure it?   
+* What materials you will need to set up the experiment?   
+* Where will you get the water from and can you re-use it after the experiment?    
+::::
+
+
+
+
+
+
+## The HBV model {#section-hbv-model}
+The HBV (Hydrologiska Byråns Vattenavdelning) model is a conceptual rainfall-runoff model which is suitable for many snow-fed river catchments [@bergstrom_development_1976]. You have studied the short description of the    
+
+
+
 
 ## Data Preparation and Setup
 
