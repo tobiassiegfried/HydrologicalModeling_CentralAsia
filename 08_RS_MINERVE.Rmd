@@ -60,20 +60,20 @@ ggplot(seasonal_discharge) +
 
 Let's go back to the water balance: Where does the water in the river come from? Precipitation. When we compare precipitation and discharge time series we see that the two are related (Figure \@ref(fig:fig-precipitation-nauvalisoy)).    
 ```{r fig-precipitation-nauvalisoy, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE, fig.cap="Discharge (red) and precipitation (grey) in the Nauvalisoy catchment."}
-#climate <- load_minerve_input_csv("./data/SyrDarya/Chirchiq/RSMinerve/ERA5_Nauvalisoy_1981_2013.csv")
-#seasonal_precipitation <- mutate(climate, yearmonth = yearmonth(date)) %>%
-#  dplyr::filter(type == "P") %>%
-#  group_by(yearmonth) %>%
-#  summarize(`P [mm]` = sum(value)) %>%
-#  dplyr::filter(year(yearmonth) > 1984, 
-#                year(yearmonth) < 1993)
-#ggplot(seasonal_precipitation) + 
-#  geom_col(aes(yearmonth, `P [mm]`)) + 
-#  geom_line(data = seasonal_discharge, 
-#            aes(yearmonth, `Q [m3/s]` * 60*60*24*365*10^(-6)), 
-#            colour = "red") +   
-#  labs(x = "", y = "P [mm], Q [10^6 m3/a]") + 
-#  theme_bw()
+climate <- load_minerve_input_csv("./data/SyrDarya/Chirchiq/RSMinerve/ERA5_Nauvalisoy_1981_2013.csv")
+seasonal_precipitation <- mutate(climate, yearmonth = yearmonth(date)) %>%
+ dplyr::filter(type == "P") %>%
+ group_by(yearmonth) %>%
+ summarize(`P [mm]` = sum(value)) %>%
+ dplyr::filter(year(yearmonth) > 1984,
+               year(yearmonth) < 1993)
+ggplot(seasonal_precipitation) +
+ geom_col(aes(yearmonth, `P [mm]`)) +
+ geom_line(data = seasonal_discharge,
+           aes(yearmonth, `Q [m3/s]` * 60*60*24*365*10^(-6)),
+           colour = "red") +
+ labs(x = "", y = "P [mm], Q [10^6 m3/a]") +
+ theme_bw()
 ```
 
 Higher precipitation in the catchment is positively correlated with higher discharge in the river with a delay. Or in other words: The discharge is the catchments hydrological response to precipitation. The relationship can be described as follows: 
