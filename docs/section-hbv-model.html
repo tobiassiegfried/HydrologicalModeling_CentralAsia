@@ -292,6 +292,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.4" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html"><i class="fa fa-check"></i><b>7.4</b> Appendix D: Solutions to exercises</a>
 <ul>
 <li class="chapter" data-level="7.4.1" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-exercise1"><i class="fa fa-check"></i><b>7.4.1</b> Exercise on Linear Reservoir modelling</a></li>
+<li class="chapter" data-level="7.4.2" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-hbv-exercises"><i class="fa fa-check"></i><b>7.4.2</b> Exercises on the HBV model</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
@@ -317,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="section-hbv-model" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> The HBV model</h2>
-<p>The HBV (Hydrologiska Byråns Vattenavdelning) model is a conceptual rainfall-runoff model which is suitable for many snow-fed river catchments <span class="citation">(<a href="References.html#ref-bergstrom_development_1976" role="doc-biblioref">Bergström 1976</a>)</span>. You have studied the short description of the HBV model in the RS Minerve technical manual <span class="citation">(<a href="#ref-rsminerve-tm" role="doc-biblioref"><strong>rsminerve-tm?</strong></a>)</span>. A brief reminder of the HBV model implemented in RS Minerve is given in Figure <a href="section-hbv-model.html#fig:fig-overview-hbv-model">4.5</a>. The model consists of a snow function which separates precipitation into solid and liquid parts and manages melting of snow and 3 storage reservoirs similar to the linear reservoir we saw in the <a href="section-rsminerve-why-model-introduction.html#section-rsminerve-why-model-introduction">recap section</a>.</p>
+<p>The HBV (Hydrologiska Byråns Vattenavdelning) model is a conceptual rainfall-runoff model which is suitable for many snow-fed river catchments <span class="citation">(<a href="References.html#ref-bergstrom_development_1976" role="doc-biblioref">Bergström 1976</a>)</span>. You have studied the short description of the HBV model in the RS Minerve technical manual <span class="citation">(<a href="References.html#ref-rsminerve_tm" role="doc-biblioref">Garcia Hernandez et al. 2020</a>)</span>. A brief reminder of the HBV model implemented in RS Minerve is given in Figure <a href="section-hbv-model.html#fig:fig-overview-hbv-model">4.5</a>. The model consists of a snow function which separates precipitation into solid and liquid parts and manages melting of snow and 3 storage reservoirs similar to the linear reservoir we saw in the <a href="section-rsminerve-why-model-introduction.html#section-rsminerve-why-model-introduction">recap section</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-overview-hbv-model"></span>
 <img src="_bookdown_files/FIG_RS_MINERVE/fig_HBVconceptualModel.png" alt="The HBV model concept (source: RS MINERVE Technical Manual)." width="55%" />
 <p class="caption">
@@ -326,9 +327,26 @@ Figure 4.5: The HBV model concept (source: RS MINERVE Technical Manual).
 </div>
 <div class="exercisebox" exercise-rsminerve-hbv-1="">
 <div class="center" exercise-rsminerve-hbv-1="">
-<p><strong>Task 1: Model understanding</strong></p>
+<p><strong>Exercise 1: Model understanding - Drivers</strong></p>
 </div>
-<p>What are the model drivers (i.e. what input data do you need to provide?</p>
+<p>What are the model drivers (i.e. what input data do you need to provide)?</p>
+<p>Hint: Study Figure <a href="section-hbv-model.html#fig:fig-overview-hbv-model">4.5</a>.<br />
+<a href="sectin-appendix-solutions.html#section-appendix-solutions-hbv-driving-forces">Solution</a></p>
+</div>
+Figure <a href="section-hbv-model.html#fig:fig-overview-hbv-model-parameters">4.6</a> from the RS Minerve technical manual [rsminerve-tm] gives an overview over the model parameters and states.
+<div class="figure" style="text-align: center"><span id="fig:fig-overview-hbv-model-parameters"></span>
+<img src="_bookdown_files/FIG_RS_MINERVE/fig_PARandIC.png" alt="The HBV model parameters (source: RS MINERVE Technical Manual)." width="60%" />
+<p class="caption">
+Figure 4.6: The HBV model parameters (source: RS MINERVE Technical Manual).
+</p>
+</div>
+<div class="exercisebox" exercise-rsminerve-hbv-2="">
+<div class="center" exercise-rsminerve-hbv-2="">
+<p><strong>Exercise 2: Model understanding - States</strong></p>
+</div>
+<p>What are the model states (i.e. what variables describe the amount of water in the system over time)?</p>
+<p>Hint: Values for initial water content in the different model compartments need to be defined prior to the simulation.<br />
+<a href="sectin-appendix-solutions.html#section-appendix-solutions-hbv-parameters-states">Solution</a></p>
 </div>
 </div>
             </section>

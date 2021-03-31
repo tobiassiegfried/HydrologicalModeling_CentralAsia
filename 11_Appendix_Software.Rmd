@@ -244,3 +244,20 @@ Reasons for the discrepancy can be the shape of the linear reservoir, non-linear
 
 Back to the [recap section](#section-rsminerve-why-model-introduction)
 
+
+### Exercises on the HBV model {#section-appendix-solutions-hbv-exercises}
+
+#### Exercise 1 - Driving forces of the HBV model {#section-appendix-solutions-hbv-driving-forces}
+The model drivers are precipitation, temperature and evaporation (P, T and ET in Figure \@ref(fig:fig-overview-hbv-model)). You need to provide time series of the model drivers to the model. Evaporation is typically not measured at climate stations but many empirical functions are available in the literature to estimate evaporation. RS Minerve offers the possibility to calculate evaporation based on temperature measurements and catchment location (you will do that later in this tutorial).  
+
+Back to the [HBV model section](#section-hbv-model)
+
+#### Exercise 2 - HBV model states {#section-appendix-solutions-hbv-parameters-states}
+The model states are the snow water equivalent height (SWE), the relative water content in the snow pack (WH), the humidity (Hum), the upper reservoir water level (SU) and the lower reservoir water level (SL). The model states are initialised using the initial conditions (see Figure \@ref(fig:fig-overview-hbv-model-parameters)).   
+
+Back to the [HBV model section](#section-hbv-model)
+
+
+
+
+
