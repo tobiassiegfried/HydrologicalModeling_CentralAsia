@@ -227,3 +227,5 @@ qgis-1
 rs-minerve-1
 section-quickguides-how-to-download-and-install-rsminerve
 References
+CHELSA21Century
+downscaling-to-hourly-data
