@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried" />
 
 
-<meta name="date" content="2021-03-30" />
+<meta name="date" content="2021-03-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -273,11 +273,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.1" data-path="appendix-a-open-source-software.html"><a href="appendix-a-open-source-software.html"><i class="fa fa-check"></i><b>7.1</b> Appendix A: Open-source Software</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="appendix-a-open-source-software.html"><a href="appendix-a-open-source-software.html#open-source-software"><i class="fa fa-check"></i><b>7.1.1</b> Open-Source Software</a></li>
+<li class="chapter" data-level="7.1.1" data-path="appendix-a-open-source-software.html"><a href="appendix-a-open-source-software.html#qgis"><i class="fa fa-check"></i><b>7.1.1</b> QGIS</a></li>
+<li class="chapter" data-level="7.1.2" data-path="appendix-a-open-source-software.html"><a href="appendix-a-open-source-software.html#r-and-rstudio"><i class="fa fa-check"></i><b>7.1.2</b> R and RStudio</a></li>
+<li class="chapter" data-level="7.1.3" data-path="appendix-a-open-source-software.html"><a href="appendix-a-open-source-software.html#rs-minerve"><i class="fa fa-check"></i><b>7.1.3</b> RS Minerve</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html"><i class="fa fa-check"></i><b>7.2</b> Appendix B: Quick Guides</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#rs-minerve-1"><i class="fa fa-check"></i><b>7.2.1</b> RS Minerve</a></li>
+<li class="chapter" data-level="7.2.1" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#qgis-1"><i class="fa fa-check"></i><b>7.2.1</b> QGIS</a></li>
+<li class="chapter" data-level="7.2.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#rs-minerve-1"><i class="fa fa-check"></i><b>7.2.2</b> RS Minerve</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html"><i class="fa fa-check"></i><b>7.3</b> Appendix C: Processing Climate Data</a>
 <ul>
@@ -314,7 +317,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="section-hbv-model" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> The HBV model</h2>
-<p>The HBV (Hydrologiska Byråns Vattenavdelning) model is a conceptual rainfall-runoff model which is suitable for many snow-fed river catchments <span class="citation">(<a href="References.html#ref-bergstrom_development_1976" role="doc-biblioref">Bergström 1976</a>)</span>. You have studied the short description of the</p>
+<p>The HBV (Hydrologiska Byråns Vattenavdelning) model is a conceptual rainfall-runoff model which is suitable for many snow-fed river catchments <span class="citation">(<a href="References.html#ref-bergstrom_development_1976" role="doc-biblioref">Bergström 1976</a>)</span>. You have studied the short description of the HBV model in the RS Minerve technical manual <span class="citation">(<a href="#ref-rsminerve-tm" role="doc-biblioref"><strong>rsminerve-tm?</strong></a>)</span>. A brief reminder of the HBV model implemented in RS Minerve is given in Figure <a href="section-hbv-model.html#fig:fig-overview-hbv-model">4.5</a>. The model consists of a snow function which separates precipitation into solid and liquid parts and manages melting of snow and 3 storage reservoirs similar to the linear reservoir we saw in the <a href="section-rsminerve-why-model-introduction.html#section-rsminerve-why-model-introduction">recap section</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-overview-hbv-model"></span>
+<img src="_bookdown_files/FIG_RS_MINERVE/fig_HBVconceptualModel.png" alt="The HBV model concept (source: RS MINERVE Technical Manual)." width="55%" />
+<p class="caption">
+Figure 4.5: The HBV model concept (source: RS MINERVE Technical Manual).
+</p>
+</div>
+<div class="exercisebox" exercise-rsminerve-hbv-1="">
+<div class="center" exercise-rsminerve-hbv-1="">
+<p><strong>Task 1: Model understanding</strong></p>
+</div>
+<p>What are the model drivers (i.e. what input data do you need to provide?</p>
+</div>
 </div>
             </section>
 

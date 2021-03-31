@@ -148,11 +148,19 @@ knitr::include_app("http://34.251.168.23:3838/linearReservoirExampleApp/",
 
 
 
-
 ## The HBV model {#section-hbv-model}
-The HBV (Hydrologiska Byråns Vattenavdelning) model is a conceptual rainfall-runoff model which is suitable for many snow-fed river catchments [@bergstrom_development_1976]. You have studied the short description of the    
+The HBV (Hydrologiska Byråns Vattenavdelning) model is a conceptual rainfall-runoff model which is suitable for many snow-fed river catchments [@bergstrom_development_1976]. You have studied the short description of the HBV model in the RS Minerve technical manual [@rsminerve-tm]. A brief reminder of the HBV model implemented in RS Minerve is given in Figure \@ref(fig:fig-overview-hbv-model). The model consists of a snow function which separates precipitation into solid and liquid parts and manages melting of snow and 3 storage reservoirs similar to the linear reservoir we saw in the [recap section](#section-rsminerve-why-model-introduction).      
 
+```{r fig-overview-hbv-model, echo=FALSE, out.width="55%", fig.align="center", fig.cap="The HBV model concept (source: RS MINERVE Technical Manual)."}
+knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_HBVconceptualModel.png")
+```
 
+:::: {.exercisebox exercise-rsminerve-hbv-1=""}
+::: {.center exercise-rsminerve-hbv-1=""}
+**Task 1: Model understanding**
+:::
+What are the model drivers (i.e. what input data do you need to provide?
+::::
 
 
 ## Data Preparation and Setup

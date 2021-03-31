@@ -241,3 +241,6 @@ solution-task2-perform-experiment
 solution-task3-simulate
 References
 fig:fig-precipitation-nauvalisoy
+resources-for-learning-qgis
+qgis-1
+fig:fig-overview-hbv-model
