@@ -31,11 +31,135 @@ Once the installer is downloaded, install RS Minerve with a double-click on the 
 
 
 
+
+
 ## Appendix B: Quick Guides
 
 ### QGIS
 
 ### RS Minerve
+## Create HBV model and edit parameters {#section-quickguides-create-hbv-model}  
+Click on the HBV model icon in the model selection panel (Figure \@ref(fig:fig-create-hbv-model)). 
+```{r fig-create-hbv-model, echo=FALSE, out.width="50%", fig.align="center", fig.cap="To generate an HBV model, click on the HBV model icon in the model selection panel."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig100_HBVinModelSelectionPanel.png")
+```
+
+Move your cursor to the white area in the center and create a HBV model with a click. The HBV model icon will now appear in the white model panel (Figure \@ref(fig:fig-hbv-model-generated)). 
+```{r fig-hbv-model-generated, echo=FALSE, out.width="95%", fig.align="center", fig.cap="A HBV model has been generated."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig101_HBVmodelGenerated.png")
+```
+
+Edit the parameters of the model by double-clicking on the model icon and changing parameter values in the table that appears to the right of the RS Minerve window (Figure \@ref(fig:fig-edit-hbv-model-single)). 
+```{r fig-edit-hbv-model-single, echo=FALSE, out.width="95%", fig.align="center", fig.cap="Double-click on the HBV model to open and edit the parameter table. "}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig102_editParametersSingleModel.png")
+```
+
+Alternatively (especially if you have to change parameters for several models), activate the Parameters panel in the Model Properties toolbar (Figure \@ref(fig:fig-activate-parameters-panel)). 
+```{r fig-activate-parameters-panel, echo=FALSE, out.width="95%", fig.align="center", fig.cap="Activate the Parameters panel in the Model Properties toolbar. "}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig103_activateParametersPanel.png")
+```
+
+Select the HBV model in the Parameters panel (Figure \@ref(fig:fig-select-hbv-parameters-panel)). 
+```{r fig-select-hbv-parameters-panel, echo=FALSE, out.width="95%", fig.align="center", fig.cap="Select HBV in the Parameters panel."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig104_selectHBVparameters.png")
+```
+
+If you have several HBV models, you can select models by zone and apply edits in the parameter table in the left of the Parameters panel to all selected models (mark with tick). You can also edit paramers for individual models in the right-hand table of the Parameters panel (Figure \@ref(fig:fig-edit-hbv-parameters-panel)). 
+```{r fig-edit-hbv-parameters-panel, echo=FALSE, out.width="95%", fig.align="center", fig.cap="Edit parameters for groups of models (left parameter table) or for individual models (right parameter table)."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig105_editParametersInParametersPanel.png")
+```
+
+Save your model by clicking the floppy disk icon in the toolbar.   
+
+You can also export parameters to a text file via the button *Export P* in the Model Properties toolbar, edit the text file and import the edited parameter file through *Import P*.   
+
+The area of the HBV model should be 99'000'000 m2.   
+
+Back to the [Nauvalisoy model guide](#section-hbv-nauvalisoy-modelling-setup). 
+
+
+## Add and link climate station {#section-quickguides-add-climate-station)}
+Move your cursor to the V-Station icon in the models panel (the first icon in Figure \@ref(fig:fig-create-hbv-model)). Click on the icon to activate it and click next to the HBV model in your model pane to place the V-Station. With a double-click on the newly created V-Station, you can visualize the parameters of the virtual weather station.   
+Connect the station to the HBV model by activating the Connections mode in the Editing tools toolbar (Figure \@ref(fig:fig-connect-V-station1)). 
+```{r fig-connect-V-station1, echo=FALSE, out.width="95%", fig.align="center", fig.cap="Create a virtual weather station."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig108_createVStation.png")
+```
+
+Click on the station, hold down the finger move your cursor to the HBV model, then release the hold. A grey line appeart between the station and the model and a pop-up window asks you to verify the data links between the two components (Figure \@ref(fig:fig-connect-V-station2)). 
+```{r fig-connect-V-station2, echo=FALSE, out.width="95%", fig.align="center", fig.cap="Link the virtual weather station to the HBV model."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig109_linkVStation.png")
+```
+Click Ok to accept the suggested data links and a blue arrow will appear between the weather station and the model. Click on the black arrow in the Editing tools toolbar to leave the Connections model.     
+
+Back to the [Nauvalisoy model guide](#section-hbv-nauvalisoy-modelling-setup). 
+
+
+## Import climate data {#section-quickguides-import-climate-data}
+Go to the database tab and click on Open in the File database toolbar (Figure \@ref(fig:fig-open-database-tab)).  
+```{r fig-open-database-tab, echo=FALSE, out.width="95%", fig.align="center", fig.cap="The database tab."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig110_databasetab.png")
+```
+
+Select the file./data/SyrDarya/Chirchiq/RSMinerve/ERA5_Nauvalisoy_1981_2013.csv. If you don't see the file in your file browser, make sure the file ending .csv is selected in the file browser (Figure \@ref(fig:fig-open-database-tab-csv)).
+
+```{r fig-open-database-tab-csv, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Make sure the file ending is .csv in the file browser."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig111_dbfileEnding.png")
+```
+
+Press open to load the data into RSMinerve. Depending on your computer this may take a few seconds. Once the data is loaded, click through the database browser in the left pane to explore the data (Figure \@ref(fig:fig-explore-db)).
+```{r fig-explore-db, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Explore the data base."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig112_exploreDataDB.png")
+```
+
+To connect the data base to the model you will need to make the data consistent with the model. To do this change the name "New group" to "Measurements" and select Input for the category (Figure \@ref(fig:fig-db-measurements)). 
+```{r fig-db-measurements, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Change \"New group\" to \"Measurements\" and select Input as category."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig113_changenewdata.png")
+```
+
+Browse the name of the station (Figure \@ref(fig:fig-station-name-db)). 
+```{r fig-station-name-db, echo=FALSE, out.width="60%", fig.align="center", fig.cap="The name of the station is \"Nauvalisoy\"."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig114_stationName.png")
+```
+
+As our weather data is representative for the entire Nauvalisoy catchment, the station name in the data base needs to be consistent with the station name of the V-Station in the model pane. Change the name of the station in the model pane from V-Station to Nauvalisoy by clicking on the name.   
+
+Choose the nauvalisoy data set as source and adapt the simulation period as shown in Figure \@ref(fig:fig-validate-model). 
+```{r fig-validate-model, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Choose the nauvalisoy data set to link the weather station data to the virtual weather station. The simulation times should not extend the period of the input data. Simulation time step is 1 hour and the recording time step is 1 month."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig115_solverspecs.png")
+```
+
+Click on *Validation* to verify that the model has been set up correctly. Once you have adapted the model settings to calculate evaporation based on temperature ([how to](#section-quickguides-atapt-model-settings)), no errors should be reported. You can now run the model. A warning tells you that the number of meteo stations is not sufficient. Ignore the warning for now. 
+
+[Nauvalisoy model guide](#section-hbv-nauvalisoy-modelling-setup)
+
+
+## Adapt model settings {#section-quickguides-atapt-model-settings}
+Navigate to Edit in the Settings toolbar (Figure \@ref(fig:fig-open-settings-tab)). 
+```{r fig-open-settings-tab, echo=FALSE, out.width="95%", fig.align="center", fig.cap="Open the models settings tab."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig106_openSettingsTab.png")
+```
+
+Open the Settings tab and choose an ET model. Adapt the coordinates of the project (choose the station coordinates mentioned in the introduction section) (Figure \@ref(fig:fig-change-settings)). 
+```{r fig-change-settings, echo=FALSE, out.width="95%", fig.align="center", fig.cap="Edit the evaporation calculation method and the coordinates of the project."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig107_changeSettings.png")
+```
+   
+Back to the [model guide](#section-modelling-setup)
+
+
+## Export simulation results to data base {#section-export-sim-results-to-db}
+Go to Export in the Database toolbar (Figure \@ref(fig:fig-export-to-db)). Define a name for the simulation results and choose a data base group to save the data to. Create a new group if you haven't already done so. 
+
+```{r fig-export-to-db, echo=FALSE, out.width="95%", fig.align="center", fig.cap="Export simulation results to the data base."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig117_exportResultsToDB.png")
+```
+
+The data sets are now available in the data base tab and can be visualized in the Selection and plots tab.  
+
+Back to the [model guide](#section-modelling-setup)
+
+
+
 
 
 
@@ -256,6 +380,29 @@ Back to the [HBV model section](#section-hbv-model)
 The model states are the snow water equivalent height (SWE), the relative water content in the snow pack (WH), the humidity (Hum), the upper reservoir water level (SU) and the lower reservoir water level (SL). The model states are initialised using the initial conditions (see Figure \@ref(fig:fig-overview-hbv-model-parameters)).   
 
 Back to the [HBV model section](#section-hbv-model)
+
+#### Exercise 3 - Data visualization {#section-appendix-solutions-plot-temperature-and-precipitation-1984}
+Simulate from the 01/01/1981 01:00:00 to 31/12/1983 23:00:00, then choose data from 31/12/1983 23:00:00 as the initial conditions and run the model from 01/01/1984 01:00:00 to 31/12/1984 23:00:00. Choose hourly output for the simulation results.   
+Open the Selection and plots tab by clicking on the Selection and plots button in the Modules toolbar and select simulated P and T from the Nauvalisoy station (Figure \@ref(fig:fig-pt-nauvailsoy)). 
+```{r fig-pt-nauvailsoy, echo=FALSE, out.width="95%", fig.align="center", fig.cap="Hourly precipitation and temperature at the virtual Nauvalisoy weather station."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig116_plotPThourly.png")
+```
+
+Note: If you want to repeat a simulation with specific initial conditions, you can store them through Export IC in the Model Properties toolbar. 
+
+The approximate temperature range is -13 in December to 34 deg C in August. The annual precipitation is about 1.4m (visualize Pcum and click on the last value of the time series). No precipitation falls during the summer months.  
+
+Back to the  [Nauvalisoy model setup section](#section-hbv-nauvalisoy-modelling-setup). 
+
+
+#### Exercise 4: Compare evaporation methods {#section-appendix-solutions-compare-evaporation-methods}
+Figure \@ref(fig:fig-evaporation-discharge) shows the evaporation computed with various methods and the resulting discharge. Uniform evaporation should not be used for sub-annual modeling time steps. The difference between the methods by Turc, McGuinness and Oudin are within 5% of total discharge which is negligible for a regional model.   
+```{r fig-evaporation-discharge, echo=FALSE, out.width="95%", fig.align="center", fig.cap="Hourly precipitation and temperature at the virtual Nauvalisoy weather station."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig119_evaporationDischarge1984.png")
+```
+For advanced modeling, the choice of the evaporation model may be relevant but only if a validation with measured data is possible.   
+
+Back to the  [Nauvalisoy model setup section](#section-hbv-nauvalisoy-modelling-setup). 
 
 
 

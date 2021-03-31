@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="appendix-a-open-source-software.html"/>
-<link rel="next" href="appendix-c-processing-climate-data.html"/>
+<link rel="next" href="section-quickguides-create-hbv-model.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -220,7 +220,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.1" data-path="section-rsminerve-prerequisites.html"><a href="section-rsminerve-prerequisites.html"><i class="fa fa-check"></i><b>5.1</b> Prerequisites</a></li>
 <li class="chapter" data-level="5.2" data-path="section-rsminerve-why-model-introduction.html"><a href="section-rsminerve-why-model-introduction.html"><i class="fa fa-check"></i><b>5.2</b> Recap: Hydrological response</a></li>
-<li class="chapter" data-level="5.3" data-path="section-hbv-model.html"><a href="section-hbv-model.html"><i class="fa fa-check"></i><b>5.3</b> The HBV model</a></li>
+<li class="chapter" data-level="5.3" data-path="section-hbv-model.html"><a href="section-hbv-model.html"><i class="fa fa-check"></i><b>5.3</b> The HBV model</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="section-hbv-model.html"><a href="section-hbv-model.html#section-hbv-nauvalisoy-tutorial-short"><i class="fa fa-check"></i><b>5.3.1</b> Simple model of the Nauvalisoy river catchment</a></li>
+</ul></li>
 <li class="chapter" data-level="5.4" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html"><i class="fa fa-check"></i><b>5.4</b> Data Preparation and Setup</a>
 <ul>
 <li class="chapter" data-level="5.4.1" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html#examining-and-understanding-the-gis-data"><i class="fa fa-check"></i><b>5.4.1</b> Examining and Understanding the GIS Data</a></li>
@@ -290,17 +293,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2.1" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#qgis-1"><i class="fa fa-check"></i><b>8.2.1</b> QGIS</a></li>
 <li class="chapter" data-level="8.2.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#rs-minerve-1"><i class="fa fa-check"></i><b>8.2.2</b> RS Minerve</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html"><i class="fa fa-check"></i><b>8.3</b> Appendix C: Processing Climate Data</a>
+<li class="chapter" data-level="8.3" data-path="section-quickguides-create-hbv-model.html"><a href="section-quickguides-create-hbv-model.html"><i class="fa fa-check"></i><b>8.3</b> Create HBV model and edit parameters</a></li>
+<li class="chapter" data-level="8.4" data-path="add-and-link-climate-station-section-quickguides-add-climate-station.html"><a href="add-and-link-climate-station-section-quickguides-add-climate-station.html"><i class="fa fa-check"></i><b>8.4</b> Add and link climate station {#section-quickguides-add-climate-station)}</a></li>
+<li class="chapter" data-level="8.5" data-path="section-quickguides-import-climate-data.html"><a href="section-quickguides-import-climate-data.html"><i class="fa fa-check"></i><b>8.5</b> Import climate data</a></li>
+<li class="chapter" data-level="8.6" data-path="section-quickguides-atapt-model-settings.html"><a href="section-quickguides-atapt-model-settings.html"><i class="fa fa-check"></i><b>8.6</b> Adapt model settings</a></li>
+<li class="chapter" data-level="8.7" data-path="section-export-sim-results-to-db.html"><a href="section-export-sim-results-to-db.html"><i class="fa fa-check"></i><b>8.7</b> Export simulation results to data base</a></li>
+<li class="chapter" data-level="8.8" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html"><i class="fa fa-check"></i><b>8.8</b> Appendix C: Processing Climate Data</a>
 <ul>
-<li class="chapter" data-level="8.3.1" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#cutting-chelsa-v.1.2.1-to-ca-domain"><i class="fa fa-check"></i><b>8.3.1</b> Cutting CHELSA v.1.2.1 to CA Domain</a></li>
-<li class="chapter" data-level="8.3.2" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#bias-correcting-chelsa-v1.2.1-precipitation-data-for-snow-undercatch"><i class="fa fa-check"></i><b>8.3.2</b> Bias Correcting CHELSA v1.2.1 Precipitation Data for Snow Undercatch</a></li>
-<li class="chapter" data-level="8.3.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#computing-mean-monthly-temperature-climatology-from-chelsa-v1.2.1-data"><i class="fa fa-check"></i><b>8.3.3</b> Computing Mean Monthly Temperature Climatology from CHELSA v1.2.1 data</a></li>
-<li class="chapter" data-level="8.3.4" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#era5"><i class="fa fa-check"></i><b>8.3.4</b> ERA5</a></li>
+<li class="chapter" data-level="8.8.1" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#cutting-chelsa-v.1.2.1-to-ca-domain"><i class="fa fa-check"></i><b>8.8.1</b> Cutting CHELSA v.1.2.1 to CA Domain</a></li>
+<li class="chapter" data-level="8.8.2" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#bias-correcting-chelsa-v1.2.1-precipitation-data-for-snow-undercatch"><i class="fa fa-check"></i><b>8.8.2</b> Bias Correcting CHELSA v1.2.1 Precipitation Data for Snow Undercatch</a></li>
+<li class="chapter" data-level="8.8.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#computing-mean-monthly-temperature-climatology-from-chelsa-v1.2.1-data"><i class="fa fa-check"></i><b>8.8.3</b> Computing Mean Monthly Temperature Climatology from CHELSA v1.2.1 data</a></li>
+<li class="chapter" data-level="8.8.4" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#era5"><i class="fa fa-check"></i><b>8.8.4</b> ERA5</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html"><i class="fa fa-check"></i><b>8.4</b> Appendix D: Solutions to exercises</a>
+<li class="chapter" data-level="8.9" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html"><i class="fa fa-check"></i><b>8.9</b> Appendix D: Solutions to exercises</a>
 <ul>
-<li class="chapter" data-level="8.4.1" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-exercise1"><i class="fa fa-check"></i><b>8.4.1</b> Exercise on Linear Reservoir modelling</a></li>
-<li class="chapter" data-level="8.4.2" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-hbv-exercises"><i class="fa fa-check"></i><b>8.4.2</b> Exercises on the HBV model</a></li>
+<li class="chapter" data-level="8.9.1" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-exercise1"><i class="fa fa-check"></i><b>8.9.1</b> Exercise on Linear Reservoir modelling</a></li>
+<li class="chapter" data-level="8.9.2" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-hbv-exercises"><i class="fa fa-check"></i><b>8.9.2</b> Exercises on the HBV model</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
@@ -339,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="appendix-a-open-source-software.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="appendix-c-processing-climate-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="section-quickguides-create-hbv-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
