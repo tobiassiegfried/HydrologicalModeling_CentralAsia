@@ -204,6 +204,7 @@ section-rsminerve-why-model-introduction
 section-hbv-model
 section-hbv-nauvalisoy-tutorial-short
 section-hbv-nauvalisoy-modelling-setup
+section-hbv-nauvalisoy-calibration
 data-preparation-and-setup
 examining-and-understanding-the-gis-data
 loading-gis-data-and-model-creation
@@ -268,9 +269,12 @@ what-materials-you-will-need-to-set-up-the-experiment
 where-will-you-get-the-water-from-and-can-you-re-use-it-after-the-experiment
 solution-task2-perform-experiment
 solution-task3-simulate
+solution-task4-think
 section-appendix-solutions-hbv-exercises
 section-appendix-solutions-hbv-driving-forces
 section-appendix-solutions-hbv-parameters-states
 section-appendix-solutions-plot-temperature-and-precipitation-1984
 section-appendix-solutions-compare-evaporation-methods
+section-appendix-solutions-common-calibration-issues
+section-appendix-solutions-strategies-for-issues
 References

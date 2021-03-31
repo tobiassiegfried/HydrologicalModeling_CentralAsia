@@ -222,7 +222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="section-rsminerve-why-model-introduction.html"><a href="section-rsminerve-why-model-introduction.html"><i class="fa fa-check"></i><b>5.2</b> Recap: Hydrological response</a></li>
 <li class="chapter" data-level="5.3" data-path="section-hbv-model.html"><a href="section-hbv-model.html"><i class="fa fa-check"></i><b>5.3</b> The HBV model</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="section-hbv-model.html"><a href="section-hbv-model.html#section-hbv-nauvalisoy-tutorial-short"><i class="fa fa-check"></i><b>5.3.1</b> Simple model of the Nauvalisoy river catchment</a></li>
+<li class="chapter" data-level="5.3.1" data-path="section-hbv-model.html"><a href="section-hbv-model.html#section-hbv-nauvalisoy-tutorial-short"><i class="fa fa-check"></i><b>5.3.1</b> HBV example: Simple model of the Nauvalisoy river catchment</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html"><i class="fa fa-check"></i><b>5.4</b> Data Preparation and Setup</a>
 <ul>
@@ -334,7 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="section-hbv-model" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> The HBV model</h2>
-<p>The HBV (Hydrologiska Byråns Vattenavdelning) model is a conceptual rainfall-runoff model which is suitable for many snow-fed river catchments <span class="citation">(<a href="References.html#ref-bergstrom_development_1976" role="doc-biblioref">Bergström 1976</a>)</span>. You have studied the short description of the HBV model in the RS Minerve technical manual <span class="citation">(<a href="References.html#ref-rsminerve_tm" role="doc-biblioref">Garcia Hernandez et al. 2020</a>)</span>. A brief reminder of the HBV model implemented in RS Minerve is given in Figure <a href="section-hbv-model.html#fig:fig-overview-hbv-model">5.5</a>. The model consists of a snow function which separates precipitation into solid and liquid parts and manages melting of snow and 3 storage reservoirs similar to the linear reservoir we saw in the <a href="section-rsminerve-why-model-introduction.html#section-rsminerve-why-model-introduction">recap section</a>.</p>
+<p>The HBV (Hydrologiska Byråns Vattenavdelning) model is a conceptual rainfall-runoff model which is suitable for many snow-fed river catchments <span class="citation">(<a href="References.html#ref-bergstrom_development_1976" role="doc-biblioref">Bergström 1980</a>; <a href="References.html#ref-lindstrom_development_1997" role="doc-biblioref">Lindström et al. 1997</a>)</span>. You have studied the short description of the HBV model in the RS Minerve technical manual <span class="citation">(<a href="References.html#ref-rsminerve_tm" role="doc-biblioref">Garcia Hernandez et al. 2020</a>)</span>. A brief reminder of the HBV model implemented in RS Minerve is given in Figure <a href="section-hbv-model.html#fig:fig-overview-hbv-model">5.5</a>. The model consists of a snow function which separates precipitation into solid and liquid parts and manages melting of snow and 3 storage reservoirs similar to the linear reservoir we saw in the <a href="section-rsminerve-why-model-introduction.html#section-rsminerve-why-model-introduction">recap section</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-overview-hbv-model"></span>
 <img src="_bookdown_files/FIG_RS_MINERVE/fig_HBVconceptualModel.png" alt="The HBV model concept (source: RS MINERVE Technical Manual)." width="55%" />
 <p class="caption">
@@ -365,7 +365,7 @@ Figure 5.6: The HBV model parameters (source: RS MINERVE Technical Manual).
 <a href="sectin-appendix-solutions.html#section-appendix-solutions-hbv-parameters-states">Solution</a></p>
 </div>
 <div id="section-hbv-nauvalisoy-tutorial-short" class="section level3" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> Simple model of the Nauvalisoy river catchment</h3>
+<h3><span class="header-section-number">5.3.1</span> HBV example: Simple model of the Nauvalisoy river catchment</h3>
 <div id="section-hbv-nauvalisoy-modelling-setup" class="section level4" number="5.3.1.1">
 <h4><span class="header-section-number">5.3.1.1</span> Set up the model</h4>
 <ol style="list-style-type: decimal">
@@ -390,6 +390,24 @@ Figure 5.6: The HBV model parameters (source: RS MINERVE Technical Manual).
 <p>Compare the different methods to calculate hourly evaporation in 1984 and their impact on the simulated discharge. Is the uniform evaporation model suitable for seasonal discharge models?</p>
 <p>Hint: Export simulation results to the data base (<a href="#section-quick-guides-export-sim-results-to-db">how to</a>).<br />
 <a href="sectin-appendix-solutions.html#section-appendix-solutions-compare-evaporation-methods">Solution</a></p>
+</div>
+</div>
+<div id="section-hbv-nauvalisoy-calibration" class="section level4" number="5.3.1.2">
+<h4><span class="header-section-number">5.3.1.2</span> Calibration and validation of the model</h4>
+<p>The large number of parameters of the HBV model can be adjusted within reasonable ranges to make the simulated river discharge more similar to the measured discharge. This process is sometimes called history matching because past measurements are used to adapt the model parameters. The following two exercises are important for understanding hydrological models. They are relevant whether you work as a modeler or as a decision maker. Try to first come up with a few own ideas and then study the solutions carefully. They will be discussed in the lectures in more detail.</p>
+<div class="exercisebox" exercise-rsminerve-hbv-5="">
+<div class="center" exercise-rsminerve-hbv-5="">
+<p><strong>Exercise 5: Model calibration - Common difficulties</strong></p>
+</div>
+<p>What are typical difficulties inherent to the calibration of common semi-distributed (or fully distributed) hydrological models?</p>
+<p>Hint: Compare the number of parameters of the HBV model to the number of model states.<br />
+<a href="sectin-appendix-solutions.html#section-appendix-solutions-common-calibration-issues">Solution</a></p>
+<div class="center" exercise-rsminerve-hbv-6="">
+<p><strong>Exercise 6: Model calibration - Strategies to handle the difficulties</strong></p>
+</div>
+<p>Based on the list of common difficulties in the solution of exercise 5, think about possible strategies to address these challenges.</p>
+<p>Hint: A modeler proverb says “as simple as possible but as complex as necessary.”
+<a href="sectin-appendix-solutions.html#section-appendix-solutions-strategies-for-issues">Solution</a></p>
 </div>
 </div>
 </div>

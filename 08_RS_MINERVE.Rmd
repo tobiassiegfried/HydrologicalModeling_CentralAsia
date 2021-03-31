@@ -90,24 +90,32 @@ knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_fromCatchmentToBucke
 
 The linear reservoir model describes the discharge from the reservoir as linearly proportional to the storage in the reservoir:   
 
-$Q(t) = 1/k \cdot S(t)$
+$$
+Q(t) = 1/k \cdot S(t)
+$$
 
 Where Q is discharge, S is the storage and k is a constant called storage coefficient depending on the storage capacity of the reservoir. If k is small, the stored water will run out quickly, if k is large, the stored water will run out slowly. (t) indicate time dependent variables, i.e. variables that change over time.   
 Substitute the linear reservoir equation into the water balance:  
 
-$P = Q + dS/dt \Leftrightarrow P = Q + k \cdot dQ/dt$
+$$
+P = Q + dS/dt \Leftrightarrow P = Q + k \cdot dQ/dt
+$$
 
 Where P is the *excess* precipitation, i.e. the precipitation that is not intercepted by plants or ponds but contributes to discharge. The above is a differential equation and can be re-arranged:  
 
-$(P-Q) \cdot dt = k \cdot dQ$
+$$(P-Q) \cdot dt = k \cdot dQ$$
 
-and integrated and soved for Q(t) (dig out your mathematics!). We assume that at the beginning of our experiment, we don't have a discharge as the bucket is empty.   
+and integrated and solved for Q(t) (dig out your mathematics!). In the example in the box below we discredited the water balance with the linear relationship between discharge and storage change in the reservoir:
 
-$Q(t) = P(t) \cdot (1-e^{(-t/k)})$
+$$\frac{P_{t_1}+P_{t_1}}{2} - \frac{Q_{t1}+Q_{t_2}}{2} = \frac{k}{t_2-t_1} \cdot (Q_{t_2}-Q_{t_1})$$
+and solved the equation for $Q_{t_2}$ (Inspiration from [@Pedersen1980].   
+We assume that at the beginning of our experiment, we don't have a discharge as the bucket is empty.   
+
+$$Q(t) = P(t) \cdot (1-e^{(-t/k)})$$
 
 This is the equation for the rising discharge curve. Once you turn off the recharge of the reservoir (once you stop pouring water into the bucket), the discharge from the bucket can be described as:  
 
-$Q(t) = Q^* \cdot e^{-\tau/k}$
+$$Q(t) = Q^* \cdot e^{-\tau/k}$$
 
 Which describes the receding limb of the hydrograph ([What is a hydrograph](#section-quickguides-what-is-a-hydrograph)) with $\tau$ being the time since the recharge stopped. 
 
@@ -144,12 +152,21 @@ knitr::include_app("http://34.251.168.23:3838/linearReservoirExampleApp/",
 ```
 
 [Solution to task 3](#solution-task3-simulate)
+
+::: {.center exercise-rsminerve-linres-4=""}
+**Task 4: The non-linear reservoir**
+:::
+* What happens to the discharge curve if the outlet of the reservoir is not at the bottom but somewhere in the middle of the receptacle wall? 
+* What happens if the receptacle is filled with sand?
+* What happens if you add another linear reservoir to the outlet of the first one, i.e. make a cascade of linear reservoirs?
+
+[Solution](#solution-task4-think)
 ::::
 
 
 
 ## The HBV model {#section-hbv-model}
-The HBV (Hydrologiska Byråns Vattenavdelning) model is a conceptual rainfall-runoff model which is suitable for many snow-fed river catchments [@bergstrom_development_1976]. You have studied the short description of the HBV model in the RS Minerve technical manual [@rsminerve_tm]. A brief reminder of the HBV model implemented in RS Minerve is given in Figure \@ref(fig:fig-overview-hbv-model). The model consists of a snow function which separates precipitation into solid and liquid parts and manages melting of snow and 3 storage reservoirs similar to the linear reservoir we saw in the [recap section](#section-rsminerve-why-model-introduction).      
+The HBV (Hydrologiska Byråns Vattenavdelning) model is a conceptual rainfall-runoff model which is suitable for many snow-fed river catchments [@bergstrom_development_1976; @lindstrom_development_1997]. You have studied the short description of the HBV model in the RS Minerve technical manual [@rsminerve_tm]. A brief reminder of the HBV model implemented in RS Minerve is given in Figure \@ref(fig:fig-overview-hbv-model). The model consists of a snow function which separates precipitation into solid and liquid parts and manages melting of snow and 3 storage reservoirs similar to the linear reservoir we saw in the [recap section](#section-rsminerve-why-model-introduction).      
 
 ```{r fig-overview-hbv-model, echo=FALSE, out.width="55%", fig.align="center", fig.cap="The HBV model concept (source: RS MINERVE Technical Manual)."}
 knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_HBVconceptualModel.png")
@@ -180,7 +197,7 @@ Hint: Values for initial water content in the different model compartments need 
 [Solution](#section-appendix-solutions-hbv-parameters-states)
 ::::
 
-### Simple model of the Nauvalisoy river catchment {#section-hbv-nauvalisoy-tutorial-short}
+### HBV example: Simple model of the Nauvalisoy river catchment {#section-hbv-nauvalisoy-tutorial-short}
 #### Set up the model {#section-hbv-nauvalisoy-modelling-setup}  
 
 1. Open RS Minerve and create an HBV model with the correct area ([Step-by-step guide](#section-quickguides-create-hbv-model)).  
@@ -205,6 +222,29 @@ Compare the different methods to calculate hourly evaporation in 1984 and their 
 Hint: Export simulation results to the data base ([how to](#section-quick-guides-export-sim-results-to-db)).  
 [Solution](#section-appendix-solutions-compare-evaporation-methods)
 ::::
+
+
+#### Calibration and validation of the model {#section-hbv-nauvalisoy-calibration}  
+The large number of parameters of the HBV model can be adjusted within reasonable ranges to make the simulated river discharge more similar to the measured discharge. This process is sometimes called history matching because past measurements are used to adapt the model parameters. The following two exercises are important for understanding hydrological models. They are relevant whether you work as a modeler or as a decision maker. Try to first come up with a few own ideas and then study the solutions carefully. They will be discussed in the lectures in more detail.    
+
+:::: {.exercisebox exercise-rsminerve-hbv-5=""}
+::: {.center exercise-rsminerve-hbv-5=""}
+**Exercise 5: Model calibration - Common difficulties**
+:::
+What are typical difficulties inherent to the calibration of common semi-distributed (or fully distributed) hydrological models?  
+
+Hint: Compare the number of parameters of the HBV model to the number of model states.   
+[Solution](#section-appendix-solutions-common-calibration-issues)
+
+::: {.center exercise-rsminerve-hbv-6=""}
+**Exercise 6: Model calibration - Strategies to handle the difficulties**
+:::
+Based on the list of common difficulties in the solution of exercise 5, think about possible strategies to address these challenges. 
+
+Hint: A modeler proverb says "as simple as possible but as complex as necessary".
+[Solution](#section-appendix-solutions-strategies-for-issues)
+::::
+
 
 
 

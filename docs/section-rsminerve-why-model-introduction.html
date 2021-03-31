@@ -222,7 +222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="section-rsminerve-why-model-introduction.html"><a href="section-rsminerve-why-model-introduction.html"><i class="fa fa-check"></i><b>5.2</b> Recap: Hydrological response</a></li>
 <li class="chapter" data-level="5.3" data-path="section-hbv-model.html"><a href="section-hbv-model.html"><i class="fa fa-check"></i><b>5.3</b> The HBV model</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="section-hbv-model.html"><a href="section-hbv-model.html#section-hbv-nauvalisoy-tutorial-short"><i class="fa fa-check"></i><b>5.3.1</b> Simple model of the Nauvalisoy river catchment</a></li>
+<li class="chapter" data-level="5.3.1" data-path="section-hbv-model.html"><a href="section-hbv-model.html#section-hbv-nauvalisoy-tutorial-short"><i class="fa fa-check"></i><b>5.3.1</b> HBV example: Simple model of the Nauvalisoy river catchment</a></li>
 </ul></li>
 <li class="chapter" data-level="5.4" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html"><i class="fa fa-check"></i><b>5.4</b> Data Preparation and Setup</a>
 <ul>
@@ -361,16 +361,23 @@ Figure 5.4: From the real-life system (left) to a linear reservoir (right).
 </p>
 </div>
 <p>The linear reservoir model describes the discharge from the reservoir as linearly proportional to the storage in the reservoir:</p>
-<p><span class="math inline">\(Q(t) = 1/k \cdot S(t)\)</span></p>
+<p><span class="math display">\[
+Q(t) = 1/k \cdot S(t)
+\]</span></p>
 <p>Where Q is discharge, S is the storage and k is a constant called storage coefficient depending on the storage capacity of the reservoir. If k is small, the stored water will run out quickly, if k is large, the stored water will run out slowly. (t) indicate time dependent variables, i.e. variables that change over time.<br />
 Substitute the linear reservoir equation into the water balance:</p>
-<p><span class="math inline">\(P = Q + dS/dt \Leftrightarrow P = Q + k \cdot dQ/dt\)</span></p>
+<p><span class="math display">\[
+P = Q + dS/dt \Leftrightarrow P = Q + k \cdot dQ/dt
+\]</span></p>
 <p>Where P is the <em>excess</em> precipitation, i.e. the precipitation that is not intercepted by plants or ponds but contributes to discharge. The above is a differential equation and can be re-arranged:</p>
-<p><span class="math inline">\((P-Q) \cdot dt = k \cdot dQ\)</span></p>
-<p>and integrated and soved for Q(t) (dig out your mathematics!). We assume that at the beginning of our experiment, we don’t have a discharge as the bucket is empty.</p>
-<p><span class="math inline">\(Q(t) = P(t) \cdot (1-e^{(-t/k)})\)</span></p>
+<p><span class="math display">\[(P-Q) \cdot dt = k \cdot dQ\]</span></p>
+<p>and integrated and solved for Q(t) (dig out your mathematics!). In the example in the box below we discredited the water balance with the linear relationship between discharge and storage change in the reservoir:</p>
+<p><span class="math display">\[\frac{P_{t_1}+P_{t_1}}{2} - \frac{Q_{t1}+Q_{t_2}}{2} = \frac{k}{t_2-t_1} \cdot (Q_{t_2}-Q_{t_1})\]</span>
+and solved the equation for <span class="math inline">\(Q_{t_2}\)</span> (Inspiration from <span class="citation">(<a href="References.html#ref-Pedersen1980" role="doc-biblioref">Pedersen, Peters, and Helweg 1980</a>)</span>.<br />
+We assume that at the beginning of our experiment, we don’t have a discharge as the bucket is empty.</p>
+<p><span class="math display">\[Q(t) = P(t) \cdot (1-e^{(-t/k)})\]</span></p>
 <p>This is the equation for the rising discharge curve. Once you turn off the recharge of the reservoir (once you stop pouring water into the bucket), the discharge from the bucket can be described as:</p>
-<p><span class="math inline">\(Q(t) = Q^* \cdot e^{-\tau/k}\)</span></p>
+<p><span class="math display">\[Q(t) = Q^* \cdot e^{-\tau/k}\]</span></p>
 <p>Which describes the receding limb of the hydrograph (<a href="#section-quickguides-what-is-a-hydrograph">What is a hydrograph</a>) with <span class="math inline">\(\tau\)</span> being the time since the recharge stopped.</p>
 <p>Understanding the linear reservoir model is a prerequisite for hydrological modeling. That is why we propose the following exercise for you to do at home as a preparation for class.</p>
 <div class="exercisebox" exercise-rsminerve-linres-1="">
@@ -401,6 +408,15 @@ You can watch a video of the experiment <a href="sectin-appendix-solutions.html#
 <p>The figure below shows the measured discharge from the experimental data shown in the table above. We have implemented a discretized version of a linear reservoir model for you which shows the simulated discharge (grey bars) of a recharge event (blue bars). Play with the storage parameter by moving the slider and see how the simulated discharge changes based on the storage parameter of the simulated catchment. Can you reproduce the measured discharge? If you cannot find a perfect match between measurements and simulation results: What could be the reasons?<br />
 <iframe src="http://34.251.168.23:3838/linearReservoirExampleApp/?showcase=0" width="672" height="800px"></iframe></p>
 <p><a href="sectin-appendix-solutions.html#solution-task3-simulate">Solution to task 3</a></p>
+<div class="center" exercise-rsminerve-linres-4="">
+<p><strong>Task 4: The non-linear reservoir</strong></p>
+</div>
+<ul>
+<li>What happens to the discharge curve if the outlet of the reservoir is not at the bottom but somewhere in the middle of the receptacle wall?</li>
+<li>What happens if the receptacle is filled with sand?</li>
+<li>What happens if you add another linear reservoir to the outlet of the first one, i.e. make a cascade of linear reservoirs?</li>
+</ul>
+<p><a href="sectin-appendix-solutions.html#solution-task4-think">Solution</a></p>
 </div>
 </div>
             </section>
