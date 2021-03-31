@@ -12,3 +12,14 @@ pre {
 pre code {
   white-space: inherit;
 }
+
+.exercisebox {
+  padding: 1em;
+  background: #d2f8d2;
+  color: black;
+  border: 1px #cacdca;
+  border-radius: 10px;
+}
+.center {
+  text-align: center;
+}

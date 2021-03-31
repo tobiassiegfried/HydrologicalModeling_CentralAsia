@@ -8,9 +8,40 @@
 
 #### R and RStudio
 
+##### Download and installation of R and RStudio
+Follow the installation guide on [ModernDive - Statistical Inference via Data Science](https://moderndive.com/index.html)
+
+##### Resources for learning R and R studio
+* “Help! I’m new to R and RStudio and I need to learn them! What do I do?” If you’re asking yourself this, this book is for you: [ModernDive - Statistical Inference via Data Science](https://moderndive.com/index.html). 
+* A thorough guide for data science in R: [R for Data Science](https://r4ds.had.co.nz/index.html)   
+
 #### RS Minerve
+##### How to download and install RS Minerve {#section-quickguides-how-to-download-and-install-rsminerve}
+Go to the software download page of CREALP's website  [https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve/telechargement-rsm.html](https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve/telechargement-rsm.html) (last accessed March 18, 2021) and click on *Version actuelle* to download the latest installer for Windows (see Figure \@ref(fig:fig-download-rsminerve)). This will start the download process for the installer RSMinerve-install.exe. 
+
+```{r fig-download-rsminerve, echo=FALSE, out.width="95%", fig.align="center", fig.cap="Download RS Minerve from the CREALP website [https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve/telechargement-rsm.html](https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve/telechargement-rsm.html) (last accessed March 18, 2021)."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig_downloadSiteRSMinerve.png")
+```
+
+You should also download the user manual (*RS MINERVE user manual*, written in English) and the example files used for the tutorials in the user manual (*Exemple de fichiers*, a zip file with data) as well as the technical manual (*RS MINERVE technical manual*, written in English).   
+Once the installer is downloaded, install RS Minerve with a double-click on the installer and follow the Setup guide. Open RS Minerve once you have it installed. 
+
+[Back to the prerequisites for RS Minerve modelling](#section-rsminerve-prerequisites)
+
+
 
 ## Appendix B: Quick Guides
+
+### RS Minerve
+
+
+
+
+
+
+
+
+
 
 ## Appendix C: Processing Climate Data
 
@@ -148,3 +179,66 @@ names(raster_res_mean_stack) <- month.abb
 ```
 
 ### ERA5
+
+
+
+
+## Appendix D: Solutions to exercises {#sectin-appendix-solutions}
+
+### Exercise on Linear Reservoir modelling {#section-appendix-solutions-exercise1}
+#### Task 1 {#solution-task1-experimental-setup}  
+
+##### What will determine the flow through your bucket?  
+The flow through the bucket will be influenced by the volume to bottom area fraction of the bucket, the amount and speed of water added to the bucket and the size of the outlet hole. 
+
+##### What do you need to measure?   
+You will need to measure:   
+
+* the discharge from your bucket over time,  
+* the recharge volume (how much water you put into the bucket over a given time),   
+* the time when you start pouring water and when you stop pouring water into the bucket,  
+* the approximate volume of your bucket.  
+
+##### How can you measure it? 
+This depends on what you have available. You can draw a water level line outside of your outflow receptacle every 10 seconds and then determine the volume change over time. Maybe you have a scale and a smart phone so you can put your outflow receptacle on the scale and make a movie of the weight change over time (1kg of water is approximately 1l of water).   
+For the inflow pour a well defined volume over a well defined time interval. You can do this manually unless of course you have pipes and valves lying around that you can use.   
+You will need a watch for measuring time and a receptacle with known volume to measure volumes (or a scale).    
+A couple of notes on measurement accuracy:   
+
+* Generally, the larger the volumes, the smaller the relative measurement error. Say you measure a discharge of 50ml in 1s (i.e. 50ml/s) and you can read your volume with an accuracy of 5ml and the time with an accuracy of 0.2s. Your measurement uncertainty becomes 11ml/s which is more than 20% of your discharge. If on the other hand, you measure 500ml over 10s (which is the same discharge of 50ml/s) with the same inaccuracies for volume and time your measurement uncertainty for discharge becomes 1ml/s which is only 2% of your discharge.  
+* How do you estimate measurement uncertainties: Measure several times, compute the average and the standard deviation of your measurements assuming a student-t distribution.   
+* How do you combine uncertainties of volume and time to the uncertainty of discharge: By applying Gaussian error propagation.   
+
+##### What materials you will need to set up the experiment?
+* For the bucket (the linear reservoir): A plastic bottle, a box or a can that is no longer used. It should have an opening at the top and the material should repel water and be thin enough that you can drill a hole into the wall.   
+* A pair of pointy scissors or a knife to drill a hole into the bucket.   
+* A water source (a tap, hose or a water container larger than the one above). This will be your rain machine.   
+* A watch to measure time.  
+* Note paper and pen.   
+* A receptacle for measuring the outflow.   
+* Additional material to facilitate measurement according to availability.   
+
+```{r fig-solution1-example-setup, echo=FALSE, fig.show = "hold", out.width="90%", fig.align="center", fig.cap="Example for material needed and example setup to perform the linear reservoir experiment. Add a minion with a stop watch or a smart phone to help you logging the discharge from the bucket. "}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig_experimentalSetup.jpg")
+```
+
+##### Where will you get the water from and can you re-use it after the experiment? 
+This depends on your situation.   
+
+Back to the [recap section](#section-rsminerve-why-model-introduction)
+
+
+#### Task 2 {#solution-task2-perform-experiment}
+The video was recorded with a smart phone. The weight of the outflow receptacle was noted down every second. The discharge is computed as the change of volume in the outflow receptacle over time.    
+
+<iframe width="720" height="480" src="_bookdown_files/FIG_Appendix_QuickGuides/bucket_video.mp4" align="middle" frameborder="0" allowfullscreen></iframe>
+
+Back to the [recap section](#section-rsminerve-why-model-introduction)
+
+
+#### Task 3 {#solution-task3-simulate}
+The height of the measured discharge peak can be best reproduced with k = 0.42. However, the measured discharge peaks 1s later than the simulated discharge peak.   
+Reasons for the discrepancy can be the shape of the linear reservoir, non-linear pouring speed, and measurement uncertainties.       
+
+Back to the [recap section](#section-rsminerve-why-model-introduction)
+
