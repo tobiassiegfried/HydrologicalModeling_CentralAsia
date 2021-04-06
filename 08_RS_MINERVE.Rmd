@@ -165,92 +165,6 @@ knitr::include_app("http://34.251.168.23:3838/linearReservoirExampleApp/",
 
 
 
-## The HBV model {#section-hbv-model}
-The HBV (Hydrologiska Byråns Vattenavdelning) model is a conceptual rainfall-runoff model which is suitable for many snow-fed river catchments [@bergstrom_development_1976; @lindstrom_development_1997]. You have studied the short description of the HBV model in the RS Minerve technical manual [@rsminerve_tm]. A brief reminder of the HBV model implemented in RS Minerve is given in Figure \@ref(fig:fig-overview-hbv-model). The model consists of a snow function which separates precipitation into solid and liquid parts and manages melting of snow and 3 storage reservoirs similar to the linear reservoir we saw in the [recap section](#section-rsminerve-why-model-introduction).      
-
-```{r fig-overview-hbv-model, echo=FALSE, out.width="55%", fig.align="center", fig.cap="The HBV model concept (source: RS MINERVE Technical Manual)."}
-knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_HBVconceptualModel.png")
-```
-
-:::: {.exercisebox exercise-rsminerve-hbv-1=""}
-::: {.center exercise-rsminerve-hbv-1=""}
-**Exercise 1: Model understanding - Drivers**
-:::
-What are the model drivers (i.e. what input data do you need to provide)?   
-
-Hint: Study Figure \@ref(fig:fig-overview-hbv-model).   
-[Solution](#section-appendix-solutions-hbv-driving-forces)
-::::
-
-Figure \@ref(fig:fig-overview-hbv-model-parameters) from the RS Minerve technical manual [rsminerve-tm] gives an overview over the model parameters and states. 
-```{r fig-overview-hbv-model-parameters, echo=FALSE, out.width="60%", fig.align="center", fig.cap="The HBV model parameters (source: RS MINERVE Technical Manual)."}
-knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_PARandIC.png")
-```
-
-:::: {.exercisebox exercise-rsminerve-hbv-2=""}
-::: {.center exercise-rsminerve-hbv-2=""}
-**Exercise 2: Model understanding - States**
-:::
-What are the model states (i.e. what variables describe the amount of water in the system over time)?   
-
-Hint: Values for initial water content in the different model compartments need to be defined prior to the simulation.    
-[Solution](#section-appendix-solutions-hbv-parameters-states)
-::::
-
-### HBV example: Simple model of the Nauvalisoy river catchment {#section-hbv-nauvalisoy-tutorial-short}
-#### Set up the model {#section-hbv-nauvalisoy-modelling-setup}  
-
-1. Open RS Minerve and create an HBV model with the correct area ([Step-by-step guide](#section-quickguides-create-hbv-model)).  
-2.  Add a climate station and link it to the HBV model ([Step-by-step guide](#section-quickguides-add-climate-station)) .   
-3.  Climate data has been prepared in the file ./data/SyrDarya/Chirchiq/RSMinerve/ERA5_Nauvalisoy_1981_2013.csv. Import the data in RS Minerve and link it to the station data ([Step-by-step guide](#section-quickguides-import-climate-data)).  
-4.  Change the model settings to calculate evaporation using and adapt the coordinates in the settings tab [Step-by-step guide](#section-quickguides-atapt-model-settings).   
-
-:::: {.exercisebox exercise-rsminerve-hbv-3=""}
-::: {.center exercise-rsminerve-hbv-3=""}
-**Exercise 3: RS Minerve - Data visualization**
-:::
-Use the Selection and plots tool in the Modules toolbar of RS Minerve and display the hourly model inputs precipitation and temperature for the example year 1984. What is the approximate temperature range over the year? What is the annual precipitation? 
-
-Hint: Adapt the simulation period in the model tab accordingly. Don't forget to set the initial conditions of the model to the last hour of 1983.      
-[Solution](#section-appendix-solutions-plot-temperature-and-precipitation-1984)
-
-::: {.center exercise-rsminerve-hbv-4=""}
-**Exercise 4: RS Minerve - Compare evaporation models**
-:::
-Compare the different methods to calculate hourly evaporation in 1984 and their impact on the simulated discharge. Is the uniform evaporation model suitable for seasonal discharge models?  
-
-Hint: Export simulation results to the data base ([how to](#section-quick-guides-export-sim-results-to-db)).  
-[Solution](#section-appendix-solutions-compare-evaporation-methods)
-::::
-
-
-#### Calibration and validation of the model {#section-hbv-nauvalisoy-calibration}  
-The large number of parameters of the HBV model can be adjusted within reasonable ranges to make the simulated river discharge more similar to the measured discharge. This process is sometimes called history matching because past measurements are used to adapt the model parameters. The following two exercises are important for understanding hydrological models. They are relevant whether you work as a modeler or as a decision maker. Try to first come up with a few own ideas and then study the solutions carefully. They will be discussed in the lectures in more detail.    
-
-:::: {.exercisebox exercise-rsminerve-hbv-5=""}
-::: {.center exercise-rsminerve-hbv-5=""}
-**Exercise 5: Model calibration - Common difficulties**
-:::
-What are typical difficulties inherent to the calibration of common semi-distributed (or fully distributed) hydrological models?  
-
-Hint: Compare the number of parameters of the HBV model to the number of model states.   
-[Solution](#section-appendix-solutions-common-calibration-issues)
-
-::: {.center exercise-rsminerve-hbv-6=""}
-**Exercise 6: Model calibration - Strategies to handle the difficulties**
-:::
-Based on the list of common difficulties in the solution of exercise 5, think about possible strategies to address these challenges. 
-
-Hint: A modeler proverb says "as simple as possible but as complex as necessary".
-[Solution](#section-appendix-solutions-strategies-for-issues)
-::::
-
-
-
-
-
-
-
 
 
 
@@ -411,13 +325,108 @@ After rearranging the individual model elements and loading a background .jpeg-i
 
 RSMinerve simulates discharge in response to climate forcing.
 
+
+
+
+## The HBV model {#section-hbv-model}
+The HBV (Hydrologiska Byråns Vattenavdelning) model is a conceptual rainfall-runoff model which is suitable for many snow-fed river catchments [@bergstrom_development_1976; @lindstrom_development_1997]. You have studied the short description of the HBV model in the RS Minerve technical manual [@rsminerve_tm]. A brief reminder of the HBV model implemented in RS Minerve is given in Figure \@ref(fig:fig-overview-hbv-model). The model consists of a snow function which separates precipitation into solid and liquid parts and manages melting of snow and 3 storage reservoirs similar to the linear reservoir we saw in the [recap section](#section-rsminerve-why-model-introduction).      
+
+```{r fig-overview-hbv-model, echo=FALSE, out.width="55%", fig.align="center", fig.cap="The HBV model concept (source: RS MINERVE Technical Manual)."}
+knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_HBVconceptualModel.png")
+```
+
+:::: {.exercisebox exercise-rsminerve-hbv-1=""}
+::: {.center exercise-rsminerve-hbv-1=""}
+**Exercise: Model understanding - Drivers**
+:::
+What are the model drivers (i.e. what input data do you need to provide)?   
+
+Hint: Study Figure \@ref(fig:fig-overview-hbv-model).   
+[Solution](#section-appendix-solutions-hbv-driving-forces)
+::::
+
+Figure \@ref(fig:fig-overview-hbv-model-parameters) from the RS Minerve technical manual [rsminerve-tm] gives an overview over the model parameters and states. 
+```{r fig-overview-hbv-model-parameters, echo=FALSE, out.width="60%", fig.align="center", fig.cap="The HBV model parameters (source: RS MINERVE Technical Manual)."}
+knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_PARandIC.png")
+```
+
+:::: {.exercisebox exercise-rsminerve-hbv-2=""}
+::: {.center exercise-rsminerve-hbv-2=""}
+**Exercise: Model understanding - States**
+:::
+What are the model states (i.e. what variables describe the amount of water in the system over time)?   
+
+Hint: Values for initial water content in the different model compartments need to be defined prior to the simulation.    
+[Solution](#section-appendix-solutions-hbv-parameters-states)
+::::
+
+### HBV example: Simple model of the Nauvalisoy river catchment {#section-hbv-nauvalisoy-tutorial-short}
+#### Set up the model {#section-hbv-nauvalisoy-modelling-setup}  
+
+1. Open RS Minerve and create an HBV model with the correct area ([Step-by-step guide](#section-quickguides-create-hbv-model)).  
+2.  Add a climate station and link it to the HBV model ([Step-by-step guide](#section-quickguides-add-climate-station)) .   
+3.  Climate data has been prepared in the file ./data/SyrDarya/Chirchiq/RSMinerve/ERA5_Nauvalisoy_1981_2013.csv. Import the data in RS Minerve and link it to the station data ([Step-by-step guide](#section-quickguides-import-climate-data)).  
+4.  Change the model settings to calculate evaporation using and adapt the coordinates in the settings tab [Step-by-step guide](#section-quickguides-atapt-model-settings).   
+
+:::: {.exercisebox exercise-rsminerve-hbv-3=""}
+::: {.center exercise-rsminerve-hbv-3=""}
+**Exercise: RS Minerve - Data visualization**
+:::
+Use the Selection and plots tool in the Modules toolbar of RS Minerve and display the hourly model inputs precipitation and temperature for the example year 1984. What is the approximate temperature range over the year? What is the annual precipitation? 
+
+Hint: Adapt the simulation period in the model tab accordingly. Don't forget to set the initial conditions of the model to the last hour of 1983.      
+[Solution](#section-appendix-solutions-plot-temperature-and-precipitation-1984)
+
+::: {.center exercise-rsminerve-hbv-4=""}
+**Exercise: RS Minerve - Compare evaporation models**
+:::
+Compare the different methods to calculate hourly evaporation in 1984 and their impact on the simulated discharge. Is the uniform evaporation model suitable for seasonal discharge models?  
+
+Hint: Export simulation results to the data base ([how to](#section-quick-guides-export-sim-results-to-db)).  
+[Solution](#section-appendix-solutions-compare-evaporation-methods)
+::::
+
+
+
+
+
 ## Model Calibration and Validation
 
-Some random text to test
+### Basic Principles {#section-calibration-principles}
+The large number of parameters of the HBV model can be adjusted within reasonable ranges to make the simulated river discharge more similar to the measured discharge. This process is sometimes called history matching because past measurements are used to adapt the model parameters. The following two exercises are important for understanding hydrological models. They are relevant whether you work as a modeler or as a decision maker. Try to first come up with a few own ideas and then study the solutions carefully. They will be discussed in the lectures in more detail.    
+:::: {.exercisebox exercise-rsminerve-hbv-5=""} 
+::: {.center exercise-rsminerve-hbv-5=""}
+**Exercise: Model calibration - Common difficulties**
+:::
+What are typical difficulties inherent to the calibration of common semi-distributed (or fully distributed) hydrological models?
 
-### Basic Principles
+Hint: Compare the number of parameters of the HBV model to the number of model states.
+[Solution](#section-appendix-solutions-common-calibration-issues)
 
-### Practical Steps
+::: {.center exercise-rsminerve-hbv-6=""}
+**Exercise: Model calibration - Strategies to handle the difficulties**
+:::
+Based on the list of common difficulties in the solution of exercise 5, think about possible strategies to address these challenges.
+
+Hint: A modeler proverb says "as simple as possible but as complex as necessary".
+[Solution](#section-appendix-solutions-strategies-for-issues)
+::::
+
+
+
+
+
+### Practical Steps {#secion-calibration-practical-steps}
+#### Calibration and validation of the Nauvalisoy model {#section-hbv-nauvalisoy-calibration}  
+The following section describes the steps for manual model calibration. We use the example of the Nauvalisoy river catchment and calibrate it with synthetic discharge measurements to deepen our understanding of the HBV model. For the synthetic discharge measurements it is theoretically possible to find a perfect match between simulated and measured data which is typically not the case for real measurements.  
+
+1. Add a comparator and a source object to your Nauvalisoy model and load river discharge measurements (filename) [how to](#section-quickguides-add-comparator-and-discharge-data). 
+
+
+
+
+
+
 
 ## Application: Investigating Climate Change Impacts
 
