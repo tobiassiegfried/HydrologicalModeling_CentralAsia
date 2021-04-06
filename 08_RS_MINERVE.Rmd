@@ -145,7 +145,7 @@ You can watch a video of the experiment [here](#solution-task2-perform-experimen
 ::: {.center exercise-rsminerve-linres-3=""}
 **Task 3: Simulate the experiment**
 :::
-The figure below shows the measured discharge from the experimental data shown in the table above. We have implemented a discretized version of a linear reservoir model for you which shows the simulated discharge (grey bars) of a recharge event (blue bars). Play with the storage parameter by moving the slider and see how the simulated discharge changes based on the storage parameter of the simulated catchment. Can you reproduce the measured discharge? If you cannot find a perfect match between measurements and simulation results: What could be the reasons?  
+The figure below shows the measured discharge from the experimental data shown in the table above. We have implemented a discretized version of a linear reservoir model for you which shows the simulated discharge (grey bars) of a recharge event (blue bars). Play with the storage parameter by moving the slider and see how the simulated discharge changes based on the storage parameter of the simulated catchment. Can you reproduce the measured discharge? If you cannot find a perfect match between measurements and simulation results: What could be the reasons? (If you see an empty window below this text, go to the [web app](http://34.251.168.23:3838/linearReservoirExampleApp/) directly to do the exercise).  
 ```{r, echo=FALSE}
 knitr::include_app("http://34.251.168.23:3838/linearReservoirExampleApp/", 
                    height = "800px")
@@ -394,13 +394,14 @@ Hint: Export simulation results to the data base ([how to](#section-quick-guides
 
 ### Basic Principles {#section-calibration-principles}
 The large number of parameters of the HBV model can be adjusted within reasonable ranges to make the simulated river discharge more similar to the measured discharge. This process is sometimes called history matching because past measurements are used to adapt the model parameters. The following two exercises are important for understanding hydrological models. They are relevant whether you work as a modeler or as a decision maker. Try to first come up with a few own ideas and then study the solutions carefully. They will be discussed in the lectures in more detail.    
+
 :::: {.exercisebox exercise-rsminerve-hbv-5=""} 
 ::: {.center exercise-rsminerve-hbv-5=""}
 **Exercise: Model calibration - Common difficulties**
 :::
 What are typical difficulties inherent to the calibration of common semi-distributed (or fully distributed) hydrological models?
 
-Hint: Compare the number of parameters of the HBV model to the number of model states.
+Hint: Compare the number of parameters of the HBV model to the number of model states.  
 [Solution](#section-appendix-solutions-common-calibration-issues)
 
 ::: {.center exercise-rsminerve-hbv-6=""}
@@ -408,8 +409,24 @@ Hint: Compare the number of parameters of the HBV model to the number of model s
 :::
 Based on the list of common difficulties in the solution of exercise 5, think about possible strategies to address these challenges.
 
-Hint: A modeler proverb says "as simple as possible but as complex as necessary".
+Hint: A modeler proverb says "as simple as possible but as complex as necessary".  
 [Solution](#section-appendix-solutions-strategies-for-issues)
+::::
+
+
+#### Calibration vs. validation  
+As you have learned, semi- and fully distributed hydrological models are typically not well defined, i.e. you will find multiple sets of parameter combinations which will all yield reasonable model performance. An important strategy to gain confidence into a model is to split your time series into a calibration period and a validation period. During calibration, you adjust the model parameters to get a satisfying fit with the measured discharge. During the validation period you check how the calibrated model compares to discharge data that it hasn't seen before, i.e. you judge the ability of the model to handle potentially different model input than it has seen during calibration. For example, if you have 30 years of discharge time series available you can use the first 10 years for model calibration (i.e. you run the model calibration procedure only over the first 10 years of the time series) and use the last 20 years for model validation. A good model should perform satisfactorily not only during calibration but also during validation.   
+In hydrology, it is recommended to do cross-validation, i.e. to calibrate and validate a model with several combinations of calibration and validation periods and to summarize the overall model performance.  
+
+
+#### Performance indicators
+Model performance can be expressed in different ways. Some indicators are better suited to calibrate high flows (e.g. root mean squared error) and some are better suited to calibrate low flows (e.g. Nash coefficient for logarithm values). Others evaluate the models ability to reproduce the exceedance of a given discharge which is especially important for flood modelling. The calibration result depends on the choice of the performance indicators. For the automated calibration in RS Minerve, the user can choose a combination of several performance indicators. Care has to be taken to choose them according to the models goal. 
+
+:::: {.exercisebox task-performance-indicators=""}
+::: {.center task-performance-indicators=""}
+**Task: Read up on performance indicators**
+:::
+The RS Minerve technical manual [@rsminerve_tm] summarizes the most important performance indicators typically used in hydrological modelling. For the more ambitious modellers, the manual includes references to the literature. Read Chapter 3 of the technical manual. 
 ::::
 
 
@@ -417,15 +434,62 @@ Hint: A modeler proverb says "as simple as possible but as complex as necessary"
 
 
 ### Practical Steps {#secion-calibration-practical-steps}
-#### Calibration and validation of the Nauvalisoy model {#section-hbv-nauvalisoy-calibration}  
+#### Manual calibration of synthetic discharge {#section-hbv-nauvalisoy-calibration}  
 The following section describes the steps for manual model calibration. We use the example of the Nauvalisoy river catchment and calibrate it with synthetic discharge measurements to deepen our understanding of the HBV model. For the synthetic discharge measurements it is theoretically possible to find a perfect match between simulated and measured data which is typically not the case for real measurements.  
 
-1. Add a comparator and a source object to your Nauvalisoy model and load river discharge measurements (filename) [how to](#section-quickguides-add-comparator-and-discharge-data). 
+```{r rsminerve-run-model-precalibration, echo=FALSE, out.width="80%", fig.align="center", fig.cap="The simulated discharge (green) differs from the reference discharge (blue) before model calibration."}
+knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_simulation_result_before_calibration_synthetic.png")
+```
+
+:::: {.exercisebox exercise-rsminerve-manual-calibration=""}
+::: {.center exercise-rsminerve-manual-calibration=""}
+**Exercise: RS Minerve - Manual calibration of synthetic discharge**
+:::
+Add a comparator and a source object to your Nauvalisoy model and load river discharge measurements (filename), then run the model [how to](#section-quickguides-add-comparator-and-discharge-data). With default parameters, the outcome of this step should look like Figure \@ref(fig:rsminerve-run-model-precalibration). Should your result differ significantly from the one shown here, compare the parameters of the HBV mode to the ones in the file ./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt. You can import the parameter set to RS Minerve via Import P in the model properties toolbar.
+
+Hints: Start adjusting the parameters of the HBV model to make the simulated discharge curve more similar to the reference discharge. Start with the parameters of the snow function and then proceed downwards through the compartments of the HBV model. 
+Focus on parts of the curves. Try to figure out which parameters influence the timing of the discharge peak, which the height of the peak and which the form of the recession curve. Give yourself some time for this task before you go peaking in the results.          
+The parameters of the calibrated model are linked [here.](#section-appendix-solutions-calibrated parameters)
+
+::: {.center exercise-rsminerve-manual-calibration=""}
+**Exercise: RS Minerve - Load real discharge measurements**
+:::
+From the file ./data/SyrDarya/Chirchiq/RSMinerve/  
+**   TODO write the discharge file **
+::::
+
+Figure \@ref(fig:gunt-temp-elevation) shows the relationship between elevation and temperature of the 4 meteo stations in the Gunt river catchment. The elevation dependence of temperature is highly important for snow-melt driven river catchments. 
+
+```{r gunt-temp-elevation, message=FALSE,warnin=FALSE, fig.cap="Elevation dependence of temperature in the Gunt river catchment."}
+## MeteoStation locations and elevation
+meteoStations <- # just put everything in a regular dataframe
+  tibble(code = c(38953, 38954, 38956, 38950),
+         masl  = c(3746, 2075, 3438, 2566))
+
+# Load Gunt data
+data <- read_rds('./data/AmuDarya/Gunt/StationData/gunt_data_cleaned.Rds') %>% 
+  dplyr::filter(str_detect(type, "T")) %>%  # Filter for data types that contain T 
+  mutate(code = as.numeric(code)) %>%  # Cast code column to numeric
+  left_join(meteoStations)  # Add the station altitude to the data
+
+# Plotting the dataframe
+data %>%
+  dplyr::filter(!str_detect(type, "meanmax"), 
+                !str_detect(type, "meanmin")) %>%
+  dplyr::mutate(Variable = type) %>%
+  group_by(code, Variable) %>%
+  summarize(norm = mean(norm, na.rm = TRUE), 
+            masl = first(masl)) %>%
+  ggplot(aes(masl, norm, colour = Variable)) + 
+  geom_point() + 
+  geom_smooth(method = "lm") + 
+  labs(x = "Altitude [masl]", y = "T [deg C]") + 
+  theme_bw()
+```
 
 
 
-
-
+#### Manual calibration of the Nauvalisoy model {#section-hbv-nauvalisoy-calibration}  
 
 
 ## Application: Investigating Climate Change Impacts

@@ -297,6 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2.5" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-atapt-model-settings"><i class="fa fa-check"></i><b>8.2.5</b> RSM: Adapt model settings</a></li>
 <li class="chapter" data-level="8.2.6" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-export-sim-results-to-db"><i class="fa fa-check"></i><b>8.2.6</b> RSM: Export simulation results to data base</a></li>
 <li class="chapter" data-level="8.2.7" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-comparator-and-discharge-data"><i class="fa fa-check"></i><b>8.2.7</b> RSM: Add comparator and load discharge measurements</a></li>
+<li class="chapter" data-level="8.2.8" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-copy-paste-database-values"><i class="fa fa-check"></i><b>8.2.8</b> RSM: Copy-paste data to database</a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html"><i class="fa fa-check"></i><b>8.3</b> Appendix C: Processing Climate Data</a>
 <ul>
@@ -514,9 +515,51 @@ Figure 8.21: Comparator icon in RS Minerve.
 </div>
 <p>Connect the source object to the comparator in the same way as the HBV object. The source will be connected as reference (Figure <a href="appendix-b-quick-guides.html#fig:rsminerve-connect-source-comparator">8.22</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:rsminerve-connect-source-comparator"></span>
-<img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_connectSourcetoComparator.png" alt="Comparator icon in RS Minerve." width="60%" />
+<img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_connectSourcetoComparator.png" alt="Source icon in RS Minerve." width="60%" />
 <p class="caption">
-Figure 8.22: Comparator icon in RS Minerve.
+Figure 8.22: Source icon in RS Minerve.
+</p>
+</div>
+Next, we have to load the (synthetic) discharge data into the database. Navigate to the database tab. In the database, go to Measurements -&gt; nauvalisoy and click <em>Add</em> and enter a name for the discharge station (Figure <a href="appendix-b-quick-guides.html#fig:rsminerve-add-discharge-database">8.23</a>). For this example, we do not need to bother with the coordinates.<br />
+
+<div class="figure" style="text-align: center"><span id="fig:rsminerve-add-discharge-database"></span>
+<img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_database_add_discharge_station.png" alt="Connect the outflow of the HBV model as simulation result to the comparator." width="60%" />
+<p class="caption">
+Figure 8.23: Connect the outflow of the HBV model as simulation result to the comparator.
+</p>
+</div>
+Under the new discharge station, add a sensor and rename it to the source object in your model (Figure <a href="appendix-b-quick-guides.html#fig:rsminerve-add-discharge-sensor">8.24</a>).
+<div class="figure" style="text-align: center"><span id="fig:rsminerve-add-discharge-sensor"></span>
+<img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_add_discharge_sensor.png" alt="Connect the discharge measurements (source) as reference to the comparator." width="60%" />
+<p class="caption">
+Figure 8.24: Connect the discharge measurements (source) as reference to the comparator.
+</p>
+</div>
+<p>Open the tab with the Values. Here we need to import the discharge data. You can do that by opening the discharge data in a spreadsheet (e.g. Excel) and copy-pasting the dates and discharge values into the Values table in RS Minerve (<a href="appendix-b-quick-guides.html#section-quickguides-copy-paste-database-values">Here is how to do this step-by-step</a>.</p>
+<p>Now we need to link the discharge data in the database to the source object in the model. Navigate to the model and</p>
+<div class="figure" style="text-align: center"><span id="fig:rsminerve-link-discharge-data-to-model"></span>
+<img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_connect_source_database_to_object.png" alt="Select the data source for the source object (under Data Source in the left window pane) and select the sensor for discharge data for the source (under Source, Series identifier in the right window pane)." width="80%" />
+<p class="caption">
+Figure 8.25: Select the data source for the source object (under Data Source in the left window pane) and select the sensor for discharge data for the source (under Source, Series identifier in the right window pane).
+</p>
+</div>
+<p>Validate the model to see if the model setup went correctly. Run the model if the validation did not throw an error.</p>
+<p>Back to the <a href="model-calibration-and-validation-1.html#secion-calibration-practical-steps">practical model calibration and validation section</a></p>
+</div>
+<div id="section-quickguides-copy-paste-database-values" class="section level3" number="8.2.8">
+<h3><span class="header-section-number">8.2.8</span> RSM: Copy-paste data to database</h3>
+<p>Open the file ./data/SyrDarya/Chirchiq/RSMinerve/synthetic_discharge_Nauvalisoy_river_for_calibration_exercise.csv in a spreadsheet software, e.g. Excel, Numbers, Google Sheets or OpenOffice Calc and select the rows containing dates and values (Figure <a href="appendix-b-quick-guides.html#fig:fig-copy-spreadsheet-data">8.26</a>). Press control C or perform a left-click and choose copy.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-copy-spreadsheet-data"></span>
+<img src="_bookdown_files/FIG_Appendix_QuickGuides/fig000_copy_data_spreadsheet.png" alt="Select the rows and columns containing the dates and data to be copied. Press control C to copy the selected cells." width="40%" />
+<p class="caption">
+Figure 8.26: Select the rows and columns containing the dates and data to be copied. Press control C to copy the selected cells.
+</p>
+</div>
+<p>Then navigate to the discharge sensor on the database tab in RS Minerve where you want to add the data to. Click in the small square to the left of the first row in the Values tab and enter control P. Alternatively perform a right-click in the small square and select Paste. The dates and values from the excel sheet will now appear in the table (Figure <a href="appendix-b-quick-guides.html#fig:fig-paste-spreadsheet-data">8.27</a>). Save the database.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig-paste-spreadsheet-data"></span>
+<img src="_bookdown_files/FIG_Appendix_QuickGuides/fig000_paste_values_database.png" alt="Paste dates and values to the database table." width="40%" />
+<p class="caption">
+Figure 8.27: Paste dates and values to the database table.
 </p>
 </div>
 <p>Back to the <a href="model-calibration-and-validation-1.html#secion-calibration-practical-steps">practical model calibration and validation section</a></p>

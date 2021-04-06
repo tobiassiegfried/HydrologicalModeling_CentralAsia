@@ -297,6 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2.5" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-atapt-model-settings"><i class="fa fa-check"></i><b>8.2.5</b> RSM: Adapt model settings</a></li>
 <li class="chapter" data-level="8.2.6" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-export-sim-results-to-db"><i class="fa fa-check"></i><b>8.2.6</b> RSM: Export simulation results to data base</a></li>
 <li class="chapter" data-level="8.2.7" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-comparator-and-discharge-data"><i class="fa fa-check"></i><b>8.2.7</b> RSM: Add comparator and load discharge measurements</a></li>
+<li class="chapter" data-level="8.2.8" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-copy-paste-database-values"><i class="fa fa-check"></i><b>8.2.8</b> RSM: Copy-paste data to database</a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html"><i class="fa fa-check"></i><b>8.3</b> Appendix C: Processing Climate Data</a>
 <ul>
@@ -336,30 +337,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.5</span> Model Calibration and Validation</h2>
 <div id="section-calibration-principles" class="section level3" number="5.5.1">
 <h3><span class="header-section-number">5.5.1</span> Basic Principles</h3>
-<p>The large number of parameters of the HBV model can be adjusted within reasonable ranges to make the simulated river discharge more similar to the measured discharge. This process is sometimes called history matching because past measurements are used to adapt the model parameters. The following two exercises are important for understanding hydrological models. They are relevant whether you work as a modeler or as a decision maker. Try to first come up with a few own ideas and then study the solutions carefully. They will be discussed in the lectures in more detail.<br />
-:::: {.exercisebox exercise-rsminerve-hbv-5="“}
-::: {.center exercise-rsminerve-hbv-5=”"}
-<strong>Exercise: Model calibration - Common difficulties</strong>
-:::
-What are typical difficulties inherent to the calibration of common semi-distributed (or fully distributed) hydrological models?</p>
-<p>Hint: Compare the number of parameters of the HBV model to the number of model states.
+<p>The large number of parameters of the HBV model can be adjusted within reasonable ranges to make the simulated river discharge more similar to the measured discharge. This process is sometimes called history matching because past measurements are used to adapt the model parameters. The following two exercises are important for understanding hydrological models. They are relevant whether you work as a modeler or as a decision maker. Try to first come up with a few own ideas and then study the solutions carefully. They will be discussed in the lectures in more detail.</p>
+<div class="exercisebox" exercise-rsminerve-hbv-5="">
+<div class="center" exercise-rsminerve-hbv-5="">
+<p><strong>Exercise: Model calibration - Common difficulties</strong></p>
+</div>
+<p>What are typical difficulties inherent to the calibration of common semi-distributed (or fully distributed) hydrological models?</p>
+<p>Hint: Compare the number of parameters of the HBV model to the number of model states.<br />
 <a href="sectin-appendix-solutions.html#section-appendix-solutions-common-calibration-issues">Solution</a></p>
 <div class="center" exercise-rsminerve-hbv-6="">
 <p><strong>Exercise: Model calibration - Strategies to handle the difficulties</strong></p>
 </div>
 <p>Based on the list of common difficulties in the solution of exercise 5, think about possible strategies to address these challenges.</p>
-<p>Hint: A modeler proverb says “as simple as possible but as complex as necessary.”
-<a href="sectin-appendix-solutions.html#section-appendix-solutions-strategies-for-issues">Solution</a>
-::::</p>
+<p>Hint: A modeler proverb says “as simple as possible but as complex as necessary.”<br />
+<a href="sectin-appendix-solutions.html#section-appendix-solutions-strategies-for-issues">Solution</a></p>
+</div>
+<div id="calibration-vs.-validation" class="section level4" number="5.5.1.1">
+<h4><span class="header-section-number">5.5.1.1</span> Calibration vs. validation</h4>
+<p>As you have learned, semi- and fully distributed hydrological models are typically not well defined, i.e. you will find multiple sets of parameter combinations which will all yield reasonable model performance. An important strategy to gain confidence into a model is to split your time series into a calibration period and a validation period. During calibration, you adjust the model parameters to get a satisfying fit with the measured discharge. During the validation period you check how the calibrated model compares to discharge data that it hasn’t seen before, i.e. you judge the ability of the model to handle potentially different model input than it has seen during calibration. For example, if you have 30 years of discharge time series available you can use the first 10 years for model calibration (i.e. you run the model calibration procedure only over the first 10 years of the time series) and use the last 20 years for model validation. A good model should perform satisfactorily not only during calibration but also during validation.<br />
+In hydrology, it is recommended to do cross-validation, i.e. to calibrate and validate a model with several combinations of calibration and validation periods and to summarize the overall model performance.</p>
+</div>
+<div id="performance-indicators" class="section level4" number="5.5.1.2">
+<h4><span class="header-section-number">5.5.1.2</span> Performance indicators</h4>
+<p>Model performance can be expressed in different ways. Some indicators are better suited to calibrate high flows (e.g. root mean squared error) and some are better suited to calibrate low flows (e.g. Nash coefficient for logarithm values). Others evaluate the models ability to reproduce the exceedance of a given discharge which is especially important for flood modelling. The calibration result depends on the choice of the performance indicators. For the automated calibration in RS Minerve, the user can choose a combination of several performance indicators. Care has to be taken to choose them according to the models goal.</p>
+<div class="exercisebox" task-performance-indicators="">
+<div class="center" task-performance-indicators="">
+<p><strong>Task: Read up on performance indicators</strong></p>
+</div>
+<p>The RS Minerve technical manual <span class="citation">(<a href="References.html#ref-rsminerve_tm" role="doc-biblioref">Garcia Hernandez et al. 2020</a>)</span> summarizes the most important performance indicators typically used in hydrological modelling. For the more ambitious modellers, the manual includes references to the literature. Read Chapter 3 of the technical manual.</p>
+</div>
+</div>
 </div>
 <div id="secion-calibration-practical-steps" class="section level3" number="5.5.2">
 <h3><span class="header-section-number">5.5.2</span> Practical Steps</h3>
 <div id="section-hbv-nauvalisoy-calibration" class="section level4" number="5.5.2.1">
-<h4><span class="header-section-number">5.5.2.1</span> Calibration and validation of the Nauvalisoy model</h4>
+<h4><span class="header-section-number">5.5.2.1</span> Manual calibration of synthetic discharge</h4>
 <p>The following section describes the steps for manual model calibration. We use the example of the Nauvalisoy river catchment and calibrate it with synthetic discharge measurements to deepen our understanding of the HBV model. For the synthetic discharge measurements it is theoretically possible to find a perfect match between simulated and measured data which is typically not the case for real measurements.</p>
-<ol style="list-style-type: decimal">
-<li>Add a comparator and a source object to your Nauvalisoy model and load river discharge measurements (filename) <a href="appendix-b-quick-guides.html#section-quickguides-add-comparator-and-discharge-data">how to</a>.</li>
-</ol>
+<div class="figure" style="text-align: center"><span id="fig:rsminerve-run-model-precalibration"></span>
+<img src="_bookdown_files/FIG_RS_MINERVE/fig_simulation_result_before_calibration_synthetic.png" alt="The simulated discharge (green) differs from the reference discharge (blue) before model calibration." width="80%" />
+<p class="caption">
+Figure 5.11: The simulated discharge (green) differs from the reference discharge (blue) before model calibration.
+</p>
+</div>
+<div class="exercisebox" exercise-rsminerve-manual-calibration="">
+<div class="center" exercise-rsminerve-manual-calibration="">
+<p><strong>Exercise: RS Minerve - Manual calibration of synthetic discharge</strong></p>
+</div>
+<p>Add a comparator and a source object to your Nauvalisoy model and load river discharge measurements (filename), then run the model <a href="appendix-b-quick-guides.html#section-quickguides-add-comparator-and-discharge-data">how to</a>. With default parameters, the outcome of this step should look like Figure <a href="model-calibration-and-validation-1.html#fig:rsminerve-run-model-precalibration">5.11</a>. Should your result differ significantly from the one shown here, compare the parameters of the HBV mode to the ones in the file ./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt. You can import the parameter set to RS Minerve via Import P in the model properties toolbar.</p>
+<p>Hints: Start adjusting the parameters of the HBV model to make the simulated discharge curve more similar to the reference discharge. Start with the parameters of the snow function and then proceed downwards through the compartments of the HBV model.
+Focus on parts of the curves. Try to figure out which parameters influence the timing of the discharge peak, which the height of the peak and which the form of the recession curve. Give yourself some time for this task before you go peaking in the results.<br />
+The parameters of the calibrated model are linked <a href="#section-appendix-solutions-calibrated%20parameters">here.</a></p>
+<div class="center" exercise-rsminerve-manual-calibration="">
+<p><strong>Exercise: RS Minerve - Load real discharge measurements</strong></p>
+</div>
+<p>From the file ./data/SyrDarya/Chirchiq/RSMinerve/<br />
+** TODO write the discharge file **</p>
+</div>
+<p>Figure <a href="model-calibration-and-validation-1.html#fig:gunt-temp-elevation">5.12</a> shows the relationship between elevation and temperature of the 4 meteo stations in the Gunt river catchment. The elevation dependence of temperature is highly important for snow-melt driven river catchments.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="model-calibration-and-validation-1.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="do">## MeteoStation locations and elevation</span></span>
+<span id="cb109-2"><a href="model-calibration-and-validation-1.html#cb109-2" aria-hidden="true" tabindex="-1"></a>meteoStations <span class="ot">&lt;-</span> <span class="co"># just put everything in a regular dataframe</span></span>
+<span id="cb109-3"><a href="model-calibration-and-validation-1.html#cb109-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">code =</span> <span class="fu">c</span>(<span class="dv">38953</span>, <span class="dv">38954</span>, <span class="dv">38956</span>, <span class="dv">38950</span>),</span>
+<span id="cb109-4"><a href="model-calibration-and-validation-1.html#cb109-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">masl  =</span> <span class="fu">c</span>(<span class="dv">3746</span>, <span class="dv">2075</span>, <span class="dv">3438</span>, <span class="dv">2566</span>))</span>
+<span id="cb109-5"><a href="model-calibration-and-validation-1.html#cb109-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-6"><a href="model-calibration-and-validation-1.html#cb109-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Gunt data</span></span>
+<span id="cb109-7"><a href="model-calibration-and-validation-1.html#cb109-7" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">&#39;./data/AmuDarya/Gunt/StationData/gunt_data_cleaned.Rds&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb109-8"><a href="model-calibration-and-validation-1.html#cb109-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">str_detect</span>(type, <span class="st">&quot;T&quot;</span>)) <span class="sc">%&gt;%</span>  <span class="co"># Filter for data types that contain T </span></span>
+<span id="cb109-9"><a href="model-calibration-and-validation-1.html#cb109-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">code =</span> <span class="fu">as.numeric</span>(code)) <span class="sc">%&gt;%</span>  <span class="co"># Cast code column to numeric</span></span>
+<span id="cb109-10"><a href="model-calibration-and-validation-1.html#cb109-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(meteoStations)  <span class="co"># Add the station altitude to the data</span></span>
+<span id="cb109-11"><a href="model-calibration-and-validation-1.html#cb109-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-12"><a href="model-calibration-and-validation-1.html#cb109-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the dataframe</span></span>
+<span id="cb109-13"><a href="model-calibration-and-validation-1.html#cb109-13" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb109-14"><a href="model-calibration-and-validation-1.html#cb109-14" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(type, <span class="st">&quot;meanmax&quot;</span>), </span>
+<span id="cb109-15"><a href="model-calibration-and-validation-1.html#cb109-15" aria-hidden="true" tabindex="-1"></a>                <span class="sc">!</span><span class="fu">str_detect</span>(type, <span class="st">&quot;meanmin&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb109-16"><a href="model-calibration-and-validation-1.html#cb109-16" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Variable =</span> type) <span class="sc">%&gt;%</span></span>
+<span id="cb109-17"><a href="model-calibration-and-validation-1.html#cb109-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(code, Variable) <span class="sc">%&gt;%</span></span>
+<span id="cb109-18"><a href="model-calibration-and-validation-1.html#cb109-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">norm =</span> <span class="fu">mean</span>(norm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb109-19"><a href="model-calibration-and-validation-1.html#cb109-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">masl =</span> <span class="fu">first</span>(masl)) <span class="sc">%&gt;%</span></span>
+<span id="cb109-20"><a href="model-calibration-and-validation-1.html#cb109-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(masl, norm, <span class="at">colour =</span> Variable)) <span class="sc">+</span> </span>
+<span id="cb109-21"><a href="model-calibration-and-validation-1.html#cb109-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb109-22"><a href="model-calibration-and-validation-1.html#cb109-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb109-23"><a href="model-calibration-and-validation-1.html#cb109-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Altitude [masl]&quot;</span>, <span class="at">y =</span> <span class="st">&quot;T [deg C]&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb109-24"><a href="model-calibration-and-validation-1.html#cb109-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure"><span id="fig:gunt-temp-elevation"></span>
+<img src="applied-hydrological-modeling-central-asia_files/figure-html/gunt-temp-elevation-1.png" alt="Elevation dependence of temperature in the Gunt river catchment." width="672" />
+<p class="caption">
+Figure 5.12: Elevation dependence of temperature in the Gunt river catchment.
+</p>
+</div>
+</div>
+<div id="section-hbv-nauvalisoy-calibration" class="section level4" number="5.5.2.2">
+<h4><span class="header-section-number">5.5.2.2</span> Manual calibration of the Nauvalisoy model</h4>
 </div>
 </div>
 </div>

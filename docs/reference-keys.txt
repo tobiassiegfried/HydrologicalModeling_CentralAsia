@@ -107,6 +107,8 @@ fig:RSMinerveGuntModelCreation
 fig:RSMinerveGuntModelCreationResult
 fig:fig-overview-hbv-model
 fig:fig-overview-hbv-model-parameters
+fig:rsminerve-run-model-precalibration
+fig:gunt-temp-elevation
 fig:EMdischargeData
 fig:EMgapFilledPskemChatkal
 fig:EMrawDataP
@@ -140,6 +142,11 @@ fig:rsminerve-comparator-icon
 fig:rsminerve-source-icon
 fig:rsminerve-connect-hbv-comparator
 fig:rsminerve-connect-source-comparator
+fig:rsminerve-add-discharge-database
+fig:rsminerve-add-discharge-sensor
+fig:rsminerve-link-discharge-data-to-model
+fig:fig-copy-spreadsheet-data
+fig:fig-paste-spreadsheet-data
 fig:fig-solution1-example-setup
 fig:fig-pt-nauvailsoy
 fig:fig-evaporation-discharge
@@ -214,6 +221,8 @@ section-hbv-nauvalisoy-tutorial-short
 section-hbv-nauvalisoy-modelling-setup
 model-calibration-and-validation-1
 section-calibration-principles
+calibration-vs.-validation
+performance-indicators
 secion-calibration-practical-steps
 section-hbv-nauvalisoy-calibration
 application-investigating-climate-change-impacts
@@ -258,6 +267,7 @@ section-quickguides-import-climate-data
 section-quickguides-atapt-model-settings
 section-export-sim-results-to-db
 section-quickguides-add-comparator-and-discharge-data
+section-quickguides-copy-paste-database-values
 appendix-c-processing-climate-data
 cutting-chelsa-v.1.2.1-to-ca-domain
 bias-correcting-chelsa-v1.2.1-precipitation-data-for-snow-undercatch
@@ -281,4 +291,5 @@ section-appendix-solutions-plot-temperature-and-precipitation-1984
 section-appendix-solutions-compare-evaporation-methods
 section-appendix-solutions-common-calibration-issues
 section-appendix-solutions-strategies-for-issues
+exercise-calibrate-a-simple-hbv-model-section-appendix-solutions-calibrated-parameters
 References

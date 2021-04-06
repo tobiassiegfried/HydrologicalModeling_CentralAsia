@@ -181,13 +181,48 @@ knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig_connectHBV
 
 Connect the source object to the comparator in the same way as the HBV object. The source will be connected as reference (Figure \@ref(fig:rsminerve-connect-source-comparator)).
 
-```{r rsminerve-connect-source-comparator, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Comparator icon in RS Minerve."}
+```{r rsminerve-connect-source-comparator, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Source icon in RS Minerve."}
 knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig_connectSourcetoComparator.png")
 ```
+
+Next, we have to load the (synthetic) discharge data into the database. Navigate to the database tab. In the database, go to Measurements -> nauvalisoy and click *Add* and enter a name for the discharge station (Figure \@ref(fig:rsminerve-add-discharge-database)). For this example, we do not need to bother with the coordinates.  
+```{r rsminerve-add-discharge-database, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Connect the outflow of the HBV model as simulation result to the comparator."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig_database_add_discharge_station.png")
+```
+
+Under the new discharge station, add a sensor and rename it to the source object in your model (Figure \@ref(fig:rsminerve-add-discharge-sensor)). 
+```{r rsminerve-add-discharge-sensor, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Connect the discharge measurements (source) as reference to the comparator."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig_add_discharge_sensor.png")
+```
+
+Open the tab with the Values. Here we need to import the discharge data. You can do that by opening the discharge data in a spreadsheet (e.g. Excel) and copy-pasting the dates and discharge values into the Values table in RS Minerve ([Here is how to do this step-by-step](#section-quickguides-copy-paste-database-values). 
+
+Now we need to link the discharge data in the database to the source object in the model. Navigate to the model and 
+
+```{r rsminerve-link-discharge-data-to-model, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Select the data source for the source object (under Data Source in the left window pane) and select the sensor for discharge data for the source (under Source, Series identifier in the right window pane)."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig_connect_source_database_to_object.png")
+```
+
+Validate the model to see if the model setup went correctly. Run the model if the validation did not throw an error. 
+
 
 Back to the [practical model calibration and validation section](#secion-calibration-practical-steps)
 
 
+### RSM: Copy-paste data to database {#section-quickguides-copy-paste-database-values}
+Open the file ./data/SyrDarya/Chirchiq/RSMinerve/synthetic_discharge_Nauvalisoy_river_for_calibration_exercise.csv in a spreadsheet software, e.g. Excel, Numbers, Google Sheets or OpenOffice Calc and select the rows containing dates and values (Figure \@ref(fig:fig-copy-spreadsheet-data)). Press control C or perform a left-click and choose copy. 
+
+```{r fig-copy-spreadsheet-data, echo=FALSE, out.width="40%", fig.align="center", fig.cap="Select the rows and columns containing the dates and data to be copied. Press control C to copy the selected cells."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig000_copy_data_spreadsheet.png")
+```
+
+Then navigate to the discharge sensor on the database tab in RS Minerve where you want to add the data to. Click in the small square to the left of the first row in the Values tab and enter control P. Alternatively perform a right-click in the small square and select Paste. The dates and values from the excel sheet will now appear in the table (Figure \@ref(fig:fig-paste-spreadsheet-data)). Save the database. 
+
+```{r fig-paste-spreadsheet-data, echo=FALSE, out.width="40%", fig.align="center", fig.cap="Paste dates and values to the database table."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig000_paste_values_database.png")
+```
+
+Back to the [practical model calibration and validation section](#secion-calibration-practical-steps)
 
 
 
@@ -456,5 +491,31 @@ Back to the [calibration section](#section-calibration-principles)
 Most of the above points will be discussed in more detail during this course.  
 
 Back to the [calibration section](#section-calibration-principles)
+
+
+#### Exercise: Calibrate a simple HBV model {#section-appendix-solutions-calibrated parameters}
+The parameter set of the calibrated model are: 
+
+```{r, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE}
+calibrated_parameters <- read.delim("./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_calibrated.txt", 
+                                    header = TRUE, skip = 9, nrows = 1) 
+calibrated_parameters <- calibrated_parameters[,4:dim(calibrated_parameters)[2]]
+colnames(calibrated_parameters) <- c("CFMax (mm/°C/d)", "CFR (-)", "CWH (-)", 
+                                     "TT (°C)", "TTInt (°C)", "TTSM (°C)", 
+                                     "Beta (-)", "FC (mm)", "PWP (-)", 
+                                     "SUMax (mm)", "Kr (1/d)", "Ku (1/d)", 
+                                     "Kl (1/d)", "Kperc (1/d)")
+print(knitr::kable(t(calibrated_parameters)))
+```
+
+You can import the calibrated parameters via Import P in the Model Properties toolbar (the calibrated parameters are available in ./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_calibrated.txt. 
+
+Back to the [practical calibration section](#secion-calibration-practical-steps)
+
+
+
+
+
+
 
 

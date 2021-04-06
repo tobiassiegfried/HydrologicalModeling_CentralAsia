@@ -297,6 +297,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2.5" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-atapt-model-settings"><i class="fa fa-check"></i><b>8.2.5</b> RSM: Adapt model settings</a></li>
 <li class="chapter" data-level="8.2.6" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-export-sim-results-to-db"><i class="fa fa-check"></i><b>8.2.6</b> RSM: Export simulation results to data base</a></li>
 <li class="chapter" data-level="8.2.7" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-comparator-and-discharge-data"><i class="fa fa-check"></i><b>8.2.7</b> RSM: Add comparator and load discharge measurements</a></li>
+<li class="chapter" data-level="8.2.8" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-copy-paste-database-values"><i class="fa fa-check"></i><b>8.2.8</b> RSM: Copy-paste data to database</a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html"><i class="fa fa-check"></i><b>8.3</b> Appendix C: Processing Climate Data</a>
 <ul>
@@ -389,7 +390,7 @@ A couple of notes on measurement accuracy:</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-solution1-example-setup"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_experimentalSetup.jpg" alt="Example for material needed and example setup to perform the linear reservoir experiment. Add a minion with a stop watch or a smart phone to help you logging the discharge from the bucket. " width="90%" />
 <p class="caption">
-Figure 8.23: Example for material needed and example setup to perform the linear reservoir experiment. Add a minion with a stop watch or a smart phone to help you logging the discharge from the bucket.
+Figure 8.28: Example for material needed and example setup to perform the linear reservoir experiment. Add a minion with a stop watch or a smart phone to help you logging the discharge from the bucket.
 </p>
 </div>
 </div>
@@ -433,11 +434,11 @@ Reasons for the discrepancy can be the shape of the linear reservoir, non-linear
 <div id="section-appendix-solutions-plot-temperature-and-precipitation-1984" class="section level4" number="8.4.2.3">
 <h4><span class="header-section-number">8.4.2.3</span> Exercise: Data visualization in RS Minerve</h4>
 Simulate from the 01/01/1981 01:00:00 to 31/12/1983 23:00:00, then choose data from 31/12/1983 23:00:00 as the initial conditions and run the model from 01/01/1984 01:00:00 to 31/12/1984 23:00:00. Choose hourly output for the simulation results.<br />
-Open the Selection and plots tab by clicking on the Selection and plots button in the Modules toolbar and select simulated P and T from the Nauvalisoy station (Figure <a href="sectin-appendix-solutions.html#fig:fig-pt-nauvailsoy">8.24</a>).
+Open the Selection and plots tab by clicking on the Selection and plots button in the Modules toolbar and select simulated P and T from the Nauvalisoy station (Figure <a href="sectin-appendix-solutions.html#fig:fig-pt-nauvailsoy">8.29</a>).
 <div class="figure" style="text-align: center"><span id="fig:fig-pt-nauvailsoy"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig116_plotPThourly.png" alt="Hourly precipitation and temperature at the virtual Nauvalisoy weather station." width="95%" />
 <p class="caption">
-Figure 8.24: Hourly precipitation and temperature at the virtual Nauvalisoy weather station.
+Figure 8.29: Hourly precipitation and temperature at the virtual Nauvalisoy weather station.
 </p>
 </div>
 <p>Note: If you want to repeat a simulation with specific initial conditions, you can store them through Export IC in the Model Properties toolbar.</p>
@@ -446,12 +447,12 @@ Figure 8.24: Hourly precipitation and temperature at the virtual Nauvalisoy weat
 </div>
 <div id="section-appendix-solutions-compare-evaporation-methods" class="section level4" number="8.4.2.4">
 <h4><span class="header-section-number">8.4.2.4</span> Exercise: Compare evaporation methods</h4>
-Figure <a href="sectin-appendix-solutions.html#fig:fig-evaporation-discharge">8.25</a> shows the evaporation computed with various methods and the resulting discharge. Uniform evaporation should not be used for sub-annual modeling time steps. The difference between the methods by Turc, McGuinness and Oudin are within 5% of total discharge which is negligible for a regional model.<br />
+Figure <a href="sectin-appendix-solutions.html#fig:fig-evaporation-discharge">8.30</a> shows the evaporation computed with various methods and the resulting discharge. Uniform evaporation should not be used for sub-annual modeling time steps. The difference between the methods by Turc, McGuinness and Oudin are within 5% of total discharge which is negligible for a regional model.<br />
 
 <div class="figure" style="text-align: center"><span id="fig:fig-evaporation-discharge"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig119_evaporationDischarge1984.png" alt="Hourly precipitation and temperature at the virtual Nauvalisoy weather station." width="95%" />
 <p class="caption">
-Figure 8.25: Hourly precipitation and temperature at the virtual Nauvalisoy weather station.
+Figure 8.30: Hourly precipitation and temperature at the virtual Nauvalisoy weather station.
 </p>
 </div>
 <p>For advanced modeling, the choice of the evaporation model may be relevant but only if a validation with measured data is possible.</p>
@@ -495,6 +496,30 @@ Figure 8.25: Hourly precipitation and temperature at the virtual Nauvalisoy weat
 </ol>
 <p>Most of the above points will be discussed in more detail during this course.</p>
 <p>Back to the <a href="model-calibration-and-validation-1.html#section-calibration-principles">calibration section</a></p>
+</div>
+<div id="exercise-calibrate-a-simple-hbv-model-section-appendix-solutions-calibrated-parameters" class="section level4" number="8.4.2.7">
+<h4><span class="header-section-number">8.4.2.7</span> Exercise: Calibrate a simple HBV model {#section-appendix-solutions-calibrated parameters}</h4>
+<p>The parameter set of the calibrated model are:</p>
+<pre><code>## 
+## 
+## |                |      |
+## |:---------------|-----:|
+## |CFMax (mm/°C/d) |  0.50|
+## |CFR (-)         |  0.05|
+## |CWH (-)         |  0.10|
+## |TT (°C)         |  3.00|
+## |TTInt (°C)      |  3.00|
+## |TTSM (°C)       |  0.00|
+## |Beta (-)        |  2.50|
+## |FC (mm)         | 20.00|
+## |PWP (-)         |  0.50|
+## |SUMax (mm)      | 10.00|
+## |Kr (1/d)        |  0.09|
+## |Ku (1/d)        |  0.02|
+## |Kl (1/d)        |  0.00|
+## |Kperc (1/d)     |  0.00|</code></pre>
+<p>You can import the calibrated parameters via Import P in the Model Properties toolbar (the calibrated parameters are available in ./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_calibrated.txt.</p>
+<p>Back to the <a href="model-calibration-and-validation-1.html#secion-calibration-practical-steps">practical calibration section</a></p>
 
 </div>
 </div>
