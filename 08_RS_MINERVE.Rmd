@@ -430,11 +430,12 @@ The RS Minerve technical manual [@rsminerve_tm] summarizes the most important pe
 ::::
 
 #### The general modelling process
-Hydrological modelling is an iterative process. 
+Hydrological modelling is an iterative process (see Figure \@ref(fig:iterative-modelling-process). At the beginning, the purpose of the model has to be defined. The model goal determines the spatial and temporal resolution of the hydrological model. E.g. for analyzing the impact of climate change on seasonal, regional flows we are interested in the seasonal flow volumes whereas a model used for early warnings from floods requires high temporal resolution and a high model performance for threshold overflows. Please note that the definition of the model goal also determines the performance criteria the model has to fulfill in order to be judged suitable for its purpose. As a next step, data about the catchment is gathered (see for example basin characterization in the Chapter [Case Studies]](#CaseStudies)) and a first conceptual model of the dominant flow processes in the basin is drafted (e.g. low peaks and significant base flow point to large storage capacity in the basin whereas high peaks and low base flow indicate small storage capacity in the basin). The conceptual model of the river catchment is then implemented with a mathematical model (e.g. the HBV model in RS Minerve) and parameterized as well as possible (i.e. using reasonable estimates for initial parameter values). The model is then calibrated and validated as described above. If the performance criteria for the model calibration are satisfied, a conscientious modeler performs a sensitivity analysis to gain confidence in the model. From each of these steps, the modeler can (and generally has to) go back to a previous step to gather more data, modify the conceptual model, adapt the model implementation, re-calibrate the model and/or re-evaluate the model sensitivity. The described steps produce a model (or an ensemble of models) that satisfy the performance criteria, only now the modeller can start actually using the model for the purpose it was implemented for.          
 ```{r iterative-modelling-process, echo=FALSE, out.width="100%", fig.align="center", fig.cap="The modelling process is iterative."}
 knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_modelling_process.png")
 ```
 
+Modelling is an involved process requiring highly specialized knowledge and skills. This book chapter will guide you through the modelling process with the example of the Nauvalisoy catchment.  
 
 
 ### Practical Steps {#secion-calibration-practical-steps}
@@ -458,7 +459,7 @@ The parameters of the calibrated model are linked [here.](#section-appendix-solu
 ::: {.center exercise-rsminerve-manual-calibration=""}
 **Exercise: RS Minerve - Load real discharge measurements**
 :::
-Import the database file for Nauvalisoy including measured discharge at the outlet of the catchment ./data/SyrDarya/Chirchiq/RSMinerve/ERA5Q_Nauvalisoy_1981_2013.csv into RS Minerve and connect it to your model. Adapt the simulation time period to start on Jan 1 1981 at 1 a.m. until Dec 31 2013 at 11 p.m (the full period with available data). The simulation will take place at the maximum resolution of the forcing data, i.e. at hourly time steps. The discharge measurements are available as averages over 8-11 days. We choose an output interval of 2 days. As the initial water content in the system is not known, a warm-up period of 1 year is typically used to minimize the impact of the unknown initial conditions on the simulation results. You can implement the warm-up period in the comparator object under Parameters. Use the pre-calibration parameter set in ./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt.          
+Import the database file for Nauvalisoy including measured discharge at the outlet of the catchment ./data/SyrDarya/Chirchiq/RSMinerve/ERA5Q_Nauvalisoy_1981_2013.csv into RS Minerve and connect it to your model. Adapt the simulation time period to start on Jan 1 1981 at 1 a.m. until Dec 31 2013 at 11 p.m (the full period with available data). The simulation will take place at the maximum resolution of the forcing data, i.e. at hourly time steps. The discharge measurements are available as averages over 8-11 days. We choose an output interval of 2 days. As the initial water content in the system is not known, a warm-up period of 1 year is typically used to minimize the impact of the unknown initial conditions on the simulation results. You can implement the warm-up period in the comparator object under Parameters. Use the default, pre-calibration parameter set in ./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt as we don't know much about the catchment properties.          
 ::::
 
 Figure \@ref(fig:fig-real-discharge-result) shows the resulting discharge time series in the comparator object. 
@@ -467,10 +468,9 @@ knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_Nauvalisoy_real_disc
 ```
 The simulated discharge peak arrives several months before the observed discharge peak. You may invest 10 minutes to try it out but by merely adjusting the parameters of our HBV model, we will not be able to shift the simulated discharge time series sufficiently to reproduce the measured discharge. We are facing a conceptual model error which we have to identify and eliminate.   
 
-
 Figure \@ref(fig:gunt-temp-elevation) shows the relationship between elevation and temperature of the 4 meteo stations in the Gunt river catchment. The elevation dependence of temperature is highly important for snow-melt driven river catchments. 
 
-```{r gunt-temp-elevation, message=FALSE,warnin=FALSE, fig.cap="Elevation dependence of temperature in the Gunt river catchment."}
+```{r gunt-temp-elevation, message=FALSE,warnin=FALSE, fig.cap="Elevation dependence of mean temperature at the four meteo stations in the Gunt river catchment. The temperature decrease is a little below 1 degree K per 100 m of altitude gain."}
 ## MeteoStation locations and elevation
 meteoStations <- # just put everything in a regular dataframe
   tibble(code = c(38953, 38954, 38956, 38950),
@@ -484,22 +484,26 @@ data <- read_rds('./data/AmuDarya/Gunt/StationData/gunt_data_cleaned.Rds') %>%
 
 # Plotting the dataframe
 data %>%
-  dplyr::filter(!str_detect(type, "meanmax"), 
-                !str_detect(type, "meanmin")) %>%
+#   dplyr::filter(!str_detect(type, "meanmax"), 
+#                 !str_detect(type, "meanmin")) %>%
+  dplyr::filter(str_detect(type, "mean\\(T\\)")) %>%
   dplyr::mutate(Variable = type) %>%
   group_by(code, Variable) %>%
   summarize(norm = mean(norm, na.rm = TRUE), 
             masl = first(masl)) %>%
-  ggplot(aes(masl, norm, colour = Variable)) + 
+  ggplot(aes(norm, masl)) +  #, colour = Variable)) + 
+  geom_smooth(method = "lm", alpha = 0, colour = "gray") + 
   geom_point() + 
-  geom_smooth(method = "lm") + 
-  labs(x = "Altitude [masl]", y = "T [deg C]") + 
+  labs(y = "Altitude [masl]", x = "T [deg C]") + 
   theme_bw()
 ```
 
+At temperatures below approximately 0 degrees C, precipitation falls as snow and remains stored as snow in the catchment until temperatures above 0 degrees C melt the snow and produce runoff. Especially for snow driven catchments, it is important to take the elevation dependence of temperature into account. In RS Minerve, this can be done by dividing the catchment into several sub-catchments of similar altitude (i.e. elevation bands) and to define temperature (and precipitation) inputs for these sub-catchments. This is a spatial refinement of the model which allows us to better represent the snow storage and melting processes in the catchment. A description of how to obtain the elevation bands is given in the Chapter on the preparation of [geospatial data](#Data::GeospatialData).   
 
 
-#### Manual calibration of the Nauvalisoy model {#section-hbv-nauvalisoy-calibration}  
+#### Spatial refinement of the model {#section-hbv-elevation-bands}  
+** TODO: Nauvalisoy elevation bands at higher resolution, ask tobi how involved the exctraction of the era5 bias corrected data for the elevation bands is **
+
 
 
 ## Application: Investigating Climate Change Impacts
