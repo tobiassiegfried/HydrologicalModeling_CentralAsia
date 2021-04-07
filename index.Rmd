@@ -6,6 +6,7 @@ site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
     split_by: 'section'
+always_allow_html: true
 documentclass: krantz 
 monofont: "Source Code Pro"
 monofontoptions: "Scale=0.7"
@@ -15,14 +16,40 @@ link-citations: yes
 description: "This is a open-source course book on Central Asia hydrological systems and hydrological modeling."
 ---
 
-# Welcome {#Welcome .unnumbered}
+#  {#Welcome .unnumbered}
 
-Welcome to the online course book on Central Asian hydrology and the mathematical modeling of the hydrological systems there. The book is dedicated to the young and aspiring water professionals of the region.
+------------------------------------------------------------------------
 
-The book adopts an open-source philosophy and promotes the use of open-source data and software. The online version is hosted at <https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/>, maintained via GitHub and **currently work in progress**.
+This text is intended for the modern study of hydrology and mathematical modeling of hydrological systems in Central Asia. It is geared towards students and teachers in the region that would like to learn about these topics in an applied manner. The book adopts an open-source philosophy and promotes the use of open-source data and software.
+
+The book contains two Parts. Part I gives background information on the hydrology and climatology in Central Asia and presents in detail 2 river basin case studies. The regional water resources, their relevance for well-being and the environment are shortly discussed. The history of the development of the vast irrigation systems and relevant man-made hydropower infrastructure is touched upon.
+
+In Part II of the book, the necessary steps to conduct modern hydrological water balance analyses are presented in detail. After a detailed discussion of the concept of catchment-scale water balances, the use of geospatial information for basin delineation and catchment characterization is shown. Access and use of ERA5 reanalysis data, its bias correction and downscaling to basins of interest are explained. The processing of these high-resolution climate data and their export to the hydrological-hydraulic modeling software RS MINERVE are demonstrated by worked examples. All code used for the required analyses is provided to the reader so that any steps can be replicated in case of interest.
+
+A detailed workflow is presented that describes the necessary steps to conduct climate impact analyses in the region. This includes the access, pre-processing and downscaling steps of high-resolution climate projection data, their import into RS MINERVE and finally, the required climate scenario analysis.
+
+In the free hydrological-hydraulic modeling software RS MINERVE, model setup, calibration and validation as well as as sensitivity analysis are shown in a first step. In second step, the study of climate scenarios is demonstrated.
+
+While the main focus of the book is on the implementation and use of conceptual water balance models, the section on predictive modeling for discharge forecasting provides a detailed introduction to modern time-series modeling with R. These types of models are in operational use in the hydro-meteorological agencies in the region and used for forecasting discharge at different lead times.
+
+Finally, challenges in relation to the model operationalization are discussed by real world examples.
+
+Readers are encouraged to check the accompanying `riversCentralAsia` R Package that makes data and functions available for carrying out these types of hydrological analyses in any type of river basin in the region. The R Package is available on its dedicated GitHub page at <https://github.com/hydrosolutions/riversCentralAsia>.
+
+The online version of the book is hosted at <https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/>, maintained via [GitHub](https://github.com/tobiassiegfried/HydrologicalModeling_CentralAsia) and **work in progress**.
+
+------------------------------------------------------------------------
+
+[![DOI](https://zenodo.org/badge/272992470.svg)](https://zenodo.org/badge/latestdoi/272992470)
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" alt="Creative Commons License" style="border-width:0"/></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+
+------------------------------------------------------------------------
+
+The development of this book was supported by the Swiss Agency for Development and Cooperation.
 
 ```{r titlePix, echo = FALSE}
-knitr::include_graphics('_bookdown_files/FIG_TITLE/naryn.jpeg')
+knitr::include_graphics('./_bookdown_files/FIG_TITLE/logos.jpg')
 ```
 
 ```{r include=FALSE}
