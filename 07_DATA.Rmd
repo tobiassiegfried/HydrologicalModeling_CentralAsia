@@ -1461,10 +1461,6 @@ clim_scen <- climateScenarioPreparation_RMAWGEN(basin_climScen_Path,basin_climSc
 We have now computed the 12 precipitation and temperature scenarios, i.e. 2 for each RCP, 3 for each climate model and 2 for each of the periods of interest, 2051 - 2060 and 2091-2100 and can rerun the stochastic weather generator while conditioning the scenarios on the mean future weather states.
 
 ```{r, eval = FALSE}
-# Compute stochastic weather for a subset of 2 sample stations for the target period 2051
-clim_scen_Period1 <- clim_scen$rcp45_MIROC5_Period1 
-clim_scen_Period2 <- clim_scen$rcp45_MIROC5_Period2
-
 # Compute for all stations
 station_subset <- NULL # We compute climate projections for all subasin elevation bands.
 
@@ -1549,7 +1545,50 @@ For this purpose, we convert these daily climatologies into hourly ones and expo
 
 #### Exporting Climate Scenarios as .csv-files for import in RS MINERVE
 
-For exporting to RS MINERVE, a .csv file needs to be generated very much alike the one described in Section \@ref(era5DownscalingDataExportRSMINERVE). Prior to exporting, we need to generate hourly timeseries.
+For exporting to RS MINERVE, a .csv file needs to be generated very much alike the one described in Section \@ref(era5DownscalingDataExportRSMINERVE). Prior to exporting, we need to generate hourly timeseries. 
+
+```{r}
+# Establishing workflow (one climate scenario)
+dateVec_period1 <- generateSeqDates(param$year_min_sim_Period1,param$year_max_sim_Period1,"day")
+dateVec_period1 <- (dateVec_period1$date - lubridate::hours(1)) %>% as_tibble() %>% rename(date=value)
+dateVec_period2 <- generateSeqDates(param$year_min_sim_Period2,param$year_max_sim_Period2,"day")
+dateVec_period2 <- (dateVec_period2$date - lubridate::hours(1)) %>% as_tibble() %>% rename(date=value)
+
+## PRECIPITATION
+P_hourly_wide_climScen <- list()
+
+for (idx in 1:length(PT_sim_all)){
+  # Date vector preps
+  P_daily <- dateVec_period1 %>% 
+    add_column(PT_sim_all$rcp45_MIROC5_Period1$P_gen$prec_gen %>% as_tibble())
+  P_daily_long <- P_daily %>% pivot_longer(-date)
+  ### That is it: linear interpolation. 
+  P_hourly_long <- P_daily_long %>% group_by(name) %>% 
+    pad_by_time(.date_var = date,.by = "hour") %>% 
+    mutate_at(vars(value), .funs = ts_impute_vec, period = 1)
+  ### Pivot wider
+  P_hourly_wide_climScen[[idx]] <- P_hourly_long %>% pivot_wider(names_from = name, values_from = value)
+}
+
+# This was easy.
+names(P_hourly_wide_climScen) <- names(clim_scen)
+
+## TEMPERATURE
+# Temperature is less easy as it requires us to somehow respect the diurnal cycle of the climate variation. How to do that. For each day in the year, we could look up typical diurnal temperature variations and just have them repeat again in the future scenarios
+# ERA5 data
+filePath <- './data/AmuDarya/GuntYashikul/RSMinerve/'
+fileName <- 'Gunt_Yashikul_1981_2013_db.csv'
+era5_gunt_yashikul <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
+
+# Deleting unused catchments in the tibble. These catchments are not modeled later in RS MINERVE, so we can safely delete them here. Note that this operation is specific to the Gunt-Yashikul model and does not generalize to other catchments.
+idx2del <- (era5_gunt_yashikul[1,]=='Gunt_DS_1')|(era5_gunt_yashikul[1,]=='Gunt_DS_2')|(era5_gunt_yashikul[1,]=='Gunt_DS_3')
+era5_gunt_yashikul <- era5_gunt_yashikul %>% dplyr::select(which(!idx2del))
+
+era5_gunt_yashikul_T <- era5_gunt_yashikul %>% dplyr::select(which(era5_gunt_yashikul[5,]=='T'))
+era5_gunt_yashikul_date <-  generateSeqDates(param$year_min,param$year_max,"hour")
+era5_gunt_yashikul_T <- era5_gunt_yashikul_date %>% era5_gunt_yashikul_T
+```
+
 
 ## Snow Cover Data
 
