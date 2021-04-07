@@ -1,6 +1,9 @@
 # (APPENDIX) Appendix {#ChapterAppendix}
 
-## Appendix A: Open-source Software
+## Appendix A: Open-source resources
+
+### Literature
+Many authors of scientific literature are on the web platform [researchgate](https://www.researchgate.net/) where they can privately share their work with students (users need to register for an account).
 
 ### QGIS
 QGIS is a free and open source Geographical Information System that offers very similar tools as their commercial counterparts. The latest version of QGIS can be downloaded from the [QGIS website](https://qgis.org/en/site/). We recommend to install the stable long-term support version.  

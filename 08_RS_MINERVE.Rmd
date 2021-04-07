@@ -429,7 +429,11 @@ Model performance can be expressed in different ways. Some indicators are better
 The RS Minerve technical manual [@rsminerve_tm] summarizes the most important performance indicators typically used in hydrological modelling. For the more ambitious modellers, the manual includes references to the literature. Read Chapter 3 of the technical manual. 
 ::::
 
-
+#### The general modelling process
+Hydrological modelling is an iterative process. 
+```{r iterative-modelling-process, echo=FALSE, out.width="100%", fig.align="center", fig.cap="The modelling process is iterative."}
+knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_modelling_process.png")
+```
 
 
 
@@ -454,9 +458,15 @@ The parameters of the calibrated model are linked [here.](#section-appendix-solu
 ::: {.center exercise-rsminerve-manual-calibration=""}
 **Exercise: RS Minerve - Load real discharge measurements**
 :::
-From the file ./data/SyrDarya/Chirchiq/RSMinerve/  
-**   TODO write the discharge file **
+Import the database file for Nauvalisoy including measured discharge at the outlet of the catchment ./data/SyrDarya/Chirchiq/RSMinerve/ERA5Q_Nauvalisoy_1981_2013.csv into RS Minerve and connect it to your model. Adapt the simulation time period to start on Jan 1 1981 at 1 a.m. until Dec 31 2013 at 11 p.m (the full period with available data). The simulation will take place at the maximum resolution of the forcing data, i.e. at hourly time steps. The discharge measurements are available as averages over 8-11 days. We choose an output interval of 2 days. As the initial water content in the system is not known, a warm-up period of 1 year is typically used to minimize the impact of the unknown initial conditions on the simulation results. You can implement the warm-up period in the comparator object under Parameters. Use the pre-calibration parameter set in ./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt.          
 ::::
+
+Figure \@ref(fig:fig-real-discharge-result) shows the resulting discharge time series in the comparator object. 
+```{r fig-real-discharge-result, echo=FALSE,message=FALSE,warnin=FALSE, fig.cap="Simulated and measured discahrge at the outlet of the Nauvalisoy catchment."}
+knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_Nauvalisoy_real_discharge_base.png")
+```
+The simulated discharge peak arrives several months before the observed discharge peak. You may invest 10 minutes to try it out but by merely adjusting the parameters of our HBV model, we will not be able to shift the simulated discharge time series sufficiently to reproduce the measured discharge. We are facing a conceptual model error which we have to identify and eliminate.   
+
 
 Figure \@ref(fig:gunt-temp-elevation) shows the relationship between elevation and temperature of the 4 meteo stations in the Gunt river catchment. The elevation dependence of temperature is highly important for snow-melt driven river catchments. 
 

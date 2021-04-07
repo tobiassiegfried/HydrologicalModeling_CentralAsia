@@ -107,7 +107,9 @@ fig:RSMinerveGuntModelCreation
 fig:RSMinerveGuntModelCreationResult
 fig:fig-overview-hbv-model
 fig:fig-overview-hbv-model-parameters
+fig:iterative-modelling-process
 fig:rsminerve-run-model-precalibration
+fig:fig-real-discharge-result
 fig:gunt-temp-elevation
 fig:EMdischargeData
 fig:EMgapFilledPskemChatkal
@@ -223,6 +225,7 @@ model-calibration-and-validation-1
 section-calibration-principles
 calibration-vs.-validation
 performance-indicators
+the-general-modelling-process
 secion-calibration-practical-steps
 section-hbv-nauvalisoy-calibration
 application-investigating-climate-change-impacts
@@ -252,7 +255,8 @@ modeling-phase
 testing-phase
 operational-deployment
 ChapterAppendix
-appendix-a-open-source-software
+appendix-a-open-source-resources
+literature
 qgis
 resources-for-learning-qgis
 r-and-rstudio
