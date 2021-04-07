@@ -1,6 +1,6 @@
 # (PART) Part II Applied Modeling {#Part2-Applied-Modeling .unnumbered}
 
-## Budyko-Type Long-term Water Balance Modeling {#LongTermWaterBalance}
+# Budyko-Type Long-term Water Balance Modeling {#LongTermWaterBalance}
 
 In this Chapter, we are looking at watersheds from a long-term perspective and want to understand the key processes that lead to a partitioning of precipitation into evaporation and runoff.
 
@@ -8,7 +8,7 @@ In this Chapter, we are looking at watersheds from a long-term perspective and w
 knitr::include_graphics('_bookdown_files/FIG_WATER_BALANCE/GenericRiverBasin_lr.jpg')
 ```
 
-### Derivation of the Budyko Relationship
+## Derivation of the Budyko Relationship
 
 The general water balance for a catchment can be written as
 
