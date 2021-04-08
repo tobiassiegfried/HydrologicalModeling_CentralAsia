@@ -1586,7 +1586,7 @@ era5_gunt_yashikul <- era5_gunt_yashikul %>% dplyr::select(which(!idx2del))
 
 era5_gunt_yashikul_T <- era5_gunt_yashikul %>% dplyr::select(which(era5_gunt_yashikul[5,]=='T'))
 era5_gunt_yashikul_date <-  generateSeqDates(param$year_min,param$year_max,"hour")
-era5_gunt_yashikul_T <- era5_gunt_yashikul_date %>% era5_gunt_yashikul_T
+#era5_gunt_yashikul_T <- era5_gunt_yashikul_date %>% era5_gunt_yashikul_T
 ```
 
 

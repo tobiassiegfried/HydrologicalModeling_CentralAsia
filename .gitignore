@@ -1,3 +1,7 @@
 .Rproj.user
 # RStudio files
 .Rproj.user/
+.Rhistory
+.RData
+.DS_Store
+.Rprofile

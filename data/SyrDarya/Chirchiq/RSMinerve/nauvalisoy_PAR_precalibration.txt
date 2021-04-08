@@ -1,0 +1,13 @@
+﻿RS MINERVE - Parameters
+Version 4.0.0.0 - Wednesday, March 31, 2021 9:35 PM
+Model: \\Mac\Dropbox for Business\HYDRO4U_TECHNICAL_WORK\MATERIALS\TUTORIALS\HBV_Training\RSMinerve\nauvalisoy.rsm
+Description: nauvalisoy
+Database: \\Mac\Dropbox for Business\HYDRO4U_TECHNICAL_WORK\MATERIALS\TUTORIALS\HBV_Training\RSMinerve\nauvalisoy.dbx
+OBJECTS
+HBV92	1
+Station	1
+VALUES
+HBV92	Zone	A (m2)	CFMax (mm/°C/d)	CFR (-)	CWH (-)	TT (°C)	TTInt (°C)	TTSM (°C)	Beta (-)	FC (mm)	PWP (-)	SUMax (mm)	Kr (1/d)	Ku (1/d)	Kl (1/d)	Kperc (1/d)
+HBV 1	A	99000000	5	0.05	0.1	2	2	0	2.5	250	0.5	50	0.3	0.1	0.02	0.15
+Station	Zone	X (m)	Y (m)	Z (m)	Search Radius (m)	No. min. of stations (-)	Gradient P (1/m)	Gradient T (°C/m)	Gradient ETP (1/m)	Coeff P (-)	Coeff T (-)	Coeff ETP (-)
+Nauvalisoy	A	600000	100000	500	50000	1	0	-0.0065	0	1	0	1
