@@ -1,0 +1,597 @@
+---
+title: "_07_DATA_scratch"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## RMAWGEN Code Dump
+
+Using the `model4` parameters from above, the following code block demonstrates how to conduct these coupled precipitation and temperature runs. Finally note that `RMAWGEN` is a multi-site weather generator and exploits the spatial interdependence of the time series for the simulation of synthetic weather.
+
+```{r, eval=FALSE}
+set.seed(123456)
+
+year_max <- 2013
+year_min <- 1981
+origin <- "1981-1-1"
+
+n_GPCA_iter <- 0
+n_GPCA_iteration_residuals <- 0
+n_GPCA_iter_prec <- 0
+n_GPCA_iteration_residuals_prec <- 0
+p <- 1
+station <- STATION_NAMES 
+
+# generation of temperature max and min 
+gen_temp <- ComprehensiveTemperatureGenerator(station = station,
+                                                       Tx_all = TEMPERATURE_MAX,
+                                                       Tn_all = TEMPERATURE_MIN,
+                                                       year_min = year_min,
+                                                       year_max = year_max,
+                                                       p = p,
+                                                       n_GPCA_iteration = n_GPCA_iter,
+                                                       n_GPCA_iteration_residuals = n_GPCA_iteration_residuals,
+                                                       sample = "monthly")
+
+# Use of measured and observed temperature as exogenous variables
+exogen_sim <- cbind(gen_temp$output$Tx_gen,gen_temp$output$Tn_gen)
+names(exogen_sim) <- cbind(paste(names(gen_temp$output$Tx_gen),"_Tx",sep=""),
+                           paste(names(gen_temp$output$Tn_gen),"_Tn",sep=""))
+exogen <- cbind(gen_temp$input$Tx_mes,gen_temp$input$Tn_mes)
+names(exogen) <- cbind(paste(names(gen_temp$input$Tx_mes),"_Tx",sep=""),
+                       paste(names(gen_temp$input$Tn_mes),"_Tn",sep=""))
+
+# Precipitation Generator (temperature enters as exogenous variable)
+valmin <- 1.0 # Threshold value below which a no precipitation event is recorded [in mm/day].
+gen_prec <- ComprehensivePrecipitationGenerator(station = station,
+                                                         prec_all = PRECIPITATION,
+                                                         year_min = year_min,
+                                                         year_max = year_max,
+                                                         exogen = exogen,
+                                                         exogen_sim = exogen_sim,
+                                                         p = p,
+                                                         n_GPCA_iteration = n_GPCA_iter_prec,
+                                                         n_GPCA_iteration_residuals = n_GPCA_iteration_residuals_prec,
+                                                         sample = "monthly",
+                                                         valmin = valmin,
+                                                         extremes = TRUE)
+```
+
+```{r, eval=FALSE}
+# Post processing results
+
+## Time
+startY <- 1981
+endY <- 2013
+sTime <- paste0(startY,'-01-01 01:00:00')
+eTime <- paste0(endY,'-12-31 23:00:00')
+swg_results <- seq(as.POSIXct(sTime), as.POSIXct(eTime), by="day")
+swg_results <- tibble(date=swg_results)
+#swg_results <- swg_results %>% mutate(month = month(date),.before=2) %>% mutate(year = year(date),.before=3)
+
+## Precipitation
+# prec_mes <- gen_prec$prec_mes
+# prec_gen <- gen_prec$prec_gen
+# 
+# vprec_mes <- prec_mes[,1]
+# vprec_gen <- prec_gen[,1]
+# 
+# qqplot(vprec_mes[!is.na(vprec_mes) & vprec_mes>valmin],vprec_gen[vprec_gen>valmin & !is.na(vprec_gen)],xlab="measured",ylab="generated",main=paste("Q-Qplot precipitation at ",names(vprec_gen),sep=""))
+# qqplot(vprec_mes,vprec_gen,xlab="measured",ylab="generated",main=paste("Q-Qplot precipitation at ",names(vprec_gen),sep=""))
+# mes <- length(vprec_mes[!is.na(vprec_mes) & vprec_mes>0])/length(vprec_mes[!is.na(vprec_mes)])
+# gen <- length(vprec_mes[!is.na(vprec_gen) & vprec_gen>0])/length(vprec_gen[!is.na(vprec_gen)])
+# 
+# data_gen <- extractmonths(data=gen_prec$prec_gen,when=c("Jun","Jul","Aug"),origin="1961-1-1")
+# data_mes <- extractmonths(data=gen_prec$prec_mes,when=c("Jun","Jul","Aug"),origin="1961-1-1")
+# 
+# c_mes <- continuity_ratio(data_gen,valmin=1.0)
+# c_gen <- continuity_ratio(data_mes,valmin=1.0)
+# 
+# print(gem_temp$var)
+# plot_sample(vprec_mes,vprec_gen,sample="monthly",origin=origin,sort=TRUE,legend_position = "topright",gray=TRUE,xlab = "mes",ylab = "sim")
+
+## Temperature
+swg_results <- swg_results %>% 
+  add_column(temp_min_obs = TEMPERATURE_MIN$Alishur_2,
+             temp_max_obs = TEMPERATURE_MAX$Alishur_2,
+             temp_min_gen = gen_temp$output$Tn_gen$Alishur_2,
+             temp_max_gen = gen_temp$output$Tx_gen$Alishur_2,
+             prec_obs = PRECIPITATION$Alishur_2,
+             prec_gen = vprec_gen
+             )
+
+swg_stats_temp <- swg_results %>% dplyr::select(-prec_gen,-prec_obs) %>% summary()
+swg_stats_precip <- swg_results %>% dplyr::select(date,prec_obs,prec_gen) %>% summary()
+swg_stats_temp
+swg_stats_precip
+
+swg_results %>% dplyr::select(-prec_gen,-prec_obs) %>% pivot_longer(-date) %>% 
+  plot_time_series(.date_var = date,.value = value,.color_var = name,.smooth = FALSE,.title = "Comparison observed min./max. temp. with generated ones.")
+swg_results %>% dplyr::select(date,prec_obs,prec_gen) %>% pivot_longer(-date) %>% 
+  plot_time_series(.date_var = date,.value = value,.color_var = name,.smooth = FALSE,.title = "Comparison observed prec. with generated one.")
+
+```
+
+Results are again shown for the simulated precipitation time series for one elevation band. We consider them satisfactory. The seriality and normality tests are both passed.
+
+```{r rmawgenMonthlyTotalsCoupledModel, echo=FALSE}
+knitr::include_graphics("./_bookdown_files/FIG_DATA/RMAWGEN_Models_CoupledModel_monthlyTotalsComparison.jpg")
+```
+
+#### Simulating Future Daily Climate
+
+Using the insights from above, we can now generate future daily weather conditioned on the high resolution GCM output as described in the Section \@ref(CHELSA21Century) above. For demonstration purposes, we generate a 10-year mid 21st century run and an end of 21st century run for both, the RCP 4.5 and RCP 8.5 concentration pathways.
+
+We start again by loading the basin and elevation band specific ERA5 data and specify the parameters of the weather generator.
+
+```{r,eval=FALSE,message=FALSE}
+# 1. Station Data
+## Load and process RS MINERVE csv database file
+filePath <- './data/AmuDarya/GuntYashikul/RSMinerve/'
+fileName <- 'Gunt_Yashikul_1981_2013_db.csv'
+era5_gunt_yashikul <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
+
+## Delete unused catchments in the Gunt-Yashikul hydrological model (this is specific to the model and does not need to be carried out normally)
+idx2del <- (era5_gunt_yashikul[1,]=='Gunt_DS_1')|(era5_gunt_yashikul[1,]=='Gunt_DS_2')|(era5_gunt_yashikul[1,]=='Gunt_DS_3')
+era5_gunt_yashikul <- era5_gunt_yashikul %>% dplyr::select(which(!idx2del))
+
+## Generate files
+station_data <- prepare_RMAWGEN_input_data(era5_gunt_yashikul)
+station_data %>% list2env(.,envir = .GlobalEnv) # Send list variables to global environment.
+
+# 2. RMAWGEN PARAMETERS
+## All parameteres are stored in a list
+param <- list()
+## Random generator seed
+param$seed <- 123456
+## Monthly climate is calculated if it is set to NULL
+param$PREC_CLIMATE <- NULL
+## Calibration Period
+param$year_min <- 1981
+param$year_max <- 2013
+param$origin <- "1981-1-1"
+## n GPCA iterations for variable and VAR residuals
+param$n_GPCA_iter <- 0
+param$n_GPCA_iteration_residuals <- 0
+param$n_GPCA_iter_prec <- 0
+param$n_GPCA_iteration_residuals_prec <- 0
+## Autoregressive order (p)
+param$p <- 3
+# number of weather realizations
+param$nscenario <- 2
+# Multi-site stations
+param$station <- STATION_NAMES
+# Simulation periods
+param$year_min_sim_51_60 <-  2051
+param$year_max_sim_51_60 <-  2060
+param$year_min_sim_91_00 <-  2091
+param$year_max_sim_91_00 <-  2100
+# Minimum precipitation cutoff value, i.e. threshold value below which a no precipitation event is recorded [in mm/day]
+param$valmin <- 1.0
+```
+
+Next, we specify the future climate and the simulation periods which will be used to condition the weather generator. For demonstration, we use data from a model of the Gunt river basin that includes Lake Yashikul in the upstream. The prepared monthly climate scenarios of this RS MINVERVE model can be found in this directory `'./data/AmuDarya/GuntYashikul/ClimateProjections/'`. Since RMAWGEN requires precipitation, mean minimum and mean maximum temperature on a monthly basis, these data are prepared using the function `riversCentralAsia::climateScenarioPreparation_RMAWGEN()`.
+
+```{r}
+basin_climScen_Path <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
+basin_climScen_File <- 'climScen_monthly'
+
+clim_scen <- climateScenarioPreparation_RMAWGEN(basin_climScen_Path,basin_climScen_File,param)
+```
+
+We have now computed the 12 precipitation and temperature scenarios, i.e. 2 for each RCP, 3 for each climate model and 2 for each of the periods of interest, 2051 - 2060 and 2091-2100.
+
+#### Mean Future Monthly Climate States
+
+We simulate first precipitation and then condition the stochastic generation of temperature on the precipitation realization.
+
+```{r}
+# ==========================================
+# RMAWGEN PARAMETERS (temporarily put here)
+## All parameteres are stored in a list
+param <- list()
+## Random generator seed
+param$seed <- 123456
+## Monthly climate is calculated if it is set to NULL
+param$PREC_CLIMATE <- NULL
+## Calibration Period
+param$year_min <- 1981
+param$year_max <- 2013
+param$origin <- "1981-1-1"
+## n GPCA iterations for variable and VAR residuals
+param$n_GPCA_iter <- 0
+param$n_GPCA_iteration_residuals <- 0
+param$n_GPCA_iter_prec <- 0
+param$n_GPCA_iteration_residuals_prec <- 0
+## Autoregressive order (p)
+param$p <- 1
+# number of weather realizations
+param$nscenario <- 1
+# Multi-site stations
+param$station <- STATION_NAMES
+# Simulation periods
+param$year_min_sim_51_60 <-  2051
+param$year_max_sim_51_60 <-  2060
+param$year_min_sim_91_00 <-  2091
+param$year_max_sim_91_00 <-  2100
+# Minimum precipitation cutoff value, i.e. threshold value below which a no precipitation event is recorded [in mm/day]
+param$valmin <- 1.0
+# ==========================================
+
+# ==========================================
+# Climate scenario 
+clim_scen_1 <- clim_scen[[1]]
+# ERA5 calibration data
+era5_data <- list()
+era5_data$PRECIPITATION <- PRECIPITATION
+era5_data$TEMPERATURE_MAX <- TEMPERATURE_MAX
+era5_data$TEMPERATURE_MIN <- TEMPERATURE_MIN
+# ==========================================
+
+climScen_NULL <- NULL
+
+test_wgen <- wgen_daily_PT(param,station_data,station_data$STATION_NAMES[1:2],climScen_NULL)
+
+```
+
+Function to make things lighter!
+
+```{r}
+wgen_daily_PT <- function(param, station_data, station_subset, clim_scen){
+
+  if (is.null(clim_scen)){
+    prec_norm = NULL
+    tasmin_norm = NULL
+    tasmax_norm = NULL
+    year_min_sim = param$year_min
+    year_max_sim = param$year_max
+    
+  } else {
+    prec_norm = clim_scen$prec_norm
+    tasmin_norm = clim_scen$tasmin_norm
+    tasmax_norm = clim_scen$tasmax_norm
+    year_min_sim = clim_scen$year_min
+    year_max_sim = clim_scen$year_max    
+  }
+  
+  if (is.null(station_subset)){
+    station = param$station
+  } else {
+    station = station_subset
+  }
+  
+# Set random generator seed
+set.seed(param$seed)
+
+# subset of stations, just for testing!
+station <- param$station[1:2]
+
+# A. Precipitation Generator
+exogen <- NULL
+exogen_sim <- exogen
+
+precipitation_sim_PT <- 
+  ComprehensivePrecipitationGenerator(station = station,
+                                      prec_all = station_data$PRECIPITATION,
+                                      year_min = param$year_min,
+                                      year_max = param$year_max,
+                                      year_min_sim = year_min_sim,
+                                      year_max_sim = year_max_sim,
+                                      exogen = exogen,
+                                      exogen_sim = exogen_sim,
+                                      p = param$p,
+                                      n_GPCA_iteration = param$n_GPCA_iter_prec,
+                                      n_GPCA_iteration_residuals = param$n_GPCA_iteration_residuals_prec,
+                                      mean_climate_prec_sim = prec_norm,
+                                      sample = "monthly",
+                                      valmin = param$valmin,
+                                      extremes = TRUE,
+                                      nscenario = param$nscenario
+                                      )
+
+# Use of measured and observed temperature as exogenous variables
+exogen_sim <- precipitation_sim_PT$prec_gen
+exogen <- precipitation_sim_PT$prec_mes
+
+# B. Generation of temperature max and min 
+temperature_sim_PT <- 
+  ComprehensiveTemperatureGenerator(station = station,
+                                    Tx_all = station_data$TEMPERATURE_MAX,
+                                    Tn_all = station_data$TEMPERATURE_MIN,
+                                    year_min = param$year_min,
+                                    year_max = param$year_max,
+                                    exogen = exogen,
+                                    exogen_sim = exogen_sim,
+                                    year_min_sim = year_min_sim,
+                                    year_max_sim = year_max_sim,
+                                    p = param$p,
+                                    n_GPCA_iteration = param$n_GPCA_iter,
+                                    n_GPCA_iteration_residuals = param$n_GPCA_iteration_residuals,
+                                    mean_climate_Tn_sim = tasmin_norm,
+                                    mean_climate_Tx_sim = tasmax_norm, 
+                                    sample = "monthly",
+                                    nscenario = param$nscenario
+                                    )
+
+
+# Prepare output
+results2return <- list(tasmax_sim_daily = temperature_sim_PT$output$Tx_gen,
+                       tasmin_sim_daily = temperature_sim_PT$output$Tn_gen,
+                       prec_sim_daily = precipitation_sim_PT$prec_gen)
+
+return(results2return)
+}
+```
+
+The results of the stochastic weather generator can easily be visualized and compared to the base period data for which we take the 10-year period from 2004 - 2013.
+
+```{r}
+# Control results
+refPeriodStart <- 2004 
+refPeriodEnd <- 2013
+
+TEMPERATURE_MAX_basePeriod <- TEMPERATURE_MAX %>% filter(year>=refPeriodStart & year<=refPeriodEnd)
+TEMPERATURE_MIN_basePeriod <- TEMPERATURE_MIN %>% filter(year>=refPeriodStart & year<=refPeriodEnd)
+PRECIPITATION_basePeriod <- PRECIPITATION %>% filter(year>=refPeriodStart & year<= refPeriodEnd)
+
+## Future period of interest
+swg_climScen <- generateSeqDates(clim_scen_1$year_min,clim_scen_1$year_max,"day")
+
+swg_climScen <- swg_climScen %>% 
+  add_column(tasmin_refP = TEMPERATURE_MIN_basePeriod$Alishur_2,
+             tasmax_refP = TEMPERATURE_MAX_basePeriod$Alishur_2,
+             tasmin_5160 = temperature_sim_PT$output$Tn_gen$Alishur_2,
+             tasmax_5160 = temperature_sim_PT$output$Tx_gen$Alishur_2,
+             pr_refP = PRECIPITATION_basePeriod$Alishur_2,
+             pr_5160 = precipitation_sim_PT$prec_gen$Alishur_2
+             )
+
+swg_stats_temp_climScen <- swg_climScen %>% dplyr::select(-pr_5160,-pr_refP) %>% summary()
+swg_stats_precip_climScen <- swg_climScen %>% dplyr::select(date,pr_5160,pr_refP) %>% summary()
+swg_stats_temp_climScen
+swg_stats_precip_climScen
+
+swg_climScen %>% dplyr::select(-pr_5160,-pr_refP) %>% pivot_longer(-date) %>% 
+  plot_time_series(.date_var = date,.value = value,.color_var = name,.smooth = FALSE,.title = paste0(clim_scen_1$scen, " Climate Scenario: Min. and Max. Temperature"))
+swg_climScen %>% dplyr::select(date,pr_5160,pr_refP) %>% pivot_longer(-date) %>% 
+  plot_time_series(.date_var = date,.value = value,.color_var = name,.smooth = FALSE,.title = paste0(clim_scen_1$scen, " Climate Scenario: Precipitation"))
+```
+
+# wgen Visualization
+
+```{r}
+# try summarizing per month
+swg_climScen_stats <- swg_climScen %>% mutate(month=month(date),.before=2) %>% dplyr::select(-date) %>% pivot_longer(-month) %>% group_by(month,name) %>% summarize(mean = mean(value),sd = sd(value), min = mean - sd, max = mean + sd)
+
+swg_climScen_stats %>% filter(name=='pr_5160') %>% dplyr::select(-name,-sd) %>% pivot_longer(-month) %>% ggplot(aes(x=month,y=value,colour = name)) + stat_summary(geom="ribbon", fun.min="min", fun.max="max", aes(fill=name), alpha=0.3) 
+
+
+
+  
+
+```
+
+```{r}
+# go for temp_min first
+swg_results_climScen_temp_min <- swg_results_climScen %>% dplyr::select(date,temp_min_refP,temp_min_gen)
+test_vis <- swg_results_climScen_temp_min %>% summarize_by_time(.date_var = date,.by = "month.lbl",temp_min_mean_refP = mean(temp_min_refP),temp_min_mean_gen = mean(temp_min_gen),temp_min_std_refP = sd(temp_min_refP),temp_min_std_gen = sd(temp_min_gen))
+
+testVis_1 <- test_vis %>% mutate(minV = temp_min_mean_refP - temp_min_std_refP,maxV = temp_min_mean_refP + temp_min_std_refP)
+
+testVis_1 %>% dplyr::select(date,temp_min_mean_refP,minV,maxV) %>% pivot_longer(-date) %>% 
+  ggplot(., aes(x=date,y=value, colour=name)) +
+  stat_summary(geom="ribbon", fun.min="min", fun.max="max", aes(fill=name), alpha=0.3) +
+  theme_bw()
+
+# Norm and their sd()
+
+
+```
+
+# =====
+
+#### Analyzing RMAWGEN Output
+
+Checking RMAWGEN output for the two periods of interest and comparing it with ERA5 baseline from 2001 through 2010
+
+```{r, eval=FALSE, message=FALSE}
+
+stationID <- 1
+sim_sTime <- paste0(param$year_min_sim_51_60,'-01-01 00:00:00')
+sim_eTime <- paste0(param$year_max_sim_51_60,'-12-31 23:00:00')
+
+sim_daily_51_60 <- tibble(date = seq(as.POSIXct(sim_sTime), as.POSIXct(sim_eTime), by="day"),
+                      tasmin = results2return$tasmin_sim_daily$Alishur_2,
+                      tasmax = results2return$tasmax_sim_daily$Alishur_2,
+                      prec = results2return$prec_sim_daily$Alishur_2)
+
+
+
+cm_monthly_51_60 <- tibble(date = seq(as.POSIXct(sim_sTime), as.POSIXct(sim_eTime), by="month"),
+                      tasmin = test_clim_scen$tasmin[,1],
+                      tasmax = test_clim_scen$tasmax[,1],
+                      prec = test_clim_scen$prec[,1])
+
+ref_sTime <- paste0(2001,'-01-01 00:00:00')
+ref_eTime <- paste0(2010,'-12-31 23:00:00')
+
+era5_ref_daily_01_10 <- tibble(
+                      date = seq(as.POSIXct(ref_sTime), as.POSIXct(ref_eTime), by="day"),
+                      era5_data$TEMPERATURE_MIN %>% filter(year >= 2001 & year <=2010) %>% dplyr::select(Alishur_2),
+                      era5_data$TEMPERATURE_MAX %>% filter(year >= 2001 & year <=2010) %>% dplyr::select(Alishur_2),
+                      era5_data$PRECIPITATION %>% filter(year >= 2001 & year <=2010) %>% dplyr::select(Alishur_2),
+                      .name_repair = "unique")
+era5_ref_daily_01_10 <- era5_ref_daily_01_10 %>% rename(tasmin="Alishur_2...2",
+                                                        tasmax="Alishur_2...3",
+                                                        prec="Alishur_2...4")
+
+
+# ANALYSIS AND COMPARISONS
+## 0. Plot individual time series
+sim_daily_51_60 %>% dplyr::select(-prec) %>% 
+  pivot_longer(-date) %>% 
+  plot_time_series(.date_var = date,
+                   .value = value, 
+                   .color_var = name,
+                   .smooth = FALSE,
+                   .title = "RAWGEN Simulated daily Temperature, 1951 - 1960")
+
+cm_monthly_51_60 %>% dplyr::select(-prec) %>% 
+  pivot_longer(-date) %>% plot_time_series(.date_var = date,
+                                           .value = value, 
+                                           .color_var = name,
+                                           .smooth = FALSE,
+                                           .title = "CM Monthly Temperature, 1951 - 1960")
+
+era5_ref_daily_01_10 %>% dplyr::select(-prec) %>% 
+  pivot_longer(-date) %>% plot_time_series(.date_var = date,
+                                           .value = value, 
+                                           .color_var = name,
+                                           .smooth = FALSE,
+                                           .title = "ERA5 Daily Temperature, 2001 - 2010")
+
+## A. Compare monthly era5 to monthly CM data
+era5_ref_monthly_01_10 <- era5_ref_daily_01_10 %>% summarize_by_time(.date_var = date,.by = "month",tasmin_mean = mean(tasmin),tasmax_mean = mean(tasmax),prec_sum = sum(prec))
+
+era5_cm_comparison_monthly <- tibble(date = era5_ref_monthly_01_10$date,
+                             era5_tasmin = era5_ref_monthly_01_10$tasmin_mean,
+                             era5_tasmax = era5_ref_monthly_01_10$tasmax_mean,
+                             era5_prec = era5_ref_monthly_01_10$prec_sum,
+                             cm_tasmin = cm_monthly_51_60$tasmin,
+                             cm_tasmax = cm_monthly_51_60$tasmax,
+                             cm_prec = cm_monthly_51_60$prec)
+
+### Temperature comparison
+era5_cm_comparison_monthly %>% dplyr::select(-era5_prec,-cm_prec) %>% pivot_longer(-date) %>% 
+  plot_time_series(.date_var = date,.value = value,.color_var = name,.smooth = FALSE,
+                   .title = "Temperature Reference Climate (era5_...) vs. Climate Model Projection (cm_...)")
+
+era5_cm_comparison_monthly %>% dplyr::select(date,era5_tasmin,cm_tasmin) %>% pivot_longer(-date) %>% 
+  plot_seasonal_diagnostics(.date_var = date,.value = value,.facet_vars = name,.feature_set = "month.lbl",
+                            .title = "Seasonal comparison of minimum temperatures") 
+
+### Precipitation comparison
+era5_cm_comparison_monthly %>% dplyr::select(date,era5_prec,cm_prec) %>% mutate(cm_prec = cm_prec * 86400 * 365/12) %>% pivot_longer(-date) %>% 
+  plot_time_series(.date_var = date,.value = value,.color_var = name,.smooth = FALSE,
+                   .title = "Precipitation Reference Climate (era5_...) vs. Climate Model Projection (cm_...)")
+
+era5_cm_comparison_monthly %>% dplyr::select(date,era5_prec,cm_prec) %>% 
+  summarize_by_time(.date_var = date,.by = "year", era5_prec_annual = sum(era5_prec),cm_prec_annual = sum(86400*365/12*cm_prec))
+
+
+
+## B. Compare daily era5 to daily wgen output
+```
+
+#### 
+
+# Function Summary Statistics
+
+```{r}
+{r}
+
+wgen_daily_summaryStats(PT_sim_Period1,param,station_data,station_subset[1],clim_scen_Period1)
+
+clim_scen <- clim_scen_Period1
+station_subset <- param$station[1:2]
+
+#wgen_daily_summaryStats <- function(PT_sim, param, station_data, station_subset, clim_scen){
+
+  if (base::is.null(station_subset)){
+    station_set <- param$station
+  } else {
+    station_set <- station_subset
+  }
+
+clim_baseline <- list()
+
+for (idxStat in (1:length(station_subset)){
+  clim_baseline$T_min[[idxStat]] <-  station_data$TEMPERATURE_MIN %>% 
+    filter(year>=param$year_min_Baseline & year<=param$year_max_Baseline) %>% 
+    dplyr::select(station_subset[idxStat])}
+  #clim_baseline$T_min[[idxStat]] <- as.data.frame(apply(clim_baseline$T_min[[idxStat]],2,summary))
+  #clim_baseline$T_max[[idxStat]] <-  station_data$TEMPERATURE_MAX %>% 
+  #  filter(year>=param$year_min_Baseline & year<=param$year_max_Baseline) %>% 
+  #  dplyr::select(station_subset[idxStat])
+  #clim_baseline$T_max[[idxStat]] <- as.data.frame(apply(clim_baseline$T_max[[idxStat]],2,summary))
+  #clim_baseline$Prec[[idxStat]] <-  station_data$PRECIPITATION %>% 
+  #  filter(year>=param$year_min_Baseline & year<=param$year_max_Baseline) %>% 
+  #  dplyr::select(station_subset[idxStat])
+  #clim_baseline$PREC[[idxStat]] <- as.data.frame(apply(clim_baseline$T_min[[idxStat]],2,summary))
+}
+
+
+  summaryStats_temp_baselinePeriod <- 
+    tibble(temp_min_obs = (station_data$TEMPERATURE_MIN %>% dplyr::select(station_set)),
+           temp_max_obs = (station_data$TEMPERATURE_MAX %>% dplyr::select(station_set)))
+  
+  temp_min_gen <- PT_sim$T_gen$output$Tn_gen %>% as_tibble()
+  temp_max_gen <- PT_sim$T_gen$output$Tx_gen %>% as_tibble()
+  
+  summaryStats_temp_targetPeriod <- tibble(temp_min_gen = temp_min_gen,
+           temp_max_gen = temp_max_gen) %>% summary()
+  
+  
+
+  summaryStats_precip <- tibble(prec_obs = PT_sim$P_gen$prec_mes[,station_set],
+                                prec_gen = PT_sim$P_gen$prec_gen[,station_set]) %>% summary()
+
+  mydf <- tibble(prec_obs = PT_sim$P_gen$prec_mes[,station_set],
+                                prec_gen = PT_sim$P_gen$prec_gen[,station_set])
+  
+  as.data.frame(apply(mydf,2,summary))
+  
+  summaryStats <- list(summaryStats_temp = summaryStats_temp, summaryStats_precip = summaryStats_precip)
+
+  #return(summaryStats)
+#}
+```
+
+New rubbish function code
+
+```{r}
+# developing a summary function
+
+PT_sim_in <- PT_sim_Period1
+param_in <- param
+station_data_in <- station_data
+station_subset_in <- station_subset
+clim_scen_in <- clim_scen_Period1
+
+wgen_daily_summaryStats <- function(PT_sim_in,param_in,station_data_in,station_subset_in,clim_scen_in){
+  
+  dateVec_calibrationPeriod <- generateSeqDates(param_in$year_min,param_in$year_max,'day')
+  dateVec_baseline <- generateSeqDates(param_in$year_min_Baseline,param_in$year_max_Baseline,'day')
+  if (base::is.null(clim_scen_in)){
+    dateVec_futurePeriod <- dateVec_baseline
+  } else {
+    dateVec_futurePeriod <- generateSeqDates(PT_sim_in$year_min_sim,PT_sim_in$year_max_sim,'day')
+  }
+  
+  for (idx in (1:length(station_subset_in))){
+    # Precipitation
+    # baseline period
+    baseline_station_P <- station_data$PRECIPITATION %>% 
+      dplyr::select(year,station_subset_in[idx]) %>% 
+      filter(year>=param_in$year_min_Baseline & year <= param_in$year_max_Baseline) %>% 
+      dplyr::select(-year) %>% 
+      rename(P_baseline = station_subset_in[idx]) 
+    baseline_station_P_stats <- as.data.frame(apply(baseline_station_P,2,summary)) 
+    # future period
+    futurePeriod_station_P <- PT_sim_in$P_gen$prec_gen %>% as_tibble() %>% 
+      dplyr::select(station_subset_in[idx]) %>% 
+      rename(P_futurePeriod = station_subset_in[idx]) 
+    futurePeriod_station_P_stats <- as.data.frame(apply(futurePeriod_station_P,2,summary)) 
+    
+    
+    
+    # final join
+    P_stats <- baseline_station_P_stats %>% add_column(futurePeriod_station_P_stats)
+    
+  
+  }
+}
+```
