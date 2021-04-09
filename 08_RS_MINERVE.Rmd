@@ -53,8 +53,9 @@ seasonal_discharge <- ChirchikRiverBasin %>%
   group_by(yearmonth) %>%
   summarize(`Q [m3/s]` = mean(data))
 ggplot(seasonal_discharge) + 
-  geom_line(aes(yearmonth, `Q [m3/s]`)) + 
-  labs(x = "") + 
+  geom_line(aes(yearmonth, `Q [m3/s]` * 60*60*24*365*10^(-6))) + 
+  labs(x = "", y = "Q [10^6 m3/a]") + 
+  ylim(0, 500) + 
   theme_bw()
 ```
 
@@ -68,11 +69,11 @@ seasonal_precipitation <- mutate(climate, yearmonth = yearmonth(date)) %>%
  dplyr::filter(year(yearmonth) > 1984,
                year(yearmonth) < 1993)
 ggplot(seasonal_precipitation) +
- geom_col(aes(yearmonth, `P [mm]`)) +
+ geom_col(aes(yearmonth, `P [mm]`), fill = "gray") +
  geom_line(data = seasonal_discharge,
-           aes(yearmonth, `Q [m3/s]` * 60*60*24*365*10^(-6)),
-           colour = "red") +
+           aes(yearmonth, `Q [m3/s]` * 60*60*24*365*10^(-6))) +
  labs(x = "", y = "P [mm], Q [10^6 m3/a]") +
+ ylim(0, 500) + 
  theme_bw()
 ```
 
@@ -108,7 +109,7 @@ $$(P-Q) \cdot dt = k \cdot dQ$$
 and integrated and solved for Q(t) (dig out your mathematics!). In the example in the box below we discredited the water balance with the linear relationship between discharge and storage change in the reservoir:
 
 $$\frac{P_{t_1}+P_{t_1}}{2} - \frac{Q_{t1}+Q_{t_2}}{2} = \frac{k}{t_2-t_1} \cdot (Q_{t_2}-Q_{t_1})$$
-and solved the equation for $Q_{t_2}$ (Inspiration from [@Pedersen1980].   
+and solved the equation for $Q_{t_2}$ (Inspiration from @Pedersen1980).   
 We assume that at the beginning of our experiment, we don't have a discharge as the bucket is empty.   
 
 $$Q(t) = P(t) \cdot (1-e^{(-t/k)})$$
@@ -164,8 +165,22 @@ knitr::include_app("http://34.251.168.23:3838/linearReservoirExampleApp/",
 ::::
 
 
+## Recap: The general modeling process
+Hydrological modeling is an iterative process (see Figure \@ref(fig:iterative-modelling-process). At the beginning, the purpose of the model has to be defined. The model goal determines the spatial and temporal resolution of the hydrological model. E.g. for analyzing the impact of climate change on seasonal, regional flows we are interested in the seasonal flow volumes whereas a model used for early warnings from floods requires high temporal resolution and a high model performance for threshold overflows. See for example @bloschl_scale_1995 for a thorough discussion of scales in hydrological modeling. Please note that the definition of the model goal also determines the performance criteria the model has to fulfill in order to be judged suitable for its purpose. As a next step, data about the catchment is gathered (see for example basin characterization in the Chapter [Case Studies](#CaseStudies)) and a first conceptual model of the dominant flow processes in the basin is drafted (e.g. low peaks and significant base flow point to large storage capacity in the basin whereas high peaks and low base flow indicate small storage capacity in the basin). The conceptual model of the river catchment is then implemented with a mathematical model (e.g. the HBV model in RS Minerve) and parameterized as well as possible (i.e. using reasonable estimates for initial parameter values). The model is then calibrated and validated (i.e. tested with a previously unseen data set) as described further below If the performance criteria for the model calibration are satisfied, a conscientious modeler performs a sensitivity analysis to gain confidence in the model. From each of these steps, the modeler can (and generally has to) go back to a previous step to gather more data, modify the conceptual model, adapt the model implementation, re-calibrate the model and/or re-evaluate the model sensitivity. Also, the modeler is aware of the inherent uncertainties of the data and the model (see for example @refsgaard_uncertainty_2007 for a discussion on how to include uncertainties in the modeling process). The described steps produce a model (or an ensemble of models) that satisfy the performance criteria, only now the modeler can start actually using the model for the purpose it was implemented for.          
+```{r iterative-modelling-process, echo=FALSE, out.width="100%", fig.align="center", fig.cap="The modelling process is iterative."}
+knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_modelling_process.png")
+```
 
+Modeling is an involved process requiring highly specialized knowledge and skills. A modeler has the responsibility to clearly state the underlying assumptions, uncertainties and limitations of their model, especially if it is to be used in decision making. This book chapter will guide you through the modeling process with the example of the Nauvalisoy catchment.  
 
+:::: {.exercisebox what-is-a-good-model=""}
+::: {.center what-is-a-good-model=""}
+**Task: What is a good model?**
+:::
+Imagine you work for a government and have to judge if the hydrological model you mandated is of good quality. How would you decide whether or not to accept the model?  
+
+Discuss with your colleague(s). 
+:::: 
 
 
 ## Data Preparation and Setup
@@ -329,7 +344,7 @@ RSMinerve simulates discharge in response to climate forcing.
 
 
 ## The HBV model {#section-hbv-model}
-The HBV (Hydrologiska Byråns Vattenavdelning) model is a conceptual rainfall-runoff model which is suitable for many snow-fed river catchments [@bergstrom_development_1976; @lindstrom_development_1997]. You have studied the short description of the HBV model in the RS Minerve technical manual [@rsminerve_tm]. A brief reminder of the HBV model implemented in RS Minerve is given in Figure \@ref(fig:fig-overview-hbv-model). The model consists of a snow function which separates precipitation into solid and liquid parts and manages melting of snow and 3 storage reservoirs similar to the linear reservoir we saw in the [recap section](#section-rsminerve-why-model-introduction).      
+The HBV (Hydrologiska Byråns Vattenavdelning) model is a conceptual rainfall-runoff model which is suitable for many snow-fed river catchments [@bergstrom_development_1976; @lindstrom_development_1997]. You have studied the short description of the HBV model in the RS Minerve technical manual [@rsminerve_tm]. Keep these 4 pages at hand for the following exercises so you can look up how the parameters influence the flow of water through the HBV model. A brief reminder of the HBV model implemented in RS Minerve is given in Figure \@ref(fig:fig-overview-hbv-model). The model consists of a snow function which separates precipitation into solid and liquid parts and manages melting of snow and 3 storage reservoirs similar to the linear reservoir we saw in the [recap section](#section-rsminerve-why-model-introduction).      
 
 ```{r fig-overview-hbv-model, echo=FALSE, out.width="55%", fig.align="center", fig.cap="The HBV model concept (source: RS MINERVE Technical Manual)."}
 knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_HBVconceptualModel.png")
@@ -366,7 +381,7 @@ Hint: Values for initial water content in the different model compartments need 
 1. Open RS Minerve and create an HBV model with the correct area ([Step-by-step guide](#section-quickguides-create-hbv-model)).  
 2.  Add a climate station and link it to the HBV model ([Step-by-step guide](#section-quickguides-add-climate-station)) .   
 3.  Climate data has been prepared in the file ./data/SyrDarya/Chirchiq/RSMinerve/ERA5_Nauvalisoy_1981_2013.csv. Import the data in RS Minerve and link it to the station data ([Step-by-step guide](#section-quickguides-import-climate-data)).  
-4.  Change the model settings to calculate evaporation using and adapt the coordinates in the settings tab [Step-by-step guide](#section-quickguides-atapt-model-settings).   
+4.  Change the model settings to calculate evaporation using Turc and adapt the coordinates in the settings tab [Step-by-step guide](#section-quickguides-atapt-model-settings).   
 
 :::: {.exercisebox exercise-rsminerve-hbv-3=""}
 ::: {.center exercise-rsminerve-hbv-3=""}
@@ -380,7 +395,7 @@ Hint: Adapt the simulation period in the model tab accordingly. Don't forget to 
 ::: {.center exercise-rsminerve-hbv-4=""}
 **Exercise: RS Minerve - Compare evaporation models**
 :::
-Compare the different methods to calculate hourly evaporation in 1984 and their impact on the simulated discharge. Is the uniform evaporation model suitable for seasonal discharge models?  
+Compare the different methods to calculate hourly evaporation in 1984 and their impact on the simulated discharge. Is the uniform evaporation model suitable for seasonal discharge models? In what circumstance could a uniform evaporation model be appropriate?  
 
 Hint: Export simulation results to the data base ([how to](#section-quick-guides-export-sim-results-to-db)).  
 [Solution](#section-appendix-solutions-compare-evaporation-methods)
@@ -416,7 +431,8 @@ Hint: A modeler proverb says "as simple as possible but as complex as necessary"
 
 #### Calibration vs. validation  
 As you have learned, semi- and fully distributed hydrological models are typically not well defined, i.e. you will find multiple sets of parameter combinations which will all yield reasonable model performance. An important strategy to gain confidence into a model is to split your time series into a calibration period and a validation period. During calibration, you adjust the model parameters to get a satisfying fit with the measured discharge. During the validation period you check how the calibrated model compares to discharge data that it hasn't seen before, i.e. you judge the ability of the model to handle potentially different model input than it has seen during calibration. For example, if you have 30 years of discharge time series available you can use the first 10 years for model calibration (i.e. you run the model calibration procedure only over the first 10 years of the time series) and use the last 20 years for model validation. A good model should perform satisfactorily not only during calibration but also during validation.   
-In hydrology, it is recommended to do cross-validation, i.e. to calibrate and validate a model with several combinations of calibration and validation periods and to summarize the overall model performance.  
+In hydrology, it is recommended to do cross-validation, i.e. to calibrate and validate a model with several combinations of calibration and validation periods and to summarize the overall model performance.   
+Interested readers are refered to the literature for a more thorough discussion of the topic. For example, Bergstroem [@bergstrom_principles_1991] gives a thorough discussion of model calibration and validation based on the HBV model which is still valid today.  
 
 
 #### Performance indicators
@@ -429,18 +445,11 @@ Model performance can be expressed in different ways. Some indicators are better
 The RS Minerve technical manual [@rsminerve_tm] summarizes the most important performance indicators typically used in hydrological modelling. For the more ambitious modellers, the manual includes references to the literature. Read Chapter 3 of the technical manual. 
 ::::
 
-#### The general modelling process
-Hydrological modelling is an iterative process (see Figure \@ref(fig:iterative-modelling-process). At the beginning, the purpose of the model has to be defined. The model goal determines the spatial and temporal resolution of the hydrological model. E.g. for analyzing the impact of climate change on seasonal, regional flows we are interested in the seasonal flow volumes whereas a model used for early warnings from floods requires high temporal resolution and a high model performance for threshold overflows. Please note that the definition of the model goal also determines the performance criteria the model has to fulfill in order to be judged suitable for its purpose. As a next step, data about the catchment is gathered (see for example basin characterization in the Chapter [Case Studies]](#CaseStudies)) and a first conceptual model of the dominant flow processes in the basin is drafted (e.g. low peaks and significant base flow point to large storage capacity in the basin whereas high peaks and low base flow indicate small storage capacity in the basin). The conceptual model of the river catchment is then implemented with a mathematical model (e.g. the HBV model in RS Minerve) and parameterized as well as possible (i.e. using reasonable estimates for initial parameter values). The model is then calibrated and validated as described above. If the performance criteria for the model calibration are satisfied, a conscientious modeler performs a sensitivity analysis to gain confidence in the model. From each of these steps, the modeler can (and generally has to) go back to a previous step to gather more data, modify the conceptual model, adapt the model implementation, re-calibrate the model and/or re-evaluate the model sensitivity. The described steps produce a model (or an ensemble of models) that satisfy the performance criteria, only now the modeller can start actually using the model for the purpose it was implemented for.          
-```{r iterative-modelling-process, echo=FALSE, out.width="100%", fig.align="center", fig.cap="The modelling process is iterative."}
-knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_modelling_process.png")
-```
-
-Modelling is an involved process requiring highly specialized knowledge and skills. This book chapter will guide you through the modelling process with the example of the Nauvalisoy catchment.  
-
 
 ### Practical Steps {#secion-calibration-practical-steps}
 #### Manual calibration of synthetic discharge {#section-hbv-nauvalisoy-calibration}  
-The following section describes the steps for manual model calibration. We use the example of the Nauvalisoy river catchment and calibrate it with synthetic discharge measurements to deepen our understanding of the HBV model. For the synthetic discharge measurements it is theoretically possible to find a perfect match between simulated and measured data which is typically not the case for real measurements.  
+The following section describes the steps for manual model calibration. We use the example of the Nauvalisoy river catchment and calibrate it with synthetic discharge measurements to deepen our understanding of the HBV model. For the synthetic discharge measurements it is theoretically possible to find a perfect match between simulated and measured data which is typically not the case for real measurements.    
+Add a comparator and a source object to your Nauvalisoy model and load river discharge measurements (filename), then run the model [Here](#section-quickguides-add-comparator-and-discharge-data) is a detailed step-by-step description of how to do this. With default parameters, the outcome of this step should look like Figure \@ref(fig:rsminerve-run-model-precalibration). Should your result differ significantly from the one shown here, compare the parameters of the HBV mode to the ones in the file [./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt](./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt). You can import the parameter set to RS Minerve via Import P in the model properties toolbar.
 
 ```{r rsminerve-run-model-precalibration, echo=FALSE, out.width="80%", fig.align="center", fig.cap="The simulated discharge (green) differs from the reference discharge (blue) before model calibration."}
 knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_simulation_result_before_calibration_synthetic.png")
@@ -450,18 +459,65 @@ knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_simulation_result_be
 ::: {.center exercise-rsminerve-manual-calibration=""}
 **Exercise: RS Minerve - Manual calibration of synthetic discharge**
 :::
-Add a comparator and a source object to your Nauvalisoy model and load river discharge measurements (filename), then run the model [how to](#section-quickguides-add-comparator-and-discharge-data). With default parameters, the outcome of this step should look like Figure \@ref(fig:rsminerve-run-model-precalibration). Should your result differ significantly from the one shown here, compare the parameters of the HBV mode to the ones in the file ./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt. You can import the parameter set to RS Minerve via Import P in the model properties toolbar.
+1. Try to calibrate the model. Start with the parameters of the snow function and then proceed downwards through the compartments of the HBV model. Try to figure out which parameters influence the timing of the discharge peak, which the height of the peak and which the form of the recession curve.     
+2. Look at the variables of the HBV model during calibration (e.g. snow water equivalent, soil moisture, etc.).   
 
-Hints: Start adjusting the parameters of the HBV model to make the simulated discharge curve more similar to the reference discharge. Start with the parameters of the snow function and then proceed downwards through the compartments of the HBV model. 
-Focus on parts of the curves. Try to figure out which parameters influence the timing of the discharge peak, which the height of the peak and which the form of the recession curve. Give yourself some time for this task before you go peaking in the results.          
-The parameters of the calibrated model are linked [here.](#section-appendix-solutions-calibrated parameters)
-
-::: {.center exercise-rsminerve-manual-calibration=""}
-**Exercise: RS Minerve - Load real discharge measurements**
-:::
-Import the database file for Nauvalisoy including measured discharge at the outlet of the catchment ./data/SyrDarya/Chirchiq/RSMinerve/ERA5Q_Nauvalisoy_1981_2013.csv into RS Minerve and connect it to your model. Adapt the simulation time period to start on Jan 1 1981 at 1 a.m. until Dec 31 2013 at 11 p.m (the full period with available data). The simulation will take place at the maximum resolution of the forcing data, i.e. at hourly time steps. The discharge measurements are available as averages over 8-11 days. We choose an output interval of 2 days. As the initial water content in the system is not known, a warm-up period of 1 year is typically used to minimize the impact of the unknown initial conditions on the simulation results. You can implement the warm-up period in the comparator object under Parameters. Use the default, pre-calibration parameter set in ./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt as we don't know much about the catchment properties.          
+Hint: This is an iterative process, give yourself some time for this task before you go peaking in the results.          
+The parameters of the calibrated model are linked [here](#section-appendix-solutions-calibrated parameters). Inspiration for this exercise from @seibert_teaching_2012. 
 ::::
 
+The calibration process can be automated in RS Minerve. Automated calibration works similarly as manual calibration: A parameter is changed to minimize the calibration performance criteria (e.g. the difference between the simulated and the measured discharge). Because the automated calibration is much faster than manual calibration, it is extremely tempting to let it calibrate all parameters at once while working on something else but by now you know that good modeling is not as simple as that. Let's see if RS Minerve finds the parameter set that was used to produce the synthetic discharge curve. Load the original parameter set via import P in the Model Properties toolbar. The file is in [./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt](./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt). Open the calibration tab in the Module toolbar (Figure \@ref(fig:open-calibration-tab)). 
+```{r open-calibration-tab, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Open the calibration tab in RS Minerve."}
+knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_open-calibration-tab.png")
+```
+
+In the calibrator tab, select the parameters **CFmax**, **TT**, **TTInt**, **FC**, **SUMax**, **Kr**, **Ku**, **Kl**, and **Kperc** for calibration. Compare the parameter ranges to the calibrated parameter set from the [solutions of the manual calibration example](#section-appendix-solutions-calibrated parameters) and make sure that the *true* parameters are within the range of the parameters to be calibrated (e.g. make sure that for TT and TTInt Max is set to 3 (see also Figure \@ref(fig:calibration-parameters))). 
+```{r calibration-parameters, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Open the calibration tab in RS Minerve."}
+knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_calibration_parameters.png")
+```
+
+You will have to choose performance indicators which will be combined in the objective function. 
+
+:::: {.exercisebox exercise-automated-calibration=""}
+::: {.center exercise-automated-calibration=""}
+**Exercise: RS Minerve - Automated calibration**
+:::
+ * Choose one or several performance indicators and run the automated calibration. The automated calibration may take a few minutes (expect around 3000 model iterations). Compare the parameters found with the automated calibration to the ones that were used for the generation of the synthetic discharge values (in [solutions of the manual calibration example](#section-appendix-solutions-calibrated parameters)). Discuss the differences. Where were you surprised? Which parameters could be identified and which not?     
+ * Change the combination and weights of the performance indicators and redo the automated calibration. Note how the calibration result changes. 
+::::
+
+You have seen in the exercise above that is not so easy to find the *true* parameter set of a basin. Let's get a better understanding of the model parameters. Choose 1-3 parameters for which you will do a sensitivity analysis. 
+
+:::: {.exercisebox exercise-rsminerve-manual-sensitivity=""}
+::: {.center exercise-rsminerve-manual-sensitivity=""}
+**Exercise: RS Minerve - Manual sensitivity analysis**
+:::
+ * Discuss with your colleague(s) in which way you expect the model outcomes to change when you modify your chosen parameters before you run the model.   
+ * Make notes of the changes in parameters and the changes in the model outcomes.   
+::::
+
+The sensitivity analysis can be automated in RS Minerve. Make sure to have the calibrated parameter set loaded (via import P in the Model Properties toolbar). Open the tab for stochastic simulations in the Module toolbar (see Figure \@ref(fig:rsminerve-open-stochastic-simulation)). 
+
+```{r rsminerve-open-stochastic-simulation, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Open the stochastic simulation tab in RS Minerve."}
+knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_stochasticSimulation.png")
+```
+
+Select one of the parameters that you have evaluated manually in the exercise above and assume a uniform distribution between the default parameter ranges for said parameter (see for example Figure \@ref(fig:rsminerve-do-stochastic-simulation)). 
+```{r rsminerve-do-stochastic-simulation, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Open the stochastic simulation tab in RS Minerve."}
+knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_doStochasticSimulation.png")
+```
+
+:::: {.exercisebox exercise-rsminerve-manual-sensitivity=""}
+::: {.center exercise-rsminerve-manual-sensitivity=""}
+**Exercise: RS Minerve - Automated sensitivity analysis**
+:::
+ * Perform an automated sensitivity analysis for the same parameters you chose in the previous exercise (manual sensitivity analysis).   
+ * With your colleague(s), discuss the distribution options for the parameters and think about which distributions are suitable for which parameters.   
+ * Compare the outcome of the manual sensitivity analysis .    
+ * Bonus task: Choose a sensitive model parameter and valuate the sensitivity of the stochastic simulation with regard to the number of simulations or the seed ^[The seed is used in the random number generator. It makes the stochastic simulation reproducible.].
+::::
+
+Now we have a rasonable understanding of the HBV model. Let's try it out with real discharge data. Import the database file for Nauvalisoy including measured discharge at the outlet of the catchment [./data/SyrDarya/Chirchiq/RSMinerve/ERA5Q_Nauvalisoy_1981_2013.csv](./data/SyrDarya/Chirchiq/RSMinerve/ERA5Q_Nauvalisoy_1981_2013.csv) into RS Minerve and connect it to your model. Adapt the simulation time period to start on Jan 1 1981 at 1 a.m. until Dec 31 2013 at 11 p.m (the full period with available data). The simulation will take place at the maximum resolution of the forcing data, i.e. at hourly time steps. The discharge measurements are available as averages over 8-11 days. We choose an output interval of 2 days. As the initial water content in the system is not known, a warm-up period of 1 year is typically used to minimize the impact of the unknown initial conditions on the simulation results. You can implement the warm-up period in the comparator object under Parameters. Use the default, pre-calibration parameter set in [./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt](./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt) as we don't know much about the catchment properties.  
 Figure \@ref(fig:fig-real-discharge-result) shows the resulting discharge time series in the comparator object. 
 ```{r fig-real-discharge-result, echo=FALSE,message=FALSE,warnin=FALSE, fig.cap="Simulated and measured discahrge at the outlet of the Nauvalisoy catchment."}
 knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_Nauvalisoy_real_discharge_base.png")
