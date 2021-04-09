@@ -1590,6 +1590,8 @@ era5_gunt_yashikul_date <-  generateSeqDates(param$year_min,param$year_max,"hour
 ```
 
 
-## Snow Cover Data
+## Snow Cover Data {#section-data-snow-cover}
+
+
 
 Section is work in progress! Stay tuned.

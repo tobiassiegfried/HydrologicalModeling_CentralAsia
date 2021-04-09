@@ -1,8 +1,8 @@
-﻿RS MINERVE - Parameters
+RS MINERVE - Parameters
 Version 4.0.0.0 - Wednesday, March 31, 2021 9:43 PM
-Model: \\Mac\Dropbox for Business\HYDRO4U_TECHNICAL_WORK\MATERIALS\TUTORIALS\HBV_Training\RSMinerve\nauvalisoy.rsm
+Model: nauvalisoy.rsm
 Description: nauvalisoy
-Database: \\Mac\Dropbox for Business\HYDRO4U_TECHNICAL_WORK\MATERIALS\TUTORIALS\HBV_Training\RSMinerve\nauvalisoy.dbx
+Database: nauvalisoy.dbx
 OBJECTS
 HBV92	1
 Station	1
