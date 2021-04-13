@@ -19,3 +19,69 @@ Third and finally, empirical modeling will be introduced for forecasting. These 
 With everything that is presented, the focus is on the use of open source and free software. For data preparation and analysis as well as for water balance and empirical modeling, [R](https://www.r-project.org) and [RStudio](https://rstudio.com) are utilized [@R-2013; @RStudio-2020]. For the processing of geographic data, workflows in [QGIS](https://www.qgis.org/en/site/) are demonstrated [@QGIS_software]. For hydrological-hydraulic modeling, the free [RS MINERVE](https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve.html) is utilized which is a environment for the modeling of free surface runoff flow formation and propagation [@rsminerve_um; @rsminerve_tm]. The reader is expected to have a basic understanding about R and QGIS and how to use these software for data analysis and processing.
 
 The R code to produce figures, conduct analyses as well carry out empirical modeling is deliberately provided throughout the text and embedded there. While this makes the text heavier than necessary, it gives the local target group to reuse code and directly reproduce results while working on their own problems. An attempt has been made to make everything as reproducible as possible.
+
+
+# Study guide {#study-guide .unnumbered}
+This course book has been designed to accompany a 2-week workshop for aspiring water professionals at the Kazakh-German University in Almaty (Master level). The material can be covered in 8 intensive work days. The workshop participants will be guided through building up their own hydrological model of a sample catchment in Central Asia. The readers are recommended to work through the texts in each chapter including the tasks that serve to deepen reflection on the course material and to do their daily homework on the modeling of the sample catchment. This chapter explains how to use this course book.   
+
+Exercises are highlighted with blue boxes:    
+
+:::: {.exercisebox exercise-intro=""}  
+::: {.center exercise-intro=""}  
+**Exercise: This is an exercise box**
+:::  
+With the description of the exercise, hints and a link to the solutions.   
+::::    
+  
+Tasks that enforce deeper learning of the course material are highlighted in green:   
+
+:::: {.taskbox task-intro=""}
+::: {.center task-intro=""}
+**Task: This is a task box**
+:::
+With some text
+::::
+
+Take home messages or important notes are highlighted in red:  
+
+:::: {.notebox note-intro=""}
+::: {.center note-intro=""}
+**Note: Daily completion of home work**
+:::
+Please make sure to complete your homework on a daily basis as the course builds up on the previous days work.   
+::::
+
+
+## Day 1: Introduction and installation of software {.unnumbered}
+Read [Chapter 1: A short history of Water in Central Asia](#ShortHistory) and [Chapter 2: Hydrological Systems in Central Asia](#HydrologicalSystems) in the course book. Then make sure the requried software for this course is installed on your computer. Section [Open-source resources of the Appendix](#section-appendix-open-source-resources) includes installation instructions and the on-line learning material that can get you started with the software. Below is a quick summary: 
+
+* [QGIS](https://qgis.org/en/site/)  
+* [R](https://cloud.r-project.org/)
+* [RStudio](https://www.rstudio.com/products/rstudio/download/)  
+* [RS Minerve](https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve/telechargement-rsm.html)  
+
+If you have not used the software above before we recommend the following resources to get  your started (remember, more detailed instructions are available in the [Appendix](#section-appendix-open-source-resources)):  
+
+* [QGIS training manual](https://docs.qgis.org/3.16/en/docs/training_manual/index.html)  
+* [Modern Dive for getting started with R and RStudio](https://moderndive.com/index.html)  
+* [RS Minerve User Manual](https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve/telechargement-rsm.html)  
+
+
+## Day 2: Catchment characterization {.unnumbered}  
+Read the [Case Studies in Chapter 3](#CaseStudies) and do the exercise, i.e. do a catchment characterization of your sample catchment.   
+
+**Todo: Link to exercise**
+
+
+## Day 3:  {.unnumbered}
+
+
+
+
+
+
+
+
+
+
+

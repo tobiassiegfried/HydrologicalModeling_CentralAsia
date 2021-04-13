@@ -15,7 +15,21 @@ pre code {
 
 .exercisebox {
   padding: 1em;
-  background: #d2f8d2;
+  background: #ACE3EE;
+  color: black;
+  border: 1px #cacdca;
+  border-radius: 10px;
+}
+.taskbox {
+  padding: 1em;
+  background: #DFEEAC;
+  color: black;
+  border: 1px #cacdca;
+  border-radius: 10px;
+}
+.notebox {
+  padding: 1em;
+  background: #F5CBA7 ;
   color: black;
   border: 1px #cacdca;
   border-radius: 10px;
