@@ -381,11 +381,12 @@ This Section follows the steps shown in Figure \@ref(fig:ClimateImpactModelChain
 
 ### Setting up QGIS {#section-steps-setting-up}
 
-Open and save a new QGIS project ([How to for absolute beginners](#section-saving-a-new-qgis-project)). Make sure that the maps projection is in UTM ([How to change the projection of a project](#section-change-project-projection-qgis)). The needed plugins are: qProf or profile tool ([How to install and activate a plugin](#section-install-and-activate-plugins-in-QGIS3)). The optional plugins are: SRTM plugin (requires a login to USGS Earth Explorer [How to register](#section-register-with-earth-explorer)). Note, SAGA routines must be installed and correctly configured in QGIS.
+Open and save a new QGIS project ([How to for absolute beginners](#section-saving-a-new-qgis-project)). Make sure that the maps projection is in UTM ([How to change the projection of a project](#section-change-project-projection-qgis)). The needed plugins are: qProf or profile tool ([How to install and activate a plugin](#section-install-and-activate-plugins-in-QGIS3)). The optional plugins are: SRTM plugin (requires a login to USGS Earth Explorer [How to register](#section-register-with-earth-explorer)). Note, SAGA routines must be installed and correctly configured in QGIS (which is typically the case for default installations of long-term support versions of QGIS).
 
 ### Load DEM
 
-We use the SRTM 1 arc-second global DEM ([Data description](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects)). The DEM tiles are downloaded directly in QGIS3 (SRTM plugin, [How to](#section-srtm-plugin)) or via the USGS Earth Explorer ([How to](#section-earth-explorer-download-srtm)) and merged to a single GIS layer ([How to](#section-merge-srtm-tiles)). In any case you will need to register for an Earth Explorer account [How to register](#section-register-with-earth-explorer).
+We use the SRTM 1 arc-second global DEM ([Data description](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects)). The DEM tiles are downloaded directly in QGIS3 (SRTM plugin, [How to](#section-srtm-plugin)) or via the USGS Earth Explorer ([How to](#section-earth-explorer-download-srtm)) and merged to a single GIS layer ([How to](#section-merge-srtm-tiles)). In any case you will need to register for an Earth Explorer account [How to register](#section-register-with-earth-explorer).  
+Typically, geospatial data from open sources is stored in the standard projection WGS84 (EPSG:4326). The WGS84   
 
 ### Derive the boundaries of your catchment {#section-steps-derive-catchment-boundaries}
 

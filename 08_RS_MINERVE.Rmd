@@ -77,7 +77,7 @@ ggplot(seasonal_precipitation) +
  theme_bw()
 ```
 
-Higher precipitation in the catchment is positively correlated with higher discharge in the river with a delay. Or in other words: The discharge is the catchments hydrological response to precipitation. The relationship can be described as follows: 
+Higher precipitation in the catchment is positively correlated with higher discharge in the river with a delay. Or in other words: The discharge is the catchments hydrological response to precipitation. The relationship is can be expressed as follows: 
 
 $$
 Q \propto P \cdot K
@@ -122,50 +122,54 @@ Which describes the receding limb of the hydrograph ([What is a hydrograph](#sec
 
 Understanding the linear reservoir model is a prerequisite for hydrological modeling. That is why we propose the following exercise for you to do at home as a preparation for class.   
 
+```{r, eval = "html", label="linear-reservoir-example", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "exercise" <div class = "exercise" id="kc4.1"> 
+<h3 class = "right">Ex4.1</h3> 
+<h3 class = "left">Exercise: The Linear Reservoir</h3> 
+<p><strong>Part 1: Experimental setup</strong></p>
+<p>To understand the flow of water through a reservoir, you will build a bucket model yourself at home from materials that you have at hand and measure recharge as well as discharge from the bucket. You will then make a numerical model of your real bucket model and simulate discharge. Think through the experiment and answer the following questions:</p>
+<p><ul>
+  <li>What will determine the flow through your bucket?</li>
+  <li>What do you need to measure?</li>
+  <li>How can you measure it?</li>
+  <li>What materials you will need to set up the experiment?</li>
+  <li>Where will you get the water from and can you re-use it after the experiment?</li>
+</ul></p>
+<p><a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-exercise1">Solution to task 1</a></p> 
+<p></p>
+<p><strong>Part 2: Perform the experiment</strong></p>
+<p>Set up the experiment and pour water into your improvised reservoir. Take care to pour with a continuous speed over a short time period. You may have to repeat the experiment a few times (see also notes on measurement accuracy in the <a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-exercise1">solutions of part 1 of this exercise</a>. The outcome of the experiment is a time series of discharge measurements.</p>   
+<p>You can watch a video of the experiment <a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#solution-task2-perform-experiment">here</a> if you cannot perform the experiment yourself.</p>
+<p></p>
+<p><strong>Part 3: Simulate the experiment</strong></p>
+<p>The figure below shows the measured discharge from the experimental data shown in the table above. We have implemented a discretized version of a linear reservoir model for you which shows the simulated discharge (grey bars) of a recharge event (blue bars). Play with the storage parameter by moving the slider and see how the simulated discharge changes based on the storage parameter of the simulated catchment. Can you reproduce the measured discharge? If you cannot find a perfect match between measurements and simulation results: What could be the reasons? (If you see an empty window below this text, go to the <a href="http://34.251.168.23:3838/linearReservoirExampleApp/">web app</a> directly to do the exercise).</p>
+<p><a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#solution-task3-simulate">Solution to task 3.</a></p>
+</div>')
+```
 
-:::: {.exercisebox exercise-rsminerve-linres-1=""}
-::: {.center exercise-rsminerve-linres-1=""}
-**Task 1: Exerimental setup**
-:::
-To understand the flow of water through a reservoir, you will build a bucket model yourself at home from materials that you have at hand and measure recharge as well as discharge from the bucket. You will then make a numerical model of your real bucket model and simulate discharge. Think through the experiment and answer the following questions:   
-
-* What will determine the flow through your bucket?  
-* What do you need to measure?   
-* How can you measure it?   
-* What materials you will need to set up the experiment?   
-* Where will you get the water from and can you re-use it after the experiment?    
-
-[Solution to task 1](#solution-task1-experimental-setup)
-
-::: {.center exercise-rsminerve-linres-2=""}
-**Task 2: Perform the experiment**
-:::
-Set up the experiment and pour water into your improvised reservoir. Take care to pour with a continuous speed over a short time period. You may have to repeat the experiment a few times (see also notes on measurement accuracy in the [Solutions of task 1](#solution-task1-experimental-setup)). The outcome of the experiment is a time series of discharge measurements.   
-You can watch a video of the experiment [here](#solution-task2-perform-experiment) if you cannot perform the experiment yourself.  
-
-::: {.center exercise-rsminerve-linres-3=""}
-**Task 3: Simulate the experiment**
-:::
-The figure below shows the measured discharge from the experimental data shown in the table above. We have implemented a discretized version of a linear reservoir model for you which shows the simulated discharge (grey bars) of a recharge event (blue bars). Play with the storage parameter by moving the slider and see how the simulated discharge changes based on the storage parameter of the simulated catchment. Can you reproduce the measured discharge? If you cannot find a perfect match between measurements and simulation results: What could be the reasons? (If you see an empty window below this text, go to the [web app](http://34.251.168.23:3838/linearReservoirExampleApp/) directly to do the exercise).  
 ```{r, echo=FALSE}
 knitr::include_app("http://34.251.168.23:3838/linearReservoirExampleApp/", 
                    height = "800px")
 ```
 
-[Solution to task 3](#solution-task3-simulate)
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "task" <div class = "task" id="t4.1"> 
+<h3 class = "right">T4.1</h3> 
+<h3 class= "left">Non-linear reservoirs</h3> 
+<p>Discuss with your colleague(s): </p>
+<p><ul>
+  <li>What happens to the discharge curve if the outlet of the reservoir is not at the bottom but somewhere in the middle of the receptacle wall? </li>
+  <li>What do you need to measure?</li>
+  <li>What happens if the receptacle is filled with sand?</li>
+  <li>What happens if you add another linear reservoir to the outlet of the first one, i.e. make a cascade of linear reservoirs?</li>
+</ul></p> 
+</div>')
+```
 
-::: {.center exercise-rsminerve-linres-4=""}
-**Task 4: The non-linear reservoir**
-:::
-* What happens to the discharge curve if the outlet of the reservoir is not at the bottom but somewhere in the middle of the receptacle wall? 
-* What happens if the receptacle is filled with sand?
-* What happens if you add another linear reservoir to the outlet of the first one, i.e. make a cascade of linear reservoirs?
 
-[Solution](#solution-task4-think)
-::::
-
-
-## Recap: The general modeling process
+## Recap: The general modeling process {#section-general-modelling-process}
 Hydrological modeling is an iterative process (see Figure \@ref(fig:iterative-modelling-process). At the beginning, the purpose of the model has to be defined. The model goal determines the spatial and temporal resolution of the hydrological model. E.g. for analyzing the impact of climate change on seasonal, regional flows we are interested in the seasonal flow volumes whereas a model used for early warnings from floods requires high temporal resolution and a high model performance for threshold overflows. See for example @bloschl_scale_1995 for a thorough discussion of scales in hydrological modeling. Please note that the definition of the model goal also determines the performance criteria the model has to fulfill in order to be judged suitable for its purpose. As a next step, data about the catchment is gathered (see for example basin characterization in the Chapter [Case Studies](#CaseStudies)) and a first conceptual model of the dominant flow processes in the basin is drafted (e.g. low peaks and significant base flow point to large storage capacity in the basin whereas high peaks and low base flow indicate small storage capacity in the basin). The conceptual model of the river catchment is then implemented with a mathematical model (e.g. the HBV model in RS Minerve) and parameterized as well as possible (i.e. using reasonable estimates for initial parameter values). The model is then calibrated and validated (i.e. tested with a previously unseen data set) as described further below If the performance criteria for the model calibration are satisfied, a conscientious modeler performs a sensitivity analysis to gain confidence in the model. From each of these steps, the modeler can (and generally has to) go back to a previous step to gather more data, modify the conceptual model, adapt the model implementation, re-calibrate the model and/or re-evaluate the model sensitivity. Also, the modeler is aware of the inherent uncertainties of the data and the model (see for example @refsgaard_uncertainty_2007 for a discussion on how to include uncertainties in the modeling process). The described steps produce a model (or an ensemble of models) that satisfy the performance criteria, only now the modeler can start actually using the model for the purpose it was implemented for.          
 ```{r iterative-modelling-process, echo=FALSE, out.width="100%", fig.align="center", fig.cap="The modelling process is iterative."}
 knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_modelling_process.png")
@@ -173,14 +177,15 @@ knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_modelling_process.pn
 
 Modeling is an involved process requiring highly specialized knowledge and skills. A modeler has the responsibility to clearly state the underlying assumptions, uncertainties and limitations of their model, especially if it is to be used in decision making. This book chapter will guide you through the modeling process with the example of the Nauvalisoy catchment.  
 
-:::: {.exercisebox what-is-a-good-model=""}
-::: {.center what-is-a-good-model=""}
-**Task: What is a good model?**
-:::
-Imagine you work for a government and have to judge if the hydrological model you mandated is of good quality. How would you decide whether or not to accept the model?  
-
-Discuss with your colleague(s). 
-:::: 
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "task" <div class = "task" id="t4.2"> 
+<h3 class = "right">T4.2</h3> 
+<h3 class= "left">What is a good model?</h3> 
+<p>Discuss with your colleague(s): </p>
+<p>Imagine you work for a government and have to judge if the hydrological model you mandated is of good quality. How would you decide whether or not to accept the model?</p> 
+</div>')
+```
 
 
 ## Data Preparation and Setup
@@ -350,30 +355,33 @@ The HBV (Hydrologiska Byråns Vattenavdelning) model is a conceptual rainfall-ru
 knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_HBVconceptualModel.png")
 ```
 
-:::: {.exercisebox exercise-rsminerve-hbv-1=""}
-::: {.center exercise-rsminerve-hbv-1=""}
-**Exercise: Model understanding - Drivers**
-:::
-What are the model drivers (i.e. what input data do you need to provide)?   
-
-Hint: Study Figure \@ref(fig:fig-overview-hbv-model).   
-[Solution](#section-appendix-solutions-hbv-driving-forces)
-::::
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "task" <div class = "task" id="t4.3"> 
+<h3 class = "right">T4.3</h3> 
+<h3 class= "left">Model understanding - Drivers</h3> 
+<p>Discuss with your colleague(s): What are the model drivers (i.e. what input data do you need to provide)? </p>
+<p>Hint: Study the figure above.</p>
+<p><a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-hbv-driving-forces">Solution</a></p>
+</div>')
+```
 
 Figure \@ref(fig:fig-overview-hbv-model-parameters) from the RS Minerve technical manual [rsminerve-tm] gives an overview over the model parameters and states. 
 ```{r fig-overview-hbv-model-parameters, echo=FALSE, out.width="60%", fig.align="center", fig.cap="The HBV model parameters (source: RS MINERVE Technical Manual)."}
 knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_PARandIC.png")
 ```
 
-:::: {.exercisebox exercise-rsminerve-hbv-2=""}
-::: {.center exercise-rsminerve-hbv-2=""}
-**Exercise: Model understanding - States**
-:::
-What are the model states (i.e. what variables describe the amount of water in the system over time)?   
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "task" <div class = "task" id="t4.4"> 
+<h3 class = "right">T4.4</h3> 
+<h3 class= "left">Model understanding - States</h3> 
+<p>Discuss with your colleague(s): What are the model states (i.e. what variables describe the amount of water in the system over time)? </p>
+<p>Hint: Values for initial water content in the different model compartments need to be defined prior to the simulation.</p>
+<p><a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-hbv-parameters-states">Solution</a></p>
+</div>')
+```
 
-Hint: Values for initial water content in the different model compartments need to be defined prior to the simulation.    
-[Solution](#section-appendix-solutions-hbv-parameters-states)
-::::
 
 ### HBV example: Simple model of the Nauvalisoy river catchment {#section-hbv-nauvalisoy-tutorial-short}
 #### Set up the model {#section-hbv-nauvalisoy-modelling-setup}  
@@ -383,23 +391,28 @@ Hint: Values for initial water content in the different model compartments need 
 3.  Climate data has been prepared in the file ./data/SyrDarya/Chirchiq/RSMinerve/ERA5_Nauvalisoy_1981_2013.csv. Import the data in RS Minerve and link it to the station data ([Step-by-step guide](#section-quickguides-import-climate-data)).  
 4.  Change the model settings to calculate evaporation using Turc and adapt the coordinates in the settings tab [Step-by-step guide](#section-quickguides-atapt-model-settings).   
 
-:::: {.exercisebox exercise-rsminerve-hbv-3=""}
-::: {.center exercise-rsminerve-hbv-3=""}
-**Exercise: RS Minerve - Data visualization**
-:::
-Use the Selection and plots tool in the Modules toolbar of RS Minerve and display the hourly model inputs precipitation and temperature for the example year 1984. What is the approximate temperature range over the year? What is the annual precipitation? 
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "task" <div class = "task" id="t4.5"> 
+<h3 class = "right">T4.5</h3> 
+<h3 class= "left">RS Minerve - Data visualization</h3> 
+<p>Use the Selection and plots tool in the Modules toolbar of RS Minerve and display the hourly model inputs precipitation and temperature for the example year 1984. What is the approximate temperature range over the year? What is the annual precipitation? </p>
+<p>Hint: Adapt the simulation period in the model tab accordingly. Do not forget to set the initial conditions of the model to the last hour of 1983.</p>
+<p><a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-plot-temperature-and-precipitation-1984">Solution</a></p>
+</div>')
+```
 
-Hint: Adapt the simulation period in the model tab accordingly. Don't forget to set the initial conditions of the model to the last hour of 1983.      
-[Solution](#section-appendix-solutions-plot-temperature-and-precipitation-1984)
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "task" <div class = "task" id="t4.6"> 
+<h3 class = "right">T4.6</h3> 
+<h3 class= "left">RS Minerve - Compare evaporation models</h3> 
+<p>Compare the different methods to calculate hourly evaporation in 1984 and their impact on the simulated discharge. Is the uniform evaporation model suitable for seasonal discharge models? In what circumstance could a uniform evaporation model be appropriate?  </p>
+<p>Hint: Export simulation results to the data base (<a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-quick-guides-export-sim-results-to-db>how to).</p>
+<p><a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-compare-evaporation-methods">Solution</a></p>
+</div>')
+```
 
-::: {.center exercise-rsminerve-hbv-4=""}
-**Exercise: RS Minerve - Compare evaporation models**
-:::
-Compare the different methods to calculate hourly evaporation in 1984 and their impact on the simulated discharge. Is the uniform evaporation model suitable for seasonal discharge models? In what circumstance could a uniform evaporation model be appropriate?  
-
-Hint: Export simulation results to the data base ([how to](#section-quick-guides-export-sim-results-to-db)).  
-[Solution](#section-appendix-solutions-compare-evaporation-methods)
-::::
 
 
 
@@ -410,23 +423,29 @@ Hint: Export simulation results to the data base ([how to](#section-quick-guides
 ### Basic Principles {#section-calibration-principles}
 The large number of parameters of the HBV model can be adjusted within reasonable ranges to make the simulated river discharge more similar to the measured discharge. This process is sometimes called history matching because past measurements are used to adapt the model parameters. The following two exercises are important for understanding hydrological models. They are relevant whether you work as a modeler or as a decision maker. Try to first come up with a few own ideas and then study the solutions carefully. They will be discussed in the lectures in more detail.    
 
-:::: {.exercisebox exercise-rsminerve-hbv-5=""} 
-::: {.center exercise-rsminerve-hbv-5=""}
-**Exercise: Model calibration - Common difficulties**
-:::
-What are typical difficulties inherent to the calibration of common semi-distributed (or fully distributed) hydrological models?
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "task" <div class = "task" id="t4.7"> 
+<h3 class = "right">T4.7</h3> 
+<h3 class= "left">Model calibration - Common difficulties</h3> 
+<p>Discuss with your colleague(s): What are typical difficulties inherent to the calibration of common semi-distributed (or fully distributed) hydrological models?</p>
+<p>Hint: Compare the number of parameters of the HBV model to the number of model states.</p>
+<p><a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-common-calibration-issues">Solution</a></p>
+</div>')
+```
 
-Hint: Compare the number of parameters of the HBV model to the number of model states.  
-[Solution](#section-appendix-solutions-common-calibration-issues)
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "task" <div class = "task" id="t4.8"> 
+<h3 class = "right">T4.8</h3> 
+<h3 class= "left">Model calibration - Strategies to handle the difficulties</h3> 
+<p>Discuss with your colleague(s): Based on the list of common difficulties in the solution of exercise 5, think about possible strategies to address these challenges.</p>
+<p>Hint: A modeler proverb says "as simple as possible but as complex as necessary".</p>
+<p><a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-strategies-for-issues">Solution</a></p>
+</div>')
+```
 
-::: {.center exercise-rsminerve-hbv-6=""}
-**Exercise: Model calibration - Strategies to handle the difficulties**
-:::
-Based on the list of common difficulties in the solution of exercise 5, think about possible strategies to address these challenges.
 
-Hint: A modeler proverb says "as simple as possible but as complex as necessary".  
-[Solution](#section-appendix-solutions-strategies-for-issues)
-::::
 
 
 #### Calibration vs. validation  
@@ -438,12 +457,16 @@ Interested readers are refered to the literature for a more thorough discussion 
 #### Performance indicators
 Model performance can be expressed in different ways. Some indicators are better suited to calibrate high flows (e.g. root mean squared error) and some are better suited to calibrate low flows (e.g. Nash coefficient for logarithm values). Others evaluate the models ability to reproduce the exceedance of a given discharge which is especially important for flood modelling. The calibration result depends on the choice of the performance indicators. For the automated calibration in RS Minerve, the user can choose a combination of several performance indicators. Care has to be taken to choose them according to the models goal. 
 
-:::: {.exercisebox task-performance-indicators=""}
-::: {.center task-performance-indicators=""}
-**Task: Read up on performance indicators**
-:::
-The RS Minerve technical manual [@rsminerve_tm] summarizes the most important performance indicators typically used in hydrological modelling. For the more ambitious modellers, the manual includes references to the literature. Read Chapter 3 of the technical manual. 
-::::
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "task" <div class = "task" id="t4.9"> 
+<h3 class = "right">T4.9</h3> 
+<h3 class= "left">Model performance indicators</h3> 
+<p>The RS Minerve technical manual summarizes the most important performance indicators typically used in hydrological modelling. For the more ambitious modellers, the manual includes references to the literature.</p>
+<p>Read Chapter 3 of the technical manual. </p>
+</div>')
+```
+
 
 
 ### Practical Steps {#secion-calibration-practical-steps}
@@ -455,16 +478,17 @@ Add a comparator and a source object to your Nauvalisoy model and load river dis
 knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_simulation_result_before_calibration_synthetic.png")
 ```
 
-:::: {.exercisebox exercise-rsminerve-manual-calibration=""}
-::: {.center exercise-rsminerve-manual-calibration=""}
-**Exercise: RS Minerve - Manual calibration of synthetic discharge**
-:::
-1. Try to calibrate the model. Start with the parameters of the snow function and then proceed downwards through the compartments of the HBV model. Try to figure out which parameters influence the timing of the discharge peak, which the height of the peak and which the form of the recession curve.     
-2. Look at the variables of the HBV model during calibration (e.g. snow water equivalent, soil moisture, etc.).   
-
-Hint: This is an iterative process, give yourself some time for this task before you go peaking in the results.          
-The parameters of the calibrated model are linked [here](#section-appendix-solutions-calibrated parameters). Inspiration for this exercise from @seibert_teaching_2012. 
-::::
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "task" <div class = "task" id="t4.10"> 
+<h3 class = "right">T4.10</h3> 
+<h3 class= "left">RS Minerve - Manual calibration of synthetic discharge</h3> 
+<p>1. Try to calibrate the model. Start with the parameters of the snow function and then proceed downwards through the compartments of the HBV model. Try to figure out which parameters influence the timing of the discharge peak, which the height of the peak and which the form of the recession curve.</p>
+<p>2. Look at the variables of the HBV model during calibration (e.g. snow water equivalent, soil moisture, etc.).</p>
+<p>Hint: This is an iterative process, give yourself some time for this task before you go peaking in the results.</p>
+<p>The parameters of the calibrated model are linked <a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-calibrated parameters">here</a>. Inspiration for this exercise from Prof. Jan Seibert and colleagues.</p>
+</div>')
+```
 
 The calibration process can be automated in RS Minerve. Automated calibration works similarly as manual calibration: A parameter is changed to minimize the calibration performance criteria (e.g. the difference between the simulated and the measured discharge). Because the automated calibration is much faster than manual calibration, it is extremely tempting to let it calibrate all parameters at once while working on something else but by now you know that good modeling is not as simple as that. Let's see if RS Minerve finds the parameter set that was used to produce the synthetic discharge curve. Load the original parameter set via import P in the Model Properties toolbar. The file is in [./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt](./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt). Open the calibration tab in the Module toolbar (Figure \@ref(fig:open-calibration-tab)). 
 ```{r open-calibration-tab, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Open the calibration tab in RS Minerve."}
@@ -478,23 +502,28 @@ knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_calibration_paramete
 
 You will have to choose performance indicators which will be combined in the objective function. 
 
-:::: {.exercisebox exercise-automated-calibration=""}
-::: {.center exercise-automated-calibration=""}
-**Exercise: RS Minerve - Automated calibration**
-:::
- * Choose one or several performance indicators and run the automated calibration. The automated calibration may take a few minutes (expect around 3000 model iterations). Compare the parameters found with the automated calibration to the ones that were used for the generation of the synthetic discharge values (in [solutions of the manual calibration example](#section-appendix-solutions-calibrated parameters)). Discuss the differences. Where were you surprised? Which parameters could be identified and which not?     
- * Change the combination and weights of the performance indicators and redo the automated calibration. Note how the calibration result changes. 
-::::
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "task" <div class = "task" id="t4.11"> 
+<h3 class = "right">T4.11</h3> 
+<h3 class= "left">RS Minerve - Automated calibration</h3> 
+<p>Choose one or several performance indicators and run the automated calibration. The automated calibration may take a few minutes (expect around 3000 model iterations). Compare the parameters found with the automated calibration to the ones that were used for the generation of the synthetic discharge values (in <a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-calibrated parameters">solutions of the manual calibration example</a>). Discuss the differences. Where were you surprised? Which parameters could be identified and which not?</p>
+<p>Change the combination and weights of the performance indicators and redo the automated calibration. Note how the calibration result changes. </p>
+</div>')
+```
+
 
 You have seen in the exercise above that is not so easy to find the *true* parameter set of a basin. Let's get a better understanding of the model parameters. Choose 1-3 parameters for which you will do a sensitivity analysis. 
 
-:::: {.exercisebox exercise-rsminerve-manual-sensitivity=""}
-::: {.center exercise-rsminerve-manual-sensitivity=""}
-**Exercise: RS Minerve - Manual sensitivity analysis**
-:::
- * Discuss with your colleague(s) in which way you expect the model outcomes to change when you modify your chosen parameters before you run the model.   
- * Make notes of the changes in parameters and the changes in the model outcomes.   
-::::
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "task" <div class = "task" id="t4.12"> 
+<h3 class = "right">T4.12</h3> 
+<h3 class= "left">RS Minerve - Manual sensitivity analysis</h3> 
+<p>Discuss with your colleague(s) in which way you expect the model outcomes to change when you modify your chosen parameters before you run the model. </p>
+<p>Make notes of the changes in parameters and the changes in the model outcomes.</p>
+</div>')
+```
 
 The sensitivity analysis can be automated in RS Minerve. Make sure to have the calibrated parameter set loaded (via import P in the Model Properties toolbar). Open the tab for stochastic simulations in the Module toolbar (see Figure \@ref(fig:rsminerve-open-stochastic-simulation)). 
 
@@ -507,15 +536,17 @@ Select one of the parameters that you have evaluated manually in the exercise ab
 knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_doStochasticSimulation.png")
 ```
 
-:::: {.exercisebox exercise-rsminerve-manual-sensitivity=""}
-::: {.center exercise-rsminerve-manual-sensitivity=""}
-**Exercise: RS Minerve - Automated sensitivity analysis**
-:::
- * Perform an automated sensitivity analysis for the same parameters you chose in the previous exercise (manual sensitivity analysis).   
- * With your colleague(s), discuss the distribution options for the parameters and think about which distributions are suitable for which parameters.   
- * Compare the outcome of the manual sensitivity analysis .    
- * Bonus task: Choose a sensitive model parameter and valuate the sensitivity of the stochastic simulation with regard to the number of simulations or the seed ^[The seed is used in the random number generator. It makes the stochastic simulation reproducible.].
-::::
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "task" <div class = "task" id="t4.13"> 
+<h3 class = "right">T4.13</h3> 
+<h3 class= "left">RS Minerve - Automated sensitivity analysis</h3> 
+<p>Perform an automated sensitivity analysis for the same parameters you chose in the previous exercise (manual sensitivity analysis).</p>
+<p>Compare the outcome of the manual sensitivity analysis.</p>
+<p>Bonus task: Choose a sensitive model parameter and evaluate the sensitivity of the stochastic simulation with regard to the number of simulations or the seed. (The seed is used in the random number generator. It makes the stochastic simulation reproducible.)</p>
+</div>')
+```
+
 
 Now we have a rasonable understanding of the HBV model. Let's try it out with real discharge data. Import the database file for Nauvalisoy including measured discharge at the outlet of the catchment [./data/SyrDarya/Chirchiq/RSMinerve/ERA5Q_Nauvalisoy_1981_2013.csv](./data/SyrDarya/Chirchiq/RSMinerve/ERA5Q_Nauvalisoy_1981_2013.csv) into RS Minerve and connect it to your model. Adapt the simulation time period to start on Jan 1 1981 at 1 a.m. until Dec 31 2013 at 11 p.m (the full period with available data). The simulation will take place at the maximum resolution of the forcing data, i.e. at hourly time steps. The discharge measurements are available as averages over 8-11 days. We choose an output interval of 2 days. As the initial water content in the system is not known, a warm-up period of 1 year is typically used to minimize the impact of the unknown initial conditions on the simulation results. You can implement the warm-up period in the comparator object under Parameters. Use the default, pre-calibration parameter set in [./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt](./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt) as we don't know much about the catchment properties.  
 Figure \@ref(fig:fig-real-discharge-result) shows the resulting discharge time series in the comparator object. 
