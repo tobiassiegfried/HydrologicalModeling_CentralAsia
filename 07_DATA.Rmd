@@ -874,7 +874,7 @@ for (yr in downloadList_tp){
 }
 ```
 
-#### Rescaling ERA5 to monthly CHELSA values
+#### Rescaling ERA5 to monthly CHELSA values {#ERA5::BiasCorrectionCHELSA}
 
 ERA5 original data can easily be rescaled (bias corrected) to CHELSA data values for any river basin in the Central Asia domain using the convenience function `riversCentralAsia::biasCorrect_ERA5_CHELSA()`. Type `?biasCorrect_ERA5_CHELSA` to get more information about the function and its arguments. The code block below shows how to rescale (bias correct) total precipitation. It assumes that the ERA5 directory contains two subfolders `ERA5/tp/` and `ERA5/t2m` where the corresponding data are stored.
 
@@ -1068,7 +1068,9 @@ From rows 9 onward, the actual data are stored where a time stamp in the first c
 
 In order to look into the future with a hydrological model for exploring climate scenarios, it needs to be fed with those scenarios. The production of these scenarios in a way resembles the steps described for the reanalysis data but also differs in some marked way. Let us outline them first before diving into the details.
 
-First, the period of interest for the investigation of climate impacts needs to be defined. Future climate scenarios need then need to be identified that cover the area and period of interest. The future climate scenarios are outputs from global climate models (GCMs). These GCMs normally generate monthly data as a function of representative concentration pathways (called RCPs). They describe possible futures as a function of different atmospheric CO~2~-concentration scenarios. We focus the discussion here on the RCP 4.5 and RCP 8.5 concentration scenarios. According to the IPCC, RCP 4.5 is an intermediate scenario where CO~2~ emissions peak around 2040, then decline. Compared to this RCP 8.5 is generally considered to be a worst case climate change scenario. Very detailed information regarding these scenarios, their underlying assumptions and assumptions can be found on the dedicated website served by the Intergovernmental Panel for Climate Change (IPCC). See the link [here](https://ar5-syr.ipcc.ch/topic_futurechanges.php).
+First, a baseline period is defined which serves as a reference against which future climate impacts are assessed. Second, the future period of interest for the investigation of climate impacts needs to be defined and climate scenarios identified that cover the area and period of interest. The future climate scenarios are outputs from global climate models (GCMs). These GCMs normally generate monthly data as a function of representative concentration pathways (called RCPs). They describe possible futures as a function of different atmospheric CO~2~-concentration scenarios.
+
+We focus the discussion here on the RCP 4.5 and RCP 8.5 concentration scenarios. According to the IPCC, RCP 4.5 is an intermediate scenario where CO~2~ emissions peak around 2040, then decline. Compared to this, RCP 8.5 is generally considered to be a worst case climate change scenario. Very detailed information regarding these scenarios, their underlying assumptions and assumptions can be found on the dedicated website served by the Intergovernmental Panel for Climate Change (IPCC). See the link [here](https://ar5-syr.ipcc.ch/topic_futurechanges.php).
 
 ```{r rcpGGConcetrationLevels, echo=FALSE,fig.cap='The development of greenhouse gas concentrations during the 21st century as a function of the corresponding scenario. We focus here on RCP4.5 and RCP8.5. Source: [@van_Vuuren_2011]'}
 knitr::include_graphics("_bookdown_files/FIG_DATA/greenhouseGasConcetrations_RCP.jpg")
@@ -1076,17 +1078,19 @@ knitr::include_graphics("_bookdown_files/FIG_DATA/greenhouseGasConcetrations_RCP
 
 ### High Res. Monthly Climate Time Series for 2006 - 2100 {#CHELSA21Century}
 
-The recently released high-resolution climate scenario datasets described by [@Karger_2020] are utilized here to study climate impacts in river basins in the Central Asia region. The authors of the aforementioned paper present GCMs output for monthly precipitation, mean minimum as well as maximum monthly temperatures that has been downscaled using the CHELSA algorithm. The data can be found here <https://www.envidat.ch/#/metadata/chelsa_cmip5_ts>.
+The recently released high-resolution climate scenario datasets described by [@Karger_2020] are utilized here to study climate impacts in river basins in the Central Asia region. The authors of the aforementioned paper present GCM output for monthly precipitation, mean minimum as well as maximum monthly temperatures that has been downscaled using the CHELSA algorithm.[^data-7] The data can be found here <https://www.envidat.ch/#/metadata/chelsa_cmip5_ts>.
+
+[^data-7]: This is the same algorithm that was used to produce high-resolution reanalysis data as discussed in Chapter \@ref(Data::ClimateReanalysisData).
 
 We download data from 3 out of the 4 available downscaled GCM runs for further analysis and processing. These are outputs from the Coupled Model Intercomparison Project phase 5 ([CMIP5](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip5)) and are gridded monthly time series from the years 2006 through 2100 with a spatial resolution of 0.049 degrees (see again [@Karger_2020] for all the details). The three models from which data were taken are: CMCC-CM run by the Centro Euro-Mediterraneo per I Cambiamenti Climatici (CMCC); MIROC5 run by the University of Tokyo; and ACCESS1-3 run by the Commonwealth Scientific and Industrial Research Organization (CSIRO) and Bureau of Meteorology (BOM), Australia [@Karger_2020].
 
-First, the data is downloaded and stored locally for RCP 4.5 and RCP 8.5. Then, as in the case of the original CHELSA data, the monthly gridded precipitation time series are bias corrected using the monthly correction factors as report by [@beck2020c] and finally, mean monthly temperature fields are generated from the minimum and maximum monthly temperatures. The resulting data available for the Central Asia domain are available for download via this [link](https://www.dropbox.com/sh/xs870upjjvg9ovv/AABkniqG4f6XFzDkwZqhurcta?dl=0)[^data-7].
+First, the data is downloaded and stored locally for RCP 4.5 and RCP 8.5. Then, as in the case of the original CHELSA data (see Section \@ref(ERA5::BiasCorrectionCHELSA), the monthly gridded precipitation time series are bias corrected using the monthly correction factors as report by [@beck2020c] and finally, mean monthly temperature fields are generated from the minimum and maximum monthly temperatures. The resulting data available for the Central Asia domain are available for download via this [link](https://www.dropbox.com/sh/xs870upjjvg9ovv/AABkniqG4f6XFzDkwZqhurcta?dl=0)[^data-8].
 
-[^data-7]: If you download these data, it is advisable to maintain the directory structure as given via the Dropbox link. Please note that the entire directory is 4.79 GB of data.
+[^data-8]: If you download these data, it is advisable to maintain the directory structure as given via the Dropbox link. Please note that the entire directory is 4.79 GB of data.
 
-As in the case of the ERA5 data, these GCM data need to be made available for all the elevation bands. By providing a proper shapefile that contains sub-basin specific elevation bands of a catchment, the function `riversCentralAsia::downscale_ClimPred_monthly_BasinElBands()` can be used to compute this. This function processes the climate projection raster bricks with precipitation_flux and air_temperature (tasmin, tasmean and tasmax) and computes elevation band statistics. The next code block provides sample code on how to use `riversCentralAsia::downscale_ClimPred_monthly_BasinElBands()`. If you want to try this locally on your computer, it is required that you download the entire high resolution climate scenarios for the Central Asia on your local machine. The data are available under this [link](https://www.dropbox.com/sh/xs870upjjvg9ovv/AABkniqG4f6XFzDkwZqhurcta?dl=0). The whole process is shown here using a shapefile of the Gunt river basin that explicitly includes Lake Yashikul in the upstream of the basin. In lieu of this example, your own catchment subbasins file can easily be loaded and provided.
+As in the case of the ERA5 data, these GCM data need to be made available for all the elevation bands. By providing a proper shapefile that contains sub-basin specific elevation bands of a catchment, the function `riversCentralAsia::downscale_ClimPred_monthly_BasinElBands()` can be used to compute these data. The function processes the climate projection raster bricks with precipitation_flux and air_temperature (tasmin, tasmean and tasmax) and computes elevation band statistics. The next code block provides sample code on how to use `riversCentralAsia::downscale_ClimPred_monthly_BasinElBands()`.
 
-It is important to mention that precipitation is stored in units of kg/m^2^/s in these climate projection data. How do we arrive at mm/month in order to make these data compatible withe the ERA5 data? To answer this question, let us make a little though experiment. What happens when you pour 1 kg of water on a 1 m^2^ big patch? I 1kg corresponds to 1 liter that corresponds to 10^-3^ m^3^. So, very simply, this amount of water poured on such a patch generates a water height of exactly 1 mm. Using this equivalence, we can rewrite the unit kg/m2/s to mm/s. Finally, in order to arrive at mm/day, for example, we just multiply the data by 60x60x24 = 86'400 which are the number of seconds in a day. Since the climate model output is in monthly time intervals, we need mm/month and hence would also need to multiply by the number of days in the corresponding month.
+Please be aware that if you want to try this locally on your computer, it is required that you download the entire high resolution climate scenarios for the Central Asia on your local machine. The data are available under this [link](https://www.dropbox.com/sh/xs870upjjvg9ovv/AABkniqG4f6XFzDkwZqhurcta?dl=0). The whole process is shown here using a shapefile of the Gunt river basin that explicitly includes Lake Yashikul in the upstream of the basin. In lieu of this example, your own catchment subbasin file can easily be loaded and provided.
 
 ```{r,eval=FALSE}
 # Data
@@ -1135,7 +1139,7 @@ pathN <- paste0(climScen_Path,'rcp85','/','MIROC5','/')
 downscaled_ClimPred_rcp85_MIROC5 <- downscale_ClimPred_monthly_BasinElBands(pathN,fileListSearchPattern,
                                                                               startY,endY,elBands_shp_latlon)
 
-# Store files (if required, in the corresponding catchment-specific folder)
+# Store files if required in the corresponding catchment-specific folder. For the example presented here, this is in the following directory.
 # basin_climScen_Path <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
 #  
 # climScen_fileList <- c('downscaled_ClimPred_rcp45_ACCESS1_3', 'downscaled_ClimPred_rcp45_CMCC_CM',
@@ -1145,15 +1149,17 @@ downscaled_ClimPred_rcp85_MIROC5 <- downscale_ClimPred_monthly_BasinElBands(path
 # save(climScen_fileList,list = climScen_fileList,file = paste0(basin_climScen_Path,'climScen_monthly','.rda'))
 ```
 
-As discussed, these GCM data are high resolution monthly future climate fields which we downscaled on the corresponding catchment shapefile with its subbasins and elevation bands. All good.
+It is important to mention that precipitation is stored in units of kg/m^2^/s in these climate projection data. How do we arrive at mm/month in order to make these data compatible with the ERA5 data? To answer this question, let us make a little thought experiment. What happens when you pour 1 kg of water on a 1 m^2^ big patch? 1 kg corresponds to 1 liter that corresponds to 10^-3^ m^3^. So, very simply, this amount of water poured on such a patch generates a water height of exactly 1 mm. Using this equivalence, we can rewrite the unit kg/m^2^/s to mm/s. Finally, in order to arrive at mm/day, for example, we just multiply the data by 60x60x24 = 86'400 which are the number of seconds in a day. Since the climate model output is in monthly time intervals, we need mm/month and hence would also need to multiply by the number of days in the corresponding month.
 
-But how do we arrive at climate fields that have a high hourly temporal resolution at the same time so that we can drive the RS MINERVE hydrological model with the required input data? The solution is shown in the next section.
+As discussed, these GCM data are high spatial resolution monthly future climate fields which we downscaled on the corresponding catchment shapefile with its subbasins and elevation bands. All good. But how do we arrive at climate fields that also have a high temporal resolution (hourly time resolution in this case) so that we can drive the RS MINERVE hydrological model with the required input data? The solution is shown in the following Section \@ref(Data::WeatherGenerator) using a weather generator. A weather generator is a stochastic model that produces daily weather variables which can then be converted to hourly fields.
 
-### Using a Weather Generator to Simulate Daily Future Climate
+### Using a Weather Generator to Simulate Daily Future Climate {#Data::WeatherGenerator}
 
 #### Background and Input File Generation
 
-Stochastic weather generators are probabilistic models that are used to simulate weather data at a specific site or region by analyzing historical weather data and then generating a time-series of weather variables with statistical properties identical to the historical data [@BIRT20101252]. We demonstrate the use of RMAWGEN, a stochastic weather generator available for the `R` environment. Further information on RMAWGEN can be found here <https://github.com/ecor/RMAWGEN> and under the links provided via this GitHub link. While the weather generator is relatively poorly documented, a useful albeit very technical presentation of the tool is available [here](https://docs.google.com/file/d/0B66otCUk3Bv6V3RPbm1mUG4zVHc/edit). Furthermore, the functions are documented well in the latest development version of the package. The package can be installed in the following way directly from GitHub:
+Stochastic weather generators are probabilistic models that are used to simulate weather data at a specific site or region by analyzing historical weather data and then generating a time-series of weather variables with statistical properties identical to the historical data [@BIRT20101252]. We demonstrate the use of RMAWGEN, a stochastic weather generator available for the `R` environment. Further information on RMAWGEN can be found here <https://github.com/ecor/RMAWGEN> and under the links provided via the package information on GitHub.
+
+While the weather generator is relatively poorly documented, a useful albeit very technical presentation of the tool is available [here](https://docs.google.com/file/d/0B66otCUk3Bv6V3RPbm1mUG4zVHc/edit). Furthermore, the functions are documented well in the latest development version of the package. The package can be installed in the following way directly from GitHub:
 
 ```{r, eval=FALSE,message=FALSE}
 # Install GitHub version
@@ -1162,18 +1168,19 @@ install_github("ecor/RMAWGEN")
 library(RMAWGEN)
 ```
 
-RMAWGEN allows for the generation of daily temperature and precipitation scenarios that are conditioned on monthly totals as given by the GCM model outputs. This is the key idea. In order to arrive at the final hourly data, we then simply distribute the daily data evenly over the hours of that particular day.
-
-Using again an example of the Gunt-Yashikul river basin, the following code block shows how to use the function `prepare_RMAWGEN_input_data()` for the preparation of the relevant RMAWGEN input data files.
+RMAWGEN allows for the generation of daily temperature and precipitation scenarios that are conditioned on monthly climate scenario totals as given by the GCM model outputs. This is the key idea. Using again an example of the Gunt-Yashikul river basin, the following code block shows how to use the function `prepare_RMAWGEN_input_data()` for the preparation of the relevant RMAWGEN input data files so that the weather generator can be run.
 
 ```{r, eval = FALSE}
 # Load and process RS MINERVE csv database file
 filePath <- './data/AmuDarya/GuntYashikul/RSMinerve/'
 fileName <- 'Gunt_Yashikul_1981_2013_db.csv'
-era5_gunt_yashikul <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
+era5_gunt_yashikul_1 <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
 
 # Deleting unused catchments in the tibble. These catchments are not modeled later in RS MINERVE, so we can safely delete them here. Note that this operation is specific to the Gunt-Yashikul model and does not generalize to other catchments.
-idx2del <- (era5_gunt_yashikul[1,]=='Gunt_DS_1')|(era5_gunt_yashikul[1,]=='Gunt_DS_2')|(era5_gunt_yashikul[1,]=='Gunt_DS_3')
+idx2del <- 
+  (era5_gunt_yashikul[1,]=='Gunt_DS_1')|
+  (era5_gunt_yashikul[1,]=='Gunt_DS_2')|
+  (era5_gunt_yashikul[1,]=='Gunt_DS_3')
 era5_gunt_yashikul <- era5_gunt_yashikul %>% dplyr::select(which(!idx2del))
 
 # Generate the input files for the stochastic weather generator.
@@ -1198,9 +1205,13 @@ The function returns a list `rmawgen_input_files` with all key information that 
 
 -   TEMPERATURE_MAX: Maximum daily temperature (ditto)
 
-A weather generator is a type of model that uses input data to simulate output variables. Exactly like for example a hydrological runoff model, it depends on input parameters and different input parameter configuration lead to different model performance / outcomes. Hence, before generating future climate scenarios for which we do not have a validation set available to assess the performance of different parameter configurations of the weather generator, we assess model performance by using ERA5 data for calibration and model validation. The simple question to be answered here is whether or not the model is able to reproduce the statistical characteristics of the ERA5 dataset in the region of interest. If yes, we can safely assume that the weather generator can in a more or less realistic manner generate stochastic future climate scenarios that are conditioned on monthly GCM temperature and precipitation fields.
+A weather generator is a type of model that uses input data to simulate output variables, i.e. daily precipitation and minimum as well as maximum temperatures. Exactly like for example a hydrological runoff model, the stochastic weather generator model depends on input parameters. Different input parameter configuration lead to different model performance / outcomes. How are these parameters calibrated and how is such a model validated when we do not have calibration and validation sets available for the future periods for which climate impacts need to be studied?
 
-A typical parameter set of RMAWGEN for testing different models can be specified in the following way.
+The way to do this is to calibrate and validate the stochastic weather generator with reanalysis ERA5 data for each elevation band in the catchment of interest. In other words, we assume that each elevation band contains a representative meteorological station for which we have the ERA5 data available which is used to calibrate and validate daily weather generator models. In this context, the terms *elevation bands* and *meteorological stations* are used interchangeably.
+
+The key question to be answered then is whether or not the model is able to reproduce the statistical characteristics of the ERA5 dataset for each elevation band/station. If yes, we can safely assume that the weather generator can in a more or less realistic manner generate stochastic future daily climate fields that are conditioned on local conditions and on the monthly minimum and maximum temperature and precipitation fields from the climate projections.
+
+A typical parameter set of RMAWGEN for testing different models with different parameters can be specified in the following way.
 
 ```{r,eval=FALSE}
 # Housekeeping
@@ -1235,11 +1246,13 @@ year_max_sim <-  year_max # we are not yet simulating future climate but use the
 valmin <- 1.0
 ```
 
-#### Model Calibration & Validation for Model Selection
+The different parameter configurations will be used to run different stochastic weather generator models. In a validation step, the best model will be chosen as explained in the next Section \@ref(StochasticWGEN::ModelCalibrationValidation).
 
-Different parameter combinations can now be tested and the model performance assessed as a function of these configurations. We show the process by generating 4 stochastic precipitation climate realizations and then compare these with the observed ERA5 data over the 1981 - 2013 period to select a particularly suitable weather generator model for the Gunt river basin[^data-8].
+#### Model Calibration & Validation for Model Selection {#StochasticWGEN::ModelCalibrationValidation}
 
-[^data-8]: Detailed information about the core functions of RMAWGEN can be obtained by consulting their help, i.e. by for example typing `?ComprehensivePrecipitationGenerator`.
+Different parameter combinations can be tested be setting up different models. The performance of the individual models is then assessed as a function of these configurations. We show the process by specifying 4 weather generator models, i.e. `model1` through `model4` and then generate the model output which is finally compared with the observed ERA5 data over the 1981 - 2013 period. The model that reproduces the *observed* ERA5 data in the best possible manner is then selected as the final weather generator model. The process is demonstrated here for the Gunt-Yahsikul river basin[^data-9].
+
+[^data-9]: Detailed information about the core functions of RMAWGEN can be obtained by consulting their help, i.e. by for example typing `?ComprehensivePrecipitationGenerator`.
 
 ```{r,eval=FALSE,message=FALSE}
 # P03GPCA_prec
@@ -1317,11 +1330,11 @@ model4 <- ComprehensivePrecipitationGenerator(
 
 The performance of the 4 models can be assessed with statistical tests and graphically, with qq-plots and through the comparison of simulated versus observed monthly precipitation totals. Results are shown in the Figures below.
 
-```{r rmawgenMonthlyTotals, echo=FALSE,fig.cap="The comparison of the 4 stochastic weather generator models in terms of their abilities to reproduce monthly precipitation totals is shown for one station (elevation band) in the Gunt river basin. Results indicate that precipitation totals from the models 1 and 2 are overestimated. In comparison, models 3 and 4 are more balanced and not biased."}
+```{r rmawgenMonthlyTotals, echo=FALSE,fig.cap="The comparison of the 4 stochastic weather generator models in terms of their abilities to reproduce monthly precipitation totals is shown for one station (elevation band Alishur_2) in the Gunt river basin. Measured monthly totals (mes) are shown on the x-axis and simulated monthly totals (sim) on the y-axis. Results indicate that precipitation totals from the models 1 and 2 are overestimated. In comparison, results from the models 3 and 4 are more balanced and not biased."}
 knitr::include_graphics("./_bookdown_files/FIG_DATA/RMAWGEN_Models_monthlyTotalsComparison.jpg")
 ```
 
-```{r rmawgenQQPlot, echo=FALSE,fig.cap="Q-Plots of the four model results. If data plots along the diagonal line, it is an indication that the probability distribution of the simluated precipptation (y-axis) is the same as the probability distribution of the observed ERA5 precipitation (x-axis). QQ-plots of models 1 and 2 show a heavy bias whereas model 4 shows an overal satisfactory fit and thus performance. "}
+```{r rmawgenQQPlot, echo=FALSE,fig.cap="QQ-Plots of the four model results. If data plots along the diagonal line, it is an indication that the probability distribution of the simluated precipptation (y-axis) is the same as the probability distribution of the observed ERA5 precipitation (x-axis). QQ-plots of models 1 and 2 show a heavy bias whereas model 4 shows an overal satisfactory fit and thus performance. "}
 knitr::include_graphics("./_bookdown_files/FIG_DATA/RMAWGEN_Models_qqplot.jpg")
 ```
 
@@ -1329,13 +1342,13 @@ All four models pass the multivariate Portmanteau and Breusch-Godfrey (Lagrange 
 
 Figure \@ref(fig:rmawgenMonthlyTotals) and Figure \@ref(fig:rmawgenQQPlot) show that the Model 4 provides an overall well-balanced performance. We will thus us this models to generate the future climate fields in the Gunt river basin.
 
-Temperature is not independent of precipitation and vice versa. The two climate state variables and their changes are interlinked. Simply put, in the warm season over continents, higher temperatures accompany lower precipitation amounts and vice versa. Hence, over land, strong negative correlations dominate, as dry conditions favor more sunshine and less evaporative cooling, while wet summers are cool (see e.g. IPCC Fourth Assessment Report: Climate Change 2007, Working Group I, The Physical Science Basis, Section 3.3.5, available [here](https://archive.ipcc.ch/publications_and_data/ar4/wg1/en/ch3s3-3-5.html)). This needs to be taken into account when simulating weather.
+Temperature is not independent of precipitation and vice versa. The two climate state variables and their changes are interlinked. In the warm season over continents, higher temperatures accompany lower precipitation amounts and vice versa. Hence, over land, strong negative correlations dominate, as dry conditions favor more sunshine and less evaporative cooling, while wet summers are cool (see e.g. IPCC Fourth Assessment Report: Climate Change 2007, Working Group I, The Physical Science Basis, Section 3.3.5, available [here](https://archive.ipcc.ch/publications_and_data/ar4/wg1/en/ch3s3-3-5.html)). Simply put, on rainy cloudy days, there is less radiation for warming the earth surface and vice versa.
 
-To account for this, we will use the `model4` configuration to produce simulated weather over the calibration and validation period. First, we will generate multi-site synthetic future precipitation time series. Second, we use precipitation as exogenous predictors in the temperature generation step (tasmin and tasmax). If the results are satisfactory, we proceed with this stochastic weather model to produce future simulated weather runs that are conditioned on GCM output for the mid-21st and end of 21st century.
+This coupling needs to be taken into account when simulating weather. Therefore, we use the `model4` configuration to first generate multi-site synthetic future precipitation time series. Second, we use precipitation as exogenous predictors in the temperature generation step (tasmin and tasmax). Like this, we can coupled temperature simulation to precipitation. If the results are satisfactory, we proceed with this stochastic weather model to produce future simulated weather runs that are conditioned on GCM output for the mid-21st (Period 1) and end of 21st century (Period 2).
 
 #### Coupling Precipitation Realizations with Temperature
 
-For initiating and running the weather generator the `riversCentralAsia::wgen_daily_PT()` function can be used. It is a wrapper function that minimizes code reuse and allows to easily run RMAWGEN for the baseline calibration and validation periods or for the future target period of the climate scenario under consideration. The use of the function is demonstrated below for a subset of all 17 stations in the Gunt-Yashikul catchment.
+For initiating and running the weather generator, the `riversCentralAsia::wgen_daily_PT()` function can be used. It is a wrapper function that minimizes code reuse and allows to easily run RMAWGEN for the baseline period and/or for the future target period of the climate scenario under consideration. The use of the function is demonstrated below for a subset of 2 out of the complete set of all 17 stations in the Gunt-Yashikul catchment.
 
 ```{r, eval=FALSE, message=FALSE}
 # 1. Station Data
@@ -1387,13 +1400,13 @@ param$returnVARModel = FALSE
 PT_sim <- wgen_daily_PT(param,station_data,station_subset,clim_scen,param$returnVARModel)
 ```
 
-The output of `RMAWGEN::ComprehensivePrecipitationGenerator()` and `RMAWGEN::ComprehensivePrecipitationGenerator()` are stored in the PT_sim list. Summary statistics of the resulting simulated climate can be obtained by using the `riversCentralAsia::wgen_daily_summaryStats()` function. For this, the period of interest for comparison needs to be specified by setting `param$year_min_Baseline` and `param$year_max_Baseline` as shown below. For each station in the station subset, summary statistics can be shown.
+The output of `RMAWGEN::ComprehensivePrecipitationGenerator()` and `RMAWGEN::ComprehensivePrecipitationGenerator()` are stored in the `PT_sim` list. Summary statistics of the resulting simulated climate can be obtained by using the `riversCentralAsia::wgen_daily_summaryStats()` function. For this, the period of interest for comparison (we call this *baseline period*) needs to be specified by setting `param$year_min_Baseline` and `param$year_max_Baseline` as shown below. For each station in the station subset, summary statistics can be shown.
 
 <!--# Housekeeping -->
 
 <!--# SAVING the PT_sim file for later processing -->
 
-```{r, message=FALSE,echo=FALSE, eval=FALSE}
+```{r, message=FALSE, echo=FALSE, eval=FALSE}
 pathF <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
 save(PT_sim,list = 'PT_sim',file = paste0(pathF,'PT_sim','.rda'))
 save(param,list = 'param',file = paste0(pathF,'param','.rda'))
@@ -1425,7 +1438,7 @@ summaryStats <- wgen_daily_summaryStats(PT_sim, param, station_data, station_sub
 summaryStats$Alishur_2
 ```
 
-The `…_obs` identifier refers to the baseline period statistics of the observations (ERA5 data in our case). ON the contrary, the `…_sim` identifier refers to the statistics of generated synthetic climate variable time series using `RMAWGEN`. The variable `clim_scen` is set to `NULL` since we are not (yet) comparing baseline observed climate with future climate scenarios (see Section \@ref(FutureDailyClimateSim)).
+The `…_obs` identifier refers to the baseline period statistics of the observations (ERA5 data in our case). Converse to this, the `…_sim` identifier refers to the statistics of generated synthetic climate variable time series using `RMAWGEN`. The variable `clim_scen` is set to `NULL` since we are not (yet) comparing baseline observed climate with future climate scenarios (see Section \@ref(FutureDailyClimateSim) below where this is done).
 
 A graphical comparison of observed monthly versus simulated monthly precipitation values is shown below in Figure \@ref(fig:rmawgenMonthlyTotals) for one elevation band, i.e. the Alishur_2 station. The scatter plot comparing monthly total observed versus simulated precipitation totals does not show a systematic bias. Furthermore, the seriality and normality tests are both passed. We thus consider the simulation results of the weather generator adequately represent local climate conditions.
 
@@ -1435,7 +1448,7 @@ knitr::include_graphics("./_bookdown_files/FIG_DATA/RMAWGEN_Models_CoupledModel_
 
 #### Simulating Future Daily Climate {#FutureDailyClimateSim}
 
-Using the insights gained so far, we can now generate future daily weather conditioned on the high resolution GCM output as described in the Section \@ref(CHELSA21Century) above. For demonstration purposes, we generate a 10-year mid 21st century run from 2051 - 2060 and an end of 21st century run (2091 - 2100) for both, the RCP 4.5 and RCP 8.5 concentration pathways. The climate scenarios will be compared to a baseline climate period. Here, we choose the 10-year period from 2004 through 2013. These periods are specified in the following way.
+Using the insights gained so far, we can now generate future *daily* weather conditioned on the high resolution GCM output as described in the Section \@ref(CHELSA21Century) above. For the climate impact assessment, we generate a 10-year mid 21st century run from 2051 - 2060 (called Period 1) and an end of 21st century run (2091 - 2100, Period 2) for both, the RCP 4.5 and RCP 8.5 concentration pathways. The climate scenarios will be compared to a baseline climate period from 2004 - 2013. These periods are specified in the following way in the parameters `param` list.
 
 ```{r}
 # Simulation periods
@@ -1447,9 +1460,9 @@ param$year_min_sim_Period2 <-  2091
 param$year_max_sim_Period2 <-  2100
 ```
 
-Then, we are ready to prepare the climate scenarios[^data-9]. The function `riversCentralAsia::climateScenarioPreparation_RMAWGEN()` computes 2 climate scenarios between the years 2006 - 2100 as per the users choice of the target periods. Here, we want to investigate the 2 scenarios for the mid-21st century and the end of the century as defined above with the `param$year_min_sim_Periodx` and `param$year_min_sim_Periodx` parameters.
+Now we are ready to prepare the climate scenarios[^data-10]. The function `riversCentralAsia::climateScenarioPreparation_RMAWGEN()` prepares 2 climate scenarios between the years 2006 - 2100 where the user can define the periods of interest. Here, we want to investigate the 2 scenarios for the mid-21st century and the end of the century as defined above with the `param$year_min_sim_Periodx` and `param$year_min_sim_Periodx` parameters.
 
-[^data-9]: The prepared monthly climate scenarios of this RS MINVERVE model can be found in this directory `'./data/AmuDarya/GuntYashikul/ClimateProjections/'`. Since RMAWGEN requires precipitation, mean minimum and mean maximum temperature on a monthly basis, these data are prepared using the function `riversCentralAsia::climateScenarioPreparation_RMAWGEN()` for the periods of interest in the future.
+[^data-10]: The prepared monthly climate scenarios of this RS MINVERVE model can be found in this directory `'./data/AmuDarya/GuntYashikul/ClimateProjections/'`. Since RMAWGEN requires precipitation, mean minimum and mean maximum temperature on a monthly basis, these data are prepared using the function `riversCentralAsia::climateScenarioPreparation_RMAWGEN()` for the periods of interest in the future.
 
 ```{r}
 basin_climScen_Path <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
@@ -1458,7 +1471,7 @@ basin_climScen_File <- 'climScen_monthly'
 clim_scen <- climateScenarioPreparation_RMAWGEN(basin_climScen_Path,basin_climScen_File,param)
 ```
 
-We have now computed the 12 precipitation and temperature scenarios, i.e. 2 for each RCP, 3 for each climate model and 2 for each of the periods of interest, 2051 - 2060 and 2091-2100 and can rerun the stochastic weather generator while conditioning the scenarios on the mean future weather states.
+We have now defined the 12 precipitation and temperature scenarios, i.e. 2 for each RCP, 3 for each of the climate models available and 2 for each of the periods of interest, 2051 - 2060 and 2091-2100 and can rerun the stochastic weather generator while conditioning the scenarios on the mean future weather states.
 
 ```{r, eval = FALSE}
 # Compute for all stations
@@ -1499,7 +1512,7 @@ load(paste0(pathF,'param_sim_all.rda'))
 
 <!--# END HOUSEKEEPING -->
 
-The `PT_sim_all` list contains the simulated daily minimum and maximum temperatures as well as precipitation values for the future periods of interest. In our case, these are the 10-year periods from 2051-2060 and 2091-2100 for all 3 available GCM models and the two RCPs. Summary statistics can be obtained for all scenarios and all stations with the `riversCentralAsia::wgen_daily_summaryStats()` function. Different types of analyses can be carried out like this to get a good understanding of the future climate in the basin under consideration as a function of the target period and the GCM as well as the RCP. We show a couple of these analyses here.
+The `PT_sim_all` list contains the simulated daily minimum and maximum temperatures as well as precipitation values for the future periods of interest. In our case, these are the 10-year periods from 2051-2060 and 2091-2100 for all 3 available GCM models and the two RCPs. Summary statistics can be obtained for all scenarios and all stations with the `riversCentralAsia::wgen_daily_summaryStats()` function. This allows to carry out different types of top-level quick analyses for getting a good understanding of the future climate in the basin under consideration as a function of the target period and the GCM as well as the RCP. We show a couple of these analyses here.
 
 First, all summary statistics are produced.
 
@@ -1512,17 +1525,17 @@ for (idx in 1:length(clim_scen)){
 names(PT_sim_stats) <- names(clim_scen)
 ```
 
-Now, we can quickly do some analysis. Remember, we use the following definitions: - Baseline Period: 2004 - 2013 - Future Period 1: 2051 - 2060 - Future Period 2: 2091 - 2100
+Before we show how to do some quick analyses, it should be remembered that we use the following definitions: - Baseline Period: 2004 - 2013; future Period 1: 2051 - 2060; and Future Period 2: 2091 - 2100.
 
-For example, for the station/elevation band Alishur_2 we get the following statistics of the daily climate projections under the GCM MIROC5 and RCP 45:
+For the station/elevation band Alishur_2, we get the following statistics of the daily climate projections under the GCM MIROC5 and RCP 45:
 
 ```{r}
 PT_sim_stats$rcp45_MIROC5_Period1$Alishur_2
 ```
 
-When comparing precipitation for the baseline period and the 2051 - 2060 period, the model suggests a drying in the Eastern Pamirs with a reduction of mean precipitation values of almost 70 % relative to the baseline period. Please note that the precipitation values are in mm/day. At the same time, minimum mean temperatures are increasing from -10.89 degrees Celsius to -7.15 degrees Celsius, i.e. and increase of a remarkable 3.74 degrees. Our gut feeling tells us that this increase will be even more pronounced at the end of the 21st century and under RCP85. If this intuition is correct can easily be checked.
+When comparing precipitation for the baseline period and the 2051 - 2060 period, the MIROC5 model suggests a slight increase of precipitation values in the Eastern Pamirs relative to the baseline (please note that the precipitation values in the table are in mm/day). At the same time, minimum mean temperatures are increasing from -10.89 degrees Celsius to -7.15 degrees Celsius, i.e. and increase of a remarkable 3.74 degrees. Our gut feeling tells us that this increase will be even more pronounced at the end of the 21st century and under RCP85. Let's check!
 
-First, we display the summary statistics for Alishur_2 of the GCM MIROC5 and the RCP45 for Period 2.
+First, we display the summary statistics for Alishur_2 of the GCM MIROC5 and the RCP45 for Period 2. As is visible in the table below, no significant changes are expected in terms of mean precipitation, also in Period 2 under this climate scenario and for this model. However, a further warming is expected where minimum mean temperatures increase to -6.38 degrees Celsius and and the mean maximum temperatures increase from 3.56 to 4.39 degrees Celsius. This suggests a pronounced winter warming.
 
 ```{r}
 PT_sim_stats$rcp45_MIROC5_Period2$Alishur_2
@@ -1534,7 +1547,9 @@ Finally, we do the same for this station/elevation band using the GCM MIROC5 and
 PT_sim_stats$rcp85_MIROC5_Period2$Alishur_2
 ```
 
-It can easily be seen that our intution is correct and that the modeling results for example suggest a 7.71 degrees warming of the minimum mean temperatures over this period. At the same time, the model suggests that mean precipitation is markedly increasing from approx. 245 mm/year to 907 mm/year. With a projected mean precipitation of 1'012 mm/year, the GCM ACCESS1_3 shows a similar increase in precipitation for Alishur_2 under the RCP85 for the period 2091-2100. The GCM CMCC_CM shows suggests a more moderate increase in precipitation to a mean value of 726 mm/year. While precipitation projections of GCMs are notoriously uncertain, this consistency in trends across models nevertheless is interesting and warrants serious investigation. All these findings now require us to study with great care implications on the hydrology of the river basins in the region.
+It can easily be seen that our intuition from above is correct and that the modeling results for example suggest a 7.71 degrees warming of the minimum mean temperatures over this period. At the same time, the model suggests that mean precipitation is slightly increasing from approx. 245 mm/year to 298 mm/year. This corresponds to an increase of approx. 22 % relative to the baseline.
+
+With a projected mean precipitation of 332 mm/year (increase of approx. 36 % relative to baseline), the GCM ACCESS1_3 projects the most pronounced increase in precipitation for Alishur_2 under the RCP85 for the period 2091-2100. The GCM CMCC_CM even suggests a slight decrease of total annual precipitation relative to the baseline. While precipitation projections of GCMs are notoriously uncertain, one relatively robust conclusion to make is that precipitation levels are expected to stay at the current levels or slightly increase. All these findings now require us to study with great care implications on the hydrology of the river basins in the region.
 
 ```{r}
 PT_sim_stats$rcp85_ACCESS1_3_Period2$Alishur_2
@@ -1545,51 +1560,67 @@ For this purpose, we convert these daily climatologies into hourly ones and expo
 
 #### Exporting Climate Scenarios as .csv-files for import in RS MINERVE
 
-For exporting to RS MINERVE, a .csv file needs to be generated very much alike the one described in Section \@ref(era5DownscalingDataExportRSMINERVE). Prior to exporting, we need to generate hourly timeseries. 
+For exporting to RS MINERVE, a .csv file needs to be generated very much alike the one described in Section \@ref(era5DownscalingDataExportRSMINERVE). Prior to exporting such scenario-dependent files, we need to generate hourly time series from the daily simulated ones. To do this, different approaches are chosen for the precipitation values as well as the temperature time series. The conversion can automatically be done with the helper function `riversCentralAsia::generateHourlyFromDaily_PT()` that accepts the daily climate scenarios as variable from which it downscales to hourly data and prepares the tabular export as .csv-file for later import in RS MINVERVE.
 
-```{r}
-# Establishing workflow (one climate scenario)
-dateVec_period1 <- generateSeqDates(param$year_min_sim_Period1,param$year_max_sim_Period1,"day")
-dateVec_period1 <- (dateVec_period1$date - lubridate::hours(1)) %>% as_tibble() %>% rename(date=value)
-dateVec_period2 <- generateSeqDates(param$year_min_sim_Period2,param$year_max_sim_Period2,"day")
-dateVec_period2 <- (dateVec_period2$date - lubridate::hours(1)) %>% as_tibble() %>% rename(date=value)
+As for total daily precipitation [mm/day], it is available for each day for the future periods of interest and for each station/elevation band. `riversCentralAsia::generateHourlyFromDaily_PT()` converts these values by uniformly distribution the total daily precipitation over the 24 hours within one day, i.e. from `00:00:00` to `23:00:00`. More details on this can be found in the help section of the function.
 
-## PRECIPITATION
-P_hourly_wide_climScen <- list()
+For temperature, the challenge is a bit bigger since we ideally would want to take into account the diurnal cycle of temperature to vary between the daily minimum and maximum temperatures characteristically. How to get the diurnal cycle for the stations/elevation bands?
 
-for (idx in 1:length(PT_sim_all)){
-  # Date vector preps
-  P_daily <- dateVec_period1 %>% 
-    add_column(PT_sim_all$rcp45_MIROC5_Period1$P_gen$prec_gen %>% as_tibble())
-  P_daily_long <- P_daily %>% pivot_longer(-date)
-  ### That is it: linear interpolation. 
-  P_hourly_long <- P_daily_long %>% group_by(name) %>% 
-    pad_by_time(.date_var = date,.by = "hour") %>% 
-    mutate_at(vars(value), .funs = ts_impute_vec, period = 1)
-  ### Pivot wider
-  P_hourly_wide_climScen[[idx]] <- P_hourly_long %>% pivot_wider(names_from = name, values_from = value)
-}
+What is being proposed here is to use the hourly ERA5 data over the baseline period and to extract a mean dirurnal cycle for each station there measured over all baseline period observation days. Under the assumption that these station cycles remain the same in the future, they are adjusted for each day so that minimum and maximum daily temperatures from the climate scenarios correspond to minimum and maximum diurnal cycle values. As is shown below, the function `riversCentralAsia::computeDiurnalTemperatureCycle()` computes these diurnal station cycles.
 
-# This was easy.
-names(P_hourly_wide_climScen) <- names(clim_scen)
-
-## TEMPERATURE
-# Temperature is less easy as it requires us to somehow respect the diurnal cycle of the climate variation. How to do that. For each day in the year, we could look up typical diurnal temperature variations and just have them repeat again in the future scenarios
-# ERA5 data
+```{r, message=FALSE}
 filePath <- './data/AmuDarya/GuntYashikul/RSMinerve/'
 fileName <- 'Gunt_Yashikul_1981_2013_db.csv'
 era5_gunt_yashikul <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
 
-# Deleting unused catchments in the tibble. These catchments are not modeled later in RS MINERVE, so we can safely delete them here. Note that this operation is specific to the Gunt-Yashikul model and does not generalize to other catchments.
-idx2del <- (era5_gunt_yashikul[1,]=='Gunt_DS_1')|(era5_gunt_yashikul[1,]=='Gunt_DS_2')|(era5_gunt_yashikul[1,]=='Gunt_DS_3')
+# Subcatchment suspects to delete because we do not use them in the RR Model
+idx2del <- (era5_gunt_yashikul[1,]=='Gunt_DS_1')|(era5_gunt_yashikul[1,]=='Gunt_DS_2')|
+  (era5_gunt_yashikul[1,]=='Gunt_DS_3')
 era5_gunt_yashikul <- era5_gunt_yashikul %>% dplyr::select(which(!idx2del))
 
-era5_gunt_yashikul_T <- era5_gunt_yashikul %>% dplyr::select(which(era5_gunt_yashikul[5,]=='T'))
-era5_gunt_yashikul_date <-  generateSeqDates(param$year_min,param$year_max,"hour")
-era5_gunt_yashikul_T <- era5_gunt_yashikul_date %>% era5_gunt_yashikul_T
+# Compute diurnal cycle
+diurnalCycle <- computeDiurnalTemperatureCycle(era5_gunt_yashikul,param)
+
+# Simple visualization
+diurnalCycle %>% pivot_longer(-hour) %>% group_by(name) %>% 
+  ggplot(.,aes(x=hour,y=value,colour=name)) + geom_line() + labs(title="ERA5 Diurnal T Variation, Gunt-Yashikul River Subbasins")
 ```
 
+Using `riversCentralAsia::generateHourlyFromDaily_PT()`, the daily climate scenario files can be produced in a very simple manner.
+
+```{r,message=FALSE,eval=FALSE}
+# Producing the hourly climate scenarios
+climScen_hourly <- generateHourlyFromDaily_PT(PT_sim_all,era5_gunt_yashikul,param)
+# Adding the required header information to the data frames for each climate scenario
+headerRows<- era5_gunt_yashikul[1:8,] %>% dplyr::select(-which(era5_gunt_yashikul[5,]=='Q'))
+climScen_hourly_rsminerve <- list()
+for (idx in 1:length(climScen_hourly)){
+  climScen2Export <- climScen_hourly[[idx]] %>% mutate(across(everything(), as.character))
+  names(climScen2Export) <- names(headerRows)
+  climScen_hourly_rsminerve[[idx]] <- headerRows %>% add_row(climScen2Export)
+}
+names(climScen_hourly_rsminerve) <- names(clim_scen)
+```
+
+Now, finally, we can store these files as climate scenario files on the disk for later importing into RS MINERVE.
+
+```{r, eval=FALSE}
+outputPath <- './data/AmuDarya/GuntYashikul/RSMinerve/' # Specify the output path of the files
+names2Save <- names(climScen_hourly_rsminerve) # Specification of the file names (do not change)
+names2Save_prefix <- 'Gunt_Yashikul_' # Change according to the basin that you are working with
+for (idx in 1:length(climScen_hourly_rsminerve)){
+  fileName <- paste0(names2Save_prefix,names2Save[idx],'.csv')
+  write.table(climScen_hourly_rsminerve[[idx]],
+              paste0(outputPath,fileName),sep=',',
+              row.names = FALSE,col.names=FALSE,
+              quote=FALSE,append=FALSE)
+}
+```
 
 ## Snow Cover Data
+
+Section is work in progress! Stay tuned.
+
+## Glacier Data
 
 Section is work in progress! Stay tuned.
