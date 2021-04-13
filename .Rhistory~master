@@ -1,401 +1,54 @@
-library(units)
-# Install GitHub version
-library(devtools)
-install_github("ecor/RMAWGEN")
-library(RMAWGEN)
-knitr::include_graphics("./_bookdown_files/FIG_DATA/RMAWGEN_Models_monthlyTotalsComparison.jpg")
-knitr::include_graphics("./_bookdown_files/FIG_DATA/RMAWGEN_Models_qqplot.jpg")
-# 1. Station Data
-## Load and process RS MINERVE csv database file
-filePath <- './data/AmuDarya/GuntYashikul/RSMinerve/'
-fileName <- 'Gunt_Yashikul_1981_2013_db.csv'
-era5_gunt_yashikul <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
-## Delete unused catchments in the Gunt-Yashikul hydrological model (this is specific to the model and does not need to be carried out normally)
-idx2del <- (era5_gunt_yashikul[1,]=='Gunt_DS_1') | (era5_gunt_yashikul[1,]=='Gunt_DS_2') |
-(era5_gunt_yashikul[1,]=='Gunt_DS_3')
-era5_gunt_yashikul <- era5_gunt_yashikul %>% dplyr::select(which(!idx2del))
-## Generate list containing all station data (this is an input to the wgen_daily_PT() function)
-station_data <- prepare_RMAWGEN_input_data(era5_gunt_yashikul)
-# 2. RMAWGEN PARAMETERS
-## Note: all parameteres are stored in the param list
-param <- list()
-## Random generator seed
-param$seed <- 123456
-## Monthly climate is calculated if it is set to NULL
-param$PREC_CLIMATE <- NULL
-## Calibration Period
-param$year_min <- 1981
-param$year_max <- 2013
-param$origin <- "1981-1-1"
-## n GPCA iterations for variable and VAR residuals
-param$n_GPCA_iter <- 0
-param$n_GPCA_iteration_residuals <- 0
-param$n_GPCA_iter_prec <- 0
-param$n_GPCA_iteration_residuals_prec <- 0
-## Autoregressive order (p)
-param$p <- 1
-# number of weather realizations
-param$nscenario <- 1
-# Multi-site stations
-param$station <- station_data$STATION_NAMES
-# Minimum precipitation cutoff value, i.e. threshold value below which a no precipitation event is recorded [in mm/day]
-param$valmin <- 1.0
-# 3. Compute stochastic weather for a subset of 2 sample stations for the calibration period 1981 - 2013
-clim_scen <- NULL # We not yet simulate future climate. This follows in the next Subsection below.
-station_subset <- station_data$STATION_NAMES[1:2] # Selecting 2 example stations, i.e. Alishur_2 and Alishur_3
-PT_sim <- wgen_daily_PT(param,station_data,station_subset,clim_scen)
-knitr::include_graphics("_bookdown_files/FIG_DATA/Gunt_Outline.jpg")
-knitr::include_graphics("_bookdown_files/FIG_DATA/Gunt_Subbasins.jpg")
-knitr::include_graphics("_bookdown_files/FIG_DATA/Gunt_Subbasins_ElevationBands.jpg")
-knitr::include_graphics('_bookdown_files/FIG_DATA/Gunt_Topology.jpg')
-knitr::include_graphics('_bookdown_files/FIG_DATA/Gunt_ElevationBands_AttributeTable.jpg')
-knitr::include_graphics("_bookdown_files/FIG_DATA/greenhouseGasConcetrations_RCP.jpg")
-station_subset_sumStat <- station_subset
-summaryStats <- wgen_daily_summaryStats(PT_sim, param, station_data, station_subset_sumStat)
-?wgen_daily_summaryStats
-summaryStats <- wgen_daily_summaryStats(PT_sim, param, station_data, station_subset_sumStat,clim_scen)
-station_subset
-summaryStats <- wgen_daily_summaryStats(PT_sim, param, station_data, station_subset_sumStat,clim_scen)
-summaryStats <- wgen_daily_summaryStats(PT_sim, param, station_data, station_subset_sumStat,clim_scen)
-wgen_daily_summaryStats <- function(PT_sim,param,station_data,station_subset,clim_scen){
-summaryStats <- wgen_daily_summaryStats(PT_sim, param, station_data, station_subset_sumStat,clim_scen)
-if (base::is.null(station_subset)){
-station_subset = param$station
-}
-climStats <- list()
-for (idx in (1:length(station_subset))){
-# PRECIPITATION
-# baseline period
-baseline_station_P <- station_data$PRECIPITATION %>%
-dplyr::select(year,station_subset[idx]) %>%
-dplyr::filter(year>=param$year_min_Baseline & year <= param$year_max_Baseline) %>%
-dplyr::select(-year) %>%
-dplyr::rename(P_baseline_obs = station_subset[idx])
-baseline_station_P_stats <- base::as.data.frame(apply(baseline_station_P,2,summary)) # render the summary() function as dataframe
-# future period
-futurePeriod_station_P <- PT_sim$P_gen$prec_gen %>% tibble::as_tibble() %>% dplyr::select(station_subset[idx])
-if (is.null(clim_scen)){
-futurePeriod_station_P <- futurePeriod_station_P %>% dplyr::rename(P_baseline_sim = station_subset[idx])
-} else {
-futurePeriod_station_P <- futurePeriod_station_P %>% dplyr::rename(P_futurePeriod_sim = station_subset[idx])
-}
-futurePeriod_station_P_stats <- base::as.data.frame(apply(futurePeriod_station_P,2,summary))
-# TMIN
-baseline_station_Tmin <- station_data$TEMPERATURE_MIN %>%
-dplyr::select(year,station_subset[idx]) %>%
-dplyr::filter(year>=param$year_min_Baseline & year <= param$year_max_Baseline) %>%
-dplyr::select(-year) %>%
-dplyr::rename(Tmin_baseline_obs = station_subset[idx])
-baseline_station_Tmin_stats <- base::as.data.frame(apply(baseline_station_Tmin,2,summary))
-# future period
-futurePeriod_station_Tmin <- PT_sim$T_gen$output$Tn_gen %>% tibble::as_tibble() %>% dplyr::select(station_subset[idx])
-if (is.null(clim_scen)){
-futurePeriod_station_Tmin <- futurePeriod_station_Tmin %>% dplyr::rename(Tmin_baseline_sim = station_subset[idx])
-} else {
-futurePeriod_station_Tmin <- futurePeriod_station_Tmin %>% dplyr::rename(Tmin_futurePeriod_sim = station_subset[idx])
-}
-futurePeriod_station_Tmin_stats <- base::as.data.frame(apply(futurePeriod_station_Tmin,2,summary))
-# TMAX
-baseline_station_Tmax <- station_data$TEMPERATURE_MAX %>%
-dplyr::select(year,station_subset[idx]) %>%
-dplyr::filter(year>=param$year_min_Baseline & year <= param$year_max_Baseline) %>%
-dplyr::select(-year) %>%
-dplyr::rename(Tmax_baseline_obs = station_subset[idx])
-baseline_station_Tmax_stats <- base::as.data.frame(apply(baseline_station_Tmax,2,summary))
-# future period
-futurePeriod_station_Tmax <- PT_sim$T_gen$output$Tx_gen %>% tibble::as_tibble() %>% dplyr::select(station_subset[idx])
-if (is.null(clim_scen)){
-futurePeriod_station_Tmax <- futurePeriod_station_Tmax %>% dplyr::rename(Tmax_baseline_sim = station_subset[idx])
-} else {
-futurePeriod_station_Tmax <- futurePeriod_station_Tmax %>% dplyr::rename(Tmax_futurePeriod_sim = station_subset[idx])
-}
-futurePeriod_station_Tmax_stats <- base::as.data.frame(apply(futurePeriod_station_Tmax,2,summary))
-# clim_stats final join
-climStats[[idx]] <- baseline_station_P_stats %>%
-add_column(futurePeriod_station_P_stats, baseline_station_Tmin_stats, futurePeriod_station_Tmin_stats,
-baseline_station_Tmax_stats, futurePeriod_station_Tmax_stats)
-}
-idx
-idx <- 1
-# PRECIPITATION
-# baseline period
-baseline_station_P <- station_data$PRECIPITATION %>%
-dplyr::select(year,station_subset[idx]) %>%
-dplyr::filter(year>=param$year_min_Baseline & year <= param$year_max_Baseline) %>%
-dplyr::select(-year) %>%
-dplyr::rename(P_baseline_obs = station_subset[idx])
-param$year_min_Baseline <- 2004
-param$year_max_Baseline <- 2013
-clim_scen <- NULL
-summaryStats <- wgen_daily_summaryStats(PT_sim, param, station_data, station_subset,clim_scen)
-# Temperature summary statistics for Alishur_2 station (elevation band)
-summaryStats$summaryStats_temp
-# Precipitation summary statistics for Alishur_2 station (elevation band)
-summaryStats$summaryStats_precip
-summaryStats
-param$year_min_Baseline <- 2004
-param$year_max_Baseline <- 2013
-clim_scen <- NULL
-# Computing the baseline statistics and comparing it with simulated weather over the same period.
-summaryStats <- wgen_daily_summaryStats(PT_sim, param, station_data, station_subset,clim_scen)
-# Summary statistics for the station (i.e. elevation band) Alishur_2
-summaryStats$Alishur_2
-knitr::include_graphics("./_bookdown_files/FIG_DATA/RMAWGEN_Models_CoupledModel_monthlyTotalsComparison.jpg")
-?save
-pathF <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
-save(PT_sim,list = 'PT_sim',file = paste0(pathF,'PT_sim','.rda'))
-pathF <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
-load(paste0(pathF,'PT_sim.rda'))
-pathF <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
-save(param,PT_sim,list = c('param','PT_sim'),file = paste0(pathF,'PT_sim','.rda'))
-pathF <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
-save(PT_sim,list = 'PT_sim',file = paste0(pathF,'PT_sim','.rda'))
-save(param,list = 'param',file = paste0(pathF,'param','.rda'))
-save(station_data,list = 'station_data',file = paste0(pathF,'station_data','.rda'))
-save(station_subset,list = 'station_subset',file = paste0(pathF,'station_subset','.rda'))
-pathF <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
-load(paste0(pathF,'PT_sim.rda'))
-load(paste0(pathF,'param.rda'))
-load(paste0(pathF,'station_data.rda'))
-load(paste0(pathF,'station_subset.rda'))
-# Simulation periods
-param$year_min_Baseline <- 2004
-param$year_max_Baseline <- 2013
-param$year_min_sim_Period1 <-  2051
-param$year_max_sim_Period1 <-  2060
-param$year_min_sim_Period2 <-  2091
-param$year_max_sim_Period2 <-  2100
-basin_climScen_Path <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
-basin_climScen_File <- 'climScen_monthly'
 clim_scen <- climateScenarioPreparation_RMAWGEN(basin_climScen_Path,basin_climScen_File,param)
-# Tidy data wrangling
-library(tidyverse)
-library(here)
-library(timetk)
-library(tidymodels)
-library(lubridate)
-library(timetk)
-# ggplot add-on
-devtools::install_github("eliocamp/ggnewscale")
-library(ggnewscale)
-library(ggpubr)
-# Covenience library for plotting multi-layer raster
-library(rasterVis)
-library(viridis)
-library(RColorBrewer)
-# Our own package for load and processing local data
-devtools::install_github("hydrosolutions/riversCentralAsia") # ensuring the latest version is installed!
-library('riversCentralAsia')
-# Spatial data processing
-library(ncdf4)
-library(raster)
-library(rgdal)
-library(sf)
-library(smoothr)
-library(units)
-# Install GitHub version
-library(devtools)
-install_github("ecor/RMAWGEN")
-library(RMAWGEN)
-pathF <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
-load(paste0(pathF,'PT_sim.rda'))
-load(paste0(pathF,'param.rda'))
-load(paste0(pathF,'station_data.rda'))
-load(paste0(pathF,'station_subset.rda'))
-param$year_min_Baseline <- 2004
-param$year_max_Baseline <- 2013
-clim_scen <- NULL
-# Computing the baseline statistics and comparing it with simulated weather over the same period.
-summaryStats <- wgen_daily_summaryStats(PT_sim, param, station_data, station_subset,clim_scen)
-# Summary statistics for the station (i.e. elevation band) Alishur_2
-summaryStats$Alishur_2
-knitr::include_graphics("./_bookdown_files/FIG_DATA/RMAWGEN_Models_CoupledModel_monthlyTotalsComparison.jpg")
-# Simulation periods
-param$year_min_Baseline <- 2004
-param$year_max_Baseline <- 2013
-param$year_min_sim_Period1 <-  2051
-param$year_max_sim_Period1 <-  2060
-param$year_min_sim_Period2 <-  2091
-param$year_max_sim_Period2 <-  2100
-basin_climScen_Path <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
-basin_climScen_File <- 'climScen_monthly'
-clim_scen <- climateScenarioPreparation_RMAWGEN(basin_climScen_Path,basin_climScen_File,param)
-# Compute stochastic weather for a subset of 2 sample stations for the target period 2051
-clim_scen_Period1 <- clim_scen$rcp45_MIROC5_Period1
-clim_scen_Period2 <- clim_scen$rcp45_MIROC5_Period2
-station_subset <- station_data$STATION_NAMES[1:2] # Selecting 2 example stations, i.e. Alishur_2 and Alishur_3
-PT_sim_Period1 <- wgen_daily_PT(param,station_data,station_subset,clim_scen_Period1)
-PT_sim_Period2 <- wgen_daily_PT(param,station_data,station_subset,clim_scen_Period2)
-# Compute stochastic weather for a subset of 2 sample stations for the target period 2051
-clim_scen_Period1 <- clim_scen$rcp45_MIROC5_Period1
-clim_scen_Period2 <- clim_scen$rcp45_MIROC5_Period2
-station_subset <- NULL # We compute climate procjections for all subasin elevation bands.
-PT_sim_Period1 <- wgen_daily_PT(param,station_data,station_subset,clim_scen_Period1)
-PT_sim_Period2 <- wgen_daily_PT(param,station_data,station_subset,clim_scen_Period2)
-pathF <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
-save(PT_sim_Period1,list = 'PT_sim_Period1',file = paste0(pathF,'PT_sim_Period1','.rda'))
-save(PT_sim_Period2,list = 'PT_sim_Period2',file = paste0(pathF,'PT_sim_Period2','.rda'))
-save(param,list = 'param',file = paste0(pathF,'param_sim_Period12','.rda'))
-PT_sim_Period1 %>% lsos()
-PT_sim_Period1 %>% object.size()
-PT_sim_Period1 %>% object.size() %>% units("kB")
-PT_sim_Period1 %>% object.size() /10^6
-PT_sim_Period1 %>% sort( sapply(mget(ls()),object.size) )
-sort( sapply(mget(ls(PT_sim_Period1)),object.size) )
-sort( sapply(mget(ls(PT_sim_Period1$P_gen)),object.size) )
-sort( sapply(mget(ls(PT_sim_Period1$P_gen$data_prec)),object.size) )
-PT_sim_Period1 %>% object.size()
-PT_sim_Period1$P_gen %>% object.size()
-PT_sim_Period1 %>% list2env(.,envir = .GlobalEnv)
-PT_sim_Period1$T_gen %>% list2env(.,envir = .GlobalEnv)
-PT_sim_Period1$T_gen$var %>% list2env(.,envir = .GlobalEnv)
-PT_sim$P_gen$var = NULL
-pathF <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
-save(PT_sim,list = 'PT_sim',file = paste0(pathF,'PT_sim','.rda'))
-save(param,list = 'param',file = paste0(pathF,'param','.rda'))
-save(station_data,list = 'station_data',file = paste0(pathF,'station_data','.rda'))
-save(station_subset,list = 'station_subset',file = paste0(pathF,'station_subset','.rda'))
-PT_sim$T_gen$var = NULL
-save(PT_sim,list = 'PT_sim',file = paste0(pathF,'PT_sim','.rda'))
-detach("package:riversCentralAsia", unload=TRUE)
-library(riversCentralAsia)
-# 1. Station Data
-## Load and process RS MINERVE csv database file
-filePath <- './data/AmuDarya/GuntYashikul/RSMinerve/'
-fileName <- 'Gunt_Yashikul_1981_2013_db.csv'
-era5_gunt_yashikul <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
-## Delete unused catchments in the Gunt-Yashikul hydrological model (this is specific to the model and does not need to be carried out normally)
-idx2del <- (era5_gunt_yashikul[1,]=='Gunt_DS_1') | (era5_gunt_yashikul[1,]=='Gunt_DS_2') |
-(era5_gunt_yashikul[1,]=='Gunt_DS_3')
-era5_gunt_yashikul <- era5_gunt_yashikul %>% dplyr::select(which(!idx2del))
-## Generate list containing all station data (this is an input to the wgen_daily_PT() function)
-station_data <- prepare_RMAWGEN_input_data(era5_gunt_yashikul)
-# 2. RMAWGEN PARAMETERS
-## Note: all parameteres are stored in the param list
-param <- list()
-## Random generator seed
-param$seed <- 123456
-## Monthly climate is calculated if it is set to NULL
-param$PREC_CLIMATE <- NULL
-## Calibration Period
-param$year_min <- 1981
-param$year_max <- 2013
-param$origin <- "1981-1-1"
-## n GPCA iterations for variable and VAR residuals
-param$n_GPCA_iter <- 0
-param$n_GPCA_iteration_residuals <- 0
-param$n_GPCA_iter_prec <- 0
-param$n_GPCA_iteration_residuals_prec <- 0
-## Autoregressive order (p)
-param$p <- 1
-# number of weather realizations
-param$nscenario <- 1
-# Multi-site stations
-param$station <- station_data$STATION_NAMES
-# Minimum precipitation cutoff value, i.e. threshold value below which a no precipitation event is recorded [in mm/day]
-param$valmin <- 1.0
-# 3. Compute stochastic weather for a subset of 2 sample stations for the calibration period 1981 - 2013
-clim_scen <- NULL # We not yet simulate future climate. This follows in the next Subsection below.
-station_subset <- station_data$STATION_NAMES[1:2] # Selecting 2 example stations, i.e. Alishur_2 and Alishur_3. Normally, one wants to run the function for all stations.
-PT_sim <- wgen_daily_PT(param,station_data,station_subset,clim_scen)
-# The VAR models stored are big. They can be deleted when files should be stored on the disk.
-# PT_sim$P_gen$var = NULL
-# PT_sim$T_gen$var = NULL
-detach("package:riversCentralAsia", unload=TRUE)
-library(riversCentralAsia)
-# 1. Station Data
-## Load and process RS MINERVE csv database file
-filePath <- './data/AmuDarya/GuntYashikul/RSMinerve/'
-fileName <- 'Gunt_Yashikul_1981_2013_db.csv'
-era5_gunt_yashikul <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
-## Delete unused catchments in the Gunt-Yashikul hydrological model (this is specific to the model and does not need to be carried out normally)
-idx2del <- (era5_gunt_yashikul[1,]=='Gunt_DS_1') | (era5_gunt_yashikul[1,]=='Gunt_DS_2') |
-(era5_gunt_yashikul[1,]=='Gunt_DS_3')
-era5_gunt_yashikul <- era5_gunt_yashikul %>% dplyr::select(which(!idx2del))
-## Generate list containing all station data (this is an input to the wgen_daily_PT() function)
-station_data <- prepare_RMAWGEN_input_data(era5_gunt_yashikul)
-# 2. RMAWGEN PARAMETERS
-## Note: all parameteres are stored in the param list
-param <- list()
-## Random generator seed
-param$seed <- 123456
-## Monthly climate is calculated if it is set to NULL
-param$PREC_CLIMATE <- NULL
-## Calibration Period
-param$year_min <- 1981
-param$year_max <- 2013
-param$origin <- "1981-1-1"
-## n GPCA iterations for variable and VAR residuals
-param$n_GPCA_iter <- 0
-param$n_GPCA_iteration_residuals <- 0
-param$n_GPCA_iter_prec <- 0
-param$n_GPCA_iteration_residuals_prec <- 0
-## Autoregressive order (p)
-param$p <- 1
-# number of weather realizations
-param$nscenario <- 1
-# Multi-site stations
-param$station <- station_data$STATION_NAMES
-# Minimum precipitation cutoff value, i.e. threshold value below which a no precipitation event is recorded [in mm/day]
-param$valmin <- 1.0
-# 3. Compute stochastic weather for a subset of 2 sample stations for the calibration period 1981 - 2013
-clim_scen <- NULL # We not yet simulate future climate. This follows in the next Subsection below.
-station_subset <- station_data$STATION_NAMES[1:2] # Selecting 2 example stations, i.e. Alishur_2 and Alishur_3. Normally, one wants to run the function for all stations.
-# Return VAR model?
-param$returnVARModel = FALSE
-PT_sim <- wgen_daily_PT(param,station_data,station_subset,clim_scen,returnVARModel)
-PT_sim <- wgen_daily_PT(param,station_data,station_subset,clim_scen,param$returnVARModel)
-pathF <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
-save(PT_sim,list = 'PT_sim',file = paste0(pathF,'PT_sim','.rda'))
-save(param,list = 'param',file = paste0(pathF,'param','.rda'))
-save(station_data,list = 'station_data',file = paste0(pathF,'station_data','.rda'))
-save(station_subset,list = 'station_subset',file = paste0(pathF,'station_subset','.rda'))
-# Simulation periods
-param$year_min_Baseline <- 2004
-param$year_max_Baseline <- 2013
-param$year_min_sim_Period1 <-  2051
-param$year_max_sim_Period1 <-  2060
-param$year_min_sim_Period2 <-  2091
-param$year_max_sim_Period2 <-  2100
-basin_climScen_Path <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
-basin_climScen_File <- 'climScen_monthly'
-clim_scen <- climateScenarioPreparation_RMAWGEN(basin_climScen_Path,basin_climScen_File,param)
-# Compute stochastic weather for a subset of 2 sample stations for the target period 2051
-clim_scen_Period1 <- clim_scen$rcp45_MIROC5_Period1
-clim_scen_Period2 <- clim_scen$rcp45_MIROC5_Period2
-station_subset <- NULL # We compute climate procjections for all subasin elevation bands.
-# Return VAR model?
-param$returnVARModel = FALSE
-# Fire up the stochastic VAR machine
-PT_sim_Period1 <- wgen_daily_PT(param,station_data,station_subset,clim_scen_Period1,param$returnVARModel)
-PT_sim_Period2 <- wgen_daily_PT(param,station_data,station_subset,clim_scen_Period2,param$returnVARModel)
-pathF <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
-save(PT_sim_Period1,list = 'PT_sim_Period1',file = paste0(pathF,'PT_sim_Period1','.rda'))
-save(PT_sim_Period2,list = 'PT_sim_Period2',file = paste0(pathF,'PT_sim_Period2','.rda'))
-save(param,list = 'param',file = paste0(pathF,'param_sim_Period12','.rda'))
-clim_scen
-View(clim_scen)
-clim_scen %>% length()
-# Compute stochastic weather for a subset of 2 sample stations for the target period 2051
-clim_scen_Period1 <- clim_scen$rcp45_MIROC5_Period1
-clim_scen_Period2 <- clim_scen$rcp45_MIROC5_Period2
-# Compute for all stations
-station_subset <- NULL # We compute climate procjections for all subasin elevation bands.
-# Return VAR model?
-param$returnVARModel = FALSE
-# Fire up the stochastic VAR machine
-#PT_sim_Period1 <- wgen_daily_PT(param,station_data,station_subset,clim_scen_Period1,param$returnVARModel)
-#PT_sim_Period2 <- wgen_daily_PT(param,station_data,station_subset,clim_scen_Period2,param$returnVARModel)
-PT_sim_all <- list()
-# Loop through all climate scenarios and run models
+PT_sim_stats <- list()
 for (idx in 1:length(clim_scen)){
-print(idx)
-PT_sim_all[[idx]] <- wgen_daily_PT(param,station_data,station_subset,clim_scen[[idx]],param$returnVARModel)
+PT_sim_stats[[idx]] <-
+riversCentralAsia::wgen_daily_summaryStats(PT_sim_all[[idx]],param,station_data,station_subset,clim_scen[[idx]])
 }
-names(PT_sim_all) <- names(clim_scen)
-View(PT_sim_all)
+names(PT_sim_stats) <- names(clim_scen)
+PT_sim_stats$rcp45_MIROC5_Period1$Alishur_2
+filePath <- './data/AmuDarya/GuntYashikul/RSMinerve/'
+fileName <- 'Gunt_Yashikul_1981_2013_db.csv'
+era5_gunt_yashikul <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
+# Normal subcatchment suspects to delete
+idx2del <- (era5_gunt_yashikul[1,]=='Gunt_DS_1')|(era5_gunt_yashikul[1,]=='Gunt_DS_2')|
+(era5_gunt_yashikul[1,]=='Gunt_DS_3')
+era5_gunt_yashikul <- era5_gunt_yashikul %>% dplyr::select(which(!idx2del))
+# Deleting discharge Q column (we have no observations of the future discharge but rather want to simulate them)
+era5_gunt_yashikul <- era5_gunt_yashikul %>% dplyr::select(-which(era5_gunt_yashikul[5,]=='Q'))
+# Delete rows with NA in them (takes care of the padded NAs that was introduced by adding the Q Column)
+era5_gunt_yashikul <- era5_gunt_yashikul %>% na.omit()
+era5_gunt_yashikul_T <- era5_gunt_yashikul %>% dplyr::select(which(era5_gunt_yashikul[5,]=='T'))
+# Ensure proper tibble column names
+names(era5_gunt_yashikul_T) <- era5_gunt_yashikul_T[1,] %>% as.character()
+# Generate date sequence
+era5_gunt_yashikul_date <-  generateSeqDates(param$year_min,param$year_max,"hour")
+# Glue dates
+era5_gunt_yashikul_T <- era5_gunt_yashikul_T[-1:-8,] %>% readr::type_convert()
+era5_gunt_yashikul_T <- era5_gunt_yashikul_date %>% add_column(era5_gunt_yashikul_T)
+era5_gunt_yashikul_T <- era5_gunt_yashikul_T %>% mutate(year = year(date),.before=2)
+# Select baseline period
+era5_gunt_yashikul_T_baseline <- era5_gunt_yashikul_T %>% filter(year>=param$year_min_Baseline & year<=param$year_max_Baseline)
+# add hour identifier
+era5_gunt_yashikul_T_baseline <- era5_gunt_yashikul_T_baseline %>% mutate(hour  = hour(date),.before = 2)
+# summarize by the hour
+era5_gunt_yashikul_T_baseline_hourSummary <- era5_gunt_yashikul_T_baseline %>%
+dplyr::select(-date,-year) %>%
+pivot_longer(-hour) %>%
+group_by(name,hour) %>%
+summarize(hourlyMean = mean(value)) %>%
+pivot_wider(names_from = name,values_from = hourlyMean)
 detach("package:riversCentralAsia", unload=TRUE)
 library(riversCentralAsia)
+# compute diurnal cycle
+diurnalCycle <- computeDiurnalTemperatureCycle(era5_gunt_yashikul,param)
+diurnalCycle
+# visualize to cross check
+era5_gunt_yashikul_T_baseline_hourSummary %>% pivot_longer(-hour) %>% group_by(name) %>%
+ggplot(.,aes(x=hour,y=value,colour=name)) + geom_line() + labs(title="ERA5 Diurnal T Variation, Gunt River Subbasins")
+PT_sim_all
+PT_sim_all[[1]]$T_gen$output
+Tmin
+PT_sim_all[[idx]]$year_min_sim
 # Tidy data wrangling
 library(tidyverse)
 library(here)
@@ -421,88 +74,313 @@ library(rgdal)
 library(sf)
 library(smoothr)
 library(units)
-knitr::include_graphics('_bookdown_files/FIG_DATA/ModelChain_ClimateImpactStudy.png')
-# 1. Station Data
-## Load and process RS MINERVE csv database file
+load(paste0(pathF,'param.rda'))
+pathF <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
+load(paste0(pathF,'PT_sim.rda'))
+load(paste0(pathF,'param.rda'))
+load(paste0(pathF,'station_data.rda'))
+load(paste0(pathF,'station_subset.rda'))
+# Simulation periods
+param$year_min_Baseline <- 2004
+param$year_max_Baseline <- 2013
+param$year_min_sim_Period1 <-  2051
+param$year_max_sim_Period1 <-  2060
+param$year_min_sim_Period2 <-  2091
+param$year_max_sim_Period2 <-  2100
+basin_climScen_Path <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
+basin_climScen_File <- 'climScen_monthly'
+clim_scen <- climateScenarioPreparation_RMAWGEN(basin_climScen_Path,basin_climScen_File,param)
+# Compute for all stations
+station_subset <- NULL # We compute climate projections for all subasin elevation bands.
+# Return VAR model?
+param$returnVARModel = FALSE
+# Fire up the stochastic weather generator for all climate scenarios
+PT_sim_all <- list()
+# Loop through all climate scenarios and run models
+for (idx in 1:length(clim_scen)){
+PT_sim_all[[idx]] <- wgen_daily_PT(param,station_data,station_subset,clim_scen[[idx]],param$returnVARModel)
+}
+# Making simulation results available for loading without recomputing.
+pathF <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
+load(paste0(pathF,'PT_sim_all.rda'))
+load(paste0(pathF,'param_sim_all.rda'))
+PT_sim_stats <- list()
+for (idx in 1:length(clim_scen)){
+PT_sim_stats[[idx]] <-
+riversCentralAsia::wgen_daily_summaryStats(PT_sim_all[[idx]],param,station_data,station_subset,clim_scen[[idx]])
+}
+names(PT_sim_stats) <- names(clim_scen)
 filePath <- './data/AmuDarya/GuntYashikul/RSMinerve/'
 fileName <- 'Gunt_Yashikul_1981_2013_db.csv'
 era5_gunt_yashikul <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
-# Tidy data wrangling
-library(tidyverse)
-library(here)
-library(timetk)
-library(tidymodels)
-library(lubridate)
-library(timetk)
-# ggplot add-on
-devtools::install_github("eliocamp/ggnewscale")
-library(ggnewscale)
-library(ggpubr)
-# Covenience library for plotting multi-layer raster
-library(rasterVis)
-library(viridis)
-library(RColorBrewer)
-# Our own package for load and processing local data
-devtools::install_github("hydrosolutions/riversCentralAsia") # ensuring the latest version is installed!
-library('riversCentralAsia')
-# Spatial data processing
-library(ncdf4)
-library(raster)
-library(rgdal)
-library(sf)
-library(smoothr)
-library(units)
-# Install GitHub version
-library(devtools)
-install_github("ecor/RMAWGEN")
-library(RMAWGEN)
-# 1. Station Data
-## Load and process RS MINERVE csv database file
-filePath <- './data/AmuDarya/GuntYashikul/RSMinerve/'
-fileName <- 'Gunt_Yashikul_1981_2013_db.csv'
-era5_gunt_yashikul <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
-## Delete unused catchments in the Gunt-Yashikul hydrological model (this is specific to the model and does not need to be carried out normally)
-idx2del <- (era5_gunt_yashikul[1,]=='Gunt_DS_1') | (era5_gunt_yashikul[1,]=='Gunt_DS_2') |
+# Subcatchment suspects to delete because we do not use them in the RR Model
+idx2del <- (era5_gunt_yashikul[1,]=='Gunt_DS_1')|(era5_gunt_yashikul[1,]=='Gunt_DS_2')|
 (era5_gunt_yashikul[1,]=='Gunt_DS_3')
 era5_gunt_yashikul <- era5_gunt_yashikul %>% dplyr::select(which(!idx2del))
-## Generate list containing all station data (this is an input to the wgen_daily_PT() function)
-station_data <- prepare_RMAWGEN_input_data(era5_gunt_yashikul)
-# 2. RMAWGEN PARAMETERS
-## Note: all parameteres are stored in the param list
-param <- list()
-## Random generator seed
-param$seed <- 123456
-## Monthly climate is calculated if it is set to NULL
-param$PREC_CLIMATE <- NULL
-## Calibration Period
-param$year_min <- 1981
-param$year_max <- 2013
-param$origin <- "1981-1-1"
-## n GPCA iterations for variable and VAR residuals
-param$n_GPCA_iter <- 0
-param$n_GPCA_iteration_residuals <- 0
-param$n_GPCA_iter_prec <- 0
-param$n_GPCA_iteration_residuals_prec <- 0
-## Autoregressive order (p)
-param$p <- 1
-# number of weather realizations
-param$nscenario <- 1
-# Multi-site stations
-param$station <- station_data$STATION_NAMES
-# Minimum precipitation cutoff value, i.e. threshold value below which a no precipitation event is recorded [in mm/day]
-param$valmin <- 1.0
-# 3. Compute stochastic weather for a subset of 2 sample stations for the calibration period 1981 - 2013
-clim_scen <- NULL # We not yet simulate future climate. This follows in the next Subsection below.
-station_subset <- station_data$STATION_NAMES[1:2] # Selecting 2 example stations, i.e. Alishur_2 and Alishur_3. Normally, one wants to run the function for all stations.
-# Return VAR model? If we set this parameter to false, the output size of the PT_sim variable will be greatly reduced.
-param$returnVARModel = FALSE
-# Fire up the stochastic VAR machine
-PT_sim <- wgen_daily_PT(param,station_data,station_subset,clim_scen,param$returnVARModel)
+te <- generateHourlyFromDaily_PT(PT_sim_all,era5_gunt_yashikul,param)
+headerLines <- era5_gunt_yashikul[1:8,] %>% dplyr::select(-which(era5_gunt_yashikul[5,]=='Q'))
+te_1 <- te[[1]]
+headerLines <- era5_gunt_yashikul[1:8,] %>% dplyr::select(-which(era5_gunt_yashikul[5,]=='Q'))
+names(te_1) <- names(headerLines)
+te_1 <- headerLines %>% add_row(te_1)
+te_1
+te_1 %>% type_convert(.,col_types = 'char')
+te_1 %>% type_convert(.,col_types = 'chr')
+te_1 <- te[[1]] %>% mutate(everything(),as.character())
+te_1 <- te[[1]] %>% mutate(vars(everything()),as.character())
+vars(everything(te[[1]]))
+te_1 <- te[[1]] %>% mutate(.,as.character())
+te[[1]]
+te_1 <- te[[1]] %>% dplyr::select(-date$value) %>% mutate(across(.,~as.character()))
+te_1 <- te[[1]] %>% dplyr::select(-date$value) %>% mutate(across(~as.character()))
+te_1 <- te[[1]] %>% dplyr::select(-date$value) %>% mutate(across(~as.character)
+te_1 <- te[[1]] %>% dplyr::select(-date$value) %>% mutate(across(~as.character)
+te_1 <- te[[1]] %>% dplyr::select(-date$value) %>% mutate(across(~as.character))
+?as.character
+te_1 <- te[[1]] %>% dplyr::select(-date$value) %>% dplyr::mutate(across(.cols=everything(),~ as.character(.))
+te_1 <- te[[1]] %>% dplyr::select(-date$value) %>% dplyr::mutate(across(.cols=everything(),~ as.character(.)))
+te_1 <- te[[1]] %>% dplyr::select(-date$value) %>% dplyr::mutate(across(.cols=everything(),~ as.character()))
+te_1 <- te[[1]] %>% dplyr::select(-date$value) %>% dplyr::mutate(across(.cols=everything(),~ as.character)
+te_1 <- te[[1]] %>% dplyr::select(-date$value) %>% dplyr::mutate(across(.cols=everything(),~ as.character))
+te_1 <- te[[1]] %>% dplyr::select(-date$value) %>% dplyr::mutate(across(.cols=everything(),as.character))
+te_1 <- te_1 %>% mutate(across(everything(), as.character))
+te_1
+te_1 <- te[[1]] %>% dplyr::select(-date$value) %>% mutate(across(everything(), as.character))
+te_1 <- te[[1]] %>% dplyr::select(-'date$value') %>% mutate(across(everything(), as.character))
+te[[1]]
+te_1 <- te[[1]]
+te_1
+PT_sim <- PT_sim_all
+# Conversion of precipitation
+dateVec <- riversCentralAsia::generateSeqDates(PT_sim[[idx]]$year_min_sim,PT_sim[[idx]]$year_max_sim,"day")
+dateVec <- dateVec$date %>% tibble::as_tibble() %>% dplyr::rename(date=value)
+P_daily <- dateVec %>% tibble::add_column((PT_sim[[idx]]$P_gen$prec_gen / 24) %>% tibble::as_tibble()) # dividing to mm/hour for later gap filling
+P_daily <- dateVec %>% tibble::add_column((PT_sim[[idx]]$P_gen$prec_gen / 24) %>% tibble::as_tibble()) # dividing to mm/hour for later gap filling
+P_daily <- P_daily %>% dplyr::bind_rows(P_daily[base::rep(base::nrow(P_daily), 1),] %>%
+dplyr::mutate(date = date + lubridate::days(1))) # Trick: Add duplicated last line with + 1 day
+P_hourly <- P_daily %>% timetk::pad_by_time(.date_var = date,.by = "hour") %>%
+tidyr::fill(everything(),.direction = 'down')
+P_hourly <- P_hourly %>% dplyr::filter(dplyr::row_number() <= dplyr::n()-1) # remove that added last day row again.
+# =========================
+# Conversion of temperature
+# A. CLIMATE SCENARIOS
+Tmin <- PT_sim[[idx]]$T_gen$output$Tn_gen %>% tibble::as_tibble()
+Tmax <- PT_sim[[idx]]$T_gen$output$Tx_gen %>% tibble::as_tibble()
+Tmean <- (Tmin + Tmax) / 2
+dateVec <- riversCentralAsia::generateSeqDates(PT_sim[[idx]]$year_min_sim,
+PT_sim[[idx]]$year_max_sim,'day')
+Tmin_daily <- dateVec %>% tibble::add_column(Tmin)
+Tmax_daily <- dateVec %>% tibble::add_column(Tmax)
+Tmean_daily <- dateVec %>% tibble::add_column(Tmean)
+Tmin_daily <- Tmin_daily %>%
+dplyr::bind_rows(Tmin_daily[base::rep(base::nrow(Tmin_daily), 1),] %>%
+dplyr::mutate(date = date + lubridate::days(1))) # Trick: Add duplicated last line with + 1 day
+Tmax_daily <- Tmax_daily %>%
+dplyr::bind_rows(Tmax_daily[base::rep(base::nrow(Tmax_daily), 1),] %>%
+dplyr::mutate(date = date + lubridate::days(1))) # Trick: Add duplicated last line with + 1 day
+Tmean_daily <- Tmean_daily %>%
+dplyr::bind_rows(Tmin_daily[base::rep(base::nrow(Tmean_daily), 1),] %>%
+dplyr::mutate(date = date + lubridate::days(1))) # Trick: Add duplicated last line with + 1 day
+# Daily to hourly data frames
+Tmin_hourly <- Tmin_daily %>%
+timetk::pad_by_time(.date_var = date,.by = "hour") %>%
+tidyr::fill(everything(),.direction = 'down') %>%
+dplyr::filter(dplyr::row_number() <= dplyr::n()-1) # remove that added last day row again.
+Tmax_hourly <- Tmax_daily %>% timetk::pad_by_time(.date_var = date,.by = "hour") %>%
+tidyr::fill(everything(),.direction = 'down') %>%
+dplyr::filter(dplyr::row_number() <= dplyr::n()-1) # remove that added last day row again.
+Tmean_hourly <- Tmean_daily %>% timetk::pad_by_time(.date_var = date,.by = "hour") %>%
+tidyr::fill(everything(),.direction = 'down') %>%
+dplyr::filter(dplyr::row_number() <= dplyr::n()-1) # remove that added last day row again.
+Tmin_hourly_mat <- Tmin_hourly %>% dplyr::select(-date) %>% as.matrix()
+Tmax_hourly_mat <- Tmax_hourly %>% dplyr::select(-date) %>% as.matrix()
+Tmean_hourly_mat <- Tmean_hourly %>% dplyr::select(-date) %>% as.matrix()
+# B. ERA5
+diurnalCycle <- computeDiurnalTemperatureCycle(era5_data,param)
+era5_data <- era5_gunt_yashikul
+# B. ERA5
+diurnalCycle <- computeDiurnalTemperatureCycle(era5_data,param)
+diurnalCycle_era5_mean0 <- diurnalCycle %>% dplyr::select(-hour) %>%
+dplyr::mutate(across(.cols=everything(),~ . - mean(.))) %>%
+tibble::add_column(hour=diurnalCycle$hour,.before = 1)
+diurnalCycle_era5_max <- diurnalCycle_era5_mean0 %>% dplyr::select(-hour) %>%
+dplyr::mutate(across(.cols=everything(),~ max(.))) %>%
+tibble::add_column(hour=diurnalCycle$hour,.before = 1)
+diurnalCycle_era5_min <- diurnalCycle_era5_mean0 %>% dplyr::select(-hour) %>%
+dplyr::mutate(across(.cols=everything(),~ min(.))) %>%
+tibble::add_column(hour=diurnalCycle$hour,.before = 1)
+diurnalCycle_era5_mean0 <- diurnalCycle_era5_mean0 %>% dplyr::select(-hour)
+diurnalCycle_era5_min <- diurnalCycle_era5_min %>% dplyr::select(-hour)
+diurnalCycle_era5_max <- diurnalCycle_era5_max %>% dplyr::select(-hour)
+# Repeat cycles for the total number of days.
+dC_era5_mean0_rep_mat <- do.call("rbind", base::replicate(n=base::nrow(dateVec),
+diurnalCycle_era5_mean0, simplify = FALSE)) %>% as.matrix()
+dC_era5_min_rep_mat <- do.call("rbind", base::replicate(n=base::nrow(dateVec),
+diurnalCycle_era5_min, simplify = FALSE)) %>% as.matrix()
+dC_era5_max_rep_mat <- do.call("rbind", base::replicate(n=base::nrow(dateVec),
+diurnalCycle_era5_max, simplify = FALSE)) %>% as.matrix()
+# C. Adjust ERA5 diurnal cycle to daily Tmin and Tmax ranges (rescaling and shift to new mean)
+TP_hourly_scenario <- dC_era5_mean0_rep_mat
+# Scale values
+TP_hourly_scenario <- (TP_hourly_scenario - dC_era5_min_rep_mat) / (dC_era5_max_rep_mat - dC_era5_min_rep_mat) *
+(Tmax_hourly_mat - Tmin_hourly_mat) + Tmin_hourly_mat
+TP_hourly_scenario <- TP_hourly_scenario %>% tibble::as_tibble()
+TP_hourly_scenario
+base::names(TP_hourly_scenario) <- base::names(diurnalCycle_era5_mean0)
+TP_hourly_scenario <- TP_hourly_scenario %>% tibble::add_column(date=Tmean_hourly$date,.before = 1)
+TP_hourly_scenario
+# D. Resulting hourly temperature
+TP_hourly_scenario_1 <- TP_hourly_scenario %>%
+tibble::add_column(P_hourly %>% dplyr::select(-date), .name_repair = "unique")
+TP_hourly_scenario_1
+# C. Adjust ERA5 diurnal cycle to daily Tmin and Tmax ranges (rescaling and shift to new mean)
+TP_hourly_scenario <- dC_era5_mean0_rep_mat
+# Scale values
+TP_hourly_scenario <- (TP_hourly_scenario - dC_era5_min_rep_mat) / (dC_era5_max_rep_mat - dC_era5_min_rep_mat) *
+(Tmax_hourly_mat - Tmin_hourly_mat) + Tmin_hourly_mat
+TP_hourly_scenario <- TP_hourly_scenario %>% tibble::as_tibble()
+base::names(TP_hourly_scenario) <- base::names(diurnalCycle_era5_mean0)
+TP_hourly_scenario <- TP_hourly_scenario %>% tibble::add_column(date=Tmean_hourly$date,.before = 1)
+# D. Resulting hourly temperature
+TP_hourly_scenario <- TP_hourly_scenario %>%
+tibble::add_column(P_hourly %>% dplyr::select(-date), .name_repair = "unique")
+# Fix dates to confirm to RS MINERVE
+TP_hourly_scenario$date <- posixct2rsminerveChar(TP_hourly_scenario$date)
+TP_hourly_scenario
+# C. Adjust ERA5 diurnal cycle to daily Tmin and Tmax ranges (rescaling and shift to new mean)
+TP_hourly_scenario <- dC_era5_mean0_rep_mat
+# Scale values
+TP_hourly_scenario <- (TP_hourly_scenario - dC_era5_min_rep_mat) / (dC_era5_max_rep_mat - dC_era5_min_rep_mat) *
+(Tmax_hourly_mat - Tmin_hourly_mat) + Tmin_hourly_mat
+TP_hourly_scenario <- TP_hourly_scenario %>% tibble::as_tibble()
+base::names(TP_hourly_scenario) <- base::names(diurnalCycle_era5_mean0)
+TP_hourly_scenario <- TP_hourly_scenario %>% tibble::add_column(date=Tmean_hourly$date,.before = 1)
+# D. Resulting hourly temperature
+TP_hourly_scenario <- TP_hourly_scenario %>%
+tibble::add_column(P_hourly %>% dplyr::select(-date), .name_repair = "unique")
+TP_hourly_scenario
+# Fix dates to confirm to RS MINERVE
+fixedDates <- posixct2rsminerveChar(TP_hourly_scenario$date)
+fixedDates
+# Fix dates to confirm to RS MINERVE
+fixedDates <- posixct2rsminerveChar(TP_hourly_scenario$date) %>% rename(date=value)
+fixedDates
+TP_hourly_scenario <- TP_hourly_scenario %>% dplyr::select(-date) %>% add_column(fixedDates,.before = 1)
+TP_hourly_scenario
+detach("package:riversCentralAsia", unload=TRUE)
+library(riversCentralAsia)
+filePath <- './data/AmuDarya/GuntYashikul/RSMinerve/'
+fileName <- 'Gunt_Yashikul_1981_2013_db.csv'
+era5_gunt_yashikul <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
+# Subcatchment suspects to delete because we do not use them in the RR Model
+idx2del <- (era5_gunt_yashikul[1,]=='Gunt_DS_1')|(era5_gunt_yashikul[1,]=='Gunt_DS_2')|
+(era5_gunt_yashikul[1,]=='Gunt_DS_3')
+era5_gunt_yashikul <- era5_gunt_yashikul %>% dplyr::select(which(!idx2del))
+te <- generateHourlyFromDaily_PT(PT_sim_all,era5_gunt_yashikul,param)
+te_1 <- te[[1]]
+te_1
+te_1 %>% dplyr::select(-date) %>% mutate(across(everything(), as.character))
+te_1  %>% mutate(across(everything(), as.character))
+te_1 <- te[[1]]
+te_1 <- te_1  %>% mutate(across(everything(), as.character))
+headerLines <- era5_gunt_yashikul[1:8,] %>% dplyr::select(-which(era5_gunt_yashikul[5,]=='Q'))
+names(te_1) <- names(headerLines)
+te_1 <- headerLines %>% add_row(te_1)
+te_1
+PT_sim_stats$rcp45_MIROC5_Period1$Alishur_2
+PT_sim_stats$rcp45_MIROC5_Period2$Alishur_2
+PT_sim_stats$rcp85_MIROC5_Period2$Alishur_2
+PT_sim_stats$rcp85_ACCESS1_3_Period2$Alishur_2
+PT_sim_stats$rcp85_CMCC_CM_Period2$Alishur_2
+filePath <- './data/AmuDarya/GuntYashikul/RSMinerve/'
+fileName <- 'Gunt_Yashikul_1981_2013_db.csv'
+era5_gunt_yashikul <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
+# Subcatchment suspects to delete because we do not use them in the RR Model
+idx2del <- (era5_gunt_yashikul[1,]=='Gunt_DS_1')|(era5_gunt_yashikul[1,]=='Gunt_DS_2')|
+(era5_gunt_yashikul[1,]=='Gunt_DS_3')
+era5_gunt_yashikul <- era5_gunt_yashikul %>% dplyr::select(which(!idx2del))
+# Compute diurnal cycle
+diurnalCycle <- computeDiurnalTemperatureCycle(era5_gunt_yashikul,param)
+# Visualization through cross-checking
+diurnalCycle %>% pivot_longer(-hour) %>% group_by(name) %>%
+ggplot(.,aes(x=hour,y=value,colour=name)) + geom_line() + labs(title="ERA5 Diurnal T Variation, Gunt-Yashikul River Subbasins")
+filePath <- './data/AmuDarya/GuntYashikul/RSMinerve/'
+fileName <- 'Gunt_Yashikul_1981_2013_db.csv'
+era5_gunt_yashikul <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
+# Subcatchment suspects to delete because we do not use them in the RR Model
+idx2del <- (era5_gunt_yashikul[1,]=='Gunt_DS_1')|(era5_gunt_yashikul[1,]=='Gunt_DS_2')|
+(era5_gunt_yashikul[1,]=='Gunt_DS_3')
+era5_gunt_yashikul <- era5_gunt_yashikul %>% dplyr::select(which(!idx2del))
+# Compute diurnal cycle
+diurnalCycle <- computeDiurnalTemperatureCycle(era5_gunt_yashikul,param)
+# Visualization through cross-checking
+diurnalCycle %>% pivot_longer(-hour) %>% group_by(name) %>%
+ggplot(.,aes(x=hour,y=value,colour=name)) + geom_line() + labs(title="ERA5 Diurnal T Variation, Gunt-Yashikul River Subbasins")
+climScen_hourly_rsminerve <- generateHourlyFromDaily_PT(PT_sim_all,era5_gunt_yashikul,param)
+# Sample output
+climScen_hourly_rsminerve$rcp45_MIROC5_Period1
+climScen_hourly <- climScen_hourly_rsminerve
+clim_scen %>% summary()
+# Producing the hourly climate scenarios
+climScen_hourly <- generateHourlyFromDaily_PT(PT_sim_all,era5_gunt_yashikul,param)
+# Adding the required header information to the data frames for each climate scenario
+headerRows<- era5_gunt_yashikul[1:8,] %>% dplyr::select(-which(era5_gunt_yashikul[5,]=='Q'))
+climScen_hourly_rsminerve <- list()
+for (idx in 1:length(climScen_hourly)){
+climScen2Export <- climScen_hourly[[idx]] %>% mutate(across(everything(), as.character))
+names(climScen2Export) <- names(headerRows)
+climScen_hourly_rsminerve[[idx]] <- headerRows %>% add_row(climScen2Export)
+}
+names(climScen_hourly_rsminerve) <- names(clim_scen)
+# Sample output
+climScen_hourly_rsminerve$rcp45_MIROC5_Period1
+climScen_hourly_rsminerveMsummary()
+climScen_hourly_rsminerve %>% summary()
+names2Save <- names(climScen_hourly_rsminerve)
+names2Save
+climScen_hourly_rsminerve$rcp45_MIROC5_Period1
+idx <- 1
+climScen_hourly_rsminerve[[1]]
+outputPath <- './data/AmuDarya/GuntYashikul/RSMinerve/'
+names2Save <- names(climScen_hourly_rsminerve)
+names2Save_prefix <- 'Gunt_Yashikul_'
+for (idx in 1:length(climScen_hourly_rsminerve)){
+fileName <- paste0(names2Save_prefix,names2Save[idx],'.csv')
+write.table(climScen_hourly_rsminerve[[idx]],paste0(outputPath,fileName),sep=',',row.names = FALSE,col.names=FALSE,quote=FALSE)
+}
+climScen_hourly %>% summary()
+climScen_hourly$rcp45_MIROC5_Period1 %>% summary()
+PT_sim_all$rcp45_MIROC5_Period1 %>% summary()
+PT_sim_all$rcp45_MIROC5_Period1$P_gen$prec_mes %>% summary()
+PT_sim_all$rcp45_MIROC5_Period1$P_gen$prec_gen %>% summary()
+PT_sim_all$rcp45_MIROC5_Period1$P_gen$prec_gen$Alishur_2 %>% summary()
+PT_sim_all[[1]]$P_gen$prec_gen$Alishur_2 %>% summary()
+PT_sim_all[[2]]$P_gen$prec_gen$Alishur_2 %>% summary()
+PT_sim_all[[3]]$P_gen$prec_gen$Alishur_2 %>% summary()
+PT_sim_all[[4]]$P_gen$prec_gen$Alishur_2 %>% summary()
+PT_sim_all[[5]]$P_gen$prec_gen$Alishur_2 %>% summary()
+PT_sim_all[[6]]$P_gen$prec_gen$Alishur_2 %>% summary()
+PT_sim_stats
+clim_scen$rcp45_MIROC5_Period1
+clim_scen$rcp45_MIROC5_Period1$prec
+clim_scen$rcp45_MIROC5_Period1$prec
+te <- clim_scen$rcp45_MIROC5_Period1$prec
+te[,1]
+te[,1] %>% plot()
+te[,1] %>% plot() %>% lines()
+te[,1] %>% lines()
+```{r rmawgenMonthlyTotals, echo=FALSE,fig.cap="The comparison of the 4 stochastic weather generator models in terms of their abilities to reproduce monthly precipitation totals is shown for one station (elevation band) in the Gunt river basin. Results indicate that precipitation totals from the models 1 and 2 are overestimated. In comparison, models 3 and 4 are more balanced and not biased."}
+knitr::include_graphics("./_bookdown_files/FIG_DATA/RMAWGEN_Models_monthlyTotalsComparison.jpg")
+param$year_min_Baseline <- 2004
+param$year_max_Baseline <- 2013
+clim_scen <- NULL
+# Computing the baseline statistics and comparing it with simulated weather over the same period.
+summaryStats <- wgen_daily_summaryStats(PT_sim, param, station_data, station_subset,clim_scen)
 pathF <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
-save(PT_sim,list = 'PT_sim',file = paste0(pathF,'PT_sim','.rda'))
-save(param,list = 'param',file = paste0(pathF,'param','.rda'))
-save(station_data,list = 'station_data',file = paste0(pathF,'station_data','.rda'))
-save(station_subset,list = 'station_subset',file = paste0(pathF,'station_subset','.rda'))
+load(paste0(pathF,'PT_sim.rda'))
+load(paste0(pathF,'param.rda'))
+load(paste0(pathF,'station_data.rda'))
+load(paste0(pathF,'station_subset.rda'))
 param$year_min_Baseline <- 2004
 param$year_max_Baseline <- 2013
 clim_scen <- NULL
@@ -510,3 +388,125 @@ clim_scen <- NULL
 summaryStats <- wgen_daily_summaryStats(PT_sim, param, station_data, station_subset,clim_scen)
 # Summary statistics for the station (i.e. elevation band) Alishur_2
 summaryStats$Alishur_2
+basin_climScen_Path <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
+basin_climScen_File <- 'climScen_monthly'
+clim_scen <- climateScenarioPreparation_RMAWGEN(basin_climScen_Path,basin_climScen_File,param)
+basin_climScen_Path <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
+basin_climScen_File <- 'climScen_monthly'
+clim_scen <- climateScenarioPreparation_RMAWGEN(basin_climScen_Path,basin_climScen_File,param)
+# Simulation periods
+param$year_min_Baseline <- 2004
+param$year_max_Baseline <- 2013
+param$year_min_sim_Period1 <-  2051
+param$year_max_sim_Period1 <-  2060
+param$year_min_sim_Period2 <-  2091
+param$year_max_sim_Period2 <-  2100
+basin_climScen_Path <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
+basin_climScen_File <- 'climScen_monthly'
+clim_scen <- climateScenarioPreparation_RMAWGEN(basin_climScen_Path,basin_climScen_File,param)
+clim_scen$rcp45_MIROC5_Period1$prec
+clim_scen$rcp45_MIROC5_Period1$prec[1:12,1:2]
+clim_scen$rcp45_MIROC5_Period1$prec[1:12,1:2] %>% sum()
+clim_scen$rcp45_MIROC5_Period1$prec[1:12,1:2] %>% colSums()
+clim_scen$rcp45_MIROC5_Period1$prec_norm
+clim_scen$rcp45_MIROC5_Period1$prec_norm %>% colSums()
+clim_scen$rcp45_MIROC5_Period1$prec_norm
+clim_scen$rcp45_MIROC5_Period1$prec_norm /24
+example_P_norms <- clim_scen$rcp45_MIROC5_Period1$prec_norm
+clim_scen$rcp45_MIROC5_Period1$prec_norme
+example_P_norms
+example_P_norms
+nDaysMonth <- tibble(nDays = c(31, 28.25, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31))
+example_P_norms %>% class()
+nDaysMonth
+nDaysMonth <- tibble(nDays = c(31, 28.25, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31))
+rep.col(nDaysMonth,10)
+rep.col<-function(x,n){
+matrix(rep(x,each=n), ncol=n, byrow=TRUE)
+}
+rep.col(nDaysMonth,10)
+nDaysMonth <- matrix(c(31, 28.25, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31))
+nDaysMonth
+rep.col(nDaysMonth,10)
+example_P_norms
+example_P_norms %>% ncol()
+cols <- example_P_norms %>% ncol()
+example_P_norms <- clim_scen$rcp45_MIROC5_Period1$prec_norm
+nDaysMonth <- matrix(c(31, 28.25, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31))
+cols <- example_P_norms %>% ncol()
+nDaysMonth <- matrix(rep(nDaysMonth,each=cols), ncol=cols, byrow=TRUE)
+nDaysMonth
+example_P_norms / nDaysMonth
+detach("package:riversCentralAsia", unload=TRUE)
+library(riversCentralAsia)
+basin_climScen_Path <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
+basin_climScen_File <- 'climScen_monthly'
+clim_scen <- climateScenarioPreparation_RMAWGEN(basin_climScen_Path,basin_climScen_File,param)
+clim_scen$rcp45_MIROC5_Period1$prec_norm
+# Compute for all stations
+station_subset <- NULL # We compute climate projections for all subasin elevation bands.
+# Return VAR model?
+param$returnVARModel = FALSE
+# Fire up the stochastic weather generator for all climate scenarios
+PT_sim_all <- list()
+# Loop through all climate scenarios and run models
+for (idx in 1:length(clim_scen)){
+PT_sim_all[[idx]] <- wgen_daily_PT(param,station_data,station_subset,clim_scen[[idx]],param$returnVARModel)
+}
+names(PT_sim_all) <- names(clim_scen)
+# Making simulation results available for loading without recomputing.
+pathF <- './data/AmuDarya/GuntYashikul/ClimateProjections/'
+save(PT_sim_all,list = 'PT_sim_all',file = paste0(pathF,'PT_sim_all','.rda'))
+save(param,list = 'param',file = paste0(pathF,'param_sim_all','.rda'))
+PT_sim_stats <- list()
+for (idx in 1:length(clim_scen)){
+PT_sim_stats[[idx]] <-
+riversCentralAsia::wgen_daily_summaryStats(PT_sim_all[[idx]],param,station_data,station_subset,clim_scen[[idx]])
+}
+names(PT_sim_stats) <- names(clim_scen)
+PT_sim_stats$rcp45_MIROC5_Period1$Alishur_2
+(6.85-6.67)/6.67*100
+PT_sim_stats$rcp45_MIROC5_Period2$Alishur_2
+PT_sim_stats$rcp85_MIROC5_Period2$Alishur_2
+8.163*365.25/10
+PT_sim_stats$rcp85_ACCESS1_3_Period2$Alishur_2
+PT_sim_stats$rcp85_CMCC_CM_Period2$Alishur_2
+(298-245)/245
+9.11*365.25/10
+(333-245)/245
+filePath <- './data/AmuDarya/GuntYashikul/RSMinerve/'
+fileName <- 'Gunt_Yashikul_1981_2013_db.csv'
+era5_gunt_yashikul <- read.table(paste0(filePath,fileName),sep=',') %>% as_tibble()
+# Subcatchment suspects to delete because we do not use them in the RR Model
+idx2del <- (era5_gunt_yashikul[1,]=='Gunt_DS_1')|(era5_gunt_yashikul[1,]=='Gunt_DS_2')|
+(era5_gunt_yashikul[1,]=='Gunt_DS_3')
+era5_gunt_yashikul <- era5_gunt_yashikul %>% dplyr::select(which(!idx2del))
+# Compute diurnal cycle
+diurnalCycle <- computeDiurnalTemperatureCycle(era5_gunt_yashikul,param)
+# Simple visualization
+diurnalCycle %>% pivot_longer(-hour) %>% group_by(name) %>%
+ggplot(.,aes(x=hour,y=value,colour=name)) + geom_line() + labs(title="ERA5 Diurnal T Variation, Gunt-Yashikul River Subbasins")
+# Producing the hourly climate scenarios
+climScen_hourly <- generateHourlyFromDaily_PT(PT_sim_all,era5_gunt_yashikul,param)
+# Adding the required header information to the data frames for each climate scenario
+headerRows<- era5_gunt_yashikul[1:8,] %>% dplyr::select(-which(era5_gunt_yashikul[5,]=='Q'))
+climScen_hourly_rsminerve <- list()
+for (idx in 1:length(climScen_hourly)){
+climScen2Export <- climScen_hourly[[idx]] %>% mutate(across(everything(), as.character))
+names(climScen2Export) <- names(headerRows)
+climScen_hourly_rsminerve[[idx]] <- headerRows %>% add_row(climScen2Export)
+}
+names(climScen_hourly_rsminerve) <- names(clim_scen)
+# Sample output
+climScen_hourly_rsminerve$rcp45_MIROC5_Period1
+?write.table
+outputPath <- './data/AmuDarya/GuntYashikul/RSMinerve/'
+names2Save <- names(climScen_hourly_rsminerve)
+names2Save_prefix <- 'Gunt_Yashikul_'
+for (idx in 1:length(climScen_hourly_rsminerve)){
+fileName <- paste0(names2Save_prefix,names2Save[idx],'.csv')
+write.table(climScen_hourly_rsminerve[[idx]],
+paste0(outputPath,fileName),sep=',',
+row.names = FALSE,col.names=FALSE,
+quote=FALSE,append=FALSE)
+}
