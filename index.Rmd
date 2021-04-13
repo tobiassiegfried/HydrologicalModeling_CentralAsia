@@ -1,6 +1,6 @@
 ---
 title: "Applied Modeling of Hydrological Systems in Central Asia"
-author: "Tobias Siegfried"
+author: "Tobias Siegfried and Beatrice Marti"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output:
