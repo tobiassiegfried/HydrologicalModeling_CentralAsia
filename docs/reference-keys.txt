@@ -23,7 +23,7 @@ fig:completeDischargeData
 fig:qGazalkent
 fig:qChinaz
 fig:qAnnualGazalkentChinaz
-tab:unnamed-chunk-8
+tab:unnamed-chunk-10
 fig:ChirchikSeasonalityLargeTribs
 fig:seasonalitySmallTribs
 fig:ChirchikRiverHypsometricCurves
@@ -221,7 +221,7 @@ section-data-snow-cover
 RSMinerveMODELS
 section-rsminerve-prerequisites
 section-rsminerve-why-model-introduction
-recap-the-general-modeling-process
+section-general-modelling-process
 data-preparation-and-setup
 examining-and-understanding-the-gis-data
 loading-gis-data-and-model-creation

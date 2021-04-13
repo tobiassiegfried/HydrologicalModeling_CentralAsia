@@ -24,32 +24,36 @@ The R code to produce figures, conduct analyses as well carry out empirical mode
 # Study guide {#study-guide .unnumbered}
 This course book has been designed to accompany a 2-week workshop for aspiring water professionals at the Kazakh-German University in Almaty (Master level). The material can be covered in 8 intensive work days. The workshop participants will be guided through building up their own hydrological model of a sample catchment in Central Asia. The readers are recommended to work through the texts in each chapter including the tasks that serve to deepen reflection on the course material and to do their daily homework on the modeling of the sample catchment. This chapter explains how to use this course book.   
 
-Exercises are highlighted with blue boxes:    
-
-:::: {.exercisebox exercise-intro=""}  
-::: {.center exercise-intro=""}  
-**Exercise: This is an exercise box**
-:::  
-With the description of the exercise, hints and a link to the solutions.   
-::::    
+Exercises are highlighted with blue boxes:   
+```{r, eval = "html", label="intro-exercise-box", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "exercise" <div class = "exercise" id="ex1"> 
+<h3 class = "right">Ex1</h3> 
+<h3 class= "left">This is an exercise box</h3> 
+<p>With the description of the exercise, hints and a link to the solutions. Exercises should be completed before starting the next course chapter.</p> 
+</div>')
+```
   
 Tasks that enforce deeper learning of the course material are highlighted in green:   
-
-:::: {.taskbox task-intro=""}
-::: {.center task-intro=""}
-**Task: This is a task box**
-:::
-With some text
-::::
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "task" <div class = "task" id="t1"> 
+<h3 class = "right">T1</h3> 
+<h3 class= "left">This is a task box</h3> 
+<p>Tasks do not always have a solution. They encourage you to reflect on the course material and to deepen your knowledge.</p> 
+</div>')
+```
 
 Take home messages or important notes are highlighted in red:  
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "note" <div class = "note" id="n1"> 
+<h3 class = "right">N1</h3> 
+<h3 class= "left">This is a note box</h3> 
+<p>Note boxes summarize the most important take home messages.</p> 
+</div>')
+```
 
-:::: {.notebox note-intro=""}
-::: {.center note-intro=""}
-**Note: Daily completion of home work**
-:::
-Please make sure to complete your homework on a daily basis as the course builds up on the previous days work.   
-::::
 
 
 ## Day 1: Introduction and installation of software {.unnumbered}
@@ -68,13 +72,13 @@ If you have not used the software above before we recommend the following resour
 
 
 ## Day 2: Catchment characterization {.unnumbered}  
-Read the [Case Studies in Chapter 3](#CaseStudies) and do the exercise, i.e. do a catchment characterization of your sample catchment.   
+Read the [Case Studies in Chapter 3](#CaseStudies) and [Station Data in Chapter 5](#Data::StationData) and do the exercise on catchment characterization, i.e. do a catchment characterization of your sample catchment.   
 
 **Todo: Link to exercise**
 
 
-## Day 3:  {.unnumbered}
-
+## Day 3: Introduction to hydrological modeling and geospatial data {.unnumbered}
+Read Chapters [6.2](#section-rsminerve-why-model-introduction) and [6.3](#section-general-modelling-process) and do the exercise on the linear reservoir model.   
 
 
 

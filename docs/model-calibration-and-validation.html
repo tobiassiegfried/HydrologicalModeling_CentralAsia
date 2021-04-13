@@ -147,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="day-1-introduction-and-installation-of-software.html"><a href="day-1-introduction-and-installation-of-software.html"><i class="fa fa-check"></i>Day 1: Introduction and installation of software</a></li>
 <li class="chapter" data-level="" data-path="day-2-catchment-characterization.html"><a href="day-2-catchment-characterization.html"><i class="fa fa-check"></i>Day 2: Catchment characterization</a></li>
-<li class="chapter" data-level="" data-path="day-3.html"><a href="day-3.html"><i class="fa fa-check"></i>Day 3:</a></li>
+<li class="chapter" data-level="" data-path="day-3-introduction-to-hydrological-modeling-and-geospatial-data.html"><a href="day-3-introduction-to-hydrological-modeling-and-geospatial-data.html"><i class="fa fa-check"></i>Day 3: Introduction to hydrological modeling and geospatial data</a></li>
 </ul></li>
 <li class="part"><span><b>I Part I Hydrological Systems</b></span></li>
 <li class="chapter" data-level="1" data-path="ShortHistory.html"><a href="ShortHistory.html"><i class="fa fa-check"></i><b>1</b> Short History of Water in Central Asia</a>
@@ -224,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1" data-path="section-rsminerve-prerequisites.html"><a href="section-rsminerve-prerequisites.html"><i class="fa fa-check"></i><b>6.1</b> Prerequisites</a></li>
 <li class="chapter" data-level="6.2" data-path="section-rsminerve-why-model-introduction.html"><a href="section-rsminerve-why-model-introduction.html"><i class="fa fa-check"></i><b>6.2</b> Recap: Hydrological response</a></li>
-<li class="chapter" data-level="6.3" data-path="recap-the-general-modeling-process.html"><a href="recap-the-general-modeling-process.html"><i class="fa fa-check"></i><b>6.3</b> Recap: The general modeling process</a></li>
+<li class="chapter" data-level="6.3" data-path="section-general-modelling-process.html"><a href="section-general-modelling-process.html"><i class="fa fa-check"></i><b>6.3</b> Recap: The general modeling process</a></li>
 <li class="chapter" data-level="6.4" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html"><i class="fa fa-check"></i><b>6.4</b> Data Preparation and Setup</a>
 <ul>
 <li class="chapter" data-level="6.4.1" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html#examining-and-understanding-the-gis-data"><i class="fa fa-check"></i><b>6.4.1</b> Examining and Understanding the GIS Data</a></li>
@@ -343,19 +343,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="section-calibration-principles" class="section level3" number="6.6.1">
 <h3><span class="header-section-number">6.6.1</span> Basic Principles</h3>
 <p>The large number of parameters of the HBV model can be adjusted within reasonable ranges to make the simulated river discharge more similar to the measured discharge. This process is sometimes called history matching because past measurements are used to adapt the model parameters. The following two exercises are important for understanding hydrological models. They are relevant whether you work as a modeler or as a decision maker. Try to first come up with a few own ideas and then study the solutions carefully. They will be discussed in the lectures in more detail.</p>
-<div class="exercisebox" exercise-rsminerve-hbv-5="">
-<div class="center" exercise-rsminerve-hbv-5="">
-<p><strong>Exercise: Model calibration - Common difficulties</strong></p>
+<div class = "task" <div class = "task" id="t4.7"> 
+<h3 class = "right">T4.7</h3> 
+<h3 class= "left">Model calibration - Common difficulties</h3> 
+<p>Discuss with your colleague(s): What are typical difficulties inherent to the calibration of common semi-distributed (or fully distributed) hydrological models?</p>
+<p>Hint: Compare the number of parameters of the HBV model to the number of model states.</p>
+<p><a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-common-calibration-issues">Solution</a></p>
 </div>
-<p>What are typical difficulties inherent to the calibration of common semi-distributed (or fully distributed) hydrological models?</p>
-<p>Hint: Compare the number of parameters of the HBV model to the number of model states.<br />
-<a href="sectin-appendix-solutions.html#section-appendix-solutions-common-calibration-issues">Solution</a></p>
-<div class="center" exercise-rsminerve-hbv-6="">
-<p><strong>Exercise: Model calibration - Strategies to handle the difficulties</strong></p>
-</div>
-<p>Based on the list of common difficulties in the solution of exercise 5, think about possible strategies to address these challenges.</p>
-<p>Hint: A modeler proverb says “as simple as possible but as complex as necessary.”<br />
-<a href="sectin-appendix-solutions.html#section-appendix-solutions-strategies-for-issues">Solution</a></p>
+<div class = "task" <div class = "task" id="t4.8"> 
+<h3 class = "right">T4.8</h3> 
+<h3 class= "left">Model calibration - Strategies to handle the difficulties</h3> 
+<p>Discuss with your colleague(s): Based on the list of common difficulties in the solution of exercise 5, think about possible strategies to address these challenges.</p>
+<p>Hint: A modeler proverb says "as simple as possible but as complex as necessary".</p>
+<p><a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-strategies-for-issues">Solution</a></p>
 </div>
 <div id="calibration-vs.-validation" class="section level4" number="6.6.1.1">
 <h4><span class="header-section-number">6.6.1.1</span> Calibration vs. validation</h4>
@@ -366,11 +366,11 @@ Interested readers are refered to the literature for a more thorough discussion 
 <div id="performance-indicators" class="section level4" number="6.6.1.2">
 <h4><span class="header-section-number">6.6.1.2</span> Performance indicators</h4>
 <p>Model performance can be expressed in different ways. Some indicators are better suited to calibrate high flows (e.g. root mean squared error) and some are better suited to calibrate low flows (e.g. Nash coefficient for logarithm values). Others evaluate the models ability to reproduce the exceedance of a given discharge which is especially important for flood modelling. The calibration result depends on the choice of the performance indicators. For the automated calibration in RS Minerve, the user can choose a combination of several performance indicators. Care has to be taken to choose them according to the models goal.</p>
-<div class="exercisebox" task-performance-indicators="">
-<div class="center" task-performance-indicators="">
-<p><strong>Task: Read up on performance indicators</strong></p>
-</div>
-<p>The RS Minerve technical manual <span class="citation">(<a href="References.html#ref-rsminerve_tm" role="doc-biblioref">Garcia Hernandez et al. 2020</a>)</span> summarizes the most important performance indicators typically used in hydrological modelling. For the more ambitious modellers, the manual includes references to the literature. Read Chapter 3 of the technical manual.</p>
+<div class = "task" <div class = "task" id="t4.9"> 
+<h3 class = "right">T4.9</h3> 
+<h3 class= "left">Model performance indicators</h3> 
+<p>The RS Minerve technical manual summarizes the most important performance indicators typically used in hydrological modelling. For the more ambitious modellers, the manual includes references to the literature.</p>
+<p>Read Chapter 3 of the technical manual. </p>
 </div>
 </div>
 </div>
@@ -386,17 +386,13 @@ Add a comparator and a source object to your Nauvalisoy model and load river dis
 Figure 6.12: The simulated discharge (green) differs from the reference discharge (blue) before model calibration.
 </p>
 </div>
-<div class="exercisebox" exercise-rsminerve-manual-calibration="">
-<div class="center" exercise-rsminerve-manual-calibration="">
-<p><strong>Exercise: RS Minerve - Manual calibration of synthetic discharge</strong></p>
-</div>
-<ol style="list-style-type: decimal">
-<li>Try to calibrate the model. Start with the parameters of the snow function and then proceed downwards through the compartments of the HBV model. Try to figure out which parameters influence the timing of the discharge peak, which the height of the peak and which the form of the recession curve.<br />
-</li>
-<li>Look at the variables of the HBV model during calibration (e.g. snow water equivalent, soil moisture, etc.).</li>
-</ol>
-<p>Hint: This is an iterative process, give yourself some time for this task before you go peaking in the results.<br />
-The parameters of the calibrated model are linked <a href="#section-appendix-solutions-calibrated%20parameters">here</a>. Inspiration for this exercise from <span class="citation"><a href="References.html#ref-seibert_teaching_2012" role="doc-biblioref">Seibert and Vis</a> (<a href="References.html#ref-seibert_teaching_2012" role="doc-biblioref">2012</a>)</span>.</p>
+<div class = "task" <div class = "task" id="t4.10"> 
+<h3 class = "right">T4.10</h3> 
+<h3 class= "left">RS Minerve - Manual calibration of synthetic discharge</h3> 
+<p>1. Try to calibrate the model. Start with the parameters of the snow function and then proceed downwards through the compartments of the HBV model. Try to figure out which parameters influence the timing of the discharge peak, which the height of the peak and which the form of the recession curve.</p>
+<p>2. Look at the variables of the HBV model during calibration (e.g. snow water equivalent, soil moisture, etc.).</p>
+<p>Hint: This is an iterative process, give yourself some time for this task before you go peaking in the results.</p>
+<p>The parameters of the calibrated model are linked <a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-calibrated parameters">here</a>. Inspiration for this exercise from Prof. Jan Seibert and colleagues.</p>
 </div>
 The calibration process can be automated in RS Minerve. Automated calibration works similarly as manual calibration: A parameter is changed to minimize the calibration performance criteria (e.g. the difference between the simulated and the measured discharge). Because the automated calibration is much faster than manual calibration, it is extremely tempting to let it calibrate all parameters at once while working on something else but by now you know that good modeling is not as simple as that. Let’s see if RS Minerve finds the parameter set that was used to produce the synthetic discharge curve. Load the original parameter set via import P in the Model Properties toolbar. The file is in <a href="./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt">./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt</a>. Open the calibration tab in the Module toolbar (Figure <a href="model-calibration-and-validation.html#fig:open-calibration-tab">6.13</a>).
 <div class="figure" style="text-align: center"><span id="fig:open-calibration-tab"></span>
@@ -413,27 +409,18 @@ Figure 6.14: Open the calibration tab in RS Minerve.
 </p>
 </div>
 <p>You will have to choose performance indicators which will be combined in the objective function.</p>
-<div class="exercisebox" exercise-automated-calibration="">
-<div class="center" exercise-automated-calibration="">
-<p><strong>Exercise: RS Minerve - Automated calibration</strong></p>
-</div>
-<ul>
-<li>Choose one or several performance indicators and run the automated calibration. The automated calibration may take a few minutes (expect around 3000 model iterations). Compare the parameters found with the automated calibration to the ones that were used for the generation of the synthetic discharge values (in <a href="#section-appendix-solutions-calibrated%20parameters">solutions of the manual calibration example</a>). Discuss the differences. Where were you surprised? Which parameters could be identified and which not?<br />
-</li>
-<li>Change the combination and weights of the performance indicators and redo the automated calibration. Note how the calibration result changes.</li>
-</ul>
+<div class = "task" <div class = "task" id="t4.11"> 
+<h3 class = "right">T4.11</h3> 
+<h3 class= "left">RS Minerve - Automated calibration</h3> 
+<p>Choose one or several performance indicators and run the automated calibration. The automated calibration may take a few minutes (expect around 3000 model iterations). Compare the parameters found with the automated calibration to the ones that were used for the generation of the synthetic discharge values (in <a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-calibrated parameters">solutions of the manual calibration example</a>). Discuss the differences. Where were you surprised? Which parameters could be identified and which not?</p>
+<p>Change the combination and weights of the performance indicators and redo the automated calibration. Note how the calibration result changes. </p>
 </div>
 <p>You have seen in the exercise above that is not so easy to find the <em>true</em> parameter set of a basin. Let’s get a better understanding of the model parameters. Choose 1-3 parameters for which you will do a sensitivity analysis.</p>
-<div class="exercisebox" exercise-rsminerve-manual-sensitivity="">
-<div class="center" exercise-rsminerve-manual-sensitivity="">
-<p><strong>Exercise: RS Minerve - Manual sensitivity analysis</strong></p>
-</div>
-<ul>
-<li>Discuss with your colleague(s) in which way you expect the model outcomes to change when you modify your chosen parameters before you run the model.<br />
-</li>
-<li>Make notes of the changes in parameters and the changes in the model outcomes.<br />
-</li>
-</ul>
+<div class = "task" <div class = "task" id="t4.12"> 
+<h3 class = "right">T4.12</h3> 
+<h3 class= "left">RS Minerve - Manual sensitivity analysis</h3> 
+<p>Discuss with your colleague(s) in which way you expect the model outcomes to change when you modify your chosen parameters before you run the model. </p>
+<p>Make notes of the changes in parameters and the changes in the model outcomes.</p>
 </div>
 <p>The sensitivity analysis can be automated in RS Minerve. Make sure to have the calibrated parameter set loaded (via import P in the Model Properties toolbar). Open the tab for stochastic simulations in the Module toolbar (see Figure <a href="model-calibration-and-validation.html#fig:rsminerve-open-stochastic-simulation">6.15</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:rsminerve-open-stochastic-simulation"></span>
@@ -449,19 +436,12 @@ Select one of the parameters that you have evaluated manually in the exercise ab
 Figure 6.16: Open the stochastic simulation tab in RS Minerve.
 </p>
 </div>
-<div class="exercisebox" exercise-rsminerve-manual-sensitivity="">
-<div class="center" exercise-rsminerve-manual-sensitivity="">
-<p><strong>Exercise: RS Minerve - Automated sensitivity analysis</strong></p>
-</div>
-<ul>
-<li>Perform an automated sensitivity analysis for the same parameters you chose in the previous exercise (manual sensitivity analysis).<br />
-</li>
-<li>With your colleague(s), discuss the distribution options for the parameters and think about which distributions are suitable for which parameters.<br />
-</li>
-<li>Compare the outcome of the manual sensitivity analysis .<br />
-</li>
-<li>Bonus task: Choose a sensitive model parameter and valuate the sensitivity of the stochastic simulation with regard to the number of simulations or the seed.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></li>
-</ul>
+<div class = "task" <div class = "task" id="t4.13"> 
+<h3 class = "right">T4.13</h3> 
+<h3 class= "left">RS Minerve - Automated sensitivity analysis</h3> 
+<p>Perform an automated sensitivity analysis for the same parameters you chose in the previous exercise (manual sensitivity analysis).</p>
+<p>Compare the outcome of the manual sensitivity analysis.</p>
+<p>Bonus task: Choose a sensitive model parameter and evaluate the sensitivity of the stochastic simulation with regard to the number of simulations or the seed. (The seed is used in the random number generator. It makes the stochastic simulation reproducible.)</p>
 </div>
 Now we have a rasonable understanding of the HBV model. Let’s try it out with real discharge data. Import the database file for Nauvalisoy including measured discharge at the outlet of the catchment <a href="./data/SyrDarya/Chirchiq/RSMinerve/ERA5Q_Nauvalisoy_1981_2013.csv">./data/SyrDarya/Chirchiq/RSMinerve/ERA5Q_Nauvalisoy_1981_2013.csv</a> into RS Minerve and connect it to your model. Adapt the simulation time period to start on Jan 1 1981 at 1 a.m. until Dec 31 2013 at 11 p.m (the full period with available data). The simulation will take place at the maximum resolution of the forcing data, i.e. at hourly time steps. The discharge measurements are available as averages over 8-11 days. We choose an output interval of 2 days. As the initial water content in the system is not known, a warm-up period of 1 year is typically used to minimize the impact of the unknown initial conditions on the simulation results. You can implement the warm-up period in the comparator object under Parameters. Use the default, pre-calibration parameter set in <a href="./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt">./data/SyrDarya/Chirchiq/RSMinerve/nauvalisoy_PAR_precalibration.txt</a> as we don’t know much about the catchment properties.<br />
 Figure <a href="model-calibration-and-validation.html#fig:fig-real-discharge-result">6.17</a> shows the resulting discharge time series in the comparator object.
@@ -511,12 +491,6 @@ Figure 6.18: Elevation dependence of mean temperature at the four meteo stations
 <p>** TODO: Nauvalisoy elevation bands at higher resolution, ask tobi how involved the exctraction of the era5 bias corrected data for the elevation bands is **</p>
 </div>
 </div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="15">
-<li id="fn15"><p>The seed is used in the random number generator. It makes the stochastic simulation reproducible.<a href="model-calibration-and-validation.html#fnref15" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
             </section>
 

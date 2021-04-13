@@ -147,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="day-1-introduction-and-installation-of-software.html"><a href="day-1-introduction-and-installation-of-software.html"><i class="fa fa-check"></i>Day 1: Introduction and installation of software</a></li>
 <li class="chapter" data-level="" data-path="day-2-catchment-characterization.html"><a href="day-2-catchment-characterization.html"><i class="fa fa-check"></i>Day 2: Catchment characterization</a></li>
-<li class="chapter" data-level="" data-path="day-3.html"><a href="day-3.html"><i class="fa fa-check"></i>Day 3:</a></li>
+<li class="chapter" data-level="" data-path="day-3-introduction-to-hydrological-modeling-and-geospatial-data.html"><a href="day-3-introduction-to-hydrological-modeling-and-geospatial-data.html"><i class="fa fa-check"></i>Day 3: Introduction to hydrological modeling and geospatial data</a></li>
 </ul></li>
 <li class="part"><span><b>I Part I Hydrological Systems</b></span></li>
 <li class="chapter" data-level="1" data-path="ShortHistory.html"><a href="ShortHistory.html"><i class="fa fa-check"></i><b>1</b> Short History of Water in Central Asia</a>
@@ -224,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="6.1" data-path="section-rsminerve-prerequisites.html"><a href="section-rsminerve-prerequisites.html"><i class="fa fa-check"></i><b>6.1</b> Prerequisites</a></li>
 <li class="chapter" data-level="6.2" data-path="section-rsminerve-why-model-introduction.html"><a href="section-rsminerve-why-model-introduction.html"><i class="fa fa-check"></i><b>6.2</b> Recap: Hydrological response</a></li>
-<li class="chapter" data-level="6.3" data-path="recap-the-general-modeling-process.html"><a href="recap-the-general-modeling-process.html"><i class="fa fa-check"></i><b>6.3</b> Recap: The general modeling process</a></li>
+<li class="chapter" data-level="6.3" data-path="section-general-modelling-process.html"><a href="section-general-modelling-process.html"><i class="fa fa-check"></i><b>6.3</b> Recap: The general modeling process</a></li>
 <li class="chapter" data-level="6.4" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html"><i class="fa fa-check"></i><b>6.4</b> Data Preparation and Setup</a>
 <ul>
 <li class="chapter" data-level="6.4.1" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html#examining-and-understanding-the-gis-data"><i class="fa fa-check"></i><b>6.4.1</b> Examining and Understanding the GIS Data</a></li>
@@ -347,13 +347,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Figure 6.10: The HBV model concept (source: RS MINERVE Technical Manual).
 </p>
 </div>
-<div class="exercisebox" exercise-rsminerve-hbv-1="">
-<div class="center" exercise-rsminerve-hbv-1="">
-<p><strong>Exercise: Model understanding - Drivers</strong></p>
-</div>
-<p>What are the model drivers (i.e. what input data do you need to provide)?</p>
-<p>Hint: Study Figure <a href="section-hbv-model.html#fig:fig-overview-hbv-model">6.10</a>.<br />
-<a href="sectin-appendix-solutions.html#section-appendix-solutions-hbv-driving-forces">Solution</a></p>
+<div class = "task" <div class = "task" id="t4.3"> 
+<h3 class = "right">T4.3</h3> 
+<h3 class= "left">Model understanding - Drivers</h3> 
+<p>Discuss with your colleague(s): What are the model drivers (i.e. what input data do you need to provide)? </p>
+<p>Hint: Study the figure above.</p>
+<p><a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-hbv-driving-forces">Solution</a></p>
 </div>
 Figure <a href="section-hbv-model.html#fig:fig-overview-hbv-model-parameters">6.11</a> from the RS Minerve technical manual [rsminerve-tm] gives an overview over the model parameters and states.
 <div class="figure" style="text-align: center"><span id="fig:fig-overview-hbv-model-parameters"></span>
@@ -362,13 +361,12 @@ Figure <a href="section-hbv-model.html#fig:fig-overview-hbv-model-parameters">6.
 Figure 6.11: The HBV model parameters (source: RS MINERVE Technical Manual).
 </p>
 </div>
-<div class="exercisebox" exercise-rsminerve-hbv-2="">
-<div class="center" exercise-rsminerve-hbv-2="">
-<p><strong>Exercise: Model understanding - States</strong></p>
-</div>
-<p>What are the model states (i.e. what variables describe the amount of water in the system over time)?</p>
-<p>Hint: Values for initial water content in the different model compartments need to be defined prior to the simulation.<br />
-<a href="sectin-appendix-solutions.html#section-appendix-solutions-hbv-parameters-states">Solution</a></p>
+<div class = "task" <div class = "task" id="t4.4"> 
+<h3 class = "right">T4.4</h3> 
+<h3 class= "left">Model understanding - States</h3> 
+<p>Discuss with your colleague(s): What are the model states (i.e. what variables describe the amount of water in the system over time)? </p>
+<p>Hint: Values for initial water content in the different model compartments need to be defined prior to the simulation.</p>
+<p><a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-hbv-parameters-states">Solution</a></p>
 </div>
 <div id="section-hbv-nauvalisoy-tutorial-short" class="section level3" number="6.5.1">
 <h3><span class="header-section-number">6.5.1</span> HBV example: Simple model of the Nauvalisoy river catchment</h3>
@@ -383,19 +381,19 @@ Figure 6.11: The HBV model parameters (source: RS MINERVE Technical Manual).
 </li>
 <li>Change the model settings to calculate evaporation using Turc and adapt the coordinates in the settings tab <a href="appendix-b-quick-guides.html#section-quickguides-atapt-model-settings">Step-by-step guide</a>.</li>
 </ol>
-<div class="exercisebox" exercise-rsminerve-hbv-3="">
-<div class="center" exercise-rsminerve-hbv-3="">
-<p><strong>Exercise: RS Minerve - Data visualization</strong></p>
+<div class = "task" <div class = "task" id="t4.5"> 
+<h3 class = "right">T4.5</h3> 
+<h3 class= "left">RS Minerve - Data visualization</h3> 
+<p>Use the Selection and plots tool in the Modules toolbar of RS Minerve and display the hourly model inputs precipitation and temperature for the example year 1984. What is the approximate temperature range over the year? What is the annual precipitation? </p>
+<p>Hint: Adapt the simulation period in the model tab accordingly. Do not forget to set the initial conditions of the model to the last hour of 1983.</p>
+<p><a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-plot-temperature-and-precipitation-1984">Solution</a></p>
 </div>
-<p>Use the Selection and plots tool in the Modules toolbar of RS Minerve and display the hourly model inputs precipitation and temperature for the example year 1984. What is the approximate temperature range over the year? What is the annual precipitation?</p>
-<p>Hint: Adapt the simulation period in the model tab accordingly. Don’t forget to set the initial conditions of the model to the last hour of 1983.<br />
-<a href="sectin-appendix-solutions.html#section-appendix-solutions-plot-temperature-and-precipitation-1984">Solution</a></p>
-<div class="center" exercise-rsminerve-hbv-4="">
-<p><strong>Exercise: RS Minerve - Compare evaporation models</strong></p>
-</div>
-<p>Compare the different methods to calculate hourly evaporation in 1984 and their impact on the simulated discharge. Is the uniform evaporation model suitable for seasonal discharge models? In what circumstance could a uniform evaporation model be appropriate?</p>
-<p>Hint: Export simulation results to the data base (<a href="#section-quick-guides-export-sim-results-to-db">how to</a>).<br />
-<a href="sectin-appendix-solutions.html#section-appendix-solutions-compare-evaporation-methods">Solution</a></p>
+<div class = "task" <div class = "task" id="t4.6"> 
+<h3 class = "right">T4.6</h3> 
+<h3 class= "left">RS Minerve - Compare evaporation models</h3> 
+<p>Compare the different methods to calculate hourly evaporation in 1984 and their impact on the simulated discharge. Is the uniform evaporation model suitable for seasonal discharge models? In what circumstance could a uniform evaporation model be appropriate?  </p>
+<p>Hint: Export simulation results to the data base (<a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-quick-guides-export-sim-results-to-db>how to).</p>
+<p><a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-compare-evaporation-methods">Solution</a></p>
 </div>
 </div>
 </div>

@@ -37,3 +37,161 @@ pre code {
 .center {
   text-align: center;
 }
+
+/* Inspired by https://www.econometrics-with-r.org/ */
+.exercise {
+ background-color: #ACE3EE;
+ border-radius: 15px 50px;
+ border-color: #ACE3EE;
+ color: #0e2a72;
+ margin: 20px 0 20px 0;
+ padding-left: 25px;
+ padding-right: 25px;
+ padding-top: 0px;
+ padding-bottom: 15px;
+}
+.exercise h3.right {
+  float: right;
+  color: #0e2a72;
+  width: 25%;
+  text-align: center;
+}
+
+.exercise h3.left {
+  float: left;
+  color: #0e2a72;
+  width: 65%;
+}
+
+.exercise strong {
+  color:#0e2a72 !important;
+}
+
+.exercise a:link { color: white !important; }
+.exercise a:visited { color: white !important; }
+.exercise a:hover { color: white !important; }
+.exercise a:active { color: white !important; }
+
+.exercise p {
+  clear: both;
+}
+
+
+.task {
+ background-color: #DFEEAC;
+ border-radius: 15px 50px;
+ border-color: #DFEEAC;
+ color: #3f3f0d;
+ margin: 20px 0 20px 0;
+ padding-left: 25px;
+ padding-right: 25px;
+ padding-top: 0px;
+ padding-bottom: 15px;
+}
+.task h3.right {
+  float: right;
+  color: #3f3f0d;
+  width: 25%;
+  text-align: center;
+}
+
+.task h3.left {
+  float: left;
+  color: #3f3f0d;
+  width: 65%;
+}
+
+.task strong {
+  color:#3f3f0d !important;
+}
+
+.task a:link { color: #3f3f0d !important; }
+.task a:visited { color: #3f3f0d !important; }
+.task a:hover { color: #3f3f0d !important; }
+.task a:active { color: #3f3f0d !important; }
+
+.task p {
+  clear: both;
+}
+
+
+.note {
+ background-color: #f5d2a7;
+ border-radius: 15px 50px;
+ border-color: #f5d2a7;
+ color: #d37f18;
+ margin: 20px 0 20px 0;
+ padding-left: 25px;
+ padding-right: 25px;
+ padding-top: 0px;
+ padding-bottom: 15px;
+}
+.note h3.right {
+  float: right;
+  color: #d37f18;
+  width: 25%;
+  text-align: center;
+}
+
+.note h3.left {
+  float: left;
+  color: #d37f18;
+  width: 65%;
+}
+
+.note strong {
+  color:#d37f18 !important;
+}
+
+.note a:link { color: #d37f18 !important; }
+.note a:visited { color: #d37f18 !important; }
+.note a:hover { color: #d37f18 !important; }
+.note a:active { color: #d37f18 !important; }
+
+.note p {
+  clear: both;
+}
+
+
+
+
+
+
+
+.keyconcept {
+ background-color: #356185;
+ border-radius: 15px 50px;
+ border-color: #356185;
+ color: white;
+ margin: 20px 0 20px 0;
+ padding-left: 25px;
+ padding-right: 25px;
+ padding-top: 0px;
+ padding-bottom: 15px;
+}
+
+.keyconcept h3.right {
+  float: right;
+  color: white;
+  width: 25%;
+  text-align: center;
+}
+
+.keyconcept h3.left {
+  float: left;
+  color: white;
+  width: 65%;
+}
+
+.keyconcept strong {
+  color:white !important;
+}
+
+.keyconcept a:link { color: white !important; }
+.keyconcept a:visited { color: white !important; }
+.keyconcept a:hover { color: white !important; }
+.keyconcept a:active { color: white !important; }
+
+.keyconcept p {
+  clear: both;
+}
