@@ -375,6 +375,11 @@ data_long_tbl %>%
 
 A consistent data record from 1933 until and including November 2015 is now prepared\^Please note that by using `left_join` above, we have cut off discharge data from the year 1932 since we do not have meteorological data there.\^. Let us analyze these data now.
 
+
+
+
+
+
 ## Geospatial Data {#Data::GeospatialData}
 
 This Section follows the steps shown in Figure \@ref(fig:ClimateImpactModelChain) and explains in a hands-on manner how to arrive at and process the required geospatial data for later inclusion in the hydrological-hydraulic model RS MINVERVE. Links to detailed descriptions of the individual tasks allow even beginners of QGIS to follow the procedure.

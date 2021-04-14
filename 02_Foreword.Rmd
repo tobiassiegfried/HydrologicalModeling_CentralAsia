@@ -22,7 +22,7 @@ The R code to produce figures, conduct analyses as well carry out empirical mode
 
 
 # Study guide {#study-guide .unnumbered}
-This course book has been designed to accompany a 2-week workshop for aspiring water professionals at the Kazakh-German University in Almaty (Master level). The material can be covered in 8 intensive work days. The workshop participants will be guided through building up their own hydrological model of a sample catchment in Central Asia. The readers are recommended to work through the texts in each chapter including the tasks that serve to deepen reflection on the course material and to do their daily homework on the modeling of the sample catchment. This chapter explains how to use this course book.   
+This course book has been designed to accompany a 2-week workshop for aspiring water professionals at the Kazakh-German University in Almaty (Master level). The material can be covered in 8 intensive work days. The workshop participants will be guided through building up their own hydrological model of a sample catchment in Central Asia. The readers are recommended to work through the texts in each chapter including the tasks that serve to deepen reflection on the course material and to do their daily homework on the modeling of the sample catchment. The homework will be presented in a final conference and is part of the performance review of the course. This chapter explains how to use this course book.   
 
 Exercises are highlighted with blue boxes:   
 ```{r, eval = "html", label="intro-exercise-box", results='asis', echo=FALSE, purl=FALSE}
@@ -77,14 +77,33 @@ Read the [Case Studies in Chapter 3](#CaseStudies) and [Station Data in Chapter 
 **Todo: Link to exercise**
 
 
-## Day 3: Introduction to hydrological modeling and geospatial data {.unnumbered}
-Read Chapters [6.2](#section-rsminerve-why-model-introduction) and [6.3](#section-general-modelling-process) and do the exercise on the linear reservoir model.   
+## Day 3: Geospatial data and introduction to linear reservoir models {.unnumbered}
+Read Chapter [5.2 on Geospatial Data](#Data::GeospatialData) and prepare the GIS layers for import into RS Minerve for your sample catchment. Step-by-step instructions of how to do this are given in Chapter 5.2.         
+As homework, read Chapter [6.2](#section-rsminerve-why-model-introduction) and do the exercise on the linear reservoir model.   
 
 
+## Day 4: Discussion of types of hydrological models {.unnumbered}
+Hydrological models in general are discussed. This topic currently doesn't have a specific book chapter. Read Chapter [6.3](#section-general-modelling-process) which is a short recap of the general modeling process. As a homework, choose an R tutorial to work on from the [Appendix](#section-open-resrouces-learning-R) which suits your skills. If you are already fluent in R, work on your visualization skills in R by producing nice plots of your sample catchment. You may let yourselve be inspired by the R code supplied with this book. 
 
 
+## Day 5: The HBV model {.unnumbered}
+A commonly used model is introduced. Read Chapters [6.4 on the data preparation](#section-rsminerve-data-preparation) and [6.5 on the HBV model](#section-hbv-model) and the pre-requisite reading listed therein. It is recommended to do the tasks suggested in the course book.   
+As an exercise, you will implement a simple HBV model based on the catchment characterization that you performed on day 2 and the GIS layers that you prepared on day 3. 
 
 
+## Day 6: Model calibration and validation {.unnumbered}
+Read Chapter [6.6](#section-model-calibration-and-validation) and go through the example of the Nauvalisoy catchment which illustrates the iterative model refinement process.     
+As homework students will calibrate and validate the hydrological models of your own sample catchment.   
+
+
+## Day 7: Case studies
+Dicussion of the calibration and validation exercise followed by a presentation of the Gunt basin case study.  
+As homework students will write an abstract about your modeling work for the final conference. Instructions for abstract writing are available [here](./learningFiles/AbstractSubmissionGuide.pdf)
+
+
+## Day 8: Real-world applications
+Presentation of examples of real-world applications of hydrological models.   
+As homework students will finalise the presentation about their modeling work.   
 
 
 
