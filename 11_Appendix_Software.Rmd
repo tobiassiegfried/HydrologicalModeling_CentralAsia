@@ -110,7 +110,9 @@ Back to [setting up of QGIS](#section-geospatial-data-steps-setting-up).
 
 ### QGIS: Change the projection of the QGIS project {#section-change-project-projection-qgis .unnumbered}
 
-For this tutorial, the projection of the QGIS project should be in EPSG:32642. Change it by clicking on the projects projection in the lower right corner of the QGIS window (see (\@ref(fig:qgis-window-overview)). In the CRS tab of the Project Properties, select WGS84 / UTM zone 42N with ID EPSG:32642 and click *OK*.
+For this tutorial, the projection of the QGIS project should be in EPSG:32642. Change it by clicking on the projects projection in the lower right corner of the QGIS window (see Figure \@ref(fig:qgis-window-overview)). In the coordinate reference system (CRS) tab of the Project Properties, select WGS84 / UTM zone 42N with ID EPSG:32642 and click *OK*.  
+
+For modeling your own sample catchment, a different UTM zone may be applicable. The map in the lower right corner of the Project Properties window shows the area for the projection in red. Large parts of Kyrgyzstan are in the UTM zone 43N (EPSG:32643). 
 
 Back to the [setting up of QGIS](#section-geospatial-data-steps-setting-up).
 
@@ -186,7 +188,7 @@ You can change the color of your raster file ([how to](#appendix-quick-guides-ch
 
 ### QGIS: Change color of raster layer {#appendix-quick-guides-change-color-of-raster-layer .unnumbered}
 
-You can change the colors of your cut DEM by double-clicking on the layer name in the *Layers* window. Go to tab *Symbology* (with the paint and brush icon) and choose *Render type* *Singleband-pseudocolor* (\@ref(fig:qgis-dem-coloring-1)) and select a *Color ramp*.
+You can change the colors of your cut DEM by double-clicking on the layer name in the *Layers* window. Go to tab *Symbology* (with the paint and brush icon) and choose *Render type* *Singleband-pseudocolor* (Figure \@ref(fig:qgis-dem-coloring-1)) and select a *Color ramp*.
 
 ```{r qgis-dem-coloring-1, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Nicely color your DEM, step 1."}
 knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig013_DEMcoloring1.png")
@@ -196,37 +198,37 @@ QGIS comes with a large library of color ramps but you can also create your own.
 
 #### QGIS: Topography-style color palettes {#appendix-quick-guides-topograpy-color-ramp .unnumbered}
 
-For our DEM we choose an existing topography-style color ramp. Open the *Layer Properties* window with a double-click on the raster layer in the *Layers* pane of the QGIS window. In the *Symbology* tab click the triangle to the right of the color ramp and select Create New Color Ramp... (\@ref(fig:qgis-dem-coloring-2)).
+For our DEM we choose an existing topography-style color ramp. Open the *Layer Properties* window with a double-click on the raster layer in the *Layers* pane of the QGIS window. In the *Symbology* tab click the triangle to the right of the color ramp and select Create New Color Ramp... (Figure \@ref(fig:qgis-dem-coloring-2)).
 
 ```{r qgis-dem-coloring-2, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Nicely color your DEM, step 2."}
 knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig014_DEMcoloring2.png")  
 ```
 
-In the drop down menu of the pop-up window choose Catalog: cpt-city and press OK (\@ref(fig:qgis-dem-coloring-3)).
+In the drop down menu of the pop-up window choose Catalog: cpt-city and press OK (Figure \@ref(fig:qgis-dem-coloring-3)).
 
 ```{r qgis-dem-coloring-3, echo=FALSE, out.width="20%", fig.align="center", fig.cap="Nicely color your DEM, step 3."}
 knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig015_DEMcoloring3.png")  
 ```
 
-A this will open another window containing the catalog of existing color ramps. Under Topography, we choose sd-a and press OK (\@ref(fig:qgis-dem-coloring-4)).
+A this will open another window containing the catalog of existing color ramps. Under Topography, we choose sd-a and press OK (Figure \@ref(fig:qgis-dem-coloring-4)).
 
 ```{r qgis-dem-coloring-4, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Nicely color your DEM, step 4."}
 knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig016_DEMcoloring4.png")  
 ```
 
-Go to tab Transparency, set Global Opacity to 30% and specify the No Data Value 0 (\@ref(fig:qgis-dem-coloring-5)).
+Go to tab Transparency, set Global Opacity to 30% and specify the No Data Value 0 (Figure \@ref(fig:qgis-dem-coloring-5)).
 
 ```{r qgis-dem-coloring-5, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Nicely color your DEM, step 5."}
 knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig017_DEMcoloring5.png")  
 ```
 
-Then go back to the Symbology tab. The minimum value of the color ramp should now not be 0 but 272. Adapt manually if need be. Then, press classify to get a discrete color ramp for your map and *Apply* to the map. If you are happy with the colors, quit by pressing OK (\@ref(fig:qgis-dem-coloring-6)).
+Then go back to the Symbology tab. The minimum value of the color ramp should now not be 0 but 272. Adapt manually if need be. Then, press classify to get a discrete color ramp for your map and *Apply* to the map. If you are happy with the colors, quit by pressing OK (Figure \@ref(fig:qgis-dem-coloring-6)).
 
 ```{r qgis-dem-coloring-6, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Nicely color your DEM, step 6."}
 knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig018_DEMcoloring6.png")  
 ```
 
-The result will look like \@ref(fig:qgis-dem-coloring-7).
+The result will look like Figure \@ref(fig:qgis-dem-coloring-7).
 
 ```{r qgis-dem-coloring-7, echo=FALSE, out.width="100%", fig.align="center", fig.cap="Nicely color your DEM, result."}
 knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig019_DEMcoloring7.png")  
@@ -240,10 +242,24 @@ You can add decorations (e.g. scale and north arrow) to your map ([how to](#sect
 Navigate to *View* -\> *Decorations* and choose among the decorations to add. Many options for configuring the decorations are available.
 
 
+### QGIS: Verify projection of layer and re-project layer {#section-quick-guides-verify-projection-reproject}
+
+Open the *Layer Properties* window with a double-click on the layer in the *Layers* pane and navigate to the *Information* tab. Under CRS (coordinate reference system) you see the projection of the layer. For the Chirchiq river basin, the CRS should say "EPSG:32642 - WGS 84 / UTM zone 42N - Projected". Other river catchments in Central Asia may require a different UTM zone.   
+
+A raster layer can be re-projected to a different CRS: Go to *Raster* in the header toolbar. From there move the cursor over *Projections* and click on *Warp (Reproject)...*. The Warp window will pop up. Select the raster layer you wish to re-project in the *Input layer* and select the *Target CRS*. If the target CRS you wish to re-project to is not available in the drop-down menue, you can browse for it by clicking on the globe icon to thr right of the *Target CRS* section. You may re-sample the raster to a coarser resolution by specifying the *Output file resolution*. You may also specify to save the re-projected raster layer: Scrol to the bottom of the *Warp (Reproject)* window where you see Reprojected and a white box where you can browser for a location to store the new layer to. If you do not specify a target location, only a temporary layer will be loaded to QGIS which will not be available anymore after you close the QGIS project (even if you save the project). You may decide to load the temporary file and save it later ([how to](#appendix-quick-guide-save-temp-layer)). Click the *Run* button at the bottom right to start the re-projection algorithm and press *Close* when the process is done. The re-projected layer will be available in the *Layers* pane.    
+
+A vector layer can be re-projected by selecting *Vector* in the header toolbar, moving the cursor to *Data Management Tools* and clicking on *Reproject Layer...*. This opens the *Reproject Layer* window where you can specify a *Target CRS* and optionally a storage location. As for the re-projection of the raster layer, a temporary layer is loaded to your QGIS project if you do not specify a storage location. However, you can always store temporary layers later ([how to](#appendix-quick-guide-save-temp-layer)). 
+
+Back to the [load DEM section](#section-geospatial-data-load-dem). 
+
+
+### QGIS: Save a temporary layer {#appendix-quick-guide-save-temp-layer .unnumbered}
+Right-click on a temporary layer in the *Layers* pane. Temporary layers are indicated by a box to the right of the layer name. From the menu that opens upon right-click, select *Export* and *Save As...* (for raster layers) or *Save Feature As...* (for vector layers). An explorer window will open where you can specify a file name and a location to store the file to. 
+
 
 ### QGIS: Add vector layer {#section-add-vector-layer-to-qgis .unnumbered}
 
-Left-clicking on *Layer*, moving your cursor over *Add Layer* and left-clicking *Add Vector Layer* (\@ref(fig:qgis-add-vector-layer-1)).
+Left-clicking on *Layer*, moving your cursor over *Add Layer* and left-clicking *Add Vector Layer* (Figure \@ref(fig:qgis-add-vector-layer-1)).
 
 ```{r qgis-add-vector-layer-1, echo=FALSE, out.width="100%", fig.align="center", fig.cap="Add vector layer to QGIS project, step 1.: Navigate to the Data Source Manager."}
 knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig003_AddVectorLayer1.png")
