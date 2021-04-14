@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried and Beatrice Marti" />
 
 
-<meta name="date" content="2021-04-13" />
+<meta name="date" content="2021-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -64,7 +64,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -203,8 +202,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html"><i class="fa fa-check"></i><b>5.2</b> Geospatial Data</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-steps-setting-up"><i class="fa fa-check"></i><b>5.2.1</b> Setting up QGIS</a></li>
-<li class="chapter" data-level="5.2.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#load-dem"><i class="fa fa-check"></i><b>5.2.2</b> Load DEM</a></li>
+<li class="chapter" data-level="5.2.1" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-steps-setting-up"><i class="fa fa-check"></i><b>5.2.1</b> Setting up QGIS</a></li>
+<li class="chapter" data-level="5.2.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-load-dem"><i class="fa fa-check"></i><b>5.2.2</b> Load DEM</a></li>
 <li class="chapter" data-level="5.2.3" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-steps-derive-catchment-boundaries"><i class="fa fa-check"></i><b>5.2.3</b> Derive the boundaries of your catchment</a></li>
 <li class="chapter" data-level="5.2.4" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#run-through-the-process-model"><i class="fa fa-check"></i><b>5.2.4</b> Run through the process model</a></li>
 <li class="chapter" data-level="5.2.5" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#manually-edit-the-gis-layers-for-import-in-rs-minerve"><i class="fa fa-check"></i><b>5.2.5</b> Manually edit the GIS Layers for import in RS MINERVE</a></li>
@@ -297,14 +296,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html"><i class="fa fa-check"></i><b>9.2</b> Appendix B: Quick Guides</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#qgis"><i class="fa fa-check"></i><b>9.2.1</b> QGIS:</a></li>
-<li class="chapter" data-level="9.2.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-create-hbv-model"><i class="fa fa-check"></i><b>9.2.2</b> RSM: Create HBV model and edit parameters</a></li>
-<li class="chapter" data-level="9.2.3" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-climate-station"><i class="fa fa-check"></i><b>9.2.3</b> RSM: Add and link climate station</a></li>
-<li class="chapter" data-level="9.2.4" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-import-climate-data"><i class="fa fa-check"></i><b>9.2.4</b> RSM: Import climate data</a></li>
-<li class="chapter" data-level="9.2.5" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-atapt-model-settings"><i class="fa fa-check"></i><b>9.2.5</b> RSM: Adapt model settings</a></li>
-<li class="chapter" data-level="9.2.6" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-export-sim-results-to-db"><i class="fa fa-check"></i><b>9.2.6</b> RSM: Export simulation results to data base</a></li>
-<li class="chapter" data-level="9.2.7" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-comparator-and-discharge-data"><i class="fa fa-check"></i><b>9.2.7</b> RSM: Add comparator and load discharge measurements</a></li>
-<li class="chapter" data-level="9.2.8" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-copy-paste-database-values"><i class="fa fa-check"></i><b>9.2.8</b> RSM: Copy-paste data to database</a></li>
+<li class="chapter" data-level="9.2.1" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-register-with-earth-explorer"><i class="fa fa-check"></i><b>9.2.1</b> EE: Register for an account</a></li>
+<li class="chapter" data-level="9.2.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-earth-explorer-download-srtm"><i class="fa fa-check"></i><b>9.2.2</b> EE: Download SRTM data for a selected region</a></li>
+<li class="chapter" data-level="9.2.3" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-qgis-window-overview"><i class="fa fa-check"></i><b>9.2.3</b> The QGIS window - overview</a></li>
+<li class="chapter" data-level="9.2.4" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-saving-a-new-qgis-project"><i class="fa fa-check"></i><b>9.2.4</b> QGIS: Saving a new QGIS project</a></li>
+<li class="chapter" data-level="9.2.5" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-project-projection-qgis"><i class="fa fa-check"></i><b>9.2.5</b> QGIS: Change the projection of the QGIS project</a></li>
+<li class="chapter" data-level="9.2.6" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-install-and-activate-plugins-in-QGIS3"><i class="fa fa-check"></i><b>9.2.6</b> QGIS: Install and activate plugins in QGIS3</a></li>
+<li class="chapter" data-level="9.2.7" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-managing-panels"><i class="fa fa-check"></i><b>9.2.7</b> GQIS: Managing panels visibility in QGIS</a></li>
+<li class="chapter" data-level="9.2.8" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-loading-public-background-layers"><i class="fa fa-check"></i><b>9.2.8</b> QGIS: Loading public background maps</a></li>
+<li class="chapter" data-level="9.2.9" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-zoom-to-layer"><i class="fa fa-check"></i><b>9.2.9</b> QGIS: Zoom to layer</a></li>
+<li class="chapter" data-level="9.2.10" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-srtm-plugin"><i class="fa fa-check"></i><b>9.2.10</b> QGIS: Import SRTM layers using the SRTM plugin</a></li>
+<li class="chapter" data-level="9.2.11" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-merge-srtm-tiles"><i class="fa fa-check"></i><b>9.2.11</b> QGIS: Merge SRTM tiles to a single layer</a></li>
+<li class="chapter" data-level="9.2.12" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-vector-layer-to-qgis"><i class="fa fa-check"></i><b>9.2.12</b> Add vector layer to QGIS</a></li>
+<li class="chapter" data-level="9.2.13" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer"><i class="fa fa-check"></i><b>9.2.13</b> Change color of a vector layer</a></li>
+<li class="chapter" data-level="9.2.14" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-create-hbv-model"><i class="fa fa-check"></i><b>9.2.14</b> RSM: Create HBV model and edit parameters</a></li>
+<li class="chapter" data-level="9.2.15" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-climate-station"><i class="fa fa-check"></i><b>9.2.15</b> RSM: Add and link climate station</a></li>
+<li class="chapter" data-level="9.2.16" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-import-climate-data"><i class="fa fa-check"></i><b>9.2.16</b> RSM: Import climate data</a></li>
+<li class="chapter" data-level="9.2.17" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-atapt-model-settings"><i class="fa fa-check"></i><b>9.2.17</b> RSM: Adapt model settings</a></li>
+<li class="chapter" data-level="9.2.18" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-export-sim-results-to-db"><i class="fa fa-check"></i><b>9.2.18</b> RSM: Export simulation results to data base</a></li>
+<li class="chapter" data-level="9.2.19" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-comparator-and-discharge-data"><i class="fa fa-check"></i><b>9.2.19</b> RSM: Add comparator and load discharge measurements</a></li>
+<li class="chapter" data-level="9.2.20" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-copy-paste-database-values"><i class="fa fa-check"></i><b>9.2.20</b> RSM: Copy-paste data to database</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html"><i class="fa fa-check"></i><b>9.3</b> Appendix C: Processing Climate Data</a>
 <ul>
@@ -397,7 +408,7 @@ A couple of notes on measurement accuracy:</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-solution1-example-setup"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_experimentalSetup.jpg" alt="Example for material needed and example setup to perform the linear reservoir experiment. Add a minion with a stop watch or a smart phone to help you logging the discharge from the bucket. " width="90%" />
 <p class="caption">
-Figure 9.28: Example for material needed and example setup to perform the linear reservoir experiment. Add a minion with a stop watch or a smart phone to help you logging the discharge from the bucket.
+Figure 9.41: Example for material needed and example setup to perform the linear reservoir experiment. Add a minion with a stop watch or a smart phone to help you logging the discharge from the bucket.
 </p>
 </div>
 </div>
@@ -441,11 +452,11 @@ Reasons for the discrepancy can be the shape of the linear reservoir, non-linear
 <div id="section-appendix-solutions-plot-temperature-and-precipitation-1984" class="section level4" number="9.4.2.3">
 <h4><span class="header-section-number">9.4.2.3</span> Exercise: Data visualization in RS Minerve</h4>
 Simulate from the 01/01/1981 01:00:00 to 31/12/1983 23:00:00, then choose data from 31/12/1983 23:00:00 as the initial conditions and run the model from 01/01/1984 01:00:00 to 31/12/1984 23:00:00. Choose hourly output for the simulation results.<br />
-Open the Selection and plots tab by clicking on the Selection and plots button in the Modules toolbar and select simulated P and T from the Nauvalisoy station (Figure <a href="sectin-appendix-solutions.html#fig:fig-pt-nauvailsoy">9.29</a>).
+Open the Selection and plots tab by clicking on the Selection and plots button in the Modules toolbar and select simulated P and T from the Nauvalisoy station (Figure <a href="sectin-appendix-solutions.html#fig:fig-pt-nauvailsoy">9.42</a>).
 <div class="figure" style="text-align: center"><span id="fig:fig-pt-nauvailsoy"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig116_plotPThourly.png" alt="Hourly precipitation and temperature at the virtual Nauvalisoy weather station." width="95%" />
 <p class="caption">
-Figure 9.29: Hourly precipitation and temperature at the virtual Nauvalisoy weather station.
+Figure 9.42: Hourly precipitation and temperature at the virtual Nauvalisoy weather station.
 </p>
 </div>
 <p>Note: If you want to repeat a simulation with specific initial conditions, you can store them through Export IC in the Model Properties toolbar.</p>
@@ -454,12 +465,12 @@ Figure 9.29: Hourly precipitation and temperature at the virtual Nauvalisoy weat
 </div>
 <div id="section-appendix-solutions-compare-evaporation-methods" class="section level4" number="9.4.2.4">
 <h4><span class="header-section-number">9.4.2.4</span> Exercise: Compare evaporation methods</h4>
-Figure <a href="sectin-appendix-solutions.html#fig:fig-evaporation-discharge">9.30</a> shows the evaporation computed with various methods and the resulting discharge. Uniform evaporation should not be used for sub-annual modeling time steps. The difference between the methods by Turc, McGuinness and Oudin are within 5% of total discharge which is negligible for a regional model.<br />
+Figure <a href="sectin-appendix-solutions.html#fig:fig-evaporation-discharge">9.43</a> shows the evaporation computed with various methods and the resulting discharge. Uniform evaporation should not be used for sub-annual modeling time steps. The difference between the methods by Turc, McGuinness and Oudin are within 5% of total discharge which is negligible for a regional model.<br />
 
 <div class="figure" style="text-align: center"><span id="fig:fig-evaporation-discharge"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig119_evaporationDischarge1984.png" alt="Hourly precipitation and temperature at the virtual Nauvalisoy weather station." width="95%" />
 <p class="caption">
-Figure 9.30: Hourly precipitation and temperature at the virtual Nauvalisoy weather station.
+Figure 9.43: Hourly precipitation and temperature at the virtual Nauvalisoy weather station.
 </p>
 </div>
 <p>For advanced modeling, the choice of the evaporation model may be relevant but only if a validation with measured data is possible.<br />
