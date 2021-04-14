@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.2 Appendix B: Quick Guides | Applied Modeling of Hydrological Systems in Central Asia</title>
+  <title>9.2 Appendix B: Quick Guides | Applied Modeling of Hydrological Systems in Central Asia</title>
   <meta name="description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.2 Appendix B: Quick Guides | Applied Modeling of Hydrological Systems in Central Asia" />
+  <meta property="og:title" content="9.2 Appendix B: Quick Guides | Applied Modeling of Hydrological Systems in Central Asia" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.2 Appendix B: Quick Guides | Applied Modeling of Hydrological Systems in Central Asia" />
+  <meta name="twitter:title" content="9.2 Appendix B: Quick Guides | Applied Modeling of Hydrological Systems in Central Asia" />
   
   <meta name="twitter:description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
   
@@ -34,7 +34,7 @@
 <link rel="prev" href="section-appendix-open-source-resources.html"/>
 <link rel="next" href="appendix-c-processing-climate-data.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -51,6 +51,13 @@
 
 
 
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -135,7 +142,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li><a href="index.html#Welcome"></a></li>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="foreword.html"><a href="foreword.html"><i class="fa fa-check"></i>Foreword</a>
+<li class="chapter" data-level="" data-path="foreword.html"><a href="foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
+<li class="chapter" data-level="" data-path="study-guide.html"><a href="study-guide.html"><i class="fa fa-check"></i>Study guide</a>
 <ul>
 <li class="chapter" data-level="" data-path="day-1-introduction-and-installation-of-software.html"><a href="day-1-introduction-and-installation-of-software.html"><i class="fa fa-check"></i>Day 1: Introduction and installation of software</a></li>
 <li class="chapter" data-level="" data-path="day-2-catchment-characterization.html"><a href="day-2-catchment-characterization.html"><i class="fa fa-check"></i>Day 2: Catchment characterization</a></li>
@@ -143,195 +151,197 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="day-4-discussion-of-types-of-hydrological-models.html"><a href="day-4-discussion-of-types-of-hydrological-models.html"><i class="fa fa-check"></i>Day 4: Discussion of types of hydrological models</a></li>
 <li class="chapter" data-level="" data-path="day-5-the-hbv-model.html"><a href="day-5-the-hbv-model.html"><i class="fa fa-check"></i>Day 5: The HBV model</a></li>
 <li class="chapter" data-level="" data-path="day-6-model-calibration-and-validation.html"><a href="day-6-model-calibration-and-validation.html"><i class="fa fa-check"></i>Day 6: Model calibration and validation</a></li>
-<li class="chapter" data-level="0.1" data-path="day-7-case-studies.html"><a href="day-7-case-studies.html"><i class="fa fa-check"></i><b>0.1</b> Day 7: Case studies</a></li>
-<li class="chapter" data-level="0.2" data-path="day-8-real-world-applications.html"><a href="day-8-real-world-applications.html"><i class="fa fa-check"></i><b>0.2</b> Day 8: Real-world applications</a></li>
-<li class="chapter" data-level="0.3" data-path="day-9-student-presentations-and-wrap-up-of-workshop.html"><a href="day-9-student-presentations-and-wrap-up-of-workshop.html"><i class="fa fa-check"></i><b>0.3</b> Day 9: Student presentations and wrap-up of workshop</a></li>
+<li class="chapter" data-level="" data-path="day-7-case-studies.html"><a href="day-7-case-studies.html"><i class="fa fa-check"></i>Day 7: Case studies</a></li>
+<li class="chapter" data-level="" data-path="day-8-real-world-applications.html"><a href="day-8-real-world-applications.html"><i class="fa fa-check"></i>Day 8: Real-world applications</a></li>
+<li class="chapter" data-level="" data-path="day-9-student-presentations-and-wrap-up-of-workshop.html"><a href="day-9-student-presentations-and-wrap-up-of-workshop.html"><i class="fa fa-check"></i>Day 9: Student presentations and wrap-up of workshop</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#Part1_Hydrological_Systems"><i class="fa fa-check"></i>(PART) Part I Hydrological Systems</a>
+<li class="part"><span><b>I Part I Hydrological Systems</b></span></li>
+<li class="chapter" data-level="1" data-path="ShortHistory.html"><a href="ShortHistory.html"><i class="fa fa-check"></i><b>1</b> Short History of Water in Central Asia</a>
 <ul>
-<li class="chapter" data-level="0.4" data-path="TamingHydrologicalSystems.html"><a href="TamingHydrologicalSystems.html"><i class="fa fa-check"></i><b>0.4</b> The Taming of the Central Asian Rivers</a></li>
-<li class="chapter" data-level="0.5" data-path="PostTransitionDevelopmentsChallenges.html"><a href="PostTransitionDevelopmentsChallenges.html"><i class="fa fa-check"></i><b>0.5</b> Post-Transition Development and Challenges</a></li>
+<li class="chapter" data-level="1.1" data-path="TamingHydrologicalSystems.html"><a href="TamingHydrologicalSystems.html"><i class="fa fa-check"></i><b>1.1</b> The Taming of the Central Asian Rivers</a></li>
+<li class="chapter" data-level="1.2" data-path="PostTransitionDevelopmentsChallenges.html"><a href="PostTransitionDevelopmentsChallenges.html"><i class="fa fa-check"></i><b>1.2</b> Post-Transition Development and Challenges</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="HydrologicalSystems.html"><a href="HydrologicalSystems.html"><i class="fa fa-check"></i><b>1</b> Hydrological Systems in Central Asia</a>
+<li class="chapter" data-level="2" data-path="HydrologicalSystems.html"><a href="HydrologicalSystems.html"><i class="fa fa-check"></i><b>2</b> Hydrological Systems in Central Asia</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="regional-hydro-climatological-features.html"><a href="regional-hydro-climatological-features.html"><i class="fa fa-check"></i><b>1.1</b> Regional Hydro-Climatological Features</a></li>
-<li class="chapter" data-level="1.2" data-path="chap-regionalWaterBalance.html"><a href="chap-regionalWaterBalance.html"><i class="fa fa-check"></i><b>1.2</b> Regional Water Balance</a></li>
-<li class="chapter" data-level="1.3" data-path="runoff-formation.html"><a href="runoff-formation.html"><i class="fa fa-check"></i><b>1.3</b> Runoff Formation</a></li>
-<li class="chapter" data-level="1.4" data-path="average-multi-year-runoff.html"><a href="average-multi-year-runoff.html"><i class="fa fa-check"></i><b>1.4</b> Average Multi-Year Runoff</a></li>
-<li class="chapter" data-level="1.5" data-path="annual-runoff-fluctuations.html"><a href="annual-runoff-fluctuations.html"><i class="fa fa-check"></i><b>1.5</b> Annual Runoff Fluctuations</a></li>
+<li class="chapter" data-level="2.1" data-path="regional-hydro-climatological-features.html"><a href="regional-hydro-climatological-features.html"><i class="fa fa-check"></i><b>2.1</b> Regional Hydro-Climatological Features</a></li>
+<li class="chapter" data-level="2.2" data-path="chap-regionalWaterBalance.html"><a href="chap-regionalWaterBalance.html"><i class="fa fa-check"></i><b>2.2</b> Regional Water Balance</a></li>
+<li class="chapter" data-level="2.3" data-path="runoff-formation.html"><a href="runoff-formation.html"><i class="fa fa-check"></i><b>2.3</b> Runoff Formation</a></li>
+<li class="chapter" data-level="2.4" data-path="average-multi-year-runoff.html"><a href="average-multi-year-runoff.html"><i class="fa fa-check"></i><b>2.4</b> Average Multi-Year Runoff</a></li>
+<li class="chapter" data-level="2.5" data-path="annual-runoff-fluctuations.html"><a href="annual-runoff-fluctuations.html"><i class="fa fa-check"></i><b>2.5</b> Annual Runoff Fluctuations</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="CaseStudies.html"><a href="CaseStudies.html"><i class="fa fa-check"></i><b>2</b> Case Studies</a>
+<li class="chapter" data-level="3" data-path="CaseStudies.html"><a href="CaseStudies.html"><i class="fa fa-check"></i><b>3</b> Case Studies</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="GuntRB.html"><a href="GuntRB.html"><i class="fa fa-check"></i><b>2.1</b> Gunt River Basin</a>
+<li class="chapter" data-level="3.1" data-path="GuntRB.html"><a href="GuntRB.html"><i class="fa fa-check"></i><b>3.1</b> Gunt River Basin</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="GuntRB.html"><a href="GuntRB.html#GuntRBOverview"><i class="fa fa-check"></i><b>2.1.1</b> Basin Characterization</a></li>
-<li class="chapter" data-level="2.1.2" data-path="GuntRB.html"><a href="GuntRB.html#GuntHyrology"><i class="fa fa-check"></i><b>2.1.2</b> Hydrology</a></li>
+<li class="chapter" data-level="3.1.1" data-path="GuntRB.html"><a href="GuntRB.html#GuntRBOverview"><i class="fa fa-check"></i><b>3.1.1</b> Basin Characterization</a></li>
+<li class="chapter" data-level="3.1.2" data-path="GuntRB.html"><a href="GuntRB.html#GuntHyrology"><i class="fa fa-check"></i><b>3.1.2</b> Hydrology</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="CRB.html"><a href="CRB.html"><i class="fa fa-check"></i><b>2.2</b> Chirchik River Basin</a>
+<li class="chapter" data-level="3.2" data-path="CRB.html"><a href="CRB.html"><i class="fa fa-check"></i><b>3.2</b> Chirchik River Basin</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="CRB.html"><a href="CRB.html#CRBOverview"><i class="fa fa-check"></i><b>2.2.1</b> Basin Characterization</a></li>
-<li class="chapter" data-level="2.2.2" data-path="CRB.html"><a href="CRB.html#CRBBasinCharacteristics"><i class="fa fa-check"></i><b>2.2.2</b> Hydrology</a></li>
-<li class="chapter" data-level="2.2.3" data-path="CRB.html"><a href="CRB.html#CRB_KoskuDischargeContribution"><i class="fa fa-check"></i><b>2.2.3</b> Discharge Estimation from the Ungauged Kosku Tributary</a></li>
+<li class="chapter" data-level="3.2.1" data-path="CRB.html"><a href="CRB.html#CRBOverview"><i class="fa fa-check"></i><b>3.2.1</b> Basin Characterization</a></li>
+<li class="chapter" data-level="3.2.2" data-path="CRB.html"><a href="CRB.html#CRBBasinCharacteristics"><i class="fa fa-check"></i><b>3.2.2</b> Hydrology</a></li>
+<li class="chapter" data-level="3.2.3" data-path="CRB.html"><a href="CRB.html#CRB_KoskuDischargeContribution"><i class="fa fa-check"></i><b>3.2.3</b> Discharge Estimation from the Ungauged Kosku Tributary</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="" data-path=""><a href="#Part2-Applied-Modeling"><i class="fa fa-check"></i>(PART) Part II Applied Modeling</a>
+<li class="part"><span><b>II Part II Applied Modeling</b></span></li>
+<li class="chapter" data-level="4" data-path="LongTermWaterBalance.html"><a href="LongTermWaterBalance.html"><i class="fa fa-check"></i><b>4</b> Budyko-Type Long-term Water Balance Modeling</a>
 <ul>
-<li class="chapter" data-level="2.3" data-path="derivation-of-the-budyko-relationship.html"><a href="derivation-of-the-budyko-relationship.html"><i class="fa fa-check"></i><b>2.3</b> Derivation of the Budyko Relationship</a></li>
-<li class="chapter" data-level="2.4" data-path="effects-of-snow-ratio-on-annual-runoff-within-the-budyko-framework.html"><a href="effects-of-snow-ratio-on-annual-runoff-within-the-budyko-framework.html"><i class="fa fa-check"></i><b>2.4</b> Effects of Snow Ratio on Annual Runoff within the Budyko Framework</a></li>
-<li class="chapter" data-level="2.5" data-path="hydrological-response-to-a-changing-climate.html"><a href="hydrological-response-to-a-changing-climate.html"><i class="fa fa-check"></i><b>2.5</b> Hydrological Response to a Changing Climate</a></li>
-<li class="chapter" data-level="2.6" data-path="application-to-central-asian-river-basins.html"><a href="application-to-central-asian-river-basins.html"><i class="fa fa-check"></i><b>2.6</b> Application to Central Asian River Basins</a>
+<li class="chapter" data-level="4.1" data-path="derivation-of-the-budyko-relationship.html"><a href="derivation-of-the-budyko-relationship.html"><i class="fa fa-check"></i><b>4.1</b> Derivation of the Budyko Relationship</a></li>
+<li class="chapter" data-level="4.2" data-path="effects-of-snow-ratio-on-annual-runoff-within-the-budyko-framework.html"><a href="effects-of-snow-ratio-on-annual-runoff-within-the-budyko-framework.html"><i class="fa fa-check"></i><b>4.2</b> Effects of Snow Ratio on Annual Runoff within the Budyko Framework</a></li>
+<li class="chapter" data-level="4.3" data-path="hydrological-response-to-a-changing-climate.html"><a href="hydrological-response-to-a-changing-climate.html"><i class="fa fa-check"></i><b>4.3</b> Hydrological Response to a Changing Climate</a></li>
+<li class="chapter" data-level="4.4" data-path="application-to-central-asian-river-basins.html"><a href="application-to-central-asian-river-basins.html"><i class="fa fa-check"></i><b>4.4</b> Application to Central Asian River Basins</a>
 <ul>
-<li class="chapter" data-level="2.6.1" data-path="application-to-central-asian-river-basins.html"><a href="application-to-central-asian-river-basins.html#data"><i class="fa fa-check"></i><b>2.6.1</b> Data</a></li>
-<li class="chapter" data-level="2.6.2" data-path="application-to-central-asian-river-basins.html"><a href="application-to-central-asian-river-basins.html#model"><i class="fa fa-check"></i><b>2.6.2</b> Model</a></li>
-<li class="chapter" data-level="2.6.3" data-path="application-to-central-asian-river-basins.html"><a href="application-to-central-asian-river-basins.html#conclusions"><i class="fa fa-check"></i><b>2.6.3</b> Conclusions</a></li>
+<li class="chapter" data-level="4.4.1" data-path="application-to-central-asian-river-basins.html"><a href="application-to-central-asian-river-basins.html#data"><i class="fa fa-check"></i><b>4.4.1</b> Data</a></li>
+<li class="chapter" data-level="4.4.2" data-path="application-to-central-asian-river-basins.html"><a href="application-to-central-asian-river-basins.html#model"><i class="fa fa-check"></i><b>4.4.2</b> Model</a></li>
+<li class="chapter" data-level="4.4.3" data-path="application-to-central-asian-river-basins.html"><a href="application-to-central-asian-river-basins.html#conclusions"><i class="fa fa-check"></i><b>4.4.3</b> Conclusions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="Chapter-DATA.html"><a href="Chapter-DATA.html"><i class="fa fa-check"></i><b>3</b> Data Retrieval, Preparation &amp; Analysis</a>
+<li class="chapter" data-level="5" data-path="Chapter-DATA.html"><a href="Chapter-DATA.html"><i class="fa fa-check"></i><b>5</b> Data Retrieval, Preparation &amp; Analysis</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="Data-StationData.html"><a href="Data-StationData.html"><i class="fa fa-check"></i><b>3.1</b> Station Data</a>
+<li class="chapter" data-level="5.1" data-path="Data-StationData.html"><a href="Data-StationData.html"><i class="fa fa-check"></i><b>5.1</b> Station Data</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="Data-StationData.html"><a href="Data-StationData.html#AvailableData"><i class="fa fa-check"></i><b>3.1.1</b> Available Data</a></li>
-<li class="chapter" data-level="3.1.2" data-path="Data-StationData.html"><a href="Data-StationData.html#StationData::GapFilling"><i class="fa fa-check"></i><b>3.1.2</b> Gap Filling Discharge Data</a></li>
-<li class="chapter" data-level="3.1.3" data-path="Data-StationData.html"><a href="Data-StationData.html#DataPreparationPT"><i class="fa fa-check"></i><b>3.1.3</b> Gap Filling Meteorological Data</a></li>
-<li class="chapter" data-level="3.1.4" data-path="Data-StationData.html"><a href="Data-StationData.html#AnomaliesOutliers"><i class="fa fa-check"></i><b>3.1.4</b> Anomalies and Outliers</a></li>
-<li class="chapter" data-level="3.1.5" data-path="Data-StationData.html"><a href="Data-StationData.html#FinalData"><i class="fa fa-check"></i><b>3.1.5</b> Putting it all together</a></li>
+<li class="chapter" data-level="5.1.1" data-path="Data-StationData.html"><a href="Data-StationData.html#AvailableData"><i class="fa fa-check"></i><b>5.1.1</b> Available Data</a></li>
+<li class="chapter" data-level="5.1.2" data-path="Data-StationData.html"><a href="Data-StationData.html#StationData::GapFilling"><i class="fa fa-check"></i><b>5.1.2</b> Gap Filling Discharge Data</a></li>
+<li class="chapter" data-level="5.1.3" data-path="Data-StationData.html"><a href="Data-StationData.html#DataPreparationPT"><i class="fa fa-check"></i><b>5.1.3</b> Gap Filling Meteorological Data</a></li>
+<li class="chapter" data-level="5.1.4" data-path="Data-StationData.html"><a href="Data-StationData.html#AnomaliesOutliers"><i class="fa fa-check"></i><b>5.1.4</b> Anomalies and Outliers</a></li>
+<li class="chapter" data-level="5.1.5" data-path="Data-StationData.html"><a href="Data-StationData.html#FinalData"><i class="fa fa-check"></i><b>5.1.5</b> Putting it all together</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html"><i class="fa fa-check"></i><b>3.2</b> Geospatial Data</a>
+<li class="chapter" data-level="5.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html"><i class="fa fa-check"></i><b>5.2</b> Geospatial Data</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#prerequisites"><i class="fa fa-check"></i><b>3.2.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="3.2.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-steps-setting-up"><i class="fa fa-check"></i><b>3.2.2</b> Setting up QGIS</a></li>
-<li class="chapter" data-level="3.2.3" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-load-dem"><i class="fa fa-check"></i><b>3.2.3</b> Load DEM</a></li>
-<li class="chapter" data-level="3.2.4" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-steps-derive-catchment-boundaries"><i class="fa fa-check"></i><b>3.2.4</b> Catchment delineation</a></li>
-<li class="chapter" data-level="3.2.5" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#run-through-the-process-model"><i class="fa fa-check"></i><b>3.2.5</b> Run through the process model</a></li>
-<li class="chapter" data-level="3.2.6" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#manually-edit-the-gis-layers-for-import-in-rs-minerve"><i class="fa fa-check"></i><b>3.2.6</b> Manually edit the GIS Layers for import in RS MINERVE</a></li>
+<li class="chapter" data-level="5.2.1" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#prerequisites"><i class="fa fa-check"></i><b>5.2.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="5.2.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-steps-setting-up"><i class="fa fa-check"></i><b>5.2.2</b> Setting up QGIS</a></li>
+<li class="chapter" data-level="5.2.3" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-load-dem"><i class="fa fa-check"></i><b>5.2.3</b> Load DEM</a></li>
+<li class="chapter" data-level="5.2.4" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-steps-derive-catchment-boundaries"><i class="fa fa-check"></i><b>5.2.4</b> Catchment delineation</a></li>
+<li class="chapter" data-level="5.2.5" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#run-through-the-process-model"><i class="fa fa-check"></i><b>5.2.5</b> Run through the process model</a></li>
+<li class="chapter" data-level="5.2.6" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#manually-edit-the-gis-layers-for-import-in-rs-minerve"><i class="fa fa-check"></i><b>5.2.6</b> Manually edit the GIS Layers for import in RS MINERVE</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="Data-ClimateReanalysisData.html"><a href="Data-ClimateReanalysisData.html"><i class="fa fa-check"></i><b>3.3</b> Climate Reanalysis Data</a>
+<li class="chapter" data-level="5.3" data-path="Data-ClimateReanalysisData.html"><a href="Data-ClimateReanalysisData.html"><i class="fa fa-check"></i><b>5.3</b> Climate Reanalysis Data</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="Data-ClimateReanalysisData.html"><a href="Data-ClimateReanalysisData.html#Data::CHELSA"><i class="fa fa-check"></i><b>3.3.1</b> CHELSA V1.2.1 Data and Bias Correction</a></li>
-<li class="chapter" data-level="3.3.2" data-path="Data-ClimateReanalysisData.html"><a href="Data-ClimateReanalysisData.html#Data::ERA5"><i class="fa fa-check"></i><b>3.3.2</b> ERA5 Download and Data Resampling with PBCORR CHELSA</a></li>
+<li class="chapter" data-level="5.3.1" data-path="Data-ClimateReanalysisData.html"><a href="Data-ClimateReanalysisData.html#Data::CHELSA"><i class="fa fa-check"></i><b>5.3.1</b> CHELSA V1.2.1 Data and Bias Correction</a></li>
+<li class="chapter" data-level="5.3.2" data-path="Data-ClimateReanalysisData.html"><a href="Data-ClimateReanalysisData.html#Data::ERA5"><i class="fa fa-check"></i><b>5.3.2</b> ERA5 Download and Data Resampling with PBCORR CHELSA</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="data-on-climate-projections.html"><a href="data-on-climate-projections.html"><i class="fa fa-check"></i><b>3.4</b> Data on Climate Projections</a>
+<li class="chapter" data-level="5.4" data-path="data-on-climate-projections.html"><a href="data-on-climate-projections.html"><i class="fa fa-check"></i><b>5.4</b> Data on Climate Projections</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="data-on-climate-projections.html"><a href="data-on-climate-projections.html#CHELSA21Century"><i class="fa fa-check"></i><b>3.4.1</b> High Res. Monthly Climate Time Series for 2006 - 2100</a></li>
-<li class="chapter" data-level="3.4.2" data-path="data-on-climate-projections.html"><a href="data-on-climate-projections.html#Data::WeatherGenerator"><i class="fa fa-check"></i><b>3.4.2</b> Using a Weather Generator to Simulate Daily Future Climate</a></li>
+<li class="chapter" data-level="5.4.1" data-path="data-on-climate-projections.html"><a href="data-on-climate-projections.html#CHELSA21Century"><i class="fa fa-check"></i><b>5.4.1</b> High Res. Monthly Climate Time Series for 2006 - 2100</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data-on-climate-projections.html"><a href="data-on-climate-projections.html#Data::WeatherGenerator"><i class="fa fa-check"></i><b>5.4.2</b> Using a Weather Generator to Simulate Daily Future Climate</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="snow-cover-data.html"><a href="snow-cover-data.html"><i class="fa fa-check"></i><b>3.5</b> Snow Cover Data</a></li>
-<li class="chapter" data-level="3.6" data-path="glacier-data.html"><a href="glacier-data.html"><i class="fa fa-check"></i><b>3.6</b> Glacier Data</a></li>
+<li class="chapter" data-level="5.5" data-path="snow-cover-data.html"><a href="snow-cover-data.html"><i class="fa fa-check"></i><b>5.5</b> Snow Cover Data</a></li>
+<li class="chapter" data-level="5.6" data-path="glacier-data.html"><a href="glacier-data.html"><i class="fa fa-check"></i><b>5.6</b> Glacier Data</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="RSMinerveMODELS.html"><a href="RSMinerveMODELS.html"><i class="fa fa-check"></i><b>4</b> Hydrological-Hydraulic Modeling</a>
+<li class="chapter" data-level="6" data-path="RSMinerveMODELS.html"><a href="RSMinerveMODELS.html"><i class="fa fa-check"></i><b>6</b> Hydrological-Hydraulic Modeling</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="section-rsminerve-prerequisites.html"><a href="section-rsminerve-prerequisites.html"><i class="fa fa-check"></i><b>4.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="4.2" data-path="section-rsminerve-why-model-introduction.html"><a href="section-rsminerve-why-model-introduction.html"><i class="fa fa-check"></i><b>4.2</b> Recap: Hydrological response</a></li>
-<li class="chapter" data-level="4.3" data-path="section-general-modelling-process.html"><a href="section-general-modelling-process.html"><i class="fa fa-check"></i><b>4.3</b> Recap: The general modeling process</a></li>
-<li class="chapter" data-level="4.4" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html"><i class="fa fa-check"></i><b>4.4</b> Data Preparation and Setup</a>
+<li class="chapter" data-level="6.1" data-path="section-rsminerve-prerequisites.html"><a href="section-rsminerve-prerequisites.html"><i class="fa fa-check"></i><b>6.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="6.2" data-path="section-rsminerve-why-model-introduction.html"><a href="section-rsminerve-why-model-introduction.html"><i class="fa fa-check"></i><b>6.2</b> Recap: Hydrological response</a></li>
+<li class="chapter" data-level="6.3" data-path="section-general-modelling-process.html"><a href="section-general-modelling-process.html"><i class="fa fa-check"></i><b>6.3</b> Recap: The general modeling process</a></li>
+<li class="chapter" data-level="6.4" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html"><i class="fa fa-check"></i><b>6.4</b> Data Preparation and Setup</a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html#examining-and-understanding-the-gis-data"><i class="fa fa-check"></i><b>4.4.1</b> Examining and Understanding the GIS Data</a></li>
-<li class="chapter" data-level="4.4.2" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html#loading-gis-data-and-model-creation"><i class="fa fa-check"></i><b>4.4.2</b> Loading GIS Data and Model Creation</a></li>
-<li class="chapter" data-level="4.4.3" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html#climate-data"><i class="fa fa-check"></i><b>4.4.3</b> Climate Data</a></li>
+<li class="chapter" data-level="6.4.1" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html#examining-and-understanding-the-gis-data"><i class="fa fa-check"></i><b>6.4.1</b> Examining and Understanding the GIS Data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html#loading-gis-data-and-model-creation"><i class="fa fa-check"></i><b>6.4.2</b> Loading GIS Data and Model Creation</a></li>
+<li class="chapter" data-level="6.4.3" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html#climate-data"><i class="fa fa-check"></i><b>6.4.3</b> Climate Data</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="section-hbv-model.html"><a href="section-hbv-model.html"><i class="fa fa-check"></i><b>4.5</b> The HBV model</a>
+<li class="chapter" data-level="6.5" data-path="section-hbv-model.html"><a href="section-hbv-model.html"><i class="fa fa-check"></i><b>6.5</b> The HBV model</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="section-hbv-model.html"><a href="section-hbv-model.html#section-hbv-nauvalisoy-tutorial-short"><i class="fa fa-check"></i><b>4.5.1</b> HBV example: Simple model of the Nauvalisoy river catchment</a></li>
+<li class="chapter" data-level="6.5.1" data-path="section-hbv-model.html"><a href="section-hbv-model.html#section-hbv-nauvalisoy-tutorial-short"><i class="fa fa-check"></i><b>6.5.1</b> HBV example: Simple model of the Nauvalisoy river catchment</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="section-model-calibration-and-validation.html"><a href="section-model-calibration-and-validation.html"><i class="fa fa-check"></i><b>4.6</b> Model Calibration and Validation</a>
+<li class="chapter" data-level="6.6" data-path="section-model-calibration-and-validation.html"><a href="section-model-calibration-and-validation.html"><i class="fa fa-check"></i><b>6.6</b> Model Calibration and Validation</a>
 <ul>
-<li class="chapter" data-level="4.6.1" data-path="section-model-calibration-and-validation.html"><a href="section-model-calibration-and-validation.html#section-calibration-principles"><i class="fa fa-check"></i><b>4.6.1</b> Basic Principles</a></li>
-<li class="chapter" data-level="4.6.2" data-path="section-model-calibration-and-validation.html"><a href="section-model-calibration-and-validation.html#secion-calibration-practical-steps"><i class="fa fa-check"></i><b>4.6.2</b> Practical Steps</a></li>
+<li class="chapter" data-level="6.6.1" data-path="section-model-calibration-and-validation.html"><a href="section-model-calibration-and-validation.html#section-calibration-principles"><i class="fa fa-check"></i><b>6.6.1</b> Basic Principles</a></li>
+<li class="chapter" data-level="6.6.2" data-path="section-model-calibration-and-validation.html"><a href="section-model-calibration-and-validation.html#secion-calibration-practical-steps"><i class="fa fa-check"></i><b>6.6.2</b> Practical Steps</a></li>
 </ul></li>
-<li class="chapter" data-level="4.7" data-path="application-investigating-climate-change-impacts.html"><a href="application-investigating-climate-change-impacts.html"><i class="fa fa-check"></i><b>4.7</b> Application: Investigating Climate Change Impacts</a></li>
-<li class="chapter" data-level="4.8" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>4.8</b> Discussion</a></li>
+<li class="chapter" data-level="6.7" data-path="application-investigating-climate-change-impacts.html"><a href="application-investigating-climate-change-impacts.html"><i class="fa fa-check"></i><b>6.7</b> Application: Investigating Climate Change Impacts</a></li>
+<li class="chapter" data-level="6.8" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6.8</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="HydroModelsEmpiricalModels.html"><a href="HydroModelsEmpiricalModels.html"><i class="fa fa-check"></i><b>5</b> Discharge Forecasting with Predictive Inference</a>
+<li class="chapter" data-level="7" data-path="HydroModelsEmpiricalModels.html"><a href="HydroModelsEmpiricalModels.html"><i class="fa fa-check"></i><b>7</b> Discharge Forecasting with Predictive Inference</a>
 <ul>
 <li class="chapter" data-level="" data-path="prerequisites-1.html"><a href="prerequisites-1.html"><i class="fa fa-check"></i>Prerequisites</a></li>
-<li class="chapter" data-level="5.1" data-path="Chap9PredictiveInference.html"><a href="Chap9PredictiveInference.html"><i class="fa fa-check"></i><b>5.1</b> Forecasting Using Predictive Inference</a></li>
-<li class="chapter" data-level="5.2" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html"><i class="fa fa-check"></i><b>5.2</b> Forecasting in the Central Asian Hydromets</a>
+<li class="chapter" data-level="7.1" data-path="Chap9PredictiveInference.html"><a href="Chap9PredictiveInference.html"><i class="fa fa-check"></i><b>7.1</b> Forecasting Using Predictive Inference</a></li>
+<li class="chapter" data-level="7.2" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html"><i class="fa fa-check"></i><b>7.2</b> Forecasting in the Central Asian Hydromets</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html#background"><i class="fa fa-check"></i><b>5.2.1</b> Background</a></li>
-<li class="chapter" data-level="5.2.2" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html#forecasting-for-what-and-whom"><i class="fa fa-check"></i><b>5.2.2</b> Forecasting for What and Whom?</a></li>
+<li class="chapter" data-level="7.2.1" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html#background"><i class="fa fa-check"></i><b>7.2.1</b> Background</a></li>
+<li class="chapter" data-level="7.2.2" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html#forecasting-for-what-and-whom"><i class="fa fa-check"></i><b>7.2.2</b> Forecasting for What and Whom?</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html"><i class="fa fa-check"></i><b>5.3</b> Data and Preparation</a>
+<li class="chapter" data-level="7.3" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html"><i class="fa fa-check"></i><b>7.3</b> Data and Preparation</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9AvailableData"><i class="fa fa-check"></i><b>5.3.1</b> Available Data</a></li>
-<li class="chapter" data-level="5.3.2" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9DataPreparationQ"><i class="fa fa-check"></i><b>5.3.2</b> Gap Filling Discharge Data</a></li>
-<li class="chapter" data-level="5.3.3" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9DataPreparationPT"><i class="fa fa-check"></i><b>5.3.3</b> Gap Filling Meteorological Data</a></li>
-<li class="chapter" data-level="5.3.4" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9AnomaliesOutliers"><i class="fa fa-check"></i><b>5.3.4</b> Anomalies and Outliers</a></li>
-<li class="chapter" data-level="5.3.5" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9_FinalData"><i class="fa fa-check"></i><b>5.3.5</b> Putting it all together</a></li>
+<li class="chapter" data-level="7.3.1" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9AvailableData"><i class="fa fa-check"></i><b>7.3.1</b> Available Data</a></li>
+<li class="chapter" data-level="7.3.2" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9DataPreparationQ"><i class="fa fa-check"></i><b>7.3.2</b> Gap Filling Discharge Data</a></li>
+<li class="chapter" data-level="7.3.3" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9DataPreparationPT"><i class="fa fa-check"></i><b>7.3.3</b> Gap Filling Meteorological Data</a></li>
+<li class="chapter" data-level="7.3.4" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9AnomaliesOutliers"><i class="fa fa-check"></i><b>7.3.4</b> Anomalies and Outliers</a></li>
+<li class="chapter" data-level="7.3.5" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9_FinalData"><i class="fa fa-check"></i><b>7.3.5</b> Putting it all together</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html"><i class="fa fa-check"></i><b>5.4</b> Data Analysis</a>
+<li class="chapter" data-level="7.4" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html"><i class="fa fa-check"></i><b>7.4</b> Data Analysis</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap_9_DataTransformation"><i class="fa fa-check"></i><b>5.4.1</b> Data Transformation</a></li>
-<li class="chapter" data-level="5.4.2" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_Trends"><i class="fa fa-check"></i><b>5.4.2</b> Detecting Trends</a></li>
-<li class="chapter" data-level="5.4.3" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_Autocorrelations"><i class="fa fa-check"></i><b>5.4.3</b> Auto- and Crosscorrelations</a></li>
-<li class="chapter" data-level="5.4.4" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_SeasonalityAnalysis"><i class="fa fa-check"></i><b>5.4.4</b> Time Series Seasonality</a></li>
+<li class="chapter" data-level="7.4.1" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap_9_DataTransformation"><i class="fa fa-check"></i><b>7.4.1</b> Data Transformation</a></li>
+<li class="chapter" data-level="7.4.2" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_Trends"><i class="fa fa-check"></i><b>7.4.2</b> Detecting Trends</a></li>
+<li class="chapter" data-level="7.4.3" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_Autocorrelations"><i class="fa fa-check"></i><b>7.4.3</b> Auto- and Crosscorrelations</a></li>
+<li class="chapter" data-level="7.4.4" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_SeasonalityAnalysis"><i class="fa fa-check"></i><b>7.4.4</b> Time Series Seasonality</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html"><i class="fa fa-check"></i><b>5.5</b> Investigating and Engineering Predictors</a>
+<li class="chapter" data-level="7.5" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html"><i class="fa fa-check"></i><b>7.5</b> Investigating and Engineering Predictors</a>
 <ul>
-<li class="chapter" data-level="5.5.1" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_CurrentPractice"><i class="fa fa-check"></i><b>5.5.1</b> Benchmark: Current Operational Forecasting Models in the Hydrometeorological Agencies</a></li>
-<li class="chapter" data-level="5.5.2" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_TSR"><i class="fa fa-check"></i><b>5.5.2</b> Time Series Regression Models</a></li>
-<li class="chapter" data-level="5.5.3" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_ForecastQuality"><i class="fa fa-check"></i><b>5.5.3</b> Assessing the Quality of Forecasts</a></li>
-<li class="chapter" data-level="5.5.4" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#generating-and-assessing-out-of-sample-forecasts"><i class="fa fa-check"></i><b>5.5.4</b> Generating and Assessing Out-of-Sample Forecasts</a></li>
-<li class="chapter" data-level="5.5.5" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_MLM"><i class="fa fa-check"></i><b>5.5.5</b> Machine Learning Models</a></li>
+<li class="chapter" data-level="7.5.1" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_CurrentPractice"><i class="fa fa-check"></i><b>7.5.1</b> Benchmark: Current Operational Forecasting Models in the Hydrometeorological Agencies</a></li>
+<li class="chapter" data-level="7.5.2" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_TSR"><i class="fa fa-check"></i><b>7.5.2</b> Time Series Regression Models</a></li>
+<li class="chapter" data-level="7.5.3" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_ForecastQuality"><i class="fa fa-check"></i><b>7.5.3</b> Assessing the Quality of Forecasts</a></li>
+<li class="chapter" data-level="7.5.4" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#generating-and-assessing-out-of-sample-forecasts"><i class="fa fa-check"></i><b>7.5.4</b> Generating and Assessing Out-of-Sample Forecasts</a></li>
+<li class="chapter" data-level="7.5.5" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_MLM"><i class="fa fa-check"></i><b>7.5.5</b> Machine Learning Models</a></li>
 </ul></li>
-<li class="chapter" data-level="5.6" data-path="save-data-for-hot-start.html"><a href="save-data-for-hot-start.html"><i class="fa fa-check"></i><b>5.6</b> Save Data for Hot Start</a></li>
+<li class="chapter" data-level="7.6" data-path="save-data-for-hot-start.html"><a href="save-data-for-hot-start.html"><i class="fa fa-check"></i><b>7.6</b> Save Data for Hot Start</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="Operationalization.html"><a href="Operationalization.html"><i class="fa fa-check"></i><b>6</b> Operationalization of Models - Opportunities and Challenges</a>
+<li class="chapter" data-level="8" data-path="Operationalization.html"><a href="Operationalization.html"><i class="fa fa-check"></i><b>8</b> Operationalization of Models - Opportunities and Challenges</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="co-design-phase.html"><a href="co-design-phase.html"><i class="fa fa-check"></i><b>6.1</b> Co-design Phase</a></li>
-<li class="chapter" data-level="6.2" data-path="modeling-phase.html"><a href="modeling-phase.html"><i class="fa fa-check"></i><b>6.2</b> Modeling Phase</a></li>
-<li class="chapter" data-level="6.3" data-path="testing-phase.html"><a href="testing-phase.html"><i class="fa fa-check"></i><b>6.3</b> Testing Phase</a></li>
-<li class="chapter" data-level="6.4" data-path="operational-deployment.html"><a href="operational-deployment.html"><i class="fa fa-check"></i><b>6.4</b> Operational Deployment</a></li>
+<li class="chapter" data-level="8.1" data-path="co-design-phase.html"><a href="co-design-phase.html"><i class="fa fa-check"></i><b>8.1</b> Co-design Phase</a></li>
+<li class="chapter" data-level="8.2" data-path="modeling-phase.html"><a href="modeling-phase.html"><i class="fa fa-check"></i><b>8.2</b> Modeling Phase</a></li>
+<li class="chapter" data-level="8.3" data-path="testing-phase.html"><a href="testing-phase.html"><i class="fa fa-check"></i><b>8.3</b> Testing Phase</a></li>
+<li class="chapter" data-level="8.4" data-path="operational-deployment.html"><a href="operational-deployment.html"><i class="fa fa-check"></i><b>8.4</b> Operational Deployment</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="ChapterAppendix.html"><a href="ChapterAppendix.html"><i class="fa fa-check"></i><b>7</b> (APPENDIX) Appendix</a>
+<li class="chapter" data-level="9" data-path="ChapterAppendix.html"><a href="ChapterAppendix.html"><i class="fa fa-check"></i><b>9</b> (APPENDIX) Appendix</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="section-appendix-open-source-resources.html"><a href="section-appendix-open-source-resources.html"><i class="fa fa-check"></i><b>7.1</b> Appendix A: Open-source resources</a>
+<li class="chapter" data-level="9.1" data-path="section-appendix-open-source-resources.html"><a href="section-appendix-open-source-resources.html"><i class="fa fa-check"></i><b>9.1</b> Appendix A: Open-source resources</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="section-appendix-open-source-resources.html"><a href="section-appendix-open-source-resources.html#literature"><i class="fa fa-check"></i><b>7.1.1</b> Literature</a></li>
-<li class="chapter" data-level="7.1.2" data-path="section-appendix-open-source-resources.html"><a href="section-appendix-open-source-resources.html#section-open-resrouces-software-QGIS"><i class="fa fa-check"></i><b>7.1.2</b> QGIS</a></li>
-<li class="chapter" data-level="7.1.3" data-path="section-appendix-open-source-resources.html"><a href="section-appendix-open-source-resources.html#section-open-resrouces-software-R"><i class="fa fa-check"></i><b>7.1.3</b> R and RStudio</a></li>
-<li class="chapter" data-level="7.1.4" data-path="section-appendix-open-source-resources.html"><a href="section-appendix-open-source-resources.html#section-open-resrouces-software-RSMinerve"><i class="fa fa-check"></i><b>7.1.4</b> RS Minerve</a></li>
+<li class="chapter" data-level="9.1.1" data-path="section-appendix-open-source-resources.html"><a href="section-appendix-open-source-resources.html#literature"><i class="fa fa-check"></i><b>9.1.1</b> Literature</a></li>
+<li class="chapter" data-level="9.1.2" data-path="section-appendix-open-source-resources.html"><a href="section-appendix-open-source-resources.html#section-open-resrouces-software-QGIS"><i class="fa fa-check"></i><b>9.1.2</b> QGIS</a></li>
+<li class="chapter" data-level="9.1.3" data-path="section-appendix-open-source-resources.html"><a href="section-appendix-open-source-resources.html#section-open-resrouces-software-R"><i class="fa fa-check"></i><b>9.1.3</b> R and RStudio</a></li>
+<li class="chapter" data-level="9.1.4" data-path="section-appendix-open-source-resources.html"><a href="section-appendix-open-source-resources.html#section-open-resrouces-software-RSMinerve"><i class="fa fa-check"></i><b>9.1.4</b> RS Minerve</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html"><i class="fa fa-check"></i><b>7.2</b> Appendix B: Quick Guides</a>
+<li class="chapter" data-level="9.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html"><i class="fa fa-check"></i><b>9.2</b> Appendix B: Quick Guides</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-register-with-earth-explorer"><i class="fa fa-check"></i><b>7.2.1</b> EE: Register for an account</a></li>
-<li class="chapter" data-level="7.2.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-earth-explorer-download-srtm"><i class="fa fa-check"></i><b>7.2.2</b> EE: Download SRTM data for a selected region</a></li>
-<li class="chapter" data-level="7.2.3" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-sofware-qgis-installation-guide"><i class="fa fa-check"></i><b>7.2.3</b> QGIS installation guide</a></li>
-<li class="chapter" data-level="7.2.4" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-qgis-window-overview"><i class="fa fa-check"></i><b>7.2.4</b> The QGIS window - overview</a></li>
-<li class="chapter" data-level="7.2.5" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-saving-a-new-qgis-project"><i class="fa fa-check"></i><b>7.2.5</b> QGIS: Saving a new QGIS project</a></li>
-<li class="chapter" data-level="7.2.6" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-project-projection-qgis"><i class="fa fa-check"></i><b>7.2.6</b> QGIS: Change the projection of the QGIS project</a></li>
-<li class="chapter" data-level="7.2.7" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-install-and-activate-plugins-in-QGIS3"><i class="fa fa-check"></i><b>7.2.7</b> QGIS: Install and activate plugins in QGIS3</a></li>
-<li class="chapter" data-level="7.2.8" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-managing-panels"><i class="fa fa-check"></i><b>7.2.8</b> GQIS: Managing panels visibility in QGIS</a></li>
-<li class="chapter" data-level="7.2.9" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-loading-public-background-layers"><i class="fa fa-check"></i><b>7.2.9</b> QGIS: Loading public background maps</a></li>
-<li class="chapter" data-level="7.2.10" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-zoom-to-layer"><i class="fa fa-check"></i><b>7.2.10</b> QGIS: Zoom to layer</a></li>
-<li class="chapter" data-level="7.2.11" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-srtm-plugin"><i class="fa fa-check"></i><b>7.2.11</b> QGIS: Import SRTM layers using the SRTM plugin</a></li>
-<li class="chapter" data-level="7.2.12" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-merge-srtm-tiles"><i class="fa fa-check"></i><b>7.2.12</b> QGIS: Merge SRTM tiles to a single layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-register-with-earth-explorer"><i class="fa fa-check"></i>EE: Register for an account</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-earth-explorer-download-srtm"><i class="fa fa-check"></i>EE: Download SRTM data for a selected region</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-sofware-qgis-installation-guide"><i class="fa fa-check"></i>QGIS installation guide</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-qgis-window-overview"><i class="fa fa-check"></i>The QGIS window - overview</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-saving-a-new-qgis-project"><i class="fa fa-check"></i>QGIS: Saving a new QGIS project</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-project-projection-qgis"><i class="fa fa-check"></i>QGIS: Change the projection of the QGIS project</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-install-and-activate-plugins-in-QGIS3"><i class="fa fa-check"></i>QGIS: Install and activate plugins in QGIS3</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-managing-panels"><i class="fa fa-check"></i>GQIS: Managing panels visibility in QGIS</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-loading-public-background-layers"><i class="fa fa-check"></i>QGIS: Loading public background maps</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-zoom-to-layer"><i class="fa fa-check"></i>QGIS: Zoom to layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-srtm-plugin"><i class="fa fa-check"></i>QGIS: Import SRTM layers using the SRTM plugin</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-merge-srtm-tiles"><i class="fa fa-check"></i>QGIS: Merge SRTM tiles to a single layer</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quick-guides-load-dem"><i class="fa fa-check"></i>QGIS: Add raster layer</a></li>
-<li class="chapter" data-level="7.2.13" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guides-change-color-of-raster-layer"><i class="fa fa-check"></i><b>7.2.13</b> QGIS: Change color of raster layer</a></li>
-<li class="chapter" data-level="7.2.14" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-map-decorations"><i class="fa fa-check"></i><b>7.2.14</b> QGIS: Add map decorations</a></li>
-<li class="chapter" data-level="7.2.15" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-vector-layer-to-qgis"><i class="fa fa-check"></i><b>7.2.15</b> QGIS: Add vector layer</a></li>
-<li class="chapter" data-level="7.2.16" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer"><i class="fa fa-check"></i><b>7.2.16</b> Change color of a vector layer</a></li>
-<li class="chapter" data-level="7.2.17" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-create-hbv-model"><i class="fa fa-check"></i><b>7.2.17</b> RSM: Create HBV model and edit parameters</a></li>
-<li class="chapter" data-level="7.2.18" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-climate-station"><i class="fa fa-check"></i><b>7.2.18</b> RSM: Add and link climate station</a></li>
-<li class="chapter" data-level="7.2.19" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-import-climate-data"><i class="fa fa-check"></i><b>7.2.19</b> RSM: Import climate data</a></li>
-<li class="chapter" data-level="7.2.20" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-atapt-model-settings"><i class="fa fa-check"></i><b>7.2.20</b> RSM: Adapt model settings</a></li>
-<li class="chapter" data-level="7.2.21" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-export-sim-results-to-db"><i class="fa fa-check"></i><b>7.2.21</b> RSM: Export simulation results to data base</a></li>
-<li class="chapter" data-level="7.2.22" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-comparator-and-discharge-data"><i class="fa fa-check"></i><b>7.2.22</b> RSM: Add comparator and load discharge measurements</a></li>
-<li class="chapter" data-level="7.2.23" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-copy-paste-database-values"><i class="fa fa-check"></i><b>7.2.23</b> RSM: Copy-paste data to database</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guides-change-color-of-raster-layer"><i class="fa fa-check"></i>QGIS: Change color of raster layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-map-decorations"><i class="fa fa-check"></i>QGIS: Add map decorations</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-vector-layer-to-qgis"><i class="fa fa-check"></i>QGIS: Add vector layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer"><i class="fa fa-check"></i>Change color of a vector layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-create-hbv-model"><i class="fa fa-check"></i>RSM: Create HBV model and edit parameters</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-climate-station"><i class="fa fa-check"></i>RSM: Add and link climate station</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-import-climate-data"><i class="fa fa-check"></i>RSM: Import climate data</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-atapt-model-settings"><i class="fa fa-check"></i>RSM: Adapt model settings</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-export-sim-results-to-db"><i class="fa fa-check"></i>RSM: Export simulation results to data base</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-comparator-and-discharge-data"><i class="fa fa-check"></i>RSM: Add comparator and load discharge measurements</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-copy-paste-database-values"><i class="fa fa-check"></i>RSM: Copy-paste data to database</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html"><i class="fa fa-check"></i><b>7.3</b> Appendix C: Processing Climate Data</a>
+<li class="chapter" data-level="9.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html"><i class="fa fa-check"></i><b>9.3</b> Appendix C: Processing Climate Data</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#cutting-chelsa-v.1.2.1-to-ca-domain"><i class="fa fa-check"></i><b>7.3.1</b> Cutting CHELSA v.1.2.1 to CA Domain</a></li>
-<li class="chapter" data-level="7.3.2" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#bias-correcting-chelsa-v1.2.1-precipitation-data-for-snow-undercatch"><i class="fa fa-check"></i><b>7.3.2</b> Bias Correcting CHELSA v1.2.1 Precipitation Data for Snow Undercatch</a></li>
-<li class="chapter" data-level="7.3.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#computing-mean-monthly-temperature-climatology-from-chelsa-v1.2.1-data"><i class="fa fa-check"></i><b>7.3.3</b> Computing Mean Monthly Temperature Climatology from CHELSA v1.2.1 data</a></li>
-<li class="chapter" data-level="7.3.4" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#era5"><i class="fa fa-check"></i><b>7.3.4</b> ERA5</a></li>
+<li class="chapter" data-level="9.3.1" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#cutting-chelsa-v.1.2.1-to-ca-domain"><i class="fa fa-check"></i><b>9.3.1</b> Cutting CHELSA v.1.2.1 to CA Domain</a></li>
+<li class="chapter" data-level="9.3.2" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#bias-correcting-chelsa-v1.2.1-precipitation-data-for-snow-undercatch"><i class="fa fa-check"></i><b>9.3.2</b> Bias Correcting CHELSA v1.2.1 Precipitation Data for Snow Undercatch</a></li>
+<li class="chapter" data-level="9.3.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#computing-mean-monthly-temperature-climatology-from-chelsa-v1.2.1-data"><i class="fa fa-check"></i><b>9.3.3</b> Computing Mean Monthly Temperature Climatology from CHELSA v1.2.1 data</a></li>
+<li class="chapter" data-level="9.3.4" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#era5"><i class="fa fa-check"></i><b>9.3.4</b> ERA5</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html"><i class="fa fa-check"></i><b>7.4</b> Appendix D: Solutions to exercises</a>
+<li class="chapter" data-level="9.4" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html"><i class="fa fa-check"></i><b>9.4</b> Appendix D: Solutions to exercises</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-exercise1"><i class="fa fa-check"></i><b>7.4.1</b> Exercise on Linear Reservoir modelling</a></li>
-<li class="chapter" data-level="7.4.2" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-hbv-exercises"><i class="fa fa-check"></i><b>7.4.2</b> Exercises on the HBV model</a></li>
+<li class="chapter" data-level="9.4.1" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-exercise1"><i class="fa fa-check"></i><b>9.4.1</b> Exercise on Linear Reservoir modelling</a></li>
+<li class="chapter" data-level="9.4.2" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-hbv-exercises"><i class="fa fa-check"></i><b>9.4.2</b> Exercises on the HBV model</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>8</b> References</a></li>
+<li class="chapter" data-level="10" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -352,157 +362,157 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="appendix-b-quick-guides" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> Appendix B: Quick Guides</h2>
-<div id="section-register-with-earth-explorer" class="section level3" number="7.2.1">
-<h3><span class="header-section-number">7.2.1</span> EE: Register for an account</h3>
+<div id="appendix-b-quick-guides" class="section level2" number="9.2">
+<h2><span class="header-section-number">9.2</span> Appendix B: Quick Guides</h2>
+<div id="section-register-with-earth-explorer" class="section level3 unnumbered">
+<h3>EE: Register for an account</h3>
 <p>In your internet browser, navigate to <a href="https://earthexplorer.usgs.gov/" class="uri">https://earthexplorer.usgs.gov/</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-earth-explorer-window"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig400_EarthExplorerWindow.png" alt="Start window of the Earth Explorer interface." width="90%" />
 <p class="caption">
-Figure 7.2: Start window of the Earth Explorer interface.
+Figure 9.2: Start window of the Earth Explorer interface.
 </p>
 </div>
 <p>Lick on <em>Login</em> in the top right corner. This will bring you to a new window where you can click on <em>Create New Account</em> which will open a form where you enter your information. After verifying your account by clicking on the appropriate link that you will be sent, you can download data from the Earth Explorer interface.</p>
 </div>
-<div id="section-earth-explorer-download-srtm" class="section level3" number="7.2.2">
-<h3><span class="header-section-number">7.2.2</span> EE: Download SRTM data for a selected region</h3>
+<div id="section-earth-explorer-download-srtm" class="section level3 unnumbered">
+<h3>EE: Download SRTM data for a selected region</h3>
 <ul>
 <li>Login to the <a href="https://earthexplorer.usgs.gov/">Earth Explorer</a> (Register if you haven’t done so before <a href="appendix-b-quick-guides.html#section-register-with-earth-explorer">How to</a>).<br />
 </li>
 <li>Navigate to your are of interest in the map panel of the Earth Explorer interface.<br />
 </li>
-<li>Draw a polygon around your area of interest by clicking on the map (<a href="appendix-b-quick-guides.html#fig:fig-earth-explorer-area-of-interest">7.3</a>).<br />
+<li>Draw a polygon around your area of interest by clicking on the map (<a href="appendix-b-quick-guides.html#fig:fig-earth-explorer-area-of-interest">9.3</a>).<br />
 </li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:fig-earth-explorer-area-of-interest"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig401_PolygonAroundAreaOfInterest.png" alt="Define a polygon around your area of interest by clicking on the map." width="90%" />
 <p class="caption">
-Figure 7.3: Define a polygon around your area of interest by clicking on the map.
+Figure 9.3: Define a polygon around your area of interest by clicking on the map.
 </p>
 </div>
 <ul>
-<li>In the Data Set tab, look for the SRTM 1 arc-second global DEM (<a href="appendix-b-quick-guides.html#fig:fig-earth-explorer-search-data">7.4</a>) and select it by ticking the box next to the product name in the list.<br />
+<li>In the Data Set tab, look for the SRTM 1 arc-second global DEM (<a href="appendix-b-quick-guides.html#fig:fig-earth-explorer-search-data">9.4</a>) and select it by ticking the box next to the product name in the list.<br />
 </li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:fig-earth-explorer-search-data"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig402_SearchSRTM1ArcSecondGlobal.png" alt="Search for the SRTM 1 arc-second global DEM product." width="90%" />
 <p class="caption">
-Figure 7.4: Search for the SRTM 1 arc-second global DEM product.
+Figure 9.4: Search for the SRTM 1 arc-second global DEM product.
 </p>
 </div>
 <ul>
-<li>Verify that the result layer(s) cover your area of interest by pressing the foot icon in the Results tab and download if you are satisfied (<a href="appendix-b-quick-guides.html#fig:fig-earth-explorer-results-download">7.5</a>).<br />
+<li>Verify that the result layer(s) cover your area of interest by pressing the foot icon in the Results tab and download if you are satisfied (<a href="appendix-b-quick-guides.html#fig:fig-earth-explorer-results-download">9.5</a>).<br />
 </li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:fig-earth-explorer-results-download"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig404_verifyResultsDownload.png" alt="Verify the results of your search and download the data products you need." width="90%" />
 <p class="caption">
-Figure 7.5: Verify the results of your search and download the data products you need.
+Figure 9.5: Verify the results of your search and download the data products you need.
 </p>
 </div>
 <p>Back to the <a href="Data-GeospatialData.html#section-geospatial-data-load-dem">Load DEM section</a>.</p>
 </div>
-<div id="appendix-sofware-qgis-installation-guide" class="section level3" number="7.2.3">
-<h3><span class="header-section-number">7.2.3</span> QGIS installation guide</h3>
-In your web browser go to <a href="https://qgis.org/en/site/forusers/download.html">https://qgis.org/en/site/forusers/download.html</a> (Figure <a href="appendix-b-quick-guides.html#fig:qgis-download-site">7.6</a>).
+<div id="appendix-sofware-qgis-installation-guide" class="section level3 unnumbered">
+<h3>QGIS installation guide</h3>
+In your web browser go to <a href="https://qgis.org/en/site/forusers/download.html">https://qgis.org/en/site/forusers/download.html</a> (Figure <a href="appendix-b-quick-guides.html#fig:qgis-download-site">9.6</a>).
 <div class="figure" style="text-align: center"><span id="fig:qgis-download-site"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_download_site_qgis.png" alt="The QGIS download site." width="90%" />
 <p class="caption">
-Figure 7.6: The QGIS download site.
+Figure 9.6: The QGIS download site.
 </p>
 </div>
-Choose the long-term support version of QGIS for your operating system (e.g. if you use a laptop with a 64-bit Windows operating system, open the <em>Download for Windows</em> tab and click on <em>QGIS Standalone Installer Version 3.16 (64 bit)</em>, see Figure <a href="appendix-b-quick-guides.html#fig:qgis-installer-version-316">7.7</a>). Click on the installer will start the download.
+Choose the long-term support version of QGIS for your operating system (e.g. if you use a laptop with a 64-bit Windows operating system, open the <em>Download for Windows</em> tab and click on <em>QGIS Standalone Installer Version 3.16 (64 bit)</em>, see Figure <a href="appendix-b-quick-guides.html#fig:qgis-installer-version-316">9.7</a>). Click on the installer will start the download.
 <div class="figure" style="text-align: center"><span id="fig:qgis-installer-version-316"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_qgis-installer-version-316.png" alt="The QGIS installer if you work on a 64-bit Windows operating system." width="50%" />
 <p class="caption">
-Figure 7.7: The QGIS installer if you work on a 64-bit Windows operating system.
+Figure 9.7: The QGIS installer if you work on a 64-bit Windows operating system.
 </p>
 </div>
 <p>Double-click on the downloaded file to start the installation. Typically, SAGA GIS and GRASS GIS are installed alongside QGIS.</p>
 </div>
-<div id="section-qgis-window-overview" class="section level3" number="7.2.4">
-<h3><span class="header-section-number">7.2.4</span> The QGIS window - overview</h3>
-<p>The main parts of the QGIS window which are referenced in this tutorial, are highlighted in <a href="appendix-b-quick-guides.html#fig:qgis-window-overview">7.8</a>.</p>
+<div id="section-qgis-window-overview" class="section level3 unnumbered">
+<h3>The QGIS window - overview</h3>
+<p>The main parts of the QGIS window which are referenced in this tutorial, are highlighted in <a href="appendix-b-quick-guides.html#fig:qgis-window-overview">9.8</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:qgis-window-overview"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/0fig000_qgisWindowOverview.png" alt="The QGIS window." width="90%" />
 <p class="caption">
-Figure 7.8: The QGIS window.
+Figure 9.8: The QGIS window.
 </p>
 </div>
 </div>
-<div id="section-saving-a-new-qgis-project" class="section level3" number="7.2.5">
-<h3><span class="header-section-number">7.2.5</span> QGIS: Saving a new QGIS project</h3>
-<p>Open your QGIS and open a new QGIS project by moving your cursor on the white sheet symbol in the upper-left corner of your QGIS window (<a href="appendix-b-quick-guides.html#fig:qgis-open-qgis-project">7.9</a>).</p>
+<div id="section-saving-a-new-qgis-project" class="section level3 unnumbered">
+<h3>QGIS: Saving a new QGIS project</h3>
+<p>Open your QGIS and open a new QGIS project by moving your cursor on the white sheet symbol in the upper-left corner of your QGIS window (<a href="appendix-b-quick-guides.html#fig:qgis-open-qgis-project">9.9</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:qgis-open-qgis-project"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/0fig001_OpenNewProject.png" alt="Tutorial project open in QGIS LTS." width="90%" />
 <p class="caption">
-Figure 7.9: Tutorial project open in QGIS LTS.
+Figure 9.9: Tutorial project open in QGIS LTS.
 </p>
 </div>
 <p>Save the QGIS project by pressing on the floppy disk icon and selecting a location for the file on your computer and a name for the project. You can <a href="appendix-b-quick-guides.html#section-loading-public-background-layers">add freely available on-line maps as background</a>.</p>
 <p>Back to <a href="Data-GeospatialData.html#section-geospatial-data-steps-setting-up">setting up of QGIS</a>.</p>
 </div>
-<div id="section-change-project-projection-qgis" class="section level3" number="7.2.6">
-<h3><span class="header-section-number">7.2.6</span> QGIS: Change the projection of the QGIS project</h3>
-<p>For this tutorial, the projection of the QGIS project should be in EPSG:32642. Change it by clicking on the projects projection in the lower right corner of the QGIS window (see (<a href="appendix-b-quick-guides.html#fig:qgis-window-overview">7.8</a>). In the CRS tab of the Project Properties, select WGS84 / UTM zone 42N with ID EPSG:32642 and click <em>OK</em>.</p>
+<div id="section-change-project-projection-qgis" class="section level3 unnumbered">
+<h3>QGIS: Change the projection of the QGIS project</h3>
+<p>For this tutorial, the projection of the QGIS project should be in EPSG:32642. Change it by clicking on the projects projection in the lower right corner of the QGIS window (see (<a href="appendix-b-quick-guides.html#fig:qgis-window-overview">9.8</a>). In the CRS tab of the Project Properties, select WGS84 / UTM zone 42N with ID EPSG:32642 and click <em>OK</em>.</p>
 <p>Back to the <a href="Data-GeospatialData.html#section-geospatial-data-steps-setting-up">setting up of QGIS</a>.</p>
 </div>
-<div id="section-install-and-activate-plugins-in-QGIS3" class="section level3" number="7.2.7">
-<h3><span class="header-section-number">7.2.7</span> QGIS: Install and activate plugins in QGIS3</h3>
-<p>Navigate to <em>Plugins</em> in the header toolbar and go to <em>Manage and Install Plugins …</em>. Search for the plugin name and go to <em>Install Plugin</em> to install a plugin or tick the box to the left of the plugin name in the list of plugins to activate it (<a href="appendix-b-quick-guides.html#fig:fig-install-activate-qgis-plugin">7.10</a>).</p>
+<div id="section-install-and-activate-plugins-in-QGIS3" class="section level3 unnumbered">
+<h3>QGIS: Install and activate plugins in QGIS3</h3>
+<p>Navigate to <em>Plugins</em> in the header toolbar and go to <em>Manage and Install Plugins …</em>. Search for the plugin name and go to <em>Install Plugin</em> to install a plugin or tick the box to the left of the plugin name in the list of plugins to activate it (<a href="appendix-b-quick-guides.html#fig:fig-install-activate-qgis-plugin">9.10</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-install-activate-qgis-plugin"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig301_InstallAndActivatePluginsInQGIS3.png" alt="Plugin management window in QGIS 3.16. Install plugin with the `Install Plugin` button. Activate installed plugins by ticking the box in the list." width="80%" />
 <p class="caption">
-Figure 7.10: Plugin management window in QGIS 3.16. Install plugin with the <code>Install Plugin</code> button. Activate installed plugins by ticking the box in the list.
+Figure 9.10: Plugin management window in QGIS 3.16. Install plugin with the <code>Install Plugin</code> button. Activate installed plugins by ticking the box in the list.
 </p>
 </div>
 <p>Back to the <a href="Data-GeospatialData.html#section-geospatial-data-steps-setting-up">setting up of QGIS</a>.</p>
 </div>
-<div id="section-managing-panels" class="section level3" number="7.2.8">
-<h3><span class="header-section-number">7.2.8</span> GQIS: Managing panels visibility in QGIS</h3>
+<div id="section-managing-panels" class="section level3 unnumbered">
+<h3>GQIS: Managing panels visibility in QGIS</h3>
 <p>Should one of the panels described here not be visible in your QGIS window navigate to <em>View</em> in your header toolbar and move to Panels. The visible panels are marked with a tick. Click on a panel name in the list to activate or deactivate it.</p>
 <p>Back to <a href="Data-GeospatialData.html#section-geospatial-data-steps-setting-up">setting up of QGIS</a>.</p>
 </div>
-<div id="section-loading-public-background-layers" class="section level3" number="7.2.9">
-<h3><span class="header-section-number">7.2.9</span> QGIS: Loading public background maps</h3>
+<div id="section-loading-public-background-layers" class="section level3 unnumbered">
+<h3>QGIS: Loading public background maps</h3>
 <p>You can add freely available on-line maps as backgrounds. Note that they will only be available as long as your computer is connected to the internet. In the <em>Browser</em> panel (<a href="appendix-b-quick-guides.html#section-managing-panels">What to do if you don’t see the <em>Browser</em> panel</a>), move the cursor to <em>XYZ Tiles</em>, do a right-click and select <em>New Connection</em>. Enter a descriptive name for the map layer and one of the links below and click <em>OK</em>. The new map layer will appear under <em>XYZ Tiles</em>. By double-clicking on the layer you can add it to your Layers panel.</p>
 <p>Back to <a href="Data-GeospatialData.html#section-geospatial-data-steps-setting-up">setting up of QGIS</a>.</p>
 </div>
-<div id="section-zoom-to-layer" class="section level3" number="7.2.10">
-<h3><span class="header-section-number">7.2.10</span> QGIS: Zoom to layer</h3>
-<p>You can tell QGIS to zoom to the selected layer by selecting a layer in the <em>Layers</em> window and then on the white sheet and magnifying glass icon in the toolbar (<a href="appendix-b-quick-guides.html#fig:qgis-zoom-to-layer">7.11</a>).</p>
+<div id="section-zoom-to-layer" class="section level3 unnumbered">
+<h3>QGIS: Zoom to layer</h3>
+<p>You can tell QGIS to zoom to the selected layer by selecting a layer in the <em>Layers</em> window and then on the white sheet and magnifying glass icon in the toolbar (<a href="appendix-b-quick-guides.html#fig:qgis-zoom-to-layer">9.11</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:qgis-zoom-to-layer"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig009_ZoomToLayer.png" alt="Zoom to layer." width="100%" />
 <p class="caption">
-Figure 7.11: Zoom to layer.
+Figure 9.11: Zoom to layer.
 </p>
 </div>
 <p>You can also perform a right-click on the layer name in the <em>Layers</em> panel and select <em>Zoom to layer</em>.</p>
 </div>
-<div id="section-srtm-plugin" class="section level3" number="7.2.11">
-<h3><span class="header-section-number">7.2.11</span> QGIS: Import SRTM layers using the SRTM plugin</h3>
+<div id="section-srtm-plugin" class="section level3 unnumbered">
+<h3>QGIS: Import SRTM layers using the SRTM plugin</h3>
 <p>Make sure the SRTM plugin is installed (<a href="appendix-b-quick-guides.html#section-install-and-activate-plugins-in-QGIS3">How to</a>). Navigate to <em>Plugins</em> in the header toolbar and there to <em>SRTM Downloader</em>. Select the <em>SRTM Downloader</em>. Set the boundaries of the SRTM tiles to download and press the <em>Download</em> button. Close the window when done. The SRTM tiles are loaded to the Layers pane.</p>
 <p>Back to <a href="Data-GeospatialData.html#section-geospatial-data-load-dem">Load DEM in QGIS section</a></p>
 </div>
-<div id="section-merge-srtm-tiles" class="section level3" number="7.2.12">
-<h3><span class="header-section-number">7.2.12</span> QGIS: Merge SRTM tiles to a single layer</h3>
+<div id="section-merge-srtm-tiles" class="section level3 unnumbered">
+<h3>QGIS: Merge SRTM tiles to a single layer</h3>
 <p>Navigate to <em>Raster</em> in the header toolbar and then to <em>Miscellaneous</em> and <em>Merge…</em>. In the <em>Merge</em> window that opens, select the input layers by clicking on the <em>…</em> button. Tick the layers that need to be merged and press <em>Run</em>. When the algorithm is done, close the window. You can zoom to the extent of the new layer <a href="appendix-b-quick-guides.html#section-zoom-to-layer">How to</a>. You can change the color of the DEM file.</p>
 <p>Back to <a href="Data-GeospatialData.html#section-geospatial-data-load-dem">Load DEM in QGIS section</a></p>
 </div>
 <div id="section-quick-guides-load-dem" class="section level3 unnumbered">
 <h3>QGIS: Add raster layer</h3>
-In your QGIS window, navigate to <em>Layer</em> in your header toolbar, there to <em>Add Layer</em> and left-click on <em>Add Raster Layer</em> (see Figure <a href="appendix-b-quick-guides.html#fig:qgis-add-raster-layer-1">7.12</a>). The Data Source Manager will open in a pop-up window (see Figure <a href="appendix-b-quick-guides.html#fig:qgis-add-raster-layer-2">7.13</a>).
+In your QGIS window, navigate to <em>Layer</em> in your header toolbar, there to <em>Add Layer</em> and left-click on <em>Add Raster Layer</em> (see Figure <a href="appendix-b-quick-guides.html#fig:qgis-add-raster-layer-1">9.12</a>). The Data Source Manager will open in a pop-up window (see Figure <a href="appendix-b-quick-guides.html#fig:qgis-add-raster-layer-2">9.13</a>).
 <div class="figure" style="text-align: center"><span id="fig:qgis-add-raster-layer-1"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_add_raster_layer_001.png" alt="Add raster layer to QGIS project, step 1.: Navigate to the Data Source Manager." width="90%" />
 <p class="caption">
-Figure 7.12: Add raster layer to QGIS project, step 1.: Navigate to the Data Source Manager.
+Figure 9.12: Add raster layer to QGIS project, step 1.: Navigate to the Data Source Manager.
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:qgis-add-raster-layer-2"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_add_raster_layer_002.png" alt="Add raster layer to QGIS project, step 2.: Browse for the raster file to add to the QGIS project by pressing on the box with the three dots (...) to the right of the raster source input field." width="60%" />
 <p class="caption">
-Figure 7.13: Add raster layer to QGIS project, step 2.: Browse for the raster file to add to the QGIS project by pressing on the box with the three dots (…) to the right of the raster source input field.
+Figure 9.13: Add raster layer to QGIS project, step 2.: Browse for the raster file to add to the QGIS project by pressing on the box with the three dots (…) to the right of the raster source input field.
 </p>
 </div>
 <p>In the example above, a DEM for the example of the Nauvalisoy river catchment is loaded. For loading the DEM of your sample catchments, browse for the DEM you downloaded from the <em>learningFiles</em> directory.</p>
@@ -510,151 +520,151 @@ Figure 7.13: Add raster layer to QGIS project, step 2.: Browse for the raster fi
 <p>Your QGIS project now shows a grey-scale version of the raster layer you loaded. If you are satisfied with the change, save your porject by pressing the floppy disk icon at the upper left corner of your QGIS window.</p>
 <p>You can change the color of your raster file (<a href="appendix-b-quick-guides.html#appendix-quick-guides-change-color-of-raster-layer">how to</a>). <a href="appendix-b-quick-guides.html#appendix-quick-guides-topograpy-color-ramp">Here</a> is a quick-guide of how to apply a topography-style color band to your DEM.</p>
 </div>
-<div id="appendix-quick-guides-change-color-of-raster-layer" class="section level3" number="7.2.13">
-<h3><span class="header-section-number">7.2.13</span> QGIS: Change color of raster layer</h3>
-<p>You can change the colors of your cut DEM by double-clicking on the layer name in the <em>Layers</em> window. Go to tab <em>Symbology</em> (with the paint and brush icon) and choose <em>Render type</em> <em>Singleband-pseudocolor</em> (<a href="appendix-b-quick-guides.html#fig:qgis-dem-coloring-1">7.14</a>) and select a <em>Color ramp</em>.</p>
+<div id="appendix-quick-guides-change-color-of-raster-layer" class="section level3 unnumbered">
+<h3>QGIS: Change color of raster layer</h3>
+<p>You can change the colors of your cut DEM by double-clicking on the layer name in the <em>Layers</em> window. Go to tab <em>Symbology</em> (with the paint and brush icon) and choose <em>Render type</em> <em>Singleband-pseudocolor</em> (<a href="appendix-b-quick-guides.html#fig:qgis-dem-coloring-1">9.14</a>) and select a <em>Color ramp</em>.</p>
 <div class="figure" style="text-align: center"><span id="fig:qgis-dem-coloring-1"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig013_DEMcoloring1.png" alt="Nicely color your DEM, step 1." width="80%" />
 <p class="caption">
-Figure 7.14: Nicely color your DEM, step 1.
+Figure 9.14: Nicely color your DEM, step 1.
 </p>
 </div>
 <p>QGIS comes with a large library of color ramps but you can also create your own. See below a description of how to get your DEM in a topography style color palette.</p>
-<div id="appendix-quick-guides-topograpy-color-ramp" class="section level4" number="7.2.13.1">
-<h4><span class="header-section-number">7.2.13.1</span> QGIS: Topography-style color palettes</h4>
-<p>For our DEM we choose an existing topography-style color ramp. Open the <em>Layer Properties</em> window with a double-click on the raster layer in the <em>Layers</em> pane of the QGIS window. In the <em>Symbology</em> tab click the triangle to the right of the color ramp and select Create New Color Ramp… (<a href="appendix-b-quick-guides.html#fig:qgis-dem-coloring-2">7.15</a>).</p>
+<div id="appendix-quick-guides-topograpy-color-ramp" class="section level4 unnumbered">
+<h4>QGIS: Topography-style color palettes</h4>
+<p>For our DEM we choose an existing topography-style color ramp. Open the <em>Layer Properties</em> window with a double-click on the raster layer in the <em>Layers</em> pane of the QGIS window. In the <em>Symbology</em> tab click the triangle to the right of the color ramp and select Create New Color Ramp… (<a href="appendix-b-quick-guides.html#fig:qgis-dem-coloring-2">9.15</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:qgis-dem-coloring-2"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig014_DEMcoloring2.png" alt="Nicely color your DEM, step 2." width="80%" />
 <p class="caption">
-Figure 7.15: Nicely color your DEM, step 2.
+Figure 9.15: Nicely color your DEM, step 2.
 </p>
 </div>
-<p>In the drop down menu of the pop-up window choose Catalog: cpt-city and press OK (<a href="appendix-b-quick-guides.html#fig:qgis-dem-coloring-3">7.16</a>).</p>
+<p>In the drop down menu of the pop-up window choose Catalog: cpt-city and press OK (<a href="appendix-b-quick-guides.html#fig:qgis-dem-coloring-3">9.16</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:qgis-dem-coloring-3"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig015_DEMcoloring3.png" alt="Nicely color your DEM, step 3." width="20%" />
 <p class="caption">
-Figure 7.16: Nicely color your DEM, step 3.
+Figure 9.16: Nicely color your DEM, step 3.
 </p>
 </div>
-<p>A this will open another window containing the catalog of existing color ramps. Under Topography, we choose sd-a and press OK (<a href="appendix-b-quick-guides.html#fig:qgis-dem-coloring-4">7.17</a>).</p>
+<p>A this will open another window containing the catalog of existing color ramps. Under Topography, we choose sd-a and press OK (<a href="appendix-b-quick-guides.html#fig:qgis-dem-coloring-4">9.17</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:qgis-dem-coloring-4"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig016_DEMcoloring4.png" alt="Nicely color your DEM, step 4." width="80%" />
 <p class="caption">
-Figure 7.17: Nicely color your DEM, step 4.
+Figure 9.17: Nicely color your DEM, step 4.
 </p>
 </div>
-<p>Go to tab Transparency, set Global Opacity to 30% and specify the No Data Value 0 (<a href="appendix-b-quick-guides.html#fig:qgis-dem-coloring-5">7.18</a>).</p>
+<p>Go to tab Transparency, set Global Opacity to 30% and specify the No Data Value 0 (<a href="appendix-b-quick-guides.html#fig:qgis-dem-coloring-5">9.18</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:qgis-dem-coloring-5"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig017_DEMcoloring5.png" alt="Nicely color your DEM, step 5." width="80%" />
 <p class="caption">
-Figure 7.18: Nicely color your DEM, step 5.
+Figure 9.18: Nicely color your DEM, step 5.
 </p>
 </div>
-<p>Then go back to the Symbology tab. The minimum value of the color ramp should now not be 0 but 272. Adapt manually if need be. Then, press classify to get a discrete color ramp for your map and <em>Apply</em> to the map. If you are happy with the colors, quit by pressing OK (<a href="appendix-b-quick-guides.html#fig:qgis-dem-coloring-6">7.19</a>).</p>
+<p>Then go back to the Symbology tab. The minimum value of the color ramp should now not be 0 but 272. Adapt manually if need be. Then, press classify to get a discrete color ramp for your map and <em>Apply</em> to the map. If you are happy with the colors, quit by pressing OK (<a href="appendix-b-quick-guides.html#fig:qgis-dem-coloring-6">9.19</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:qgis-dem-coloring-6"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig018_DEMcoloring6.png" alt="Nicely color your DEM, step 6." width="80%" />
 <p class="caption">
-Figure 7.19: Nicely color your DEM, step 6.
+Figure 9.19: Nicely color your DEM, step 6.
 </p>
 </div>
-<p>The result will look like <a href="appendix-b-quick-guides.html#fig:qgis-dem-coloring-7">7.20</a>.</p>
+<p>The result will look like <a href="appendix-b-quick-guides.html#fig:qgis-dem-coloring-7">9.20</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:qgis-dem-coloring-7"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig019_DEMcoloring7.png" alt="Nicely color your DEM, result." width="100%" />
 <p class="caption">
-Figure 7.20: Nicely color your DEM, result.
+Figure 9.20: Nicely color your DEM, result.
 </p>
 </div>
 <p>You can add decorations (e.g. scale and north arrow) to your map (<a href="appendix-b-quick-guides.html#section-add-map-decorations">how to</a>).</p>
 </div>
 </div>
-<div id="section-add-map-decorations" class="section level3" number="7.2.14">
-<h3><span class="header-section-number">7.2.14</span> QGIS: Add map decorations</h3>
+<div id="section-add-map-decorations" class="section level3 unnumbered">
+<h3>QGIS: Add map decorations</h3>
 <p>Navigate to <em>View</em> -&gt; <em>Decorations</em> and choose among the decorations to add. Many options for configuring the decorations are available.</p>
 </div>
-<div id="section-add-vector-layer-to-qgis" class="section level3" number="7.2.15">
-<h3><span class="header-section-number">7.2.15</span> QGIS: Add vector layer</h3>
-<p>Left-clicking on <em>Layer</em>, moving your cursor over <em>Add Layer</em> and left-clicking <em>Add Vector Layer</em> (<a href="appendix-b-quick-guides.html#fig:qgis-add-vector-layer-1">7.21</a>).</p>
+<div id="section-add-vector-layer-to-qgis" class="section level3 unnumbered">
+<h3>QGIS: Add vector layer</h3>
+<p>Left-clicking on <em>Layer</em>, moving your cursor over <em>Add Layer</em> and left-clicking <em>Add Vector Layer</em> (<a href="appendix-b-quick-guides.html#fig:qgis-add-vector-layer-1">9.21</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:qgis-add-vector-layer-1"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig003_AddVectorLayer1.png" alt="Add vector layer to QGIS project, step 1.: Navigate to the Data Source Manager." width="100%" />
 <p class="caption">
-Figure 7.21: Add vector layer to QGIS project, step 1.: Navigate to the Data Source Manager.
+Figure 9.21: Add vector layer to QGIS project, step 1.: Navigate to the Data Source Manager.
 </p>
 </div>
-<p>A window will pop up, asking you to specify the properties of the vector layer to add (<a href="appendix-b-quick-guides.html#fig:qgis-add-vector-layer-2">7.22</a>).</p>
+<p>A window will pop up, asking you to specify the properties of the vector layer to add (<a href="appendix-b-quick-guides.html#fig:qgis-add-vector-layer-2">9.22</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:qgis-add-vector-layer-2"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig004_AddVectorLayer2.png" alt="Add vector layer to QGIS project, step 2: Select vector layers to add. Note that you select the *shp* file but *cpg*, *dbf* and *shx* need to be present in the same location." width="70%" />
 <p class="caption">
-Figure 7.22: Add vector layer to QGIS project, step 2: Select vector layers to add. Note that you select the <em>shp</em> file but <em>cpg</em>, <em>dbf</em> and <em>shx</em> need to be present in the same location.
+Figure 9.22: Add vector layer to QGIS project, step 2: Select vector layers to add. Note that you select the <em>shp</em> file but <em>cpg</em>, <em>dbf</em> and <em>shx</em> need to be present in the same location.
 </p>
 </div>
-<p>Press the box with the three dots on the right of the source field to specify the location of the shape file to be added to your project (<a href="appendix-b-quick-guides.html#fig:qgis-add-vector-layer-3">7.23</a>). Click <em>Open</em> and the window will close. The address of your shape files should now stand in the source field as in <a href="appendix-b-quick-guides.html#fig:qgis-add-vector-layer-2">7.22</a>.</p>
+<p>Press the box with the three dots on the right of the source field to specify the location of the shape file to be added to your project (<a href="appendix-b-quick-guides.html#fig:qgis-add-vector-layer-3">9.23</a>). Click <em>Open</em> and the window will close. The address of your shape files should now stand in the source field as in <a href="appendix-b-quick-guides.html#fig:qgis-add-vector-layer-2">9.22</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:qgis-add-vector-layer-3"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig005_AddVectorLayer3.png" alt="Add vector layer to QGIS project, step 3." width="60%" />
 <p class="caption">
-Figure 7.23: Add vector layer to QGIS project, step 3.
+Figure 9.23: Add vector layer to QGIS project, step 3.
 </p>
 </div>
-<p>Note that you load the <em>.shp</em> file but that all the files in the list in <a href="appendix-b-quick-guides.html#fig:qgis-add-vector-layer-2">7.22</a> need to be present. In the <em>Add Vector Layer</em> window, click <em>Add</em> and then close the window. QGIS has attributed a random color to your shape file which can be changed manually <a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer">How to</a>.</p>
+<p>Note that you load the <em>.shp</em> file but that all the files in the list in <a href="appendix-b-quick-guides.html#fig:qgis-add-vector-layer-2">9.22</a> need to be present. In the <em>Add Vector Layer</em> window, click <em>Add</em> and then close the window. QGIS has attributed a random color to your shape file which can be changed manually <a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer">How to</a>.</p>
 </div>
-<div id="section-change-color-of-vector-layer" class="section level3" number="7.2.16">
-<h3><span class="header-section-number">7.2.16</span> Change color of a vector layer</h3>
-<p>You can change the color of your layer by double-clicking on the layer name in the <em>Layers</em> Window to the left of the map. This will open the properties window. The third tab from the top shows paint and brush (<a href="appendix-b-quick-guides.html#fig:qgis-add-vector-layer-5">7.24</a>).</p>
+<div id="section-change-color-of-vector-layer" class="section level3 unnumbered">
+<h3>Change color of a vector layer</h3>
+<p>You can change the color of your layer by double-clicking on the layer name in the <em>Layers</em> Window to the left of the map. This will open the properties window. The third tab from the top shows paint and brush (<a href="appendix-b-quick-guides.html#fig:qgis-add-vector-layer-5">9.24</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:qgis-add-vector-layer-5"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig007_AddVectorLayer5.png" alt="Add vector layer to QGIS project, step 5. Change the color of the layer." width="50%" />
 <p class="caption">
-Figure 7.24: Add vector layer to QGIS project, step 5. Change the color of the layer.
+Figure 9.24: Add vector layer to QGIS project, step 5. Change the color of the layer.
 </p>
 </div>
-<p>You can activate <em>Simple fill</em> by clicking on it and select <em>No brush</em> in the drop-down menu in order to only show the outline of your vector layer (<a href="appendix-b-quick-guides.html#fig:qgis-add-vector-layer-6">7.25</a>).</p>
+<p>You can activate <em>Simple fill</em> by clicking on it and select <em>No brush</em> in the drop-down menu in order to only show the outline of your vector layer (<a href="appendix-b-quick-guides.html#fig:qgis-add-vector-layer-6">9.25</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:qgis-add-vector-layer-6"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig008_AddVectorLayer6.png" alt="Add vector layer to QGIS project, step 6. Only show the outline of the vector layer." width="50%" />
 <p class="caption">
-Figure 7.25: Add vector layer to QGIS project, step 6. Only show the outline of the vector layer.
+Figure 9.25: Add vector layer to QGIS project, step 6. Only show the outline of the vector layer.
 </p>
 </div>
 </div>
-<div id="section-quickguides-create-hbv-model" class="section level3" number="7.2.17">
-<h3><span class="header-section-number">7.2.17</span> RSM: Create HBV model and edit parameters</h3>
-Click on the HBV model icon in the model selection panel (Figure <a href="appendix-b-quick-guides.html#fig:fig-create-hbv-model">7.26</a>).
+<div id="section-quickguides-create-hbv-model" class="section level3 unnumbered">
+<h3>RSM: Create HBV model and edit parameters</h3>
+Click on the HBV model icon in the model selection panel (Figure <a href="appendix-b-quick-guides.html#fig:fig-create-hbv-model">9.26</a>).
 <div class="figure" style="text-align: center"><span id="fig:fig-create-hbv-model"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig100_HBVinModelSelectionPanel.png" alt="To generate an HBV model, click on the HBV model icon in the model selection panel." width="50%" />
 <p class="caption">
-Figure 7.26: To generate an HBV model, click on the HBV model icon in the model selection panel.
+Figure 9.26: To generate an HBV model, click on the HBV model icon in the model selection panel.
 </p>
 </div>
-Move your cursor to the white area in the center and create a HBV model with a click. The HBV model icon will now appear in the white model panel (Figure <a href="appendix-b-quick-guides.html#fig:fig-hbv-model-generated">7.27</a>).
+Move your cursor to the white area in the center and create a HBV model with a click. The HBV model icon will now appear in the white model panel (Figure <a href="appendix-b-quick-guides.html#fig:fig-hbv-model-generated">9.27</a>).
 <div class="figure" style="text-align: center"><span id="fig:fig-hbv-model-generated"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig101_HBVmodelGenerated.png" alt="A HBV model has been generated." width="95%" />
 <p class="caption">
-Figure 7.27: A HBV model has been generated.
+Figure 9.27: A HBV model has been generated.
 </p>
 </div>
-Edit the parameters of the model by double-clicking on the model icon and changing parameter values in the table that appears to the right of the RS Minerve window (Figure <a href="appendix-b-quick-guides.html#fig:fig-edit-hbv-model-single">7.28</a>).
+Edit the parameters of the model by double-clicking on the model icon and changing parameter values in the table that appears to the right of the RS Minerve window (Figure <a href="appendix-b-quick-guides.html#fig:fig-edit-hbv-model-single">9.28</a>).
 <div class="figure" style="text-align: center"><span id="fig:fig-edit-hbv-model-single"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig102_editParametersSingleModel.png" alt="Double-click on the HBV model to open and edit the parameter table. " width="95%" />
 <p class="caption">
-Figure 7.28: Double-click on the HBV model to open and edit the parameter table.
+Figure 9.28: Double-click on the HBV model to open and edit the parameter table.
 </p>
 </div>
-Alternatively (especially if you have to change parameters for several models), activate the Parameters panel in the Model Properties toolbar (Figure <a href="appendix-b-quick-guides.html#fig:fig-activate-parameters-panel">7.29</a>).
+Alternatively (especially if you have to change parameters for several models), activate the Parameters panel in the Model Properties toolbar (Figure <a href="appendix-b-quick-guides.html#fig:fig-activate-parameters-panel">9.29</a>).
 <div class="figure" style="text-align: center"><span id="fig:fig-activate-parameters-panel"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig103_activateParametersPanel.png" alt="Activate the Parameters panel in the Model Properties toolbar. " width="95%" />
 <p class="caption">
-Figure 7.29: Activate the Parameters panel in the Model Properties toolbar.
+Figure 9.29: Activate the Parameters panel in the Model Properties toolbar.
 </p>
 </div>
-Select the HBV model in the Parameters panel (Figure <a href="appendix-b-quick-guides.html#fig:fig-select-hbv-parameters-panel">7.30</a>).
+Select the HBV model in the Parameters panel (Figure <a href="appendix-b-quick-guides.html#fig:fig-select-hbv-parameters-panel">9.30</a>).
 <div class="figure" style="text-align: center"><span id="fig:fig-select-hbv-parameters-panel"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig104_selectHBVparameters.png" alt="Select HBV in the Parameters panel." width="95%" />
 <p class="caption">
-Figure 7.30: Select HBV in the Parameters panel.
+Figure 9.30: Select HBV in the Parameters panel.
 </p>
 </div>
-If you have several HBV models, you can select models by zone and apply edits in the parameter table in the left of the Parameters panel to all selected models (mark with tick). You can also edit paramers for individual models in the right-hand table of the Parameters panel (Figure <a href="appendix-b-quick-guides.html#fig:fig-edit-hbv-parameters-panel">7.31</a>).
+If you have several HBV models, you can select models by zone and apply edits in the parameter table in the left of the Parameters panel to all selected models (mark with tick). You can also edit paramers for individual models in the right-hand table of the Parameters panel (Figure <a href="appendix-b-quick-guides.html#fig:fig-edit-hbv-parameters-panel">9.31</a>).
 <div class="figure" style="text-align: center"><span id="fig:fig-edit-hbv-parameters-panel"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig105_editParametersInParametersPanel.png" alt="Edit parameters for groups of models (left parameter table) or for individual models (right parameter table)." width="95%" />
 <p class="caption">
-Figure 7.31: Edit parameters for groups of models (left parameter table) or for individual models (right parameter table).
+Figure 9.31: Edit parameters for groups of models (left parameter table) or for individual models (right parameter table).
 </p>
 </div>
 <p>Save your model by clicking the floppy disk icon in the toolbar.</p>
@@ -662,152 +672,152 @@ Figure 7.31: Edit parameters for groups of models (left parameter table) or for 
 <p>The area of the HBV model should be 99’000’000 m2.</p>
 <p>Back to the <a href="section-hbv-model.html#section-hbv-nauvalisoy-modelling-setup">Nauvalisoy model guide</a>.</p>
 </div>
-<div id="section-quickguides-add-climate-station" class="section level3" number="7.2.18">
-<h3><span class="header-section-number">7.2.18</span> RSM: Add and link climate station</h3>
-Move your cursor to the V-Station icon in the models panel (the first icon in Figure <a href="appendix-b-quick-guides.html#fig:fig-create-hbv-model">7.26</a>). Click on the icon to activate it and click next to the HBV model in your model pane to place the V-Station. With a double-click on the newly created V-Station, you can visualize the parameters of the virtual weather station.<br />
-Connect the station to the HBV model by activating the Connections mode in the Editing tools toolbar (Figure <a href="appendix-b-quick-guides.html#fig:fig-connect-V-station1">7.32</a>).
+<div id="section-quickguides-add-climate-station" class="section level3 unnumbered">
+<h3>RSM: Add and link climate station</h3>
+Move your cursor to the V-Station icon in the models panel (the first icon in Figure <a href="appendix-b-quick-guides.html#fig:fig-create-hbv-model">9.26</a>). Click on the icon to activate it and click next to the HBV model in your model pane to place the V-Station. With a double-click on the newly created V-Station, you can visualize the parameters of the virtual weather station.<br />
+Connect the station to the HBV model by activating the Connections mode in the Editing tools toolbar (Figure <a href="appendix-b-quick-guides.html#fig:fig-connect-V-station1">9.32</a>).
 <div class="figure" style="text-align: center"><span id="fig:fig-connect-V-station1"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig108_createVStation.png" alt="Create a virtual weather station." width="95%" />
 <p class="caption">
-Figure 7.32: Create a virtual weather station.
+Figure 9.32: Create a virtual weather station.
 </p>
 </div>
-Click on the station, hold down the finger move your cursor to the HBV model, then release the hold. A grey line appeart between the station and the model and a pop-up window asks you to verify the data links between the two components (Figure <a href="appendix-b-quick-guides.html#fig:fig-connect-V-station2">7.33</a>).
+Click on the station, hold down the finger move your cursor to the HBV model, then release the hold. A grey line appeart between the station and the model and a pop-up window asks you to verify the data links between the two components (Figure <a href="appendix-b-quick-guides.html#fig:fig-connect-V-station2">9.33</a>).
 <div class="figure" style="text-align: center"><span id="fig:fig-connect-V-station2"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig109_linkVStation.png" alt="Link the virtual weather station to the HBV model." width="95%" />
 <p class="caption">
-Figure 7.33: Link the virtual weather station to the HBV model.
+Figure 9.33: Link the virtual weather station to the HBV model.
 </p>
 </div>
 <p>Click Ok to accept the suggested data links and a blue arrow will appear between the weather station and the model. Click on the black arrow in the Editing tools toolbar to leave the Connections model.</p>
 <p>Back to the <a href="section-hbv-model.html#section-hbv-nauvalisoy-modelling-setup">Nauvalisoy model guide</a>.</p>
 </div>
-<div id="section-quickguides-import-climate-data" class="section level3" number="7.2.19">
-<h3><span class="header-section-number">7.2.19</span> RSM: Import climate data</h3>
-Go to the database tab and click on Open in the File database toolbar (Figure <a href="appendix-b-quick-guides.html#fig:fig-open-database-tab">7.34</a>).<br />
+<div id="section-quickguides-import-climate-data" class="section level3 unnumbered">
+<h3>RSM: Import climate data</h3>
+Go to the database tab and click on Open in the File database toolbar (Figure <a href="appendix-b-quick-guides.html#fig:fig-open-database-tab">9.34</a>).<br />
 
 <div class="figure" style="text-align: center"><span id="fig:fig-open-database-tab"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig110_databasetab.png" alt="The database tab." width="95%" />
 <p class="caption">
-Figure 7.34: The database tab.
+Figure 9.34: The database tab.
 </p>
 </div>
-<p>Select the file./data/SyrDarya/Chirchiq/RSMinerve/ERA5_Nauvalisoy_1981_2013.csv. If you don’t see the file in your file browser, make sure the file ending .csv is selected in the file browser (Figure <a href="appendix-b-quick-guides.html#fig:fig-open-database-tab-csv">7.35</a>).</p>
+<p>Select the file./data/SyrDarya/Chirchiq/RSMinerve/ERA5_Nauvalisoy_1981_2013.csv. If you don’t see the file in your file browser, make sure the file ending .csv is selected in the file browser (Figure <a href="appendix-b-quick-guides.html#fig:fig-open-database-tab-csv">9.35</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-open-database-tab-csv"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig111_dbfileEnding.png" alt="Make sure the file ending is .csv in the file browser." width="60%" />
 <p class="caption">
-Figure 7.35: Make sure the file ending is .csv in the file browser.
+Figure 9.35: Make sure the file ending is .csv in the file browser.
 </p>
 </div>
-Press open to load the data into RSMinerve. Depending on your computer this may take a few seconds. Once the data is loaded, click through the database browser in the left pane to explore the data (Figure <a href="appendix-b-quick-guides.html#fig:fig-explore-db">7.36</a>).
+Press open to load the data into RSMinerve. Depending on your computer this may take a few seconds. Once the data is loaded, click through the database browser in the left pane to explore the data (Figure <a href="appendix-b-quick-guides.html#fig:fig-explore-db">9.36</a>).
 <div class="figure" style="text-align: center"><span id="fig:fig-explore-db"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig112_exploreDataDB.png" alt="Explore the data base." width="60%" />
 <p class="caption">
-Figure 7.36: Explore the data base.
+Figure 9.36: Explore the data base.
 </p>
 </div>
-To connect the data base to the model you will need to make the data consistent with the model. To do this change the name “New group” to “Measurements” and select Input for the category (Figure <a href="appendix-b-quick-guides.html#fig:fig-db-measurements">7.37</a>).
+To connect the data base to the model you will need to make the data consistent with the model. To do this change the name “New group” to “Measurements” and select Input for the category (Figure <a href="appendix-b-quick-guides.html#fig:fig-db-measurements">9.37</a>).
 <div class="figure" style="text-align: center"><span id="fig:fig-db-measurements"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig113_changenewdata.png" alt="Change &quot;New group&quot; to &quot;Measurements&quot; and select Input as category." width="60%" />
 <p class="caption">
-Figure 7.37: Change “New group” to “Measurements” and select Input as category.
+Figure 9.37: Change “New group” to “Measurements” and select Input as category.
 </p>
 </div>
-Browse the name of the station (Figure <a href="appendix-b-quick-guides.html#fig:fig-station-name-db">7.38</a>).
+Browse the name of the station (Figure <a href="appendix-b-quick-guides.html#fig:fig-station-name-db">9.38</a>).
 <div class="figure" style="text-align: center"><span id="fig:fig-station-name-db"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig114_stationName.png" alt="The name of the station is &quot;Nauvalisoy&quot;." width="60%" />
 <p class="caption">
-Figure 7.38: The name of the station is “Nauvalisoy.”
+Figure 9.38: The name of the station is “Nauvalisoy.”
 </p>
 </div>
 <p>As our weather data is representative for the entire Nauvalisoy catchment, the station name in the data base needs to be consistent with the station name of the V-Station in the model pane. Change the name of the station in the model pane from V-Station to Nauvalisoy by clicking on the name.</p>
-Choose the nauvalisoy data set as source and adapt the simulation period as shown in Figure <a href="appendix-b-quick-guides.html#fig:fig-validate-model">7.39</a>.
+Choose the nauvalisoy data set as source and adapt the simulation period as shown in Figure <a href="appendix-b-quick-guides.html#fig:fig-validate-model">9.39</a>.
 <div class="figure" style="text-align: center"><span id="fig:fig-validate-model"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig115_solverspecs.png" alt="Choose the nauvalisoy data set to link the weather station data to the virtual weather station. The simulation times should not extend the period of the input data. Simulation time step is 1 hour and the recording time step is 1 month." width="60%" />
 <p class="caption">
-Figure 7.39: Choose the nauvalisoy data set to link the weather station data to the virtual weather station. The simulation times should not extend the period of the input data. Simulation time step is 1 hour and the recording time step is 1 month.
+Figure 9.39: Choose the nauvalisoy data set to link the weather station data to the virtual weather station. The simulation times should not extend the period of the input data. Simulation time step is 1 hour and the recording time step is 1 month.
 </p>
 </div>
 <p>Click on <em>Validation</em> to verify that the model has been set up correctly. Once you have adapted the model settings to calculate evaporation based on temperature (<a href="appendix-b-quick-guides.html#section-quickguides-atapt-model-settings">how to</a>), no errors should be reported. You can now run the model. A warning tells you that the number of meteo stations is not sufficient. Ignore the warning for now.</p>
 <p><a href="section-hbv-model.html#section-hbv-nauvalisoy-modelling-setup">Nauvalisoy model guide</a></p>
 </div>
-<div id="section-quickguides-atapt-model-settings" class="section level3" number="7.2.20">
-<h3><span class="header-section-number">7.2.20</span> RSM: Adapt model settings</h3>
-Navigate to Edit in the Settings toolbar (Figure <a href="appendix-b-quick-guides.html#fig:fig-open-settings-tab">7.40</a>).
+<div id="section-quickguides-atapt-model-settings" class="section level3 unnumbered">
+<h3>RSM: Adapt model settings</h3>
+Navigate to Edit in the Settings toolbar (Figure <a href="appendix-b-quick-guides.html#fig:fig-open-settings-tab">9.40</a>).
 <div class="figure" style="text-align: center"><span id="fig:fig-open-settings-tab"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig106_openSettingsTab.png" alt="Open the models settings tab." width="95%" />
 <p class="caption">
-Figure 7.40: Open the models settings tab.
+Figure 9.40: Open the models settings tab.
 </p>
 </div>
-Open the Settings tab and choose an ET model. Adapt the coordinates of the project (choose the station coordinates mentioned in the introduction section) (Figure <a href="appendix-b-quick-guides.html#fig:fig-change-settings">7.41</a>).
+Open the Settings tab and choose an ET model. Adapt the coordinates of the project (choose the station coordinates mentioned in the introduction section) (Figure <a href="appendix-b-quick-guides.html#fig:fig-change-settings">9.41</a>).
 <div class="figure" style="text-align: center"><span id="fig:fig-change-settings"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig107_changeSettings.png" alt="Edit the evaporation calculation method and the coordinates of the project." width="95%" />
 <p class="caption">
-Figure 7.41: Edit the evaporation calculation method and the coordinates of the project.
+Figure 9.41: Edit the evaporation calculation method and the coordinates of the project.
 </p>
 </div>
 <p>Back to the <a href="#section-modelling-setup">model guide</a></p>
 </div>
-<div id="section-export-sim-results-to-db" class="section level3" number="7.2.21">
-<h3><span class="header-section-number">7.2.21</span> RSM: Export simulation results to data base</h3>
-<p>Go to Export in the Database toolbar (Figure <a href="appendix-b-quick-guides.html#fig:fig-export-to-db">7.42</a>). Define a name for the simulation results and choose a data base group to save the data to. Create a new group if you haven’t already done so.</p>
+<div id="section-export-sim-results-to-db" class="section level3 unnumbered">
+<h3>RSM: Export simulation results to data base</h3>
+<p>Go to Export in the Database toolbar (Figure <a href="appendix-b-quick-guides.html#fig:fig-export-to-db">9.42</a>). Define a name for the simulation results and choose a data base group to save the data to. Create a new group if you haven’t already done so.</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-export-to-db"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig117_exportResultsToDB.png" alt="Export simulation results to the data base." width="95%" />
 <p class="caption">
-Figure 7.42: Export simulation results to the data base.
+Figure 9.42: Export simulation results to the data base.
 </p>
 </div>
 <p>The data sets are now available in the data base tab and can be visualized in the Selection and plots tab.</p>
 <p>Back to the <a href="#section-modelling-setup">model guide</a></p>
 </div>
-<div id="section-quickguides-add-comparator-and-discharge-data" class="section level3" number="7.2.22">
-<h3><span class="header-section-number">7.2.22</span> RSM: Add comparator and load discharge measurements</h3>
+<div id="section-quickguides-add-comparator-and-discharge-data" class="section level3 unnumbered">
+<h3>RSM: Add comparator and load discharge measurements</h3>
 The comparator object allows the user to compare a simulated variable to a reference. In our case, we want to compare the simulated discharge of the Nauvalisoy river to the measured one. The measured discharge can be imported to RS Minerve via the database tab.<br />
-Move your cursor to the comparator icon (Figure <a href="appendix-b-quick-guides.html#fig:rsminerve-comparator-icon">7.43</a>) in the model components panel.
+Move your cursor to the comparator icon (Figure <a href="appendix-b-quick-guides.html#fig:rsminerve-comparator-icon">9.43</a>) in the model components panel.
 <div class="figure" style="text-align: center"><span id="fig:rsminerve-comparator-icon"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_comparator_icon.png" alt="Comparator icon in RS Minerve." width="10%" />
 <p class="caption">
-Figure 7.43: Comparator icon in RS Minerve.
+Figure 9.43: Comparator icon in RS Minerve.
 </p>
 </div>
 <p>Activate it with a right-click and move your cursor next to the HBV model in the model pane. Place the comparator object with another click.</p>
-Add a source object to your model following the same procedure as for the comparator object. Figure <a href="appendix-b-quick-guides.html#fig:rsminerve-source-icon">7.44</a> shows the icon of the source object.<br />
+Add a source object to your model following the same procedure as for the comparator object. Figure <a href="appendix-b-quick-guides.html#fig:rsminerve-source-icon">9.44</a> shows the icon of the source object.<br />
 
 <div class="figure" style="text-align: center"><span id="fig:rsminerve-source-icon"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_source_icon.png" alt="Comparator icon in RS Minerve." width="10%" />
 <p class="caption">
-Figure 7.44: Comparator icon in RS Minerve.
+Figure 9.44: Comparator icon in RS Minerve.
 </p>
 </div>
 <p>You can now optionally rename your model objects.</p>
-Connect the source and the HBV model to the comparator by activating the Connections mode in the Editing Tools toolbar. Right-click on the HBV model, hold the click and drag the cursor to the comparator object where you release the cursor. You will be asked in a pop-up window to specify the flow your wish to compare and if it is to be viewed as a simulation result or the reference. Connect the total discharge computed by the HBV model component as simulation result to the comparator (Figure <a href="appendix-b-quick-guides.html#fig:rsminerve-connect-hbv-comparator">7.45</a>) and close the pop-up window by pressing OK.
+Connect the source and the HBV model to the comparator by activating the Connections mode in the Editing Tools toolbar. Right-click on the HBV model, hold the click and drag the cursor to the comparator object where you release the cursor. You will be asked in a pop-up window to specify the flow your wish to compare and if it is to be viewed as a simulation result or the reference. Connect the total discharge computed by the HBV model component as simulation result to the comparator (Figure <a href="appendix-b-quick-guides.html#fig:rsminerve-connect-hbv-comparator">9.45</a>) and close the pop-up window by pressing OK.
 <div class="figure" style="text-align: center"><span id="fig:rsminerve-connect-hbv-comparator"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_connectHBVtoComparator.png" alt="Comparator icon in RS Minerve." width="60%" />
 <p class="caption">
-Figure 7.45: Comparator icon in RS Minerve.
+Figure 9.45: Comparator icon in RS Minerve.
 </p>
 </div>
-<p>Connect the source object to the comparator in the same way as the HBV object. The source will be connected as reference (Figure <a href="appendix-b-quick-guides.html#fig:rsminerve-connect-source-comparator">7.46</a>).</p>
+<p>Connect the source object to the comparator in the same way as the HBV object. The source will be connected as reference (Figure <a href="appendix-b-quick-guides.html#fig:rsminerve-connect-source-comparator">9.46</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:rsminerve-connect-source-comparator"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_connectSourcetoComparator.png" alt="Source icon in RS Minerve." width="60%" />
 <p class="caption">
-Figure 7.46: Source icon in RS Minerve.
+Figure 9.46: Source icon in RS Minerve.
 </p>
 </div>
-Next, we have to load the (synthetic) discharge data into the database. Navigate to the database tab. In the database, go to Measurements -&gt; nauvalisoy and click <em>Add</em> and enter a name for the discharge station (Figure <a href="appendix-b-quick-guides.html#fig:rsminerve-add-discharge-database">7.47</a>). For this example, we do not need to bother with the coordinates.<br />
+Next, we have to load the (synthetic) discharge data into the database. Navigate to the database tab. In the database, go to Measurements -&gt; nauvalisoy and click <em>Add</em> and enter a name for the discharge station (Figure <a href="appendix-b-quick-guides.html#fig:rsminerve-add-discharge-database">9.47</a>). For this example, we do not need to bother with the coordinates.<br />
 
 <div class="figure" style="text-align: center"><span id="fig:rsminerve-add-discharge-database"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_database_add_discharge_station.png" alt="Connect the outflow of the HBV model as simulation result to the comparator." width="60%" />
 <p class="caption">
-Figure 7.47: Connect the outflow of the HBV model as simulation result to the comparator.
+Figure 9.47: Connect the outflow of the HBV model as simulation result to the comparator.
 </p>
 </div>
-Under the new discharge station, add a sensor and rename it to the source object in your model (Figure <a href="appendix-b-quick-guides.html#fig:rsminerve-add-discharge-sensor">7.48</a>).
+Under the new discharge station, add a sensor and rename it to the source object in your model (Figure <a href="appendix-b-quick-guides.html#fig:rsminerve-add-discharge-sensor">9.48</a>).
 <div class="figure" style="text-align: center"><span id="fig:rsminerve-add-discharge-sensor"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_add_discharge_sensor.png" alt="Connect the discharge measurements (source) as reference to the comparator." width="60%" />
 <p class="caption">
-Figure 7.48: Connect the discharge measurements (source) as reference to the comparator.
+Figure 9.48: Connect the discharge measurements (source) as reference to the comparator.
 </p>
 </div>
 <p>Open the tab with the Values. Here we need to import the discharge data. You can do that by opening the discharge data in a spreadsheet (e.g. Excel) and copy-pasting the dates and discharge values into the Values table in RS Minerve (<a href="appendix-b-quick-guides.html#section-quickguides-copy-paste-database-values">Here is how to do this step-by-step</a>.</p>
@@ -815,26 +825,26 @@ Figure 7.48: Connect the discharge measurements (source) as reference to the com
 <div class="figure" style="text-align: center"><span id="fig:rsminerve-link-discharge-data-to-model"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_connect_source_database_to_object.png" alt="Select the data source for the source object (under Data Source in the left window pane) and select the sensor for discharge data for the source (under Source, Series identifier in the right window pane)." width="80%" />
 <p class="caption">
-Figure 7.49: Select the data source for the source object (under Data Source in the left window pane) and select the sensor for discharge data for the source (under Source, Series identifier in the right window pane).
+Figure 9.49: Select the data source for the source object (under Data Source in the left window pane) and select the sensor for discharge data for the source (under Source, Series identifier in the right window pane).
 </p>
 </div>
 <p>Validate the model to see if the model setup went correctly. Run the model if the validation did not throw an error.</p>
 <p>Back to the <a href="section-model-calibration-and-validation.html#secion-calibration-practical-steps">practical model calibration and validation section</a></p>
 </div>
-<div id="section-quickguides-copy-paste-database-values" class="section level3" number="7.2.23">
-<h3><span class="header-section-number">7.2.23</span> RSM: Copy-paste data to database</h3>
-<p>Open the file ./data/SyrDarya/Chirchiq/RSMinerve/synthetic_discharge_Nauvalisoy_river_for_calibration_exercise.csv in a spreadsheet software, e.g. Excel, Numbers, Google Sheets or OpenOffice Calc and select the rows containing dates and values (Figure <a href="appendix-b-quick-guides.html#fig:fig-copy-spreadsheet-data">7.50</a>). Press control C or perform a left-click and choose copy.</p>
+<div id="section-quickguides-copy-paste-database-values" class="section level3 unnumbered">
+<h3>RSM: Copy-paste data to database</h3>
+<p>Open the file ./data/SyrDarya/Chirchiq/RSMinerve/synthetic_discharge_Nauvalisoy_river_for_calibration_exercise.csv in a spreadsheet software, e.g. Excel, Numbers, Google Sheets or OpenOffice Calc and select the rows containing dates and values (Figure <a href="appendix-b-quick-guides.html#fig:fig-copy-spreadsheet-data">9.50</a>). Press control C or perform a left-click and choose copy.</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-copy-spreadsheet-data"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig000_copy_data_spreadsheet.png" alt="Select the rows and columns containing the dates and data to be copied. Press control C to copy the selected cells." width="40%" />
 <p class="caption">
-Figure 7.50: Select the rows and columns containing the dates and data to be copied. Press control C to copy the selected cells.
+Figure 9.50: Select the rows and columns containing the dates and data to be copied. Press control C to copy the selected cells.
 </p>
 </div>
-<p>Then navigate to the discharge sensor on the database tab in RS Minerve where you want to add the data to. Click in the small square to the left of the first row in the Values tab and enter control P. Alternatively perform a right-click in the small square and select Paste. The dates and values from the excel sheet will now appear in the table (Figure <a href="appendix-b-quick-guides.html#fig:fig-paste-spreadsheet-data">7.51</a>). Save the database.</p>
+<p>Then navigate to the discharge sensor on the database tab in RS Minerve where you want to add the data to. Click in the small square to the left of the first row in the Values tab and enter control P. Alternatively perform a right-click in the small square and select Paste. The dates and values from the excel sheet will now appear in the table (Figure <a href="appendix-b-quick-guides.html#fig:fig-paste-spreadsheet-data">9.51</a>). Save the database.</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-paste-spreadsheet-data"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig000_paste_values_database.png" alt="Paste dates and values to the database table." width="40%" />
 <p class="caption">
-Figure 7.51: Paste dates and values to the database table.
+Figure 9.51: Paste dates and values to the database table.
 </p>
 </div>
 <p>Back to the <a href="section-model-calibration-and-validation.html#secion-calibration-practical-steps">practical model calibration and validation section</a></p>
@@ -896,6 +906,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

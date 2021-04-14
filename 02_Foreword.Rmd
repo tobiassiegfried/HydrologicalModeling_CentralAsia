@@ -97,17 +97,17 @@ Read Chapter [6.6](#section-model-calibration-and-validation) and go through the
 As homework students will calibrate and validate the hydrological models of their own sample catchment.   
 
 
-## Day 7: Case studies
+## Day 7: Case studies {.unnumbered}
 Discussion of the calibration and validation exercise followed by a presentation of the Gunt basin case study.  
 As homework students will write an abstract about your modeling work for the final conference. Instructions for abstract writing are available [here](./learningFiles/AbstractSubmissionGuide.pdf). The abstract submission deadline is Friday, May 14, 18:00 Almaty time. 
 
 
-## Day 8: Real-world applications
+## Day 8: Real-world applications {.unnumbered}
 Presentation of examples of real-world applications of hydrological models.   
 As homework students will finalize the presentation about their modeling work. 
 
 
-## Day 9: Student presentations and wrap-up of workshop
+## Day 9: Student presentations and wrap-up of workshop {.unnumbered}
 The last day of the workshop is organized as a conference where students present their modeling work on the sample catchments.   
 
 
