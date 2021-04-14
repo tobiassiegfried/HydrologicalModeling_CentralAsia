@@ -40,7 +40,7 @@ In this Chapter, we will discuss how to retrieve, prepare and process the data t
 
 As will become clear, the preparation of these data requires a substantial amount of work, local storage space and, in some instances, computational power. With a focus on the generation of input files for hydrological-hydraulic modeling with RS Minerve, the flow diagram Figure \@ref(fig:ClimateImpactModelChain) shows the required steps for the individual data types. These steps will be discussed in the individual Sections below in detail.
 
-```{r ClimateImpactModelChain, echo = FALSE}
+```{r ClimateImpactModelChain, echo = FALSE, fig.cap="Illustration of the data preparation and modeling steps required to study climate change impact on Central Asian river catchments."}
 knitr::include_graphics('_bookdown_files/FIG_DATA/ModelChain_ClimateImpactStudy.png')
 ```
 
@@ -382,18 +382,41 @@ A consistent data record from 1933 until and including November 2015 is now prep
 
 ## Geospatial Data {#Data::GeospatialData}
 
-This Section follows the steps shown in Figure \@ref(fig:ClimateImpactModelChain) and explains in a hands-on manner how to arrive at and process the required geospatial data for later inclusion in the hydrological-hydraulic model RS MINVERVE. Links to detailed descriptions of the individual tasks allow even beginners of QGIS to follow the procedure.
+This Section follows the steps shown in Figure \@ref(fig:ClimateImpactModelChain) and explains in a hands-on manner how to arrive at and process the required geospatial data for later inclusion in the hydrological-hydraulic model RS Minerve Links to detailed descriptions of the individual tasks allow even beginners of QGIS to follow the procedure.  
+
+```{r, eval = "html", label="gis-prep", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "exercise" <div class = "exercise" id="ex5.1"> 
+<h3 class = "right">Ex5.1</h3> 
+<h3 class= "left">Prepare GIS layers</h3> 
+<p>Go through the steps in this Chapter to generate yourselves the GIS layers of your sample catchment for import into RS Minerve.</p> 
+</div>')
+```
+
+### Prerequisites
+* QGIS must be installed ([QGIS installation guide](#appendix-sofware-qgis-installation-guide)).    
+* Coordinates of a discharge gauge in your sample catchment are available in the *learningFiles* directory.   
+* A digital elevation model (DEM) for your sample catchment is available in the *learningFiles* directory. A description of how to obtain a free SRTM DEM is given below.  
+
 
 ### Setting up QGIS {#section-geospatial-data-steps-setting-up}
 
-Open and save a new QGIS project ([How to for absolute beginners](#section-saving-a-new-qgis-project)). Make sure that the maps projection is in UTM ([How to change the projection of a project](#section-change-project-projection-qgis)). The needed plugins are: qProf or profile tool ([How to install and activate a plugin](#section-install-and-activate-plugins-in-QGIS3)). The optional plugins are: SRTM plugin (requires a login to USGS Earth Explorer [How to register](#section-register-with-earth-explorer)). Note, SAGA routines must be installed and correctly configured in QGIS (which is typically the case for default installations of long-term support versions of QGIS).
+* Open and save a new QGIS project ([How to for absolute beginners](#section-saving-a-new-qgis-project)).   
+* Make sure that the maps projection is in UTM ([How to change the projection of a project](#section-change-project-projection-qgis)).   
+* Check if the required plugins (qProf or profile tool) are installed ([How to install and activate a plugin](#section-install-and-activate-plugins-in-QGIS3)).   
+   + The optional plugins are: SRTM plugin (requires a login to USGS Earth Explorer [How to register](#section-register-with-earth-explorer)).    
+* Note that SAGA GIS and GRASS GIS must be installed and correctly configured in QGIS (which is typically the case for default installations of long-term support versions of QGIS).
+
 
 ### Load DEM {#section-geospatial-data-load-dem}
 
-We use the SRTM 1 arc-second global DEM ([Data description](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects)). The DEM tiles are downloaded directly in QGIS3 (SRTM plugin, [How to](#section-srtm-plugin)) or via the USGS Earth Explorer ([How to](#section-earth-explorer-download-srtm)) and merged to a single GIS layer ([How to](#section-merge-srtm-tiles)). In any case you will need to register for an Earth Explorer account [How to register](#section-register-with-earth-explorer).  
+You will find a DEM raster layer in the ./learningFiles directory of your sample catchment ready to start. Load the DEM into your QGIS project and save the project [how to](#section-quick-guides-load-dem). For the hydrological analysis, the DEM needs to be in UTM. Look up the projection of your DEM layer and reproject to UTM if necessary [how to](#section-quick-guides-verify-projection-reproject).    
+
+The description of how to obtain the DEM is given here: We use the SRTM 1 arc-second global DEM ([Data description](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects)). The DEM tiles are downloaded directly in QGIS3 (SRTM plugin, [How to](#section-srtm-plugin)) or via the USGS Earth Explorer ([How to](#section-earth-explorer-download-srtm)) and merged to a single GIS layer ([How to](#section-merge-srtm-tiles)). In any case you will need to register for an Earth Explorer account [How to register](#section-register-with-earth-explorer).  
 Typically, geospatial data from open sources is stored in the standard projection WGS84 (EPSG:4326). The WGS84 is in degrees, minutes and seconds but for hydrological analysis it is more convenient to have spatial layers in the UTM projection. Look up in which UTM Zone your catchmen lies and re-project to that Zone. For the example of the Chirchiq basin, the UTM zone is 42N, i.e. EPSG:32642.    
 
-### Derive the boundaries of your catchment {#section-steps-derive-catchment-boundaries}
+
+### Catchment delineation {#section-steps-derive-catchment-boundaries}
 
 If you already have a shapefile for the boundaries of your catchment. Load it into QGIS [How to add a vector layer](#section-add-vector-layer-to-qgis). Otherwise, follow this [tutorial on youtube](https://www.youtube.com/watch?v=xwiHQlmEEjw) to derive the boundaries of your catchment.
 
