@@ -385,8 +385,8 @@ Open and save a new QGIS project ([How to for absolute beginners](#section-savin
 
 ### Load DEM
 
-We use the SRTM 1 arc-second global DEM ([Data description](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects)). The DEM tiles are downloaded directly in QGIS3 (SRTM plugin, [How to](#section-srtm-plugin)) or via the USGS Earth Explorer ([How to](#section-earth-explorer-download-srtm)) and merged to a single GIS layer ([How to](#section-merge-srtm-tiles)). In any case you will need to register for an Earth Explorer account [How to register](#section-register-with-earth-explorer).  
-Typically, geospatial data from open sources is stored in the standard projection WGS84 (EPSG:4326). The WGS84   
+We use the SRTM 1 arc-second global DEM ([Data description](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects)). The DEM tiles are downloaded directly in QGIS3 (SRTM plugin, [How to](#section-srtm-plugin)) or via the USGS Earth Explorer ([How to](#section-earth-explorer-download-srtm)) and merged to a single GIS layer ([How to](#section-merge-srtm-tiles)). In any case you will need to register for an Earth Explorer account [How to register](#section-register-with-earth-explorer).\
+Typically, geospatial data from open sources is stored in the standard projection WGS84 (EPSG:4326). The WGS84
 
 ### Derive the boundaries of your catchment {#section-steps-derive-catchment-boundaries}
 
@@ -1081,7 +1081,7 @@ knitr::include_graphics("_bookdown_files/FIG_DATA/greenhouseGasConcetrations_RCP
 
 The recently released high-resolution climate scenario datasets described by [@Karger_2020] are utilized here to study climate impacts in river basins in the Central Asia region. The authors of the aforementioned paper present GCM output for monthly precipitation, mean minimum as well as maximum monthly temperatures that has been downscaled using the CHELSA algorithm.[^data-7] The data can be found here <https://www.envidat.ch/#/metadata/chelsa_cmip5_ts>.
 
-[^data-7]: This is the same algorithm that was used to produce high-resolution reanalysis data as discussed in Chapter \@ref(Data::ClimateReanalysisData).
+[^data-7]: This is the same algorithm that was used to produce high-resolution reanalysis data as discussed in Chapter \@ref(<Data::ClimateReanalysisData>).
 
 We download data from 3 out of the 4 available downscaled GCM runs for further analysis and processing. These are outputs from the Coupled Model Intercomparison Project phase 5 ([CMIP5](https://www.wcrp-climate.org/wgcm-cmip/wgcm-cmip5)) and are gridded monthly time series from the years 2006 through 2100 with a spatial resolution of 0.049 degrees (see again [@Karger_2020] for all the details). The three models from which data were taken are: CMCC-CM run by the Centro Euro-Mediterraneo per I Cambiamenti Climatici (CMCC); MIROC5 run by the University of Tokyo; and ACCESS1-3 run by the Commonwealth Scientific and Industrial Research Organization (CSIRO) and Bureau of Meteorology (BOM), Australia [@Karger_2020].
 
@@ -1152,7 +1152,7 @@ downscaled_ClimPred_rcp85_MIROC5 <- downscale_ClimPred_monthly_BasinElBands(path
 
 It is important to mention that precipitation is stored in units of kg/m^2^/s in these climate projection data. How do we arrive at mm/month in order to make these data compatible with the ERA5 data? To answer this question, let us make a little thought experiment. What happens when you pour 1 kg of water on a 1 m^2^ big patch? 1 kg corresponds to 1 liter that corresponds to 10^-3^ m^3^. So, very simply, this amount of water poured on such a patch generates a water height of exactly 1 mm. Using this equivalence, we can rewrite the unit kg/m^2^/s to mm/s. Finally, in order to arrive at mm/day, for example, we just multiply the data by 60x60x24 = 86'400 which are the number of seconds in a day. Since the climate model output is in monthly time intervals, we need mm/month and hence would also need to multiply by the number of days in the corresponding month.
 
-As discussed, these GCM data are high spatial resolution monthly future climate fields which we downscaled on the corresponding catchment shapefile with its subbasins and elevation bands. All good. But how do we arrive at climate fields that also have a high temporal resolution (hourly time resolution in this case) so that we can drive the RS MINERVE hydrological model with the required input data? The solution is shown in the following Section \@ref(Data::WeatherGenerator) using a weather generator. A weather generator is a stochastic model that produces daily weather variables which can then be converted to hourly fields.
+As discussed, these GCM data are high spatial resolution monthly future climate fields which we downscaled on the corresponding catchment shapefile with its subbasins and elevation bands. All good. But how do we arrive at climate fields that also have a high temporal resolution (hourly time resolution in this case) so that we can drive the RS MINERVE hydrological model with the required input data? The solution is shown in the following Section \@ref(<Data::WeatherGenerator>) using a weather generator. A weather generator is a stochastic model that produces daily weather variables which can then be converted to hourly fields.
 
 ### Using a Weather Generator to Simulate Daily Future Climate {#Data::WeatherGenerator}
 
@@ -1619,8 +1619,6 @@ for (idx in 1:length(climScen_hourly_rsminerve)){
 ```
 
 ## Snow Cover Data
-
-
 
 Section is work in progress! Stay tuned.
 
