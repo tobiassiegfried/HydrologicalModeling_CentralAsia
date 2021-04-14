@@ -21,7 +21,7 @@
   <meta name="twitter:description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
   
 
-<meta name="author" content="Tobias Siegfried" />
+<meta name="author" content="Tobias Siegfried and Beatrice Marti" />
 
 
 <meta name="date" content="2021-04-13" />
@@ -64,6 +64,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -216,9 +217,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="data-on-climate-projections.html"><a href="data-on-climate-projections.html"><i class="fa fa-check"></i><b>5.4</b> Data on Climate Projections</a>
 <ul>
 <li class="chapter" data-level="5.4.1" data-path="data-on-climate-projections.html"><a href="data-on-climate-projections.html#CHELSA21Century"><i class="fa fa-check"></i><b>5.4.1</b> High Res. Monthly Climate Time Series for 2006 - 2100</a></li>
-<li class="chapter" data-level="5.4.2" data-path="data-on-climate-projections.html"><a href="data-on-climate-projections.html#using-a-weather-generator-to-simulate-daily-future-climate"><i class="fa fa-check"></i><b>5.4.2</b> Using a Weather Generator to Simulate Daily Future Climate</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data-on-climate-projections.html"><a href="data-on-climate-projections.html#Data::WeatherGenerator"><i class="fa fa-check"></i><b>5.4.2</b> Using a Weather Generator to Simulate Daily Future Climate</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="section-data-snow-cover.html"><a href="section-data-snow-cover.html"><i class="fa fa-check"></i><b>5.5</b> Snow Cover Data</a></li>
+<li class="chapter" data-level="5.5" data-path="snow-cover-data.html"><a href="snow-cover-data.html"><i class="fa fa-check"></i><b>5.5</b> Snow Cover Data</a></li>
+<li class="chapter" data-level="5.6" data-path="glacier-data.html"><a href="glacier-data.html"><i class="fa fa-check"></i><b>5.6</b> Glacier Data</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="RSMinerveMODELS.html"><a href="RSMinerveMODELS.html"><i class="fa fa-check"></i><b>6</b> Hydrological-Hydraulic Modeling</a>
 <ul>
@@ -343,7 +345,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The data used in this Chapter can be accessed on the public GitHub repository <a href="https://github.com/tobiassiegfried/HydrologicalModeling_CentralAsia">Applied Modeling of Hydrological Systems in Central Asia</a> and the ./data/AmuDarya/Gunt/ folder in there. It is advisable that the user downloads the data and sets up a similar data directory structure on their local machines.</p>
 <div id="examining-and-understanding-the-gis-data" class="section level3" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> Examining and Understanding the GIS Data</h3>
-<p>As demonstrated in the Examples of the User Manual, RS Minerve does not necessarily require GIS input files for setting up models. These can also be setup and wired by hand. However, individual subbasins that contribute to flow in a larger catchment have different characteristics that need to be derived from spatial data, i.e. GIS files. For example, subbasin areas, river stretch lengths, terrain slopes, etc., are all required data in an RS Minerve model. These data could either be typed in by hand for each subbasin or automatically inserted via the GIS Import option. The latter method is much more convenient and is demonstrated here<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a>.</p>
+<p>As demonstrated in the Examples of the User Manual, RS Minerve does not necessarily require GIS input files for setting up models. These can also be setup and wired by hand. However, individual subbasins that contribute to flow in a larger catchment have different characteristics that need to be derived from spatial data, i.e. GIS files. For example, subbasin areas, river stretch lengths, terrain slopes, etc., are all required data in an RS Minerve model. These data could either be typed in by hand for each subbasin or automatically inserted via the GIS Import option. The latter method is much more convenient and is demonstrated here<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>.</p>
 <p>First, we load the required packages in <code>R</code>.</p>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="data-preparation-and-setup.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading required packages</span></span>
 <span id="cb112-2"><a href="data-preparation-and-setup.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Tidy data wrangling</span></span>
@@ -498,8 +500,8 @@ Figure 6.9: The result of the GIS-based creation of the Gunt river basin model i
 </div>
 <div class="footnotes">
 <hr />
-<ol start="14">
-<li id="fn14"><p>We assume that the basic steps of GIS basin delineation have been carried out as described in Chapter <a href="#Chapter-RetrievalAnalysisHydroData"><strong>??</strong></a> and the Section <a href="#GeospatialData"><strong>??</strong></a> there. We thus depart here assuming that the basin outlet (i.e. the location of the discharge gauge), the basin shape file as well as the digital elevation model are available.<a href="data-preparation-and-setup.html#fnref14" class="footnote-back">↩︎</a></p></li>
+<ol start="15">
+<li id="fn15"><p>We assume that the basic steps of GIS basin delineation have been carried out as described in Chapter <a href="#Chapter-RetrievalAnalysisHydroData"><strong>??</strong></a> and the Section <a href="#GeospatialData"><strong>??</strong></a> there. We thus depart here assuming that the basin outlet (i.e. the location of the discharge gauge), the basin shape file as well as the digital elevation model are available.<a href="data-preparation-and-setup.html#fnref15" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
