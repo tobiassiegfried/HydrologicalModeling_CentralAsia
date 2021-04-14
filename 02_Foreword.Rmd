@@ -83,27 +83,32 @@ As homework, read Chapter [6.2](#section-rsminerve-why-model-introduction) and d
 
 
 ## Day 4: Discussion of types of hydrological models {.unnumbered}
-Hydrological models in general are discussed. This topic currently doesn't have a specific book chapter. Read Chapter [6.3](#section-general-modelling-process) which is a short recap of the general modeling process. As a homework, choose an R tutorial to work on from the [Appendix](#section-open-resrouces-learning-R) which suits your skills. If you are already fluent in R, work on your visualization skills in R by producing nice plots of your sample catchment. You may let yourselve be inspired by the R code supplied with this book. 
+Hydrological models in general are discussed. This topic currently doesn't have a specific book chapter. Read Chapter [6.3](#section-general-modelling-process) which is a short recap of the general modeling process.   
+As homework, choose an R tutorial to work on from the [Appendix](#section-open-resrouces-learning-R) which suits your skills. If you are already fluent in R, work on your visualization skills in R by producing nice plots of your sample catchment which you may include in the final presentation on the last day of the workshop. You may let yourselves be inspired by the R code supplied with this book. 
 
 
 ## Day 5: The HBV model {.unnumbered}
-A commonly used model is introduced. Read Chapters [6.4 on the data preparation](#section-rsminerve-data-preparation) and [6.5 on the HBV model](#section-hbv-model) and the pre-requisite reading listed therein. It is recommended to do the tasks suggested in the course book.   
-As an exercise, you will implement a simple HBV model based on the catchment characterization that you performed on day 2 and the GIS layers that you prepared on day 3. 
+A commonly used hydrological model is introduced. Read Chapters [6.4 on the data preparation](#section-rsminerve-data-preparation) and [6.5 on the HBV model](#section-hbv-model) and the pre-requisite reading listed therein. It is recommended to do the tasks suggested in the course book to get more familiar with RS Minerve.   
+As an exercise, you will implement your catchment using HBV models based on the catchment characterization that you performed on day 2 and the GIS layers that you prepared on day 3. 
 
 
 ## Day 6: Model calibration and validation {.unnumbered}
 Read Chapter [6.6](#section-model-calibration-and-validation) and go through the example of the Nauvalisoy catchment which illustrates the iterative model refinement process.     
-As homework students will calibrate and validate the hydrological models of your own sample catchment.   
+As homework students will calibrate and validate the hydrological models of their own sample catchment.   
 
 
 ## Day 7: Case studies
-Dicussion of the calibration and validation exercise followed by a presentation of the Gunt basin case study.  
-As homework students will write an abstract about your modeling work for the final conference. Instructions for abstract writing are available [here](./learningFiles/AbstractSubmissionGuide.pdf)
+Discussion of the calibration and validation exercise followed by a presentation of the Gunt basin case study.  
+As homework students will write an abstract about your modeling work for the final conference. Instructions for abstract writing are available [here](./learningFiles/AbstractSubmissionGuide.pdf). The abstract submission deadline is Friday, May 14, 18:00 Almaty time. 
 
 
 ## Day 8: Real-world applications
 Presentation of examples of real-world applications of hydrological models.   
-As homework students will finalise the presentation about their modeling work.   
+As homework students will finalize the presentation about their modeling work. 
+
+
+## Day 9: Student presentations and wrap-up of workshop
+The last day of the workshop is organized as a conference where students present their modeling work on the sample catchments.   
 
 
 
