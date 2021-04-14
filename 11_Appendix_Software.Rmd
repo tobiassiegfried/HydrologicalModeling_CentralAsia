@@ -38,7 +38,154 @@ Once the installer is downloaded, install RS Minerve with a double-click on the 
 
 ## Appendix B: Quick Guides
 
-### QGIS: 
+### EE: Register for an account {#section-register-with-earth-explorer}
+
+In your internet browser, navigate to <https://earthexplorer.usgs.gov/>.
+
+```{r fig-earth-explorer-window, echo=FALSE, out.width="90%", fig.align="center", fig.cap="Start window of the Earth Explorer interface."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig400_EarthExplorerWindow.png")
+```
+
+Lick on *Login* in the top right corner. This will bring you to a new window where you can click on *Create New Account* which will open a form where you enter your information. After verifying your account by clicking on the appropriate link that you will be sent, you can download data from the Earth Explorer interface.
+
+### EE: Download SRTM data for a selected region {#section-earth-explorer-download-srtm}
+
+-   Login to the [Earth Explorer](https://earthexplorer.usgs.gov/) (Register if you haven't done so before [How to](#section-register-with-earth-explorer)).\
+-   Navigate to your are of interest in the map panel of the Earth Explorer interface.\
+-   Draw a polygon around your area of interest by clicking on the map (\@ref(fig:fig-earth-explorer-area-of-interest)).\
+
+```{r fig-earth-explorer-area-of-interest, echo=FALSE, out.width="90%", fig.align="center", fig.cap="Define a polygon around your area of interest by clicking on the map."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig401_PolygonAroundAreaOfInterest.png")
+```
+
+-   In the Data Set tab, look for the SRTM 1 arc-second global DEM (\@ref(fig:fig-earth-explorer-search-data)) and select it by ticking the box next to the product name in the list.\
+
+```{r fig-earth-explorer-search-data, echo=FALSE, out.width="90%", fig.align="center", fig.cap="Search for the SRTM 1 arc-second global DEM product."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig402_SearchSRTM1ArcSecondGlobal.png")
+```
+
+-   Verify that the result layer(s) cover your area of interest by pressing the foot icon in the Results tab and download if you are satisfied (\@ref(fig:fig-earth-explorer-results-download)).\
+
+```{r fig-earth-explorer-results-download, echo=FALSE, out.width="90%", fig.align="center", fig.cap="Verify the results of your search and download the data products you need."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig404_verifyResultsDownload.png")
+```
+
+Back to the [Load DEM section](#section-geospatial-data-load-dem).
+
+### The QGIS window - overview {#section-qgis-window-overview}
+
+The main parts of the QGIS window which are referenced in this tutorial, are highlighted in \@ref(fig:qgis-window-overview).
+
+```{r qgis-window-overview, echo=FALSE, out.width="90%", fig.align="center", fig.cap="The QGIS window."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/0fig000_qgisWindowOverview.png")
+```
+
+### QGIS: Saving a new QGIS project {#section-saving-a-new-qgis-project}
+
+Open your QGIS and open a new QGIS project by moving your cursor on the white sheet symbol in the upper-left corner of your QGIS window (\@ref(fig:qgis-open-qgis-project)).
+
+```{r qgis-open-qgis-project, echo=FALSE, out.width="90%", fig.align="center", fig.cap="Tutorial project open in QGIS LTS."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/0fig001_OpenNewProject.png")
+```
+
+Save the QGIS project by pressing on the floppy disk icon and selecting a location for the file on your computer and a name for the project. You can [add freely available on-line maps as background](#section-loading-public-background-layers).
+
+Back to [setting up of QGIS](#section-geospatial-data-steps-setting-up).
+
+### QGIS: Change the projection of the QGIS project {#section-change-project-projection-qgis}
+
+For this tutorial, the projection of the QGIS project should be in EPSG:32642. Change it by clicking on the projects projection in the lower right corner of the QGIS window (see (\@ref(fig:qgis-window-overview)). In the CRS tab of the Project Properties, select WGS84 / UTM zone 42N with ID EPSG:32642 and click *OK*.
+
+Back to the [setting up of QGIS](#section-geospatial-data-steps-setting-up).
+
+### QGIS: Install and activate plugins in QGIS3 {#section-install-and-activate-plugins-in-QGIS3}
+
+Navigate to *Plugins* in the header toolbar and go to *Manage and Install Plugins ...*. Search for the plugin name and go to *Install Plugin* to install a plugin or tick the box to the left of the plugin name in the list of plugins to activate it (\@ref(fig:fig-install-activate-qgis-plugin)).
+
+```{r fig-install-activate-qgis-plugin, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Plugin management window in QGIS 3.16. Install plugin with the `Install Plugin` button. Activate installed plugins by ticking the box in the list."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig301_InstallAndActivatePluginsInQGIS3.png")
+```
+
+Back to the [setting up of QGIS](#section-geospatial-data-steps-setting-up).
+
+
+### GQIS: Managing panels visibility in QGIS {#section-managing-panels}
+
+Should one of the panels described here not be visible in your QGIS window navigate to *View* in your header toolbar and move to Panels. The visible panels are marked with a tick. Click on a panel name in the list to activate or deactivate it.
+
+Back to [setting up of QGIS](#section-geospatial-data-steps-setting-up).
+
+
+### QGIS: Loading public background maps {#section-loading-public-background-layers}
+
+You can add freely available on-line maps as backgrounds. Note that they will only be available as long as your computer is connected to the internet. In the *Browser* panel ([What to do if you don't see the *Browser* panel](#section-managing-panels)), move the cursor to *XYZ Tiles*, do a right-click and select *New Connection*. Enter a descriptive name for the map layer and one of the links below and click *OK*. The new map layer will appear under *XYZ Tiles*. By double-clicking on the layer you can add it to your Layers panel.
+
+Back to [setting up of QGIS](#section-geospatial-data-steps-setting-up).
+
+
+### QGIS: Zoom to layer {#section-zoom-to-layer}
+
+You can tell QGIS to zoom to the selected layer by selecting a layer in the *Layers* window and then on the white sheet and magnifying glass icon in the toolbar (\@ref(fig:qgis-zoom-to-layer)).
+
+```{r qgis-zoom-to-layer, echo=FALSE, out.width="100%", fig.align="center", fig.cap="Zoom to layer."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig009_ZoomToLayer.png")
+```
+
+You can also perform a right-click on the layer name in the *Layers* panel and select *Zoom to layer*.
+
+
+### QGIS: Import SRTM layers using the SRTM plugin {#section-srtm-plugin}
+
+Make sure the SRTM plugin is installed ([How to](#section-install-and-activate-plugins-in-QGIS3)). Navigate to *Plugins* in the header toolbar and there to *SRTM Downloader*. Select the *SRTM Downloader*. Set the boundaries of the SRTM tiles to download and press the *Download* button. Close the window when done. The SRTM tiles are loaded to the Layers pane.
+
+Back to [Load DEM in QGIS section](#section-geospatial-data-load-dem)
+
+
+### QGIS: Merge SRTM tiles to a single layer {#section-merge-srtm-tiles}
+
+Navigate to *Raster* in the header toolbar and then to *Miscellaneous* and *Merge...*. In the *Merge* window that opens, select the input layers by clicking on the *...* button. Tick the layers that need to be merged and press *Run*. When the algorithm is done, close the window. You can zoom to the extent of the new layer [How to](#section-zoom-to-layer). You can change the color of the DEM file.
+
+Back to [Load DEM in QGIS section](#section-geospatial-data-load-dem)
+
+
+### Add vector layer to QGIS {#section-add-vector-layer-to-qgis}
+
+Left-clicking on *Layer*, moving your cursor over *Add Layer* and left-clicking *Add Vector Layer* (\@ref(fig:qgis-add-vector-layer-1)).
+
+```{r qgis-add-vector-layer-1, echo=FALSE, out.width="100%", fig.align="center", fig.cap="Add vector layer to QGIS project, step 1.: Navigate to the Data Source Manager."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig003_AddVectorLayer1.png")
+```
+
+A window will pop up, asking you to specify the properties of the vector layer to add (\@ref(fig:qgis-add-vector-layer-2)).
+
+```{r qgis-add-vector-layer-2, echo=FALSE, out.width="70%", fig.align="center", fig.cap="Add vector layer to QGIS project, step 2: Select vector layers to add. Note that you select the *shp* file but *cpg*, *dbf* and *shx* need to be present in the same location."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig004_AddVectorLayer2.png")
+```
+
+Press the box with the three dots on the right of the source field to specify the location of the shape file to be added to your project (\@ref(fig:qgis-add-vector-layer-3)). Click *Open* and the window will close. The address of your shape files should now stand in the source field as in \@ref(fig:qgis-add-vector-layer-2).
+
+```{r qgis-add-vector-layer-3, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Add vector layer to QGIS project, step 3."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig005_AddVectorLayer3.png")
+```
+
+Note that you load the *.shp* file but that all the files in the list in \@ref(fig:qgis-add-vector-layer-2) need to be present. In the *Add Vector Layer* window, click *Add* and then close the window. QGIS has attributed a random color to your shape file which can be changed manually [How to](#section-change-color-of-vector-layer).
+
+### Change color of a vector layer {#section-change-color-of-vector-layer}
+
+You can change the color of your layer by double-clicking on the layer name in the *Layers* Window to the left of the map. This will open the properties window. The third tab from the top shows paint and brush (\@ref(fig:qgis-add-vector-layer-5)).
+
+```{r qgis-add-vector-layer-5, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Add vector layer to QGIS project, step 5. Change the color of the layer."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig007_AddVectorLayer5.png")
+```
+
+You can activate *Simple fill* by clicking on it and select *No brush* in the drop-down menu in order to only show the outline of your vector layer (\@ref(fig:qgis-add-vector-layer-6)).
+
+```{r qgis-add-vector-layer-6, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Add vector layer to QGIS project, step 6. Only show the outline of the vector layer."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig008_AddVectorLayer6.png")
+```
+
+
+
 
 ### RSM: Create HBV model and edit parameters {#section-quickguides-create-hbv-model}  
 Click on the HBV model icon in the model selection panel (Figure \@ref(fig:fig-create-hbv-model)). 
