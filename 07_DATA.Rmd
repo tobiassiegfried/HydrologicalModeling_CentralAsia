@@ -379,68 +379,66 @@ A consistent data record from 1933 until and including November 2015 is now prep
 
 This Section follows the steps shown in Figure \@ref(fig:ClimateImpactModelChain) and explains in a hands-on manner how to arrive at and process the required geospatial data for later inclusion in the hydrological-hydraulic model RS MINVERVE. Links to detailed descriptions of the individual tasks allow even beginners of QGIS to follow the procedure.
 
-### Setting up QGIS {#section-steps-setting-up}
+### Setting up QGIS {#section-geospatial-data-steps-setting-up}
 
 Open and save a new QGIS project ([How to for absolute beginners](#section-saving-a-new-qgis-project)). Make sure that the maps projection is in UTM ([How to change the projection of a project](#section-change-project-projection-qgis)). The needed plugins are: qProf or profile tool ([How to install and activate a plugin](#section-install-and-activate-plugins-in-QGIS3)). The optional plugins are: SRTM plugin (requires a login to USGS Earth Explorer [How to register](#section-register-with-earth-explorer)). Note, SAGA routines must be installed and correctly configured in QGIS (which is typically the case for default installations of long-term support versions of QGIS).
 
-### Load DEM
+### Load DEM {#section-geospatial-data-load-dem}
 
-We use the SRTM 1 arc-second global DEM ([Data description](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects)). The DEM tiles are downloaded directly in QGIS3 (SRTM plugin, [How to](#section-srtm-plugin)) or via the USGS Earth Explorer ([How to](#section-earth-explorer-download-srtm)) and merged to a single GIS layer ([How to](#section-merge-srtm-tiles)). In any case you will need to register for an Earth Explorer account [How to register](#section-register-with-earth-explorer).\
-Typically, geospatial data from open sources is stored in the standard projection WGS84 (EPSG:4326). The WGS84
+We use the SRTM 1 arc-second global DEM ([Data description](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects)). The DEM tiles are downloaded directly in QGIS3 (SRTM plugin, [How to](#section-srtm-plugin)) or via the USGS Earth Explorer ([How to](#section-earth-explorer-download-srtm)) and merged to a single GIS layer ([How to](#section-merge-srtm-tiles)). In any case you will need to register for an Earth Explorer account [How to register](#section-register-with-earth-explorer).  
+Typically, geospatial data from open sources is stored in the standard projection WGS84 (EPSG:4326). The WGS84 is in degrees, minutes and seconds but for hydrological analysis it is more convenient to have spatial layers in the UTM projection. Look up in which UTM Zone your catchmen lies and re-project to that Zone. For the example of the Chirchiq basin, the UTM zone is 42N, i.e. EPSG:32642.    
 
 ### Derive the boundaries of your catchment {#section-steps-derive-catchment-boundaries}
 
 If you already have a shapefile for the boundaries of your catchment. Load it into QGIS [How to add a vector layer](#section-add-vector-layer-to-qgis). Otherwise, follow this [tutorial on youtube](https://www.youtube.com/watch?v=xwiHQlmEEjw) to derive the boundaries of your catchment.
 
+
 ### Run through the process model
 
-A process model is available that generates the raw GIS layers for RS Minerve. Navigate to *Processing* and open the *Graphical Modeller...*. The *Model Designer* window opens. Open the model [Link to Model]() (\@ref(fig:qgis-graphical-model-designer)).
+A process model is available that generates the raw GIS layers for RS Minerve. Navigate to *Processing* and open the *Graphical Modeller...*. The *Model Designer* window opens. Open the model downloaded from here:  [./model/Basin_Preparation_QGIS.model3]("models/Basin_Preparation_QGIS.model3") (\@ref(fig:qgis-graphical-model-designer)).
 
 ```{r qgis-graphical-model-designer, echo=FALSE, out.width="100%", fig.align="center", fig.cap="The process of deriving the GIS layers for RS Minerve is simplified through the process model."}
 knitr::include_graphics("_bookdown_files/FIG_DATA/fig500_GraphicalModelDesigner.png")  
 ```
 
-\*TODO: Make file available for download.
-
 Prior to running the model, read through the following brief notes.
 
 #### Input files
 
--   A shape file of the basin outline in UTM 42 N ([How to derive the basin outline](#section-steps-derive-catchment-boundaries)).
--   The extent of the DEM needs to be larger than the boundaries of your catchment. You can use your raw SRTM DEM projected to UTM42N.
+ * A shape file of the basin outline in UTM 42 N ([How to derive the basin outline](#section-steps-derive-catchment-boundaries)).  
+ * The extent of the DEM needs to be larger than the boundaries of your catchment. You can use your raw SRTM DEM projected to UTM42N.  
 
 #### Model output
 
-Besides the 3 layers required (Basins, rivers, junctions, \@ref(fig:layers-minerve) in the Introduction), the model produces a number of additional output files which can be used for verifying the parameterisation which is described in more detail in the next section.
+Besides the 3 layers required for RS minerve (Basins, rivers, junctions, \@ref(fig:layers-minerve) in the Introduction), the model produces a number of additional output files which can be used for verifying the parameterisation which is described in more detail in the next section.
 
 #### Parameterization of the model
 
--   BasinShapeBuffer_meters is a buffer around the basin outline to which the DEM is cut. The DEM needs to be slightly larger than the shape line. The default value of 1000 m is sufficient. *Can this parameter be internalised?*\
--   River Network Level is a parameters for the resolution of the river network. Values of 7 and 8 have shown good results for smaller and medium sized catchments (\@ref(fig:qgis-river-network-level)).\
+ * BasinShapeBuffer_meters is a buffer around the basin outline to which the DEM is cut. The DEM needs to be slightly larger than the shape line. The default value of 1000 m is sufficient.   
+ *River Network Level is a parameters for the resolution of the river network. Values of 7 and 8 have shown good results for smaller and medium sized catchments (\@ref(fig:qgis-river-network-level)).  
 
 ```{r qgis-river-network-level, echo=FALSE, out.width="50%", fig.show='hold', fig.align="center", fig.cap="Comparison of River Network Level = 7 (left) and River Network Level = 8 (rigth) for the example of the Pskem river catchment."}
 knitr::include_graphics(c("_bookdown_files/FIG_DATA/fig501_RiverNetworkLevel7.png", "_bookdown_files/FIG_DATA/fig502_RiverNetworkLevel8.png"))
 ```
 
--   The Channel Network Cutoff Value is a parameter required for the partitioning of the catchment into sub-catchments. Values between 2e8 and 5e8 have been found to work well for smaller and medium sized catchments. The model is sensitive to this parameter and might throw an error if the cutoff value is not appropriate.
--   The Elevation Bands Table holds the altitude boundaries and class IDs for the elevation bands in the catchment. After a first test run, edit according to your needs.
+ * The Channel Network Cutoff Value is a parameter required for the partitioning of the catchment into sub-catchments. Values between 2e8 and 5e8 have been found to work well for smaller and medium sized catchments. The model is sensitive to this parameter and might throw an error if the cutoff value is not appropriate.  
+ * The Elevation Bands Table holds the altitude boundaries and class IDs for the elevation bands in the catchment. After a first test run, edit according to your needs. Manual editing of the GIS layers prior to import to RS Minerve might still be needed.    
 
-The model is sensitive to these parameters. Play around with them until you are satisfied with the resulting GIS layers.
+The model is sensitive to these parameters. Play around with them until you are satisfied with the resulting GIS layers. 
 
-If you get an error message running Fix geometries that POLYGONS.shp was not found, try reducing the Channel Network Cutoff Value by 50-70%. You can still inspect the other layers and change other parameters as well.\
-- Make sure that all input layers are projected to UTM 42 N.\
-- Run the model through once, inspect the output and play with the input parameters:\
-- Min and Max elevations on the smoothed DEM and the shape, number and spacing of elevation bands (edit the table for the elevation bands accordingly),\
-- Location and shape of river reaches and the location of junctions (vary the threshold).
+If you get an error message running Fix geometries that POLYGONS.shp was not found, try reducing the Channel Network Cutoff Value by 50-70%. You can still inspect the other layers and change other parameters as well.  
+ * Make sure that all input layers are projected to UTM 42 N.  
+ * Run the model through once, inspect the output and play with the input parameters:  
+   + Min and Max elevations on the smoothed DEM and the shape, number and spacing of elevation bands (edit the table for the elevation bands accordingly),  
+   + Location and shape of river reaches and the location of junctions (vary the threshold).  
+
 
 ### Manually edit the GIS Layers for import in RS MINERVE
+Review \@ref(fig:layers-minerve) and compare your GIS layers with the requirements for the RS Minerve layers:     
 
--   Review \@ref(fig:layers-minerve)
--   Elevation bands per sub-basin need to be in one Multi-Polygon layer.
-
-We need junctions only at the confluences of sub-basins (and river reaches).
-
-We only need river reaches where we need to do routing. The sub-basins at the upper-most reaches do not need river reaches.
+* Elevation bands per sub-basin need to be in one Multi-Polygon layer (i.e. only one feature per elevation band).  
+* We need junctions only at the confluences of sub-basins (and river reaches).  
+* We only need river reaches where we need to do routing. The sub-basins at the upper-most reaches do not need river reaches.
 
 #### Edit Junctions layer
 
