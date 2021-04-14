@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried and Beatrice Marti" />
 
 
-<meta name="date" content="2021-04-13" />
+<meta name="date" content="2021-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -64,7 +64,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -203,8 +202,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html"><i class="fa fa-check"></i><b>5.2</b> Geospatial Data</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-steps-setting-up"><i class="fa fa-check"></i><b>5.2.1</b> Setting up QGIS</a></li>
-<li class="chapter" data-level="5.2.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#load-dem"><i class="fa fa-check"></i><b>5.2.2</b> Load DEM</a></li>
+<li class="chapter" data-level="5.2.1" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-steps-setting-up"><i class="fa fa-check"></i><b>5.2.1</b> Setting up QGIS</a></li>
+<li class="chapter" data-level="5.2.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-load-dem"><i class="fa fa-check"></i><b>5.2.2</b> Load DEM</a></li>
 <li class="chapter" data-level="5.2.3" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-steps-derive-catchment-boundaries"><i class="fa fa-check"></i><b>5.2.3</b> Derive the boundaries of your catchment</a></li>
 <li class="chapter" data-level="5.2.4" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#run-through-the-process-model"><i class="fa fa-check"></i><b>5.2.4</b> Run through the process model</a></li>
 <li class="chapter" data-level="5.2.5" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#manually-edit-the-gis-layers-for-import-in-rs-minerve"><i class="fa fa-check"></i><b>5.2.5</b> Manually edit the GIS Layers for import in RS MINERVE</a></li>
@@ -297,14 +296,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html"><i class="fa fa-check"></i><b>9.2</b> Appendix B: Quick Guides</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#qgis"><i class="fa fa-check"></i><b>9.2.1</b> QGIS:</a></li>
-<li class="chapter" data-level="9.2.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-create-hbv-model"><i class="fa fa-check"></i><b>9.2.2</b> RSM: Create HBV model and edit parameters</a></li>
-<li class="chapter" data-level="9.2.3" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-climate-station"><i class="fa fa-check"></i><b>9.2.3</b> RSM: Add and link climate station</a></li>
-<li class="chapter" data-level="9.2.4" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-import-climate-data"><i class="fa fa-check"></i><b>9.2.4</b> RSM: Import climate data</a></li>
-<li class="chapter" data-level="9.2.5" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-atapt-model-settings"><i class="fa fa-check"></i><b>9.2.5</b> RSM: Adapt model settings</a></li>
-<li class="chapter" data-level="9.2.6" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-export-sim-results-to-db"><i class="fa fa-check"></i><b>9.2.6</b> RSM: Export simulation results to data base</a></li>
-<li class="chapter" data-level="9.2.7" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-comparator-and-discharge-data"><i class="fa fa-check"></i><b>9.2.7</b> RSM: Add comparator and load discharge measurements</a></li>
-<li class="chapter" data-level="9.2.8" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-copy-paste-database-values"><i class="fa fa-check"></i><b>9.2.8</b> RSM: Copy-paste data to database</a></li>
+<li class="chapter" data-level="9.2.1" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-register-with-earth-explorer"><i class="fa fa-check"></i><b>9.2.1</b> EE: Register for an account</a></li>
+<li class="chapter" data-level="9.2.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-earth-explorer-download-srtm"><i class="fa fa-check"></i><b>9.2.2</b> EE: Download SRTM data for a selected region</a></li>
+<li class="chapter" data-level="9.2.3" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-qgis-window-overview"><i class="fa fa-check"></i><b>9.2.3</b> The QGIS window - overview</a></li>
+<li class="chapter" data-level="9.2.4" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-saving-a-new-qgis-project"><i class="fa fa-check"></i><b>9.2.4</b> QGIS: Saving a new QGIS project</a></li>
+<li class="chapter" data-level="9.2.5" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-project-projection-qgis"><i class="fa fa-check"></i><b>9.2.5</b> QGIS: Change the projection of the QGIS project</a></li>
+<li class="chapter" data-level="9.2.6" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-install-and-activate-plugins-in-QGIS3"><i class="fa fa-check"></i><b>9.2.6</b> QGIS: Install and activate plugins in QGIS3</a></li>
+<li class="chapter" data-level="9.2.7" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-managing-panels"><i class="fa fa-check"></i><b>9.2.7</b> GQIS: Managing panels visibility in QGIS</a></li>
+<li class="chapter" data-level="9.2.8" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-loading-public-background-layers"><i class="fa fa-check"></i><b>9.2.8</b> QGIS: Loading public background maps</a></li>
+<li class="chapter" data-level="9.2.9" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-zoom-to-layer"><i class="fa fa-check"></i><b>9.2.9</b> QGIS: Zoom to layer</a></li>
+<li class="chapter" data-level="9.2.10" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-srtm-plugin"><i class="fa fa-check"></i><b>9.2.10</b> QGIS: Import SRTM layers using the SRTM plugin</a></li>
+<li class="chapter" data-level="9.2.11" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-merge-srtm-tiles"><i class="fa fa-check"></i><b>9.2.11</b> QGIS: Merge SRTM tiles to a single layer</a></li>
+<li class="chapter" data-level="9.2.12" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-vector-layer-to-qgis"><i class="fa fa-check"></i><b>9.2.12</b> Add vector layer to QGIS</a></li>
+<li class="chapter" data-level="9.2.13" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer"><i class="fa fa-check"></i><b>9.2.13</b> Change color of a vector layer</a></li>
+<li class="chapter" data-level="9.2.14" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-create-hbv-model"><i class="fa fa-check"></i><b>9.2.14</b> RSM: Create HBV model and edit parameters</a></li>
+<li class="chapter" data-level="9.2.15" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-climate-station"><i class="fa fa-check"></i><b>9.2.15</b> RSM: Add and link climate station</a></li>
+<li class="chapter" data-level="9.2.16" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-import-climate-data"><i class="fa fa-check"></i><b>9.2.16</b> RSM: Import climate data</a></li>
+<li class="chapter" data-level="9.2.17" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-atapt-model-settings"><i class="fa fa-check"></i><b>9.2.17</b> RSM: Adapt model settings</a></li>
+<li class="chapter" data-level="9.2.18" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-export-sim-results-to-db"><i class="fa fa-check"></i><b>9.2.18</b> RSM: Export simulation results to data base</a></li>
+<li class="chapter" data-level="9.2.19" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-comparator-and-discharge-data"><i class="fa fa-check"></i><b>9.2.19</b> RSM: Add comparator and load discharge measurements</a></li>
+<li class="chapter" data-level="9.2.20" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-copy-paste-database-values"><i class="fa fa-check"></i><b>9.2.20</b> RSM: Copy-paste data to database</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html"><i class="fa fa-check"></i><b>9.3</b> Appendix C: Processing Climate Data</a>
 <ul>
@@ -369,7 +380,7 @@ Beck, Hylke E., Eric F. Wood, Tim R. McVicar, Mauricio Zambrano-Bigiarini, Camil
 ———. 2020d. <span>“Bias Correction of Global High-Resolution Precipitation Climatologies Using Streamflow Observations from 9372 Catchments.”</span> <em>Journal of Climate</em> 33 (4): 1299–1315. <a href="https://doi.org/10.1175/JCLI-D-19-0332.1">https://doi.org/10.1175/JCLI-D-19-0332.1</a>.
 </div>
 <div id="ref-bergstrom_development_1976" class="csl-entry">
-Bergström, Sten. 1980. <span>“Development and Application of a Conceptual Runoff Model for <span>Scandinavian</span> Catchments.”</span> {SMHI} {Report} Nr Rho 7. Lund Institute of Technology/University of Lund.
+Bergström, Sten. 1980. <span>“Development and Application of a Conceptual Runoff Model for <span>Scandinavian</span> Catchments.”</span> SMHI Report Nr Rho 7. Lund Institute of Technology/University of Lund.
 </div>
 <div id="ref-bergstrom_principles_1991" class="csl-entry">
 ———. 1991. <span>“Principles and <span>Confidence</span> in <span>Hydrological</span> <span>Modelling</span>.”</span> <em>Hydrology Research</em> 22 (2): 123–36. <a href="https://doi.org/10.2166/nh.1991.0009">https://doi.org/10.2166/nh.1991.0009</a>.
@@ -414,7 +425,7 @@ Lindström, Göran, Barbro Johansson, Magnus Persson, Marie Gardelin, and Sten B
 Ning, Tingting, Zhi Li, Qi Feng, Wenzhao Liu, and Zongxing Li. 2018. <span>“<span class="nocase">Comparison of the effectiveness of four Budyko-based methods in attributing long-term changes in actual evapotranspiration</span>.”</span> <em>Scientific Reports</em> 8 (1): 12665. <a href="https://doi.org/10.1038/s41598-018-31036-x">https://doi.org/10.1038/s41598-018-31036-x</a>.
 </div>
 <div id="ref-Pedersen1980" class="csl-entry">
-Pedersen, John T., John C. Peters, and Otto J. Helweg. 1980. <span>“Hydrographs by Single Linear Reservoir Model.”</span> {Technical Report} TP-74. US Army Corps of Engineers, Institute of Water Resources, Hydrologic Engineering Center.
+Pedersen, John T., John C. Peters, and Otto J. Helweg. 1980. <span>“Hydrographs by Single Linear Reservoir Model.”</span> Technical Report TP-74. US Army Corps of Engineers, Institute of Water Resources, Hydrologic Engineering Center.
 </div>
 <div id="ref-pravilova_2009" class="csl-entry">
 Pravilova, Ekaterina. 2009. <span>“River of Empire: Geopolitics, Irrigation, and the Amu Darya in the Late XIXth Century.”</span> <em>Cahiers d’Asie Centrale</em> 17/18: 255–87.
