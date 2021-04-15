@@ -417,10 +417,28 @@ Typically, geospatial data from open sources is stored in the standard projectio
 
 
 ### Catchment delineation {#section-steps-derive-catchment-boundaries}
+For this workshop, shapefiles for the sample watersheds you will model are already available in the shared dropbox folder with the [data for case studies](https://www.dropbox.com/sh/hz5fcot6yvi6tff/AACrjSIQGFsbYEfeI-A05lZra?dl=0) which you should have already downloaded. Load the shape file of your sample catchment into QGIS ([how to add a vector layer](#section-add-vector-layer-to-qgis)).   
+In case you'd like to learn how to delineate your own watershed, follow the tutorial below. The steps are also described in this [tutorial on youtube](https://www.youtube.com/watch?v=xwiHQlmEEjw) 
 
-If you already have a shapefile for the boundaries of your catchment. Load it into QGIS [How to add a vector layer](#section-add-vector-layer-to-qgis). Otherwise, follow this [tutorial on youtube](https://www.youtube.com/watch?v=xwiHQlmEEjw) to derive the boundaries of your catchment. The steps are also described here below:  
+#### Projection of DEM {.unnumbered}
+Verify that the DEM is in UTM coordinates and re-project it if necessary ([how to](#section-quick-guides-verify-projection-reproject)).   
 
-* Verify that the DEM is in UTM coordinates ([how to](#section-quick-guides-verify-projection-reproject)). 
+#### Fill the sinks of the DEM {#section-why-fill-sinks-dem .unnumbered}
+To derive the the catchment area upstream of a discharge gauge, the DEM is traced upstream until elevation values do not increase any more, i.e. until the boundary of the watershed is reached. The SRTM DEM contains the rounded average elevation in each cell of about 25-30m resoluition. Due to the averaging and rounding it may happen, that in a SRTM DEM, an upstream river cell contains lower elevations than the downstream river cell. If the catchment delineation algorithm reaches such a situation, it stops, thinking it has reached the boundary of the watershed. To avoid this, cells that form local depressions should be filled to form a river bed which is continuously increasing in elevation until it reaches the watershed boundary. The SAGA algorithm to do this is called *Fill sinks*.   
+Fill the sinks of your DEM and store the processed raster file ([how to in detail](#appendix-quick-guides-fill-sinks)). 
+
+#### Upslope area {.unnumbered}
+Determine the area up-slope of your river discharge gauge by running the algorithm *Upslope Area* in QGIS ([detailed instructions](#appendix-quick-guide-upslope-area)). The UTM coordinates of the Nauvalisoy discharge gauge are given in the *riversCentralAsia* package: 
+```{r}
+dplyr::filter(ChirchikRiverBasin, river=="Nauvalisoy") %>% 
+  dplyr::summarize(`Station code` = dplyr::first(code), 
+                   `Station name` = dplyr::first(station), 
+                   `River name` = dplyr::first(river), 
+                   Longitude = dplyr::first(lon_UTM42), 
+                   Latitude = dplyr::first(lat_UTM42))
+```
+
+The *Upslope Area* function will return a raster file of your catchment area. Convert it to a polygon and save the resulting shape ([how to convert raster to polygon](#appendix-quick-guide-polygonize)). 
 
 
 ### Run through the process model

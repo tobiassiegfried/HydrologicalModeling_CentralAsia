@@ -153,6 +153,14 @@ fig:qgis-add-vector-layer-2
 fig:qgis-add-vector-layer-3
 fig:qgis-add-vector-layer-5
 fig:qgis-add-vector-layer-6
+fig:qgis-fill-sinks-1
+fig:qgis-fill-sinks-2
+fig:qgis-upslope-area-window
+fig:qgis-open-polygonize-window
+fig:qgis-raw-polygonized-layer
+fig:qgis-attrib-table-toggle-edit
+fig:qgis-delete-selected-features
+fig:qgis-save-edits-attribute-table
 fig:fig-create-hbv-model
 fig:fig-hbv-model-generated
 fig:fig-edit-hbv-model-single
@@ -221,6 +229,9 @@ prerequisites
 section-geospatial-data-steps-setting-up
 section-geospatial-data-load-dem
 section-steps-derive-catchment-boundaries
+projection-of-dem
+section-why-fill-sinks-dem
+upslope-area
 run-through-the-process-model
 input-files
 model-output
@@ -303,6 +314,7 @@ section-open-resrouces-learning-R
 section-open-resrouces-software-RSMinerve
 section-quickguides-how-to-download-and-install-rsminerve
 appendix-b-quick-guides
+section-quick-guides-verify-projection-reproject
 appendix-c-processing-climate-data
 cutting-chelsa-v.1.2.1-to-ca-domain
 bias-correcting-chelsa-v1.2.1-precipitation-data-for-snow-undercatch

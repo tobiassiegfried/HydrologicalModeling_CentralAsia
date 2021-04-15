@@ -112,7 +112,7 @@ Back to [setting up of QGIS](#section-geospatial-data-steps-setting-up).
 
 For this tutorial, the projection of the QGIS project should be in EPSG:32642. Change it by clicking on the projects projection in the lower right corner of the QGIS window (see Figure \@ref(fig:qgis-window-overview)). In the coordinate reference system (CRS) tab of the Project Properties, select WGS84 / UTM zone 42N with ID EPSG:32642 and click *OK*.  
 
-For modeling your own sample catchment, a different UTM zone may be applicable. The map in the lower right corner of the Project Properties window shows the area for the projection in red. Large parts of Kyrgyzstan are in the UTM zone 43N (EPSG:32643). 
+For modeling your own sample catchment, a different UTM zone may be applicable. The map in the lower right corner of the Project Properties window shows the area for the projection in red and the area where your data is located in violet so you can visually verify that you choose an appropriate projection. Large parts of Kyrgyzstan are in the UTM zone 43N (EPSG:32643). 
 
 Back to the [setting up of QGIS](#section-geospatial-data-steps-setting-up).
 
@@ -279,7 +279,7 @@ knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig005_AddVect
 
 Note that you load the *.shp* file but that all the files in the list in \@ref(fig:qgis-add-vector-layer-2) need to be present. In the *Add Vector Layer* window, click *Add* and then close the window. QGIS has attributed a random color to your shape file which can be changed manually [How to](#section-change-color-of-vector-layer).
 
-### Change color of a vector layer {#section-change-color-of-vector-layer .unnumbered}
+### QGIS: Change color of a vector layer {#section-change-color-of-vector-layer .unnumbered}
 
 You can change the color of your layer by double-clicking on the layer name in the *Layers* Window to the left of the map. This will open the properties window. The third tab from the top shows paint and brush (\@ref(fig:qgis-add-vector-layer-5)).
 
@@ -293,6 +293,68 @@ You can activate *Simple fill* by clicking on it and select *No brush* in the dr
 knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig008_AddVectorLayer6.png")
 ```
 
+
+
+### QGIS: Fill sinks {#appendix-quick-guides-fill-sinks .unnumbered}
+Browse for the *Fill sinks* algorithm in the *Processing Toolbox* panel (Figure \@ref(fig:qgis-fill-sinks-1)). If the *Processing Toolbox* panel is not visible go to *Processing* in the header toolbar and click on *Toolbox* to activate it. Alternatively, [here](#section-managing-panels) is how to manage the visibility of panels in QGIS. 
+```{r qgis-fill-sinks-1, echo=FALSE, out.width="90%", fig.align="center", fig.cap="Search for the *Fill sinks* algorithm in the *Processing Toolbar* panel."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/1fig_fillSinks.png")
+```
+
+Open the *Fill sinks* window with a double-click on the name of the algorithm in the *Processing Toolbar* panel. There, select the DEM you want to process and browse for a location to store the output file to (Figure \@ref(fig:qgis-fill-sinks-2)). You can leave the default minimum slope.   
+```{r qgis-fill-sinks-2, echo=FALSE, out.width="90%", fig.align="center", fig.cap="Select the raster file to process."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/1fig_fillSinks2.png")
+```
+
+When the algorithm is done it will load the new layer into your QGIS project. Close the *Fill sinks* window and save your project. 
+
+
+Back to [catchment delineation](#section-steps-derive-catchment-boundaries). 
+
+
+### QGIS: Managing panels visibility in QGIS {#section-managing-panels .unnumbered}
+
+Should one of the panels described here not be visible in your QGIS window navigate to *View* in your header toolbar and move to Panels. The visible panels are marked with a tick. Click on a panel name in the list to activate or deactivate it.
+
+
+### QGIS: Calculate the area upslope of a point {#appendix-quick-guide-upslope-area .unnumbered}
+Search for the SAGA algorithm *Upslope Area* in the *Processing Toolbox* panel and open the function window with a double click on the name. Enter the Longitude of your discharge station for the Target X coordinate and the Latitude for the Target Y coordinate. For the Elevation select the sink-filled DEM ([how to fill sinks in a DEM](#appendix-quick-guides-fill-sinks), [why we need to fill in sinks](#section-why-fill-sinks-dem)). All GIS layers and the coordinates of the discharge gauge need to be in the same UTM projection. Choose a method in the drop-down menue in the *Method* section and optionally specify a location for the output file. For the example of the Nauvalisoy basin, the *Upslope Area* window filled in correctly is shown in Figure \@ref(fig:qgis-upslope-area-window). 
+```{r qgis-upslope-area-window, echo=FALSE, out.width="50%", fig.align="center", fig.cap="The *Upslope Area* window for the determination of the catchment area of the Nauvalisoy river basin."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/1fig_upslopeAreaWindow.png")
+```
+
+Click *Run* and *Close* after the algorithm is done. A new raster file with the values 0 for outside the catchment area and 100 for inside the catchment area is now loaded into your QGIS project. 
+
+Back to [catchment delineation](#section-steps-derive-catchment-boundaries). 
+
+### QGIS: {#appendix-quick-guide-polygonize .unnumbered}
+Got to *Raster* in the header toolbar, move your cursor over *Conversion* and click on *Polygonize (Raster to Vector)...* (see Figure \@ref(fig:qgis-open-polygonize-window)).
+```{r qgis-open-polygonize-window, echo=FALSE, out.width="90%", fig.align="center", fig.cap="Open the *Polygonize* window."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/1fig_polygonize1.png")
+```
+
+Select the raster layer you wish to polygonize (for example the upslope area raster layer) and run the process. Close the polygonize window after the algorithm is done. A new shape file will be loaded to your GIS project (Figure \@ref(fig:qgis-raw-polygonized-layer)).   
+```{r qgis-raw-polygonized-layer, echo=FALSE, out.width="90%", fig.align="center", fig.cap="The vector layer generated by a raster to vector conversion."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/1fig_polygonize2.png")
+```
+
+The new vector layer has 2 features: the watershed boundary and a box around the watershed the same size of the DEM we used. To get rid of the outer shape, open the attribute table with a right-click on the vector layer and selecting *Open Attribute Table*. In the attribute table, elect the outer shape by clicking on the second row of the attribute table and toggle the edit mode by clicking on the pen icon (Figure \@ref(fig:qgis-attrib-table-toggle-edit)). 
+```{r qgis-attrib-table-toggle-edit, echo=FALSE, out.width="90%", fig.align="center", fig.cap="Select the outer shape to discard by clicking on the second row in the attribute table and toggle the edit mode by clicking on the pen icon. "}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/1fig_polygonize3.png")
+```
+
+Delete the outer shape by pressing the red bin icon in the attribute table (Figure \ref(fig:qgis-delete-selected-features)). 
+```{r qgis-delete-selected-features, echo=FALSE, out.width="90%", fig.align="center", fig.cap="Delete the selected outer shape."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/1fig_polygonize4.png")
+```
+
+Save the edits in the attribute table (see Figure \@ref(fig:qgis-save-edits-attribute-table) and press the pen icon again to un-toggle the edit mode. 
+```{r qgis-save-edits-attribute-table, echo=FALSE, out.width="90%", fig.align="center", fig.cap="Save your edits in the attribute table."}
+knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/1fig_polygonize5.png")
+```
+Close the attribute table window and save the boundary of your watershed and your QGIS project. 
+
+Back to [catchment delineation](#section-steps-derive-catchment-boundaries). 
 
 
 

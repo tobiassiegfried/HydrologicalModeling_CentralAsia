@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried and Beatrice Marti" />
 
 
-<meta name="date" content="2021-04-14" />
+<meta name="date" content="2021-04-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -318,8 +318,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quick-guides-load-dem"><i class="fa fa-check"></i>QGIS: Add raster layer</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guides-change-color-of-raster-layer"><i class="fa fa-check"></i>QGIS: Change color of raster layer</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-map-decorations"><i class="fa fa-check"></i>QGIS: Add map decorations</a></li>
+<li class="chapter" data-level="9.2.1" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quick-guides-verify-projection-reproject"><i class="fa fa-check"></i><b>9.2.1</b> QGIS: Verify projection of layer and re-project layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-save-temp-layer"><i class="fa fa-check"></i>QGIS: Save a temporary layer</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-vector-layer-to-qgis"><i class="fa fa-check"></i>QGIS: Add vector layer</a></li>
-<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer"><i class="fa fa-check"></i>Change color of a vector layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer"><i class="fa fa-check"></i>QGIS: Change color of a vector layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guides-fill-sinks"><i class="fa fa-check"></i>QGIS: Fill sinks</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-managing-panels"><i class="fa fa-check"></i>QGIS: Managing panels visibility in QGIS</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-upslope-area"><i class="fa fa-check"></i>QGIS: Calculate the area upslope of a point</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-polygonize"><i class="fa fa-check"></i>QGIS:</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-create-hbv-model"><i class="fa fa-check"></i>RSM: Create HBV model and edit parameters</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-climate-station"><i class="fa fa-check"></i>RSM: Add and link climate station</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-import-climate-data"><i class="fa fa-check"></i>RSM: Import climate data</a></li>
@@ -385,7 +391,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Open and save a new QGIS project (<a href="appendix-b-quick-guides.html#section-saving-a-new-qgis-project">How to for absolute beginners</a>).<br />
 </li>
-<li>Make sure that the maps projection is in UTM (<a href="appendix-b-quick-guides.html#section-change-project-projection-qgis">How to change the projection of a project</a>).<br />
+<li>Make sure that the projects projection is in UTM (<a href="appendix-b-quick-guides.html#section-change-project-projection-qgis">How to change the projection of a project</a>).<br />
 </li>
 <li>Check if the required plugins (qProf or profile tool) are installed (<a href="appendix-b-quick-guides.html#section-install-and-activate-plugins-in-QGIS3">How to install and activate a plugin</a>).
 <ul>
@@ -397,13 +403,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="section-geospatial-data-load-dem" class="section level3" number="5.2.3">
 <h3><span class="header-section-number">5.2.3</span> Load DEM</h3>
-<p>You will find a DEM raster layer in the ./learningFiles directory of your sample catchment ready to start. Load the DEM into your QGIS project and save the project <a href="appendix-b-quick-guides.html#section-quick-guides-load-dem">how to</a>. For the hydrological analysis, the DEM needs to be in UTM. Look up the projection of your DEM layer and reproject to UTM if necessary <a href="#section-quick-guides-verify-projection-reproject">how to</a>.</p>
+<p>You will find a DEM raster layer in the ./learningFiles directory of your sample catchment ready to start. Load the DEM into your QGIS project and save the project (<a href="appendix-b-quick-guides.html#section-quick-guides-load-dem">how to</a>). For the hydrological analysis, the DEM needs to be in UTM projection. Look up the projection of your DEM layer and re-project to UTM if necessary (<a href="appendix-b-quick-guides.html#section-quick-guides-verify-projection-reproject">how to</a>).</p>
 <p>The description of how to obtain the DEM is given here: We use the SRTM 1 arc-second global DEM (<a href="https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects">Data description</a>). The DEM tiles are downloaded directly in QGIS3 (SRTM plugin, <a href="appendix-b-quick-guides.html#section-srtm-plugin">How to</a>) or via the USGS Earth Explorer (<a href="appendix-b-quick-guides.html#section-earth-explorer-download-srtm">How to</a>) and merged to a single GIS layer (<a href="appendix-b-quick-guides.html#section-merge-srtm-tiles">How to</a>). In any case you will need to register for an Earth Explorer account <a href="appendix-b-quick-guides.html#section-register-with-earth-explorer">How to register</a>.<br />
 Typically, geospatial data from open sources is stored in the standard projection WGS84 (EPSG:4326). The WGS84 is in degrees, minutes and seconds but for hydrological analysis it is more convenient to have spatial layers in the UTM projection. Look up in which UTM Zone your catchmen lies and re-project to that Zone. For the example of the Chirchiq basin, the UTM zone is 42N, i.e. EPSG:32642.</p>
 </div>
 <div id="section-steps-derive-catchment-boundaries" class="section level3" number="5.2.4">
 <h3><span class="header-section-number">5.2.4</span> Catchment delineation</h3>
-<p>If you already have a shapefile for the boundaries of your catchment. Load it into QGIS <a href="appendix-b-quick-guides.html#section-add-vector-layer-to-qgis">How to add a vector layer</a>. Otherwise, follow this <a href="https://www.youtube.com/watch?v=xwiHQlmEEjw">tutorial on youtube</a> to derive the boundaries of your catchment.</p>
+<p>For this workshop, shapefiles for the sample watersheds you will model are already available in the shared dropbox folder with the <a href="https://www.dropbox.com/sh/hz5fcot6yvi6tff/AACrjSIQGFsbYEfeI-A05lZra?dl=0">data for case studies</a> which you should have already downloaded. Load the shape file of your sample catchment into QGIS <a href="appendix-b-quick-guides.html#section-add-vector-layer-to-qgis">How to add a vector layer</a>.<br />
+In case you’d like to learn how to delineate your own watershed, follow the tutorial below. The steps are also described in this <a href="https://www.youtube.com/watch?v=xwiHQlmEEjw">tutorial on youtube</a></p>
+<div id="projection-of-dem" class="section level4" number="5.2.4.1">
+<h4><span class="header-section-number">5.2.4.1</span> Projection of DEM</h4>
+<p>Verify that the DEM is in UTM coordinates and re-project it if necessary(<a href="appendix-b-quick-guides.html#section-quick-guides-verify-projection-reproject">how to</a>).</p>
+</div>
+<div id="section-why-fill-sinks-dem" class="section level4" number="5.2.4.2">
+<h4><span class="header-section-number">5.2.4.2</span> Fill the sinks of the DEM</h4>
+<p>To derive the the catchment area upstream of a discharge gauge, the DEM is traced upstream until elevation values do not increase any more, i.e. until the boundary of the watershed is reached. The SRTM DEM contains the rounded average elevation in each cell of about 25-30m resoluition. Due to the averaging and rounding it may happen, that in a SRTM DEM, an upstream river cell contains lower elevations than the downstream river cell. If the catchment delineation algorithm reaches such a situation, it stops, thinking it has reached the boundary of the watershed. To avoid this, cells that form local depressions should be filled to form a river bed which is continuously increasing in elevation until it reaches the watershed boundary. The SAGA algorithm to do this is called <em>Fill sinks</em>.<br />
+Fill the sinks of your DEM and store the processed raster file (<a href="appendix-b-quick-guides.html#appendix-quick-guides-fill-sinks">how to in detail</a>).</p>
+</div>
+<div id="upslope-area" class="section level4" number="5.2.4.3">
+<h4><span class="header-section-number">5.2.4.3</span> Upslope area</h4>
+<p>Determine the area up-slope of your river discharge gauge by running the algorithm <em>Upslope Area</em> in QGIS (<a href="appendix-b-quick-guides.html#appendix-quick-guide-upslope-area">detailed instructions</a>). The UTM coordinates of the Nauvalisoy discharge gauge are given in the <em>riversCentralAsia</em> package:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="Data-GeospatialData.html#cb74-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">filter</span>(ChirchikRiverBasin, river<span class="sc">==</span><span class="st">&quot;Nauvalisoy&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb74-2"><a href="Data-GeospatialData.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="st">`</span><span class="at">Station code</span><span class="st">`</span> <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">first</span>(code), </span>
+<span id="cb74-3"><a href="Data-GeospatialData.html#cb74-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">Station name</span><span class="st">`</span> <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">first</span>(station), </span>
+<span id="cb74-4"><a href="Data-GeospatialData.html#cb74-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">River name</span><span class="st">`</span> <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">first</span>(river), </span>
+<span id="cb74-5"><a href="Data-GeospatialData.html#cb74-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Longitude =</span> dplyr<span class="sc">::</span><span class="fu">first</span>(lon_UTM42), </span>
+<span id="cb74-6"><a href="Data-GeospatialData.html#cb74-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Latitude =</span> dplyr<span class="sc">::</span><span class="fu">first</span>(lat_UTM42))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 5
+##   `Station code` `Station name` `River name` Longitude Latitude
+##   &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+## 1 16298          Sidzhak        Nauvalisoy      589674  4618690</code></pre>
+<p>The <em>Upslope Area</em> function will return a raster file of your catchment area. Convert it to a polygon and save the resulting shape (<a href="appendix-b-quick-guides.html#appendix-quick-guide-polygonize">how to convert raster to polygon</a>).</p>
+</div>
 </div>
 <div id="run-through-the-process-model" class="section level3" number="5.2.5">
 <h3><span class="header-section-number">5.2.5</span> Run through the process model</h3>

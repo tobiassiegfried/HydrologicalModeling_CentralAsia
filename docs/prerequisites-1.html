@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried and Beatrice Marti" />
 
 
-<meta name="date" content="2021-04-14" />
+<meta name="date" content="2021-04-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -318,8 +318,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quick-guides-load-dem"><i class="fa fa-check"></i>QGIS: Add raster layer</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guides-change-color-of-raster-layer"><i class="fa fa-check"></i>QGIS: Change color of raster layer</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-map-decorations"><i class="fa fa-check"></i>QGIS: Add map decorations</a></li>
+<li class="chapter" data-level="9.2.1" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quick-guides-verify-projection-reproject"><i class="fa fa-check"></i><b>9.2.1</b> QGIS: Verify projection of layer and re-project layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-save-temp-layer"><i class="fa fa-check"></i>QGIS: Save a temporary layer</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-vector-layer-to-qgis"><i class="fa fa-check"></i>QGIS: Add vector layer</a></li>
-<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer"><i class="fa fa-check"></i>Change color of a vector layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer"><i class="fa fa-check"></i>QGIS: Change color of a vector layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guides-fill-sinks"><i class="fa fa-check"></i>QGIS: Fill sinks</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-managing-panels"><i class="fa fa-check"></i>QGIS: Managing panels visibility in QGIS</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-upslope-area"><i class="fa fa-check"></i>QGIS: Calculate the area upslope of a point</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-polygonize"><i class="fa fa-check"></i>QGIS:</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-create-hbv-model"><i class="fa fa-check"></i>RSM: Create HBV model and edit parameters</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-climate-station"><i class="fa fa-check"></i>RSM: Add and link climate station</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-import-climate-data"><i class="fa fa-check"></i>RSM: Import climate data</a></li>
@@ -366,24 +372,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Prerequisites</h2>
 <p>This is the first ‘practical’ Chapter of the book and comes with software requirements. For the analysis of the available data we use R <span class="citation">(<a href="References.html#ref-R-2013" role="doc-biblioref">R Core Team 2013</a>)</span>. R is a computer language and environment for data analysis, statistical computation and data visualization. It can be downloaded at &lt;<a href="https://www.r-project.org" class="uri">https://www.r-project.org</a>&gt;. Together with R, we are using RStudio as the IDE <span class="citation">(<a href="References.html#ref-RStudio-2020" role="doc-biblioref">Team’ 2020</a>)</span>.</p>
 <p>Some core R software packages used in this Chapter need to be installed so that the analyses can be done as shown there. The installation can be done in the following way:</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="prerequisites-1.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Core Libraries</span></span>
-<span id="cb121-2"><a href="prerequisites-1.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>)    <span class="co"># Meta - dplyr, ggplot2, purrr, tidyr, stringr, forcats</span></span>
-<span id="cb121-3"><a href="prerequisites-1.html#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;lubridate&#39;</span>)    <span class="co"># date and time</span></span>
-<span id="cb121-4"><a href="prerequisites-1.html#cb121-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;timetk&#39;</span>)       <span class="co"># Time series data wrangling, visualization and preprocessing</span></span>
-<span id="cb121-5"><a href="prerequisites-1.html#cb121-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb121-6"><a href="prerequisites-1.html#cb121-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Extras</span></span>
-<span id="cb121-7"><a href="prerequisites-1.html#cb121-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(devtools)) <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>, <span class="at">repos =</span> <span class="st">&quot;http://cran.us.r-project.org&quot;</span>)</span>
-<span id="cb121-8"><a href="prerequisites-1.html#cb121-8" aria-hidden="true" tabindex="-1"></a><span class="co"># install_github(&quot;boxuancui/DataExplorer&quot;, ref=&quot;develop&quot;) # Simplifies and automates EDA process and reporting</span></span>
-<span id="cb121-9"><a href="prerequisites-1.html#cb121-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb121-10"><a href="prerequisites-1.html#cb121-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Data and helper functions</span></span>
-<span id="cb121-11"><a href="prerequisites-1.html#cb121-11" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;hydrosolutions/riversCentralAsia&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="prerequisites-1.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Core Libraries</span></span>
+<span id="cb123-2"><a href="prerequisites-1.html#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>)    <span class="co"># Meta - dplyr, ggplot2, purrr, tidyr, stringr, forcats</span></span>
+<span id="cb123-3"><a href="prerequisites-1.html#cb123-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;lubridate&#39;</span>)    <span class="co"># date and time</span></span>
+<span id="cb123-4"><a href="prerequisites-1.html#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;timetk&#39;</span>)       <span class="co"># Time series data wrangling, visualization and preprocessing</span></span>
+<span id="cb123-5"><a href="prerequisites-1.html#cb123-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-6"><a href="prerequisites-1.html#cb123-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Extras</span></span>
+<span id="cb123-7"><a href="prerequisites-1.html#cb123-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(devtools)) <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>, <span class="at">repos =</span> <span class="st">&quot;http://cran.us.r-project.org&quot;</span>)</span>
+<span id="cb123-8"><a href="prerequisites-1.html#cb123-8" aria-hidden="true" tabindex="-1"></a><span class="co"># install_github(&quot;boxuancui/DataExplorer&quot;, ref=&quot;develop&quot;) # Simplifies and automates EDA process and reporting</span></span>
+<span id="cb123-9"><a href="prerequisites-1.html#cb123-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-10"><a href="prerequisites-1.html#cb123-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Data and helper functions</span></span>
+<span id="cb123-11"><a href="prerequisites-1.html#cb123-11" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;hydrosolutions/riversCentralAsia&quot;</span>)</span></code></pre></div>
 <p>The packages can then be loaded and made available in your R session.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="prerequisites-1.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
-<span id="cb122-2"><a href="prerequisites-1.html#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb122-3"><a href="prerequisites-1.html#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb122-4"><a href="prerequisites-1.html#cb122-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(timetk)</span>
-<span id="cb122-5"><a href="prerequisites-1.html#cb122-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DataExplorer)</span>
-<span id="cb122-6"><a href="prerequisites-1.html#cb122-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(riversCentralAsia)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="prerequisites-1.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb124-2"><a href="prerequisites-1.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb124-3"><a href="prerequisites-1.html#cb124-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb124-4"><a href="prerequisites-1.html#cb124-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(timetk)</span>
+<span id="cb124-5"><a href="prerequisites-1.html#cb124-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DataExplorer)</span>
+<span id="cb124-6"><a href="prerequisites-1.html#cb124-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(riversCentralAsia)</span></code></pre></div>
 <p>When other, additional packages are needed, they will be loaded in the corresponding Sections below.</p>
 <p>Please also remember the following rules when working with R dataframes in the tidyverse:</p>
 <ul>

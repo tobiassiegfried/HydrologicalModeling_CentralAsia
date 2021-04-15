@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried and Beatrice Marti" />
 
 
-<meta name="date" content="2021-04-14" />
+<meta name="date" content="2021-04-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -318,8 +318,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quick-guides-load-dem"><i class="fa fa-check"></i>QGIS: Add raster layer</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guides-change-color-of-raster-layer"><i class="fa fa-check"></i>QGIS: Change color of raster layer</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-map-decorations"><i class="fa fa-check"></i>QGIS: Add map decorations</a></li>
+<li class="chapter" data-level="9.2.1" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quick-guides-verify-projection-reproject"><i class="fa fa-check"></i><b>9.2.1</b> QGIS: Verify projection of layer and re-project layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-save-temp-layer"><i class="fa fa-check"></i>QGIS: Save a temporary layer</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-vector-layer-to-qgis"><i class="fa fa-check"></i>QGIS: Add vector layer</a></li>
-<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer"><i class="fa fa-check"></i>Change color of a vector layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer"><i class="fa fa-check"></i>QGIS: Change color of a vector layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guides-fill-sinks"><i class="fa fa-check"></i>QGIS: Fill sinks</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-managing-panels"><i class="fa fa-check"></i>QGIS: Managing panels visibility in QGIS</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-upslope-area"><i class="fa fa-check"></i>QGIS: Calculate the area upslope of a point</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-polygonize"><i class="fa fa-check"></i>QGIS:</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-create-hbv-model"><i class="fa fa-check"></i>RSM: Create HBV model and edit parameters</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-climate-station"><i class="fa fa-check"></i>RSM: Add and link climate station</a></li>
 <li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-import-climate-data"><i class="fa fa-check"></i>RSM: Import climate data</a></li>
@@ -419,7 +425,7 @@ A couple of notes on measurement accuracy:</p>
 <div class="figure" style="text-align: center"><span id="fig:fig-solution1-example-setup"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig_experimentalSetup.jpg" alt="Example for material needed and example setup to perform the linear reservoir experiment. Add a minion with a stop watch or a smart phone to help you logging the discharge from the bucket. " width="90%" />
 <p class="caption">
-Figure 9.52: Example for material needed and example setup to perform the linear reservoir experiment. Add a minion with a stop watch or a smart phone to help you logging the discharge from the bucket.
+Figure 9.60: Example for material needed and example setup to perform the linear reservoir experiment. Add a minion with a stop watch or a smart phone to help you logging the discharge from the bucket.
 </p>
 </div>
 </div>
@@ -463,11 +469,11 @@ Reasons for the discrepancy can be the shape of the linear reservoir, non-linear
 <div id="section-appendix-solutions-plot-temperature-and-precipitation-1984" class="section level4" number="9.4.2.3">
 <h4><span class="header-section-number">9.4.2.3</span> Exercise: Data visualization in RS Minerve</h4>
 Simulate from the 01/01/1981 01:00:00 to 31/12/1983 23:00:00, then choose data from 31/12/1983 23:00:00 as the initial conditions and run the model from 01/01/1984 01:00:00 to 31/12/1984 23:00:00. Choose hourly output for the simulation results.<br />
-Open the Selection and plots tab by clicking on the Selection and plots button in the Modules toolbar and select simulated P and T from the Nauvalisoy station (Figure <a href="sectin-appendix-solutions.html#fig:fig-pt-nauvailsoy">9.53</a>).
+Open the Selection and plots tab by clicking on the Selection and plots button in the Modules toolbar and select simulated P and T from the Nauvalisoy station (Figure <a href="sectin-appendix-solutions.html#fig:fig-pt-nauvailsoy">9.61</a>).
 <div class="figure" style="text-align: center"><span id="fig:fig-pt-nauvailsoy"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig116_plotPThourly.png" alt="Hourly precipitation and temperature at the virtual Nauvalisoy weather station." width="95%" />
 <p class="caption">
-Figure 9.53: Hourly precipitation and temperature at the virtual Nauvalisoy weather station.
+Figure 9.61: Hourly precipitation and temperature at the virtual Nauvalisoy weather station.
 </p>
 </div>
 <p>Note: If you want to repeat a simulation with specific initial conditions, you can store them through Export IC in the Model Properties toolbar.</p>
@@ -476,12 +482,12 @@ Figure 9.53: Hourly precipitation and temperature at the virtual Nauvalisoy weat
 </div>
 <div id="section-appendix-solutions-compare-evaporation-methods" class="section level4" number="9.4.2.4">
 <h4><span class="header-section-number">9.4.2.4</span> Exercise: Compare evaporation methods</h4>
-Figure <a href="sectin-appendix-solutions.html#fig:fig-evaporation-discharge">9.54</a> shows the evaporation computed with various methods and the resulting discharge. Uniform evaporation should not be used for sub-annual modeling time steps. The difference between the methods by Turc, McGuinness and Oudin are within 5% of total discharge which is negligible for a regional model.<br />
+Figure <a href="sectin-appendix-solutions.html#fig:fig-evaporation-discharge">9.62</a> shows the evaporation computed with various methods and the resulting discharge. Uniform evaporation should not be used for sub-annual modeling time steps. The difference between the methods by Turc, McGuinness and Oudin are within 5% of total discharge which is negligible for a regional model.<br />
 
 <div class="figure" style="text-align: center"><span id="fig:fig-evaporation-discharge"></span>
 <img src="_bookdown_files/FIG_Appendix_QuickGuides/fig119_evaporationDischarge1984.png" alt="Hourly precipitation and temperature at the virtual Nauvalisoy weather station." width="95%" />
 <p class="caption">
-Figure 9.54: Hourly precipitation and temperature at the virtual Nauvalisoy weather station.
+Figure 9.62: Hourly precipitation and temperature at the virtual Nauvalisoy weather station.
 </p>
 </div>
 <p>For advanced modeling, the choice of the evaporation model may be relevant but only if a validation with measured data is possible.<br />
