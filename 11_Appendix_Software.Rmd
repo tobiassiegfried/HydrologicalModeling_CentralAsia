@@ -312,11 +312,6 @@ When the algorithm is done it will load the new layer into your QGIS project. Cl
 Back to [catchment delineation](#section-steps-derive-catchment-boundaries). 
 
 
-### QGIS: Managing panels visibility in QGIS {#section-managing-panels .unnumbered}
-
-Should one of the panels described here not be visible in your QGIS window navigate to *View* in your header toolbar and move to Panels. The visible panels are marked with a tick. Click on a panel name in the list to activate or deactivate it.
-
-
 ### QGIS: Calculate the area upslope of a point {#appendix-quick-guide-upslope-area .unnumbered}
 Search for the SAGA algorithm *Upslope Area* in the *Processing Toolbox* panel and open the function window with a double click on the name. Enter the Longitude of your discharge station for the Target X coordinate and the Latitude for the Target Y coordinate. For the Elevation select the sink-filled DEM ([how to fill sinks in a DEM](#appendix-quick-guides-fill-sinks), [why we need to fill in sinks](#section-why-fill-sinks-dem)). All GIS layers and the coordinates of the discharge gauge need to be in the same UTM projection. Choose a method in the drop-down menue in the *Method* section and optionally specify a location for the output file. For the example of the Nauvalisoy basin, the *Upslope Area* window filled in correctly is shown in Figure \@ref(fig:qgis-upslope-area-window). 
 ```{r qgis-upslope-area-window, echo=FALSE, out.width="50%", fig.align="center", fig.cap="The *Upslope Area* window for the determination of the catchment area of the Nauvalisoy river basin."}
@@ -355,6 +350,139 @@ knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/1fig_polygoniz
 Close the attribute table window and save the boundary of your watershed and your QGIS project. 
 
 Back to [catchment delineation](#section-steps-derive-catchment-boundaries). 
+
+
+### QGIS: Edit Junctions layer {#appendix-section-graphical-edit-junctions .unnumbered}
+
+Select the Junctions layer and toggle manual editing by clicking on the yellow pen (\@ref(fig:qgis-edit-junctions-1)).
+
+```{r qgis-edit-junctions-1, echo=FALSE, out.width="90%", fig.align="center", fig.cap="Manually edit the layer with the river junctions, step 1: Toggle layer editing."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig026_ManualEditJunctions1.png")
+```
+
+When in editing mode, the yellow pen will appear in the *Layers* window next to the name of the layer being edited. The edit mode will also activate a button for adding points (i.e. junctions, we don't need that now) and the vertex tool. Click on the vertex tool icon. It is active when a a boundary appears around the icon and the Vertex Editor windows opens (\@ref(fig:qgis-edit-junctions-2)).
+
+```{r qgis-edit-junctions-2, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Manually edit the layer with the river junctions, step 2: Activate the vertex tool."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig027_ManualEditJunctions2.png")
+```
+
+Right-click on a junction point you would like to delete to activate it (\@ref(fig:qgis-edit-junctions-3)).
+
+```{r qgis-edit-junctions-3, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Manually edit the layer with the river junctions, step 3: Activate a junction node for editing."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig028_ManualEditJunctions3.png")
+```
+
+Select the activated point by drawing a rectangle over the point with your mouse. The point will appear blue (\@ref(fig:qgis-edit-junctions-4)).
+
+```{r qgis-edit-junctions-4, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Manually edit the layer with the river junctions, step 3: Select the activated junction node."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig029_ManualEditJunctions4.png")
+```
+
+Delete the point with the delete key on your keyboard. You can save your edits by pressing the blue-white Save Layer Edits button that is decorated with an orange pen (\@ref(fig:qgis-edit-junctions-5)). This saves your changes without exiting the edit mode.
+
+```{r qgis-edit-junctions-5, echo=FALSE, out.width="20%", fig.align="center", fig.cap="Manually edit the layer with the river junctions, step 3: Save edits."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig030_ManualEditJunctions5.png")
+```
+
+If you have many points to remove, as in our case, it may be faster to identify the IDs of the features you want to keep, select these and delete all others. To start, you activate the *Identify Features* mode by clicking on the icon with the white *i* on the blue circle (\@ref(fig:qgis-edit-junctions-fast-1)).
+
+```{r qgis-edit-junctions-fast-1, echo=FALSE, out.width="20%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 1."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig031_ManualEditJunctionsFast1.png")
+```
+
+A black *i* will appear next to your cursor. You then click on the first of your nodes that you want to keep. This will highlight it in red and a list with information on the selected feature appears on the right in the Identify Results window. You will see the attribute NODE_ID with value 1 for the outflow node (\@ref(fig:qgis-edit-junctions-fast-2)). Note down the ID of the feature.
+
+```{r qgis-edit-junctions-fast-2, echo=FALSE, out.width="100%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 2."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig032_ManualEditJunctionsFast2.png")
+```
+
+You then press on the node at the confluence of the two tributaries in the center of the catchment. The Identify Results window shows 2 results, that means, that two junction nodes are close to each other (\@ref(fig:qgis-edit-junctions-fast-3)).
+
+```{r qgis-edit-junctions-fast-3, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 3."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig033_ManualEditJunctionsFast3.png")
+```
+
+Zoom in in your map window with your mouse to see the two nodes (\@ref(fig:qgis-edit-junctions-fast-4)).
+
+```{r qgis-edit-junctions-fast-4, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 4."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig034_ManualEditJunctionsFast4.png")
+```
+
+Select the node that should be kept and not the ID of the node (NODE_ID 11), (\@ref(fig:qgis-edit-junctions-fast-5)).
+
+```{r qgis-edit-junctions-fast-5, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 5."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig035_ManualEditJunctionsFast5.png")
+```
+
+Zoom back to the entire Junctions layer (see \@ref(fig:qgis-zoom-to-layer)). and go to Select Features by Values... in the toolbar (\@ref(fig:qgis-edit-junctions-fast-6)).
+
+```{r qgis-edit-junctions-fast-6, echo=FALSE, out.width="40%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 1"}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig036_ManualEditJunctionsFast6.png")
+```
+
+Add NODE_ID 1 to your selection as demonstrated in (\@ref(fig:qgis-edit-junctions-fast-7)).
+
+```{r qgis-edit-junctions-fast-7, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 2"}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig037_ManualEditJunctionsFast7.png")
+```
+
+The outflow node with ID 1 will change color in your map (\@ref(fig:qgis-edit-junctions-fast-8)).
+
+```{r qgis-edit-junctions-fast-8, echo=FALSE, out.width="20%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 3"}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig038_ManualEditJunctionsFast8.png")
+```
+
+Add node 11 to your selection in the same way and close the Select Node by Value window. Invert the feature selection as shown in (\@ref(fig:qgis-edit-junctions-fast-9)).
+
+```{r qgis-edit-junctions-fast-9, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 4"}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig039_ManualEditJunctionsFast9.png")
+```
+
+All other nodes will now be yellow and the ones to keep will appear in the layer color (\@ref(fig:qgis-edit-junctions-fast-10)).
+
+```{r qgis-edit-junctions-fast-10, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 5"}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig040_ManualEditJunctionsFast10.png")
+```
+
+Delete the features (nodes) by pressing the Delete Selected button in the edit features toolbar (\@ref(fig:qgis-edit-junctions-fast-11)).
+
+```{r qgis-edit-junctions-fast-11, echo=FALSE, out.width="40%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 6"}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig041_ManualEditJunctionsFast11.png")
+```
+
+Save your edits (\@ref(fig:qgis-edit-junctions-5)). To verify that, indeed, all superfluous nodes are deleted from the Junctions file, open the Attribute table (\@ref(fig:qgis-edit-junctions-at-1)).
+
+```{r qgis-edit-junctions-at-1, echo=FALSE, out.width="5%", fig.align="center", fig.cap="Edit Attribute table. Step 1: Open the attribute table with a click on the Attribute Table icon in the QGIS toolbar."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig042_EditJunctionsAttributeTable1.png")
+```
+
+Only 2 features should be listed under each attribute. We will now edit the attribute table to prepare it for the RS Minerve model (see \@ref(fig:layers-minerve)). RS Minerve needs an identifyer to differentiate between the junctions. We can use the attribute *TYPE* to uniquely identify the two junctions needed. RS Minerve further needs the ID of the downstream river. Add a collumn to the attribute table by pressing the Add Field button (\@ref(fig:qgis-edit-junctions-at-2)).
+
+```{r qgis-edit-junctions-at-2, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Edit Attribute table. Step 2: Add a column to the attribute table manually, part 1."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig043_EditJunctionsAttributeTable2.png")
+```
+
+Define a name for the attribute, a type and admissible length of each entry in the Add Field window. In our case, we choose a string (a word) as ID and allow it to be 20 characters long (\@ref(fig:qgis-edit-junctions-at-3)).
+
+```{r qgis-edit-junctions-at-3, echo=FALSE, out.width="30%", fig.align="center", fig.cap="Edit Attribute table. Step 2: Add a column to the attribute table manually, part 2."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig044_EditJunctionsAttributeTable3.png")
+```
+
+Close the window by pressing OK. By clicking in the newly created NULL fields, you can now type names for the downstream rivers and save your edits by pressing the save edits icon (3rd from the left in the toolbar of the attribute table window). As the outlet of the catchment goes directly into Charvak reservoir, we can type Charvak as the downstream river ID. The river stretch between junction and outlet is called Pskem (\@ref(fig:qgis-edit-junctions-at-4)).
+
+```{r qgis-edit-junctions-at-4, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Edit Attribute table. Step 2: Add a column to the attribute table manually, part 3."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig045_EditJunctionsAttributeTable4.png")
+```
+
+We are done editing the Junctions layer. Deactivate the edit mode by clickig on the yellow pen in the attribute table window (\@ref(fig:qgis-edit-junctions-at-5)) and close the window.
+
+```{r qgis-edit-junctions-at-5, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Save your edits."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/fig046_EditJunctionsAttributeTable5.png")
+```
+
+Now save the Junctions layer in an appropriate place on your drive and save your project.  
+
+In the same way you can also edit the river channels layer. 
 
 
 
