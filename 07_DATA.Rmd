@@ -40,7 +40,7 @@ In this Chapter, we will discuss how to retrieve, prepare and process the data t
 
 As will become clear, the preparation of these data requires a substantial amount of work, local storage space and, in some instances, computational power. With a focus on the generation of input files for hydrological-hydraulic modeling with RS Minerve, the flow diagram Figure \@ref(fig:ClimateImpactModelChain) shows the required steps for the individual data types. These steps will be discussed in the individual Sections below in detail.
 
-```{r ClimateImpactModelChain, echo = FALSE}
+```{r ClimateImpactModelChain, echo = FALSE, fig.cap="Illustration of the data preparation and modeling steps required to study climate change impact on Central Asian river catchments."}
 knitr::include_graphics('_bookdown_files/FIG_DATA/ModelChain_ClimateImpactStudy.png')
 ```
 
@@ -375,22 +375,77 @@ data_long_tbl %>%
 
 A consistent data record from 1933 until and including November 2015 is now prepared\^Please note that by using `left_join` above, we have cut off discharge data from the year 1932 since we do not have meteorological data there.\^. Let us analyze these data now.
 
+
+
+
+
+
 ## Geospatial Data {#Data::GeospatialData}
 
-This Section follows the steps shown in Figure \@ref(fig:ClimateImpactModelChain) and explains in a hands-on manner how to arrive at and process the required geospatial data for later inclusion in the hydrological-hydraulic model RS MINVERVE. Links to detailed descriptions of the individual tasks allow even beginners of QGIS to follow the procedure.
+This Section follows the steps shown in Figure \@ref(fig:ClimateImpactModelChain) and explains in a hands-on manner how to arrive at and process the required geospatial data for later inclusion in the hydrological-hydraulic model RS Minerve Links to detailed descriptions of the individual tasks allow even beginners of QGIS to follow the procedure. The requirements for GIS layers for import in RS Minerve are summarized in Figure \@ref(fig:requiredGISInputFilesData).  
+```{r requiredGISInputFilesData,echo = FALSE, fig.cap = 'Required GIS input files for RS Minerve. See corresponding user manual for more information.'}
+knitr::include_graphics('_bookdown_files/FIG_RS_MINERVE/required_GIS_Input_Files.png')
+```
+RS Minerve connects the sub-basins to junctions. River stretches run from upstream junction to downstream junction. The names of the junctions need to be consistent throughout the GIS layers.   
+In this chapter we will demonstrate how to derive the GIS layers for the Nauvalisoy river catchment. The Nauvalisoy is a small tributary to the Chirchiq river (see Figure \@ref(fig:ChirchikRiverOverview) in the case studies). It does not include channel routing. 
+
+```{r, eval = "html", label="gis-prep", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "exercise" <div class = "exercise" id="ex5.1"> 
+<h3 class = "right">Ex5.1</h3> 
+<h3 class= "left">Prepare GIS layers</h3> 
+<p>Go through the steps in this Chapter to generate yourselves the GIS layers of your sample catchment for import into RS Minerve.</p> 
+</div>')
+```
+
+### Prerequisites
+* QGIS must be installed ([QGIS installation guide](#appendix-sofware-qgis-installation-guide)).    
+* Coordinates of a discharge gauge in your sample catchment are available in the *learningFiles* directory.   
+* A digital elevation model (DEM) for your sample catchment is available in the *learningFiles* directory. A description of how to obtain a free SRTM DEM is given below.  
+
 
 ### Setting up QGIS {#section-geospatial-data-steps-setting-up}
 
-Open and save a new QGIS project ([How to for absolute beginners](#section-saving-a-new-qgis-project)). Make sure that the maps projection is in UTM ([How to change the projection of a project](#section-change-project-projection-qgis)). The needed plugins are: qProf or profile tool ([How to install and activate a plugin](#section-install-and-activate-plugins-in-QGIS3)). The optional plugins are: SRTM plugin (requires a login to USGS Earth Explorer [How to register](#section-register-with-earth-explorer)). Note, SAGA routines must be installed and correctly configured in QGIS (which is typically the case for default installations of long-term support versions of QGIS).
+* Open and save a new QGIS project ([How to for absolute beginners](#section-saving-a-new-qgis-project)).   
+* Make sure that the projects projection is in UTM ([How to change the projection of a project](#section-change-project-projection-qgis)).   
+* Check if the required plugins (qProf or profile tool) are installed ([How to install and activate a plugin](#section-install-and-activate-plugins-in-QGIS3)).   
+   + The optional plugins are: SRTM plugin (requires a login to USGS Earth Explorer [How to register](#section-register-with-earth-explorer)).    
+* Note that SAGA GIS and GRASS GIS must be installed and correctly configured in QGIS (which is typically the case for default installations of long-term support versions of QGIS).
+
 
 ### Load DEM {#section-geospatial-data-load-dem}
 
-We use the SRTM 1 arc-second global DEM ([Data description](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects)). The DEM tiles are downloaded directly in QGIS3 (SRTM plugin, [How to](#section-srtm-plugin)) or via the USGS Earth Explorer ([How to](#section-earth-explorer-download-srtm)) and merged to a single GIS layer ([How to](#section-merge-srtm-tiles)). In any case you will need to register for an Earth Explorer account [How to register](#section-register-with-earth-explorer).  
+You will find a DEM raster layer in the ./learningFiles directory of your sample catchment ready to start. Load the DEM into your QGIS project and save the project ([how to](#section-quick-guides-load-dem)). For the hydrological analysis, the DEM needs to be in UTM projection. Look up the projection of your DEM layer and re-project to UTM if necessary ([how to](#section-quick-guides-verify-projection-reproject)).    
+
+The description of how to obtain the DEM is given here: We use the SRTM 1 arc-second global DEM ([Data description](https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects)). The DEM tiles are downloaded directly in QGIS3 (SRTM plugin, [How to](#section-srtm-plugin)) or via the USGS Earth Explorer ([How to](#section-earth-explorer-download-srtm)) and merged to a single GIS layer ([How to](#section-merge-srtm-tiles)). In any case you will need to register for an Earth Explorer account [How to register](#section-register-with-earth-explorer).  
 Typically, geospatial data from open sources is stored in the standard projection WGS84 (EPSG:4326). The WGS84 is in degrees, minutes and seconds but for hydrological analysis it is more convenient to have spatial layers in the UTM projection. Look up in which UTM Zone your catchmen lies and re-project to that Zone. For the example of the Chirchiq basin, the UTM zone is 42N, i.e. EPSG:32642.    
 
-### Derive the boundaries of your catchment {#section-steps-derive-catchment-boundaries}
 
-If you already have a shapefile for the boundaries of your catchment. Load it into QGIS [How to add a vector layer](#section-add-vector-layer-to-qgis). Otherwise, follow this [tutorial on youtube](https://www.youtube.com/watch?v=xwiHQlmEEjw) to derive the boundaries of your catchment.
+### Catchment delineation {#section-steps-derive-catchment-boundaries}
+For this workshop, shapefiles for the sample watersheds you will model are already available in the shared dropbox folder with the [data for case studies](https://www.dropbox.com/sh/hz5fcot6yvi6tff/AACrjSIQGFsbYEfeI-A05lZra?dl=0) which you should have already downloaded. Load the shape file of your sample catchment into QGIS ([how to add a vector layer](#section-add-vector-layer-to-qgis)).   
+In case you'd like to learn how to delineate your own watershed, follow the tutorial below. The steps are also described in this [tutorial on youtube](https://www.youtube.com/watch?v=xwiHQlmEEjw) 
+
+#### Projection of DEM {.unnumbered}
+Verify that the DEM is in UTM coordinates and re-project it if necessary ([how to](#section-quick-guides-verify-projection-reproject)).   
+
+#### Fill the sinks of the DEM {#section-why-fill-sinks-dem .unnumbered}
+To derive the the catchment area upstream of a discharge gauge, the DEM is traced upstream until elevation values do not increase any more, i.e. until the boundary of the watershed is reached. The SRTM DEM contains the rounded average elevation in each cell of about 25-30m resoluition. Due to the averaging and rounding it may happen, that in a SRTM DEM, an upstream river cell contains lower elevations than the downstream river cell. If the catchment delineation algorithm reaches such a situation, it stops, thinking it has reached the boundary of the watershed. To avoid this, cells that form local depressions should be filled to form a river bed which is continuously increasing in elevation until it reaches the watershed boundary. The SAGA algorithm to do this is called *Fill sinks*.   
+Fill the sinks of your DEM and store the processed raster file ([how to in detail](#appendix-quick-guides-fill-sinks)). 
+
+#### Upslope area {.unnumbered}
+Determine the area up-slope of your river discharge gauge by running the algorithm *Upslope Area* in QGIS ([detailed instructions](#appendix-quick-guide-upslope-area)). The UTM coordinates of the Nauvalisoy discharge gauge are given in the *riversCentralAsia* package: 
+```{r}
+dplyr::filter(ChirchikRiverBasin, river=="Nauvalisoy") %>% 
+  dplyr::summarize(`Station code` = dplyr::first(code), 
+                   `Station name` = dplyr::first(station), 
+                   `River name` = dplyr::first(river), 
+                   Longitude = dplyr::first(lon_UTM42), 
+                   Latitude = dplyr::first(lat_UTM42))
+```
+
+The *Upslope Area* function will return a raster file of your catchment area. Convert it to a polygon and save the resulting shape ([how to convert raster to polygon](#appendix-quick-guide-polygonize)).   
+
+Now you have a DEM and a watershed boundary ready. The steps to generate the GIS layers for import in RS Minerve are numerous. We have generated the input files for the sample catchments for you. In case you wish to reproduce the steps you can follow the description below. 
 
 
 ### Run through the process model
@@ -403,176 +458,110 @@ knitr::include_graphics("_bookdown_files/FIG_DATA/fig500_GraphicalModelDesigner.
 
 Prior to running the model, read through the following brief notes.
 
-#### Input files
+#### Input files {.unnumbered}
 
- * A shape file of the basin outline in UTM 42 N ([How to derive the basin outline](#section-steps-derive-catchment-boundaries)).  
- * The extent of the DEM needs to be larger than the boundaries of your catchment. You can use your raw SRTM DEM projected to UTM42N.  
+ * A shape file of the basin outline in UTM 42 N. A shape file is provided in the [Case Study Packs folder on Dropbox](https://www.dropbox.com/sh/hz5fcot6yvi6tff/AACrjSIQGFsbYEfeI-A05lZra?dl=0) that you should have already downloaded. [Here](#section-steps-derive-catchment-boundaries) is a description of how to derive the basin outline if you need to do so for a future project.    
+ * The extent of the DEM needs to be larger than the boundaries of your catchment. You can use the raw SRTM DEM projected to UTM42N that is provided in the [Case Study Packs folder on Dropbox](https://www.dropbox.com/sh/hz5fcot6yvi6tff/AACrjSIQGFsbYEfeI-A05lZra?dl=0). If you want to download the DEM yourself you find a description of how to do so [here](#section-geospatial-data-load-dem).   
 
-#### Model output
+#### Model output {.unnumbered}
 
-Besides the 3 layers required for RS minerve (Basins, rivers, junctions, \@ref(fig:layers-minerve) in the Introduction), the model produces a number of additional output files which can be used for verifying the parameterisation which is described in more detail in the next section.
+Besides the 3 layers required for RS Minerve (compare Figure \@ref(fig:requiredGISInputFilesData)): 
+
+* Basins: BasinElevationBands_Poly_fixed   
+* Rivers: RiverChannels  
+* Junctions: RiverJunctions  
+
+The model produces a number of additional output files which can be used for verifying the parameterisation which is described in more detail in the next section. 
 
 #### Parameterization of the model
 
- * BasinShapeBuffer_meters is a buffer around the basin outline to which the DEM is cut. The DEM needs to be slightly larger than the shape line. The default value of 1000 m is sufficient.   
- *River Network Level is a parameters for the resolution of the river network. Values of 7 and 8 have shown good results for smaller and medium sized catchments (\@ref(fig:qgis-river-network-level)).  
+ * BasinShapeBuffer_meters is a buffer around the basin outline to which the DEM is cut. The DEM needs to be slightly larger than the shape line. The default value of 1000 m is sufficient, 500 m work as well.   
+ * The Channel Network Cutoff Value is a parameter required for the partitioning of the catchment into sub-catchments. Values between 2e8 and 5e8 have been found to work well for smaller and medium sized catchments. The model is sensitive to this parameter and might throw an error if the cutoff value is not appropriate.  
+ * The Elevation Bands Table holds the altitude boundaries and class IDs for the elevation bands in the catchment. After a first test run, edit according to your needs. Elevation bands of 200 m intervals are typically chosen to sufficiently refine the elevation dependent snow melt. For your case study you may use an interval for the elevation bands between 500 m for smaller catchments and 1000 m for larger catchments.  
+ * River Network Level is a parameters for the resolution of the river network. Values of 7 and 8 have shown good results for smaller and medium sized catchments (Figure \@ref(fig:qgis-river-network-level)).  
 
 ```{r qgis-river-network-level, echo=FALSE, out.width="50%", fig.show='hold', fig.align="center", fig.cap="Comparison of River Network Level = 7 (left) and River Network Level = 8 (rigth) for the example of the Pskem river catchment."}
 knitr::include_graphics(c("_bookdown_files/FIG_DATA/fig501_RiverNetworkLevel7.png", "_bookdown_files/FIG_DATA/fig502_RiverNetworkLevel8.png"))
 ```
 
- * The Channel Network Cutoff Value is a parameter required for the partitioning of the catchment into sub-catchments. Values between 2e8 and 5e8 have been found to work well for smaller and medium sized catchments. The model is sensitive to this parameter and might throw an error if the cutoff value is not appropriate.  
- * The Elevation Bands Table holds the altitude boundaries and class IDs for the elevation bands in the catchment. After a first test run, edit according to your needs. Manual editing of the GIS layers prior to import to RS Minerve might still be needed.    
-
 The model is sensitive to these parameters. Play around with them until you are satisfied with the resulting GIS layers. 
 
+#### Trouble shooting {.unnumbered}
 If you get an error message running Fix geometries that POLYGONS.shp was not found, try reducing the Channel Network Cutoff Value by 50-70%. You can still inspect the other layers and change other parameters as well.  
+
  * Make sure that all input layers are projected to UTM 42 N.  
  * Run the model through once, inspect the output and play with the input parameters:  
-   + Min and Max elevations on the smoothed DEM and the shape, number and spacing of elevation bands (edit the table for the elevation bands accordingly),  
-   + Location and shape of river reaches and the location of junctions (vary the threshold).  
-
-
-### Manually edit the GIS Layers for import in RS MINERVE
-Review \@ref(fig:layers-minerve) and compare your GIS layers with the requirements for the RS Minerve layers:     
-
-* Elevation bands per sub-basin need to be in one Multi-Polygon layer (i.e. only one feature per elevation band).  
-* We need junctions only at the confluences of sub-basins (and river reaches).  
-* We only need river reaches where we need to do routing. The sub-basins at the upper-most reaches do not need river reaches.
-
-#### Edit Junctions layer
-
-Select the Junctions layer and toggle manual editing by clicking on the yellow pen (\@ref(fig:qgis-edit-junctions-1)).
-
-```{r qgis-edit-junctions-1, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Manually edit the layer with the river junctions, step 1: Toggle layer editing."}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig026_ManualEditJunctions1.png")
+    + Min and Max elevations on the smoothed DEM and the shape, number and spacing of elevation bands (edit the table for the elevation bands accordingly),  
+    + Location and shape of river reaches and the location of junctions (vary the threshold).  
+   
+After reading the instructions above, you are now ready to run the model chain. Press the green triangle in the toolbar of the *Model Designer* window and adjust the parameters in the *Basin_Processing* according to the recommendations above.  
+For the example of the small Nauvalisoy river basin, the parameterization is given in Figure \@ref(fig:basin-processing-params-nauvalisoy).  
+```{r basin-processing-params-nauvalisoy, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Parameters for the basin processing model chain for the Nauvalisoy catchment."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/2fig_BasinProcessingNauvalisoy1.png")
 ```
 
-When in editing mode, the yellow pen will appear in the *Layers* window next to the name of the layer being edited. The edit mode will also activate a button for adding points (i.e. junctions, we don't need that now) and the vertex tool. Click on the vertex tool icon. It is active when a a boundary appears around the icon and the Vertex Editor windows opens (\@ref(fig:qgis-edit-junctions-2)).
-
-```{r qgis-edit-junctions-2, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Manually edit the layer with the river junctions, step 2: Activate the vertex tool."}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig027_ManualEditJunctions2.png")
+#### Resulting layers of the QGIS model chain {.unnumbered}
+The Output layers of the QGIS model process are shown in Figure \@ref(fig:qgis-model-output-raw). 
+```{r qgis-model-output-raw, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Raw output of the QGIS model chain to derive the GIS layers for import into RS Minerve."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/2fig_QGISModelOutput.png")
 ```
 
-Right-click on a junction point you would like to delete to activate it (\@ref(fig:qgis-edit-junctions-3)).
+Let's inspect the GIS layers and determine which edits are still necessary. 
 
-```{r qgis-edit-junctions-3, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Manually edit the layer with the river junctions, step 3: Activate a junction node for editing."}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig028_ManualEditJunctions3.png")
+
+### Manually edit the GIS layers for import in RS MINERVE
+
+#### The basin layer {.unnumbered}
+Verify that the elevation bands are numbered in the correct order. You can do this for example by opening the attribute table, sorting the IDs in ascending order and click through the layers. The selected feature is highlighted in yellow in the map panel and should move along the as you select the next row (see Figure \@ref(fig:qgis-verify-basin)). 
+```{r qgis-verify-basin, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Verify that the elevation bands are in the correcto order."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/3fig_checkOrderElevationBands.png")
+```
+Also, there should only be one row per ID in the attribute table. If the QGIS model process has run through correctly, this should be the case. Each of the sub-basins in the basin layer will be translated to a hydrological model in RS Minerve.    
+
+RS Minerve requires the specification of the downstream junction for each sub-basin (compare Figure \@ref(fig:requiredGISInputFilesData)). Toggle the edit mode by pressing the pen icon in the upper left corner of the attribut table window. Press the *New Field* icon (Figure \@ref(fig:qgis-add-field-attrib-table))
+```{r qgis-add-field-attrib-table, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Press *Add New Field* in the toolbar of the attribute table."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/3fig_addNewField.png")
 ```
 
-Select the activated point by drawing a rectangle over the point with your mouse. The point will appear blue (\@ref(fig:qgis-edit-junctions-4)).
-
-```{r qgis-edit-junctions-4, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Manually edit the layer with the river junctions, step 3: Select the activated junction node."}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig029_ManualEditJunctions4.png")
+Fill in the attributes for the new field as shown in Figure 
+\@ref(fig:qgis-add-field-attrib-table2):
+```{r qgis-add-field-attrib-table2, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Enter the attributes of the new field."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/3fig_addNewField2.png")
 ```
 
-Delete the point with the delete key on your keyboard. You can save your edits by pressing the blue-white Save Layer Edits button that is decorated with an orange pen (\@ref(fig:qgis-edit-junctions-5)). This saves your changes without exiting the edit mode.
-
-```{r qgis-edit-junctions-5, echo=FALSE, out.width="20%", fig.align="center", fig.cap="Manually edit the layer with the river junctions, step 3: Save edits."}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig030_ManualEditJunctions5.png")
+Press OK. A new column called *Junc_down* and containing *NULL* now appears in the attribute table. For small catchments, you can manually enter the name of the downstream junction in the *Junc_down* column while in editing mode. For larger catchments with several tributaries you may want to use the field calculator (**TODO WRITE A GUIDE FOR THIS**). We call the junction at which the contributions from the elevation bands flow together the *Outlet* (Figure \@ref(fig:)). 
+```{r qgis-add-field-attrib-table3, echo=FALSE, out.width="50%", fig.align="center", fig.cap="Edit the junction names and save your changes."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/3fig_addNewField3.png")
 ```
 
-If you have many points to remove, as in our case, it may be faster to identify the IDs of the features you want to keep, select these and delete all others. To start, you activate the *Identify Features* mode by clicking on the icon with the white *i* on the blue circle (\@ref(fig:qgis-edit-junctions-fast-1)).
+Save the edits and un-toggle the edit mode by pressing on the pen icon. You can close the attribute window. If the layer is still temporary, you can store save it to your computer ([how to save a temporary layer](#appendix-quick-guide-save-temp-layer)). 
 
-```{r qgis-edit-junctions-fast-1, echo=FALSE, out.width="20%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 1."}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig031_ManualEditJunctionsFast1.png")
+#### The junctions layer {.unnumbered}
+The output of the QGIS model process shows two junctions (see Figure \@ref(fig:qgis-model-output-raw)). We only need to keep the junction at the outlet. Select the RiverJunctions layer in the Layers panel open the attribute table. There select the column with ths spring node, toggle the edit mode and delete the node by pressing on the icon with the red bin. The outlet node is already called *Outlet* so we do not need to change this name, it is already consistent with the basins layer. Save your edits and un-toggle the edit mode. Close the attribute table and save the junctions layer.   
+
+An alternative way to edit the junctions layer, especially if you have larger and more complicate catchments, is via the graphical editor. A detailed description of how to do this is given in the [Appendix](#appendix-section-graphical-edit-junctions)
+
+#### The river layer {.unnumbered}
+Although we will not implement river routing in the hydrological model for the Nauvalisoy basin, RS Minerve requires a GIS layer for the river. Edit the RiverChannels layer as follows in the attribute table: Press the *Delete fields* button (Figure \@ref(fig:qgis-delete-fields-button)).
+```{r qgis-delete-fields-button, echo=FALSE, out.width="5%", fig.align="center", fig.cap="The delete fields button in the attribute table toolbar."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/4fig_deleteColumns.png")
 ```
 
-A black *i* will appear next to your cursor. You then click on the first of your nodes that you want to keep. This will highlight it in red and a list with information on the selected feature appears on the right in the Identify Results window. You will see the attribute NODE_ID with value 1 for the outflow node (\@ref(fig:qgis-edit-junctions-fast-2)). Note down the ID of the feature.
-
-```{r qgis-edit-junctions-fast-2, echo=FALSE, out.width="100%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 2."}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig032_ManualEditJunctionsFast2.png")
+In the pop-up window, select all fields but BASIN and LENGTH for deletion and press OK (Figure \@ref(fig:qgis-delete-fields-window)). 
+```{r qgis-delete-fields-window, echo=FALSE, out.width="30%", fig.align="center", fig.cap="Select the fields of the attribute table to delete."}
+knitr::include_graphics("_bookdown_files/FIG_DATA/4fig_deleteFields.png")
 ```
 
-You then press on the node at the confluence of the two tributaries in the center of the catchment. The Identify Results window shows 2 results, that means, that two junction nodes are close to each other (\@ref(fig:qgis-edit-junctions-fast-3)).
+Add a field for the downstream junction and enter Outlet you can proceed in the same way as described above for editing the basin layer. Save the river channels layer.   
 
-```{r qgis-edit-junctions-fast-3, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 3."}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig033_ManualEditJunctionsFast3.png")
-```
+If you have larger catchment with a more complex structure to edit you may be interested in a detailed description of the graphical editing of GIS layers in the [Appendix](#appendix-section-graphical-edit-junctions). The example shows editing of a junction layer but you may proceed in the same manner for editing the rivers layer. 
 
-Zoom in in your map window with your mouse to see the two nodes (\@ref(fig:qgis-edit-junctions-fast-4)).
+The layers are now ready for import into RS Minerve. This will be described in [Chapter 6.4](#section-rsminerve-data-preparation).   
 
-```{r qgis-edit-junctions-fast-4, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 4."}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig034_ManualEditJunctionsFast4.png")
-```
 
-Select the node that should be kept and not the ID of the node (NODE_ID 11), (\@ref(fig:qgis-edit-junctions-fast-5)).
 
-```{r qgis-edit-junctions-fast-5, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 5."}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig035_ManualEditJunctionsFast5.png")
-```
 
-Zoom back to the entire Junctions layer (see \@ref(fig:qgis-zoom-to-layer)). and go to Select Features by Values... in the toolbar (\@ref(fig:qgis-edit-junctions-fast-6)).
 
-```{r qgis-edit-junctions-fast-6, echo=FALSE, out.width="40%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 1"}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig036_ManualEditJunctionsFast6.png")
-```
-
-Add NODE_ID 1 to your selection as demonstrated in (\@ref(fig:qgis-edit-junctions-fast-7)).
-
-```{r qgis-edit-junctions-fast-7, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 2"}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig037_ManualEditJunctionsFast7.png")
-```
-
-The outflow node with ID 1 will change color in your map (\@ref(fig:qgis-edit-junctions-fast-8)).
-
-```{r qgis-edit-junctions-fast-8, echo=FALSE, out.width="20%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 3"}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig038_ManualEditJunctionsFast8.png")
-```
-
-Add node 11 to your selection in the same way and close the Select Node by Value window. Invert the feature selection as shown in (\@ref(fig:qgis-edit-junctions-fast-9)).
-
-```{r qgis-edit-junctions-fast-9, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 4"}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig039_ManualEditJunctionsFast9.png")
-```
-
-All other nodes will now be yellow and the ones to keep will appear in the layer color (\@ref(fig:qgis-edit-junctions-fast-10)).
-
-```{r qgis-edit-junctions-fast-10, echo=FALSE, out.width="80%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 5"}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig040_ManualEditJunctionsFast10.png")
-```
-
-Delete the features (nodes) by pressing the Delete Selected button in the edit features toolbar (\@ref(fig:qgis-edit-junctions-fast-11)).
-
-```{r qgis-edit-junctions-fast-11, echo=FALSE, out.width="40%", fig.align="center", fig.cap="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 6"}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig041_ManualEditJunctionsFast11.png")
-```
-
-Save your edits (\@ref(fig:qgis-edit-junctions-5)). To verify that, indeed, all superfluous nodes are deleted from the Junctions file, open the Attribute table (\@ref(fig:qgis-edit-junctions-at-1)).
-
-```{r qgis-edit-junctions-at-1, echo=FALSE, out.width="5%", fig.align="center", fig.cap="Edit Attribute table. Step 1: Open the attribute table with a click on the Attribute Table icon in the QGIS toolbar."}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig042_EditJunctionsAttributeTable1.png")
-```
-
-Only 2 features should be listed under each attribute. We will now edit the attribute table to prepare it for the RS Minerve model (see \@ref(fig:layers-minerve)). RS Minerve needs an identifyer to differentiate between the junctions. We can use the attribute *TYPE* to uniquely identify the two junctions needed. RS Minerve further needs the ID of the downstream river. Add a collumn to the attribute table by pressing the Add Field button (\@ref(fig:qgis-edit-junctions-at-2)).
-
-```{r qgis-edit-junctions-at-2, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Edit Attribute table. Step 2: Add a column to the attribute table manually, part 1."}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig043_EditJunctionsAttributeTable2.png")
-```
-
-Define a name for the attribute, a type and admissible length of each entry in the Add Field window. In our case, we choose a string (a word) as ID and allow it to be 20 characters long (\@ref(fig:qgis-edit-junctions-at-3)).
-
-```{r qgis-edit-junctions-at-3, echo=FALSE, out.width="30%", fig.align="center", fig.cap="Edit Attribute table. Step 2: Add a column to the attribute table manually, part 2."}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig044_EditJunctionsAttributeTable3.png")
-```
-
-Close the window by pressing OK. By clicking in the newly created NULL fields, you can now type names for the downstream rivers and save your edits by pressing the save edits icon (3rd from the left in the toolbar of the attribute table window). As the outlet of the catchment goes directly into Charvak reservoir, we can type Charvak as the downstream river ID. The river stretch between junction and outlet is called Pskem (\@ref(fig:qgis-edit-junctions-at-4)).
-
-```{r qgis-edit-junctions-at-4, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Edit Attribute table. Step 2: Add a column to the attribute table manually, part 3."}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig045_EditJunctionsAttributeTable4.png")
-```
-
-We are done editing the Junctions layer. Deactivate the edit mode by clickig on the yellow pen in the attribute table window (\@ref(fig:qgis-edit-junctions-at-5)) and close the window.
-
-```{r qgis-edit-junctions-at-5, echo=FALSE, out.width="60%", fig.align="center", fig.cap="Save your edits."}
-knitr::include_graphics("_bookdown_files/FIG_DATA/fig046_EditJunctionsAttributeTable5.png")
-```
-
-Now save the Junctions layer in an appropriate place on your drive and save your project.
-
-#### Edit Channels layer
-
-Proceed in the same way as for the junctions: Delete channel sections that are not needed in the Minerve model.
 
 ## Climate Reanalysis Data {#Data::ClimateReanalysisData}
 

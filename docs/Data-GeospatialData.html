@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried and Beatrice Marti" />
 
 
-<meta name="date" content="2021-04-14" />
+<meta name="date" content="2021-04-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -147,7 +147,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="day-1-introduction-and-installation-of-software.html"><a href="day-1-introduction-and-installation-of-software.html"><i class="fa fa-check"></i>Day 1: Introduction and installation of software</a></li>
 <li class="chapter" data-level="" data-path="day-2-catchment-characterization.html"><a href="day-2-catchment-characterization.html"><i class="fa fa-check"></i>Day 2: Catchment characterization</a></li>
-<li class="chapter" data-level="" data-path="day-3-introduction-to-hydrological-modeling-and-geospatial-data.html"><a href="day-3-introduction-to-hydrological-modeling-and-geospatial-data.html"><i class="fa fa-check"></i>Day 3: Introduction to hydrological modeling and geospatial data</a></li>
+<li class="chapter" data-level="" data-path="day-3-geospatial-data-and-introduction-to-linear-reservoir-models.html"><a href="day-3-geospatial-data-and-introduction-to-linear-reservoir-models.html"><i class="fa fa-check"></i>Day 3: Geospatial data and introduction to linear reservoir models</a></li>
+<li class="chapter" data-level="" data-path="day-4-discussion-of-types-of-hydrological-models.html"><a href="day-4-discussion-of-types-of-hydrological-models.html"><i class="fa fa-check"></i>Day 4: Discussion of types of hydrological models</a></li>
+<li class="chapter" data-level="" data-path="day-5-the-hbv-model.html"><a href="day-5-the-hbv-model.html"><i class="fa fa-check"></i>Day 5: The HBV model</a></li>
+<li class="chapter" data-level="" data-path="day-6-model-calibration-and-validation.html"><a href="day-6-model-calibration-and-validation.html"><i class="fa fa-check"></i>Day 6: Model calibration and validation</a></li>
+<li class="chapter" data-level="" data-path="day-7-case-studies.html"><a href="day-7-case-studies.html"><i class="fa fa-check"></i>Day 7: Case studies</a></li>
+<li class="chapter" data-level="" data-path="day-8-real-world-applications.html"><a href="day-8-real-world-applications.html"><i class="fa fa-check"></i>Day 8: Real-world applications</a></li>
+<li class="chapter" data-level="" data-path="day-9-student-presentations-and-wrap-up-of-workshop.html"><a href="day-9-student-presentations-and-wrap-up-of-workshop.html"><i class="fa fa-check"></i>Day 9: Student presentations and wrap-up of workshop</a></li>
 </ul></li>
 <li class="part"><span><b>I Part I Hydrological Systems</b></span></li>
 <li class="chapter" data-level="1" data-path="ShortHistory.html"><a href="ShortHistory.html"><i class="fa fa-check"></i><b>1</b> Short History of Water in Central Asia</a>
@@ -202,11 +208,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html"><i class="fa fa-check"></i><b>5.2</b> Geospatial Data</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-steps-setting-up"><i class="fa fa-check"></i><b>5.2.1</b> Setting up QGIS</a></li>
-<li class="chapter" data-level="5.2.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-load-dem"><i class="fa fa-check"></i><b>5.2.2</b> Load DEM</a></li>
-<li class="chapter" data-level="5.2.3" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-steps-derive-catchment-boundaries"><i class="fa fa-check"></i><b>5.2.3</b> Derive the boundaries of your catchment</a></li>
-<li class="chapter" data-level="5.2.4" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#run-through-the-process-model"><i class="fa fa-check"></i><b>5.2.4</b> Run through the process model</a></li>
-<li class="chapter" data-level="5.2.5" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#manually-edit-the-gis-layers-for-import-in-rs-minerve"><i class="fa fa-check"></i><b>5.2.5</b> Manually edit the GIS Layers for import in RS MINERVE</a></li>
+<li class="chapter" data-level="5.2.1" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#prerequisites"><i class="fa fa-check"></i><b>5.2.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="5.2.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-steps-setting-up"><i class="fa fa-check"></i><b>5.2.2</b> Setting up QGIS</a></li>
+<li class="chapter" data-level="5.2.3" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-load-dem"><i class="fa fa-check"></i><b>5.2.3</b> Load DEM</a></li>
+<li class="chapter" data-level="5.2.4" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-steps-derive-catchment-boundaries"><i class="fa fa-check"></i><b>5.2.4</b> Catchment delineation</a></li>
+<li class="chapter" data-level="5.2.5" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#run-through-the-process-model"><i class="fa fa-check"></i><b>5.2.5</b> Run through the process model</a></li>
+<li class="chapter" data-level="5.2.6" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#manually-edit-the-gis-layers-for-import-in-rs-minerve"><i class="fa fa-check"></i><b>5.2.6</b> Manually edit the GIS layers for import in RS MINERVE</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="Data-ClimateReanalysisData.html"><a href="Data-ClimateReanalysisData.html"><i class="fa fa-check"></i><b>5.3</b> Climate Reanalysis Data</a>
 <ul>
@@ -226,27 +233,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="section-rsminerve-prerequisites.html"><a href="section-rsminerve-prerequisites.html"><i class="fa fa-check"></i><b>6.1</b> Prerequisites</a></li>
 <li class="chapter" data-level="6.2" data-path="section-rsminerve-why-model-introduction.html"><a href="section-rsminerve-why-model-introduction.html"><i class="fa fa-check"></i><b>6.2</b> Recap: Hydrological response</a></li>
 <li class="chapter" data-level="6.3" data-path="section-general-modelling-process.html"><a href="section-general-modelling-process.html"><i class="fa fa-check"></i><b>6.3</b> Recap: The general modeling process</a></li>
-<li class="chapter" data-level="6.4" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html"><i class="fa fa-check"></i><b>6.4</b> Data Preparation and Setup</a>
+<li class="chapter" data-level="6.4" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html"><i class="fa fa-check"></i><b>6.4</b> Data Preparation and Setup</a>
 <ul>
-<li class="chapter" data-level="6.4.1" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html#examining-and-understanding-the-gis-data"><i class="fa fa-check"></i><b>6.4.1</b> Examining and Understanding the GIS Data</a></li>
-<li class="chapter" data-level="6.4.2" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html#loading-gis-data-and-model-creation"><i class="fa fa-check"></i><b>6.4.2</b> Loading GIS Data and Model Creation</a></li>
-<li class="chapter" data-level="6.4.3" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html#climate-data"><i class="fa fa-check"></i><b>6.4.3</b> Climate Data</a></li>
+<li class="chapter" data-level="6.4.1" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html#examining-and-understanding-the-gis-data"><i class="fa fa-check"></i><b>6.4.1</b> Examining and Understanding the GIS Data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html#loading-gis-data-and-model-creation"><i class="fa fa-check"></i><b>6.4.2</b> Loading GIS Data and Model Creation</a></li>
+<li class="chapter" data-level="6.4.3" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html#climate-data"><i class="fa fa-check"></i><b>6.4.3</b> Climate Data</a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="section-hbv-model.html"><a href="section-hbv-model.html"><i class="fa fa-check"></i><b>6.5</b> The HBV model</a>
 <ul>
 <li class="chapter" data-level="6.5.1" data-path="section-hbv-model.html"><a href="section-hbv-model.html#section-hbv-nauvalisoy-tutorial-short"><i class="fa fa-check"></i><b>6.5.1</b> HBV example: Simple model of the Nauvalisoy river catchment</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="model-calibration-and-validation.html"><a href="model-calibration-and-validation.html"><i class="fa fa-check"></i><b>6.6</b> Model Calibration and Validation</a>
+<li class="chapter" data-level="6.6" data-path="section-model-calibration-and-validation.html"><a href="section-model-calibration-and-validation.html"><i class="fa fa-check"></i><b>6.6</b> Model Calibration and Validation</a>
 <ul>
-<li class="chapter" data-level="6.6.1" data-path="model-calibration-and-validation.html"><a href="model-calibration-and-validation.html#section-calibration-principles"><i class="fa fa-check"></i><b>6.6.1</b> Basic Principles</a></li>
-<li class="chapter" data-level="6.6.2" data-path="model-calibration-and-validation.html"><a href="model-calibration-and-validation.html#secion-calibration-practical-steps"><i class="fa fa-check"></i><b>6.6.2</b> Practical Steps</a></li>
+<li class="chapter" data-level="6.6.1" data-path="section-model-calibration-and-validation.html"><a href="section-model-calibration-and-validation.html#section-calibration-principles"><i class="fa fa-check"></i><b>6.6.1</b> Basic Principles</a></li>
+<li class="chapter" data-level="6.6.2" data-path="section-model-calibration-and-validation.html"><a href="section-model-calibration-and-validation.html#secion-calibration-practical-steps"><i class="fa fa-check"></i><b>6.6.2</b> Practical Steps</a></li>
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="application-investigating-climate-change-impacts.html"><a href="application-investigating-climate-change-impacts.html"><i class="fa fa-check"></i><b>6.7</b> Application: Investigating Climate Change Impacts</a></li>
 <li class="chapter" data-level="6.8" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6.8</b> Discussion</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="HydroModelsEmpiricalModels.html"><a href="HydroModelsEmpiricalModels.html"><i class="fa fa-check"></i><b>7</b> Discharge Forecasting with Predictive Inference</a>
 <ul>
-<li class="chapter" data-level="" data-path="prerequisites.html"><a href="prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="prerequisites-1.html"><a href="prerequisites-1.html"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="7.1" data-path="Chap9PredictiveInference.html"><a href="Chap9PredictiveInference.html"><i class="fa fa-check"></i><b>7.1</b> Forecasting Using Predictive Inference</a></li>
 <li class="chapter" data-level="7.2" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html"><i class="fa fa-check"></i><b>7.2</b> Forecasting in the Central Asian Hydromets</a>
 <ul>
@@ -296,26 +303,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html"><i class="fa fa-check"></i><b>9.2</b> Appendix B: Quick Guides</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-register-with-earth-explorer"><i class="fa fa-check"></i><b>9.2.1</b> EE: Register for an account</a></li>
-<li class="chapter" data-level="9.2.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-earth-explorer-download-srtm"><i class="fa fa-check"></i><b>9.2.2</b> EE: Download SRTM data for a selected region</a></li>
-<li class="chapter" data-level="9.2.3" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-qgis-window-overview"><i class="fa fa-check"></i><b>9.2.3</b> The QGIS window - overview</a></li>
-<li class="chapter" data-level="9.2.4" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-saving-a-new-qgis-project"><i class="fa fa-check"></i><b>9.2.4</b> QGIS: Saving a new QGIS project</a></li>
-<li class="chapter" data-level="9.2.5" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-project-projection-qgis"><i class="fa fa-check"></i><b>9.2.5</b> QGIS: Change the projection of the QGIS project</a></li>
-<li class="chapter" data-level="9.2.6" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-install-and-activate-plugins-in-QGIS3"><i class="fa fa-check"></i><b>9.2.6</b> QGIS: Install and activate plugins in QGIS3</a></li>
-<li class="chapter" data-level="9.2.7" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-managing-panels"><i class="fa fa-check"></i><b>9.2.7</b> GQIS: Managing panels visibility in QGIS</a></li>
-<li class="chapter" data-level="9.2.8" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-loading-public-background-layers"><i class="fa fa-check"></i><b>9.2.8</b> QGIS: Loading public background maps</a></li>
-<li class="chapter" data-level="9.2.9" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-zoom-to-layer"><i class="fa fa-check"></i><b>9.2.9</b> QGIS: Zoom to layer</a></li>
-<li class="chapter" data-level="9.2.10" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-srtm-plugin"><i class="fa fa-check"></i><b>9.2.10</b> QGIS: Import SRTM layers using the SRTM plugin</a></li>
-<li class="chapter" data-level="9.2.11" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-merge-srtm-tiles"><i class="fa fa-check"></i><b>9.2.11</b> QGIS: Merge SRTM tiles to a single layer</a></li>
-<li class="chapter" data-level="9.2.12" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-vector-layer-to-qgis"><i class="fa fa-check"></i><b>9.2.12</b> Add vector layer to QGIS</a></li>
-<li class="chapter" data-level="9.2.13" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer"><i class="fa fa-check"></i><b>9.2.13</b> Change color of a vector layer</a></li>
-<li class="chapter" data-level="9.2.14" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-create-hbv-model"><i class="fa fa-check"></i><b>9.2.14</b> RSM: Create HBV model and edit parameters</a></li>
-<li class="chapter" data-level="9.2.15" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-climate-station"><i class="fa fa-check"></i><b>9.2.15</b> RSM: Add and link climate station</a></li>
-<li class="chapter" data-level="9.2.16" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-import-climate-data"><i class="fa fa-check"></i><b>9.2.16</b> RSM: Import climate data</a></li>
-<li class="chapter" data-level="9.2.17" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-atapt-model-settings"><i class="fa fa-check"></i><b>9.2.17</b> RSM: Adapt model settings</a></li>
-<li class="chapter" data-level="9.2.18" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-export-sim-results-to-db"><i class="fa fa-check"></i><b>9.2.18</b> RSM: Export simulation results to data base</a></li>
-<li class="chapter" data-level="9.2.19" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-comparator-and-discharge-data"><i class="fa fa-check"></i><b>9.2.19</b> RSM: Add comparator and load discharge measurements</a></li>
-<li class="chapter" data-level="9.2.20" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-copy-paste-database-values"><i class="fa fa-check"></i><b>9.2.20</b> RSM: Copy-paste data to database</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-register-with-earth-explorer"><i class="fa fa-check"></i>EE: Register for an account</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-earth-explorer-download-srtm"><i class="fa fa-check"></i>EE: Download SRTM data for a selected region</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-sofware-qgis-installation-guide"><i class="fa fa-check"></i>QGIS installation guide</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-qgis-window-overview"><i class="fa fa-check"></i>The QGIS window - overview</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-saving-a-new-qgis-project"><i class="fa fa-check"></i>QGIS: Saving a new QGIS project</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-project-projection-qgis"><i class="fa fa-check"></i>QGIS: Change the projection of the QGIS project</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-install-and-activate-plugins-in-QGIS3"><i class="fa fa-check"></i>QGIS: Install and activate plugins in QGIS3</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-managing-panels"><i class="fa fa-check"></i>GQIS: Managing panels visibility in QGIS</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-loading-public-background-layers"><i class="fa fa-check"></i>QGIS: Loading public background maps</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-zoom-to-layer"><i class="fa fa-check"></i>QGIS: Zoom to layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-srtm-plugin"><i class="fa fa-check"></i>QGIS: Import SRTM layers using the SRTM plugin</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-merge-srtm-tiles"><i class="fa fa-check"></i>QGIS: Merge SRTM tiles to a single layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quick-guides-load-dem"><i class="fa fa-check"></i>QGIS: Add raster layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guides-change-color-of-raster-layer"><i class="fa fa-check"></i>QGIS: Change color of raster layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-map-decorations"><i class="fa fa-check"></i>QGIS: Add map decorations</a></li>
+<li class="chapter" data-level="9.2.1" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quick-guides-verify-projection-reproject"><i class="fa fa-check"></i><b>9.2.1</b> QGIS: Verify projection of layer and re-project layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-save-temp-layer"><i class="fa fa-check"></i>QGIS: Save a temporary layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-vector-layer-to-qgis"><i class="fa fa-check"></i>QGIS: Add vector layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer"><i class="fa fa-check"></i>QGIS: Change color of a vector layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guides-fill-sinks"><i class="fa fa-check"></i>QGIS: Fill sinks</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-upslope-area"><i class="fa fa-check"></i>QGIS: Calculate the area upslope of a point</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-polygonize"><i class="fa fa-check"></i>QGIS:</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-section-graphical-edit-junctions"><i class="fa fa-check"></i>QGIS: Edit Junctions layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-create-hbv-model"><i class="fa fa-check"></i>RSM: Create HBV model and edit parameters</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-climate-station"><i class="fa fa-check"></i>RSM: Add and link climate station</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-import-climate-data"><i class="fa fa-check"></i>RSM: Import climate data</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-atapt-model-settings"><i class="fa fa-check"></i>RSM: Adapt model settings</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-export-sim-results-to-db"><i class="fa fa-check"></i>RSM: Export simulation results to data base</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-comparator-and-discharge-data"><i class="fa fa-check"></i>RSM: Add comparator and load discharge measurements</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-copy-paste-database-values"><i class="fa fa-check"></i>RSM: Copy-paste data to database</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html"><i class="fa fa-check"></i><b>9.3</b> Appendix C: Processing Climate Data</a>
 <ul>
@@ -353,231 +370,226 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="Data::GeospatialData" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Geospatial Data</h2>
-<p>This Section follows the steps shown in Figure <a href="#fig:ClimateImpactModelChain"><strong>??</strong></a> and explains in a hands-on manner how to arrive at and process the required geospatial data for later inclusion in the hydrological-hydraulic model RS MINVERVE. Links to detailed descriptions of the individual tasks allow even beginners of QGIS to follow the procedure.</p>
-<div id="section-geospatial-data-steps-setting-up" class="section level3" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Setting up QGIS</h3>
-<p>Open and save a new QGIS project (<a href="appendix-b-quick-guides.html#section-saving-a-new-qgis-project">How to for absolute beginners</a>). Make sure that the maps projection is in UTM (<a href="appendix-b-quick-guides.html#section-change-project-projection-qgis">How to change the projection of a project</a>). The needed plugins are: qProf or profile tool (<a href="appendix-b-quick-guides.html#section-install-and-activate-plugins-in-QGIS3">How to install and activate a plugin</a>). The optional plugins are: SRTM plugin (requires a login to USGS Earth Explorer <a href="appendix-b-quick-guides.html#section-register-with-earth-explorer">How to register</a>). Note, SAGA routines must be installed and correctly configured in QGIS (which is typically the case for default installations of long-term support versions of QGIS).</p>
+This Section follows the steps shown in Figure <a href="Chapter-DATA.html#fig:ClimateImpactModelChain">5.1</a> and explains in a hands-on manner how to arrive at and process the required geospatial data for later inclusion in the hydrological-hydraulic model RS Minerve Links to detailed descriptions of the individual tasks allow even beginners of QGIS to follow the procedure. The requirements for GIS layers for import in RS Minerve are summarized in Figure <a href="Data-GeospatialData.html#fig:requiredGISInputFilesData">5.10</a>.<br />
+
+<div class="figure"><span id="fig:requiredGISInputFilesData"></span>
+<img src="_bookdown_files/FIG_RS_MINERVE/required_GIS_Input_Files.png" alt="Required GIS input files for RS Minerve. See corresponding user manual for more information." width="687" />
+<p class="caption">
+Figure 5.10: Required GIS input files for RS Minerve. See corresponding user manual for more information.
+</p>
 </div>
-<div id="section-geospatial-data-load-dem" class="section level3" number="5.2.2">
-<h3><span class="header-section-number">5.2.2</span> Load DEM</h3>
-<p>We use the SRTM 1 arc-second global DEM (<a href="https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects">Data description</a>). The DEM tiles are downloaded directly in QGIS3 (SRTM plugin, <a href="appendix-b-quick-guides.html#section-srtm-plugin">How to</a>) or via the USGS Earth Explorer (<a href="appendix-b-quick-guides.html#section-earth-explorer-download-srtm">How to</a>) and merged to a single GIS layer (<a href="appendix-b-quick-guides.html#section-merge-srtm-tiles">How to</a>). In any case you will need to register for an Earth Explorer account <a href="appendix-b-quick-guides.html#section-register-with-earth-explorer">How to register</a>.<br />
+<p>RS Minerve connects the sub-basins to junctions. River stretches run from upstream junction to downstream junction. The names of the junctions need to be consistent throughout the GIS layers.<br />
+In this chapter we will demonstrate how to derive the GIS layers for the Nauvalisoy river catchment. The Nauvalisoy is a small tributary to the Chirchiq river (see Figure <a href="CRB.html#fig:ChirchikRiverOverview">3.9</a> in the case studies). It does not include channel routing.</p>
+<div class = "exercise" <div class = "exercise" id="ex5.1"> 
+<h3 class = "right">Ex5.1</h3> 
+<h3 class= "left">Prepare GIS layers</h3> 
+<p>Go through the steps in this Chapter to generate yourselves the GIS layers of your sample catchment for import into RS Minerve.</p> 
+</div>
+<div id="prerequisites" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Prerequisites</h3>
+<ul>
+<li>QGIS must be installed (<a href="appendix-b-quick-guides.html#appendix-sofware-qgis-installation-guide">QGIS installation guide</a>).<br />
+</li>
+<li>Coordinates of a discharge gauge in your sample catchment are available in the <em>learningFiles</em> directory.<br />
+</li>
+<li>A digital elevation model (DEM) for your sample catchment is available in the <em>learningFiles</em> directory. A description of how to obtain a free SRTM DEM is given below.</li>
+</ul>
+</div>
+<div id="section-geospatial-data-steps-setting-up" class="section level3" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Setting up QGIS</h3>
+<ul>
+<li>Open and save a new QGIS project (<a href="appendix-b-quick-guides.html#section-saving-a-new-qgis-project">How to for absolute beginners</a>).<br />
+</li>
+<li>Make sure that the projects projection is in UTM (<a href="appendix-b-quick-guides.html#section-change-project-projection-qgis">How to change the projection of a project</a>).<br />
+</li>
+<li>Check if the required plugins (qProf or profile tool) are installed (<a href="appendix-b-quick-guides.html#section-install-and-activate-plugins-in-QGIS3">How to install and activate a plugin</a>).
+<ul>
+<li>The optional plugins are: SRTM plugin (requires a login to USGS Earth Explorer <a href="appendix-b-quick-guides.html#section-register-with-earth-explorer">How to register</a>).<br />
+</li>
+</ul></li>
+<li>Note that SAGA GIS and GRASS GIS must be installed and correctly configured in QGIS (which is typically the case for default installations of long-term support versions of QGIS).</li>
+</ul>
+</div>
+<div id="section-geospatial-data-load-dem" class="section level3" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Load DEM</h3>
+<p>You will find a DEM raster layer in the ./learningFiles directory of your sample catchment ready to start. Load the DEM into your QGIS project and save the project (<a href="appendix-b-quick-guides.html#section-quick-guides-load-dem">how to</a>). For the hydrological analysis, the DEM needs to be in UTM projection. Look up the projection of your DEM layer and re-project to UTM if necessary (<a href="appendix-b-quick-guides.html#section-quick-guides-verify-projection-reproject">how to</a>).</p>
+<p>The description of how to obtain the DEM is given here: We use the SRTM 1 arc-second global DEM (<a href="https://www.usgs.gov/centers/eros/science/usgs-eros-archive-digital-elevation-shuttle-radar-topography-mission-srtm-1-arc?qt-science_center_objects=0#qt-science_center_objects">Data description</a>). The DEM tiles are downloaded directly in QGIS3 (SRTM plugin, <a href="appendix-b-quick-guides.html#section-srtm-plugin">How to</a>) or via the USGS Earth Explorer (<a href="appendix-b-quick-guides.html#section-earth-explorer-download-srtm">How to</a>) and merged to a single GIS layer (<a href="appendix-b-quick-guides.html#section-merge-srtm-tiles">How to</a>). In any case you will need to register for an Earth Explorer account <a href="appendix-b-quick-guides.html#section-register-with-earth-explorer">How to register</a>.<br />
 Typically, geospatial data from open sources is stored in the standard projection WGS84 (EPSG:4326). The WGS84 is in degrees, minutes and seconds but for hydrological analysis it is more convenient to have spatial layers in the UTM projection. Look up in which UTM Zone your catchmen lies and re-project to that Zone. For the example of the Chirchiq basin, the UTM zone is 42N, i.e. EPSG:32642.</p>
 </div>
-<div id="section-steps-derive-catchment-boundaries" class="section level3" number="5.2.3">
-<h3><span class="header-section-number">5.2.3</span> Derive the boundaries of your catchment</h3>
-<p>If you already have a shapefile for the boundaries of your catchment. Load it into QGIS <a href="appendix-b-quick-guides.html#section-add-vector-layer-to-qgis">How to add a vector layer</a>. Otherwise, follow this <a href="https://www.youtube.com/watch?v=xwiHQlmEEjw">tutorial on youtube</a> to derive the boundaries of your catchment.</p>
+<div id="section-steps-derive-catchment-boundaries" class="section level3" number="5.2.4">
+<h3><span class="header-section-number">5.2.4</span> Catchment delineation</h3>
+<p>For this workshop, shapefiles for the sample watersheds you will model are already available in the shared dropbox folder with the <a href="https://www.dropbox.com/sh/hz5fcot6yvi6tff/AACrjSIQGFsbYEfeI-A05lZra?dl=0">data for case studies</a> which you should have already downloaded. Load the shape file of your sample catchment into QGIS (<a href="appendix-b-quick-guides.html#section-add-vector-layer-to-qgis">how to add a vector layer</a>).<br />
+In case you’d like to learn how to delineate your own watershed, follow the tutorial below. The steps are also described in this <a href="https://www.youtube.com/watch?v=xwiHQlmEEjw">tutorial on youtube</a></p>
+<div id="projection-of-dem" class="section level4 unnumbered">
+<h4>Projection of DEM</h4>
+<p>Verify that the DEM is in UTM coordinates and re-project it if necessary (<a href="appendix-b-quick-guides.html#section-quick-guides-verify-projection-reproject">how to</a>).</p>
 </div>
-<div id="run-through-the-process-model" class="section level3" number="5.2.4">
-<h3><span class="header-section-number">5.2.4</span> Run through the process model</h3>
-<p>A process model is available that generates the raw GIS layers for RS Minerve. Navigate to <em>Processing</em> and open the <em>Graphical Modeller…</em>. The <em>Model Designer</em> window opens. Open the model downloaded from here: <a href="%22models/Basin_Preparation_QGIS.model3%22">./model/Basin_Preparation_QGIS.model3</a> (<a href="Data-GeospatialData.html#fig:qgis-graphical-model-designer">5.9</a>).</p>
+<div id="section-why-fill-sinks-dem" class="section level4 unnumbered">
+<h4>Fill the sinks of the DEM</h4>
+<p>To derive the the catchment area upstream of a discharge gauge, the DEM is traced upstream until elevation values do not increase any more, i.e. until the boundary of the watershed is reached. The SRTM DEM contains the rounded average elevation in each cell of about 25-30m resoluition. Due to the averaging and rounding it may happen, that in a SRTM DEM, an upstream river cell contains lower elevations than the downstream river cell. If the catchment delineation algorithm reaches such a situation, it stops, thinking it has reached the boundary of the watershed. To avoid this, cells that form local depressions should be filled to form a river bed which is continuously increasing in elevation until it reaches the watershed boundary. The SAGA algorithm to do this is called <em>Fill sinks</em>.<br />
+Fill the sinks of your DEM and store the processed raster file (<a href="appendix-b-quick-guides.html#appendix-quick-guides-fill-sinks">how to in detail</a>).</p>
+</div>
+<div id="upslope-area" class="section level4 unnumbered">
+<h4>Upslope area</h4>
+<p>Determine the area up-slope of your river discharge gauge by running the algorithm <em>Upslope Area</em> in QGIS (<a href="appendix-b-quick-guides.html#appendix-quick-guide-upslope-area">detailed instructions</a>). The UTM coordinates of the Nauvalisoy discharge gauge are given in the <em>riversCentralAsia</em> package:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="Data-GeospatialData.html#cb74-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">filter</span>(ChirchikRiverBasin, river<span class="sc">==</span><span class="st">&quot;Nauvalisoy&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb74-2"><a href="Data-GeospatialData.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="st">`</span><span class="at">Station code</span><span class="st">`</span> <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">first</span>(code), </span>
+<span id="cb74-3"><a href="Data-GeospatialData.html#cb74-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">Station name</span><span class="st">`</span> <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">first</span>(station), </span>
+<span id="cb74-4"><a href="Data-GeospatialData.html#cb74-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">River name</span><span class="st">`</span> <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">first</span>(river), </span>
+<span id="cb74-5"><a href="Data-GeospatialData.html#cb74-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Longitude =</span> dplyr<span class="sc">::</span><span class="fu">first</span>(lon_UTM42), </span>
+<span id="cb74-6"><a href="Data-GeospatialData.html#cb74-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Latitude =</span> dplyr<span class="sc">::</span><span class="fu">first</span>(lat_UTM42))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 5
+##   `Station code` `Station name` `River name` Longitude Latitude
+##   &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
+## 1 16298          Sidzhak        Nauvalisoy      589674  4618690</code></pre>
+<p>The <em>Upslope Area</em> function will return a raster file of your catchment area. Convert it to a polygon and save the resulting shape (<a href="appendix-b-quick-guides.html#appendix-quick-guide-polygonize">how to convert raster to polygon</a>).</p>
+<p>Now you have a DEM and a watershed boundary ready. The steps to generate the GIS layers for import in RS Minerve are numerous. We have generated the input files for the sample catchments for you. In case you wish to reproduce the steps you can follow the description below.</p>
+</div>
+</div>
+<div id="run-through-the-process-model" class="section level3" number="5.2.5">
+<h3><span class="header-section-number">5.2.5</span> Run through the process model</h3>
+<p>A process model is available that generates the raw GIS layers for RS Minerve. Navigate to <em>Processing</em> and open the <em>Graphical Modeller…</em>. The <em>Model Designer</em> window opens. Open the model downloaded from here: <a href="%22models/Basin_Preparation_QGIS.model3%22">./model/Basin_Preparation_QGIS.model3</a> (<a href="Data-GeospatialData.html#fig:qgis-graphical-model-designer">5.11</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:qgis-graphical-model-designer"></span>
 <img src="_bookdown_files/FIG_DATA/fig500_GraphicalModelDesigner.png" alt="The process of deriving the GIS layers for RS Minerve is simplified through the process model." width="100%" />
 <p class="caption">
-Figure 5.9: The process of deriving the GIS layers for RS Minerve is simplified through the process model.
+Figure 5.11: The process of deriving the GIS layers for RS Minerve is simplified through the process model.
 </p>
 </div>
 <p>Prior to running the model, read through the following brief notes.</p>
-<div id="input-files" class="section level4" number="5.2.4.1">
-<h4><span class="header-section-number">5.2.4.1</span> Input files</h4>
+<div id="input-files" class="section level4 unnumbered">
+<h4>Input files</h4>
 <ul>
-<li>A shape file of the basin outline in UTM 42 N (<a href="Data-GeospatialData.html#section-steps-derive-catchment-boundaries">How to derive the basin outline</a>).<br />
+<li>A shape file of the basin outline in UTM 42 N. A shape file is provided in the <a href="https://www.dropbox.com/sh/hz5fcot6yvi6tff/AACrjSIQGFsbYEfeI-A05lZra?dl=0">Case Study Packs folder on Dropbox</a> that you should have already downloaded. <a href="Data-GeospatialData.html#section-steps-derive-catchment-boundaries">Here</a> is a description of how to derive the basin outline if you need to do so for a future project.<br />
 </li>
-<li>The extent of the DEM needs to be larger than the boundaries of your catchment. You can use your raw SRTM DEM projected to UTM42N.</li>
+<li>The extent of the DEM needs to be larger than the boundaries of your catchment. You can use the raw SRTM DEM projected to UTM42N that is provided in the <a href="https://www.dropbox.com/sh/hz5fcot6yvi6tff/AACrjSIQGFsbYEfeI-A05lZra?dl=0">Case Study Packs folder on Dropbox</a>. If you want to download the DEM yourself you find a description of how to do so <a href="Data-GeospatialData.html#section-geospatial-data-load-dem">here</a>.</li>
 </ul>
 </div>
-<div id="model-output" class="section level4" number="5.2.4.2">
-<h4><span class="header-section-number">5.2.4.2</span> Model output</h4>
-<p>Besides the 3 layers required for RS minerve (Basins, rivers, junctions, <a href="#fig:layers-minerve"><strong>??</strong></a> in the Introduction), the model produces a number of additional output files which can be used for verifying the parameterisation which is described in more detail in the next section.</p>
-</div>
-<div id="parameterization-of-the-model" class="section level4" number="5.2.4.3">
-<h4><span class="header-section-number">5.2.4.3</span> Parameterization of the model</h4>
+<div id="model-output" class="section level4 unnumbered">
+<h4>Model output</h4>
+<p>Besides the 3 layers required for RS Minerve (compare Figure <a href="Data-GeospatialData.html#fig:requiredGISInputFilesData">5.10</a>):</p>
 <ul>
-<li>BasinShapeBuffer_meters is a buffer around the basin outline to which the DEM is cut. The DEM needs to be slightly larger than the shape line. The default value of 1000 m is sufficient.<br />
-*River Network Level is a parameters for the resolution of the river network. Values of 7 and 8 have shown good results for smaller and medium sized catchments (<a href="Data-GeospatialData.html#fig:qgis-river-network-level">5.10</a>).</li>
+<li>Basins: BasinElevationBands_Poly_fixed<br />
+</li>
+<li>Rivers: RiverChannels<br />
+</li>
+<li>Junctions: RiverJunctions</li>
+</ul>
+<p>The model produces a number of additional output files which can be used for verifying the parameterisation which is described in more detail in the next section.</p>
+</div>
+<div id="parameterization-of-the-model" class="section level4" number="5.2.5.1">
+<h4><span class="header-section-number">5.2.5.1</span> Parameterization of the model</h4>
+<ul>
+<li>BasinShapeBuffer_meters is a buffer around the basin outline to which the DEM is cut. The DEM needs to be slightly larger than the shape line. The default value of 1000 m is sufficient, 500 m work as well.<br />
+</li>
+<li>The Channel Network Cutoff Value is a parameter required for the partitioning of the catchment into sub-catchments. Values between 2e8 and 5e8 have been found to work well for smaller and medium sized catchments. The model is sensitive to this parameter and might throw an error if the cutoff value is not appropriate.<br />
+</li>
+<li>The Elevation Bands Table holds the altitude boundaries and class IDs for the elevation bands in the catchment. After a first test run, edit according to your needs. Elevation bands of 200 m intervals are typically chosen to sufficiently refine the elevation dependent snow melt. For your case study you may use an interval for the elevation bands between 500 m for smaller catchments and 1000 m for larger catchments.<br />
+</li>
+<li>River Network Level is a parameters for the resolution of the river network. Values of 7 and 8 have shown good results for smaller and medium sized catchments (Figure <a href="Data-GeospatialData.html#fig:qgis-river-network-level">5.12</a>).</li>
 </ul>
 <div class="figure" style="text-align: center"><span id="fig:qgis-river-network-level"></span>
 <img src="_bookdown_files/FIG_DATA/fig501_RiverNetworkLevel7.png" alt="Comparison of River Network Level = 7 (left) and River Network Level = 8 (rigth) for the example of the Pskem river catchment." width="50%" /><img src="_bookdown_files/FIG_DATA/fig502_RiverNetworkLevel8.png" alt="Comparison of River Network Level = 7 (left) and River Network Level = 8 (rigth) for the example of the Pskem river catchment." width="50%" />
 <p class="caption">
-Figure 5.10: Comparison of River Network Level = 7 (left) and River Network Level = 8 (rigth) for the example of the Pskem river catchment.
+Figure 5.12: Comparison of River Network Level = 7 (left) and River Network Level = 8 (rigth) for the example of the Pskem river catchment.
 </p>
 </div>
-<ul>
-<li>The Channel Network Cutoff Value is a parameter required for the partitioning of the catchment into sub-catchments. Values between 2e8 and 5e8 have been found to work well for smaller and medium sized catchments. The model is sensitive to this parameter and might throw an error if the cutoff value is not appropriate.<br />
-</li>
-<li>The Elevation Bands Table holds the altitude boundaries and class IDs for the elevation bands in the catchment. After a first test run, edit according to your needs. Manual editing of the GIS layers prior to import to RS Minerve might still be needed.</li>
-</ul>
 <p>The model is sensitive to these parameters. Play around with them until you are satisfied with the resulting GIS layers.</p>
-<p>If you get an error message running Fix geometries that POLYGONS.shp was not found, try reducing the Channel Network Cutoff Value by 50-70%. You can still inspect the other layers and change other parameters as well.<br />
-* Make sure that all input layers are projected to UTM 42 N.<br />
-* Run the model through once, inspect the output and play with the input parameters:<br />
-+ Min and Max elevations on the smoothed DEM and the shape, number and spacing of elevation bands (edit the table for the elevation bands accordingly),<br />
-+ Location and shape of river reaches and the location of junctions (vary the threshold).</p>
 </div>
-</div>
-<div id="manually-edit-the-gis-layers-for-import-in-rs-minerve" class="section level3" number="5.2.5">
-<h3><span class="header-section-number">5.2.5</span> Manually edit the GIS Layers for import in RS MINERVE</h3>
-<p>Review <a href="#fig:layers-minerve"><strong>??</strong></a> and compare your GIS layers with the requirements for the RS Minerve layers:</p>
+<div id="trouble-shooting" class="section level4 unnumbered">
+<h4>Trouble shooting</h4>
+<p>If you get an error message running Fix geometries that POLYGONS.shp was not found, try reducing the Channel Network Cutoff Value by 50-70%. You can still inspect the other layers and change other parameters as well.</p>
 <ul>
-<li>Elevation bands per sub-basin need to be in one Multi-Polygon layer (i.e. only one feature per elevation band).<br />
+<li>Make sure that all input layers are projected to UTM 42 N.<br />
 </li>
-<li>We need junctions only at the confluences of sub-basins (and river reaches).<br />
+<li>Run the model through once, inspect the output and play with the input parameters:
+<ul>
+<li>Min and Max elevations on the smoothed DEM and the shape, number and spacing of elevation bands (edit the table for the elevation bands accordingly),<br />
 </li>
-<li>We only need river reaches where we need to do routing. The sub-basins at the upper-most reaches do not need river reaches.</li>
+<li>Location and shape of river reaches and the location of junctions (vary the threshold).</li>
+</ul></li>
 </ul>
-<div id="edit-junctions-layer" class="section level4" number="5.2.5.1">
-<h4><span class="header-section-number">5.2.5.1</span> Edit Junctions layer</h4>
-<p>Select the Junctions layer and toggle manual editing by clicking on the yellow pen (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-1">5.11</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-1"></span>
-<img src="_bookdown_files/FIG_DATA/fig026_ManualEditJunctions1.png" alt="Manually edit the layer with the river junctions, step 1: Toggle layer editing." width="50%" />
+After reading the instructions above, you are now ready to run the model chain. Press the green triangle in the toolbar of the <em>Model Designer</em> window and adjust the parameters in the <em>Basin_Processing</em> according to the recommendations above.<br />
+For the example of the small Nauvalisoy river basin, the parameterization is given in Figure <a href="Data-GeospatialData.html#fig:basin-processing-params-nauvalisoy">5.13</a>.<br />
+
+<div class="figure" style="text-align: center"><span id="fig:basin-processing-params-nauvalisoy"></span>
+<img src="_bookdown_files/FIG_DATA/2fig_BasinProcessingNauvalisoy1.png" alt="Parameters for the basin processing model chain for the Nauvalisoy catchment." width="50%" />
 <p class="caption">
-Figure 5.11: Manually edit the layer with the river junctions, step 1: Toggle layer editing.
+Figure 5.13: Parameters for the basin processing model chain for the Nauvalisoy catchment.
 </p>
 </div>
-<p>When in editing mode, the yellow pen will appear in the <em>Layers</em> window next to the name of the layer being edited. The edit mode will also activate a button for adding points (i.e. junctions, we don’t need that now) and the vertex tool. Click on the vertex tool icon. It is active when a a boundary appears around the icon and the Vertex Editor windows opens (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-2">5.12</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-2"></span>
-<img src="_bookdown_files/FIG_DATA/fig027_ManualEditJunctions2.png" alt="Manually edit the layer with the river junctions, step 2: Activate the vertex tool." width="50%" />
+</div>
+<div id="resulting-layers-of-the-qgis-model-chain" class="section level4 unnumbered">
+<h4>Resulting layers of the QGIS model chain</h4>
+The Output layers of the QGIS model process are shown in Figure <a href="Data-GeospatialData.html#fig:qgis-model-output-raw">5.14</a>.
+<div class="figure" style="text-align: center"><span id="fig:qgis-model-output-raw"></span>
+<img src="_bookdown_files/FIG_DATA/2fig_QGISModelOutput.png" alt="Raw output of the QGIS model chain to derive the GIS layers for import into RS Minerve." width="80%" />
 <p class="caption">
-Figure 5.12: Manually edit the layer with the river junctions, step 2: Activate the vertex tool.
+Figure 5.14: Raw output of the QGIS model chain to derive the GIS layers for import into RS Minerve.
 </p>
 </div>
-<p>Right-click on a junction point you would like to delete to activate it (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-3">5.13</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-3"></span>
-<img src="_bookdown_files/FIG_DATA/fig028_ManualEditJunctions3.png" alt="Manually edit the layer with the river junctions, step 3: Activate a junction node for editing." width="50%" />
+<p>Let’s inspect the GIS layers and determine which edits are still necessary.</p>
+</div>
+</div>
+<div id="manually-edit-the-gis-layers-for-import-in-rs-minerve" class="section level3" number="5.2.6">
+<h3><span class="header-section-number">5.2.6</span> Manually edit the GIS layers for import in RS MINERVE</h3>
+<div id="the-basin-layer" class="section level4 unnumbered">
+<h4>The basin layer</h4>
+Verify that the elevation bands are numbered in the correct order. You can do this for example by opening the attribute table, sorting the IDs in ascending order and click through the layers. The selected feature is highlighted in yellow in the map panel and should move along the as you select the next row (see Figure <a href="Data-GeospatialData.html#fig:qgis-verify-basin">5.15</a>).
+<div class="figure" style="text-align: center"><span id="fig:qgis-verify-basin"></span>
+<img src="_bookdown_files/FIG_DATA/3fig_checkOrderElevationBands.png" alt="Verify that the elevation bands are in the correcto order." width="80%" />
 <p class="caption">
-Figure 5.13: Manually edit the layer with the river junctions, step 3: Activate a junction node for editing.
+Figure 5.15: Verify that the elevation bands are in the correcto order.
 </p>
 </div>
-<p>Select the activated point by drawing a rectangle over the point with your mouse. The point will appear blue (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-4">5.14</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-4"></span>
-<img src="_bookdown_files/FIG_DATA/fig029_ManualEditJunctions4.png" alt="Manually edit the layer with the river junctions, step 3: Select the activated junction node." width="50%" />
+<p>Also, there should only be one row per ID in the attribute table. If the QGIS model process has run through correctly, this should be the case. Each of the sub-basins in the basin layer will be translated to a hydrological model in RS Minerve.</p>
+RS Minerve requires the specification of the downstream junction for each sub-basin (compare Figure <a href="Data-GeospatialData.html#fig:requiredGISInputFilesData">5.10</a>). Toggle the edit mode by pressing the pen icon in the upper left corner of the attribut table window. Press the <em>New Field</em> icon (Figure <a href="Data-GeospatialData.html#fig:qgis-add-field-attrib-table">5.16</a>)
+<div class="figure" style="text-align: center"><span id="fig:qgis-add-field-attrib-table"></span>
+<img src="_bookdown_files/FIG_DATA/3fig_addNewField.png" alt="Press *Add New Field* in the toolbar of the attribute table." width="50%" />
 <p class="caption">
-Figure 5.14: Manually edit the layer with the river junctions, step 3: Select the activated junction node.
+Figure 5.16: Press <em>Add New Field</em> in the toolbar of the attribute table.
 </p>
 </div>
-<p>Delete the point with the delete key on your keyboard. You can save your edits by pressing the blue-white Save Layer Edits button that is decorated with an orange pen (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-5">5.15</a>). This saves your changes without exiting the edit mode.</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-5"></span>
-<img src="_bookdown_files/FIG_DATA/fig030_ManualEditJunctions5.png" alt="Manually edit the layer with the river junctions, step 3: Save edits." width="20%" />
+Fill in the attributes for the new field as shown in Figure
+<a href="Data-GeospatialData.html#fig:qgis-add-field-attrib-table2">5.17</a>:
+<div class="figure" style="text-align: center"><span id="fig:qgis-add-field-attrib-table2"></span>
+<img src="_bookdown_files/FIG_DATA/3fig_addNewField2.png" alt="Enter the attributes of the new field." width="50%" />
 <p class="caption">
-Figure 5.15: Manually edit the layer with the river junctions, step 3: Save edits.
+Figure 5.17: Enter the attributes of the new field.
 </p>
 </div>
-<p>If you have many points to remove, as in our case, it may be faster to identify the IDs of the features you want to keep, select these and delete all others. To start, you activate the <em>Identify Features</em> mode by clicking on the icon with the white <em>i</em> on the blue circle (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-fast-1">5.16</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-fast-1"></span>
-<img src="_bookdown_files/FIG_DATA/fig031_ManualEditJunctionsFast1.png" alt="Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 1." width="20%" />
+Press OK. A new column called <em>Junc_down</em> and containing <em>NULL</em> now appears in the attribute table. For small catchments, you can manually enter the name of the downstream junction in the <em>Junc_down</em> column while in editing mode. For larger catchments with several tributaries you may want to use the field calculator (<strong>TODO WRITE A GUIDE FOR THIS</strong>). We call the junction at which the contributions from the elevation bands flow together the <em>Outlet</em> (Figure <a href="#fig:"><strong>??</strong></a>).
+<div class="figure" style="text-align: center"><span id="fig:qgis-add-field-attrib-table3"></span>
+<img src="_bookdown_files/FIG_DATA/3fig_addNewField3.png" alt="Edit the junction names and save your changes." width="50%" />
 <p class="caption">
-Figure 5.16: Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 1.
+Figure 5.18: Edit the junction names and save your changes.
 </p>
 </div>
-<p>A black <em>i</em> will appear next to your cursor. You then click on the first of your nodes that you want to keep. This will highlight it in red and a list with information on the selected feature appears on the right in the Identify Results window. You will see the attribute NODE_ID with value 1 for the outflow node (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-fast-2">5.17</a>). Note down the ID of the feature.</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-fast-2"></span>
-<img src="_bookdown_files/FIG_DATA/fig032_ManualEditJunctionsFast2.png" alt="Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 2." width="100%" />
+<p>Save the edits and un-toggle the edit mode by pressing on the pen icon. You can close the attribute window. If the layer is still temporary, you can store save it to your computer (<a href="appendix-b-quick-guides.html#appendix-quick-guide-save-temp-layer">how to save a temporary layer</a>).</p>
+</div>
+<div id="the-junctions-layer" class="section level4 unnumbered">
+<h4>The junctions layer</h4>
+<p>The output of the QGIS model process shows two junctions (see Figure <a href="Data-GeospatialData.html#fig:qgis-model-output-raw">5.14</a>). We only need to keep the junction at the outlet. Select the RiverJunctions layer in the Layers panel open the attribute table. There select the column with ths spring node, toggle the edit mode and delete the node by pressing on the icon with the red bin. The outlet node is already called <em>Outlet</em> so we do not need to change this name, it is already consistent with the basins layer. Save your edits and un-toggle the edit mode. Close the attribute table and save the junctions layer.</p>
+<p>An alternative way to edit the junctions layer, especially if you have larger and more complicate catchments, is via the graphical editor. A detailed description of how to do this is given in the <a href="appendix-b-quick-guides.html#appendix-section-graphical-edit-junctions">Appendix</a></p>
+</div>
+<div id="the-river-layer" class="section level4 unnumbered">
+<h4>The river layer</h4>
+Although we will not implement river routing in the hydrological model for the Nauvalisoy basin, RS Minerve requires a GIS layer for the river. Edit the RiverChannels layer as follows in the attribute table: Press the <em>Delete fields</em> button (Figure <a href="Data-GeospatialData.html#fig:qgis-delete-fields-button">5.19</a>).
+<div class="figure" style="text-align: center"><span id="fig:qgis-delete-fields-button"></span>
+<img src="_bookdown_files/FIG_DATA/4fig_deleteColumns.png" alt="The delete fields button in the attribute table toolbar." width="5%" />
 <p class="caption">
-Figure 5.17: Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 2.
+Figure 5.19: The delete fields button in the attribute table toolbar.
 </p>
 </div>
-<p>You then press on the node at the confluence of the two tributaries in the center of the catchment. The Identify Results window shows 2 results, that means, that two junction nodes are close to each other (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-fast-3">5.18</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-fast-3"></span>
-<img src="_bookdown_files/FIG_DATA/fig033_ManualEditJunctionsFast3.png" alt="Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 3." width="80%" />
+In the pop-up window, select all fields but BASIN and LENGTH for deletion and press OK (Figure <a href="Data-GeospatialData.html#fig:qgis-delete-fields-window">5.20</a>).
+<div class="figure" style="text-align: center"><span id="fig:qgis-delete-fields-window"></span>
+<img src="_bookdown_files/FIG_DATA/4fig_deleteFields.png" alt="Select the fields of the attribute table to delete." width="30%" />
 <p class="caption">
-Figure 5.18: Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 3.
+Figure 5.20: Select the fields of the attribute table to delete.
 </p>
 </div>
-<p>Zoom in in your map window with your mouse to see the two nodes (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-fast-4">5.19</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-fast-4"></span>
-<img src="_bookdown_files/FIG_DATA/fig034_ManualEditJunctionsFast4.png" alt="Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 4." width="80%" />
-<p class="caption">
-Figure 5.19: Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 4.
-</p>
-</div>
-<p>Select the node that should be kept and not the ID of the node (NODE_ID 11), (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-fast-5">5.20</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-fast-5"></span>
-<img src="_bookdown_files/FIG_DATA/fig035_ManualEditJunctionsFast5.png" alt="Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 5." width="80%" />
-<p class="caption">
-Figure 5.20: Alternative method to manually edit junctions if many nodes need to be deleted. Step 1: Get ID of features to keep, part 5.
-</p>
-</div>
-<p>Zoom back to the entire Junctions layer (see <a href="appendix-b-quick-guides.html#fig:qgis-zoom-to-layer">9.9</a>). and go to Select Features by Values… in the toolbar (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-fast-6">5.21</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-fast-6"></span>
-<img src="_bookdown_files/FIG_DATA/fig036_ManualEditJunctionsFast6.png" alt="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 1" width="40%" />
-<p class="caption">
-Figure 5.21: Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 1
-</p>
-</div>
-<p>Add NODE_ID 1 to your selection as demonstrated in (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-fast-7">5.22</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-fast-7"></span>
-<img src="_bookdown_files/FIG_DATA/fig037_ManualEditJunctionsFast7.png" alt="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 2" width="60%" />
-<p class="caption">
-Figure 5.22: Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 2
-</p>
-</div>
-<p>The outflow node with ID 1 will change color in your map (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-fast-8">5.23</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-fast-8"></span>
-<img src="_bookdown_files/FIG_DATA/fig038_ManualEditJunctionsFast8.png" alt="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 3" width="20%" />
-<p class="caption">
-Figure 5.23: Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 3
-</p>
-</div>
-<p>Add node 11 to your selection in the same way and close the Select Node by Value window. Invert the feature selection as shown in (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-fast-9">5.24</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-fast-9"></span>
-<img src="_bookdown_files/FIG_DATA/fig039_ManualEditJunctionsFast9.png" alt="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 4" width="80%" />
-<p class="caption">
-Figure 5.24: Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 4
-</p>
-</div>
-<p>All other nodes will now be yellow and the ones to keep will appear in the layer color (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-fast-10">5.25</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-fast-10"></span>
-<img src="_bookdown_files/FIG_DATA/fig040_ManualEditJunctionsFast10.png" alt="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 5" width="80%" />
-<p class="caption">
-Figure 5.25: Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 5
-</p>
-</div>
-<p>Delete the features (nodes) by pressing the Delete Selected button in the edit features toolbar (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-fast-11">5.26</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-fast-11"></span>
-<img src="_bookdown_files/FIG_DATA/fig041_ManualEditJunctionsFast11.png" alt="Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 6" width="40%" />
-<p class="caption">
-Figure 5.26: Alternative method to manually edit junctions if many nodes need to be deleted. Step 2: Select features to delete, part 6
-</p>
-</div>
-<p>Save your edits (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-5">5.15</a>). To verify that, indeed, all superfluous nodes are deleted from the Junctions file, open the Attribute table (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-at-1">5.27</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-at-1"></span>
-<img src="_bookdown_files/FIG_DATA/fig042_EditJunctionsAttributeTable1.png" alt="Edit Attribute table. Step 1: Open the attribute table with a click on the Attribute Table icon in the QGIS toolbar." width="5%" />
-<p class="caption">
-Figure 5.27: Edit Attribute table. Step 1: Open the attribute table with a click on the Attribute Table icon in the QGIS toolbar.
-</p>
-</div>
-<p>Only 2 features should be listed under each attribute. We will now edit the attribute table to prepare it for the RS Minerve model (see <a href="#fig:layers-minerve"><strong>??</strong></a>). RS Minerve needs an identifyer to differentiate between the junctions. We can use the attribute <em>TYPE</em> to uniquely identify the two junctions needed. RS Minerve further needs the ID of the downstream river. Add a collumn to the attribute table by pressing the Add Field button (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-at-2">5.28</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-at-2"></span>
-<img src="_bookdown_files/FIG_DATA/fig043_EditJunctionsAttributeTable2.png" alt="Edit Attribute table. Step 2: Add a column to the attribute table manually, part 1." width="60%" />
-<p class="caption">
-Figure 5.28: Edit Attribute table. Step 2: Add a column to the attribute table manually, part 1.
-</p>
-</div>
-<p>Define a name for the attribute, a type and admissible length of each entry in the Add Field window. In our case, we choose a string (a word) as ID and allow it to be 20 characters long (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-at-3">5.29</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-at-3"></span>
-<img src="_bookdown_files/FIG_DATA/fig044_EditJunctionsAttributeTable3.png" alt="Edit Attribute table. Step 2: Add a column to the attribute table manually, part 2." width="30%" />
-<p class="caption">
-Figure 5.29: Edit Attribute table. Step 2: Add a column to the attribute table manually, part 2.
-</p>
-</div>
-<p>Close the window by pressing OK. By clicking in the newly created NULL fields, you can now type names for the downstream rivers and save your edits by pressing the save edits icon (3rd from the left in the toolbar of the attribute table window). As the outlet of the catchment goes directly into Charvak reservoir, we can type Charvak as the downstream river ID. The river stretch between junction and outlet is called Pskem (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-at-4">5.30</a>).</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-at-4"></span>
-<img src="_bookdown_files/FIG_DATA/fig045_EditJunctionsAttributeTable4.png" alt="Edit Attribute table. Step 2: Add a column to the attribute table manually, part 3." width="60%" />
-<p class="caption">
-Figure 5.30: Edit Attribute table. Step 2: Add a column to the attribute table manually, part 3.
-</p>
-</div>
-<p>We are done editing the Junctions layer. Deactivate the edit mode by clickig on the yellow pen in the attribute table window (<a href="Data-GeospatialData.html#fig:qgis-edit-junctions-at-5">5.31</a>) and close the window.</p>
-<div class="figure" style="text-align: center"><span id="fig:qgis-edit-junctions-at-5"></span>
-<img src="_bookdown_files/FIG_DATA/fig046_EditJunctionsAttributeTable5.png" alt="Save your edits." width="60%" />
-<p class="caption">
-Figure 5.31: Save your edits.
-</p>
-</div>
-<p>Now save the Junctions layer in an appropriate place on your drive and save your project.</p>
-</div>
-<div id="edit-channels-layer" class="section level4" number="5.2.5.2">
-<h4><span class="header-section-number">5.2.5.2</span> Edit Channels layer</h4>
-<p>Proceed in the same way as for the junctions: Delete channel sections that are not needed in the Minerve model.</p>
+<p>Add a field for the downstream junction and enter Outlet you can proceed in the same way as described above for editing the basin layer. Save the river channels layer.</p>
+<p>If you have larger catchment with a more complex structure to edit you may be interested in a detailed description of the graphical editing of GIS layers in the <a href="appendix-b-quick-guides.html#appendix-section-graphical-edit-junctions">Appendix</a>. The example shows editing of a junction layer but you may proceed in the same manner for editing the rivers layer.</p>
+<p>The layers are now ready for import into RS Minerve. This will be described in <a href="section-rsminerve-data-preparation.html#section-rsminerve-data-preparation">Chapter 6.4</a>.</p>
 </div>
 </div>
 </div>

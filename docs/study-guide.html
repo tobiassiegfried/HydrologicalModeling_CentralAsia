@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried and Beatrice Marti" />
 
 
-<meta name="date" content="2021-04-14" />
+<meta name="date" content="2021-04-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -147,7 +147,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="day-1-introduction-and-installation-of-software.html"><a href="day-1-introduction-and-installation-of-software.html"><i class="fa fa-check"></i>Day 1: Introduction and installation of software</a></li>
 <li class="chapter" data-level="" data-path="day-2-catchment-characterization.html"><a href="day-2-catchment-characterization.html"><i class="fa fa-check"></i>Day 2: Catchment characterization</a></li>
-<li class="chapter" data-level="" data-path="day-3-introduction-to-hydrological-modeling-and-geospatial-data.html"><a href="day-3-introduction-to-hydrological-modeling-and-geospatial-data.html"><i class="fa fa-check"></i>Day 3: Introduction to hydrological modeling and geospatial data</a></li>
+<li class="chapter" data-level="" data-path="day-3-geospatial-data-and-introduction-to-linear-reservoir-models.html"><a href="day-3-geospatial-data-and-introduction-to-linear-reservoir-models.html"><i class="fa fa-check"></i>Day 3: Geospatial data and introduction to linear reservoir models</a></li>
+<li class="chapter" data-level="" data-path="day-4-discussion-of-types-of-hydrological-models.html"><a href="day-4-discussion-of-types-of-hydrological-models.html"><i class="fa fa-check"></i>Day 4: Discussion of types of hydrological models</a></li>
+<li class="chapter" data-level="" data-path="day-5-the-hbv-model.html"><a href="day-5-the-hbv-model.html"><i class="fa fa-check"></i>Day 5: The HBV model</a></li>
+<li class="chapter" data-level="" data-path="day-6-model-calibration-and-validation.html"><a href="day-6-model-calibration-and-validation.html"><i class="fa fa-check"></i>Day 6: Model calibration and validation</a></li>
+<li class="chapter" data-level="" data-path="day-7-case-studies.html"><a href="day-7-case-studies.html"><i class="fa fa-check"></i>Day 7: Case studies</a></li>
+<li class="chapter" data-level="" data-path="day-8-real-world-applications.html"><a href="day-8-real-world-applications.html"><i class="fa fa-check"></i>Day 8: Real-world applications</a></li>
+<li class="chapter" data-level="" data-path="day-9-student-presentations-and-wrap-up-of-workshop.html"><a href="day-9-student-presentations-and-wrap-up-of-workshop.html"><i class="fa fa-check"></i>Day 9: Student presentations and wrap-up of workshop</a></li>
 </ul></li>
 <li class="part"><span><b>I Part I Hydrological Systems</b></span></li>
 <li class="chapter" data-level="1" data-path="ShortHistory.html"><a href="ShortHistory.html"><i class="fa fa-check"></i><b>1</b> Short History of Water in Central Asia</a>
@@ -202,11 +208,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html"><i class="fa fa-check"></i><b>5.2</b> Geospatial Data</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-steps-setting-up"><i class="fa fa-check"></i><b>5.2.1</b> Setting up QGIS</a></li>
-<li class="chapter" data-level="5.2.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-load-dem"><i class="fa fa-check"></i><b>5.2.2</b> Load DEM</a></li>
-<li class="chapter" data-level="5.2.3" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-steps-derive-catchment-boundaries"><i class="fa fa-check"></i><b>5.2.3</b> Derive the boundaries of your catchment</a></li>
-<li class="chapter" data-level="5.2.4" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#run-through-the-process-model"><i class="fa fa-check"></i><b>5.2.4</b> Run through the process model</a></li>
-<li class="chapter" data-level="5.2.5" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#manually-edit-the-gis-layers-for-import-in-rs-minerve"><i class="fa fa-check"></i><b>5.2.5</b> Manually edit the GIS Layers for import in RS MINERVE</a></li>
+<li class="chapter" data-level="5.2.1" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#prerequisites"><i class="fa fa-check"></i><b>5.2.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="5.2.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-steps-setting-up"><i class="fa fa-check"></i><b>5.2.2</b> Setting up QGIS</a></li>
+<li class="chapter" data-level="5.2.3" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-load-dem"><i class="fa fa-check"></i><b>5.2.3</b> Load DEM</a></li>
+<li class="chapter" data-level="5.2.4" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-steps-derive-catchment-boundaries"><i class="fa fa-check"></i><b>5.2.4</b> Catchment delineation</a></li>
+<li class="chapter" data-level="5.2.5" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#run-through-the-process-model"><i class="fa fa-check"></i><b>5.2.5</b> Run through the process model</a></li>
+<li class="chapter" data-level="5.2.6" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#manually-edit-the-gis-layers-for-import-in-rs-minerve"><i class="fa fa-check"></i><b>5.2.6</b> Manually edit the GIS layers for import in RS MINERVE</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="Data-ClimateReanalysisData.html"><a href="Data-ClimateReanalysisData.html"><i class="fa fa-check"></i><b>5.3</b> Climate Reanalysis Data</a>
 <ul>
@@ -226,27 +233,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.1" data-path="section-rsminerve-prerequisites.html"><a href="section-rsminerve-prerequisites.html"><i class="fa fa-check"></i><b>6.1</b> Prerequisites</a></li>
 <li class="chapter" data-level="6.2" data-path="section-rsminerve-why-model-introduction.html"><a href="section-rsminerve-why-model-introduction.html"><i class="fa fa-check"></i><b>6.2</b> Recap: Hydrological response</a></li>
 <li class="chapter" data-level="6.3" data-path="section-general-modelling-process.html"><a href="section-general-modelling-process.html"><i class="fa fa-check"></i><b>6.3</b> Recap: The general modeling process</a></li>
-<li class="chapter" data-level="6.4" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html"><i class="fa fa-check"></i><b>6.4</b> Data Preparation and Setup</a>
+<li class="chapter" data-level="6.4" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html"><i class="fa fa-check"></i><b>6.4</b> Data Preparation and Setup</a>
 <ul>
-<li class="chapter" data-level="6.4.1" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html#examining-and-understanding-the-gis-data"><i class="fa fa-check"></i><b>6.4.1</b> Examining and Understanding the GIS Data</a></li>
-<li class="chapter" data-level="6.4.2" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html#loading-gis-data-and-model-creation"><i class="fa fa-check"></i><b>6.4.2</b> Loading GIS Data and Model Creation</a></li>
-<li class="chapter" data-level="6.4.3" data-path="data-preparation-and-setup.html"><a href="data-preparation-and-setup.html#climate-data"><i class="fa fa-check"></i><b>6.4.3</b> Climate Data</a></li>
+<li class="chapter" data-level="6.4.1" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html#examining-and-understanding-the-gis-data"><i class="fa fa-check"></i><b>6.4.1</b> Examining and Understanding the GIS Data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html#loading-gis-data-and-model-creation"><i class="fa fa-check"></i><b>6.4.2</b> Loading GIS Data and Model Creation</a></li>
+<li class="chapter" data-level="6.4.3" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html#climate-data"><i class="fa fa-check"></i><b>6.4.3</b> Climate Data</a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="section-hbv-model.html"><a href="section-hbv-model.html"><i class="fa fa-check"></i><b>6.5</b> The HBV model</a>
 <ul>
 <li class="chapter" data-level="6.5.1" data-path="section-hbv-model.html"><a href="section-hbv-model.html#section-hbv-nauvalisoy-tutorial-short"><i class="fa fa-check"></i><b>6.5.1</b> HBV example: Simple model of the Nauvalisoy river catchment</a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="model-calibration-and-validation.html"><a href="model-calibration-and-validation.html"><i class="fa fa-check"></i><b>6.6</b> Model Calibration and Validation</a>
+<li class="chapter" data-level="6.6" data-path="section-model-calibration-and-validation.html"><a href="section-model-calibration-and-validation.html"><i class="fa fa-check"></i><b>6.6</b> Model Calibration and Validation</a>
 <ul>
-<li class="chapter" data-level="6.6.1" data-path="model-calibration-and-validation.html"><a href="model-calibration-and-validation.html#section-calibration-principles"><i class="fa fa-check"></i><b>6.6.1</b> Basic Principles</a></li>
-<li class="chapter" data-level="6.6.2" data-path="model-calibration-and-validation.html"><a href="model-calibration-and-validation.html#secion-calibration-practical-steps"><i class="fa fa-check"></i><b>6.6.2</b> Practical Steps</a></li>
+<li class="chapter" data-level="6.6.1" data-path="section-model-calibration-and-validation.html"><a href="section-model-calibration-and-validation.html#section-calibration-principles"><i class="fa fa-check"></i><b>6.6.1</b> Basic Principles</a></li>
+<li class="chapter" data-level="6.6.2" data-path="section-model-calibration-and-validation.html"><a href="section-model-calibration-and-validation.html#secion-calibration-practical-steps"><i class="fa fa-check"></i><b>6.6.2</b> Practical Steps</a></li>
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="application-investigating-climate-change-impacts.html"><a href="application-investigating-climate-change-impacts.html"><i class="fa fa-check"></i><b>6.7</b> Application: Investigating Climate Change Impacts</a></li>
 <li class="chapter" data-level="6.8" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6.8</b> Discussion</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="HydroModelsEmpiricalModels.html"><a href="HydroModelsEmpiricalModels.html"><i class="fa fa-check"></i><b>7</b> Discharge Forecasting with Predictive Inference</a>
 <ul>
-<li class="chapter" data-level="" data-path="prerequisites.html"><a href="prerequisites.html"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="prerequisites-1.html"><a href="prerequisites-1.html"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="7.1" data-path="Chap9PredictiveInference.html"><a href="Chap9PredictiveInference.html"><i class="fa fa-check"></i><b>7.1</b> Forecasting Using Predictive Inference</a></li>
 <li class="chapter" data-level="7.2" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html"><i class="fa fa-check"></i><b>7.2</b> Forecasting in the Central Asian Hydromets</a>
 <ul>
@@ -296,26 +303,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html"><i class="fa fa-check"></i><b>9.2</b> Appendix B: Quick Guides</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-register-with-earth-explorer"><i class="fa fa-check"></i><b>9.2.1</b> EE: Register for an account</a></li>
-<li class="chapter" data-level="9.2.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-earth-explorer-download-srtm"><i class="fa fa-check"></i><b>9.2.2</b> EE: Download SRTM data for a selected region</a></li>
-<li class="chapter" data-level="9.2.3" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-qgis-window-overview"><i class="fa fa-check"></i><b>9.2.3</b> The QGIS window - overview</a></li>
-<li class="chapter" data-level="9.2.4" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-saving-a-new-qgis-project"><i class="fa fa-check"></i><b>9.2.4</b> QGIS: Saving a new QGIS project</a></li>
-<li class="chapter" data-level="9.2.5" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-project-projection-qgis"><i class="fa fa-check"></i><b>9.2.5</b> QGIS: Change the projection of the QGIS project</a></li>
-<li class="chapter" data-level="9.2.6" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-install-and-activate-plugins-in-QGIS3"><i class="fa fa-check"></i><b>9.2.6</b> QGIS: Install and activate plugins in QGIS3</a></li>
-<li class="chapter" data-level="9.2.7" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-managing-panels"><i class="fa fa-check"></i><b>9.2.7</b> GQIS: Managing panels visibility in QGIS</a></li>
-<li class="chapter" data-level="9.2.8" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-loading-public-background-layers"><i class="fa fa-check"></i><b>9.2.8</b> QGIS: Loading public background maps</a></li>
-<li class="chapter" data-level="9.2.9" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-zoom-to-layer"><i class="fa fa-check"></i><b>9.2.9</b> QGIS: Zoom to layer</a></li>
-<li class="chapter" data-level="9.2.10" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-srtm-plugin"><i class="fa fa-check"></i><b>9.2.10</b> QGIS: Import SRTM layers using the SRTM plugin</a></li>
-<li class="chapter" data-level="9.2.11" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-merge-srtm-tiles"><i class="fa fa-check"></i><b>9.2.11</b> QGIS: Merge SRTM tiles to a single layer</a></li>
-<li class="chapter" data-level="9.2.12" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-vector-layer-to-qgis"><i class="fa fa-check"></i><b>9.2.12</b> Add vector layer to QGIS</a></li>
-<li class="chapter" data-level="9.2.13" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer"><i class="fa fa-check"></i><b>9.2.13</b> Change color of a vector layer</a></li>
-<li class="chapter" data-level="9.2.14" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-create-hbv-model"><i class="fa fa-check"></i><b>9.2.14</b> RSM: Create HBV model and edit parameters</a></li>
-<li class="chapter" data-level="9.2.15" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-climate-station"><i class="fa fa-check"></i><b>9.2.15</b> RSM: Add and link climate station</a></li>
-<li class="chapter" data-level="9.2.16" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-import-climate-data"><i class="fa fa-check"></i><b>9.2.16</b> RSM: Import climate data</a></li>
-<li class="chapter" data-level="9.2.17" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-atapt-model-settings"><i class="fa fa-check"></i><b>9.2.17</b> RSM: Adapt model settings</a></li>
-<li class="chapter" data-level="9.2.18" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-export-sim-results-to-db"><i class="fa fa-check"></i><b>9.2.18</b> RSM: Export simulation results to data base</a></li>
-<li class="chapter" data-level="9.2.19" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-comparator-and-discharge-data"><i class="fa fa-check"></i><b>9.2.19</b> RSM: Add comparator and load discharge measurements</a></li>
-<li class="chapter" data-level="9.2.20" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-copy-paste-database-values"><i class="fa fa-check"></i><b>9.2.20</b> RSM: Copy-paste data to database</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-register-with-earth-explorer"><i class="fa fa-check"></i>EE: Register for an account</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-earth-explorer-download-srtm"><i class="fa fa-check"></i>EE: Download SRTM data for a selected region</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-sofware-qgis-installation-guide"><i class="fa fa-check"></i>QGIS installation guide</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-qgis-window-overview"><i class="fa fa-check"></i>The QGIS window - overview</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-saving-a-new-qgis-project"><i class="fa fa-check"></i>QGIS: Saving a new QGIS project</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-project-projection-qgis"><i class="fa fa-check"></i>QGIS: Change the projection of the QGIS project</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-install-and-activate-plugins-in-QGIS3"><i class="fa fa-check"></i>QGIS: Install and activate plugins in QGIS3</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-managing-panels"><i class="fa fa-check"></i>GQIS: Managing panels visibility in QGIS</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-loading-public-background-layers"><i class="fa fa-check"></i>QGIS: Loading public background maps</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-zoom-to-layer"><i class="fa fa-check"></i>QGIS: Zoom to layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-srtm-plugin"><i class="fa fa-check"></i>QGIS: Import SRTM layers using the SRTM plugin</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-merge-srtm-tiles"><i class="fa fa-check"></i>QGIS: Merge SRTM tiles to a single layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quick-guides-load-dem"><i class="fa fa-check"></i>QGIS: Add raster layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guides-change-color-of-raster-layer"><i class="fa fa-check"></i>QGIS: Change color of raster layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-map-decorations"><i class="fa fa-check"></i>QGIS: Add map decorations</a></li>
+<li class="chapter" data-level="9.2.1" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quick-guides-verify-projection-reproject"><i class="fa fa-check"></i><b>9.2.1</b> QGIS: Verify projection of layer and re-project layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-save-temp-layer"><i class="fa fa-check"></i>QGIS: Save a temporary layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-vector-layer-to-qgis"><i class="fa fa-check"></i>QGIS: Add vector layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer"><i class="fa fa-check"></i>QGIS: Change color of a vector layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guides-fill-sinks"><i class="fa fa-check"></i>QGIS: Fill sinks</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-upslope-area"><i class="fa fa-check"></i>QGIS: Calculate the area upslope of a point</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-polygonize"><i class="fa fa-check"></i>QGIS:</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-section-graphical-edit-junctions"><i class="fa fa-check"></i>QGIS: Edit Junctions layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-create-hbv-model"><i class="fa fa-check"></i>RSM: Create HBV model and edit parameters</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-climate-station"><i class="fa fa-check"></i>RSM: Add and link climate station</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-import-climate-data"><i class="fa fa-check"></i>RSM: Import climate data</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-atapt-model-settings"><i class="fa fa-check"></i>RSM: Adapt model settings</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-export-sim-results-to-db"><i class="fa fa-check"></i>RSM: Export simulation results to data base</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-comparator-and-discharge-data"><i class="fa fa-check"></i>RSM: Add comparator and load discharge measurements</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-copy-paste-database-values"><i class="fa fa-check"></i>RSM: Copy-paste data to database</a></li>
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html"><i class="fa fa-check"></i><b>9.3</b> Appendix C: Processing Climate Data</a>
 <ul>
@@ -353,7 +370,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="study-guide" class="section level1 unnumbered">
 <h1>Study guide</h1>
-<p>This course book has been designed to accompany a 2-week workshop for aspiring water professionals at the Kazakh-German University in Almaty (Master level). The material can be covered in 8 intensive work days. The workshop participants will be guided through building up their own hydrological model of a sample catchment in Central Asia. The readers are recommended to work through the texts in each chapter including the tasks that serve to deepen reflection on the course material and to do their daily homework on the modeling of the sample catchment. This chapter explains how to use this course book.</p>
+<p>This course book has been designed to accompany a 2-week workshop for aspiring water professionals at the Kazakh-German University in Almaty (Master level). The material can be covered in 8 intensive work days. The workshop participants will be guided through building up their own hydrological model of a sample catchment in Central Asia. The readers are recommended to work through the texts in each chapter including the tasks that serve to deepen reflection on the course material and to do their daily homework on the modeling of the sample catchment. The homework will be presented in a final conference and is part of the performance review of the course. This chapter explains how to use this course book.</p>
 <p>Exercises are highlighted with blue boxes:</p>
 <div class = "exercise" <div class = "exercise" id="ex1"> 
 <h3 class = "right">Ex1</h3> 
