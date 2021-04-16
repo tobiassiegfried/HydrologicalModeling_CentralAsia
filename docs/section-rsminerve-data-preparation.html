@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6.4 Data Preparation and Setup | Applied Modeling of Hydrological Systems in Central Asia</title>
+  <meta name="description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6.4 Data Preparation and Setup | Applied Modeling of Hydrological Systems in Central Asia" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6.4 Data Preparation and Setup | Applied Modeling of Hydrological Systems in Central Asia" />
+  
+  <meta name="twitter:description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
+  
+
+<meta name="author" content="Tobias Siegfried and Beatrice Marti" />
+
+
+<meta name="date" content="2021-04-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="section-general-modelling-process.html"/>
+<link rel="next" href="section-hbv-model.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Applied Hydrological Modeling</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#Welcome"></a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="foreword.html"><a href="foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
+<li class="chapter" data-level="" data-path="study-guide.html"><a href="study-guide.html"><i class="fa fa-check"></i>Study guide</a>
+<ul>
+<li class="chapter" data-level="" data-path="day-1-introduction-and-installation-of-software.html"><a href="day-1-introduction-and-installation-of-software.html"><i class="fa fa-check"></i>Day 1: Introduction and installation of software</a></li>
+<li class="chapter" data-level="" data-path="day-2-catchment-characterization.html"><a href="day-2-catchment-characterization.html"><i class="fa fa-check"></i>Day 2: Catchment characterization</a></li>
+<li class="chapter" data-level="" data-path="day-3-geospatial-data-and-introduction-to-linear-reservoir-models.html"><a href="day-3-geospatial-data-and-introduction-to-linear-reservoir-models.html"><i class="fa fa-check"></i>Day 3: Geospatial data and introduction to linear reservoir models</a></li>
+<li class="chapter" data-level="" data-path="day-4-discussion-of-types-of-hydrological-models.html"><a href="day-4-discussion-of-types-of-hydrological-models.html"><i class="fa fa-check"></i>Day 4: Discussion of types of hydrological models</a></li>
+<li class="chapter" data-level="" data-path="day-5-the-hbv-model.html"><a href="day-5-the-hbv-model.html"><i class="fa fa-check"></i>Day 5: The HBV model</a></li>
+<li class="chapter" data-level="" data-path="day-6-model-calibration-and-validation.html"><a href="day-6-model-calibration-and-validation.html"><i class="fa fa-check"></i>Day 6: Model calibration and validation</a></li>
+<li class="chapter" data-level="" data-path="day-7-case-studies.html"><a href="day-7-case-studies.html"><i class="fa fa-check"></i>Day 7: Case studies</a></li>
+<li class="chapter" data-level="" data-path="day-8-real-world-applications.html"><a href="day-8-real-world-applications.html"><i class="fa fa-check"></i>Day 8: Real-world applications</a></li>
+<li class="chapter" data-level="" data-path="day-9-student-presentations-and-wrap-up-of-workshop.html"><a href="day-9-student-presentations-and-wrap-up-of-workshop.html"><i class="fa fa-check"></i>Day 9: Student presentations and wrap-up of workshop</a></li>
+</ul></li>
+<li class="part"><span><b>I Part I Hydrological Systems</b></span></li>
+<li class="chapter" data-level="1" data-path="ShortHistory.html"><a href="ShortHistory.html"><i class="fa fa-check"></i><b>1</b> Short History of Water in Central Asia</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="TamingHydrologicalSystems.html"><a href="TamingHydrologicalSystems.html"><i class="fa fa-check"></i><b>1.1</b> The Taming of the Central Asian Rivers</a></li>
+<li class="chapter" data-level="1.2" data-path="PostTransitionDevelopmentsChallenges.html"><a href="PostTransitionDevelopmentsChallenges.html"><i class="fa fa-check"></i><b>1.2</b> Post-Transition Development and Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="HydrologicalSystems.html"><a href="HydrologicalSystems.html"><i class="fa fa-check"></i><b>2</b> Hydrological Systems in Central Asia</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="regional-hydro-climatological-features.html"><a href="regional-hydro-climatological-features.html"><i class="fa fa-check"></i><b>2.1</b> Regional Hydro-Climatological Features</a></li>
+<li class="chapter" data-level="2.2" data-path="chap-regionalWaterBalance.html"><a href="chap-regionalWaterBalance.html"><i class="fa fa-check"></i><b>2.2</b> Regional Water Balance</a></li>
+<li class="chapter" data-level="2.3" data-path="runoff-formation.html"><a href="runoff-formation.html"><i class="fa fa-check"></i><b>2.3</b> Runoff Formation</a></li>
+<li class="chapter" data-level="2.4" data-path="average-multi-year-runoff.html"><a href="average-multi-year-runoff.html"><i class="fa fa-check"></i><b>2.4</b> Average Multi-Year Runoff</a></li>
+<li class="chapter" data-level="2.5" data-path="annual-runoff-fluctuations.html"><a href="annual-runoff-fluctuations.html"><i class="fa fa-check"></i><b>2.5</b> Annual Runoff Fluctuations</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="CaseStudies.html"><a href="CaseStudies.html"><i class="fa fa-check"></i><b>3</b> Case Studies</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="GuntRB.html"><a href="GuntRB.html"><i class="fa fa-check"></i><b>3.1</b> Gunt River Basin</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="GuntRB.html"><a href="GuntRB.html#GuntRBOverview"><i class="fa fa-check"></i><b>3.1.1</b> Basin Characterization</a></li>
+<li class="chapter" data-level="3.1.2" data-path="GuntRB.html"><a href="GuntRB.html#GuntHyrology"><i class="fa fa-check"></i><b>3.1.2</b> Hydrology</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="CRB.html"><a href="CRB.html"><i class="fa fa-check"></i><b>3.2</b> Chirchik River Basin</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="CRB.html"><a href="CRB.html#CRBOverview"><i class="fa fa-check"></i><b>3.2.1</b> Basin Characterization</a></li>
+<li class="chapter" data-level="3.2.2" data-path="CRB.html"><a href="CRB.html#CRBBasinCharacteristics"><i class="fa fa-check"></i><b>3.2.2</b> Hydrology</a></li>
+<li class="chapter" data-level="3.2.3" data-path="CRB.html"><a href="CRB.html#CRB_KoskuDischargeContribution"><i class="fa fa-check"></i><b>3.2.3</b> Discharge Estimation from the Ungauged Kosku Tributary</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Part II Applied Modeling</b></span></li>
+<li class="chapter" data-level="4" data-path="LongTermWaterBalance.html"><a href="LongTermWaterBalance.html"><i class="fa fa-check"></i><b>4</b> Budyko-Type Long-term Water Balance Modeling</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="derivation-of-the-budyko-relationship.html"><a href="derivation-of-the-budyko-relationship.html"><i class="fa fa-check"></i><b>4.1</b> Derivation of the Budyko Relationship</a></li>
+<li class="chapter" data-level="4.2" data-path="effects-of-snow-ratio-on-annual-runoff-within-the-budyko-framework.html"><a href="effects-of-snow-ratio-on-annual-runoff-within-the-budyko-framework.html"><i class="fa fa-check"></i><b>4.2</b> Effects of Snow Ratio on Annual Runoff within the Budyko Framework</a></li>
+<li class="chapter" data-level="4.3" data-path="hydrological-response-to-a-changing-climate.html"><a href="hydrological-response-to-a-changing-climate.html"><i class="fa fa-check"></i><b>4.3</b> Hydrological Response to a Changing Climate</a></li>
+<li class="chapter" data-level="4.4" data-path="application-to-central-asian-river-basins.html"><a href="application-to-central-asian-river-basins.html"><i class="fa fa-check"></i><b>4.4</b> Application to Central Asian River Basins</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="application-to-central-asian-river-basins.html"><a href="application-to-central-asian-river-basins.html#data"><i class="fa fa-check"></i><b>4.4.1</b> Data</a></li>
+<li class="chapter" data-level="4.4.2" data-path="application-to-central-asian-river-basins.html"><a href="application-to-central-asian-river-basins.html#model"><i class="fa fa-check"></i><b>4.4.2</b> Model</a></li>
+<li class="chapter" data-level="4.4.3" data-path="application-to-central-asian-river-basins.html"><a href="application-to-central-asian-river-basins.html#conclusions"><i class="fa fa-check"></i><b>4.4.3</b> Conclusions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="Chapter-DATA.html"><a href="Chapter-DATA.html"><i class="fa fa-check"></i><b>5</b> Data Retrieval, Preparation &amp; Analysis</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="Data-StationData.html"><a href="Data-StationData.html"><i class="fa fa-check"></i><b>5.1</b> Station Data</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="Data-StationData.html"><a href="Data-StationData.html#AvailableData"><i class="fa fa-check"></i><b>5.1.1</b> Available Data</a></li>
+<li class="chapter" data-level="5.1.2" data-path="Data-StationData.html"><a href="Data-StationData.html#StationData::GapFilling"><i class="fa fa-check"></i><b>5.1.2</b> Gap Filling Discharge Data</a></li>
+<li class="chapter" data-level="5.1.3" data-path="Data-StationData.html"><a href="Data-StationData.html#DataPreparationPT"><i class="fa fa-check"></i><b>5.1.3</b> Gap Filling Meteorological Data</a></li>
+<li class="chapter" data-level="5.1.4" data-path="Data-StationData.html"><a href="Data-StationData.html#AnomaliesOutliers"><i class="fa fa-check"></i><b>5.1.4</b> Anomalies and Outliers</a></li>
+<li class="chapter" data-level="5.1.5" data-path="Data-StationData.html"><a href="Data-StationData.html#FinalData"><i class="fa fa-check"></i><b>5.1.5</b> Putting it all together</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html"><i class="fa fa-check"></i><b>5.2</b> Geospatial Data</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#prerequisites"><i class="fa fa-check"></i><b>5.2.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="5.2.2" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-steps-setting-up"><i class="fa fa-check"></i><b>5.2.2</b> Setting up QGIS</a></li>
+<li class="chapter" data-level="5.2.3" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-geospatial-data-load-dem"><i class="fa fa-check"></i><b>5.2.3</b> Load DEM</a></li>
+<li class="chapter" data-level="5.2.4" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#section-steps-derive-catchment-boundaries"><i class="fa fa-check"></i><b>5.2.4</b> Catchment delineation</a></li>
+<li class="chapter" data-level="5.2.5" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#run-through-the-process-model"><i class="fa fa-check"></i><b>5.2.5</b> Run through the process model</a></li>
+<li class="chapter" data-level="5.2.6" data-path="Data-GeospatialData.html"><a href="Data-GeospatialData.html#manually-edit-the-gis-layers-for-import-in-rs-minerve"><i class="fa fa-check"></i><b>5.2.6</b> Manually edit the GIS layers for import in RS MINERVE</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="Data-ClimateReanalysisData.html"><a href="Data-ClimateReanalysisData.html"><i class="fa fa-check"></i><b>5.3</b> Climate Reanalysis Data</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="Data-ClimateReanalysisData.html"><a href="Data-ClimateReanalysisData.html#Data::CHELSA"><i class="fa fa-check"></i><b>5.3.1</b> CHELSA V1.2.1 Data and Bias Correction</a></li>
+<li class="chapter" data-level="5.3.2" data-path="Data-ClimateReanalysisData.html"><a href="Data-ClimateReanalysisData.html#Data::ERA5"><i class="fa fa-check"></i><b>5.3.2</b> ERA5 Download and Data Resampling with PBCORR CHELSA</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="data-on-climate-projections.html"><a href="data-on-climate-projections.html"><i class="fa fa-check"></i><b>5.4</b> Data on Climate Projections</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="data-on-climate-projections.html"><a href="data-on-climate-projections.html#CHELSA21Century"><i class="fa fa-check"></i><b>5.4.1</b> High Res. Monthly Climate Time Series for 2006 - 2100</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data-on-climate-projections.html"><a href="data-on-climate-projections.html#Data::WeatherGenerator"><i class="fa fa-check"></i><b>5.4.2</b> Using a Weather Generator to Simulate Daily Future Climate</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="snow-cover-data.html"><a href="snow-cover-data.html"><i class="fa fa-check"></i><b>5.5</b> Snow Cover Data</a></li>
+<li class="chapter" data-level="5.6" data-path="glacier-data.html"><a href="glacier-data.html"><i class="fa fa-check"></i><b>5.6</b> Glacier Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="RSMinerveMODELS.html"><a href="RSMinerveMODELS.html"><i class="fa fa-check"></i><b>6</b> Hydrological-Hydraulic Modeling</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="section-rsminerve-prerequisites.html"><a href="section-rsminerve-prerequisites.html"><i class="fa fa-check"></i><b>6.1</b> Prerequisites</a></li>
+<li class="chapter" data-level="6.2" data-path="section-rsminerve-why-model-introduction.html"><a href="section-rsminerve-why-model-introduction.html"><i class="fa fa-check"></i><b>6.2</b> Recap: Hydrological response</a></li>
+<li class="chapter" data-level="6.3" data-path="section-general-modelling-process.html"><a href="section-general-modelling-process.html"><i class="fa fa-check"></i><b>6.3</b> Recap: The general modeling process</a></li>
+<li class="chapter" data-level="6.4" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html"><i class="fa fa-check"></i><b>6.4</b> Data Preparation and Setup</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html#examining-and-understanding-the-gis-data"><i class="fa fa-check"></i><b>6.4.1</b> Examining and Understanding the GIS Data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html#loading-gis-data-and-model-creation"><i class="fa fa-check"></i><b>6.4.2</b> Loading GIS Data and Model Creation</a></li>
+<li class="chapter" data-level="6.4.3" data-path="section-rsminerve-data-preparation.html"><a href="section-rsminerve-data-preparation.html#climate-data"><i class="fa fa-check"></i><b>6.4.3</b> Climate Data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="section-hbv-model.html"><a href="section-hbv-model.html"><i class="fa fa-check"></i><b>6.5</b> The HBV model</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="section-hbv-model.html"><a href="section-hbv-model.html#section-hbv-nauvalisoy-tutorial-short"><i class="fa fa-check"></i><b>6.5.1</b> HBV example: Simple model of the Nauvalisoy river catchment</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="section-model-calibration-and-validation.html"><a href="section-model-calibration-and-validation.html"><i class="fa fa-check"></i><b>6.6</b> Model Calibration and Validation</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="section-model-calibration-and-validation.html"><a href="section-model-calibration-and-validation.html#section-calibration-principles"><i class="fa fa-check"></i><b>6.6.1</b> Basic Principles</a></li>
+<li class="chapter" data-level="6.6.2" data-path="section-model-calibration-and-validation.html"><a href="section-model-calibration-and-validation.html#secion-calibration-practical-steps"><i class="fa fa-check"></i><b>6.6.2</b> Practical Steps</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="application-investigating-climate-change-impacts.html"><a href="application-investigating-climate-change-impacts.html"><i class="fa fa-check"></i><b>6.7</b> Application: Investigating Climate Change Impacts</a></li>
+<li class="chapter" data-level="6.8" data-path="discussion.html"><a href="discussion.html"><i class="fa fa-check"></i><b>6.8</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="HydroModelsEmpiricalModels.html"><a href="HydroModelsEmpiricalModels.html"><i class="fa fa-check"></i><b>7</b> Discharge Forecasting with Predictive Inference</a>
+<ul>
+<li class="chapter" data-level="" data-path="prerequisites-1.html"><a href="prerequisites-1.html"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="7.1" data-path="Chap9PredictiveInference.html"><a href="Chap9PredictiveInference.html"><i class="fa fa-check"></i><b>7.1</b> Forecasting Using Predictive Inference</a></li>
+<li class="chapter" data-level="7.2" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html"><i class="fa fa-check"></i><b>7.2</b> Forecasting in the Central Asian Hydromets</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html#background"><i class="fa fa-check"></i><b>7.2.1</b> Background</a></li>
+<li class="chapter" data-level="7.2.2" data-path="forecasting-in-the-central-asian-hydromets.html"><a href="forecasting-in-the-central-asian-hydromets.html#forecasting-for-what-and-whom"><i class="fa fa-check"></i><b>7.2.2</b> Forecasting for What and Whom?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html"><i class="fa fa-check"></i><b>7.3</b> Data and Preparation</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9AvailableData"><i class="fa fa-check"></i><b>7.3.1</b> Available Data</a></li>
+<li class="chapter" data-level="7.3.2" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9DataPreparationQ"><i class="fa fa-check"></i><b>7.3.2</b> Gap Filling Discharge Data</a></li>
+<li class="chapter" data-level="7.3.3" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9DataPreparationPT"><i class="fa fa-check"></i><b>7.3.3</b> Gap Filling Meteorological Data</a></li>
+<li class="chapter" data-level="7.3.4" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9AnomaliesOutliers"><i class="fa fa-check"></i><b>7.3.4</b> Anomalies and Outliers</a></li>
+<li class="chapter" data-level="7.3.5" data-path="Chap9DataPreparation.html"><a href="Chap9DataPreparation.html#Chap9_FinalData"><i class="fa fa-check"></i><b>7.3.5</b> Putting it all together</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html"><i class="fa fa-check"></i><b>7.4</b> Data Analysis</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap_9_DataTransformation"><i class="fa fa-check"></i><b>7.4.1</b> Data Transformation</a></li>
+<li class="chapter" data-level="7.4.2" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_Trends"><i class="fa fa-check"></i><b>7.4.2</b> Detecting Trends</a></li>
+<li class="chapter" data-level="7.4.3" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_Autocorrelations"><i class="fa fa-check"></i><b>7.4.3</b> Auto- and Crosscorrelations</a></li>
+<li class="chapter" data-level="7.4.4" data-path="Chap9-DataAnalysis.html"><a href="Chap9-DataAnalysis.html#Chap9_SeasonalityAnalysis"><i class="fa fa-check"></i><b>7.4.4</b> Time Series Seasonality</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html"><i class="fa fa-check"></i><b>7.5</b> Investigating and Engineering Predictors</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_CurrentPractice"><i class="fa fa-check"></i><b>7.5.1</b> Benchmark: Current Operational Forecasting Models in the Hydrometeorological Agencies</a></li>
+<li class="chapter" data-level="7.5.2" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_TSR"><i class="fa fa-check"></i><b>7.5.2</b> Time Series Regression Models</a></li>
+<li class="chapter" data-level="7.5.3" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_ForecastQuality"><i class="fa fa-check"></i><b>7.5.3</b> Assessing the Quality of Forecasts</a></li>
+<li class="chapter" data-level="7.5.4" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#generating-and-assessing-out-of-sample-forecasts"><i class="fa fa-check"></i><b>7.5.4</b> Generating and Assessing Out-of-Sample Forecasts</a></li>
+<li class="chapter" data-level="7.5.5" data-path="Chap9FeatureEngineering.html"><a href="Chap9FeatureEngineering.html#Chap9_MLM"><i class="fa fa-check"></i><b>7.5.5</b> Machine Learning Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="save-data-for-hot-start.html"><a href="save-data-for-hot-start.html"><i class="fa fa-check"></i><b>7.6</b> Save Data for Hot Start</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="Operationalization.html"><a href="Operationalization.html"><i class="fa fa-check"></i><b>8</b> Operationalization of Models - Opportunities and Challenges</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="co-design-phase.html"><a href="co-design-phase.html"><i class="fa fa-check"></i><b>8.1</b> Co-design Phase</a></li>
+<li class="chapter" data-level="8.2" data-path="modeling-phase.html"><a href="modeling-phase.html"><i class="fa fa-check"></i><b>8.2</b> Modeling Phase</a></li>
+<li class="chapter" data-level="8.3" data-path="testing-phase.html"><a href="testing-phase.html"><i class="fa fa-check"></i><b>8.3</b> Testing Phase</a></li>
+<li class="chapter" data-level="8.4" data-path="operational-deployment.html"><a href="operational-deployment.html"><i class="fa fa-check"></i><b>8.4</b> Operational Deployment</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="ChapterAppendix.html"><a href="ChapterAppendix.html"><i class="fa fa-check"></i><b>9</b> (APPENDIX) Appendix</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="section-appendix-open-source-resources.html"><a href="section-appendix-open-source-resources.html"><i class="fa fa-check"></i><b>9.1</b> Appendix A: Open-source resources</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="section-appendix-open-source-resources.html"><a href="section-appendix-open-source-resources.html#literature"><i class="fa fa-check"></i><b>9.1.1</b> Literature</a></li>
+<li class="chapter" data-level="9.1.2" data-path="section-appendix-open-source-resources.html"><a href="section-appendix-open-source-resources.html#section-open-resrouces-software-QGIS"><i class="fa fa-check"></i><b>9.1.2</b> QGIS</a></li>
+<li class="chapter" data-level="9.1.3" data-path="section-appendix-open-source-resources.html"><a href="section-appendix-open-source-resources.html#section-open-resrouces-software-R"><i class="fa fa-check"></i><b>9.1.3</b> R and RStudio</a></li>
+<li class="chapter" data-level="9.1.4" data-path="section-appendix-open-source-resources.html"><a href="section-appendix-open-source-resources.html#section-open-resrouces-software-RSMinerve"><i class="fa fa-check"></i><b>9.1.4</b> RS Minerve</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html"><i class="fa fa-check"></i><b>9.2</b> Appendix B: Quick Guides</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-register-with-earth-explorer"><i class="fa fa-check"></i>EE: Register for an account</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-earth-explorer-download-srtm"><i class="fa fa-check"></i>EE: Download SRTM data for a selected region</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-sofware-qgis-installation-guide"><i class="fa fa-check"></i>QGIS installation guide</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-qgis-window-overview"><i class="fa fa-check"></i>The QGIS window - overview</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-saving-a-new-qgis-project"><i class="fa fa-check"></i>QGIS: Saving a new QGIS project</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-project-projection-qgis"><i class="fa fa-check"></i>QGIS: Change the projection of the QGIS project</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-install-and-activate-plugins-in-QGIS3"><i class="fa fa-check"></i>QGIS: Install and activate plugins in QGIS3</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-managing-panels"><i class="fa fa-check"></i>GQIS: Managing panels visibility in QGIS</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-loading-public-background-layers"><i class="fa fa-check"></i>QGIS: Loading public background maps</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-zoom-to-layer"><i class="fa fa-check"></i>QGIS: Zoom to layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-srtm-plugin"><i class="fa fa-check"></i>QGIS: Import SRTM layers using the SRTM plugin</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-merge-srtm-tiles"><i class="fa fa-check"></i>QGIS: Merge SRTM tiles to a single layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quick-guides-load-dem"><i class="fa fa-check"></i>QGIS: Add raster layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guides-change-color-of-raster-layer"><i class="fa fa-check"></i>QGIS: Change color of raster layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-map-decorations"><i class="fa fa-check"></i>QGIS: Add map decorations</a></li>
+<li class="chapter" data-level="9.2.1" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quick-guides-verify-projection-reproject"><i class="fa fa-check"></i><b>9.2.1</b> QGIS: Verify projection of layer and re-project layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-save-temp-layer"><i class="fa fa-check"></i>QGIS: Save a temporary layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-add-vector-layer-to-qgis"><i class="fa fa-check"></i>QGIS: Add vector layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-change-color-of-vector-layer"><i class="fa fa-check"></i>QGIS: Change color of a vector layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guides-fill-sinks"><i class="fa fa-check"></i>QGIS: Fill sinks</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-upslope-area"><i class="fa fa-check"></i>QGIS: Calculate the area upslope of a point</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-quick-guide-polygonize"><i class="fa fa-check"></i>QGIS:</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#appendix-section-graphical-edit-junctions"><i class="fa fa-check"></i>QGIS: Edit Junctions layer</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-create-hbv-model"><i class="fa fa-check"></i>RSM: Create HBV model and edit parameters</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-climate-station"><i class="fa fa-check"></i>RSM: Add and link climate station</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-import-climate-data"><i class="fa fa-check"></i>RSM: Import climate data</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-atapt-model-settings"><i class="fa fa-check"></i>RSM: Adapt model settings</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-export-sim-results-to-db"><i class="fa fa-check"></i>RSM: Export simulation results to data base</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-add-comparator-and-discharge-data"><i class="fa fa-check"></i>RSM: Add comparator and load discharge measurements</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-quick-guides.html"><a href="appendix-b-quick-guides.html#section-quickguides-copy-paste-database-values"><i class="fa fa-check"></i>RSM: Copy-paste data to database</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html"><i class="fa fa-check"></i><b>9.3</b> Appendix C: Processing Climate Data</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#cutting-chelsa-v.1.2.1-to-ca-domain"><i class="fa fa-check"></i><b>9.3.1</b> Cutting CHELSA v.1.2.1 to CA Domain</a></li>
+<li class="chapter" data-level="9.3.2" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#bias-correcting-chelsa-v1.2.1-precipitation-data-for-snow-undercatch"><i class="fa fa-check"></i><b>9.3.2</b> Bias Correcting CHELSA v1.2.1 Precipitation Data for Snow Undercatch</a></li>
+<li class="chapter" data-level="9.3.3" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#computing-mean-monthly-temperature-climatology-from-chelsa-v1.2.1-data"><i class="fa fa-check"></i><b>9.3.3</b> Computing Mean Monthly Temperature Climatology from CHELSA v1.2.1 data</a></li>
+<li class="chapter" data-level="9.3.4" data-path="appendix-c-processing-climate-data.html"><a href="appendix-c-processing-climate-data.html#era5"><i class="fa fa-check"></i><b>9.3.4</b> ERA5</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html"><i class="fa fa-check"></i><b>9.4</b> Appendix D: Solutions to exercises</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-exercise1"><i class="fa fa-check"></i><b>9.4.1</b> Exercise on Linear Reservoir modelling</a></li>
+<li class="chapter" data-level="9.4.2" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-hbv-exercises"><i class="fa fa-check"></i><b>9.4.2</b> Exercises on the HBV model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Applied Modeling of Hydrological Systems in Central Asia</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="section-rsminerve-data-preparation" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Data Preparation and Setup</h2>
+<p>The data used in this Chapter can be accessed on the public GitHub repository <a href="https://github.com/tobiassiegfried/HydrologicalModeling_CentralAsia">Applied Modeling of Hydrological Systems in Central Asia</a> and the ./data/AmuDarya/Gunt/ folder in there. It is advisable that the user downloads the data and sets up a similar data directory structure on their local machines.</p>
+<div id="examining-and-understanding-the-gis-data" class="section level3" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Examining and Understanding the GIS Data</h3>
+<p>As demonstrated in the Examples of the User Manual, RS Minerve does not necessarily require GIS input files for setting up models. These can also be setup and wired by hand. However, individual subbasins that contribute to flow in a larger catchment have different characteristics that need to be derived from spatial data, i.e. GIS files. For example, subbasin areas, river stretch lengths, terrain slopes, etc., are all required data in an RS Minerve model. These data could either be typed in by hand for each subbasin or automatically inserted via the GIS Import option. The latter method is much more convenient and is demonstrated here<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>.</p>
+<p>First, we load the required packages in <code>R</code>.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="section-rsminerve-data-preparation.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading required packages</span></span>
+<span id="cb114-2"><a href="section-rsminerve-data-preparation.html#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Tidy data wrangling</span></span>
+<span id="cb114-3"><a href="section-rsminerve-data-preparation.html#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb114-4"><a href="section-rsminerve-data-preparation.html#cb114-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb114-5"><a href="section-rsminerve-data-preparation.html#cb114-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(timetk)</span>
+<span id="cb114-6"><a href="section-rsminerve-data-preparation.html#cb114-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb114-7"><a href="section-rsminerve-data-preparation.html#cb114-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb114-8"><a href="section-rsminerve-data-preparation.html#cb114-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(timetk)</span>
+<span id="cb114-9"><a href="section-rsminerve-data-preparation.html#cb114-9" aria-hidden="true" tabindex="-1"></a><span class="do">## riversCentralAsia Package</span></span>
+<span id="cb114-10"><a href="section-rsminerve-data-preparation.html#cb114-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&#39;riversCentralAsia&#39;</span>)</span>
+<span id="cb114-11"><a href="section-rsminerve-data-preparation.html#cb114-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Spatial data processing</span></span>
+<span id="cb114-12"><a href="section-rsminerve-data-preparation.html#cb114-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(raster)</span>
+<span id="cb114-13"><a href="section-rsminerve-data-preparation.html#cb114-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div>
+<p>Now, we can visualize the GIS files that are required in RS Minerve in the following Figure <a href="section-rsminerve-data-preparation.html#fig:GuntGISRSMinerve">6.6</a>.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="section-rsminerve-data-preparation.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data</span></span>
+<span id="cb115-2"><a href="section-rsminerve-data-preparation.html#cb115-2" aria-hidden="true" tabindex="-1"></a>fPath <span class="ot">&lt;-</span> <span class="st">&#39;./data/AmuDarya/Gunt&#39;</span></span>
+<span id="cb115-3"><a href="section-rsminerve-data-preparation.html#cb115-3" aria-hidden="true" tabindex="-1"></a>gunt_DEM <span class="ot">&lt;-</span> <span class="fu">raster</span>(<span class="fu">paste0</span>(fPath,<span class="st">&#39;/GeospatialData/17050_Gund_Basin_DEM.tif&#39;</span>))</span>
+<span id="cb115-4"><a href="section-rsminerve-data-preparation.html#cb115-4" aria-hidden="true" tabindex="-1"></a>gunt_elBands_shp_utm <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">paste0</span>(fPath,<span class="st">&#39;/GeospatialData/Gunt_ElevationBands_Subbasins_RSMinerve.shp&#39;</span>),<span class="at">quiet=</span><span class="cn">TRUE</span>)</span>
+<span id="cb115-5"><a href="section-rsminerve-data-preparation.html#cb115-5" aria-hidden="true" tabindex="-1"></a>gunt_subbasins_shp_utm <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">paste0</span>(fPath,<span class="st">&#39;/GeospatialData/Gunt_Subbasins_RSMinerve.shp&#39;</span>),<span class="at">quiet=</span><span class="cn">TRUE</span>)</span>
+<span id="cb115-6"><a href="section-rsminerve-data-preparation.html#cb115-6" aria-hidden="true" tabindex="-1"></a>gunt_subbasin_junctions_shp_utm <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">paste0</span>(fPath,<span class="st">&#39;/GeospatialData/Gunt_Junctions_RSMinerve.shp&#39;</span>),<span class="at">quiet=</span><span class="cn">TRUE</span>)</span>
+<span id="cb115-7"><a href="section-rsminerve-data-preparation.html#cb115-7" aria-hidden="true" tabindex="-1"></a>gunt_rivers_shp_utm <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">paste0</span>(fPath,<span class="st">&#39;/GeospatialData/Gunt_Rivers_RSMinerve.shp&#39;</span>),<span class="at">quiet=</span><span class="cn">TRUE</span>)</span>
+<span id="cb115-8"><a href="section-rsminerve-data-preparation.html#cb115-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-9"><a href="section-rsminerve-data-preparation.html#cb115-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Downsample DEM and create hillshade</span></span>
+<span id="cb115-10"><a href="section-rsminerve-data-preparation.html#cb115-10" aria-hidden="true" tabindex="-1"></a>gunt_DEM_lr <span class="ot">&lt;-</span> raster<span class="sc">::</span><span class="fu">aggregate</span>(gunt_DEM,<span class="at">fact=</span><span class="dv">10</span>) <span class="co"># this is in UTM 42N</span></span>
+<span id="cb115-11"><a href="section-rsminerve-data-preparation.html#cb115-11" aria-hidden="true" tabindex="-1"></a>gunt_slope <span class="ot">&lt;-</span> <span class="fu">terrain</span>(gunt_DEM_lr, <span class="at">opt=</span><span class="st">&#39;slope&#39;</span>)</span>
+<span id="cb115-12"><a href="section-rsminerve-data-preparation.html#cb115-12" aria-hidden="true" tabindex="-1"></a>gunt_aspect <span class="ot">&lt;-</span> <span class="fu">terrain</span>(gunt_DEM_lr, <span class="at">opt=</span><span class="st">&#39;aspect&#39;</span>)</span>
+<span id="cb115-13"><a href="section-rsminerve-data-preparation.html#cb115-13" aria-hidden="true" tabindex="-1"></a>gunt_DEM_hillshade <span class="ot">&lt;-</span> <span class="fu">hillShade</span>(gunt_slope, gunt_aspect, <span class="dv">40</span>, <span class="dv">270</span>)</span>
+<span id="cb115-14"><a href="section-rsminerve-data-preparation.html#cb115-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-15"><a href="section-rsminerve-data-preparation.html#cb115-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to dataframe for ggplotting</span></span>
+<span id="cb115-16"><a href="section-rsminerve-data-preparation.html#cb115-16" aria-hidden="true" tabindex="-1"></a>gunt_DEM_spdf <span class="ot">&lt;-</span> <span class="fu">as</span>(gunt_DEM_lr, <span class="st">&quot;SpatialPixelsDataFrame&quot;</span>)</span>
+<span id="cb115-17"><a href="section-rsminerve-data-preparation.html#cb115-17" aria-hidden="true" tabindex="-1"></a>gunt_DEM_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(gunt_DEM_spdf)</span>
+<span id="cb115-18"><a href="section-rsminerve-data-preparation.html#cb115-18" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(gunt_DEM_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;value&quot;</span>, <span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)</span>
+<span id="cb115-19"><a href="section-rsminerve-data-preparation.html#cb115-19" aria-hidden="true" tabindex="-1"></a>hillshade_Gunt_spdf <span class="ot">&lt;-</span> <span class="fu">as</span>(gunt_DEM_hillshade, <span class="st">&quot;SpatialPixelsDataFrame&quot;</span>)</span>
+<span id="cb115-20"><a href="section-rsminerve-data-preparation.html#cb115-20" aria-hidden="true" tabindex="-1"></a>hillshade_Gunt_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(hillshade_Gunt_spdf)</span>
+<span id="cb115-21"><a href="section-rsminerve-data-preparation.html#cb115-21" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(hillshade_Gunt_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;value&quot;</span>, <span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)</span>
+<span id="cb115-22"><a href="section-rsminerve-data-preparation.html#cb115-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-23"><a href="section-rsminerve-data-preparation.html#cb115-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Used for subbasins naming</span></span>
+<span id="cb115-24"><a href="section-rsminerve-data-preparation.html#cb115-24" aria-hidden="true" tabindex="-1"></a>subbasins <span class="ot">&lt;-</span> <span class="co"># just put everything in a regular dataframe</span></span>
+<span id="cb115-25"><a href="section-rsminerve-data-preparation.html#cb115-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">basin=</span><span class="fu">c</span>(<span class="st">&quot;Shakhdara&quot;</span>,<span class="st">&quot;Gunt&quot;</span>,<span class="st">&quot;Tokusbulak&quot;</span>,<span class="st">&quot;Alishur&quot;</span>),</span>
+<span id="cb115-26"><a href="section-rsminerve-data-preparation.html#cb115-26" aria-hidden="true" tabindex="-1"></a>         <span class="at">lat   =</span> <span class="fu">c</span>(<span class="fl">37.4</span>,<span class="fl">37.75</span>,<span class="fl">37.6</span>,<span class="fl">37.65</span>),</span>
+<span id="cb115-27"><a href="section-rsminerve-data-preparation.html#cb115-27" aria-hidden="true" tabindex="-1"></a>         <span class="at">lon   =</span> <span class="fu">c</span>(<span class="fl">72.0</span>,<span class="fl">71.8</span>,<span class="fl">72.6</span>,<span class="fl">73.25</span>))</span>
+<span id="cb115-28"><a href="section-rsminerve-data-preparation.html#cb115-28" aria-hidden="true" tabindex="-1"></a>subbasins_coord_latlon <span class="ot">=</span> <span class="fu">SpatialPoints</span>(<span class="fu">cbind</span>(subbasins<span class="sc">$</span>lon, subbasins<span class="sc">$</span>lat), <span class="at">proj4string=</span><span class="fu">CRS</span>(<span class="st">&quot;+proj=longlat&quot;</span>))</span>
+<span id="cb115-29"><a href="section-rsminerve-data-preparation.html#cb115-29" aria-hidden="true" tabindex="-1"></a>subbasins_coord_UTM <span class="ot">&lt;-</span> <span class="fu">spTransform</span>(subbasins_coord_latlon, <span class="fu">CRS</span>(<span class="st">&quot;+init=epsg:32642&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb115-30"><a href="section-rsminerve-data-preparation.html#cb115-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coordinates</span>() <span class="sc">%&gt;%</span> <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb115-31"><a href="section-rsminerve-data-preparation.html#cb115-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">x=</span>coords.x1,<span class="at">y=</span>coords.x2)</span>
+<span id="cb115-32"><a href="section-rsminerve-data-preparation.html#cb115-32" aria-hidden="true" tabindex="-1"></a>subbasins <span class="ot">&lt;-</span> <span class="fu">bind_cols</span>(subbasins,subbasins_coord_UTM)</span>
+<span id="cb115-33"><a href="section-rsminerve-data-preparation.html#cb115-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
+<span id="cb115-34"><a href="section-rsminerve-data-preparation.html#cb115-34" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb115-35"><a href="section-rsminerve-data-preparation.html#cb115-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">data=</span>gunt_DEM_df, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y, <span class="at">fill=</span>value), <span class="at">alpha=</span><span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb115-36"><a href="section-rsminerve-data-preparation.html#cb115-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>gunt_subbasins_shp_utm,<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="cn">NA</span>,<span class="at">linetype=</span><span class="st">&quot;11&quot;</span>,<span class="at">size=</span><span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb115-37"><a href="section-rsminerve-data-preparation.html#cb115-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>gunt_rivers_shp_utm,<span class="at">color=</span><span class="st">&quot;blue&quot;</span>,<span class="at">fill=</span><span class="cn">NA</span>) <span class="sc">+</span> </span>
+<span id="cb115-38"><a href="section-rsminerve-data-preparation.html#cb115-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>gunt_elBands_shp_utm,<span class="at">color=</span><span class="st">&quot;black&quot;</span>,<span class="at">fill=</span><span class="cn">NA</span>,<span class="at">linetype=</span><span class="st">&quot;11&quot;</span>,<span class="at">size=</span>.<span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb115-39"><a href="section-rsminerve-data-preparation.html#cb115-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>gunt_subbasin_junctions_shp_utm,<span class="at">color=</span><span class="st">&quot;red&quot;</span>,<span class="at">fill=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb115-40"><a href="section-rsminerve-data-preparation.html#cb115-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(<span class="at">colours =</span> <span class="fu">terrain.colors</span>(<span class="dv">100</span>)) <span class="sc">+</span> </span>
+<span id="cb115-41"><a href="section-rsminerve-data-preparation.html#cb115-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Longitude&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Latitude&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb115-42"><a href="section-rsminerve-data-preparation.html#cb115-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">&quot;Alt. [masl]&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb115-43"><a href="section-rsminerve-data-preparation.html#cb115-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Gunt catchment and subbasins&quot;</span>) <span class="sc">+</span></span>
+<span id="cb115-44"><a href="section-rsminerve-data-preparation.html#cb115-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data =</span> subbasins,<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">label =</span> basin),<span class="at">vjust =</span> <span class="dv">0</span>,<span class="at">hjust =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:GuntGISRSMinerve"></span>
+<img src="applied-hydrological-modeling-central-asia_files/figure-html/GuntGISRSMinerve-1.png" alt="Gunt river basin overview, showing the digital elevation model, the 4 subcatchments, the elevation bands with 1'000 meters intervals, the main tributary rivers and the corresponding junctions." width="672" />
+<p class="caption">
+Figure 6.6: Gunt river basin overview, showing the digital elevation model, the 4 subcatchments, the elevation bands with 1’000 meters intervals, the main tributary rivers and the corresponding junctions.
+</p>
+</div>
+<p>Figure <a href="section-rsminerve-data-preparation.html#fig:GuntGISRSMinerve">6.6</a> shows the four subbasins. After the confluence with Tokusbulak river, Alishur river becomes Gunt river in Junction 1 (called junct_1 in the corresponding shapefile below). The confluence is noted by the corresponding red dot. Further downstream, approximately 5 km before the Gunt-Khorog gauging station (Hydromet Code 17050), indicated by the leftmost outlet point (red dot, called junct_2 in the junct_down attribute field of the shapefile), Shakhdara river feeds into Gunt. The subbasin-specific elevation bands are indicated by dotted lines.</p>
+<p>As described in the RS Minerve User Manual in Chapter 5 <span class="citation">(<a href="References.html#ref-rsminerve_um" role="doc-biblioref">Foehn et al. 2020</a>)</span>, the following three shapefiles need to be prepared for later loading into RS Minerve: subbasins.shp, junctions.shp and rivers.shp (see Figure <a href="section-rsminerve-data-preparation.html#fig:requiredGISInputFiles">6.7</a>).</p>
+<div class="figure"><span id="fig:requiredGISInputFiles"></span>
+<img src="_bookdown_files/FIG_RS_MINERVE/required_GIS_Input_Files.png" alt="Required GIS input files for RS Minerve. See corresponding user manual for more information." width="687" />
+<p class="caption">
+Figure 6.7: Required GIS input files for RS Minerve. See corresponding user manual for more information.
+</p>
+</div>
+<p>The shapefile attributes that you downloaded of the required data can easily be displayed. First, we analyze the subbasins `gunt_elBands_shp_utm` file. The file contains the following attributes as per the requirements specified in Figure <a href="section-rsminerve-data-preparation.html#fig:requiredGISInputFiles">6.7</a>: name and junct_down. The attributes Z, ModelGuid and <em>geometry</em> are additional fields. The field <em>Z</em> that contains information of the mean elevation of the subbasin. Note that the shapefile is does not only contain the shape of the four subbasins Alishu, Tokusbulak, Gunt and Shakdara but also the elevation bands of each subbasin.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="section-rsminerve-data-preparation.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view meta data summary of the subbasins file</span></span>
+<span id="cb116-2"><a href="section-rsminerve-data-preparation.html#cb116-2" aria-hidden="true" tabindex="-1"></a>gunt_elBands_shp_utm <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="fu">paste0</span>(fPath,<span class="st">&#39;/GeospatialData/Gunt_ElevationBands_Subbasins_RSMinerve.shp&#39;</span>),<span class="at">quiet=</span><span class="cn">TRUE</span>)</span>
+<span id="cb116-3"><a href="section-rsminerve-data-preparation.html#cb116-3" aria-hidden="true" tabindex="-1"></a>gunt_elBands_shp_utm</span></code></pre></div>
+<pre><code>## Simple feature collection with 14 features and 3 fields
+## Geometry type: MULTIPOLYGON
+## Dimension:     XY
+## Bounding box:  xmin: 725348.3 ymin: 4093789 xmax: 945535.6 ymax: 4216482
+## Projected CRS: WGS 84 / UTM zone 42N
+## First 10 features:
+##           name junct_down        Z                       geometry
+## 1  basin_l1_b2    junct_1 3764.159 MULTIPOLYGON (((796644.2 41...
+## 2  basin_l1_b3    junct_1 4503.951 MULTIPOLYGON (((827142.4 41...
+## 3  basin_l1_b4    junct_1 5218.727 MULTIPOLYGON (((827592.4 41...
+## 4  basin_m1_b2    junct_1 3764.159 MULTIPOLYGON (((801343.9 41...
+## 5  basin_m1_b3    junct_1 4503.951 MULTIPOLYGON (((838641.8 41...
+## 6  basin_m1_b4    junct_1 5218.727 MULTIPOLYGON (((840091.7 41...
+## 7  basin_l2_b1    junct_2 2765.624 MULTIPOLYGON (((727648.2 41...
+## 8  basin_l2_b2    junct_2 3764.159 MULTIPOLYGON (((726448.3 41...
+## 9  basin_l2_b3    junct_2 4503.951 MULTIPOLYGON (((757446.5 40...
+## 10 basin_l2_b4    junct_2 5218.727 MULTIPOLYGON (((760396.3 40...</code></pre>
+<p>This is because in RS Minerve, we will model each elevation zone of each subbasin with a separate rainfall-runoff model. These are then linked to each other via the topological ordering that is given by the rivers and junctions. The naming of the subbasins is somewhat arbitrary and tailored to the particular catchment under consideration. The prefix ‘basin_’ is everywhere the same. The basic idea is to identify a main river stem (denoted with mX) where the X is a number that increases from 1 towards the downstream after each confluence with a right or left tributary. In our case, Alishur river is denoted with m1. Gunt river, which emerges after the confluence with Tokusbulak (see Figure <a href="section-rsminerve-data-preparation.html#fig:GuntGISRSMinerve">6.6</a>), is denoted with m2. Finally, Gunt river after the confluence with Shakhdara is m3. Each left tributary is denoted with lX and each right tributary with rX, where X is again a number starting from 1 and gradually increasing. In our case, Tokusbulak thus is l1 (the first left tributary joining the main river). Finally, Shakhdara is l2. Note, in the Gunt river basin, we do not have major right tributaries.</p>
+<p>‘m1_b2’ the refers to the main upstream river, Alishur in this case, and its elevation band 2. m1_b3 would then be the third elevation band accordingly and so on. Why is there no m1_b1 feature? This is simple to understand. Since the entire basin is subdivided into n equally spaced elevation zones, the higher lying subbasins might no longer contain all elevation bands. For both, Alishur (main m1) and Tokusbulak (l1) this is the case where band b1 is simply not represented because of the high elevations of the subbasins.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="section-rsminerve-data-preparation.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  view meta data summary of the junctions file</span></span>
+<span id="cb118-2"><a href="section-rsminerve-data-preparation.html#cb118-2" aria-hidden="true" tabindex="-1"></a>gunt_subbasin_junctions_shp_utm <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="fu">paste0</span>(fPath,<span class="st">&#39;/GeospatialData/Gunt_Junctions_RSMinerve.shp&#39;</span>),<span class="at">quiet=</span><span class="cn">TRUE</span>)</span>
+<span id="cb118-3"><a href="section-rsminerve-data-preparation.html#cb118-3" aria-hidden="true" tabindex="-1"></a>gunt_subbasin_junctions_shp_utm</span></code></pre></div>
+<pre><code>## Simple feature collection with 3 features and 2 fields
+## Geometry type: POINT
+## Dimension:     XYZM
+## Bounding box:  xmin: 724198.4 ymin: 4151736 xmax: 795694.3 ymax: 4178534
+## z_range:       zmin: 2074.126 zmax: 3118.366
+## m_range:       mmin: 0 mmax: 0
+## Projected CRS: WGS 84 / UTM zone 42N
+##      name river_down                       geometry
+## 1 junct_2    gunt_ds POINT ZM (728998.1 4151736 ...
+## 2 junct_3       &lt;NA&gt; POINT ZM (724198.4 4152236 ...
+## 3 junct_1    gunt_us POINT ZM (795694.3 4178534 ...</code></pre>
+<p>For the junctions shapefile, we define their names as well the field river_down, i.e. the name of the river downstream of the junction. Finally, for the rivers shapefile, we define the rivers name and the downstream junction junct_down. The terminal junction corresponds to the outlet of the model. It can be easily seen that junct_3 is the outlet since there is no more downstream river, i.e. &lt;NA&gt;.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="section-rsminerve-data-preparation.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view meta data summary of the rivers file</span></span>
+<span id="cb120-2"><a href="section-rsminerve-data-preparation.html#cb120-2" aria-hidden="true" tabindex="-1"></a>gunt_rivers_shp_utm <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="fu">paste0</span>(fPath,<span class="st">&#39;/GeospatialData/Gunt_Rivers_RSMinerve.shp&#39;</span>),<span class="at">quiet=</span><span class="cn">TRUE</span>)</span>
+<span id="cb120-3"><a href="section-rsminerve-data-preparation.html#cb120-3" aria-hidden="true" tabindex="-1"></a>gunt_rivers_shp_utm</span></code></pre></div>
+<pre><code>## Simple feature collection with 5 features and 3 fields
+## Geometry type: LINESTRING
+## Dimension:     XYZM
+## Bounding box:  xmin: 724198.4 ymin: 4119538 xmax: 923686.9 ymax: 4196533
+## z_range:       zmin: 2074.126 zmax: 4040.01
+## m_range:       mmin: -1.797693e+308 mmax: 0
+## Projected CRS: WGS 84 / UTM zone 42N
+##         name junct_down     LENGTH                       geometry
+## 1  shakhdara    junct_2 112475.030 LINESTRING ZM (801893.9 414...
+## 2    gunt_ds    junct_3   5338.169 LINESTRING ZM (728998.1 415...
+## 3 tokusbulak    junct_1  49114.525 LINESTRING ZM (829392.3 415...
+## 4    alishur    junct_1 179844.135 LINESTRING ZM (923686.9 418...
+## 5    gunt_us    junct_2  15945.881 LINESTRING ZM (795694.3 417...</code></pre>
+</div>
+<div id="loading-gis-data-and-model-creation" class="section level3" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> Loading GIS Data and Model Creation</h3>
+<p>As described in the RSMinerve user manual in Chapter 5 there, these three shapefiles can then be loaded into RSMinerve and automatically translated into an RSMinerve model via the <code>Creation</code> option <span class="citation">(<a href="References.html#ref-rsminerve_um" role="doc-biblioref">Foehn et al. 2020</a>)</span>. In Figure <a href="section-rsminerve-data-preparation.html#fig:RSMinerveGuntModelCreation">6.8</a>, a screen shot is shown where in a somewhat arbitrary manner, all subbasins got assigned individual HBV models. Note the highlighted <code>Creation</code> button.</p>
+<div class="figure"><span id="fig:RSMinerveGuntModelCreation"></span>
+<img src="_bookdown_files/FIG_RS_MINERVE/rsminerveGuntModelCreation" alt="Using the `Creation` Menu, the information from the shapefiles gets translated into a number of interlinked subcatchment and elevation band-specific models."  />
+<p class="caption">
+Figure 6.8: Using the <code>Creation</code> Menu, the information from the shapefiles gets translated into a number of interlinked subcatchment and elevation band-specific models.
+</p>
+</div>
+<p>Since the shapefile containing the elevation bands for each subbasin also contains mean subbasin elevation, we can extract the Altitude (Z) from the corresponding feature. Similarly, the area of the subbasins and the length of the rivers can all be computed from the shapefiles. The corresponding boxes should be ticked.</p>
+<p>After these steps, the student can click the <code>Create Model</code> button in the lower left corner of the window and then switch to the <code>Model New</code> tab to examine the resulting model. A screen shot showing the results is shown in Figure <a href="section-rsminerve-data-preparation.html#fig:RSMinerveGuntModelCreationResult">6.9</a>.</p>
+<div class="figure"><span id="fig:RSMinerveGuntModelCreationResult"></span>
+<img src="_bookdown_files/FIG_RS_MINERVE/rsminerveGuntModelCreationResult" alt="The result of the GIS-based creation of the Gunt river basin model in RSMinerve. Note that even without proper arrangement of the individual model elements, the subbasins and their models are already visible."  />
+<p class="caption">
+Figure 6.9: The result of the GIS-based creation of the Gunt river basin model in RSMinerve. Note that even without proper arrangement of the individual model elements, the subbasins and their models are already visible.
+</p>
+</div>
+<p>After rearranging the individual model elements and loading a background .jpeg-image (see Figure <a href="RSMinerveMODELS.html#fig:rsminerveModelPreview">6.1</a>, the setup step has been completed.</p>
+</div>
+<div id="climate-data" class="section level3" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> Climate Data</h3>
+<p>RSMinerve simulates discharge in response to climate forcing.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="15">
+<li id="fn15"><p>We assume that the basic steps of GIS basin delineation have been carried out as described in Chapter <a href="#Chapter-RetrievalAnalysisHydroData"><strong>??</strong></a> and the Section <a href="#GeospatialData"><strong>??</strong></a> there. We thus depart here assuming that the basin outlet (i.e. the location of the discharge gauge), the basin shape file as well as the digital elevation model are available.<a href="section-rsminerve-data-preparation.html#fnref15" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="section-general-modelling-process.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-hbv-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/08_RS_MINERVE.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["applied-hydrological-modeling-central-asia.pdf", "applied-hydrological-modeling-central-asia.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

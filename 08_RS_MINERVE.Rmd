@@ -152,6 +152,7 @@ cat('
 knitr::include_app("http://34.251.168.23:3838/linearReservoirExampleApp/", 
                    height = "800px")
 ```
+App code available on [GitHub](https://github.com/hydrosolutions/linear_reservoir_model_example_app). 
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
@@ -188,7 +189,7 @@ cat('
 ```
 
 
-## Data Preparation and Setup
+## Data Preparation and Setup {#section-rsminerve-data-preparation}
 
 The data used in this Chapter can be accessed on the public GitHub repository [Applied Modeling of Hydrological Systems in Central Asia](https://github.com/tobiassiegfried/HydrologicalModeling_CentralAsia) and the ./data/AmuDarya/Gunt/ folder in there. It is advisable that the user downloads the data and sets up a similar data directory structure on their local machines.
 
@@ -418,7 +419,7 @@ cat('
 
 
 
-## Model Calibration and Validation
+## Model Calibration and Validation {#section-model-calibration-and-validation}
 
 ### Basic Principles {#section-calibration-principles}
 The large number of parameters of the HBV model can be adjusted within reasonable ranges to make the simulated river discharge more similar to the measured discharge. This process is sometimes called history matching because past measurements are used to adapt the model parameters. The following two exercises are important for understanding hydrological models. They are relevant whether you work as a modeler or as a decision maker. Try to first come up with a few own ideas and then study the solutions carefully. They will be discussed in the lectures in more detail.    
