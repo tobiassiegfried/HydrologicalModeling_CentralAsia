@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Study Guide &amp; Materials | Applied Modeling of Hydrological Systems in Central Asia</title>
+  <title>Study Materials | Applied Modeling of Hydrological Systems in Central Asia</title>
   <meta name="description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Study Guide &amp; Materials | Applied Modeling of Hydrological Systems in Central Asia" />
+  <meta property="og:title" content="Study Materials | Applied Modeling of Hydrological Systems in Central Asia" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Study Guide &amp; Materials | Applied Modeling of Hydrological Systems in Central Asia" />
+  <meta name="twitter:title" content="Study Materials | Applied Modeling of Hydrological Systems in Central Asia" />
   
   <meta name="twitter:description" content="This is a open-source course book on Central Asia hydrological systems and hydrological modeling." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="foreword.html"/>
-<link rel="next" href="study-guide-1.html"/>
+<link rel="prev" href="study-guide-1.html"/>
+<link rel="next" href="TamingHydrologicalSystems.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -364,35 +364,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="study-guide" class="section level1 unnumbered">
-<h1>Study Guide &amp; Materials</h1>
-<p>This course book has been designed to accompany a 2-week master-level course for aspiring water professionals at the Kazakh-German University in Almaty. At least part of the material can be covered in 10 work days. The workshop participants will be guided through implementing their own hydrological model of a sample catchment of their choice in Central Asia. The readers are recommended to work through the texts in each chapter including the tasks that serve to deepen reflection on the course material and to do their daily homework on the modeling of the sample catchment. The homework will be presented in a final conference and is part of the performance review of the course. This chapter explains how to use this course book.</p>
-<p>Exercises are highlighted with blue boxes:</p>
-<div class = "exercise" <div class = "exercise" id="ex1"> 
-<h3 class = "right">Ex1</h3> 
-<h3 class= "left">This is an exercise box</h3> 
-<p>With the description of the exercise, hints and a link to the solutions. Exercises should be completed before starting the next course chapter.</p> 
+<div id="study-materials" class="section level2 unnumbered">
+<h2>Study Materials</h2>
+<p>The available course study materials are presented here. The idea is to have groups of two students working jointly on one basin. The data available are described here and are available for download under this link. Please note that the complete case study pack folder is approx 2 GB. So it might be better to just download the relevant files / folder for the corresponding basin you are working on. The geospatial data layers can be viewed, processed and analyzed in QGIS or R, depending on your preference. The discharge data is stored in R <code>.rds</code> format and needs to be opened in R/RStudio.</p>
+<p>The directory tree of the example Gunt catchment is shown below. All directory files contain correspondingly similar files.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="study-materials.html#cb1-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&#39;./_bookdown_files/FIG_FOREWORD/sampleStudentPackDirectoryTree&#39;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:sampleDirectoryStructure"></span>
+<img src="_bookdown_files/FIG_FOREWORD/sampleStudentPackDirectoryTree" alt="Sample directory structure of the Gunt river basin." width="50%" />
+<p class="caption">
+Figure 0.1: Sample directory structure of the Gunt river basin.
+</p>
 </div>
-<p>Tasks that enforce deeper learning of the course material are highlighted in green:</p>
-<div class = "task" <div class = "task" id="t1"> 
-<h3 class = "right">T1</h3> 
-<h3 class= "left">This is a task box</h3> 
-<p>Tasks do not always have a solution. They encourage you to reflect on the course material and to deepen your knowledge.</p> 
+<p>An overview over the available basins in the study pack is shown in Figure <a href="study-materials.html#fig:studyMaterialsBasins">0.2</a>.</p>
+<div class="figure"><span id="fig:studyMaterialsBasins"></span>
+<img src="_bookdown_files/FIG_FOREWORD/studyMaterialsBasins" alt="Overview map of the Central Asia region with the 7 study basins. The rivers include the Gunt River in the Amu Darya basin, the Sokh and Isfayramsoy rivers in the Syr Darya basin, the Pskem and Chatkal rivers in the Chirchik river basin and finally, the Ala Archa and Chon Kemin rivers in the Chu river basins. The catchments are delineated with by the black polygons and the location of the individual gauges highlighted with the red circles."  />
+<p class="caption">
+Figure 0.2: Overview map of the Central Asia region with the 7 study basins. The rivers include the Gunt River in the Amu Darya basin, the Sokh and Isfayramsoy rivers in the Syr Darya basin, the Pskem and Chatkal rivers in the Chirchik river basin and finally, the Ala Archa and Chon Kemin rivers in the Chu river basins. The catchments are delineated with by the black polygons and the location of the individual gauges highlighted with the red circles.
+</p>
 </div>
-<p>Take home messages or important notes are highlighted in red:</p>
-<div class = "note" <div class = "note" id="n1"> 
-<h3 class = "right">N1</h3> 
-<h3 class= "left">This is a note box</h3> 
-<p>Note boxes summarize the most important take home messages.</p> 
+<p>The next Figures shows the distribution of land ice in the Central Asia Region (see Figure <a href="study-materials.html#fig:studyMaterialsBasinsGlaciers">0.3</a>). The land ice data is from <span class="citation">(<a href="References.html#ref-glims2005" role="doc-biblioref">GLIMS and NSIDC 2005</a>)</span>.</p>
+<div class="figure"><span id="fig:studyMaterialsBasinsGlaciers"></span>
+<img src="_bookdown_files/FIG_FOREWORD/studyMaterialsBasinsGlaciers" alt="Distribution of land ice in the Central Asia region. Source Data: GLIMS"  />
+<p class="caption">
+Figure 0.3: Distribution of land ice in the Central Asia region. Source Data: GLIMS
+</p>
 </div>
+<p>For all</p>
+<div class="figure"><span id="fig:studyMaterialsBasinsDEM"></span>
+<img src="_bookdown_files/FIG_FOREWORD/studyMaterialsBasinsDEM" alt="SRTM digital elevation models for catchments. Source Data: SRTM"  />
+<p class="caption">
+Figure 0.4: SRTM digital elevation models for catchments. Source Data: SRTM
+</p>
 </div>
+<div class="figure"><span id="fig:studyMaterialsBasinsT2M"></span>
+<img src="_bookdown_files/FIG_FOREWORD/t2m_CA" alt="Long-term mean 2 meter above surface temperature. Source Data: CHELSA"  />
+<p class="caption">
+Figure 0.5: Long-term mean 2 meter above surface temperature. Source Data: CHELSA
+</p>
+</div>
+<div class="figure"><span id="fig:studyMaterialsBasinsP"></span>
+<img src="_bookdown_files/FIG_FOREWORD/tp_CA" alt="Long-term mean precipitation. Source Data: Bias corrected CHELSA"  />
+<p class="caption">
+Figure 0.6: Long-term mean precipitation. Source Data: Bias corrected CHELSA
+</p>
+</div>
+<div class="figure"><span id="fig:studyMaterialsBasinsETpot"></span>
+<img src="_bookdown_files/FIG_FOREWORD/ETpot_CA" alt="Potential reference evapotranspiration (ETpot). Source Data: CGIAR"  />
+<p class="caption">
+Figure 0.7: Potential reference evapotranspiration (ETpot). Source Data: CGIAR
+</p>
+</div>
+<div class="figure"><span id="fig:studyMaterialsBasinsAI"></span>
+<img src="_bookdown_files/FIG_FOREWORD/AI_CA" alt="Aridity Index. Source Data: CGIAR"  />
+<p class="caption">
+Figure 0.8: Aridity Index. Source Data: CGIAR
+</p>
+</div>
+
+</div>
+<!-- </div> -->
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="foreword.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="study-guide-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="study-guide-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="TamingHydrologicalSystems.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

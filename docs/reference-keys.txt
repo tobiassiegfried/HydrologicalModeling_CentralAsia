@@ -342,3 +342,14 @@ section-appendix-solutions-common-calibration-issues
 section-appendix-solutions-strategies-for-issues
 exercise-calibrate-a-simple-hbv-model-section-appendix-solutions-calibrated-parameters
 References
+study-guide
+study-materials
+study-guide-1
+fig:studyMaterialsBasins
+fig:studyMaterialsBasinsGlaciers
+fig:studyMaterialsBasinsDEM
+fig:studyMaterialsBasinsT2M
+fig:studyMaterialsBasinsP
+fig:studyMaterialsBasinsETpot
+fig:studyMaterialsBasinsAI
+fig:sampleDirectoryStructure
