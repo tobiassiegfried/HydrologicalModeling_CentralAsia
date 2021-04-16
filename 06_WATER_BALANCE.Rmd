@@ -10,7 +10,7 @@ knitr::include_graphics('_bookdown_files/FIG_WATER_BALANCE/GenericRiverBasin_lr.
 
 ## Derivation of the Budyko Relationship
 
-The general water balance for a catchment can be written as
+The general water balance of a catchment can be written as
 
 $$
 Q = P - E + \Delta S 
