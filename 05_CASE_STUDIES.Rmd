@@ -86,7 +86,7 @@ aoi_Basin_LatLon <- gunt_Shapefile_LatLon %>% extent() # GUNT
 aoi_Basin_UTM <- gunt_Shapefile %>% extent() # GUNT, in UTM
 
 # Load DEM
-Gunt_DEM <- raster('./data/AmuDarya/Gunt/GeospatialData/17050_Gund_Basin_DEM.tif', )
+Gunt_DEM <- raster('./data/AmuDarya/Gunt/GeospatialData/17050_Gund_Basin_DEM.tif')
 Gunt_DEM_lr <- raster::aggregate(Gunt_DEM,fact=10) # this is in UTM 42N
 Gunt_DEM_lr_LatLon <- raster::projectRaster(Gunt_DEM_lr, crs = "+init=epsg:4326")
 
