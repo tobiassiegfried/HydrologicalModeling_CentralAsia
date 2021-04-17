@@ -112,11 +112,11 @@ As homework students will finalize the presentation about their modeling work.
 
 ### Day 9: Student presentations and wrap-up of workshop {.unnumbered}
 
-The last day of the workshop is organized as a conference where students present their modeling work on the sample catchments.
+The last day of the workshop is organized as a student conference where students present their modeling work on their respective case study catchment. The groups need to prepare a presentation of 12 minutes duration. Each presentation will be followed by a 3 minutes Q&A session. After all the groups have presented, impressions and feedback will be shared by the teachers followed by a larger group discussion.  
 
 ## Study Materials {.unnumbered}
 
-The available course study materials are quickly presented here. Groups of two students working jointly on one of the provided basins throughout the course is effective. The data are available for download under this [link](https://www.dropbox.com/sh/tucg4eno67ndpp0/AADpkSbovUpBx5vhzUJuDquwa?dl=0). Please note that the size of the complete case study pack is approx 2 GB. So it might be better to just download the relevant files / folder for the corresponding basin you are working on. The geospatial data layers can be viewed, processed and analyzed in QGIS and/or R, depending on your preference. The discharge data is stored in R `.rds` format and needs to be opened and analyzed in R/RStudio.
+The available course study materials are presented here. Groups of two students working jointly on one of the provided basins throughout the course is effective. The data are available for download under this [link](https://www.dropbox.com/sh/tucg4eno67ndpp0/AADpkSbovUpBx5vhzUJuDquwa?dl=0). Please note that the size of the complete case study pack is approx 2 GB. So it might be better to just download the relevant files / folder for the corresponding basin you are working on. The geospatial data layers can be viewed, processed and analyzed in QGIS and/or R, depending on your preference. The discharge data is stored in R `.rds` format and needs to be opened and analyzed in R/RStudio.
 
 The directory tree of an example catchment (Gunt river basin) is shown below. All directory files contain correspondingly similar files[^foreword-1]. The `./Basin/` subfolder contains the basin shapefile delineating the catchment. The `./Climatology/` is empty to start with and students are asked to extract the relevant data on long-term mean temperature 2 meters above surface and total precipitation as well as reference potential evapotranspiration and the aridity index from regional climate fields that are provided under `./STUDENTS_CaseStudyPacks/CLIMATE`. These files are visualized in the Figures below.
 
