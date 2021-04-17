@@ -30,11 +30,20 @@ library(units)
 knitr::include_graphics('_bookdown_files/FIG_CASE_STUDIES/CharvakReservoir_lr.jpeg')
 ```
 
-**Charvak reservoir in the Chirchik river basin.. Source: Tobias Siegfried, hydrosolutions GmbH.**
+**Charvak reservoir in the Chirchik river basin. Source: Tobias Siegfried, hydrosolutions GmbH.**
 
-In this Chapter, two Central Asian river basins are presented and extensively discussed. The purpose is to familiarize the reader with key hydrological processes but also to demonstrate ways of hydro-meteorological time series analyses with R [@R-2013]. First, the Gunt river basin in the upper Pandzh is presented. It is representative of a high mountain catchment in an arid to hyper-arid part of Central Asia, i.e. the Pamirs. Mostly because of its elevation, the catchment is largely untouched by human activity. In recent years, hydropower was developed in the of the basin in the lower reaches of the river, shortly before its confluence with the Pyandzh river.
+In this Chapter, two Central Asian river basins are presented and extensively discussed. The purpose is to familiarize the reader with key hydrological processes but also to demonstrate ways of hydro-meteorological time series analyses with R [@R-2013]. First, the Gunt river basin in the upper Pandzh is presented. It is representative of a high mountain catchment in an arid to hyper-arid part of Central Asia, i.e. the Pamirs. Mostly because of its elevation, the catchment is largely untouched by human activity. In recent years, hydropower was developed in the basin in the lower reaches of the river, shortly before its confluence with the Pyandzh river.
 
 Second the Chirchik river basin is presented in detail. The Chirchik river is the largest right tributary to the Syr Darya and the vital source for freshwater supply of the Tashkent Oasis and its surrounding. The bulk of the water is utilized there in irrigation and some of it even diverted to neighboring catchments. After the confluence of its main tributaries, the river is heavily regulated for hydropower production and the supply of irrigation water in the downstream oases.
+
+```{r, eval = "html", label="intro-exercise-box", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "exercise" <div class = "exercise" id="ex3.1"> 
+<h3 class = "right">Ex3.1</h3> 
+<h3 class= "left">Exercise catchment characterization</h3> 
+<p>Read through the 2 case studies in this chapter and do a catchment characterization for your sample catchments. For the catchment characterization you will plot the catchment boundaries and collect the data for the table in section 3.1.1 below.</p> 
+</div>')
+```
 
 ## Gunt River Basin {#GuntRB}
 
