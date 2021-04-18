@@ -78,6 +78,141 @@ If you have not used the software above before we recommend the following resour
 
 Read the [Case Studies in Chapter 3](#CaseStudies) and [Station Data in Chapter 5](#Data::StationData) and do the exercise on catchment characterization, i.e. do a catchment characterization of your sample catchment.
 
+```{r, eval = "html", label="catchment-characterization-excercise-box", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "exercise" <div class = "exercise" id="ex1"> 
+<h3 class = "right">Ex1</h3> 
+<h3 class= "left">Catchment characterization</h3> 
+<p>Fill the table using data of your chosen catchment. See Chapter # Case Studies: Gunt River Basin for a finished example.</p>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;}}</style>
+<div class="tg-wrap"><table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax">ATTRIBUTE</th>
+    <th class="tg-0lax">VALUE</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax"><span style="font-weight:bold">Geography</span></td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Basin Area</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Min. Elevation</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Max. Elevation</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Mean Elevation</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax"><span style="font-weight:bold">Hydrology</span></td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Norm hydrological year discharge</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Norm cold season discharge</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Norm warm season discharge</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Annual norm discharge volume</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Annual norm specific discharge</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax"><span style="font-weight:bold">Climate</span></td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Mean basin temperature</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Mean basin precipitation</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Potential evaporation</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Aridity Index</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax"><span style="font-weight:bold">Land Cover</span></td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Shrubland</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Herbaceous Vegetation</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Crop Land</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Built up</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Bare / Sparse Vegetation</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Snow and Ice</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Permanent Water Bodies</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax"><span style="font-weight:bold">Land Ice</span></td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Total glacier area</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Total glacier volume</td>
+    <td class="tg-0lax"></td>
+  </tr>
+</tbody>
+</table></div>
+</div>')
+```
+
 **Todo: Link to exercise**
 
 ### Day 3: Geospatial data and introduction to linear reservoir models {.unnumbered}
@@ -112,13 +247,13 @@ As homework students will finalize the presentation about their modeling work.
 
 ### Day 9: Student presentations and wrap-up of workshop {.unnumbered}
 
-The last day of the workshop is organized as a student conference where students present their modeling work on their respective case study catchment. The groups need to prepare a presentation of 12 minutes duration. Each presentation will be followed by a 3 minutes Q&A session. After all the groups have presented, impressions and feedback will be shared by the teachers followed by a larger group discussion.  
+The last day of the workshop is organized as a student conference where students present their modeling work on their respective case study catchment. The groups need to prepare a presentation of 12 minutes duration. Each presentation will be followed by a 3 minutes Q&A session. After all the groups have presented, impressions and feedback will be shared by the teachers followed by a larger group discussion.
 
 ## Study Materials {.unnumbered}
 
 The available course study materials are presented here. Groups of two students working jointly on one of the provided basins throughout the course is effective. The data are available for download under this [link](https://www.dropbox.com/sh/tucg4eno67ndpp0/AADpkSbovUpBx5vhzUJuDquwa?dl=0). Please note that the size of the complete case study pack is approx 2 GB. So it might be better to just download the relevant files / folder for the corresponding basin you are working on. The geospatial data layers can be viewed, processed and analyzed in QGIS and/or R, depending on your preference. The discharge data is stored in R `.rds` format and needs to be opened and analyzed in R/RStudio.
 
-The directory tree of an example catchment (Gunt river basin) is shown below. All directory files contain correspondingly similar files[^foreword-1]. The `./Basin/` subfolder contains the basin shapefile delineating the catchment. The `./Climatology/` is empty to start with and students are asked to extract the relevant data on long-term mean temperature 2 meters above surface and total precipitation as well as reference potential evapotranspiration and the aridity index from regional climate fields that are provided under `./STUDENTS_CaseStudyPacks/CLIMATE`. These files are visualized in the Figures below.
+The directory tree of an example catchment (Gunt river basin) is shown below. All directory files contain correspondingly similar files[^foreword-1] (see Figure \@ref(fig:sampleDirectoryStructure) for an example). The `./Basin/` subfolder contains the basin shapefile delineating the catchment. The `./Climatology/` is empty to start with and students are asked to extract the relevant data for their catchment. These data include long-term mean temperature 2 meters above surface, total precipitation as well as reference potential evapotranspiration and the aridity index. The regional raster climate data are provided under `./STUDENTS_CaseStudyPacks/CLIMATE` on Dropbox. Data are discussed below below. A QGIS project has been setup for viewing and analyzing these data. It is available under `./STUDENTS_CaseStudyPacks/STUDENTS_CaseStudyProject.qgz`.
 
 [^foreword-1]: You can generate such type of directory tree output in a convenient manner using the `fs::dir_tree(path='...',recurse = TRUE)` function that is provided with the fs package.
 
@@ -126,37 +261,66 @@ The directory tree of an example catchment (Gunt river basin) is shown below. Al
 knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/sampleStudentPackDirectoryTree')
 ```
 
-An overview over the available basins in the study pack is shown in Figure \@ref(fig:studyMaterialsBasins).
-
+An overview over the available basins in the study pack is shown in Figure \@ref(fig:studyMaterialsBasins). All data can be accessed in the corresponding QGIS project.
 
 ```{r studyMaterialsBasins, echo = FALSE, fig.cap="Overview map of the Central Asia region with the 7 study basins. The rivers include the Gunt River in the Amu Darya basin, the Sokh and Isfayramsoy rivers in the Syr Darya basin, the Pskem and Chatkal rivers in the Chirchik river basin and finally, the Ala Archa and Chon Kemin rivers in the Chu river basins. The catchments are delineated with by the black polygons and the location of the individual gauges highlighted with the red circles."}
 knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/studyMaterialsBasins')
 ```
 
-The next Figures shows the distribution of land ice in the Central Asia Region (see Figure \@ref(fig:studyMaterialsBasinsGlaciers)). The land ice data is from [@glims2005].
+The next Figures shows the distribution of land ice in the Central Asia Region (see Figure \@ref(fig:studyMaterialsBasinsGlaciers)). Land ice data is from [@glims2005] and has been prepared for the Central Asia domain. These data have also been prepared for the individual catchments and are stored in the corresponding `./Glaciers/` folder.
 
 ```{r studyMaterialsBasinsGlaciers, echo = FALSE, fig.cap="Distribution of land ice in the Central Asia region. Source Data: GLIMS"}
 knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/studyMaterialsBasinsGlaciers')
 ```
 
-For all
+SRTM data for all catchments have been downloaded [@USGS_2020]. Rectangular areas surrounding each catchment are available and provide the basis for further analysis. These data are raw data and not hydrologically corrected. The data are required for basin characterization, i.e. minimum, maximum and mean elevation, the derivation of the hypsometric curve and the preparation of the RS MINERVE modeling input files.
 
-```{r studyMaterialsBasinsDEM, echo = FALSE, fig.cap="SRTM digital elevation models for catchments. Source Data: SRTM"}
+```{r studyMaterialsBasinsDEM, echo = FALSE, fig.cap="SRTM digital elevation models for catchments. Source Data: SRTM [@USGS_2020]"}
 knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/studyMaterialsBasinsDEM')
 ```
 
-```{r studyMaterialsBasinsT2M, echo = FALSE, fig.cap="Long-term mean 2 meter above surface temperature. Source Data: CHELSA"}
+CHELSA (Climatologies at high resolution for the earth's land surface areas) data of downscaled model output temperature and bias-corrected precipitation estimates of the ERA-Interim climatic reanalysis to a high resolution of 30 arc sec are provided in the `./STUDENTS_CaseStudyPacks/CLIMATE` folder. The data set covers the year 1981 - 2013 and are described in [@Karger_2017] and [@chelsaData_Beck]. More information is also provided in the Chapter \@ref(Chapter-DATA). Figure \@ref(fig:studyMaterialsBasinsT2M) shows the long-term mean 2 meters above surface temperature over the Central Asia domain and Figure \@ref(fig:studyMaterialsBasinsP) the precipitation raster.
+
+```{r studyMaterialsBasinsT2M, echo = FALSE, fig.cap="Long-term mean 2 meter above surface temperature. Source Data: [@Karger_2017]. Pink colors are indicate warm regions, dark blue to purple colors indicate cold regions."}
 knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/t2m_CA')
 ```
 
-```{r studyMaterialsBasinsP, echo = FALSE, fig.cap="Long-term mean precipitation. Source Data: Bias corrected CHELSA"}
+The long-term precipitation norm over the period 1981 - 2013 is shown in Figure \@ref(fig:studyMaterialsBasinsP).
+
+```{r studyMaterialsBasinsP, echo = FALSE, fig.cap="Long-term mean precipitation. Source Data: CHESLA data [@Karger_2017] bias corrected for snow undercatch as described by [@chelsaData_Beck]. Dark blue values in high mountain terrain indicate norm precipitation P > 2'000 mm/a whereas bright blue to white colors indicate arid to hyperarid climate conditions with P < 300 mm/a."}
 knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/tp_CA')
 ```
 
-```{r studyMaterialsBasinsETpot, echo = FALSE, fig.cap="Potential reference evapotranspiration (ETpot). Source Data: CGIAR"}
+Figure \@ref(fig:studyMaterialsBasinsETpot) shows the norm potential evapotranspiration over the Central Asia domain. Source data are from Global Aridity Index and Potential Evapotranspiration Climate Database v2 available under this [link](https://cgiarcsi.community/2019/01/24/global-aridity-index-and-potential-evapotranspiration-climate-database-v2/) [@Trabucco2019]. Aridity index data is shown in Figure \@ref(fig:studyMaterialsAI). The data are high-resolution (30 arc-seconds) raster climate data for the 1970-2000 period, related to evapotranspiration processes and rainfall deficit for potential vegetative growth, based on the implementation of a Penman-Montieth Reference Evapotranspiration (ET0) equation.
+
+```{r studyMaterialsBasinsETpot, echo = FALSE, fig.cap="Norm potential reference evapotranspiration (ETpot) Dark blue colors are > 2'000 mm/a whereas bright blue to white colors indicate values < 500 mm/a. Source Data: [@Trabucco2019]"}
 knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/ETpot_CA')
 ```
 
-```{r studyMaterialsBasinsAI, echo = FALSE, fig.cap="Aridity Index. Source Data: CGIAR"}
+```{r studyMaterialsBasinsAI, echo = FALSE, fig.cap="Aridity Index over Central Asia. Red colors are high aridity index values where as blue colors indicate low index values. Source Data: [@Trabucco2019]"}
 knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/AI_CA')
 ```
+
+Finally, land cover data from 2019 are provided [@CopernicusLandCover]. These are shown in Figure \@ref(fig:studyMaterialsBasinLandCover). The pseudocolors denote the following classification:
+
+-   Red color: Built-up land
+
+-   Pink color: Crop land
+
+-   Yellow color: Herbaceous vegetation
+
+-   Orange Color: Shrubland
+
+-   Blue Color: Permanent water bodies
+
+-   Green color: Forest
+
+-   Grey color: Bare / Sparse Vegetation
+
+-   White color: Snow and ice
+
+```{r studyMaterialsBasinsLandCover, fig.cap=""}
+knitr::include_graphics('../HydrologicalModeling_CentralAsia/_bookdown_files/FIG_FOREWORD/landcover_CA')
+```
+
+All these data are required data for the course. For the hydrological modeling, further temporal climate data are required (hourly data fields). These and how they can be accessed is described in greater detail in the Chapter \@ref(Chapter-Data) and the corresponding Sections there.
