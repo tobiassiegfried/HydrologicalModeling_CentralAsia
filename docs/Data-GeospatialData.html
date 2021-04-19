@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried and Beatrice Marti" />
 
 
-<meta name="date" content="2021-04-18" />
+<meta name="date" content="2021-04-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -439,12 +439,12 @@ Fill the sinks of your DEM and store the processed raster file (<a href="appendi
 <div id="upslope-area" class="section level4 unnumbered">
 <h4>Upslope area</h4>
 <p>Determine the area up-slope of your river discharge gauge by running the algorithm <em>Upslope Area</em> in QGIS (<a href="appendix-b-quick-guides.html#appendix-quick-guide-upslope-area">detailed instructions</a>). The UTM coordinates of the Nauvalisoy discharge gauge are given in the <em>riversCentralAsia</em> package:</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="Data-GeospatialData.html#cb74-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">filter</span>(ChirchikRiverBasin, river<span class="sc">==</span><span class="st">&quot;Nauvalisoy&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb74-2"><a href="Data-GeospatialData.html#cb74-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="st">`</span><span class="at">Station code</span><span class="st">`</span> <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">first</span>(code), </span>
-<span id="cb74-3"><a href="Data-GeospatialData.html#cb74-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">Station name</span><span class="st">`</span> <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">first</span>(station), </span>
-<span id="cb74-4"><a href="Data-GeospatialData.html#cb74-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">River name</span><span class="st">`</span> <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">first</span>(river), </span>
-<span id="cb74-5"><a href="Data-GeospatialData.html#cb74-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Longitude =</span> dplyr<span class="sc">::</span><span class="fu">first</span>(lon_UTM42), </span>
-<span id="cb74-6"><a href="Data-GeospatialData.html#cb74-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Latitude =</span> dplyr<span class="sc">::</span><span class="fu">first</span>(lat_UTM42))</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="Data-GeospatialData.html#cb72-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">filter</span>(ChirchikRiverBasin, river<span class="sc">==</span><span class="st">&quot;Nauvalisoy&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb72-2"><a href="Data-GeospatialData.html#cb72-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="st">`</span><span class="at">Station code</span><span class="st">`</span> <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">first</span>(code), </span>
+<span id="cb72-3"><a href="Data-GeospatialData.html#cb72-3" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">Station name</span><span class="st">`</span> <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">first</span>(station), </span>
+<span id="cb72-4"><a href="Data-GeospatialData.html#cb72-4" aria-hidden="true" tabindex="-1"></a>                   <span class="st">`</span><span class="at">River name</span><span class="st">`</span> <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">first</span>(river), </span>
+<span id="cb72-5"><a href="Data-GeospatialData.html#cb72-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Longitude =</span> dplyr<span class="sc">::</span><span class="fu">first</span>(lon_UTM42), </span>
+<span id="cb72-6"><a href="Data-GeospatialData.html#cb72-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Latitude =</span> dplyr<span class="sc">::</span><span class="fu">first</span>(lat_UTM42))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 5
 ##   `Station code` `Station name` `River name` Longitude Latitude
 ##   &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;
@@ -600,6 +600,25 @@ Figure 5.20: Select the fields of the attribute table to delete.
 </div>
 </div>
 </div>
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://hydrological-modeling-central-asia.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
             </section>
 
           </div>

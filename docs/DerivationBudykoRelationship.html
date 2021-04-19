@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried and Beatrice Marti" />
 
 
-<meta name="date" content="2021-04-18" />
+<meta name="date" content="2021-04-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -394,7 +394,7 @@ Q = P - E
 \tag{4.3}
 \]</span></p>
 <p>where <span class="math inline">\(Q/P\)</span> can be called the runoff index and <span class="math inline">\(E/P\)</span> is the evaporation index or evaporative fraction.</p>
-<p>For a catchment, annual mean <span class="math inline">\(E\)</span> and <span class="math inline">\(Q\)</span> are governed by total <em>water supply</em> <span class="math inline">\(P\)</span> and the total available energy which is normally expressed as potential evaporation <span class="math inline">\(E_{pot}\)</span> and denotes the (atmospheric) <em>water demand</em>. If <span class="math inline">\(E_{pot}\)</span> is small, the discharge <span class="math inline">\(Q\)</span> is normally bigger than evaporation <span class="math inline">\(E\)</span>. Similarly, if the available radiative energy is very high, the water demand <span class="math inline">\(E_{pot}\)</span> is very large and <span class="math inline">\(Q&lt;&lt;E\)</span> <span class="citation">(<a href="References.html#ref-ARORA2002164" role="doc-biblioref">Arora 2002</a>)</span>. <span class="math inline">\(E_{pot}\)</span> and <span class="math inline">\(P\)</span> are thus the key determinants of annual or longer time-scale runoff and evaporation rates. Michael Budyko has termed the ratio <span class="math inline">\(E_{pot} / P\)</span> as aridity index <span class="citation">(<a href="References.html#ref-budyko_1974" role="doc-biblioref">Budyko 1974</a>)</span>.</p>
+<p>For a catchment, annual mean <span class="math inline">\(E\)</span> and <span class="math inline">\(Q\)</span> are governed by total <em>water supply</em> <span class="math inline">\(P\)</span> and the total available energy which is normally expressed as potential evaporation <span class="math inline">\(E_{pot}\)</span> and denotes the (atmospheric) <em>water demand</em>. If <span class="math inline">\(E_{pot}\)</span> is small, the discharge <span class="math inline">\(Q\)</span> is normally bigger than evaporation <span class="math inline">\(E\)</span>. Similarly, if the available radiative energy is very high, the water demand <span class="math inline">\(E_{pot}\)</span> is very large and <span class="math inline">\(Q&lt;&lt;E\)</span> <span class="citation">(<a href="References.html#ref-ARORA2002164" role="doc-biblioref">Arora 2002</a>)</span>. <span class="math inline">\(E_{pot}\)</span> and <span class="math inline">\(P\)</span> are thus the key determinants of annual or longer time-scale runoff and evaporation rates. Michael Budyko has termed the ratio <span class="math inline">\(E_{pot} / P\)</span> aridity index <span class="citation">(<a href="References.html#ref-budyko_1974" role="doc-biblioref">Budyko 1974</a>)</span>.</p>
 <p>As explained above, water demand is determined by energy. Solar radiation is the primary energy source for the earth-atmosphere system and the key driver of the hydrological cycle. At the earth’s surface, the net radiative flux <span class="math inline">\(R_N\)</span> is the energy that is available for</p>
 <ul>
 <li><p>heating and cooling of the soil (ground heat flux),</p></li>
@@ -406,7 +406,7 @@ Q = P - E
 R_{N} = H_{S} + H_{L} + \Delta H_{G} 
 \tag{4.4}
 \]</span></p>
-<p>where <span class="math inline">\(R_{N}\)</span> is the net radiation [in W/m<sup>2</sup> = kg/s<sup>3</sup>], <span class="math inline">\(H_{S}\)</span> is the upward sensible heat flux, <span class="math inline">\(H_{L}\)</span> is the latent heat flux and <span class="math inline">\(\Delta H_{G}\)</span> the net ground heat flux. The latent heat flux is directly proportional to evaporation. Thus, <span class="math inline">\(H_{L} = L \cdot E\)</span> where <span class="math inline">\(L = 2.5 \cdot 10^{6}\)</span> J/kg [= m<sup>2</sup>/s<sup>2</sup>] is the latent heat of vaporization and <span class="math inline">\(E\)</span> is the actual evaporation in [m/s]. As in the case of the water balance, at the annual or longer time scales, we can neglect the storage effect in the ground and get</p>
+<p>where <span class="math inline">\(R_{N}\)</span> is the net radiation [in W/m<sup>2</sup> = kg/s<sup>3</sup>], <span class="math inline">\(H_{S}\)</span> is the upward sensible heat flux, <span class="math inline">\(H_{L}\)</span> is the latent heat flux and <span class="math inline">\(\Delta H_{G}\)</span> the net ground heat flux. The latent heat flux is directly proportional to evaporation <span class="math inline">\(E\)</span>. Thus, <span class="math inline">\(H_{L} = L \cdot E\)</span> where <span class="math inline">\(L = 2.5 \cdot 10^{6}\)</span> J/kg [= m<sup>2</sup>/s<sup>2</sup>] is the latent heat of vaporization and <span class="math inline">\(E\)</span> is the actual evaporation in [m/s]. As in the case of the water balance, at the annual or longer time scales, we can neglect the heat storage effect in the ground and get</p>
 <p><span class="math display" id="eq:ltEB">\[
 R_{N} = H_{S} + L \cdot E
 \tag{4.5}
@@ -436,22 +436,52 @@ R_{N} = (1 + \gamma)L E
 \frac{E}{P} = 1 - \frac{Q}{P} = F[\phi]
 \tag{4.10}
 \]</span></p>
-<p>The Budyko relationship thus allows for a simple parameterization of how the aridity index <span class="math inline">\(\phi\)</span> controls the long-term mean partitioning of precipitation into streamflow and evapotranspiration and it is capable of capturing the behavior of many catchments around the world. This explains its growing popularity over recent years <span class="citation">(<a href="References.html#ref-berghuijs_2020" role="doc-biblioref">Berghuijs, Gnann, and Woods 2020</a>)</span>.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="DerivationBudykoRelationship.html#cb35-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&#39;./_bookdown_files/FIG_WATER_BALANCE/Budyko_Framework_Basics&#39;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:budykoFramework"></span>
-<img src="_bookdown_files/FIG_WATER_BALANCE/Budyko_Framework_Basics" alt="Basics of the Budyko framework. The x-axis contains the aridity index ($E_{pot}/P$) and the y-axis the evaporative fraction ($E/P$), which often is approximated by one minus the runoff ratio ($E/P = 1-Q/P$) because storage changes are assumed to be negligible at multi-year timescales. Together, these two axes form the two-dimensional Budyko space. Catchments within the space should theoretically fall below the supply limit ($E/P = 1$) and the demand limit ($E/E_{pot} = 1$), but tend to approach these limits under very arid or very wet conditions. Many catchments around the world fall around the Budyko curve (black solid line), including 410 US MOPEX catchments which are indicated by blue markers [@berghuijs_2020]."  />
+<p>The Budyko relationship thus allows for a simple parameterization of how the aridity index <span class="math inline">\(\phi\)</span> controls the long-term mean partitioning of precipitation into streamflow and evapotranspiration and it is capable of capturing the behavior of thousands of catchments around the world. This explains its growing popularity over recent years <span class="citation">(<a href="References.html#ref-berghuijs_2020" role="doc-biblioref">Berghuijs, Gnann, and Woods 2020</a>)</span>.</p>
+<div class="figure"><span id="fig:budykoSpace"></span>
+<img src="_bookdown_files/FIG_WATER_BALANCE/Budyko_Framework_Basics" alt="Basics of the Budyko framework. The x-axis contains the aridity index ($E_{pot}/P$) and the y-axis the evaporative fraction ($E/P$), which often is approximated by one minus the runoff ratio ($E/P = 1-Q/P$) because storage changes are assumed to be negligible at multi-year timescales. Together, these two axes form the two-dimensional Budyko space. Many catchments around the world fall around the Budyko curve (black solid line, see Equation below), including 410 US MOPEX catchments which are indicated by blue markers [@berghuijs_2020]."  />
 <p class="caption">
-Figure 4.2: Basics of the Budyko framework. The x-axis contains the aridity index (<span class="math inline">\(E_{pot}/P\)</span>) and the y-axis the evaporative fraction (<span class="math inline">\(E/P\)</span>), which often is approximated by one minus the runoff ratio (<span class="math inline">\(E/P = 1-Q/P\)</span>) because storage changes are assumed to be negligible at multi-year timescales. Together, these two axes form the two-dimensional Budyko space. Catchments within the space should theoretically fall below the supply limit (<span class="math inline">\(E/P = 1\)</span>) and the demand limit (<span class="math inline">\(E/E_{pot} = 1\)</span>), but tend to approach these limits under very arid or very wet conditions. Many catchments around the world fall around the Budyko curve (black solid line), including 410 US MOPEX catchments which are indicated by blue markers <span class="citation">(<a href="References.html#ref-berghuijs_2020" role="doc-biblioref">Berghuijs, Gnann, and Woods 2020</a>)</span>.
+Figure 4.2: Basics of the Budyko framework. The x-axis contains the aridity index (<span class="math inline">\(E_{pot}/P\)</span>) and the y-axis the evaporative fraction (<span class="math inline">\(E/P\)</span>), which often is approximated by one minus the runoff ratio (<span class="math inline">\(E/P = 1-Q/P\)</span>) because storage changes are assumed to be negligible at multi-year timescales. Together, these two axes form the two-dimensional Budyko space. Many catchments around the world fall around the Budyko curve (black solid line, see Equation below), including 410 US MOPEX catchments which are indicated by blue markers <span class="citation">(<a href="References.html#ref-berghuijs_2020" role="doc-biblioref">Berghuijs, Gnann, and Woods 2020</a>)</span>.
 </p>
 </div>
-<p>Following the groundbreaking work by Budyko and others, many expressions have been developed for <span class="math inline">\(F[\phi]\)</span> to describe the long-term catchment water balance (see e.g. <span class="citation">(<a href="References.html#ref-budyko_1974" role="doc-biblioref">Budyko 1974</a>; <a href="References.html#ref-10.3390/w9040236" role="doc-biblioref">Sposito 2017</a>; <a href="#ref-choudhury" role="doc-biblioref"><strong>choudhury?</strong></a>)</span>.</p>
-<p>Here, we use the Choudhury equation which relates the aridity index <span class="math inline">\(\phi\)</span> to the evaporative fraction <span class="math inline">\(E/P\)</span> in the following way</p>
-<span class="math display" id="eq:Choudhury1">\[\begin{equation}
-  \frac{E}{P} = \left[ 1 + \left( \frac{E_{pot}}{P} \right) ^{-n} \right]^{1/n}
+<p>Figure <a href="DerivationBudykoRelationship.html#fig:budykoSpace">4.2</a> shows a plot of data from catchments in the US for which consistent long-term hydro-climatological data records are available. Individual catchments’ aridity indices are plotted against evaporative fractions, averaged over many years. The catchment data plots along the Budyko curve in the two-dimensional Budyko space as indicated in the Figure where the Budyko curve is defined as</p>
+<span class="math display" id="eq:OriginalBudykoCurveEquation">\[\begin{equation}
+  \frac{E}{P} = \left[ \frac{E_{pot}}{P} \text{tanh} \left( \frac{P}{E_{pot}} \right) \left( 1 - \text{exp} \left( - \frac{E_{pot}}{P} \right) \right) \right]^{1/2}
   \tag{4.11}
 \end{equation}\]</span>
-<p>where <span class="math inline">\(n\)</span> is a catchment-specific parameter which accounts for factors such as vegetation type and coverage, soil type and topography, etc. (see e.g. <span class="citation">(<a href="References.html#ref-Zhang2015" role="doc-biblioref">Zhang et al. 2015</a>)</span> for more information).</p>
+<p>This non-parametric relationship between the aridity index and the evaporative fraction was developed by M. Budyko <span class="citation">(<a href="References.html#ref-budyko_1951" role="doc-biblioref">Budyko 1951</a>)</span>.</p>
+<p>The Budyko space is delineated by the demand and supply limits. Catchments within the space should theoretically fall below the supply limit (<span class="math inline">\(E/P = 1\)</span>) and the demand limit (<span class="math inline">\(E/E_{pot} = 1\)</span>), but tend to approach these limits under very arid or very wet conditions <span class="citation">(<a href="References.html#ref-berghuijs_2020" role="doc-biblioref">Berghuijs, Gnann, and Woods 2020</a>)</span>. The data from the US shows that a large percentage of in-between catchment variability can be explained by the Budyko curve. After the seminal work Budyko in the last century, the evidence for a strong universal relationship between aridity and evaporative fraction via the Budyko curve has since grown. As catchment hydrology still lacks a comprehensive theory that could explain this simple behavior across diverse catchments <span class="citation"><a href="References.html#ref-gentine_2012" role="doc-biblioref">Gentine et al.</a> (<a href="References.html#ref-gentine_2012" role="doc-biblioref">2012</a>)</span>, the ongoing debate about the the underlying reasons for this relationship continues (see e.g. <span class="citation">(<a href="References.html#ref-padron_2017" role="doc-biblioref">Padron et al. 2017</a>; <a href="References.html#ref-berghuijs_2020" role="doc-biblioref">Berghuijs, Gnann, and Woods 2020</a>)</span>).</p>
+<p>While almost all catchments plot within a small envelope of the original Budyko curve, systematic deviations are nevertheless observed from the original Budyko curve. Several new expressions for <span class="math inline">\(F[\phi]\)</span> were therefore developed to describe the long-term catchment water balance with one parameter (see e.g. <span class="citation">(<a href="References.html#ref-budyko_1974" role="doc-biblioref">Budyko 1974</a>; <a href="References.html#ref-10.3390/w9040236" role="doc-biblioref">Sposito 2017</a>; <a href="References.html#ref-choudhury_1999" role="doc-biblioref">Choudhury 1999</a>)</span>. One popular equation using only 1 parameter is the Choudhury equation which relates the aridity index <span class="math inline">\(\phi\)</span> to the evaporative fraction <span class="math inline">\(E/P\)</span> in the following way</p>
+<span class="math display" id="eq:Choudhury1">\[\begin{equation}
+  \frac{E}{P} = \left[ 1 + \left( \frac{E_{pot}}{P} \right) ^{-n} \right]^{1/n}
+  \tag{4.12}
+\end{equation}\]</span>
+<p>where <span class="math inline">\(n\)</span> is a catchment-specific parameter which accounts for factors such as vegetation type and coverage, soil type and topography, etc. (see e.g. <span class="citation">(<a href="References.html#ref-Zhang2015" role="doc-biblioref">Zhang et al. 2015</a>)</span> for more information). In other words, <span class="math inline">\(n\)</span> integrates the net effects of all controls of of the evaporative fraction other than aridity. The Figure <a href="DerivationBudykoRelationship.html#fig:ChoudhuryEquationStateSpace">4.3</a> shows the control of <span class="math inline">\(n\)</span> over the shape of the Budyko Curve.</p>
+<div class="figure"><span id="fig:ChoudhuryEquationStateSpace"></span>
+<img src="_bookdown_files/FIG_WATER_BALANCE/ChoudhuryEquation_StateSpace" alt="$n$ is determining the shape of the Budyko Curve. Note how large values of $n$ favour evaporation over discharge. Note that $E_{pot}$ is denoted with $E_{0}$. Figure taken from [@yang_2008]."  />
+<p class="caption">
+Figure 4.3: <span class="math inline">\(n\)</span> is determining the shape of the Budyko Curve. Note how large values of <span class="math inline">\(n\)</span> favour evaporation over discharge. Note that <span class="math inline">\(E_{pot}\)</span> is denoted with <span class="math inline">\(E_{0}\)</span>. Figure taken from <span class="citation">(<a href="References.html#ref-yang_2008" role="doc-biblioref">Yang et al. 2008</a>)</span>.
+</p>
 </div>
+</div>
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://hydrological-modeling-central-asia.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
             </section>
 
           </div>
