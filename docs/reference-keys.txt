@@ -32,7 +32,7 @@ fig:completeDischargeData
 fig:qGazalkent
 fig:qChinaz
 fig:qAnnualGazalkentChinaz
-tab:unnamed-chunk-10
+tab:unnamed-chunk-12
 fig:ChirchikSeasonalityLargeTribs
 fig:seasonalitySmallTribs
 fig:ChirchikRiverHypsometricCurves
@@ -55,8 +55,10 @@ eq:EB2
 eq:aridityIndex
 eq:WBEB1
 eq:Budyko1
-fig:budykoFramework
+fig:budykoSpace
+eq:OriginalBudykoCurveEquation
 eq:Choudhury1
+fig:ChoudhuryEquationStateSpace
 fig:ClimateImpactModelChain
 fig:dischargeDataFig
 fig:gapFilledPskemChatkalFig

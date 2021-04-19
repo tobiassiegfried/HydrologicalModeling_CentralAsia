@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried and Beatrice Marti" />
 
 
-<meta name="date" content="2021-04-18" />
+<meta name="date" content="2021-04-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -379,24 +379,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2>Prerequisites</h2>
 <p>This is the first ‘practical’ Chapter of the book and comes with software requirements. For the analysis of the available data we use R <span class="citation">(<a href="References.html#ref-R-2013" role="doc-biblioref">R Core Team 2013</a>)</span>. R is a computer language and environment for data analysis, statistical computation and data visualization. It can be downloaded at &lt;<a href="https://www.r-project.org" class="uri">https://www.r-project.org</a>&gt;. Together with R, we are using RStudio as the IDE <span class="citation">(<a href="References.html#ref-RStudio-2020" role="doc-biblioref">Team’ 2020</a>)</span>.</p>
 <p>Some core R software packages used in this Chapter need to be installed so that the analyses can be done as shown there. The installation can be done in the following way:</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="prerequisites-1.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Core Libraries</span></span>
-<span id="cb123-2"><a href="prerequisites-1.html#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>)    <span class="co"># Meta - dplyr, ggplot2, purrr, tidyr, stringr, forcats</span></span>
-<span id="cb123-3"><a href="prerequisites-1.html#cb123-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;lubridate&#39;</span>)    <span class="co"># date and time</span></span>
-<span id="cb123-4"><a href="prerequisites-1.html#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;timetk&#39;</span>)       <span class="co"># Time series data wrangling, visualization and preprocessing</span></span>
-<span id="cb123-5"><a href="prerequisites-1.html#cb123-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb123-6"><a href="prerequisites-1.html#cb123-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Extras</span></span>
-<span id="cb123-7"><a href="prerequisites-1.html#cb123-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(devtools)) <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>, <span class="at">repos =</span> <span class="st">&quot;http://cran.us.r-project.org&quot;</span>)</span>
-<span id="cb123-8"><a href="prerequisites-1.html#cb123-8" aria-hidden="true" tabindex="-1"></a><span class="co"># install_github(&quot;boxuancui/DataExplorer&quot;, ref=&quot;develop&quot;) # Simplifies and automates EDA process and reporting</span></span>
-<span id="cb123-9"><a href="prerequisites-1.html#cb123-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb123-10"><a href="prerequisites-1.html#cb123-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Data and helper functions</span></span>
-<span id="cb123-11"><a href="prerequisites-1.html#cb123-11" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;hydrosolutions/riversCentralAsia&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="prerequisites-1.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Core Libraries</span></span>
+<span id="cb121-2"><a href="prerequisites-1.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>)    <span class="co"># Meta - dplyr, ggplot2, purrr, tidyr, stringr, forcats</span></span>
+<span id="cb121-3"><a href="prerequisites-1.html#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;lubridate&#39;</span>)    <span class="co"># date and time</span></span>
+<span id="cb121-4"><a href="prerequisites-1.html#cb121-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;timetk&#39;</span>)       <span class="co"># Time series data wrangling, visualization and preprocessing</span></span>
+<span id="cb121-5"><a href="prerequisites-1.html#cb121-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-6"><a href="prerequisites-1.html#cb121-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Extras</span></span>
+<span id="cb121-7"><a href="prerequisites-1.html#cb121-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(devtools)) <span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>, <span class="at">repos =</span> <span class="st">&quot;http://cran.us.r-project.org&quot;</span>)</span>
+<span id="cb121-8"><a href="prerequisites-1.html#cb121-8" aria-hidden="true" tabindex="-1"></a><span class="co"># install_github(&quot;boxuancui/DataExplorer&quot;, ref=&quot;develop&quot;) # Simplifies and automates EDA process and reporting</span></span>
+<span id="cb121-9"><a href="prerequisites-1.html#cb121-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-10"><a href="prerequisites-1.html#cb121-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Data and helper functions</span></span>
+<span id="cb121-11"><a href="prerequisites-1.html#cb121-11" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;hydrosolutions/riversCentralAsia&quot;</span>)</span></code></pre></div>
 <p>The packages can then be loaded and made available in your R session.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="prerequisites-1.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
-<span id="cb124-2"><a href="prerequisites-1.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb124-3"><a href="prerequisites-1.html#cb124-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb124-4"><a href="prerequisites-1.html#cb124-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(timetk)</span>
-<span id="cb124-5"><a href="prerequisites-1.html#cb124-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DataExplorer)</span>
-<span id="cb124-6"><a href="prerequisites-1.html#cb124-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(riversCentralAsia)</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="prerequisites-1.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb122-2"><a href="prerequisites-1.html#cb122-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb122-3"><a href="prerequisites-1.html#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb122-4"><a href="prerequisites-1.html#cb122-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(timetk)</span>
+<span id="cb122-5"><a href="prerequisites-1.html#cb122-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DataExplorer)</span>
+<span id="cb122-6"><a href="prerequisites-1.html#cb122-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(riversCentralAsia)</span></code></pre></div>
 <p>When other, additional packages are needed, they will be loaded in the corresponding Sections below.</p>
 <p>Please also remember the following rules when working with R dataframes in the tidyverse:</p>
 <ul>
@@ -406,6 +406,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>A final note. In all of the following, we mostly use the powerful data manipulation and visualization techniques for time series data as provided by the <code>timetk</code> package. This package is in active development and greatly facilitates any work with time series data as it, among other things, nicely integrates with the R ‘tidyverse.’</p>
 </div>
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://hydrological-modeling-central-asia.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
             </section>
 
           </div>

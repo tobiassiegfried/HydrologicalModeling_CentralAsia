@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried and Beatrice Marti" />
 
 
-<meta name="date" content="2021-04-18" />
+<meta name="date" content="2021-04-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -490,31 +490,31 @@ Figure 6.17: Simulated and measured discahrge at the outlet of the Nauvalisoy ca
 </div>
 <p>The simulated discharge peak arrives several months before the observed discharge peak. You may invest 10 minutes to try it out but by merely adjusting the parameters of our HBV model, we will not be able to shift the simulated discharge time series sufficiently to reproduce the measured discharge. We are facing a conceptual model error which we have to identify and eliminate.</p>
 <p>Figure <a href="section-model-calibration-and-validation.html#fig:gunt-temp-elevation">6.18</a> shows the relationship between elevation and temperature of the 4 meteo stations in the Gunt river catchment. The elevation dependence of temperature is highly important for snow-melt driven river catchments.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="section-model-calibration-and-validation.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="do">## MeteoStation locations and elevation</span></span>
-<span id="cb122-2"><a href="section-model-calibration-and-validation.html#cb122-2" aria-hidden="true" tabindex="-1"></a>meteoStations <span class="ot">&lt;-</span> <span class="co"># just put everything in a regular dataframe</span></span>
-<span id="cb122-3"><a href="section-model-calibration-and-validation.html#cb122-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">code =</span> <span class="fu">c</span>(<span class="dv">38953</span>, <span class="dv">38954</span>, <span class="dv">38956</span>, <span class="dv">38950</span>),</span>
-<span id="cb122-4"><a href="section-model-calibration-and-validation.html#cb122-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">masl  =</span> <span class="fu">c</span>(<span class="dv">3746</span>, <span class="dv">2075</span>, <span class="dv">3438</span>, <span class="dv">2566</span>))</span>
-<span id="cb122-5"><a href="section-model-calibration-and-validation.html#cb122-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb122-6"><a href="section-model-calibration-and-validation.html#cb122-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Gunt data</span></span>
-<span id="cb122-7"><a href="section-model-calibration-and-validation.html#cb122-7" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">&#39;./data/AmuDarya/Gunt/StationData/gunt_data_cleaned.Rds&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb122-8"><a href="section-model-calibration-and-validation.html#cb122-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">str_detect</span>(type, <span class="st">&quot;T&quot;</span>)) <span class="sc">%&gt;%</span>  <span class="co"># Filter for data types that contain T </span></span>
-<span id="cb122-9"><a href="section-model-calibration-and-validation.html#cb122-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">code =</span> <span class="fu">as.numeric</span>(code)) <span class="sc">%&gt;%</span>  <span class="co"># Cast code column to numeric</span></span>
-<span id="cb122-10"><a href="section-model-calibration-and-validation.html#cb122-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(meteoStations)  <span class="co"># Add the station altitude to the data</span></span>
-<span id="cb122-11"><a href="section-model-calibration-and-validation.html#cb122-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb122-12"><a href="section-model-calibration-and-validation.html#cb122-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the dataframe</span></span>
-<span id="cb122-13"><a href="section-model-calibration-and-validation.html#cb122-13" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
-<span id="cb122-14"><a href="section-model-calibration-and-validation.html#cb122-14" aria-hidden="true" tabindex="-1"></a><span class="co">#   dplyr::filter(!str_detect(type, &quot;meanmax&quot;), </span></span>
-<span id="cb122-15"><a href="section-model-calibration-and-validation.html#cb122-15" aria-hidden="true" tabindex="-1"></a><span class="co">#                 !str_detect(type, &quot;meanmin&quot;)) %&gt;%</span></span>
-<span id="cb122-16"><a href="section-model-calibration-and-validation.html#cb122-16" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">str_detect</span>(type, <span class="st">&quot;mean</span><span class="sc">\\</span><span class="st">(T</span><span class="sc">\\</span><span class="st">)&quot;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb122-17"><a href="section-model-calibration-and-validation.html#cb122-17" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Variable =</span> type) <span class="sc">%&gt;%</span></span>
-<span id="cb122-18"><a href="section-model-calibration-and-validation.html#cb122-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(code, Variable) <span class="sc">%&gt;%</span></span>
-<span id="cb122-19"><a href="section-model-calibration-and-validation.html#cb122-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">norm =</span> <span class="fu">mean</span>(norm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb122-20"><a href="section-model-calibration-and-validation.html#cb122-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">masl =</span> <span class="fu">first</span>(masl)) <span class="sc">%&gt;%</span></span>
-<span id="cb122-21"><a href="section-model-calibration-and-validation.html#cb122-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(norm, masl)) <span class="sc">+</span>  <span class="co">#, colour = Variable)) + </span></span>
-<span id="cb122-22"><a href="section-model-calibration-and-validation.html#cb122-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">alpha =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">&quot;gray&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb122-23"><a href="section-model-calibration-and-validation.html#cb122-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb122-24"><a href="section-model-calibration-and-validation.html#cb122-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Altitude [masl]&quot;</span>, <span class="at">x =</span> <span class="st">&quot;T [deg C]&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb122-25"><a href="section-model-calibration-and-validation.html#cb122-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="section-model-calibration-and-validation.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="do">## MeteoStation locations and elevation</span></span>
+<span id="cb120-2"><a href="section-model-calibration-and-validation.html#cb120-2" aria-hidden="true" tabindex="-1"></a>meteoStations <span class="ot">&lt;-</span> <span class="co"># just put everything in a regular dataframe</span></span>
+<span id="cb120-3"><a href="section-model-calibration-and-validation.html#cb120-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">code =</span> <span class="fu">c</span>(<span class="dv">38953</span>, <span class="dv">38954</span>, <span class="dv">38956</span>, <span class="dv">38950</span>),</span>
+<span id="cb120-4"><a href="section-model-calibration-and-validation.html#cb120-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">masl  =</span> <span class="fu">c</span>(<span class="dv">3746</span>, <span class="dv">2075</span>, <span class="dv">3438</span>, <span class="dv">2566</span>))</span>
+<span id="cb120-5"><a href="section-model-calibration-and-validation.html#cb120-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-6"><a href="section-model-calibration-and-validation.html#cb120-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Gunt data</span></span>
+<span id="cb120-7"><a href="section-model-calibration-and-validation.html#cb120-7" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="st">&#39;./data/AmuDarya/Gunt/StationData/gunt_data_cleaned.Rds&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb120-8"><a href="section-model-calibration-and-validation.html#cb120-8" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">str_detect</span>(type, <span class="st">&quot;T&quot;</span>)) <span class="sc">%&gt;%</span>  <span class="co"># Filter for data types that contain T </span></span>
+<span id="cb120-9"><a href="section-model-calibration-and-validation.html#cb120-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">code =</span> <span class="fu">as.numeric</span>(code)) <span class="sc">%&gt;%</span>  <span class="co"># Cast code column to numeric</span></span>
+<span id="cb120-10"><a href="section-model-calibration-and-validation.html#cb120-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(meteoStations)  <span class="co"># Add the station altitude to the data</span></span>
+<span id="cb120-11"><a href="section-model-calibration-and-validation.html#cb120-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-12"><a href="section-model-calibration-and-validation.html#cb120-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting the dataframe</span></span>
+<span id="cb120-13"><a href="section-model-calibration-and-validation.html#cb120-13" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span></span>
+<span id="cb120-14"><a href="section-model-calibration-and-validation.html#cb120-14" aria-hidden="true" tabindex="-1"></a><span class="co">#   dplyr::filter(!str_detect(type, &quot;meanmax&quot;), </span></span>
+<span id="cb120-15"><a href="section-model-calibration-and-validation.html#cb120-15" aria-hidden="true" tabindex="-1"></a><span class="co">#                 !str_detect(type, &quot;meanmin&quot;)) %&gt;%</span></span>
+<span id="cb120-16"><a href="section-model-calibration-and-validation.html#cb120-16" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">str_detect</span>(type, <span class="st">&quot;mean</span><span class="sc">\\</span><span class="st">(T</span><span class="sc">\\</span><span class="st">)&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb120-17"><a href="section-model-calibration-and-validation.html#cb120-17" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Variable =</span> type) <span class="sc">%&gt;%</span></span>
+<span id="cb120-18"><a href="section-model-calibration-and-validation.html#cb120-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(code, Variable) <span class="sc">%&gt;%</span></span>
+<span id="cb120-19"><a href="section-model-calibration-and-validation.html#cb120-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">norm =</span> <span class="fu">mean</span>(norm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb120-20"><a href="section-model-calibration-and-validation.html#cb120-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">masl =</span> <span class="fu">first</span>(masl)) <span class="sc">%&gt;%</span></span>
+<span id="cb120-21"><a href="section-model-calibration-and-validation.html#cb120-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(norm, masl)) <span class="sc">+</span>  <span class="co">#, colour = Variable)) + </span></span>
+<span id="cb120-22"><a href="section-model-calibration-and-validation.html#cb120-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">alpha =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">&quot;gray&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb120-23"><a href="section-model-calibration-and-validation.html#cb120-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb120-24"><a href="section-model-calibration-and-validation.html#cb120-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Altitude [masl]&quot;</span>, <span class="at">x =</span> <span class="st">&quot;T [deg C]&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb120-25"><a href="section-model-calibration-and-validation.html#cb120-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure"><span id="fig:gunt-temp-elevation"></span>
 <img src="applied-hydrological-modeling-central-asia_files/figure-html/gunt-temp-elevation-1.png" alt="Elevation dependence of mean temperature at the four meteo stations in the Gunt river catchment. The temperature decrease is a little below 1 degree K per 100 m of altitude gain." width="672" />
 <p class="caption">
@@ -529,6 +529,25 @@ Figure 6.18: Elevation dependence of mean temperature at the four meteo stations
 </div>
 </div>
 </div>
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://hydrological-modeling-central-asia.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
             </section>
 
           </div>

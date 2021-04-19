@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried and Beatrice Marti" />
 
 
-<meta name="date" content="2021-04-18" />
+<meta name="date" content="2021-04-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -380,13 +380,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="_bookdown_files/FIG_PREFACE/NearSamarkandOasis.jpeg" width="1915" /></p>
 <p><strong>Oasis between Samarkand and Buchara. Source: Tobias Siegfried, hydrosolutions GmbH.</strong></p>
 <p>This is a online book about applied hydrological modeling. It is geared towards students and young professionals in Central Asia who are interested in learning modern modeling approaches. The book teaches by examples and uses two catchments from the Syr Darya and Amu Darya river basins as case studies. While the presented case studies are exclusively from Central Asia, the methods demonstrated can be applied elsewhere.</p>
-<p>First, key hydro-climatological characteristics of the region are presented. This Section draws heavily on Victor Shults’ “Rivers of Middle Asia” and presents relevant materials from this famous book in a modern way. Two hydrological basins are further highlighted in in-depth case studies, i.e. the Gunt River in the Amu Darya catchment and the Chirchik river basin as the biggest right tributary to Syr Darya. The analyses of these catchments draws on available data from the Central Asian Hydrometeorological Services. The analysis of the available hydro-meteorological data uses different types of methods implemented in R which is a programming language widely used in data analysis and mining <span class="citation">(<a href="References.html#ref-R-2013" role="doc-biblioref">R Core Team 2013</a>)</span>.</p>
-<p>Three different types of modeling approaches are demonstrated and discussed in greater depth. First, long-term water balance modeling using the Budyko framework is introduced to discuss and demonstrate the quantification of climate change impacts on hydrological systems in Central Asia. Using this type of model, the effects of climate change on the long-term water balance are discussed for the Gunt River. The Gunt river is one of the key right tributaries to the Pjandz, i.e. the upstream Amu Darya, and emerges at high altitudes in the eastern Pamirs.</p>
-<p>Second, a more detailed modeling approach using semi-distributed, lumped, conceptual hydrologic-hydraulic modeling will be used to demonstrate how intra-annual changes due to climate forcing and changes therein can be quantified. These approaches will be demonstrated again for the Gunt catchment and also for the Chirchik river basin and its tributaries. Furthermore, the use of these models to study different kinds of reservoir operations will be presented and impact on hydropower production as well as on downstream water availability discussed.</p>
+<p>The book is accompanied by a Study Exercise Pack that encompasses 7 Central Asian catchments which can be used by students for learning and applying their skill to real-world examples in the region. The Pack can accessed and downloaded <a href="https://www.dropbox.com/sh/tucg4eno67ndpp0/AADpkSbovUpBx5vhzUJuDquwa?dl=0">here</a>. Furthermore, a dedicated R Package has been developed which implements many of the data analyses and processing steps shown in this book. More information can be found on Github, where the <a href="https://github.com/hydrosolutions/riversCentralAsia">package</a> is maintained. R which is a programming language widely used in data analysis and mining <span class="citation">(<a href="References.html#ref-R-2013" role="doc-biblioref">R Core Team 2013</a>)</span>.</p>
+<p>The course is structured in the following way. First, key hydro-climatological characteristics of the region are presented. This Section draws heavily on Victor Shults’ “Rivers of Middle Asia” and presents relevant materials from this famous book in a modern way. Two important basins are further highlighted as in-depth case studies, i.e. the Gunt River in the Amu Darya catchment and the Chirchik river basin. The analyses of these catchments draws on available data from the Central Asian Hydrometeorological Services and on global public hydro-climatological as well as land cover datasets.</p>
+<p>A large Chapter on data covers in-situ station data, geospatial data, climate reanalysis and climate projection data. Workflows are presented for the Gunt river basin how to prepare all required data for transient hydrological model at hourly time scales.</p>
+<p>Three different types of hydrological modeling approaches are demonstrated and discussed in greater depth. First, long-term water balance modeling using the Budyko framework is introduced to discuss key determinants of the partitioning of precipitation into runoff and evaporation over climatological time scales.</p>
+<p>Second, a more detailed modeling approach using semi-distributed, conceptual hydrologic-hydraulic modeling will be used to demonstrate the implementation, calibration and validation of such type of models. Again, working by example, the free modeling software <a href="https://www.crealp.ch/down/rsm/install2/archives.html">RS MINERVE</a> is used for this purpose.</p>
 <p>Third and finally, empirical modeling will be introduced for forecasting. These types of models are currently utilized in the Hydrometeorological Agencies of the region for forecasting discharge at different lead times, ranging from one day ahead up to seasonal forecasts. These models use long term time series to learn relationships between past, observed quantities and future system responses.</p>
 <p>With everything that is presented, the focus is on the use of open source and free software. For data preparation and analysis as well as for water balance and empirical modeling, <a href="https://www.r-project.org">R</a> and <a href="https://rstudio.com">RStudio</a> are utilized <span class="citation">(<a href="References.html#ref-R-2013" role="doc-biblioref">R Core Team 2013</a>; <a href="References.html#ref-RStudio-2020" role="doc-biblioref">Team’ 2020</a>)</span>. For the processing of geographic data, workflows in <a href="https://www.qgis.org/en/site/">QGIS</a> are demonstrated <span class="citation">(<a href="References.html#ref-QGIS_software" role="doc-biblioref">QGIS Development Team 2021</a>)</span>. For hydrological-hydraulic modeling, the free <a href="https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve.html">RS MINERVE</a> is utilized which is a environment for the modeling of free surface runoff flow formation and propagation <span class="citation">(<a href="References.html#ref-rsminerve_um" role="doc-biblioref">Foehn et al. 2020</a>; <a href="References.html#ref-rsminerve_tm" role="doc-biblioref">Garcia Hernandez et al. 2020</a>)</span>. The reader is expected to have a basic understanding about R and QGIS and how to use these software for data analysis and processing.</p>
 <p>The R code to produce figures, conduct analyses as well carry out empirical modeling is deliberately provided throughout the text and embedded there. While this makes the text heavier than necessary, it gives the local target group to reuse code and directly reproduce results while working on their own problems. An attempt has been made to make everything as reproducible as possible.</p>
+<p>Feedback is welcome!</p>
 </div>
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://hydrological-modeling-central-asia.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
             </section>
 
           </div>

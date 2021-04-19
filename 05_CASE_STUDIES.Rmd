@@ -44,7 +44,7 @@ A note for the reader. Many of the Figures, Tables and analyses shown are carrie
 
 The Gunt river basin is located in the Pamir mountains in the Gorno Badakhshan Autonomous Region in south-east Tajikistan. The basin covers approximately 14'000 km^2^. The Gunt river is a large right tributary of the upstream Pyandzh and joins the latter downstream of the town of Khorog. Mean elevation is approx 4'270 meters above mean sea level (masl) with a pronounced altitude range from 2'000 -- 6'700 masl. The highest elevations in the catchment are Peak Karl Marx (6726 m) and Peak Engels (6510 m) at the southern border of the catchment. A map of the basin is provided in Figure \@ref(fig:mapGuntRiver).
 
-```{r, echo=FALSE}
+```{r, include=FALSE}
 ## MeteoStation locations and elevation
 meteoStations <- # just put everything in a regular dataframe
   tibble(StationName=c("Bulunkul","Khorog","Khorog","Javshangoz","Navobod"),
