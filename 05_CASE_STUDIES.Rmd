@@ -32,17 +32,19 @@ knitr::include_graphics('_bookdown_files/FIG_CASE_STUDIES/CharvakReservoir_lr.jp
 
 **Charvak reservoir in the Chirchik river basin. Source: Tobias Siegfried, hydrosolutions GmbH.**
 
-In this Chapter, two Central Asian river basins are presented and extensively discussed. The purpose is to familiarize the reader with key hydrological processes but also to demonstrate ways of hydro-meteorological time series analyses with R [@R-2013]. First, the Gunt river basin in the upper Pandzh is presented. It is representative of a high mountain catchment in an arid to hyper-arid part of Central Asia, i.e. the Pamirs. Mostly because of its elevation, the catchment is largely untouched by human activity. In recent years, hydropower was developed in the basin in the lower reaches of the river, shortly before its confluence with the Pyandzh river.
+In this Chapter, two Central Asian river basins are presented and extensively discussed. The purpose is to familiarize the reader with key hydrological processes but also to demonstrate ways of hydro-meteorological time series analyses with R [@R-2013]. First, the Gunt river basin in the upper Pyandzh is presented. It is representative of a high mountain catchment in an arid to hyper-arid part of Central Asia, i.e. the Pamirs. Mostly because of its elevation, the catchment is largely untouched by human activity. In recent years, hydropower was developed in the of the basin in the lower reaches of the river, shortly before its confluence with the Pyandzh river.
 
 Second the Chirchik river basin is presented in detail. The Chirchik river is the largest right tributary to the Syr Darya and the vital source for freshwater supply of the Tashkent Oasis and its surrounding. The bulk of the water is utilized there in irrigation and some of it even diverted to neighboring catchments. After the confluence of its main tributaries, the river is heavily regulated for hydropower production and the supply of irrigation water in the downstream oases.
+
+A note for the reader. Many of the Figures, Tables and analyses shown are carrie dout in R. All the R-code to produce these outputs is shown which my overly burden the text.
 
 ## Gunt River Basin {#GuntRB}
 
 ### Basin Characterization {#GuntRBOverview}
 
-The Gunt river basin is located in the Pamir mountain in
+The Gunt river basin is located in the Pamir mountains in the Gorno Badakhshan Autonomous Region in south-east Tajikistan. The basin covers approximately 14'000 km^2^. The Gunt river is a large right tributary of the upstream Pyandzh and joins the latter downstream of the town of Khorog. Mean elevation is approx 4'270 meters above mean sea level (masl) with a pronounced altitude range from 2'000 -- 6'700 masl. The highest elevations in the catchment are Peak Karl Marx (6726 m) and Peak Engels (6510 m) at the southern border of the catchment. A map of the basin is provided in Figure \@ref(fig:mapGuntRiver).
 
-```{r}
+```{r, include=FALSE}
 ## MeteoStation locations and elevation
 meteoStations <- # just put everything in a regular dataframe
   tibble(StationName=c("Bulunkul","Khorog","Khorog","Javshangoz","Navobod"),
@@ -62,9 +64,8 @@ meteoStations$utm.y <- cord.UTM.tbl$coords.x2
 meteoStations
 ```
 
-A map of the Gunt river is shown in Figure \@ref(fig:mapGuntRiver).
 
-```{r mapGuntRiver, message=FALSE,warning=FALSE,fig.cap='Map of the Gunt river basin. The subcatchments are named with white labels and the meteorological stations indicated with red diamonds. The discharge station 17050 at Gunt is located at the meteostation 38954. The naming convention we apply is not entirely corresponding to reality since the Alsihur changes its name to Gunt after the outflow of Yashilkul lake some kilometers upstream of the confluence with Tokusbulak. The reason for our simnplified naming is that it facilitates the rainfall-runoff modeling which will be demonstrated in Chapter 7.'}
+```{r mapGuntRiver, message=FALSE,warning=FALSE,fig.cap='Map of the Gunt river basin. The subcatchments are named with white labels and the meteorological stations indicated with red diamonds. The discharge station 17050 at Gunt is located at the meteostation 38954.'}
 # convert to sf object
 meteoStations_sf <- st_as_sf(meteoStations %>% dplyr::select(StationName,lat,lon),
                             coords = c("lon","lat"),
@@ -86,7 +87,7 @@ aoi_Basin_LatLon <- gunt_Shapefile_LatLon %>% extent() # GUNT
 aoi_Basin_UTM <- gunt_Shapefile %>% extent() # GUNT, in UTM
 
 # Load DEM
-Gunt_DEM <- raster('./data/AmuDarya/Gunt/GeospatialData/17050_Gund_Basin_DEM.tif', )
+Gunt_DEM <- raster('./data/AmuDarya/Gunt/GeospatialData/17050_Gund_Basin_DEM.tif')
 Gunt_DEM_lr <- raster::aggregate(Gunt_DEM,fact=10) # this is in UTM 42N
 Gunt_DEM_lr_LatLon <- raster::projectRaster(Gunt_DEM_lr, crs = "+init=epsg:4326")
 
@@ -142,46 +143,9 @@ ggplot() +
   geom_label(data = subbasins,aes(x = lon, y = lat, label = basin),vjust = 0,hjust = 0)
 ```
 
-```{r,echo=FALSE}
-# Calulations for Table => To delete after!
-## Annual specific discharge
-3.28/13693*10^6
-239/349*100 -100
-```
+The river emerges as Alishur river in the Easter Pamir Plateau and the flows west through the western Pamirs before joining Pyandzh. The Eastern Pamirs is a high plateau located above 4'000 masl. The Western Pamirs are occupied by high mountain ranges separated from each other by deep valleys (see [@Odinaev_2021] and citations therein for more information). Alishur river is named Gunt river after exiting lake Yashikul. Gunt river has two main tributaries, i.e. the Tokusbulak river and the Shakhdara river (see again Figure \@ref(fig:mapGuntRiver).
 
-| Attribute                                           | Value        |
-|-----------------------------------------------------|--------------|
-| Basin Area (calculated after basin GIS delineation) | 13'693 km^2^ |
-| Norm hydrological year discharge                    | 103.8 m^3^/s |
-| Norm cold season discharge (Oct. - Mar., Q4/Q1)     | 19.8 m^3^/s  |
-| Norm warm season discharge (Apr. - Sept., Q2/Q3)    | 84.2 m^3^/s  |
-| Annual discharge volume                             | 3.28 km^3^   |
-| Annual specific discharge                           | 239 mm       |
-| Mean basin precipitation $P$ [@beck2020]            | 349 mm       |
-| Potential Evaporation $E_{pot}$ [@Trabucco2019]     | 929 mm       |
-| Aridity Index $\phi = E_{pot} / P$                  | 2.7          |
-
-: Key relevant basin statistics for Gunt river basin. All values are derived from data provided by the Tajik Hydrometeorological Agency. Mean basin precipitation is from the CHELSA v.1.2.1 dataset [@chelsaData_Beck].
-
-With the values provided in the table above, the discharge index $Q/P$ is 68.5 % and the evaporative index $E/P$ is 31.5 %. In other words, the long-term water balance shows that 3 precipitation units gets partitioned into 2 discharge units and 1 evaporation unit, approximately. At the same time, the aridity index $\phi$ as calculated in the Table above confirms the pronounced arid characteristics of the catchment.
-
-### Hydrology {#GuntHyrology}
-
-For the analysis of the key hydro-climatological characteristics, we first load the available decadal and monthly station data[^case_studies-1]. The data used in this Chapter can be accessed on the public GitHub repository [Applied Modeling of Hydrological Systems in Central Asia](https://github.com/tobiassiegfried/Applied_Hydrological_Modeling_Bookdown) and the ./data/AmuDarya/Gunt/ folder in there.
-
-[^case_studies-1]: The data was kindly provided by the Tajik Hydrometeorological Agency.
-
-First, we load the available data into `R`.
-
-```{r}
-# Load data records
-fPath = fPath <- './data/AmuDarya/Gunt/StationData/'
-fName = 'gunt_data_cleaned.Rds'
-data <- read_rds(paste0(fPath,fName))
-data
-```
-
-This dataframe contains all available data hydro-meteorological data from the basin. All available hydro-meteorological stations in the basin are listed in the following dataframe. The Khorog meteorological station is at the same site as the gauging stations, hence their locations coincide (lat and lon are latitude and longitude, utm.x and utm.y are station locations in Universal Transverse Mercator (UTM) coordinate reference system for Zone 42N, masl denotes the approximate station location).
+One discharge gauging station exists which has a near complete monthly measurement record from 1940 onward. The data are shown in Figure \@ref(fig:GuntMonthlyQ). More details on these data is presented in the Section \@ref(GuntHydrology). The available meteorological station data is discussed in Section \@ref(GuntClimate). The station characteristics are summarized in the following Table.
 
 ```{r}
 ## MeteoStation locations and elevation
@@ -203,7 +167,64 @@ meteoStations$utm.y <- cord.UTM.tbl$coords.x2
 meteoStations
 ```
 
-Data are available at monthly time scales. The discharge data from Gauge 17050 can be accessed and extracted from the Gunt dataset in the following way.
+The Table below summarizes key basin statistics that are relevant from the hydro-climatological perspective. Data from various sources are summarized here. The basin area has been derived from the basin shapefile. Raster statistics of the SRTM digital elevation model ([@srtmgl12020]), the climate raster files as well as the land cover raster are calculated using the QGIS `Raster Layer Statistics` processing toolbox algorithm. The land ice total polygon area is computed with the Statistical Summary Option in QGIS.
+
+The norm hydrological year discharge and the corresponding norm cold and warm season discharge values have been computed with data from the Tajik Hydrometeorological Service. The mean basin precipitation is computed using a state-of-the-art bias corrected reanalysis product [@beck2020]. Such data will also be used for hydro-climatological modeling in later Chapters (also see Chapter \@ref(Chapter-DATA) for more information on data products). Potential evaporation is from [@Trabucco2019] using the Penman-Montieth equation.
+
+| ATTRIBUTE                                             | VALUE                 |
+|-------------------------------------------------------|-----------------------|
+| ***Geography*** [@srtmgl12020]                        |                       |
+| Basin Area $A$                                        | 13'693 km^2^          |
+| Minimum Elevation $h_{min}$                           | 2'068 masl            |
+| Maximum Elevation $h_{max}$                           | 6'652 masl            |
+| Mean Elevation $h_{mean}$                             | 4'267 masl            |
+| ***Hydrology [Source: Tajik Hydromet Service]***      |                       |
+| Norm hydrological year discharge $Q_{norm}$           | 103.8 m^3^/s          |
+| Norm cold season discharge (Oct. - Mar., Q4/Q1)       | 19.8 m^3^/s           |
+| Norm warm season discharge (Apr. - Sept., Q2/Q3)      | 84.2 m^3^/s           |
+| Annual norm discharge volume                          | 3.28 km^3^            |
+| Annual norm specific discharge                        | 239 mm                |
+| ***Climate***                                         |                       |
+| Mean basin temperature $T$ [@Karger_2017]             | -5.96 deg. Celsius    |
+| Mean basin precipitation $P$ [@beck2020]              | 351 mm                |
+| Potential Evaporation $E_{pot}$ [@Trabucco2019]       | 929 mm                |
+| Aridity Index $\phi = E_{pot} / P$                    | 2.7                   |
+| Aridity Index [@Trabucco2019]                         | 3.6                   |
+| ***Land Cover [@CopernicusLandCover]***               |                       |
+| Shrubland                                             | 8 km^2^               |
+| Herbaceous Vegetation                                 | 4'241 km^2^           |
+| Crop Land                                             | 0.5 km^2^             |
+| Built up                                              | 4 km^2^               |
+| Bare / Sparse Vegetation                              | 8'410 km^2^           |
+| Snow and Ice                                          | 969 km^2^             |
+| Permanent Water Bodies                                | 80 km^2^              |
+| ***Land Ice***                                        |                       |
+| Total glacier area [@glims2005]                       | 875 km^2^             |
+| Total glacier volume (calculated with [@erasov_1968]) | 699 km^3^             |
+
+: Key relevant basin statistics for Gunt river basin. Individual data sources are indicated. The hydrological year in Central Asia is defined as starting from October in year 1 and lasts until end of September in year 2. More information on the relevance of hydrological year-based water accounting is given below.
+
+With the values provided in the table above, the discharge index $Q/P$ is 68.5 % and the evaporative index $E/P$ is 31.5 %. In other words, the long-term water balance shows that 3 precipitation units gets partitioned into 2 discharge units and 1 evaporation unit, approximately. The aridity index $\phi$ , when calculated using $P$ from [@beck2020] and $E_{pot}$ from [@Trabucco2019] is 2.7. The aridity index from [@Trabucco2019] is 3.6. These values indicate some uncertainty in relation to these global clmiate products used. Despite this, they confirm the highly arid characteristics of the basin.
+
+### Hydrology {#GuntHydrology}
+
+For the analysis of the key hydro-climatological characteristics, we first load the available decadal and monthly station data[^case_studies-1]. The data used in this Chapter can be accessed on the public GitHub repository [Applied Modeling of Hydrological Systems in Central Asia](https://github.com/tobiassiegfried/Applied_Hydrological_Modeling_Bookdown) and the ./data/AmuDarya/Gunt/ folder in there.
+
+[^case_studies-1]: The data was kindly provided by the Tajik Hydrometeorological Agency.
+
+First, we load the available data into `R`.
+
+```{r}
+# Load data records
+fPath = fPath <- './data/AmuDarya/Gunt/StationData/'
+fName = 'gunt_data_cleaned.Rds'
+data <- read_rds(paste0(fPath,fName))
+data
+```
+
+This dataframe contains all available data hydro-meteorological data from the basin. All available hydro-meteorological stations in the basin are listed in the following dataframe were defined above.
+
+Most data are available at monthly time scales. The discharge data from Gauge 17050 can be accessed and extracted from the Gunt dataset in the following way.
 
 ```{r}
 q_17050_mon <- data %>% filter(type == "Q" & code == '17050' & resolution == 'mon')
@@ -223,11 +244,13 @@ q_17050_mon %>% plot_time_series(date,
                                  .plotly_slider = TRUE)
 ```
 
-Please also note the visible changes in the low flow regime from 2007 onward.
+The visible changes in the low flow regime from 2007 onward are because of starting man-made regulations of the low-flow winter discharge regime for the generation of winter hydropower electric energy in the newly constructed facility in Khorog. When hydropower is required, the water table of the natural lake Yashikul in the Pamir plateau gets lowered to increase the discharge for energy production.  
 
-> Todo: Ask TAJ HM for clarification on this observation and its probably causes.
+```{r pamirEnergyHPP, fig.cap="Since 2006, a run off the river hydropower plant operated by Pamir Energy produces hydropower to cover local electric energy demand. Lake Yashikul is used as a regulator. The increase in winter discharge from 2007 onwards is due to HPP operations."}
+knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/Yashikul_PamirEnergy_Final.jpg')
+```
 
-The seasonal diagnostics of the monthly discharge time series is shown in Figure \@ref(fig:guntSeasonalDiagnostics). The peak discharge of this very high elevation basin is in July unlike in the lower lying Chirchik tributaries as shown in Figure \@ref(fig:ChirchikSeasonalityLargeTribs) above.
+The seasonal diagnostics of the monthly discharge time series is shown in Figure \@ref(fig:guntSeasonalDiagnostics). The peak discharge of Gunt river measured at Khorog station is in July. 
 
 ```{r guntSeasonalDiagnostics,message=FALSE,warning=FALSE,fig.cap="Seasonal diagnostics of the monthly discharge time series at the Gunt-Khorog gauging station (17050)"}
 q_17050_mon %>% 
@@ -244,7 +267,25 @@ q_17050_mon %>%
                    labels=c("J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D","1", "2", "3", "4"))
 ```
 
-Below in Figure \@ref(fig:guntMonthlyFlowChanges), we are plotting changes to monthly flows over time by binning all available data in the corresponding monthly slots. The red lines are linear regression lines that indicate trends for the individual months. Over the observational record of approx. 80 years, changes in monthly discharge regimes are clearly visible. On the one hand, summer discharge of Gunt river during the third quarter (Q3) is decreasing whereas the cold season discharge in Q1 and Q4 is increasing. This is a clear indication that the basin hydrology is already reacting to a changing climate. This observation motivates us to further investigate future changes with hydrological modeling (see Chapter \@ref(HydroModelsPhysicalModels) for more details).
+
+unlike in the lower lying Chirchik tributaries as shown in Figure \@ref(fig:ChirchikSeasonalityLargeTribs) above.
+
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "task" <div class = "task" id="t3.1"> 
+<h3 class = "right">T3.1</h3> 
+<h3 class= "left">Peak Discharge</h3> 
+<p>Discuss with your colleague(s): </p>
+<p><ul>
+  <li>Compare discharge seasonality with the seasonality of the large Chirchik River tributaries? </li>
+  <li>Obtain the information of all the other rivers in the Case Study packs and their seasonality.
+  <li>What is the single most important determinant of peak discharge timing in Central Asia rivers? </li>
+</ul></p> 
+</div>')
+```
+
+
+Below in Figure \@ref(fig:guntMonthlyFlowChanges), we are plotting changes to monthly flows over time by binning all available data in the corresponding monthly slots. The red lines are linear regression lines that indicate trends for the individual months. Over the observational record of approx. 80 years, changes in monthly discharge regimes are clearly visible. On the one hand, summer discharge of Gunt river during the third quarter (Q3) is decreasing whereas the cold season discharge in Q1 and Q4 is increasing. This is a clear indication that the basin hydrology is already reacting to a changing climate. This is one of the observations that motivates us to further investigate future changes with hydrological modeling (see Chapter \@ref(RSMinerveMODELS) and [@Odinaev_2021] for more details).
 
 ```{r guntMonthlyFlowChanges,message=FALSE,warning=FALSE}
 q_17050_mon %>% 
@@ -294,6 +335,8 @@ plotNormDevHYY(qHYY,'Q','Khorog-Gunt 17050')
 
 Figure \@ref(fig:guntNormDeviations) shows that in absolute terms, the discharge in the high-flow season is undergoing a much greater reduction than an increase in the low-flow season. Hence, we cannot simply explain the decline of discharge in one season with the increase in the other. In other words, the early melting of the winter snow pack cannot alone explain the summer decline in water availability. Some other mechanism much be at work which we still need to better understand. One hypothesis could be that an increase in summer temperatures leads to higher evaporation over the basin thus leading to reduced discharge (see also Section \@ref(GuntRBClimatology) below).
 
+Also and as mentioned above, winter discharge is influence by human regulation from 2006 onward. This needs to be carefully taken into account when carrying out climate change impact analysis over the period of the observational record. For example, the cold season discharge deviation from the norm in 2006 and 2007 is 6 m^3^/s (see Figure \@ref(fig:guntNormDeviations)) indicating that this amount of additional water was used for hydropower energy production.
+
 In order to gauge whether there is a robust trend in discharge over the observed time period, we compute decadal (10 year means) and plot the results.
 
 ```{r gunt10YMeanQ,message=FALSE,warning=FALSE,fig.cap="10-year mean hydrological year discharge of Gunt River, including the cold and warm season components. The decadal mean values are related in time to the beginning of the corresponding decade in the Figure. The strongly declining trend in warm season discharge causes the overall observed decline in hydrological year discharge."}
@@ -307,11 +350,11 @@ mean10yearQ %>%  plot_time_series(hyYear,mean10yearQ,name,
                                   .title  = "")
 ```
 
-This is informative. From the 1990ies onwards, a strong reduction in mean hydrological year warm season discharge is observed of about - 16% relative to mean 1940 - 1989 values. At the same time, 10-year mean hydrological year cold season discharge remained almost stable. These findings are the a key motivation to study climate impacts in the Gunt River basin in greater details.
+This is informative. From the 1990ies onwards, a strong reduction in mean hydrological year warm season discharge is observed of about - 16% relative to mean 1940 - 1989 values. At the same time, 10-year mean hydrological year cold season discharge remained almost stable. As already mentioned, these findings are the a key motivation to study climate impacts in the Gunt River basin in greater details.
 
-#### Climatology {#GuntClimatology}
+### Climate {#GuntClimate}
 
-A significant amount of meteorological data available. This is an invitation to explore these data. We start with the Gunt-Khorog station 38954. Lets get some data ready to be analyzed later. Note, to remain consistent with the discharge data, we only use data from 1940 onward. While we mostly concentrate on mean monthly data for temperature, we should note that the available data record also contains data on absolute and mean minimum and maximum temperatures.
+A significant amount of meteorological station data are available. Some of these data are analyzed in this Section. While we mostly concentrate on mean monthly data for temperature, we should note that the available data record also contains data on absolute and mean minimum and maximum temperatures.
 
 ```{r guntMeanMonthlyT,warning=FALSE,message=FALSE,fig.cap="Mean Monthly Temperature Climatology in the Gunt River Basin from 1940 - 2020. While first observations are available from the very beginning of the 20th century, data are only shown from 1940 onwards wich marks the start of a coherent record."}
 # Extracting mean station data from the four stations.
@@ -576,7 +619,7 @@ cowplot::plot_grid(plotlist = plotM, nrow = 1, ncol = 4)
 
 The development of the quarterly minimum, maximum and mean discharge Q over the years for Gauge 16924 (Charvak reservoir inflow) is shown in Figure \@ref(fig:minMaxMeanQuarterlyDischarge). The increasing trends in cold season discharge (Q1 and Q4) is confirmed. In these quarters, minimum, mean and maximum discharges appear to increase with a probably link to temperature increases during these quarters (see Section \@ref(ChirchikClimateCharacteristics) for a discussion). In Q2, minimum and mean discharges have an increasing trend. In Q3, maximum discharge appears to decrease over time.
 
-#### Climatology {#CRB_Climatology}
+### Climate
 
 Long-term climate data from three different stations located in the vicinity and upstream of Charvak Reservoir is available. The stations are meteostation 38642 and 38339, both in Pskem River Basin, Meteostation 38471, Chatkal River Basin and Meteostation 38464 in the vicinity of the Charvak Reservoir (see also Figure \@ref(fig:ChirchikRiverOverview) above for their locations.
 

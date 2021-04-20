@@ -6,6 +6,8 @@ site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
     split_by: 'section'
+    includes:
+      after_body: disqus.html
 always_allow_html: true
 documentclass: krantz 
 monofont: "Source Code Pro"
@@ -18,7 +20,10 @@ description: "This is a open-source course book on Central Asia hydrological sys
 
 #  {#Welcome .unnumbered}
 
-------------------------------------------------------------------------
+
+```{r, echo=FALSE, out.width='60%', fig.align='center'}
+knitr::include_graphics('./_bookdown_files/FIG_TITLE/Bookcover_Design_1_wp')
+```
 
 This text is intended for the modern study of hydrology and mathematical modeling of hydrological systems in Central Asia. It is geared towards students and teachers in the region that would like to learn about these topics in an applied manner. The book adopts an open-source philosophy and promotes the use of open-source data and software.
 

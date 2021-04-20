@@ -8,11 +8,15 @@ knitr::include_graphics('_bookdown_files/FIG_PREFACE/NearSamarkandOasis.jpeg')
 
 This is a online book about applied hydrological modeling. It is geared towards students and young professionals in Central Asia who are interested in learning modern modeling approaches. The book teaches by examples and uses two catchments from the Syr Darya and Amu Darya river basins as case studies. While the presented case studies are exclusively from Central Asia, the methods demonstrated can be applied elsewhere.
 
-First, key hydro-climatological characteristics of the region are presented. This Section draws heavily on Victor Shults' "Rivers of Middle Asia" and presents relevant materials from this famous book in a modern way. Two hydrological basins are further highlighted in in-depth case studies, i.e. the Gunt River in the Amu Darya catchment and the Chirchik river basin as the biggest right tributary to Syr Darya. The analyses of these catchments draws on available data from the Central Asian Hydrometeorological Services. The analysis of the available hydro-meteorological data uses different types of methods implemented in R which is a programming language widely used in data analysis and mining [@R-2013].
+The book is accompanied by a Study Exercise Pack that encompasses 7 Central Asian catchments which can be used by students for learning and applying their skill to real-world examples in the region. The Pack can accessed and downloaded [here](https://www.dropbox.com/sh/tucg4eno67ndpp0/AADpkSbovUpBx5vhzUJuDquwa?dl=0). Furthermore, a dedicated R Package has been developed which implements many of the data analyses and processing steps shown in this book. More information can be found on Github, where the [package](https://github.com/hydrosolutions/riversCentralAsia) is maintained. R which is a programming language widely used in data analysis and mining [@R-2013].
 
-Three different types of modeling approaches are demonstrated and discussed in greater depth. First, long-term water balance modeling using the Budyko framework is introduced to discuss and demonstrate the quantification of climate change impacts on hydrological systems in Central Asia. Using this type of model, the effects of climate change on the long-term water balance are discussed for the Gunt River. The Gunt river is one of the key right tributaries to the Pjandz, i.e. the upstream Amu Darya, and emerges at high altitudes in the eastern Pamirs.
+The course is structured in the following way. First, key hydro-climatological characteristics of the region are presented. This Section draws heavily on Victor Shults' "Rivers of Middle Asia" and presents relevant materials from this famous book in a modern way. Two important basins are further highlighted as in-depth case studies, i.e. the Gunt River in the Amu Darya catchment and the Chirchik river basin. The analyses of these catchments draws on available data from the Central Asian Hydrometeorological Services and on global public hydro-climatological as well as land cover datasets.
 
-Second, a more detailed modeling approach using semi-distributed, lumped, conceptual hydrologic-hydraulic modeling will be used to demonstrate how intra-annual changes due to climate forcing and changes therein can be quantified. These approaches will be demonstrated again for the Gunt catchment and also for the Chirchik river basin and its tributaries. Furthermore, the use of these models to study different kinds of reservoir operations will be presented and impact on hydropower production as well as on downstream water availability discussed.
+A large Chapter on data covers in-situ station data, geospatial data, climate reanalysis and climate projection data. Workflows are presented for the Gunt river basin how to prepare all required data for transient hydrological model at hourly time scales.
+
+Three different types of hydrological modeling approaches are demonstrated and discussed in greater depth. First, long-term water balance modeling using the Budyko framework is introduced to discuss key determinants of the partitioning of precipitation into runoff and evaporation over climatological time scales.
+
+Second, a more detailed modeling approach using semi-distributed, conceptual hydrologic-hydraulic modeling will be used to demonstrate the implementation, calibration and validation of such type of models. Again, working by example, the free modeling software [RS MINERVE](https://www.crealp.ch/down/rsm/install2/archives.html) is used for this purpose.
 
 Third and finally, empirical modeling will be introduced for forecasting. These types of models are currently utilized in the Hydrometeorological Agencies of the region for forecasting discharge at different lead times, ranging from one day ahead up to seasonal forecasts. These models use long term time series to learn relationships between past, observed quantities and future system responses.
 
@@ -20,11 +24,14 @@ With everything that is presented, the focus is on the use of open source and fr
 
 The R code to produce figures, conduct analyses as well carry out empirical modeling is deliberately provided throughout the text and embedded there. While this makes the text heavier than necessary, it gives the local target group to reuse code and directly reproduce results while working on their own problems. An attempt has been made to make everything as reproducible as possible.
 
+Feedback is welcome!
 
-# Study guide {#study-guide .unnumbered}
-This course book has been designed to accompany a 2-week workshop for aspiring water professionals at the Kazakh-German University in Almaty (Master level). The material can be covered in 8 intensive work days. The workshop participants will be guided through building up their own hydrological model of a sample catchment in Central Asia. The readers are recommended to work through the texts in each chapter including the tasks that serve to deepen reflection on the course material and to do their daily homework on the modeling of the sample catchment. The homework will be presented in a final conference and is part of the performance review of the course. This chapter explains how to use this course book.   
+# Study Guide & Materials {#study-guide .unnumbered}
 
-Exercises are highlighted with blue boxes:   
+This course book has been designed to accompany a 2-week master-level course for aspiring water professionals at the Kazakh-German University in Almaty. At least part of the material can be covered in 10 work days. The workshop participants will be guided through implementing their own hydrological model of a sample catchment of their choice in Central Asia. The readers are recommended to work through the texts in each chapter including the tasks that serve to deepen reflection on the course material and to do their daily homework on the modeling of the sample catchment. The homework will be presented in a final conference and is part of the performance review of the course. This chapter explains how to use this course book.
+
+Exercises are highlighted with blue boxes:
+
 ```{r, eval = "html", label="intro-exercise-box", results='asis', echo=FALSE, purl=FALSE}
 cat('
 <div class = "exercise" <div class = "exercise" id="ex1"> 
@@ -33,8 +40,9 @@ cat('
 <p>With the description of the exercise, hints and a link to the solutions. Exercises should be completed before starting the next course chapter.</p> 
 </div>')
 ```
-  
-Tasks that enforce deeper learning of the course material are highlighted in green:   
+
+Tasks that enforce deeper learning of the course material are highlighted in green:
+
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
 <div class = "task" <div class = "task" id="t1"> 
@@ -44,7 +52,8 @@ cat('
 </div>')
 ```
 
-Take home messages or important notes are highlighted in red:  
+Take home messages or important notes are highlighted in red:
+
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
 <div class = "note" <div class = "note" id="n1"> 
@@ -54,62 +63,272 @@ cat('
 </div>')
 ```
 
+## Study Guide {.unnumbered}
+
+### Day 1: Introduction and installation of software {.unnumbered}
+
+Read [Chapter 1: A short history of Water in Central Asia](#ShortHistory) and [Chapter 2: Hydrological Systems in Central Asia](#HydrologicalSystems) in the course book. Then make sure the requried software for this course is installed on your computer. Section [Open-source resources of the Appendix](#section-appendix-open-source-resources) includes installation instructions and the on-line learning material that can get you started with the software. Below is a quick summary:
+
+-   [QGIS](https://qgis.org/en/site/)\
+-   [R](https://cloud.r-project.org/)
+-   [RStudio](https://www.rstudio.com/products/rstudio/download/)\
+-   [RS Minerve](https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve/telechargement-rsm.html)
+
+If you have not used the software above before we recommend the following resources to get your started (remember, more detailed instructions are available in the [Appendix](#section-appendix-open-source-resources)):
+
+-   [QGIS training manual](https://docs.qgis.org/3.16/en/docs/training_manual/index.html)\
+-   [Modern Dive for getting started with R and RStudio](https://moderndive.com/index.html)\
+-   [RS Minerve User Manual](https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve/telechargement-rsm.html)
+
+### Day 2: Catchment characterization {.unnumbered}
+
+Read the [Case Studies in Chapter 3](#CaseStudies) and [Station Data in Chapter 5](#Data::StationData) and do the exercise on catchment characterization, i.e. do a catchment characterization of your sample catchment.
 
 
-## Day 1: Introduction and installation of software {.unnumbered}
-Read [Chapter 1: A short history of Water in Central Asia](#ShortHistory) and [Chapter 2: Hydrological Systems in Central Asia](#HydrologicalSystems) in the course book. Then make sure the requried software for this course is installed on your computer. Section [Open-source resources of the Appendix](#section-appendix-open-source-resources) includes installation instructions and the on-line learning material that can get you started with the software. Below is a quick summary: 
+```{r, eval = "html", label="catchment-characterization-excercise-box", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "exercise" <div class = "exercise" id="ex1"> 
+<h3 class = "right">Ex1</h3> 
+<h3 class= "left">Catchment characterization</h3> 
+<p>Fill the table using data of your chosen catchment. See Chapter # Case Studies: Gunt River Basin for a finished example.</p>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;}}</style>
+<div class="tg-wrap"><table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax">ATTRIBUTE</th>
+    <th class="tg-0lax">VALUE</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax"><span style="font-weight:bold">Geography</span></td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Basin Area</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Min. Elevation</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Max. Elevation</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Mean Elevation</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax"><span style="font-weight:bold">Hydrology</span></td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Norm hydrological year discharge</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Norm cold season discharge</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Norm warm season discharge</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Annual norm discharge volume</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Annual norm specific discharge</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax"><span style="font-weight:bold">Climate</span></td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Mean basin temperature</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Mean basin precipitation</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Potential evaporation</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Aridity Index</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax"><span style="font-weight:bold">Land Cover</span></td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Shrubland</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Herbaceous Vegetation</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Crop Land</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Built up</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Bare / Sparse Vegetation</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Snow and Ice</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Permanent Water Bodies</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax"><span style="font-weight:bold">Land Ice</span></td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Total glacier area</td>
+    <td class="tg-0lax"></td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">Total glacier volume</td>
+    <td class="tg-0lax"></td>
+  </tr>
+</tbody>
+</table></div>
+</div>')
+```
 
-* [QGIS](https://qgis.org/en/site/)  
-* [R](https://cloud.r-project.org/)
-* [RStudio](https://www.rstudio.com/products/rstudio/download/)  
-* [RS Minerve](https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve/telechargement-rsm.html)  
-
-If you have not used the software above before we recommend the following resources to get  your started (remember, more detailed instructions are available in the [Appendix](#section-appendix-open-source-resources)):  
-
-* [QGIS training manual](https://docs.qgis.org/3.16/en/docs/training_manual/index.html)  
-* [Modern Dive for getting started with R and RStudio](https://moderndive.com/index.html)  
-* [RS Minerve User Manual](https://www.crealp.ch/fr/accueil/outils-services/logiciels/rs-minerve/telechargement-rsm.html)  
-
-
-## Day 2: Catchment characterization {.unnumbered}  
-Read the [Case Studies in Chapter 3](#CaseStudies) and do the exercise on catchment characterization, i.e. do a catchment characterization of your sample catchment.   
 
 **Todo: Link to exercise**
 
+### Day 3: Geospatial data and introduction to linear reservoir models {.unnumbered}
 
-## Day 3: Geospatial data and introduction to linear reservoir models {.unnumbered}
-Read Chapter [5.2 on Geospatial Data](#Data::GeospatialData) and prepare the GIS layers for import into RS Minerve for your sample catchment. Step-by-step instructions of how to do this are given in Chapter 5.2.         
-As homework, read Chapter [6.2](#section-rsminerve-why-model-introduction) and do the exercise on the linear reservoir model.   
+Read Chapter [5.2 on Geospatial Data](#Data::GeospatialData) and prepare the GIS layers for import into RS Minerve for your sample catchment. Step-by-step instructions of how to do this are given in Chapter 5.2.\
+As homework, read Chapter [6.2](#section-rsminerve-why-model-introduction) and do the exercise on the linear reservoir model.
 
+### Day 4: Discussion of types of hydrological models {.unnumbered}
 
-## Day 4: Discussion of types of hydrological models {.unnumbered}
-Hydrological models in general are discussed. This topic currently doesn't have a specific book chapter. Read Chapter [6.3](#section-general-modelling-process) which is a short recap of the general modeling process.   
-As homework, choose an R tutorial to work on from the [Appendix](#section-open-resrouces-learning-R) which suits your skills. If you are already fluent in R, work on your visualization skills in R by producing nice plots of your sample catchment which you may include in the final presentation on the last day of the workshop. You may let yourselves be inspired by the R code supplied with this book. 
+Hydrological models in general are discussed. This topic currently doesn't have a specific book chapter. Read Chapter [6.3](#section-general-modelling-process) which is a short recap of the general modeling process.\
+As homework, choose an R tutorial to work on from the [Appendix](#section-open-resrouces-learning-R) which suits your skills. If you are already fluent in R, work on your visualization skills in R by producing nice plots of your sample catchment which you may include in the final presentation on the last day of the workshop. You may let yourselves be inspired by the R code supplied with this book.
 
+### Day 5: The HBV model {.unnumbered}
 
-## Day 5: The HBV model {.unnumbered}
-A commonly used hydrological model is introduced. Read Chapters [6.4 on the data preparation](#section-rsminerve-data-preparation) and [6.5 on the HBV model](#section-hbv-model) and the pre-requisite reading listed therein. It is recommended to do the tasks suggested in the course book to get more familiar with RS Minerve.   
-As an exercise, you will implement your catchment using HBV models based on the catchment characterization that you performed on day 2 and the GIS layers that you prepared on day 3. 
+A commonly used hydrological model is introduced. Read Chapters [6.4 on the data preparation](#section-rsminerve-data-preparation) and [6.5 on the HBV model](#section-hbv-model) and the pre-requisite reading listed therein. It is recommended to do the tasks suggested in the course book to get more familiar with RS Minerve.\
+As an exercise, you will implement your catchment using HBV models based on the catchment characterization that you performed on day 2 and the GIS layers that you prepared on day 3.
 
+### Day 6: Model calibration and validation {.unnumbered}
 
-## Day 6: Model calibration and validation {.unnumbered}
-Read Chapter [6.6](#section-model-calibration-and-validation) and go through the example of the Nauvalisoy catchment which illustrates the iterative model refinement process.     
-As homework students will calibrate and validate the hydrological models of their own sample catchment.   
+Read Chapter [6.6](#section-model-calibration-and-validation) and go through the example of the Nauvalisoy catchment which illustrates the iterative model refinement process.\
+As homework students will calibrate and validate the hydrological models of their own sample catchment.
 
+### Day 7: Case studies {.unnumbered}
 
-## Day 7: Case studies {.unnumbered}
-Discussion of the calibration and validation exercise followed by a presentation of the Gunt basin case study.  
-As homework students will write an abstract about your modeling work for the final conference. Instructions for abstract writing are available [here](./learningFiles/AbstractSubmissionGuide.pdf). The abstract submission deadline is Friday, May 14, 18:00 Almaty time. 
+Discussion of the calibration and validation exercise followed by a presentation of the Gunt basin case study.\
+As homework students will write an abstract about your modeling work for the final conference. Instructions for abstract writing are available [here](./learningFiles/AbstractSubmissionGuide.pdf). The abstract submission deadline is Friday, May 14, 18:00 Almaty time.
 
+### Day 8: Real-world applications {.unnumbered}
 
-## Day 8: Real-world applications {.unnumbered}
-Presentation of examples of real-world applications of hydrological models.   
-As homework students will finalize the presentation about their modeling work. 
+Presentation of examples of real-world applications of hydrological models.\
+As homework students will finalize the presentation about their modeling work.
 
+### Day 9: Student presentations and wrap-up of workshop {.unnumbered}
 
-## Day 9: Student presentations and wrap-up of workshop {.unnumbered}
-The last day of the workshop is organized as a conference where students present their modeling work on the sample catchments.   
+The last day of the workshop is organized as a student conference where students present their modeling work on their respective case study catchment. The groups need to prepare a presentation of 12 minutes duration. Each presentation will be followed by a 3 minutes Q&A session. After all the groups have presented, impressions and feedback will be shared by the teachers followed by a larger group discussion.
 
+## Study Materials {.unnumbered}
 
+The available course study materials are presented here. Groups of two students working jointly on one of the provided basins throughout the course is effective. The data are available for download under this [link](https://www.dropbox.com/sh/tucg4eno67ndpp0/AADpkSbovUpBx5vhzUJuDquwa?dl=0). Please note that the size of the complete case study pack is approx 2 GB. So it might be better to just download the relevant files / folder for the corresponding basin you are working on. The geospatial data layers can be viewed, processed and analyzed in QGIS and/or R, depending on your preference. The discharge data is stored in R `.rds` format and needs to be opened and analyzed in R/RStudio.
 
+The directory tree of an example catchment (Gunt river basin) is shown below. All directory files contain correspondingly similar files[^foreword-1] (see Figure \@ref(fig:sampleDirectoryStructure) for an example). The `./Basin/` subfolder contains the basin shapefile delineating the catchment. The `./Climatology/` is empty to start with and students are asked to extract the relevant data for their catchment. These data include long-term mean temperature 2 meters above surface, total precipitation as well as reference potential evapotranspiration and the aridity index. The regional raster climate data are provided under `./STUDENTS_CaseStudyPacks/CLIMATE` on Dropbox. Data are discussed below below. A QGIS project has been setup for viewing and analyzing these data. It is available under `./STUDENTS_CaseStudyPacks/STUDENTS_CaseStudyProject.qgz`.
 
+[^foreword-1]: You can generate such type of directory tree output in a convenient manner using the `fs::dir_tree(path='...',recurse = TRUE)` function that is provided with the fs package.
+
+```{r sampleDirectoryStructure, echo=FALSE, out.width= "50%", fig.cap="Sample directory structure of the Gunt river basin."}
+knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/sampleStudentPackDirectoryTree')
+```
+
+An overview over the available basins in the study pack is shown in Figure \@ref(fig:studyMaterialsBasins). All data can be accessed in the corresponding QGIS project.
+
+```{r studyMaterialsBasins, echo = FALSE, fig.cap="Overview map of the Central Asia region with the 7 study basins. The rivers include the Gunt River in the Amu Darya basin, the Sokh and Isfayramsoy rivers in the Syr Darya basin, the Pskem and Chatkal rivers in the Chirchik river basin and finally, the Ala Archa and Chon Kemin rivers in the Chu river basins. The catchments are delineated with by the black polygons and the location of the individual gauges highlighted with the red circles."}
+knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/studyMaterialsBasins')
+```
+
+The next Figures shows the distribution of land ice in the Central Asia Region (see Figure \@ref(fig:studyMaterialsBasinsGlaciers)). Land ice data is from [@glims2005] and has been prepared for the Central Asia domain. These data have also been prepared for the individual catchments and are stored in the corresponding `./Glaciers/` folder.
+
+```{r studyMaterialsBasinsGlaciers, echo = FALSE, fig.cap="Distribution of land ice in the Central Asia region. Source Data: GLIMS"}
+knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/studyMaterialsBasinsGlaciers')
+```
+
+SRTM data for all catchments have been downloaded [@USGS_2020]. Rectangular areas surrounding each catchment are available and provide the basis for further analysis. These data are raw data and not hydrologically corrected. The data are required for basin characterization, i.e. minimum, maximum and mean elevation, the derivation of the hypsometric curve and the preparation of the RS MINERVE modeling input files.
+
+```{r studyMaterialsBasinsDEM, echo = FALSE, fig.cap="SRTM digital elevation models for catchments. Source Data: SRTM [@USGS_2020]"}
+knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/studyMaterialsBasinsDEM')
+```
+
+CHELSA (Climatologies at high resolution for the earth's land surface areas) data of downscaled model output temperature and bias-corrected precipitation estimates of the ERA-Interim climatic reanalysis to a high resolution of 30 arc sec are provided in the `./STUDENTS_CaseStudyPacks/CLIMATE` folder. The data set covers the year 1981 - 2013 and are described in [@Karger_2017] and [@chelsaData_Beck]. More information is also provided in the Chapter \@ref(Chapter-DATA). Figure \@ref(fig:studyMaterialsBasinsT2M) shows the long-term mean 2 meters above surface temperature over the Central Asia domain and Figure \@ref(fig:studyMaterialsBasinsP) the precipitation raster.
+
+```{r studyMaterialsBasinsT2M, echo = FALSE, fig.cap="Long-term mean 2 meter above surface temperature. Source Data: [@Karger_2017]. Pink colors are indicate warm regions, dark blue to purple colors indicate cold regions."}
+knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/t2m_CA')
+```
+
+The long-term precipitation norm over the period 1981 - 2013 is shown in Figure \@ref(fig:studyMaterialsBasinsP).
+
+```{r studyMaterialsBasinsP, echo = FALSE, fig.cap="Long-term mean precipitation. Source Data: CHESLA data [@Karger_2017] bias corrected for snow undercatch as described by [@chelsaData_Beck]. Dark blue values in high mountain terrain indicate norm precipitation P > 2'000 mm/a whereas bright blue to white colors indicate arid to hyperarid climate conditions with P < 300 mm/a."}
+knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/tp_CA')
+```
+
+Figure \@ref(fig:studyMaterialsBasinsETpot) shows the norm potential evapotranspiration over the Central Asia domain. Source data are from Global Aridity Index and Potential Evapotranspiration Climate Database v2 available under this [link](https://cgiarcsi.community/2019/01/24/global-aridity-index-and-potential-evapotranspiration-climate-database-v2/) [@Trabucco2019]. Aridity index data is shown in Figure \@ref(fig:studyMaterialsAI). The data are high-resolution (30 arc-seconds) raster climate data for the 1970-2000 period, related to evapotranspiration processes and rainfall deficit for potential vegetative growth, based on the implementation of a Penman-Montieth Reference Evapotranspiration (ET0) equation.
+
+```{r studyMaterialsBasinsETpot, echo = FALSE, fig.cap="Norm potential reference evapotranspiration (ETpot) Dark blue colors are > 2'000 mm/a whereas bright blue to white colors indicate values < 500 mm/a. Source Data: [@Trabucco2019]"}
+knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/ETpot_CA')
+```
+
+```{r studyMaterialsBasinsAI, echo = FALSE, fig.cap="Aridity Index over Central Asia. Red colors are high aridity index values where as blue colors indicate low index values. Source Data: [@Trabucco2019]"}
+knitr::include_graphics('./_bookdown_files/FIG_FOREWORD/AI_CA')
+```
+
+Finally, land cover data from 2019 are provided [@CopernicusLandCover]. These are shown in Figure \@ref(fig:studyMaterialsBasinLandCover). The pseudocolors denote the following classification:
+
+-   Red color: Built-up land
+
+-   Pink color: Crop land
+
+-   Yellow color: Herbaceous vegetation
+
+-   Orange Color: Shrubland
+
+-   Blue Color: Permanent water bodies
+
+-   Green color: Forest
+
+-   Grey color: Bare / Sparse Vegetation
+
+-   White color: Snow and ice
+
+```{r studyMaterialsBasinsLandCover, fig.cap=""}
+knitr::include_graphics('../HydrologicalModeling_CentralAsia/_bookdown_files/FIG_FOREWORD/landcover_CA')
+```
+
+All these data are required data for the course. For the hydrological modeling, further temporal climate data are required (hourly data fields). These and how they can be accessed is described in greater detail in the Chapter \@ref(Chapter-Data) and the corresponding Sections there.

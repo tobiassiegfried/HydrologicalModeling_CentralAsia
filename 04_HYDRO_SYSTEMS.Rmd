@@ -180,15 +180,12 @@ $$
 
 where $S$ is the area of a glacier, $L$ the length of the glacier and $V$ the computed volume from the scaling relationship. The length $L$ of the individual glaciers can be approximated by subtracting the minimum glacier elevation from the corresponding maximum elevation. Like this, we can compute land ice volumes of the Amu Darya and Syr Darya basins in an approximate yet scientific way.
 
-Alternatively, we can use the volume area scaling relationship by Yerashov.
+Alternatively, we can use the much simpler volume area scaling relationship as reported by Erashov [@erasov_1968].
 
-<!-- Andrey Yakovlev, [10 Dec 2020 at 15:53:54]: -->
-
-<!-- Erasov. V=O.027*F^1.5 -->
-
-<!-- Where F - area of glacier, km^2, V - volume of glacier, km^3 -->
-
-<!-- Erasov N.V. Method for determining of volume of mountain glaciers. MGI, M, 1968, issue 14, 307-308 pp -->
+$$
+  V = 0.027 * S^{1.5}
+$$
+where again, $S$ is the area of the glaciers in km^2^ and $V$ is the computed volume using the simple scaling relationship.
 
 ## Average Multi-Year Runoff
 
