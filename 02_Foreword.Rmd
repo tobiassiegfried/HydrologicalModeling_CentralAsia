@@ -84,6 +84,7 @@ If you have not used the software above before we recommend the following resour
 
 Read the [Case Studies in Chapter 3](#CaseStudies) and [Station Data in Chapter 5](#Data::StationData) and do the exercise on catchment characterization, i.e. do a catchment characterization of your sample catchment.
 
+
 ```{r, eval = "html", label="catchment-characterization-excercise-box", results='asis', echo=FALSE, purl=FALSE}
 cat('
 <div class = "exercise" <div class = "exercise" id="ex1"> 
@@ -218,6 +219,7 @@ cat('
 </table></div>
 </div>')
 ```
+
 
 **Todo: Link to exercise**
 
