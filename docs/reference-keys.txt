@@ -32,7 +32,7 @@ fig:completeDischargeData
 fig:qGazalkent
 fig:qChinaz
 fig:qAnnualGazalkentChinaz
-tab:unnamed-chunk-12
+tab:unnamed-chunk-13
 fig:ChirchikSeasonalityLargeTribs
 fig:seasonalitySmallTribs
 fig:ChirchikRiverHypsometricCurves
@@ -354,3 +354,4 @@ section-appendix-solutions-common-calibration-issues
 section-appendix-solutions-strategies-for-issues
 exercise-calibrate-a-simple-hbv-model-section-appendix-solutions-calibrated-parameters
 References
+prerequisites-1

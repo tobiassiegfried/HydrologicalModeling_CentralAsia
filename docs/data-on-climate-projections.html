@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried and Beatrice Marti" />
 
 
-<meta name="date" content="2021-04-19" />
+<meta name="date" content="2021-04-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -64,7 +64,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -610,7 +609,7 @@ Figure 5.38: The comparison of the 4 stochastic weather generator models in term
 Figure 5.39: QQ-Plots of the four model results. If data plots along the diagonal line, it is an indication that the probability distribution of the simluated precipptation (y-axis) is the same as the probability distribution of the observed ERA5 precipitation (x-axis). QQ-plots of models 1 and 2 show a heavy bias whereas model 4 shows an overal satisfactory fit and thus performance.
 </p>
 </div>
-<p>All four models pass the multivariate Portmanteau and Breusch-Godfrey (Lagrange Multiplier) tests, which verify the absence of time-autocorrelation of the VAR(p) residuals in the modeled precipitation time series (seriality test). Furthermore, all models pass the Jarque-Bera multivariate skewness and kurtosis test, which validate the multivariate Gaussian probability distribution of the VAR(p) residuals (normality test). See <span class="citation">(<a href="#ref-Pfaff_2008" role="doc-biblioref"><strong>Pfaff_2008?</strong></a>)</span> for more information.</p>
+<p>All four models pass the multivariate Portmanteau and Breusch-Godfrey (Lagrange Multiplier) tests, which verify the absence of time-autocorrelation of the VAR(p) residuals in the modeled precipitation time series (seriality test). Furthermore, all models pass the Jarque-Bera multivariate skewness and kurtosis test, which validate the multivariate Gaussian probability distribution of the VAR(p) residuals (normality test). See <span class="citation">(<a href="References.html#ref-Pfaff_2008" role="doc-biblioref">Pfaff 2008</a>)</span> for more information.</p>
 <p>Figure <a href="data-on-climate-projections.html#fig:rmawgenMonthlyTotals">5.38</a> and Figure <a href="data-on-climate-projections.html#fig:rmawgenQQPlot">5.39</a> show that the Model 4 provides an overall well-balanced performance. We will thus us this models to generate the future climate fields in the Gunt river basin.</p>
 <p>Temperature is not independent of precipitation and vice versa. The two climate state variables and their changes are interlinked. In the warm season over continents, higher temperatures accompany lower precipitation amounts and vice versa. Hence, over land, strong negative correlations dominate, as dry conditions favor more sunshine and less evaporative cooling, while wet summers are cool (see e.g. IPCC Fourth Assessment Report: Climate Change 2007, Working Group I, The Physical Science Basis, Section 3.3.5, available <a href="https://archive.ipcc.ch/publications_and_data/ar4/wg1/en/ch3s3-3-5.html">here</a>). Simply put, on rainy cloudy days, there is less radiation for warming the earth surface and vice versa.</p>
 <p>This coupling needs to be taken into account when simulating weather. Therefore, we use the <code>model4</code> configuration to first generate multi-site synthetic future precipitation time series. Second, we use precipitation as exogenous predictors in the temperature generation step (tasmin and tasmax). Like this, we can coupled temperature simulation to precipitation. If the results are satisfactory, we proceed with this stochastic weather model to produce future simulated weather runs that are conditioned on GCM output for the mid-21st (Period 1) and end of 21st century (Period 2).</p>
@@ -679,20 +678,20 @@ Figure 5.39: QQ-Plots of the four model results. If data plots along the diagona
 <span id="cb93-7"><a href="data-on-climate-projections.html#cb93-7" aria-hidden="true" tabindex="-1"></a>summaryStats <span class="ot">&lt;-</span> <span class="fu">wgen_daily_summaryStats</span>(PT_sim, param, station_data, station_subset,clim_scen)</span>
 <span id="cb93-8"><a href="data-on-climate-projections.html#cb93-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary statistics for the station (i.e. elevation band) Alishur_2 </span></span>
 <span id="cb93-9"><a href="data-on-climate-projections.html#cb93-9" aria-hidden="true" tabindex="-1"></a>summaryStats<span class="sc">$</span>Alishur_2</span></code></pre></div>
-<pre><code>##         P_baseline_obs P_baseline_sim Tmin_baseline_obs
-## Min.     -1.153419e-14  -3.448319e-14        -33.087407
-## 1st Qu.   1.472035e-02   1.114481e-02        -18.609744
-## Median    1.179427e-01   9.179099e-02        -10.156870
-## Mean      6.673150e-01   5.551895e-01        -10.885993
-## 3rd Qu.   6.200780e-01   5.044390e-01         -2.393775
-## Max.      3.974874e+01   1.913596e+01          8.173291
-##         Tmin_baseline_sim Tmax_baseline_obs Tmax_baseline_sim
-## Min.           -37.959289       -24.4808293       -23.9815519
-## 1st Qu.        -19.198056        -7.2860936        -8.0816534
-## Median         -11.134179         1.0043645         0.2261556
-## Mean           -11.210732         0.3899992         0.1787211
-## 3rd Qu.         -2.515402         8.4963461         9.1207188
-## Max.             9.480053        20.4007594        21.7046781</code></pre>
+<pre><code>##         P_baseline_obs P_baseline_sim Tmin_baseline_obs Tmin_baseline_sim
+## Min.     -1.153419e-14  -3.448319e-14        -33.087407        -37.959289
+## 1st Qu.   1.472035e-02   1.114481e-02        -18.609744        -19.198056
+## Median    1.179427e-01   9.179099e-02        -10.156870        -11.134179
+## Mean      6.673150e-01   5.551895e-01        -10.885993        -11.210732
+## 3rd Qu.   6.200780e-01   5.044390e-01         -2.393775         -2.515402
+## Max.      3.974874e+01   1.913596e+01          8.173291          9.480053
+##         Tmax_baseline_obs Tmax_baseline_sim
+## Min.          -24.4808293       -23.9815519
+## 1st Qu.        -7.2860936        -8.0816534
+## Median          1.0043645         0.2261556
+## Mean            0.3899992         0.1787211
+## 3rd Qu.         8.4963461         9.1207188
+## Max.           20.4007594        21.7046781</code></pre>
 <p>The <code>…_obs</code> identifier refers to the baseline period statistics of the observations (ERA5 data in our case). Converse to this, the <code>…_sim</code> identifier refers to the statistics of generated synthetic climate variable time series using <code>RMAWGEN</code>. The variable <code>clim_scen</code> is set to <code>NULL</code> since we are not (yet) comparing baseline observed climate with future climate scenarios (see Section <a href="data-on-climate-projections.html#FutureDailyClimateSim">5.4.2.4</a> below where this is done).</p>
 <p>A graphical comparison of observed monthly versus simulated monthly precipitation values is shown below in Figure <a href="data-on-climate-projections.html#fig:rmawgenMonthlyTotals">5.38</a> for one elevation band, i.e. the Alishur_2 station. The scatter plot comparing monthly total observed versus simulated precipitation totals does not show a systematic bias. Furthermore, the seriality and normality tests are both passed. We thus consider the simulation results of the weather generator adequately represent local climate conditions.</p>
 <div class="figure"><span id="fig:rmawgenMonthlyTotalsCoupledModel"></span>
@@ -849,7 +848,7 @@ Figure 5.40: Comparison of monthly observed (ERA5) precipitation values with sim
 <span id="cb109-13"><a href="data-on-climate-projections.html#cb109-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple visualization</span></span>
 <span id="cb109-14"><a href="data-on-climate-projections.html#cb109-14" aria-hidden="true" tabindex="-1"></a>diurnalCycle <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="sc">-</span>hour) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(name) <span class="sc">%&gt;%</span> </span>
 <span id="cb109-15"><a href="data-on-climate-projections.html#cb109-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(.,<span class="fu">aes</span>(<span class="at">x=</span>hour,<span class="at">y=</span>value,<span class="at">colour=</span>name)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;ERA5 Diurnal T Variation, Gunt-Yashikul River Subbasins&quot;</span>)</span></code></pre></div>
-<p><img src="applied-hydrological-modeling-central-asia_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p><img src="applied-hydrological-modeling-central-asia_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 <p>Using <code>riversCentralAsia::generateHourlyFromDaily_PT()</code>, the daily climate scenario files can be produced in a very simple manner.</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="data-on-climate-projections.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Producing the hourly climate scenarios</span></span>
 <span id="cb110-2"><a href="data-on-climate-projections.html#cb110-2" aria-hidden="true" tabindex="-1"></a>climScen_hourly <span class="ot">&lt;-</span> <span class="fu">generateHourlyFromDaily_PT</span>(PT_sim_all,era5_gunt_yashikul,param)</span>

@@ -12,7 +12,7 @@ always_allow_html: true
 documentclass: krantz 
 monofont: "Source Code Pro"
 monofontoptions: "Scale=0.7"
-bibliography: [book.bib, packages.bib,bib_AppliedModeling.bib]
+bibliography: [book.bib, packages.bib, bib_AppliedModeling.bib]
 biblio-style: apalike
 link-citations: yes
 description: "This is a open-source course book on Central Asia hydrological systems and hydrological modeling."
