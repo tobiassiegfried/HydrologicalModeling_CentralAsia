@@ -246,7 +246,7 @@ DataPreparationPT
 AnomaliesOutliers
 FinalData
 Data::GeospatialData
-prerequisites
+prerequisites-1
 section-geospatial-data-steps-setting-up
 section-geospatial-data-load-dem
 section-steps-derive-catchment-boundaries
@@ -354,4 +354,3 @@ section-appendix-solutions-common-calibration-issues
 section-appendix-solutions-strategies-for-issues
 exercise-calibrate-a-simple-hbv-model-section-appendix-solutions-calibrated-parameters
 References
-prerequisites-1

@@ -93,7 +93,7 @@ Two catchments, i.e. the Chirchik and Gunt river basins, will be highlighted and
 Read [Part I](#Part1_Hydrological_Systems) of the course book.
 /*[Chapter 1: A short history of Water in Central Asia](#ShortHistory) and [Chapter 2: Hydrological Systems in Central Asia](#HydrologicalSystems) in the course book. */
 
-```{r, eval = "html", label="catchment-characterization-excercise-box", results='asis', echo=FALSE, purl=FALSE}
+```{r, eval = "html", label="exercise0", results='asis', echo=FALSE, purl=FALSE}
 cat('
 <div class = "exercise" <div class = "exercise" id="ex0"> 
 <h3 class = "right">Ex0</h3> 
