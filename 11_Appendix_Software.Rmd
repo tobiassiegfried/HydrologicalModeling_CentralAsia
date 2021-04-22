@@ -818,13 +818,13 @@ names(raster_res_mean_stack) <- month.abb
 
 ## Appendix D: Solutions to exercises {#sectin-appendix-solutions}
 
-### Exercise on Linear Reservoir modelling {#section-appendix-solutions-exercise1}
-#### Task 1 {#solution-task1-experimental-setup}  
+### Exercise on Linear Reservoir modelling {#section-appendix-solutions-exercise1 .unnumbered}
+#### Task 1 {#solution-task1-experimental-setup .unnumbered}  
 
-##### What will determine the flow through your bucket?  
+##### What will determine the flow through your bucket?  { .unnumbered}
 The flow through the bucket will be influenced by the volume to bottom area fraction of the bucket, the amount and speed of water added to the bucket and the size of the outlet hole. 
 
-##### What do you need to measure?   
+##### What do you need to measure?   { .unnumbered}
 You will need to measure:   
 
 * the discharge from your bucket over time,  
@@ -832,7 +832,7 @@ You will need to measure:
 * the time when you start pouring water and when you stop pouring water into the bucket,  
 * the approximate volume of your bucket.  
 
-##### How can you measure it? 
+##### How can you measure it? { .unnumbered}
 This depends on what you have available. You can draw a water level line outside of your outflow receptacle every 10 seconds and then determine the volume change over time. Maybe you have a scale and a smart phone so you can put your outflow receptacle on the scale and make a movie of the weight change over time (1kg of water is approximately 1l of water).   
 For the inflow pour a well defined volume over a well defined time interval. You can do this manually unless of course you have pipes and valves lying around that you can use.   
 You will need a watch for measuring time and a receptacle with known volume to measure volumes (or a scale).    
@@ -842,7 +842,7 @@ A couple of notes on measurement accuracy:
 * How do you estimate measurement uncertainties: Measure several times, compute the average and the standard deviation of your measurements assuming a student-t distribution.   
 * How do you combine uncertainties of volume and time to the uncertainty of discharge: By applying Gaussian error propagation.   
 
-##### What materials you will need to set up the experiment?
+##### What materials you will need to set up the experiment?   {.unnumbered}
 * For the bucket (the linear reservoir): A plastic bottle, a box or a can that is no longer used. It should have an opening at the top and the material should repel water and be thin enough that you can drill a hole into the wall.   
 * A pair of pointy scissors or a knife to drill a hole into the bucket.   
 * A water source (a tap, hose or a water container larger than the one above). This will be your rain machine.   
@@ -855,13 +855,13 @@ A couple of notes on measurement accuracy:
 knitr::include_graphics("_bookdown_files/FIG_Appendix_QuickGuides/fig_experimentalSetup.jpg")
 ```
 
-##### Where will you get the water from and can you re-use it after the experiment? 
+##### Where will you get the water from and can you re-use it after the experiment? { .unnumbered}
 This depends on your situation.   
 
 Back to the [recap section](#section-rsminerve-why-model-introduction)
 
 
-#### Task 2 {#solution-task2-perform-experiment}
+#### Task 2 {#solution-task2-perform-experiment .unnumbered}
 The video was recorded with a smart phone. The weight of the outflow receptacle was noted down every second. The discharge is computed as the change of volume in the outflow receptacle over time.    
 
 <iframe width="720" height="480" src="_bookdown_files/FIG_Appendix_QuickGuides/bucket_video.mp4" align="middle" frameborder="0" allowfullscreen></iframe>
@@ -869,27 +869,36 @@ The video was recorded with a smart phone. The weight of the outflow receptacle 
 Back to the [recap section](#section-rsminerve-why-model-introduction)
 
 
-#### Task 3 {#solution-task3-simulate}
+#### Task 3 {#solution-task3-simulate .unnumbered}
 The height of the measured discharge peak can be best reproduced with k = 0.42. However, the measured discharge peaks 1s later than the simulated discharge peak.   
 Reasons for the discrepancy can be the shape of the linear reservoir, non-linear pouring speed, and measurement uncertainties.       
 
 Back to the [recap section](#section-rsminerve-why-model-introduction)
 
-#### Task 4 {#solution-task4-think}
+#### Task 4 {#solution-task4-think .unnumbered}
 ToDo       
 
 Back to the [recap section](#section-rsminerve-why-model-introduction)
 
 
 
-### Exercises on the HBV model {#section-appendix-solutions-hbv-exercises}
 
-#### Exercise: Driving forces of the HBV model {#section-appendix-solutions-hbv-driving-forces}
+### Exercise on creating GIS layers for import to RS Minerve { .unnumbered}
+
+#### GIS layers for Chon Kemin {#solution-gis-layers-chonkemin .unnumbered}
+Double-click on the DEM (./STUDENTS_CaseStudyPacks/CHU/15149_ChonKemin/DEM/ChonKemin_Basin_DEM_clipped_raw.tif) in the Layers panel of the QGIS window. Under the information tab you'll see the minimum and maximum elevation of the DEM tile (980 - 4549 masl). Choose the intervals for the elevation bands based on the elevation range in the catchment. 
+The input layers to the QGIS process modeler are ./STUDENTS_CaseStudyPacks/CHU/15149_ChonKemin/Basin/15149_ChonKemin_Basin.shp and from ./STUDENTS_CaseStudyPacks/CHU/15149_ChonKemin/DEM/ChonKemin_Basin_DEM_clipped_raw.tif into your QGIS project. 
+
+
+
+### Exercises on the HBV model {#section-appendix-solutions-hbv-exercises .unnumbered}
+
+#### Exercise: Driving forces of the HBV model {#section-appendix-solutions-hbv-driving-forces .unnumbered}
 The model drivers are precipitation, temperature and evaporation (P, T and ET in Figure \@ref(fig:fig-overview-hbv-model)). You need to provide time series of the model drivers to the model. Evaporation is typically not measured at climate stations but many empirical functions are available in the literature to estimate evaporation. RS Minerve offers the possibility to calculate evaporation based on temperature measurements and catchment location (you will do that later in this tutorial).  
 
 Back to the [HBV model section](#section-hbv-model)
 
-#### Exercise - HBV model states {#section-appendix-solutions-hbv-parameters-states}
+#### Exercise - HBV model states {#section-appendix-solutions-hbv-parameters-states .unnumbered}
 The model states are the snow water equivalent height (SWE), the relative water content in the snow pack (WH), the humidity (Hum), the upper reservoir water level (SU) and the lower reservoir water level (SL). The model states are initialised using the initial conditions (see Figure \@ref(fig:fig-overview-hbv-model-parameters)).   
 
 Back to the [HBV model section](#section-hbv-model)
@@ -919,7 +928,7 @@ A uniform evaporation model is not suitable for simulation time steps smaller th
 Back to the  [Nauvalisoy model setup section](#section-hbv-nauvalisoy-modelling-setup). 
 
 
-#### Exercise: Common difficulties in model calibration {#section-appendix-solutions-common-calibration-issues}
+#### Exercise: Common difficulties in model calibration {#section-appendix-solutions-common-calibration-issues .unnumbered}
 1. Especially fully and semi-distributed hydrological models are typically over-parameterized, i.e. the number of model parameters is much larger than the number of observations for the model states. The true parameter values of the system cannot be uniquely identified based on a discharge time series alone.   
 2. The outcome of the calibration depends on the measure of similarity between the simulated and the measured discharge. 
 3. The water balance is often forgotten during model calibration. A nice fit of of the discharge curve can for example be achieved by increasing the volume of water in the model over time.   
@@ -929,7 +938,7 @@ Back to the  [Nauvalisoy model setup section](#section-hbv-nauvalisoy-modelling-
 
 Back to the [calibration section](#section-calibration-principles)
 
-#### Exercise: Strategies to overcome some of the model calibration difficulties {#section-appendix-solutions-strategies-for-issues}
+#### Exercise: Strategies to overcome some of the model calibration difficulties {#section-appendix-solutions-strategies-for-issues .unnumbered}
 
 1. Over-parameterization:   
   + Consider simplifying the model, i.e. reducing the number of parameters. If the model complexity is required, try adding additional measured variables (e.g. snow cover from MODIS data (see Chapter on [snow cover data](#section-data-snow-cover))) to validate individual components of the HBV model.    
@@ -945,7 +954,7 @@ Most of the above points will be discussed in more detail during this course.
 Back to the [calibration section](#section-calibration-principles)
 
 
-#### Exercise: Calibrate a simple HBV model {#section-appendix-solutions-calibrated parameters}
+#### Exercise: Calibrate a simple HBV model {#section-appendix-solutions-calibrated parameters .unnumbered}
 The parameter set of the calibrated model are: 
 
 ```{r, echo=FALSE,message=FALSE,warning=FALSE,error=FALSE}

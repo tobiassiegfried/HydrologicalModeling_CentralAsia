@@ -272,8 +272,8 @@ unlike in the lower lying Chirchik tributaries as shown in Figure \@ref(fig:Chir
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
-<div class = "task" <div class = "task" id="t3.1"> 
-<h3 class = "right">T3.1</h3> 
+<div class = "exercise" <div class = "exercise" id="t3.1"> 
+<h3 class = "right">E3.1</h3> 
 <h3 class= "left">Peak Discharge</h3> 
 <p>Discuss with your colleague(s): </p>
 <p><ul>

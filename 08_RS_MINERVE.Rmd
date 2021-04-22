@@ -156,8 +156,8 @@ App code available on [GitHub](https://github.com/hydrosolutions/linear_reservoi
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
-<div class = "task" <div class = "task" id="t4.1"> 
-<h3 class = "right">T4.1</h3> 
+<div class = "exercise" <div class = "exercise" id="t4.1"> 
+<h3 class = "right">E4.1</h3> 
 <h3 class= "left">Non-linear reservoirs</h3> 
 <p>Discuss with your colleague(s): </p>
 <p><ul>
@@ -180,8 +180,8 @@ Modeling is an involved process requiring highly specialized knowledge and skill
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
-<div class = "task" <div class = "task" id="t4.2"> 
-<h3 class = "right">T4.2</h3> 
+<div class = "exercise" <div class = "exercise" id="t4.2"> 
+<h3 class = "right">E4.2</h3> 
 <h3 class= "left">What is a good model?</h3> 
 <p>Discuss with your colleague(s): </p>
 <p>Imagine you work for a government and have to judge if the hydrological model you mandated is of good quality. How would you decide whether or not to accept the model?</p> 
@@ -358,8 +358,8 @@ knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_HBVconceptualModel.p
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
-<div class = "task" <div class = "task" id="t4.3"> 
-<h3 class = "right">T4.3</h3> 
+<div class = "exercise" <div class = "exercise" id="t4.3"> 
+<h3 class = "right">E4.3</h3> 
 <h3 class= "left">Model understanding - Drivers</h3> 
 <p>Discuss with your colleague(s): What are the model drivers (i.e. what input data do you need to provide)? </p>
 <p>Hint: Study the figure above.</p>
@@ -374,8 +374,8 @@ knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_PARandIC.png")
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
-<div class = "task" <div class = "task" id="t4.4"> 
-<h3 class = "right">T4.4</h3> 
+<div class = "exercise" <div class = "exercise" id="t4.4"> 
+<h3 class = "right">E4.4</h3> 
 <h3 class= "left">Model understanding - States</h3> 
 <p>Discuss with your colleague(s): What are the model states (i.e. what variables describe the amount of water in the system over time)? </p>
 <p>Hint: Values for initial water content in the different model compartments need to be defined prior to the simulation.</p>
@@ -394,8 +394,8 @@ cat('
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
-<div class = "task" <div class = "task" id="t4.5"> 
-<h3 class = "right">T4.5</h3> 
+<div class = "exercise" <div class = "exercise" id="t4.5"> 
+<h3 class = "right">E4.5</h3> 
 <h3 class= "left">RS Minerve - Data visualization</h3> 
 <p>Use the Selection and plots tool in the Modules toolbar of RS Minerve and display the hourly model inputs precipitation and temperature for the example year 1984. What is the approximate temperature range over the year? What is the annual precipitation? </p>
 <p>Hint: Adapt the simulation period in the model tab accordingly. Do not forget to set the initial conditions of the model to the last hour of 1983.</p>
@@ -405,8 +405,8 @@ cat('
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
-<div class = "task" <div class = "task" id="t4.6"> 
-<h3 class = "right">T4.6</h3> 
+<div class = "exercise" <div class = "exercise" id="t4.6"> 
+<h3 class = "right">E4.6</h3> 
 <h3 class= "left">RS Minerve - Compare evaporation models</h3> 
 <p>Compare the different methods to calculate hourly evaporation in 1984 and their impact on the simulated discharge. Is the uniform evaporation model suitable for seasonal discharge models? In what circumstance could a uniform evaporation model be appropriate?  </p>
 <p>Hint: Export simulation results to the data base (<a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-quick-guides-export-sim-results-to-db>how to).</p>
@@ -426,8 +426,8 @@ The large number of parameters of the HBV model can be adjusted within reasonabl
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
-<div class = "task" <div class = "task" id="t4.7"> 
-<h3 class = "right">T4.7</h3> 
+<div class = "exercise" <div class = "exercise" id="t4.7"> 
+<h3 class = "right">E4.7</h3> 
 <h3 class= "left">Model calibration - Common difficulties</h3> 
 <p>Discuss with your colleague(s): What are typical difficulties inherent to the calibration of common semi-distributed (or fully distributed) hydrological models?</p>
 <p>Hint: Compare the number of parameters of the HBV model to the number of model states.</p>
@@ -437,8 +437,8 @@ cat('
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
-<div class = "task" <div class = "task" id="t4.8"> 
-<h3 class = "right">T4.8</h3> 
+<div class = "exercise" <div class = "exercise" id="t4.8"> 
+<h3 class = "right">E4.8</h3> 
 <h3 class= "left">Model calibration - Strategies to handle the difficulties</h3> 
 <p>Discuss with your colleague(s): Based on the list of common difficulties in the solution of exercise 5, think about possible strategies to address these challenges.</p>
 <p>Hint: A modeler proverb says "as simple as possible but as complex as necessary".</p>
@@ -460,8 +460,8 @@ Model performance can be expressed in different ways. Some indicators are better
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
-<div class = "task" <div class = "task" id="t4.9"> 
-<h3 class = "right">T4.9</h3> 
+<div class = "exercise" <div class = "exercise" id="t4.9"> 
+<h3 class = "right">E4.9</h3> 
 <h3 class= "left">Model performance indicators</h3> 
 <p>The RS Minerve technical manual summarizes the most important performance indicators typically used in hydrological modelling. For the more ambitious modellers, the manual includes references to the literature.</p>
 <p>Read Chapter 3 of the technical manual. </p>
@@ -481,8 +481,8 @@ knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_simulation_result_be
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
-<div class = "task" <div class = "task" id="t4.10"> 
-<h3 class = "right">T4.10</h3> 
+<div class = "exercise" <div class = "exercise" id="t4.10"> 
+<h3 class = "right">E4.10</h3> 
 <h3 class= "left">RS Minerve - Manual calibration of synthetic discharge</h3> 
 <p>1. Try to calibrate the model. Start with the parameters of the snow function and then proceed downwards through the compartments of the HBV model. Try to figure out which parameters influence the timing of the discharge peak, which the height of the peak and which the form of the recession curve.</p>
 <p>2. Look at the variables of the HBV model during calibration (e.g. snow water equivalent, soil moisture, etc.).</p>
@@ -505,8 +505,8 @@ You will have to choose performance indicators which will be combined in the obj
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
-<div class = "task" <div class = "task" id="t4.11"> 
-<h3 class = "right">T4.11</h3> 
+<div class = "exercise" <div class = "exercise" id="t4.11"> 
+<h3 class = "right">E4.11</h3> 
 <h3 class= "left">RS Minerve - Automated calibration</h3> 
 <p>Choose one or several performance indicators and run the automated calibration. The automated calibration may take a few minutes (expect around 3000 model iterations). Compare the parameters found with the automated calibration to the ones that were used for the generation of the synthetic discharge values (in <a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-calibrated parameters">solutions of the manual calibration example</a>). Discuss the differences. Where were you surprised? Which parameters could be identified and which not?</p>
 <p>Change the combination and weights of the performance indicators and redo the automated calibration. Note how the calibration result changes. </p>
@@ -518,8 +518,8 @@ You have seen in the exercise above that is not so easy to find the *true* param
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
-<div class = "task" <div class = "task" id="t4.12"> 
-<h3 class = "right">T4.12</h3> 
+<div class = "exercise" <div class = "exercise" id="t4.12"> 
+<h3 class = "right">E4.12</h3> 
 <h3 class= "left">RS Minerve - Manual sensitivity analysis</h3> 
 <p>Discuss with your colleague(s) in which way you expect the model outcomes to change when you modify your chosen parameters before you run the model. </p>
 <p>Make notes of the changes in parameters and the changes in the model outcomes.</p>
@@ -539,8 +539,8 @@ knitr::include_graphics("_bookdown_files/FIG_RS_MINERVE/fig_doStochasticSimulati
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
-<div class = "task" <div class = "task" id="t4.13"> 
-<h3 class = "right">T4.13</h3> 
+<div class = "exercise" <div class = "exercise" id="t4.13"> 
+<h3 class = "right">E4.13</h3> 
 <h3 class= "left">RS Minerve - Automated sensitivity analysis</h3> 
 <p>Perform an automated sensitivity analysis for the same parameters you chose in the previous exercise (manual sensitivity analysis).</p>
 <p>Compare the outcome of the manual sensitivity analysis.</p>

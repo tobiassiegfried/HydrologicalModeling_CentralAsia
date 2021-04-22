@@ -115,9 +115,9 @@ It should be noted that the rate of surface water inflow to the flatlands is sma
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
-<div class = "task" <div class = "task" id="t2.1"> 
-<h3 class = "right">T2.1</h3> 
-<h3 class= "left">Task on conversions</h3> 
+<div class = "exercise" <div class = "exercise" id="t2.1"> 
+<h3 class = "right">E2.1</h3> 
+<h3 class= "left">Exercise on conversions</h3> 
 <p>For water resources specialists it is extremely useful to be able to quickly convert flow number and to put them into context. As an exercise, convert the runoff of one or two Basins in the table above from m3/s to m3/a. Can you derive an approximation for the conversion which you can easily apply when you are in the field and do not have a calculator at hand?</p>
 <p></p>
 <p>Hint: The number <strong>PI</strong> is approximately 3.14. </p>

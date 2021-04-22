@@ -24,7 +24,7 @@
 <meta name="author" content="Tobias Siegfried and Beatrice Marti" />
 
 
-<meta name="date" content="2021-04-20" />
+<meta name="date" content="2021-04-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -149,9 +149,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="study-guide-1.html"><a href="study-guide-1.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
 <li class="chapter" data-level="" data-path="study-guide-1.html"><a href="study-guide-1.html#day-1-introduction-and-installation-of-software"><i class="fa fa-check"></i>Day 1: Introduction and installation of software</a></li>
-<li class="chapter" data-level="" data-path="study-guide-1.html"><a href="study-guide-1.html#day-2-catchment-characterization"><i class="fa fa-check"></i>Day 2: Catchment characterization</a></li>
-<li class="chapter" data-level="" data-path="study-guide-1.html"><a href="study-guide-1.html#day-3-geospatial-data-and-introduction-to-linear-reservoir-models"><i class="fa fa-check"></i>Day 3: Geospatial data and introduction to linear reservoir models</a></li>
-<li class="chapter" data-level="" data-path="study-guide-1.html"><a href="study-guide-1.html#day-4-discussion-of-types-of-hydrological-models"><i class="fa fa-check"></i>Day 4: Discussion of types of hydrological models</a></li>
+<li class="chapter" data-level="" data-path="study-guide-1.html"><a href="study-guide-1.html#day-2-hydrological-processes-characterization"><i class="fa fa-check"></i>Day 2: Hydrological processes &amp; characterization</a></li>
+<li class="chapter" data-level="" data-path="study-guide-1.html"><a href="study-guide-1.html#day-3-hydrological-models-introduction-to-rs-minerve"><i class="fa fa-check"></i>Day 3: Hydrological models &amp; Introduction to RS Minerve</a></li>
+<li class="chapter" data-level="" data-path="study-guide-1.html"><a href="study-guide-1.html#day-4-data-for-hydrological-modeling"><i class="fa fa-check"></i>Day 4: Data for hydrological modeling</a></li>
 <li class="chapter" data-level="" data-path="study-guide-1.html"><a href="study-guide-1.html#day-5-the-hbv-model"><i class="fa fa-check"></i>Day 5: The HBV model</a></li>
 <li class="chapter" data-level="" data-path="study-guide-1.html"><a href="study-guide-1.html#day-6-model-calibration-and-validation"><i class="fa fa-check"></i>Day 6: Model calibration and validation</a></li>
 <li class="chapter" data-level="" data-path="study-guide-1.html"><a href="study-guide-1.html#day-7-case-studies"><i class="fa fa-check"></i>Day 7: Case studies</a></li>
@@ -350,8 +350,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html"><i class="fa fa-check"></i><b>9.4</b> Appendix D: Solutions to exercises</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-exercise1"><i class="fa fa-check"></i><b>9.4.1</b> Exercise on Linear Reservoir modelling</a></li>
-<li class="chapter" data-level="9.4.2" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-hbv-exercises"><i class="fa fa-check"></i><b>9.4.2</b> Exercises on the HBV model</a></li>
+<li class="chapter" data-level="" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-exercise1"><i class="fa fa-check"></i>Exercise on Linear Reservoir modelling</a></li>
+<li class="chapter" data-level="" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#exercise-on-creating-gis-layers-for-import-to-rs-minerve"><i class="fa fa-check"></i>Exercise on creating GIS layers for import to RS Minerve</a></li>
+<li class="chapter" data-level="" data-path="sectin-appendix-solutions.html"><a href="sectin-appendix-solutions.html#section-appendix-solutions-hbv-exercises"><i class="fa fa-check"></i>Exercises on the HBV model</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="References.html"><a href="References.html"><i class="fa fa-check"></i><b>10</b> References</a></li>
@@ -401,21 +402,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Day 1: Introduction and installation of software</h3>
 <p>This Module introduces the students to the key hydro-climatological characteristics of Central Asia. The main water resources management and planning challenges in the region will be presented and discussed. The question how hydrological models can help to address and resolve these becomes the key course topic.<br />
 Two catchments, i.e. the Chirchik and Gunt river basins, will be highlighted and used as detailed motivational examples. All course examples will build on these two catchments later. </p>
-<p>Read <a href="#Part1_Hydrological_Systems">Part I</a> of the course book.
-/<em><a href="ShortHistory.html#ShortHistory">Chapter 1: A short history of Water in Central Asia</a> and <a href="HydrologicalSystems.html#HydrologicalSystems">Chapter 2: Hydrological Systems in Central Asia</a> in the course book. </em>/</p>
-<div class = "exercise" <div class = "exercise" id="ex0"> 
-<h3 class = "right">Ex0</h3> 
-<h3 class= "left">Introductory reading and software installation</h3> 
-<p>Read Part I of the book and make sure you have the required software (see prerequisites above) installed and working.</p>
+<p><strong>For reading refer to the course Moodle reading folder and literature folder (optional). </strong></p>
+<div class = "homework" <div class = "homework" id="h1"> 
+<h3 class = "right">H1</h3> 
+<h3 class= "left">Software installation</h3> 
+<p>Make sure you have the required software (see prerequisites above) installed and working.</p>
 </div>
 </div>
-<div id="day-2-catchment-characterization" class="section level3 unnumbered">
-<h3>Day 2: Catchment characterization</h3>
+<div id="day-2-hydrological-processes-characterization" class="section level3 unnumbered">
+<h3>Day 2: Hydrological processes &amp; characterization</h3>
 <p>This module will introduce the basic catchment-scale hydrological processes. The concept of the water balance will be introduced and the difference between stocks and flows explained. Steady-state and transient conditions will be discussed. In a second step, the surface energy balance will be introduced to discuss the partitioning of available water into runoff and evaporation. By using parsimonious models, simple water balance calculations will be demonstrated to familiarise the students with the key concepts that provide the foundation for the later hydrological modeling exercises. A special emphasis is on snow- and glacier-melt-driven catchments that are ubiquitous in the region. </p>
-<p>Read <a href="#Part2-Applied-Modeling">Chapter 4</a> and do the exercise on catchment characterization, i.e. do a catchment characterization of your sample catchment in QGIS or in R.</p>
-<div class = "exercise" <div class = "exercise" id="ex1"> 
-<h3 class = "right">Ex1</h3> 
-<h3 class= "left">Catchment characterization</h3> 
+<p><strong>T: Please review reading recommendations: Read <a href="CaseStudies.html#CaseStudies">Chapter 3</a>.</strong></p>
+<div class = "homework" <div class = "homework" id="h2"> 
+<h3 class = "right">H2</h3> 
+<h3 class= "left">Catchment characterization (graded)</h3> 
 <p>Fill the table using data of your chosen catchment. See Chapter # Case Studies: Gunt River Basin for a finished example.</p>
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
@@ -545,49 +545,27 @@ Two catchments, i.e. the Chirchik and Gunt river basins, will be highlighted an
 </table></div>
 </div>
 </div>
-<div id="day-3-geospatial-data-and-introduction-to-linear-reservoir-models" class="section level3 unnumbered">
-<h3>Day 3: Geospatial data and introduction to linear reservoir models</h3>
+<div id="day-3-hydrological-models-introduction-to-rs-minerve" class="section level3 unnumbered">
+<h3>Day 3: Hydrological models &amp; Introduction to RS Minerve</h3>
+<p><strong>T: Please adapt text to be consistent with Moodle</strong></p>
 <p>Hydrological models require different types of data. Depending on the type of model under consideration, these data include geospatial data, including terrain and land surface data, hydrological station data, and climatological data. For impact studies of climate change, future climate projections are furthermore required.
 Using open-source data, it is shown how data can be accessed over the internet, downloaded, and processed for later inclusion in modeling. Using R and the riversCentralAsia R Package, data cleaning, including gap-filling, data analysis, and preparation for hydrological modeling are shown.</p>
-<p>Read the <a href="Chapter-DATA.html#Chapter-DATA">Data Chapter</a>. As a preparation to the HBV model, read Chapter <a href="section-rsminerve-why-model-introduction.html#section-rsminerve-why-model-introduction">6.2</a> and do the exercise on the linear reservoir model given below.</p>
-<div class = "exercise" <div class = "exercise" id="ex2"> 
-<h3 class = "right">Ex2</h3> 
-<h3 class = "left">Exercise: The Linear Reservoir</h3> 
-<p><strong>Part 1: Experimental setup</strong></p>
-<p>To understand the flow of water through a reservoir, you will build a bucket model yourself at home from materials that you have at hand and measure recharge as well as discharge from the bucket. You will then make a numerical model of your real bucket model and simulate discharge. Think through the experiment and answer the following questions:</p>
-<p><ul>
-  <li>What will determine the flow through your bucket?</li>
-  <li>What do you need to measure?</li>
-  <li>How can you measure it?</li>
-  <li>What materials you will need to set up the experiment?</li>
-  <li>Where will you get the water from and can you re-use it after the experiment?</li>
-</ul></p>
-<p><a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-exercise1">Solution to task 1</a></p> 
-<p></p>
-<p><strong>Part 2: Perform the experiment</strong></p>
-<p>Set up the experiment and pour water into your improvised reservoir. Take care to pour with a continuous speed over a short time period. You may have to repeat the experiment a few times (see also notes on measurement accuracy in the <a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-appendix-solutions-exercise1">solutions of part 1 of this exercise</a>. The outcome of the experiment is a time series of discharge measurements.</p>   
-<p>You can watch a video of the experiment <a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#solution-task2-perform-experiment">here</a> if you cannot perform the experiment yourself.</p>
-<p></p>
-<p><strong>Part 3: Simulate the experiment</strong></p>
-<p>The figure below shows the measured discharge from the experimental data shown in the table above. We have implemented a discretized version of a linear reservoir model for you which shows the simulated discharge (grey bars) of a recharge event (blue bars). Play with the storage parameter by moving the slider and see how the simulated discharge changes based on the storage parameter of the simulated catchment. Can you reproduce the measured discharge? If you cannot find a perfect match between measurements and simulation results: What could be the reasons? (If you see an empty window below this text, go to the <a href="http://34.251.168.23:3838/linearReservoirExampleApp/">web app</a> directly to do the exercise).</p>
-<p><a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#solution-task3-simulate">Solution to task 3.</a></p>
+<div class = "homework" <div class = "homework" id="h3"> 
+<h3 class = "right">H3</h3> 
+<h3 class= "left">Introduction to RS Minerve</h3> 
+<p>Read the RS Minerve User Manual and reproduce Example 1 in the RS Minerve User Manual.</p>
 </div>
-<iframe src="http://34.251.168.23:3838/linearReservoirExampleApp/?showcase=0" width="672" height="800px">
-</iframe>
-<p>App code available on <a href="https://github.com/hydrosolutions/linear_reservoir_model_example_app">GitHub</a>.</p>
 </div>
-<div id="day-4-discussion-of-types-of-hydrological-models" class="section level3 unnumbered">
-<h3>Day 4: Discussion of types of hydrological models</h3>
-<p>Different types of hydrological models are introduced, including physical models, conceptual models, and empirical models. Their characteristics and applications are discussed.
+<div id="day-4-data-for-hydrological-modeling" class="section level3 unnumbered">
+<h3>Day 4: Data for hydrological modeling</h3>
+<p><strong>T: Please adapt text to be consistent with Moodle</strong>
+Different types of hydrological models are introduced, including physical models, conceptual models, and empirical models. Their characteristics and applications are discussed.
 The course then further focuses on conceptual models which are at the heart of many real-world river basin planning and water resources management optimization approaches. These models feature a good compromise between black-box models such as some types of machine learning models where real-world processes are not directly represented and the complex and computationally demanding physically-based models which are also difficult to implement. 
 In a seminar, students will derive a conceptual model for their own sample catchment.</p>
-<p>** TODO: This exercise could be made more specific** </p>
-<p>Hydrological models in general are discussed. This topic currently doesn’t have a specific book chapter. Read Chapter <a href="section-general-modelling-process.html#section-general-modelling-process">6.3</a> which is a short recap of the general modeling process.<br />
-</p>
-<div class = "exercise" <div class = "exercise" id="ex3"> 
-<h3 class = "right">Ex3</h3> 
-<h3 class = "left">Exercise: Work on your R skills</h3> 
-<p>Choose an R tutorial to work on from the <a href="https://tobiassiegfried.github.io/HydrologicalModeling_CentralAsia/sectin-appendix-solutions.html#section-open-resrouces-learning-R">Appendix</a> which suits your skills. If you are already fluent in R, work on your visualization skills in R by producing nice plots of your sample catchment which you may include in the final presentation on the last day of the workshop. You may let yourselves be inspired by the R code supplied with this book.</p>
+<div class = "homework" <div class = "homework" id="h4"> 
+<h3 class = "right">H4</h3> 
+<h3 class = "left">Discharge characterization (graded)</h3> 
+<p>Follow book Chapter 5.1 on Station Data and analyse the discharge of the sample catchment. Use the R code snippets provided in the book chapter.</p>
 </div>
 </div>
 <div id="day-5-the-hbv-model" class="section level3 unnumbered">
@@ -595,22 +573,22 @@ In a seminar, students will derive a conceptual model for their own sample catch
 <p>The HBV model is introduced. It is a widely used conceptual rainfall-runoff model and consists of different routines and simulates catchment discharge based on time series of precipitation and air temperature as well as estimates of monthly long-term potential evaporation rates. The model contains a snow routine with which snow can be accumulated and melted in a snow reservoir, depending on the climate conditions.
 Several HBV models can be connected/interlinked which allows for the simulation of more complex catchments with different tributaries that span over a number of elevation zones.
 The HBV model implemented in the modeling software RS MINERVE does not represent glaciers. However, where relevant and necessary, HBV models can be combined in RS MINERVE with GSM model which is is a glaciologist-hydrological model. In comparison to the HBV model, the GSM model also contains a glacier submodel that can accommodate processes in the cryosphere. As the HBV model, the GSM model is parsimonious and requires only three input time series, and is suited to be applied in data-scarce environments, like most high-mountain places in the world. </p>
-<p>Read <a href="section-hbv-model.html#section-hbv-model">Chapter 6.5 on the HBV model</a> and the pre-requisite reading listed therein. It is recommended to do the tasks suggested in the course book to get more familiar with RS Minerve.<br />
+<p><strong>T please edit: Read <a href="section-hbv-model.html#section-hbv-model">Chapter 6.5 on the HBV model</a> and the pre-requisite reading listed therein. It is recommended to do the tasks suggested in the course book to get more familiar with RS Minerve.</strong><br />
 </p>
-<div class = "exercise" <div class = "exercise" id="ex4"> 
-<h3 class = "right">Ex4</h3> 
-<h3 class = "left">Exercise: Implement your catchment in RS Minerve</h3> 
-<p>Implement your catchment using HBV models based on the catchment characterization that you performed on day 2 and the GIS layers that you prepared on day 3.</p>
+<div class = "homework" <div class = "homework" id="h4"> 
+<h3 class = "right">H4</h3> 
+<h3 class = "left">RS Minerve model implementation (graded)</h3> 
+<p>Implement your catchment using HBV models based on the activities that you performed in the past week.</p>
 </div>
 </div>
 <div id="day-6-model-calibration-and-validation" class="section level3 unnumbered">
 <h3>Day 6: Model calibration and validation</h3>
-<p>Read Chapter <a href="section-model-calibration-and-validation.html#section-model-calibration-and-validation">6.6</a> and go through the example of the Nauvalisoy catchment which illustrates the iterative model refinement process.<br />
+<p><strong>T please add text and edit: Read Chapter <a href="section-model-calibration-and-validation.html#section-model-calibration-and-validation">6.6</a> and go through the example of the Nauvalisoy catchment which illustrates the iterative model refinement process.</strong><br />
 </p>
-<div class = "exercise" <div class = "exercise" id="ex5"> 
-<h3 class = "right">Ex5</h3> 
-<h3 class = "left">Exercise: Calibrate and validate your RS Minerve model</h3> 
-<p>Calibrate and validate your RS Minerve model.</p>
+<div class = "homework" <div class = "homework" id="h6"> 
+<h3 class = "right">H6</h3> 
+<h3 class = "left">Model calibration & validation (graded)</h3> 
+<p>Calibrate and validate your RS Minerve model. The finished model will be graded.</p>
 </div>
 </div>
 <div id="day-7-case-studies" class="section level3 unnumbered">
@@ -618,9 +596,9 @@ The HBV model implemented in the modeling software RS MINERVE does not represent
 <p>A case study is presented that discusses climate impacts in the Gunt River. The Gunt River is a large right tributary of the Pandzh river. The Gunt river has a norm discharge of 104 m3/s and is located in the semi-arid to arid Pamirs in Tajikistan. As has been shown in numerous other studies, high-mountain Asia is particularly vulnerable to climatic changes.
 It will be shown how a semi-distributed hydrological model together with climate projection data can be utilized to study expected climate impacts in great detail. The same approach can be used for impact studies in other basins in the region and elsewhere.
 The material presented here is the result of a previous year MSc study by Mr. Orzu Odinaev.</p>
-<div class = "exercise" <div class = "exercise" id="ex6"> 
-<h3 class = "right">Ex6</h3> 
-<h3 class = "left">Exercise: Submit an abstract for the final conference</h3> 
+<div class = "homework" <div class = "homework" id="h7"> 
+<h3 class = "right">H7</h3> 
+<h3 class = "left">Submit an abstract for the final conference</h3> 
 <p>Write an abstract about your modeling work for the final conference. Instructions for abstract writing are available <a href="https://github.com/tobiassiegfried/HydrologicalModeling_CentralAsia/blob/master/learningFiles/AbstractSubmissionGuide.pdf">here</a>. The abstract submission deadline is Friday, May 14, 18:00 Almaty time.</p>
 </div>
 </div>
@@ -628,9 +606,9 @@ The material presented here is the result of a previous year MSc study by Mr. O
 <h3>Day 8: Real-world applications</h3>
 <p>This Course Module will touch upon opportunities and challenges for the operationalization of hydrological models, i.e. of putting them into practice and daily use by relevant organizations. The case studies presented here will draw on real-world examples where new, modern models were deployed in state agencies in Central Asia. Learnings and findings are presented and critically reviewed and factors for the successful deployment highlighted.
 Colleagues from the Operational Hydrology Divisions of the Kyrgyz and Uzbek Hydrometeorological Agencies will be joining and talking about their daily work to give the students direct inside insights.</p>
-<div class = "exercise" <div class = "exercise" id="ex7"> 
-<h3 class = "right">Ex7</h3> 
-<h3 class = "left">Exercise: Finalize presentation</h3> 
+<div class = "homework" <div class = "homework" id="h8"> 
+<h3 class = "right">H8</h3> 
+<h3 class = "left">Finalize presentation</h3> 
 <p>Finalize the presentation of your modelling work during this workshop for the final conference. Each student group will be alloted 15 minutes for their presentation.</p>
 <p></p>
 <p><strong>Tips for oral presentations</strong> <a href="https://www.agu.org/Fall-Meeting-2020/Pages/Present/Presenter-Guidelines/Oral-Guidelines-During-Meeting">(AGU guidelines for oral presentations)</a></p>
