@@ -113,6 +113,17 @@ Based on available data, the rate of surface outflow $q_{s}$ can be calculated q
 
 It should be noted that the rate of surface water inflow to the flatlands is smaller than the runoff which is generated in the mountain areas as part of it is utilized in the mountain area for irrigation purposes (the rivers of Turkmenistan are in this regard an especially good example), or it evaporates from a surface like of the Lake Issyk Kul and other smaller lakes.
 
+```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
+cat('
+<div class = "exercise" <div class = "exercise" id="t2.1"> 
+<h3 class = "right">E2.1</h3> 
+<h3 class= "left">Exercise on conversions</h3> 
+<p>For water resources specialists it is extremely useful to be able to quickly convert flow number and to put them into context. As an exercise, convert the runoff of one or two Basins in the table above from m3/s to m3/a. Can you derive an approximation for the conversion which you can easily apply when you are in the field and do not have a calculator at hand?</p>
+<p></p>
+<p>Hint: The number <strong>PI</strong> is approximately 3.14. </p>
+</div>')
+```
+
 If, from the mountain area, we exclude reservoirs of the river Atrek and the rivers of Turkmenistan and Afghanistan with no runoff which, occupying the big space (29% of all mountain area of Central Asia), excel in a minute quantity of rainfall and exclusively low water levels, separate elements of water balance will be expressed by the following sizes: $p$ = 675 mm\footnote{In this case, the runoff coefficient is taken equal to 0.40 taking into account the increase in the average height of the mountain area.} , $q_{s}$ = 270 mm and $e$ = 405 mm. In this case, the water balance of mountain area shows its hydrological essence even more clearly.
 
 The equation of water balance for the flat area can be written in the form of
@@ -147,7 +158,7 @@ Even if we take into account that in the case of the basins of Pyandzh and Vakhs
 knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/fig_AmuSyrDarya_HypsographicCurves.png')
 ```
 
-Data on land ice can be obtained from the Global Land Ice Measurements from Space glacier database GLIMS [@glims_global]. The Global Land Ice Measurements from Space (GLIMS) project at NSIDC has implemented a database of glacier outlines from around the world and other information about glaciers that includes the metadata on how those outlines were derived. At \<www.glims.org\>, one can download outlines and metadata for glaciers in a choice of different formats, including KML (for viewing in Google Earth), ESRI shapefiles, GMT (Generic Mapping Tools), MapInfo, or GML (Geography Markup Language). Figure \@ref(fig:AmuDaryaGlaciers) shows a sample visualization of the GLIMS data for the zone of runoff formation of the Amu Darya. The data will also be utilized in Chapter @ref(\#HydrologicalSystems) below to obtain good ideas of the subcatchments' glaciation levels.
+Data on land ice can be obtained from the Global Land Ice Measurements from Space glacier database GLIMS [@glims_global]. The Global Land Ice Measurements from Space (GLIMS) project at NSIDC has implemented a database of glacier outlines from around the world and other information about glaciers that includes the metadata on how those outlines were derived. At \<www.glims.org\>, one can download outlines and metadata for glaciers in a choice of different formats, including KML (for viewing in Google Earth), ESRI shapefiles, GMT (Generic Mapping Tools), MapInfo, or GML (Geography Markup Language). Figure \@ref(fig:AmuDaryaGlaciers) shows a sample visualization of the GLIMS data for the zone of runoff formation of the Amu Darya. The data will also be utilized in Chapter \@ref(#HydrologicalSystems) below to obtain good ideas of the subcatchments' glaciation levels.
 
 ```{r AmuDaryaGlaciers, echo = FALSE, fig.cap = 'Visualization of the GLIMS data glaciation in the Vaksh-Pyandzh basin. The light blue shaded polygons show land ice on top of the underlying digital elevation model.'}
 knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/fig_VakshPyandz_GLIMS.png')
@@ -159,7 +170,7 @@ Figure \@ref(fig:elDistGlaciers) shows the distribution of mean glacier elevatio
 knitr::include_graphics('_bookdown_files/FIG_HYDRO_SYSTEMS/fig_GlacierElevationDistribution.png')
 ```
 
-Since the GLIMS database contains contains the shapes of glaciers as geometric features, we can calculate easily calculate areas that the individual glaciers cover and then utilize scaling relationships between surface area and volume to estimate total ice storage in the individual Central Asian catchments. [@Aizen_2007] reports such scaling relationship for the Central Asian region. As a function of glacier area, they are
+Since the GLIMS database contains contains the shapes of glaciers as geometric features, we can easily calculate areas that the individual glaciers cover and then utilize scaling relationships between surface area and volume to estimate total ice storage in the individual Central Asian catchments. @Aizen_2007 report such scaling relationship for the Central Asian region. As a function of glacier area, they are
 
 $$
 V = 0.03782 S^{1.23} \text{ for } S< 0.1 \text{ km}^2 \\

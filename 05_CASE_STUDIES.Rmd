@@ -30,7 +30,7 @@ library(units)
 knitr::include_graphics('_bookdown_files/FIG_CASE_STUDIES/CharvakReservoir_lr.jpeg')
 ```
 
-**Charvak reservoir in the Chirchik river basin.. Source: Tobias Siegfried, hydrosolutions GmbH.**
+**Charvak reservoir in the Chirchik river basin. Source: Tobias Siegfried, hydrosolutions GmbH.**
 
 In this Chapter, two Central Asian river basins are presented and extensively discussed. The purpose is to familiarize the reader with key hydrological processes but also to demonstrate ways of hydro-meteorological time series analyses with R [@R-2013]. First, the Gunt river basin in the upper Pyandzh is presented. It is representative of a high mountain catchment in an arid to hyper-arid part of Central Asia, i.e. the Pamirs. Mostly because of its elevation, the catchment is largely untouched by human activity. In recent years, hydropower was developed in the of the basin in the lower reaches of the river, shortly before its confluence with the Pyandzh river.
 
@@ -272,8 +272,8 @@ unlike in the lower lying Chirchik tributaries as shown in Figure \@ref(fig:Chir
 
 ```{r, eval = "html", results='asis', echo=FALSE, purl=FALSE}
 cat('
-<div class = "task" <div class = "task" id="t3.1"> 
-<h3 class = "right">T3.1</h3> 
+<div class = "exercise" <div class = "exercise" id="t3.1"> 
+<h3 class = "right">E3.1</h3> 
 <h3 class= "left">Peak Discharge</h3> 
 <p>Discuss with your colleague(s): </p>
 <p><ul>

@@ -392,7 +392,7 @@ In this chapter we will demonstrate how to derive the GIS layers for the Nauvali
 ```{r, eval = "html", label="gis-prep", results='asis', echo=FALSE, purl=FALSE}
 cat('
 <div class = "exercise" <div class = "exercise" id="ex5.1"> 
-<h3 class = "right">Ex5.1</h3> 
+<h3 class = "right">E5.1</h3> 
 <h3 class= "left">Prepare GIS layers</h3> 
 <p>Go through the steps in this Chapter to generate yourselves the GIS layers of your sample catchment for import into RS Minerve.</p> 
 </div>')

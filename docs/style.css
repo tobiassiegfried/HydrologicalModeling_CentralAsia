@@ -13,33 +13,9 @@ pre code {
   white-space: inherit;
 }
 
-.exercisebox {
-  padding: 1em;
-  background: #ACE3EE;
-  color: black;
-  border: 1px #cacdca;
-  border-radius: 10px;
-}
-.taskbox {
-  padding: 1em;
-  background: #DFEEAC;
-  color: black;
-  border: 1px #cacdca;
-  border-radius: 10px;
-}
-.notebox {
-  padding: 1em;
-  background: #F5CBA7 ;
-  color: black;
-  border: 1px #cacdca;
-  border-radius: 10px;
-}
-.center {
-  text-align: center;
-}
 
 /* Inspired by https://www.econometrics-with-r.org/ */
-.exercise {
+.homework {
  background-color: #ACE3EE;
  border-radius: 15px 50px;
  border-color: #ACE3EE;
@@ -50,34 +26,34 @@ pre code {
  padding-top: 0px;
  padding-bottom: 15px;
 }
-.exercise h3.right {
+.homework h3.right {
   float: right;
   color: #0e2a72;
   width: 25%;
   text-align: center;
 }
 
-.exercise h3.left {
+.homework h3.left {
   float: left;
   color: #0e2a72;
   width: 65%;
 }
 
-.exercise strong {
+.homework strong {
   color:#0e2a72 !important;
 }
 
-.exercise a:link { color: white !important; }
-.exercise a:visited { color: white !important; }
-.exercise a:hover { color: white !important; }
-.exercise a:active { color: white !important; }
+.homework a:link { color: white !important; }
+.homework a:visited { color: white !important; }
+.homework a:hover { color: white !important; }
+.homework a:active { color: white !important; }
 
-.exercise p {
+.homework p {
   clear: both;
 }
 
 
-.task {
+.exercise {
  background-color: #DFEEAC;
  border-radius: 15px 50px;
  border-color: #DFEEAC;
@@ -88,29 +64,29 @@ pre code {
  padding-top: 0px;
  padding-bottom: 15px;
 }
-.task h3.right {
+.exercise h3.right {
   float: right;
   color: #3f3f0d;
   width: 25%;
   text-align: center;
 }
 
-.task h3.left {
+.exercise h3.left {
   float: left;
   color: #3f3f0d;
   width: 65%;
 }
 
-.task strong {
+.exercise strong {
   color:#3f3f0d !important;
 }
 
-.task a:link { color: #3f3f0d !important; }
-.task a:visited { color: #3f3f0d !important; }
-.task a:hover { color: #3f3f0d !important; }
-.task a:active { color: #3f3f0d !important; }
+.exercise a:link { color: #3f3f0d !important; }
+.exercise a:visited { color: #3f3f0d !important; }
+.exercise a:hover { color: #3f3f0d !important; }
+.exercise a:active { color: #3f3f0d !important; }
 
-.task p {
+.exercise p {
   clear: both;
 }
 
@@ -158,40 +134,3 @@ pre code {
 
 
 
-.keyconcept {
- background-color: #356185;
- border-radius: 15px 50px;
- border-color: #356185;
- color: white;
- margin: 20px 0 20px 0;
- padding-left: 25px;
- padding-right: 25px;
- padding-top: 0px;
- padding-bottom: 15px;
-}
-
-.keyconcept h3.right {
-  float: right;
-  color: white;
-  width: 25%;
-  text-align: center;
-}
-
-.keyconcept h3.left {
-  float: left;
-  color: white;
-  width: 65%;
-}
-
-.keyconcept strong {
-  color:white !important;
-}
-
-.keyconcept a:link { color: white !important; }
-.keyconcept a:visited { color: white !important; }
-.keyconcept a:hover { color: white !important; }
-.keyconcept a:active { color: white !important; }
-
-.keyconcept p {
-  clear: both;
-}
